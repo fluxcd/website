@@ -1,0 +1,88 @@
+baseURL = "https://fluxcd.netlify.com"
+languageCode = "en-us"
+title = "Flux CD"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+[params]
+description          = "The GitOps operator for Kubernetes"
+github_repo          = "fluxcd/flux"
+slack                = "https://cloud-native.slack.com/messages/flux"
+mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
+font_awesome_version = "5.3.1"
+
+summary = """
+Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
+"""
+
+workflow = """
+Flux monitors all of the container image repositories that you specify. It detects new images, triggers deployments, and automatically updates the desired running configuration of your Kubernetes cluster—and does so in within the bounds of a configurable deployment policy.
+"""
+
+[[params.buttons]]
+text = "Get started"
+icon = "fa-play"
+url = "http://docs.fluxcd.io/en/latest/tutorials/get-started.html"
+
+[[params.buttons]]
+text = "Learn more"
+icon = "fa-info"
+url = "http://docs.fluxcd.io/en/latest/introduction.html"
+
+[[params.buttons]]
+text = "Helm Operator"
+icon = "fa-wrench"
+url = "https://docs.fluxcd.io/projects/helm-operator/en/latest/tutorials/get-started.html"
+
+[[params.features]]
+icon   = "fab fa-git-square"
+header = "Declarative"
+text   = """
+Descibe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
+"""
+
+[[params.features]]
+icon = "fas fa-robot"
+header = "Automated"
+text = """
+Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run [`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes go through Git. Use diffing tools to detect divergence between observed and desired state and receive notifications.
+"""
+
+[[params.features]]
+icon = "fas fa-code"
+header = "Code, not containers"
+text = """
+With Flux, everything is controlled through pull requests, which means no learning curve for new developers. Just use your standard PR process. Your Git history provides a sequence of transactions, allowing you to recover system state from any snapshot. Fix a production issue via pull request rather than making changes to the running system.
+"""
+
+[params.logos]
+navbar = "flux-horizontal-white.png"
+hero   = "flux-horizontal-color.png"
+footer = "flux-stacked-white.png"
+cncf   = "cncf-color.png"
+
+[[params.fonts]]
+name = "Open Sans"
+sizes = [300,400,600,700]
+type = "sans_serif"
+
+[[menus.main]]
+name = "Docs"
+url = "https://docs.fluxcd.io"
+weight = 1
+
+[[menus.main]]
+identifier = "project"
+name = "Project"
+
+[[menus.main]]
+name = "Code of conduct"
+parent = "project"
+url = "https://github.com/fluxcd/flux/blob/master/CODE_OF_CONDUCT.md"
+weight = 1
+
+[[menus.main]]
+name = "Contributing"
+parent = "project"
+url = "https://github.com/fluxcd/flux/blob/master/CONTRIBUTING.md"
+weight = 2

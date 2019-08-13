@@ -1,0 +1,80 @@
+{{ $home   := site.BaseURL }}
+{{ $title  := site.Title }}
+{{ $logo   := printf "img/logos/%s" site.Params.logos.navbar | relURL }}
+{{ $menu   := site.Menus.main }}
+{{ $repo   := site.Params.github_repo }}
+{{ $github := printf "https://github.com/%s" $repo }}
+{{ $slack  := site.Params.slack }}
+{{ $mail   := site.Params.mailing_list }}
+<nav class="navbar is-black is-fixed-top">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{ $home }}">
+        <img src="{{ $logo }}" alt="{{ $title }} navbar logo">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbar-menu" class="navbar-menu is-active">
+      <div class="navbar-end">
+        {{ range $menu }}
+        {{ if .HasChildren }}
+        <div class="navbar-item has-dropdown is-hoverable has-text-weight-bold is-uppercase" href="{{ .URL }}">
+          <a class="navbar-link is-arrowless"{{ with .URL }} href="{{ . }}" target="_blank"{{ end }}>
+            {{ .Name }}
+          </a>
+
+          <div class="navbar-dropdown">
+            {{ range .Children }}
+            <a class="navbar-item" href="{{ .URL }}" target="_blank">
+              {{ .Name }}
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ else }}
+        <a class="navbar-item has-text-weight-medium has-text-weight-bold  is-uppercase" href="{{ .URL }}" target="_blank">
+          {{ .Name }}
+        </a>
+        {{ end }}
+        {{ end }}
+
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button" href="{{ $github }}" target="_blank">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span class="has-text-weight-bold">
+                {{ $repo }}
+              </span>
+            </a>
+
+            <a class="button is-slack-green" href="{{ $slack }}" target="_blank">
+              <span class="icon">
+                <i class="fab fa-slack"></i>
+              </span>
+              <span class="has-text-weight-bold">
+                Slack
+              </span>
+            </a>
+
+            <a class="button is-info" href="{{ $mail }}" target="_blank">
+              <span class="icon">
+                <i class="far fa-paper-plane"></i>
+              </span>
+              <span class="has-text-weight-bold">
+                Mailing list
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

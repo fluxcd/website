@@ -1,0 +1,30 @@
+{{ $img  := "/img/flux-cd-diagram.png" | relURL }}
+{{ $flow := site.Params.workflow | markdownify }}
+<section class="section">
+  <div class="container">
+    <div class="columns is-variable is-8 is-vcentered">
+      <div class="column">
+        <a href="{{ $img }}" target="_blank">
+          <img src="{{ $img }}">
+        </a>
+      </div>
+
+      <div class="column has-text-right">
+        <p class="title is-size-3 is-size-4-mobile has-text-weight-bold">
+          <span class="icon has-text-primary">
+            <i class="fas fa-code-branch"></i>
+          </span>
+          <span>
+            The Flux workflow
+          </span>
+        </p>
+
+        <hr class="has-background-secondary" />
+
+        <div class="content">
+          {{ $flow }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
