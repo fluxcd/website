@@ -1,6 +1,6 @@
 # fluxcd.io
 
-This repo houses the assets used to build the Flux project's landing at https://fluxcd.io.
+This repo houses the assets used to build the Flux project's landing page at https://fluxcd.io.
 
 > **Note**: The sources for Flux's documentation, available at https://docs.fluxcd.io, are housed in the main Flux repo at https://github.com/fluxcd/flux. Issues and pull requests for the Flux documentation should be registered at that repo.
 
@@ -17,7 +17,7 @@ Once those tools are installed, fetch the assets necessary to run the site:
 yarn
 ```
 
-Then run the site in "sever" mode:
+Then run the site in "server" mode:
 
 ```bash
 make serve
