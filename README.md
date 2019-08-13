@@ -28,3 +28,7 @@ Navigate to http://localhost:1313 to see the site running in your browser. As yo
 ## Publishing the site
 
 The Flux website is published automatically by [Netlify](https://netlify.com) when changes are pushed to the `master` branch. The site does not need to be published manually.
+
+### Preview builds
+
+When you submit a pull request to this repository, Netlify builds a "deploy preview" of your changes. You can see that preview by clicking on the **deploy/netlify** link in the pull request window.
