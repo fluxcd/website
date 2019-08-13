@@ -1,0 +1,30 @@
+{{ $features := site.Params.features }}
+<section class="section has-background-light">
+  <div class="container">
+    <div class="columns is-multiline">
+      {{ range $features }}
+      <div class="column is-one-third">
+        <article class="media is-large">
+          <figure class="media-left">
+            <span class="icon is-medium has-text-primary">
+              <i class="fa-lg {{ .icon }}"></i>
+            </span>
+          </figure>
+  
+          <div class="media-content">
+            <div class="content">
+              <p class="title is-size-4 is-size-5-mobile has-text-weight-medium">
+                {{ .header }}
+              </p>
+  
+              <p>
+                {{ .text | markdownify }}
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

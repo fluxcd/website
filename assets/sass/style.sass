@@ -1,0 +1,79 @@
+{{- $fonts    := site.Params.fonts }}
+{{- $fontSlice := (slice) }}
+{{- range $fonts }}
+{{- $fontSlice = $fontSlice | append (printf "%s:%s" (replace .name " " "+") (delimit .sizes ",")) }}
+{{- end }}
+{{- $fontsUrl := printf "https://fonts.googleapis.com/css?family=%s" (delimit $fontSlice "|") }}
+{{- $sansSerifFont := (index (where site.Params.fonts ".type" "sans_serif") 0).name }}
+{{- $fontAwesomeVersion := site.Params.font_awesome_version }}
+{{- $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
+
+// Flux color palette
+$flux-dark-blue: #3d6ddd
+$flux-light-blue: #c3d2f4
+$flux-black: #1a1a1a
+
+// Other colors
+$slack-green: #74cdb0
+
+@charset "utf-8"
+@import url({{ $fontsUrl }})
+@import url({{ $fontAwesomeUrl }})
+
+@import "bulma/sass/utilities/initial-variables"
+@import "bulma/sass/utilities/functions"
+
+$primary: $flux-dark-blue
+$secondary: $flux-light-blue
+$dark: $flux-black
+
+$link: $primary
+$family-sans-serif: "{{ $sansSerifFont }}", sans-serif
+$code: $primary
+$code-background: $grey-lighter
+$navbar-height: 4.5rem
+$navbar-item-img-max-height: $navbar-height * 0.6
+$navbar-dropdown-border-top: none
+$navbar-dropdown-radius: none
+$navbar-dropdown-item-hover-color: $primary
+$section-padding: 4.5rem 1.5rem
+
+@import "bulma/sass/utilities/derived-variables"
+
+$navbar-dropdown-item-hover-background-color: $white-bis
+$colors: mergeColorMaps(("secondary": ($secondary, $white), "slack-green": ($slack-green, $white)), $colors)
+
+@import "bulma/bulma"
+
+// Site-specific Sass
+=responsive-img($m, $d)
+  +mobile
+    width: $m
+  +tablet
+    width: $d
+
+.is-hero-logo
+  +responsive-img(50%, 25%)
+
+.is-footer-logo
+  +responsive-img(20%, 25%)
+
+.is-cncf-logo
+  +responsive-img(75%, 50%)
+
+.is-info-section
+  a
+    color: $secondary
+    font-weight: 600
+
+.is-indented
+  padding-left: 1rem
+
+// Ensure sticky footer
+.site
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+  .main
+    flex: 1

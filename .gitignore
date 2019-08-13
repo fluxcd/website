@@ -1,0 +1,6 @@
+# Node.js assets
+node_modules/
+
+# Hugo-generated assets
+public/
+resources/

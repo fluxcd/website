@@ -1,0 +1,32 @@
+{{ $title   := site.Title }}
+{{ $desc    := site.Params.description | markdownify }}
+{{ $logo    := printf "img/logos/%s" site.Params.logos.hero | relURL }}
+{{ $buttons := site.Params.buttons }}
+<section class="hero is-bold is-fullheight-with-navbar is-primary">
+  <div class="hero-body is-bold" id="waves-background">
+    <div class="container">
+      <img class="title is-hero-logo is-spaced" src="{{ $logo }}" alt="{{ $title }} hero logo">
+
+      <hr class="has-background-secondary" />
+
+      <p class="subtitle is-size-2 has-text-black is-size-4-mobile has-text-weight-medium">
+        {{ $desc }}
+      </p>
+
+      <br />
+
+      <div class="buttons">
+        {{ range $buttons }}
+        <a class="button is-primary is-uppercase" href="{{ .url }}" target="_blank">
+          <span class="icon">
+            <i class="fas {{ .icon }}"></i>
+          </span>
+          <span>
+            {{ .text }}
+          </span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
