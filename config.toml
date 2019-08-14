@@ -22,12 +22,12 @@ Flux monitors all of the container image repositories that you specify. It detec
 [[params.buttons]]
 text = "Get started"
 icon = "fa-play"
-url = "http://docs.fluxcd.io/en/latest/tutorials/get-started.html"
+url = "https://docs.fluxcd.io/en/latest/tutorials/get-started.html"
 
 [[params.buttons]]
 text = "Learn more"
 icon = "fa-info"
-url = "http://docs.fluxcd.io/en/latest/introduction.html"
+url = "https://docs.fluxcd.io/en/latest/introduction.html"
 
 [[params.buttons]]
 text = "Helm Operator"
