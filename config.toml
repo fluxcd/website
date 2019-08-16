@@ -97,3 +97,9 @@ name = "Contributing"
 parent = "project"
 url = "https://github.com/fluxcd/flux/blob/master/CONTRIBUTING.md"
 weight = 2
+
+[[menus.main]]
+name = "Branding"
+parent = "project"
+url = "https://branding.cncf.io/projects/flux"
+weight = 3
