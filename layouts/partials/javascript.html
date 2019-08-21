@@ -4,18 +4,17 @@
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
 {{ if $isHome }}
-{{ $extraJs := (slice "three.r92.min" "vanta.waves.min") }}
+{{ $extraJs := (slice "three.r92.min" "p5.min" "vanta.topology.min") }}
 {{ range $extraJs }}
 {{ $path := printf "js/%s.js" . }}
 {{ $js := resources.Get $path | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
 <script>
-  VANTA.WAVES({
-    el: '#waves-background',
-    color: '#b5b5b5',
-    shininess: 0,
-    waveSpeed: 0.5
+  VANTA.TOPOLOGY({
+    el: "#waves-background",
+    color: 0xB2C9FB,
+    backgroundColor: 0xffffff
   })
-</script>
+  </script>
 {{ end }}
