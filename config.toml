@@ -16,7 +16,7 @@ Flux is a tool that automatically ensures that the state of your [Kubernetes](ht
 """
 
 workflow = """
-Flux monitors all of the container image repositories that you specify. It detects new images, triggers deployments, and automatically updates the desired running configuration of your Kubernetes cluster—and does so in within the bounds of a configurable deployment policy.
+Flux monitors all of the container image repositories that you specify. It detects new images, triggers deployments, and automatically updates the desired running configuration of your Kubernetes cluster—and does so within the bounds of a configurable deployment policy.
 """
 
 [[params.buttons]]
