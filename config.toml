@@ -38,7 +38,7 @@ url = "https://docs.fluxcd.io/projects/helm-operator/en/latest/tutorials/get-sta
 icon   = "fab fa-git-square"
 header = "Declarative"
 text   = """
-Descibe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
+Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
 """
 
 [[params.features]]
