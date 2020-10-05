@@ -13,6 +13,7 @@ font_awesome_version = "5.3.1"
 
 summary = """
 Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
+📣 Flux is in maintenance mode and the we will soon guide the community to migrate from Flux v1 to the new architecture (Flux v2 and the GitOps Toolkit). [Learn more](https://toolkit.fluxcd.io/) and [join the discussion!](https://github.com/fluxcd/toolkit/discussions)
 """
 
 workflow = """
