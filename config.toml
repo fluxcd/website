@@ -11,6 +11,10 @@ slack                = "https://cloud-native.slack.com/messages/flux"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
 font_awesome_version = "5.3.1"
 
+notification = """
+📣 **[Flux v1 is in maintenance mode](https://github.com/fluxcd/flux/issues/3320)!** We will soon start publishing guides which help you migrate Flux v2 and the GitOps Toolkit. **[Learn more](https://toolkit.fluxcd.io/)** and **[join the discussion!](https://github.com/fluxcd/toolkit/discussions)**
+"""
+
 summary = """
 Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
 """
