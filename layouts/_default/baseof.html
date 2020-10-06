@@ -10,6 +10,7 @@
   </head>
   <body class="site has-navbar-fixed-top">
     <main class="main">
+      {{ partial "notification.html" . }}
       {{ partial "navbar.html" . }}
 
       {{ block "main" . }}
