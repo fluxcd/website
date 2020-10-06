@@ -24,19 +24,20 @@ Flux monitors all of the container image repositories that you specify. It detec
 """
 
 [[params.buttons]]
-text = "Get started"
+text = "New: GitOps Toolkit"
+icon = "fa-star"
+url = "https://toolkit.fluxcd.io/"
+
+[[params.buttons]]
+text = "Get started with Flux (v1)"
 icon = "fa-play"
 url = "https://docs.fluxcd.io/en/latest/tutorials/get-started/"
 
 [[params.buttons]]
-text = "Learn more"
-icon = "fa-info"
-url = "https://docs.fluxcd.io/en/latest/introduction/"
-
-[[params.buttons]]
-text = "Helm Operator"
+text = "Helm Operator (v1)"
 icon = "fa-wrench"
 url = "https://docs.fluxcd.io/projects/helm-operator/en/latest/"
+
 
 [[params.features]]
 icon   = "fab fa-git-square"
