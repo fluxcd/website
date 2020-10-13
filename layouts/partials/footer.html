@@ -3,6 +3,7 @@
 {{ $logo   := printf "img/logos/%s" site.Params.logos.footer | relURL }}
 {{ $menu   := site.Menus.main }}
 {{ $year   := now.Year }}
+{{ $author := site.Params.copyright }}
 {{ $github := printf "https://github.com/%s" site.Params.github_repo }}
 {{ $slack  := site.Params.slack }}
 {{ $mail   := site.Params.mailing_list }}
@@ -77,7 +78,7 @@
         <hr class="has-background-dark" />
 
         <p class="has-text-light has-text-weight-light">
-          Copyright &copy; {{ $year }} The Flux maintainers
+          Copyright &copy; {{ $year }} {{ $author}}
         </p>
       </div>
     </div>

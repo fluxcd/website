@@ -1,0 +1,26 @@
+.hero
+  &.is-flux
+    position: relative
+    overflow: hidden
+
+    &::before
+      position: absolute
+      transform: skewY(-5deg)
+      bottom: 5vw
+      right: 0
+      width: 100%
+      height: 150%
+      content: ''
+      background: linear-gradient(to right, $primary 20%, $secondary) $primary
+
+    .title,
+    .subtitle
+      color: $white
+
+
+  &.is-toolkit
+    background: linear-gradient(to left, $primary 20%, $secondary) $primary
+
+    .title,
+    .subtitle
+      color: $white

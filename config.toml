@@ -1,70 +1,21 @@
 baseURL = "https://fluxcd.netlify.com"
-languageCode = "en-us"
-title = "Flux CD"
+title = "Flux"
 enableRobotsTXT = true
+
+# Disable taxonomies globally
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
-[params]
-description          = "The GitOps operator for Kubernetes"
-github_repo          = "fluxcd/flux"
-slack                = "https://cloud-native.slack.com/messages/flux"
-mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
-font_awesome_version = "5.3.1"
+# Language configuration
+contentDir = "content/en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableMissingTranslationPlaceholders = true
 
-summary = """
-Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
-"""
-
-workflow = """
-Flux monitors all of the container image repositories that you specify. It detects new images, triggers deployments, and automatically updates the desired running configuration of your Kubernetes cluster—and does so within the bounds of a configurable deployment policy.
-"""
-
-[[params.buttons]]
-text = "Get started"
-icon = "fa-play"
-url = "https://docs.fluxcd.io/en/latest/tutorials/get-started/"
-
-[[params.buttons]]
-text = "Learn more"
-icon = "fa-info"
-url = "https://docs.fluxcd.io/en/latest/introduction/"
-
-[[params.buttons]]
-text = "Helm Operator"
-icon = "fa-wrench"
-url = "https://docs.fluxcd.io/projects/helm-operator/en/latest/"
-
-[[params.features]]
-icon   = "fab fa-git-square"
-header = "Declarative"
-text   = """
-Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
-"""
-
-[[params.features]]
-icon = "fas fa-robot"
-header = "Automated"
-text = """
-Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run [`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes go through Git. Use diffing tools to detect divergence between observed and desired state and receive notifications.
-"""
-
-[[params.features]]
-icon = "fas fa-code"
-header = "Code, not containers"
-text = """
-With Flux, everything is controlled through pull requests, which means no learning curve for new developers. Just use your standard PR process. Your Git history provides a sequence of transactions, allowing you to recover system state from any snapshot. Fix a production issue via pull request rather than making changes to the running system.
-"""
-
-[params.logos]
-navbar = "flux-horizontal-white.png"
-hero   = "flux-horizontal-color.png"
-footer = "flux-stacked-white.png"
-cncf   = "cncf-color.png"
-
-[[params.fonts]]
-name = "Open Sans"
-sizes = [300,400,600,700]
-type = "sans_serif"
+[languages]
+[languages.en]
+languageName = "English"
+languageCode = "en-us"
+time_format_blog = "01/02/2006"
 
 [[menus.main]]
 identifier = "docs"
@@ -103,3 +54,147 @@ name = "Branding"
 parent = "project"
 url = "https://branding.cncf.io/projects/flux"
 weight = 3
+
+[params]
+description          = "The GitOps operator for Kubernetes"
+copyright            = "The Flux contributors"
+github_repo          = "fluxcd/flux"
+slack                = "https://cloud-native.slack.com/messages/flux"
+mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
+font_awesome_version = "5.3.1"
+
+[params.logos]
+navbar = "flux-horizontal-white.png"
+hero   = "flux-horizontal-color.png"
+footer = "flux-stacked-white.png"
+cncf   = "cncf-color.png"
+
+[[params.fonts]]
+name  = "Montserrat"
+sizes = [300,400,600,700]
+type  = "sans_serif"
+
+# Flux hero element
+[params.flux]
+# title    = "Alternative title"
+# subtitle = "The GitOps operator for Kubernetes"
+
+[[params.flux.buttons]]
+text  = "Get started"
+color = "warning"
+url   = "#"
+
+[[params.flux.buttons]]
+text = "Learn more"
+url  = "#"
+
+# Overview hero element
+[params.overview]
+title   = "Overview"
+summary = """
+Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
+"""
+
+## Overview features
+[[params.overview.features]]
+icon   = "fab fa-git-square fa-3x"
+header = "Declarative"
+text   = """
+Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
+"""
+
+[[params.overview.features]]
+icon   = "fas fa-robot fa-3x"
+header = "Automated"
+text   = """
+Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run [`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes go through Git. Use diffing tools to detect divergence between observed and desired state and receive notifications.
+"""
+
+[[params.overview.features]]
+icon   = "fas fa-code fa-3x"
+header = "Code, not containers"
+text   = """
+With Flux, everything is controlled through pull requests, which means no learning curve for new developers. Just use your standard PR process. Your Git history provides a sequence of transactions, allowing you to recover system state from any snapshot. Fix a production issue via pull request rather than making changes to the running system.
+"""
+
+# Resources hero element
+[params.resources]
+title   = "Resources"
+summary = """
+Pellentesque id metus et quam sodales efficitur. Suspendisse pretium lacus at arcu ornare tristique. Fusce porttitor sagittis finibus.
+"""
+
+## Resource items
+[[params.resources.items]]
+title       = "Quisque aliquet libero ut ultrice"
+description = """
+Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+"""
+url         = "#"
+
+[[params.resources.items]]
+title       = "Quisque aliquet libero ut ultrice"
+description = """
+Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+"""
+url         = "#"
+
+[[params.resources.items]]
+title       = "Quisque aliquet libero ut ultrice"
+description = """
+Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+"""
+url         = "#"
+
+# Toolkit hero element
+[params.toolkit]
+title = "GitOps Toolkit"
+subtitle = """
+Quis egestas magna eros at turpis. Nullam non facilisis mi. Aliquam massa orci, consequat quis mollis sit amet, malesuada id lacus.
+"""
+image = "building-blocks.svg"
+
+[[params.toolkit.buttons]]
+text = "Get started"
+color = "dark"
+url = "#"
+
+[[params.toolkit.buttons]]
+text = "Learn more"
+url = "#"
+
+# Community hero element
+[params.community]
+title = "Community"
+summary = """
+Donec auctor vitae magna vel pharetra. Nulla vehicula tempor ex, vel cursus risus tempor quis. Etiam ac fermentum neque. Proin varius ultricies dui.
+"""
+
+[[params.community.highlights]]
+title = "GitHub Discussions"
+icon = "fab fa-github"
+text  = """
+Sed rhoncus finibus magna ac, consectetur adipiscing elit. Suspendisse nec pretium lorem. Nulla interdum lobortis libero in rutrum. Sed mollis vel mi vestibulum dictum.
+
+[Join the discussion](https://github.com/fluxcd/toolkit/discussions)!
+"""
+
+[[params.community.highlights]]
+title = "Slack"
+titleBgColor = "slack-green"
+icon = "fab fa-slack"
+text  = """
+Mauris in eros et dolor viverra facilisis id a metus. Phasellus porta fermentum elit ut ullamcorper. Ut vel vehicula sem. Nam at dui commodo, euismod nunc vitae, laoreet erat.
+
+[Get an invite](https://slack.cnfc.io), or [go to the `#flux` channel](https://cloud-native.slack.com/messages/flux)
+"""
+
+[[params.community.highlights]]
+title = "Mailing list"
+titleBgColor = "info"
+icon = "far fa-paper-plane"
+text  = """
+Morbi condimentum mauris lobortis ex ornare, a scelerisque orci ultricies. Phasellus sollicitudin ac libero sed finibus. Aliquam erat volutpat. Quisque elementum non odio eget cursus.
+
+[Join the mailing list](https://lists.cncf.io/g/cncf-flux-dev)!
+"""

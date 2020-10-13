@@ -1,20 +1,12 @@
 {{ $isHome := .IsHome }}
 {{ $js     := resources.Get "js/app.js" | fingerprint }}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
 {{ if $isHome }}
-{{ $extraJs := (slice "three.r92.min" "p5.min" "vanta.topology.min") }}
+{{ $extraJs := (slice "asciinema-player") }}
 {{ range $extraJs }}
 {{ $path := printf "js/%s.js" . }}
 {{ $js := resources.Get $path | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
-<script>
-  VANTA.TOPOLOGY({
-    el: "#waves-background",
-    color: 0xB2C9FB,
-    backgroundColor: 0xffffff
-  })
-  </script>
 {{ end }}
