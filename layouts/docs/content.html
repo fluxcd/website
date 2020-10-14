@@ -1,0 +1,9 @@
+<div class="content">
+  <h1 class="title">{{ .Title }}</h1>
+  {{ partial "widgets/reading-time.html" . }}
+  {{ with .Params.description }}
+  <div class="content is-medium">{{ . | markdownify }}</div>
+  {{ end }}
+  {{ .Content }}
+  {{ partial "docs/lastmod.html" . }}
+</div>

@@ -11,27 +11,25 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 
+# Markup settings
+# Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+[markup.highlight]
+# See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+style = "monokai"
+
+# Provide .LastMod values
+enableGitInfo = true
+
 [languages]
 [languages.en]
 languageName = "English"
 languageCode = "en-us"
+time_format_default = "01/02/2006"
 time_format_blog = "01/02/2006"
-
-[[menus.main]]
-identifier = "docs"
-name = "Docs"
-
-[[menus.main]]
-name = "Flux"
-parent = "docs"
-url = "https://docs.fluxcd.io"
-weight = 1
-
-[[menus.main]]
-name = "Helm Operator"
-parent = "docs"
-url = "https://docs.fluxcd.io/projects/helm-operator/en/latest/"
-weight = 2
 
 [[menus.main]]
 identifier = "project"
@@ -59,9 +57,10 @@ weight = 3
 description          = "The GitOps operator for Kubernetes"
 copyright            = "The Flux contributors"
 github_repo          = "fluxcd/flux"
+github_website_repo  = "fluxcd/fluxcd.io"
 slack                = "https://cloud-native.slack.com/messages/flux"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
-font_awesome_version = "5.3.1"
+font_awesome_version = "5.9.0"
 
 [params.logos]
 navbar = "flux-horizontal-white.png"

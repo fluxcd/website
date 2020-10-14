@@ -24,21 +24,21 @@
       <div class="navbar-end">
         {{ range $menu }}
         {{ if .HasChildren }}
-        <div class="navbar-item has-dropdown is-hoverable has-text-weight-bold is-uppercase" href="{{ .URL }}">
-          <a class="navbar-link is-arrowless"{{ with .URL }} href="{{ . }}" target="_blank"{{ end }}>
+        <div class="navbar-item has-dropdown is-hoverable has-text-weight-bold is-uppercase">
+          <a class="navbar-link is-arrowless"{{ with .URL }} href="{{ . }}"{{ end }}>
             {{ .Name }}
           </a>
 
           <div class="navbar-dropdown">
             {{ range .Children }}
-            <a class="navbar-item" href="{{ .URL }}" target="_blank">
+            <a class="navbar-item" href="{{ .URL }}">
               {{ .Name }}
             </a>
             {{ end }}
           </div>
         </div>
         {{ else }}
-        <a class="navbar-item has-text-weight-medium has-text-weight-bold is-uppercase" href="{{ .URL }}" target="_blank">
+        <a class="navbar-item has-text-weight-medium has-text-weight-bold is-uppercase" href="{{ .URL }}">
           {{ .Name }}
         </a>
         {{ end }}

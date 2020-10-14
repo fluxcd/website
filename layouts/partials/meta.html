@@ -9,6 +9,8 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="description" content="{{ $desc }}">
 
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
 <!-- OpenGraph -->
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:url" content="{{ $url }}">
