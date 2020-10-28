@@ -120,30 +120,33 @@ With Flux, everything is controlled through pull requests, which means no learni
 [params.resources]
 title   = "Resources"
 summary = """
-Pellentesque id metus et quam sodales efficitur. Suspendisse pretium lacus at arcu ornare tristique. Fusce porttitor sagittis finibus.
+If you are new to Flux, you might want to check out some of the following resources to get started.
 """
 
 ## Resource items
 [[params.resources.items]]
-title       = "Quisque aliquet libero ut ultrice"
+title       = "Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan"
 description = """
-Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+Check out Stefan's introduction to Flux at Rawkode Live.
 """
-url         = "#"
+url         = "https://www.youtube.com/watch?v=HqTzuOBP0eY"
 
 [[params.resources.items]]
-title       = "Quisque aliquet libero ut ultrice"
+title       = "The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili"
 description = """
-Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+Leigh shows off the Power of GitOps with Flux. This is part 1 - stay tuned for the next installment.
 """
-url         = "#"
+url         = "https://www.youtube.com/watch?v=0v5bjysXTL8"
 
 [[params.resources.items]]
-title       = "Quisque aliquet libero ut ultrice"
+title       = " Introduction To GitOps and GitOps Toolkit by Stefan Prodan"
 description = """
-Integer tortor ex, porttitor quis porttitor at, mattis et erat. Fusce in ullamcorper elit.
+Alexis Richardson, CEO at Weaveworks and Stefan Prodan, maintainer of the Flux project introduce you to GitOps Toolkit.
+
+Talk from Cloud Native Nordics Tech Talks.
 """
-url         = "#"
+url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
+
 
 # Toolkit hero element
 [params.toolkit]
@@ -166,16 +169,18 @@ url = "#"
 [params.community]
 title = "Community"
 summary = """
-Donec auctor vitae magna vel pharetra. Nulla vehicula tempor ex, vel cursus risus tempor quis. Etiam ac fermentum neque. Proin varius ultricies dui.
+The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
+
+What we achieved up until today is only possible because of our community.
 """
 
 [[params.community.highlights]]
 title = "GitHub Discussions"
 icon = "fab fa-github"
 text  = """
-Sed rhoncus finibus magna ac, consectetur adipiscing elit. Suspendisse nec pretium lorem. Nulla interdum lobortis libero in rutrum. Sed mollis vel mi vestibulum dictum.
+Join the conversation in GitHub Discussions. Everything Flux v2 related ranging from specificiations and feature planning to Show & Tell happens here.
 
-[Join the discussion](https://github.com/fluxcd/toolkit/discussions)!
+[Join the discussion today](https://github.com/fluxcd/toolkit/discussions)!
 """
 
 [[params.community.highlights]]
@@ -183,7 +188,7 @@ title = "Slack"
 titleBgColor = "slack-green"
 icon = "fab fa-slack"
 text  = """
-Mauris in eros et dolor viverra facilisis id a metus. Phasellus porta fermentum elit ut ullamcorper. Ut vel vehicula sem. Nam at dui commodo, euismod nunc vitae, laoreet erat.
+If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
 
 [Get an invite](https://slack.cnfc.io), or [go to the `#flux` channel](https://cloud-native.slack.com/messages/flux)
 """
@@ -193,7 +198,7 @@ title = "Mailing list"
 titleBgColor = "info"
 icon = "far fa-paper-plane"
 text  = """
-Morbi condimentum mauris lobortis ex ornare, a scelerisque orci ultricies. Phasellus sollicitudin ac libero sed finibus. Aliquam erat volutpat. Quisque elementum non odio eget cursus.
+Join our (low-traffic) mailing list to stay up to day on announcements and sporadic discussions.
 
 [Join the mailing list](https://lists.cncf.io/g/cncf-flux-dev)!
 """
