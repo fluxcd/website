@@ -11,10 +11,11 @@
         h1, h2, h3, h4, h5, h6
           color: $white
 
-  &.equal-height
-    display: flex
-    flex-direction: column
-    height: 100%
+  +tablet
+    &.equal-height
+      display: flex
+      flex-direction: column
+      height: 100%
 
-    .card-footer
-      margin-top: auto
+      .card-footer
+        margin-top: auto
