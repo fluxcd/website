@@ -61,7 +61,7 @@ weight = 4
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
-copyright            = "The Flux contributors"
+copyright            = "The Flux authors"
 github_repo          = "fluxcd/flux2"
 github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
