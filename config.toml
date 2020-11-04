@@ -62,6 +62,10 @@ slack                = "https://cloud-native.slack.com/messages/flux"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
 font_awesome_version = "5.9.0"
 
+notification = """
+📣 **This is the new website for Flux version 2 and GitOps Toolkit, currently in active development.** If you are looking for the Flux v1 documentation, **[please click here](https://docs.fluxcd.io)**.
+"""
+
 [params.logos]
 navbar = "flux-horizontal-white.png"
 hero   = "flux-horizontal-color.png"
