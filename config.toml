@@ -54,7 +54,7 @@ url = "https://branding.cncf.io/projects/flux"
 weight = 3
 
 [params]
-description          = "The GitOps operator for Kubernetes"
+description          = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
 copyright            = "The Flux contributors"
 github_repo          = "fluxcd/flux"
 github_website_repo  = "fluxcd/fluxcd.io"
@@ -91,7 +91,7 @@ url  = "#"
 [params.overview]
 title   = "Overview"
 summary = """
-Flux is a tool that automatically ensures that the state of your [Kubernetes](https://kubernetes.io) cluster matches the configuration you've supplied in Git. It uses an [operator](https://github.com/operator-framework/awesome-operators) in the cluster to trigger deployments *inside* Kubernetes, which means that you don't need a separate continuous delivery tool.
+Flux is a tool for keeping [Kubernetes](https://kubernetes.io) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
 """
 
 ## Overview features
