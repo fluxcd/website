@@ -91,11 +91,11 @@ subtitle = "Open and extensible continuous delivery solution for Kubernetes. Pow
 [[params.flux.buttons]]
 text  = "Get started"
 color = "warning"
-url   = "#"
+url   = "https://toolkit.fluxcd.io/get-started/"
 
 [[params.flux.buttons]]
 text = "Learn more"
-url  = "#"
+url  = "https://toolkit.fluxcd.io"
 
 # Overview hero element
 [params.overview]
