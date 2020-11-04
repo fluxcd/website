@@ -152,18 +152,21 @@ url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
 [params.toolkit]
 title = "GitOps Toolkit"
 subtitle = """
-Quis egestas magna eros at turpis. Nullam non facilisis mi. Aliquam massa orci, consequat quis mollis sit amet, malesuada id lacus.
+The GitOps Toolkit is the set of APIs and controllers that make up the
+runtime for Flux v2. The APIs comprise Kubernetes custom resources,
+which can be created and updated by a cluster user, or by other
+automation tooling.
 """
 image = "building-blocks.svg"
 
 [[params.toolkit.buttons]]
 text = "Get started"
 color = "dark"
-url = "#"
+url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
 
 [[params.toolkit.buttons]]
 text = "Learn more"
-url = "#"
+url = "https://toolkit.fluxcd.io/components/"
 
 # Community hero element
 [params.community]
