@@ -54,7 +54,7 @@ url = "https://branding.cncf.io/projects/flux"
 weight = 3
 
 [params]
-description          = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
+description          = "Open and extensible continuous delivery solution for Kubernetes."
 copyright            = "The Flux contributors"
 github_repo          = "fluxcd/flux"
 github_website_repo  = "fluxcd/fluxcd.io"
@@ -80,7 +80,7 @@ type  = "sans_serif"
 # Flux hero element
 [params.flux]
 # title    = "Alternative title"
-# subtitle = "The GitOps operator for Kubernetes"
+subtitle = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
 
 [[params.flux.buttons]]
 text  = "Get started"
@@ -156,10 +156,9 @@ url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
 [params.toolkit]
 title = "GitOps Toolkit"
 subtitle = """
-The GitOps Toolkit is the set of APIs and controllers that make up the
-runtime for Flux v2. The APIs comprise Kubernetes custom resources,
-which can be created and updated by a cluster user, or by other
-automation tooling.
+The set of APIs and controllers that make up the runtime for Flux.
+You can use the GitOps Toolkit to extend Flux, and to build your
+own systems for continuous delivery.
 """
 image = "building-blocks.svg"
 
