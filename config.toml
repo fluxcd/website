@@ -135,21 +135,36 @@ If you are new to Flux, you might want to check out some of the following resour
 
 ## Resource items
 [[params.resources.items]]
+title       = "The Power of GitOps with Flux v2 and GitOps Toolkit II with Leigh Capili"
+description = """
+In this second demo, Leigh shows the multi-tenancy, remote cluster and dependency management capabilities of Flux.
+"""
+url         = "https://www.youtube.com/watch?v=fC2YCxQRUwU"
+
+[[params.resources.items]]
+title       = "The Kubelist Podcast: Flux with Michael Bridgen"
+description = """
+Michael talks about Flux, as well as GitOps adoption and progressive delivery.
+"""
+url         = "https://www.heavybit.com/library/podcasts/the-kubelist-podcast/ep-5-flux-with-michael-bridgen-of-weaveworks/"
+
+[[params.resources.items]]
 title       = "Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan"
 description = """
-Check out Stefan's introduction to Flux at Rawkode Live.
+Stefan's introduction to Flux and GitOps Toolkit at Rawkode Live.
 """
 url         = "https://www.youtube.com/watch?v=HqTzuOBP0eY"
 
 [[params.resources.items]]
-title       = "The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili"
+title       = "The Power of GitOps with Flux v2 and GitOps Toolkit with Leigh Capili"
 description = """
-Leigh shows off the Power of GitOps with Flux. This is part 1 - stay tuned for the next installment.
+Leigh talks about getting started with Flux and GitOps Toolkit, reconciliation and observability, and the
+powerful use of Prometheus and Grafana.
 """
 url         = "https://www.youtube.com/watch?v=0v5bjysXTL8"
 
 [[params.resources.items]]
-title       = " Introduction To GitOps and GitOps Toolkit by Stefan Prodan"
+title       = " Introduction to GitOps and GitOps Toolkit by Stefan Prodan"
 description = """
 Alexis Richardson, CEO at Weaveworks and Stefan Prodan, maintainer of the Flux project introduce you to GitOps Toolkit.
 
