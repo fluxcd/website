@@ -101,7 +101,8 @@ url  = "https://toolkit.fluxcd.io"
 [params.overview]
 title   = "Overview"
 summary = """
-Flux is a tool for keeping [Kubernetes](https://kubernetes.io) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
+Flux is a tool for keeping [Kubernetes](https://kubernetes.io) clusters in sync with sources of configuration
+(like Git repositories), and automating updates to configuration when there is new code to deploy.
 """
 
 ## Overview features
@@ -109,21 +110,51 @@ Flux is a tool for keeping [Kubernetes](https://kubernetes.io) clusters in sync 
 icon   = "fab fa-git-square fa-3x"
 header = "Declarative"
 text   = """
-Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration, dashboards, monitoring, and everything else.
+Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration,
+dashboards, monitoring, and everything else.
 """
 
 [[params.overview.features]]
 icon   = "fas fa-robot fa-3x"
 header = "Automated"
 text   = """
-Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run [`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes go through Git. Use diffing tools to detect divergence between observed and desired state and receive notifications.
+Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run
+[`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes are synced automatically.
 """
 
 [[params.overview.features]]
 icon   = "fas fa-code fa-3x"
-header = "Code, not containers"
+header = "Auditable"
 text   = """
-With Flux, everything is controlled through pull requests, which means no learning curve for new developers. Just use your standard PR process. Your Git history provides a sequence of transactions, allowing you to recover system state from any snapshot. Fix a production issue via pull request rather than making changes to the running system.
+Everything is controlled through pull requests. Your Git history provides a sequence of transactions, allowing you to
+recover state from any snapshot.
+"""
+
+[[params.overview.features]]
+icon   = "fas fa-drafting-compass fa-3x"
+header = "Designed for Kubernetes"
+text   = """
+Declaratively configurable using Custom Resources, state reports in the
+[object's status](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
+and via [Kubernetes Events](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/),
+and integrations with Kubernetes RBAC.
+"""
+
+
+[[params.overview.features]]
+icon   = "fas fa-box-open fa-3x"
+header = "Out-of-the-box integrations"
+text   = """
+Support for e.g. [Kustomize](https://kustomize.io), [Helm](https://helm.sh); GitHub, GitLab, Harbor and custom
+webhooks; notifications to most team communication platforms; and many more.
+"""
+
+[[params.overview.features]]
+icon   = "fas fa-cube fa-3x"
+header = "Extensible"
+text   = """
+Easily create a continous delivery solution with only the components you need, or use the [GitOps Toolkit](#gitops-toolkit)
+to extend Flux.
 """
 
 # Resources hero element
