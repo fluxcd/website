@@ -157,7 +157,6 @@ Talk from Cloud Native Nordics Tech Talks.
 """
 url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
 
-
 # Toolkit hero element
 [params.toolkit]
 title = "GitOps Toolkit"
@@ -181,8 +180,7 @@ url = "https://toolkit.fluxcd.io/components/"
 [params.community]
 title = "Community"
 summary = """
-The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
-
+The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.<br>
 What we achieved up until today is only possible because of our community.
 """
 
