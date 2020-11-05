@@ -8,13 +8,13 @@ This repo houses the assets used to build the Flux project's landing page at htt
 
 In order to run the Flux site locally, you need to install:
 
-* The [Yarn](https://yarnpkg.com) package manager.
+* [Node.js](https://www.npmjs.com/get-npm)
 * The [Hugo](https://gohugo.io) static site generator. Make sure to [install](https://gohugo.io/getting-started/installing/) the "extended" variant of Hugo with support for the [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) feature and to check the [`netlify.toml`](./netlify.toml) configuration file for which version of Hugo you should install.
 
 Once those tools are installed, fetch the assets necessary to run the site:
 
 ```bash
-yarn
+npm install
 ```
 
 Then run the site in "server" mode:

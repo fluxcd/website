@@ -2,17 +2,14 @@
 <html lang="{{ site.LanguageCode }}">
   <head>
     {{ partial "meta.html" . }}
-    <title>
-      {{ block "title" . }}{{ site.Title }}{{ end }}
-    </title>
     {{ partial "favicon.html" . }}
     {{ partial "css.html" . }}
   </head>
   <body class="site has-navbar-fixed-top">
-    <main class="main">
-      {{ partial "notification.html" . }}
+    <header>
       {{ partial "navbar.html" . }}
-
+    </header>
+    <main class="main">
       {{ block "main" . }}
       {{ end }}
     </main>

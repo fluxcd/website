@@ -1,4 +1,8 @@
 {{ $notification := site.Params.notification | markdownify }}
-<div class="notification is-warning mb-0">
-  {{ $notification }}
+{{- if $notification }}
+<div class="notification no-radius is-warning mb-0">
+  <div class="container">
+    {{ $notification }}
+  </div>
 </div>
+{{- end }}

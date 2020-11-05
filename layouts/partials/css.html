@@ -6,9 +6,18 @@
 {{ $cssProdOpts  := (dict "targetPath" $cssTarget "includePaths" $includePaths "outputStyle" "compressed") }}
 {{ $cssOpts      := cond $serverMode $cssDevOpts $cssProdOpts }}
 {{ $css          := resources.Get $sass | resources.ExecuteAsTemplate $sass . | toCSS $cssOpts }}
+{{ $isHome       := .IsHome }}
 {{ if $serverMode }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 {{ else }}
 {{ $prodCss      := $css | fingerprint }}
 <link rel="stylesheet" href="{{ $prodCss.RelPermalink }}" integrity="{{ $prodCss.Data.Integrity }}">
+{{ end }}
+{{ if $isHome }}
+  {{ $extraCss := (slice "asciinema-player") }}
+  {{ range $extraCss }}
+    {{ $path := printf "css/%s.css" . }}
+    {{ $css := resources.Get $path | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ end }}
 {{ end }}

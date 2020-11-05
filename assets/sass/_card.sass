@@ -1,0 +1,21 @@
+.card
+  &.with-hover
+    &:hover
+      background: $primary
+      transition: all .2s ease
+      -webkit-transition: all .2s ease
+
+      .content
+        color: $white
+
+        h1, h2, h3, h4, h5, h6
+          color: $white
+
+  +tablet
+    &.equal-height
+      display: flex
+      flex-direction: column
+      height: 100%
+
+      .card-footer
+        margin-top: auto

@@ -1,0 +1,28 @@
+{{ $title     := site.Params.resources.title }}
+{{ $summary   := site.Params.resources.summary | markdownify }}
+{{ $resources := site.Params.resources.items }}
+<section class="hero is-medium is-light">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="content">
+        <h2 class="title is-1">{{ $title }}</h2>
+        <p>{{ $summary }}</p>
+      </div>
+      <div class="columns is-multiline has-text-left my-3">
+        {{ range $resources }}
+        <a href="{{ .url }}" class="column is-one-third">
+          <div class="card equal-height with-hover">
+            <div class="card-content">
+              <div class="content">
+                <h4>{{ .title }}</h4>
+                {{ .description }}
+                <i class="fas fa-angle-double-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
