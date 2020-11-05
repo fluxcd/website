@@ -36,28 +36,34 @@ identifier = "project"
 name = "Project"
 
 [[menus.main]]
-name = "Code of conduct"
+name = "Code of Conduct"
 parent = "project"
-url = "https://github.com/fluxcd/flux/blob/master/CODE_OF_CONDUCT.md"
+url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
 weight = 1
 
 [[menus.main]]
 name = "Contributing"
 parent = "project"
-url = "https://github.com/fluxcd/flux/blob/master/CONTRIBUTING.md"
+url = "https://github.com/fluxcd/community/blob/main/CONTRIBUTING.md"
 weight = 2
+
+[[menus.main]]
+name = "Governance"
+parent = "project"
+url = "https://github.com/fluxcd/community/blob/main/GOVERNANCE.md"
+weight = 3
 
 [[menus.main]]
 name = "Branding"
 parent = "project"
 url = "https://branding.cncf.io/projects/flux"
-weight = 3
+weight = 4
 
 [params]
-description          = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
-copyright            = "The Flux contributors"
-github_repo          = "fluxcd/flux"
-github_website_repo  = "fluxcd/fluxcd.io"
+description          = "Open and extensible continuous delivery solution for Kubernetes."
+copyright            = "The Flux authors"
+github_repo          = "fluxcd/flux2"
+github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
 font_awesome_version = "5.9.0"
@@ -80,16 +86,16 @@ type  = "sans_serif"
 # Flux hero element
 [params.flux]
 # title    = "Alternative title"
-# subtitle = "The GitOps operator for Kubernetes"
+subtitle = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
 
 [[params.flux.buttons]]
 text  = "Get started"
 color = "warning"
-url   = "#"
+url   = "https://toolkit.fluxcd.io/get-started/"
 
 [[params.flux.buttons]]
 text = "Learn more"
-url  = "#"
+url  = "https://toolkit.fluxcd.io"
 
 # Overview hero element
 [params.overview]
@@ -156,10 +162,9 @@ url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
 [params.toolkit]
 title = "GitOps Toolkit"
 subtitle = """
-The GitOps Toolkit is the set of APIs and controllers that make up the
-runtime for Flux v2. The APIs comprise Kubernetes custom resources,
-which can be created and updated by a cluster user, or by other
-automation tooling.
+The set of APIs and controllers that make up the runtime for Flux.
+You can use the GitOps Toolkit to extend Flux, and to build your
+own systems for continuous delivery.
 """
 image = "building-blocks.svg"
 
