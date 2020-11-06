@@ -54,10 +54,16 @@ url = "https://github.com/fluxcd/community/blob/main/GOVERNANCE.md"
 weight = 3
 
 [[menus.main]]
+name = "Security"
+parent = "project"
+url = "https://github.com/fluxcd/community/blob/main/SECURITY.md"
+weight = 4
+
+[[menus.main]]
 name = "Branding"
 parent = "project"
 url = "https://branding.cncf.io/projects/flux"
-weight = 4
+weight = 5
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
