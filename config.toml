@@ -1,4 +1,4 @@
-baseURL = "https://fluxcd.netlify.com"
+baseURL = "/"
 title = "Flux"
 enableRobotsTXT = true
 

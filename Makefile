@@ -5,10 +5,24 @@ serve:
 		--disableFastRender
 
 production-build:
-	hugo
+	hugo \
+		--gc \
+		--minify \
+		--enableGitInfo
 
 preview-build:
 	hugo \
 		--baseURL $(DEPLOY_PRIME_URL) \
+		--buildFuture \
+		--gc \
+		--minify \
+		--enableGitInfo
+
+branch-build:
+	hugo \
+		--baseURL $(DEPLOY_PRIME_URL) \
 		--buildDrafts \
-		--buildFuture
+		--buildFuture \
+		--gc \
+		--minify \
+		--enableGitInfo
