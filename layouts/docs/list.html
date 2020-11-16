@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main class="column is-full-tablet is-8-desktop">
-  {{ partial "widgets/breadcrumbs.html" . }}
+  {{ partial "widgets/breadcrumbs" . }}
   <div class="container p-3">
     {{ .Render "content" }}
     {{ partial "docs/section-index.html" . }}
