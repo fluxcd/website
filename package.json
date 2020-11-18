@@ -2,6 +2,6 @@
   "devDependencies": {
     "autoprefixer": "^10.0.2",
     "bulma": "^0.9.1",
-    "postcss-cli": "^8.2.0"
+    "postcss-cli": "^8.3.0"
   }
 }
