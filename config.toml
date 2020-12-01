@@ -2,9 +2,6 @@ baseURL = "/"
 title = "Flux"
 enableRobotsTXT = true
 
-# Disable taxonomies globally
-disableKinds = ["taxonomy", "taxonomyTerm"]
-
 # Language configuration
 contentDir = "content/en"
 defaultContentLanguage = "en"
@@ -19,7 +16,7 @@ enableMissingTranslationPlaceholders = true
 unsafe = true
 [markup.highlight]
 # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-style = "monokai"
+style = "dracula"
 
 # Provide .LastMod values
 enableGitInfo = true
@@ -28,8 +25,12 @@ enableGitInfo = true
 [languages.en]
 languageName = "English"
 languageCode = "en-us"
-time_format_default = "01/02/2006"
-time_format_blog = "01/02/2006"
+time_format_default = "2006-01-02"
+time_format_blog = "2006-01-02"
+
+[[menus.main]]
+name = "Blog"
+url = "/blog"
 
 [[menus.main]]
 identifier = "project"
