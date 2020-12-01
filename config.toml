@@ -183,7 +183,7 @@ title       = "Flux v2 with GitOps Toolkit by Viktor Farcic"
 description = """
 In this video, Viktor Farcic from "The DevOps Toolkit Series" demos and reviews Flux v2.
 """
-url         = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+url         = "https://www.youtube.com/watch?v=R6OeIgb7lUI"
 
 [[params.resources.items]]
 title       = "Flux v2 series by Geert Baeke"
