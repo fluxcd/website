@@ -18,6 +18,8 @@ $flux-black: #1a1a1a
 
 // Other colors
 $slack-green: #74cdb0
+$twitter-blue: #1da1f2
+$linkedin-blue: #0e76a8
 
 @import url("{{ $fontsUrl }}")
 @import url("{{ $fontAwesomeUrl }}")
@@ -44,7 +46,7 @@ $section-padding: 4.5rem 1.5rem
 $navbar-item-hover-color: $primary !important
 $navbar-item-hover-background-color: $dark !important
 $navbar-dropdown-item-hover-background-color: $light !important
-$colors: mergeColorMaps(("secondary": ($secondary, $white), "slack-green": ($slack-green, $white)), $colors)
+$colors: mergeColorMaps(("secondary": ($secondary, $white), "slack-green": ($slack-green, $white), "twitter-blue": ($twitter-blue, $white), "linkedin-blue": ($linkedin-blue, $white)), $colors)
 
 @import "bulma/bulma"
 
