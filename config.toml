@@ -43,28 +43,34 @@ url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
 weight = 1
 
 [[menus.main]]
+name = "Community"
+parent = "project"
+url = "https://github.com/fluxcd/community/blob/main/COMMUNITY.md"
+weight = 20
+
+[[menus.main]]
 name = "Contributing"
 parent = "project"
 url = "https://github.com/fluxcd/community/blob/main/CONTRIBUTING.md"
-weight = 2
+weight = 30
 
 [[menus.main]]
 name = "Governance"
 parent = "project"
 url = "https://github.com/fluxcd/community/blob/main/GOVERNANCE.md"
-weight = 3
+weight = 40
 
 [[menus.main]]
 name = "Security"
 parent = "project"
 url = "https://github.com/fluxcd/community/blob/main/SECURITY.md"
-weight = 4
+weight = 50
 
 [[menus.main]]
 name = "Branding"
 parent = "project"
 url = "https://branding.cncf.io/projects/flux"
-weight = 5
+weight = 9999
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
@@ -172,6 +178,20 @@ If you are new to Flux, you might want to check out some of the following resour
 """
 
 ## Resource items
+[[params.resources.items]]
+title       = "Flux v2 with GitOps Toolkit by Viktor Farcic"
+description = """
+In this video, Viktor Farcic from "The DevOps Toolkit Series" demos and reviews Flux v2.
+"""
+url         = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+
+[[params.resources.items]]
+title       = "Flux v2 series by Geert Baeke"
+description = """
+In this series, Geert Baeke takes a deep dive in Flux v2 and the use of GitOps principles to deploy to Kubernetes.
+"""
+url         = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+
 [[params.resources.items]]
 title       = "The Power of GitOps with Flux v2 and GitOps Toolkit II with Leigh Capili"
 description = """
