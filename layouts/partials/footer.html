@@ -1,12 +1,14 @@
-{{ $title  := site.Title }}
-{{ $desc   := site.Params.description | markdownify }}
-{{ $logo   := printf "img/logos/%s" site.Params.logos.footer | relURL }}
-{{ $menu   := site.Menus.main }}
-{{ $year   := now.Year }}
-{{ $author := site.Params.copyright }}
-{{ $github := printf "https://github.com/%s" site.Params.github_repo }}
-{{ $slack  := site.Params.slack }}
-{{ $mail   := site.Params.mailing_list }}
+{{ $title    := site.Title }}
+{{ $desc     := site.Params.description | markdownify }}
+{{ $logo     := printf "img/logos/%s" site.Params.logos.footer | relURL }}
+{{ $menu     := site.Menus.main }}
+{{ $year     := now.Year }}
+{{ $author   := site.Params.copyright }}
+{{ $github   := printf "https://github.com/%s" site.Params.github_repo }}
+{{ $slack    := site.Params.slack }}
+{{ $mail     := site.Params.mailing_list }}
+{{ $twitter  := site.Params.twitter }}
+{{ $linkedin := site.Params.linkedin }}
 <footer class="footer has-background-black">
   <div class="container">
     <div class="columns is-vcentered">
@@ -69,6 +71,24 @@
                 </span>
                 <span>
                   Mailing list
+                </span>
+              </a>
+
+              <a class="button is-twitter-blue is-inverted is-outlined" href="{{ $twitter }}" target="_blank">
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span>
+                <span>
+                  Twitter
+                </span>
+              </a>
+
+              <a class="button is-linkedin-blue is-inverted is-outlined" href="{{ $linkedin }}" target="_blank">
+                <span class="icon">
+                  <i class="fab fa-linkedin"></i>
+                </span>
+                <span>
+                  LinkedIn
                 </span>
               </a>
             </div>

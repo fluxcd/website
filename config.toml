@@ -78,6 +78,8 @@ copyright            = "The Flux authors"
 github_repo          = "fluxcd/flux2"
 github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
+twitter              = "https://twitter.com/fluxcd"
+linkedin             = "https://linkedin.com/groups/8985374"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
 font_awesome_version = "5.9.0"
 
