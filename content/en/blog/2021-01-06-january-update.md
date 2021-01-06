@@ -51,7 +51,8 @@ Please help us steer this project forward!
 
 Thanks also to everyone who contributed to the latest two releases:
 
-- Flagger 1.6.0: Support for A/B testing using Gloo Edge HTTP headers based routing.
+- Flagger 1.6.0:
+  - Add support for A/B testing using Gloo Edge HTTP headers based routing
 - Flagger 1.5.0:
   - Flagger can be installed on multi-arch Kubernetes clusters (Linux AMD64/ARM64/ARM).
   - The multi-arch image is available on GitHub Container Registry at
