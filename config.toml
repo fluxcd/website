@@ -84,7 +84,8 @@ mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
 font_awesome_version = "5.9.0"
 
 notification = """
-📣 **This is the new website for Flux version 2 and GitOps Toolkit, currently in active development.** If you are looking for the Flux v1 documentation, **[please click here](https://docs.fluxcd.io)**.
+📣 **This is the new website for Flux version 2 and GitOps Toolkit, currently in active development.** If you are looking for the Flux v1 documentation, **[please click here](https://docs.fluxcd.io)**.<br /><br />
+🎉 **[Flagger](https://flagger.app) is now officially a Flux project.** This is another great step for Flux to become the family of GitOps projects.
 """
 
 [params.logos]
@@ -250,6 +251,28 @@ url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
 [[params.toolkit.buttons]]
 text = "Learn more"
 url = "https://toolkit.fluxcd.io/components/"
+
+
+# Flagger hero element
+[params.flagger]
+title = "Flagger"
+subtitle = """
+Flagger is a Kubernetes operator that automates the promotion of canary deployments using Istio,
+Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting and Prometheus
+metrics for canary analysis. The canary analysis can be extended with webhooks for running system
+integration/acceptance tests, load tests, or any other custom validation.
+"""
+image = "flagger-gitops.png"
+
+[[params.flagger.buttons]]
+text = "Get started"
+color = "dark"
+url = "https://docs.flagger.app/"
+
+[[params.flagger.buttons]]
+text = "Learn more"
+url = "https://flagger.app/"
+
 
 # Community hero element
 [params.community]
