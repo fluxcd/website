@@ -1,6 +1,7 @@
 baseURL = "/"
 title = "Flux"
 enableRobotsTXT = true
+enableEmoji = true
 
 # Language configuration
 contentDir = "content/en"
