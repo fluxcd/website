@@ -2,7 +2,7 @@
 author: dholbach
 date: 2021-01-06 12:30:00+00:00
 title: January 2021 Update
-description: This month's edition of updates on Flux v2 developments - 0.5.0 release, Flagger is a Flux project, first Alpha of Image Update functionality, new guides and more.
+description: This month's edition of updates on Flux v2 developments - 0.5.0 release, Flagger as a Flux project, first Alpha of Image Update functionality, new guides and more.
 url: /blog/2021/01/january-2021-update/
 ---
 
@@ -41,7 +41,7 @@ thinking in terms of a "Flux Family of Projects" and writing up the
 roadmap accordingly should benefit both communities as a whole.
 
 The two Flagger maintainers (Stefan Prodan and Takeshi Yoneda) are very
-happy to see this happening. Thanks also to Weaveworks to transfer
+happy to see this happening. Thanks also to Weaveworks for agreeing to transfer
 Flagger and its copyright to fluxcd org (and thus, CNCF).
 
 Review the upcoming roadmap for Flagger - it now includes [GitOps
@@ -62,7 +62,7 @@ Thanks also to everyone who contributed to the latest two releases:
 -------------------------------
 
 :rocket: :gift: **We\'ve released Flux2 v0.5, this is the
-last release for this year.**
+last release for 2020.**
 
 Besides bug fixes and performance
 improvements, it comes with many new features. The highlights are:
@@ -98,10 +98,10 @@ Azure Devops. The same requirements do not exist in the other major git
 providers, which is why this was not caught during the initial
 development of source-controller.
 
-This resulted in Flux V1 users who used Azure DevOps that were now not
-able to migrate to Flux V2. The initial attempt at a solution was to
+This resulted in Flux v1 users who used Azure DevOps that were now not
+able to migrate to Flux v2. The initial attempt at a solution was to
 implement the missing capabilities in the existing library, which turned
-into its own endeavour. Instead the solution was to introduce a
+into its own epic. Instead the solution was to introduce a
 secondary git library libgit2 as it implements the required git
 capabilities. It turned out that libgit2 has its own limitations as it
 does not currently support shallow cloning, a feature that speeds up the
