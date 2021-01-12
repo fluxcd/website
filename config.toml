@@ -253,14 +253,18 @@ url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
 text = "Learn more"
 url = "https://toolkit.fluxcd.io/components/"
 
+[params.family]
+title = "Other Flux projects"
 
 # Flagger hero element
 [params.flagger]
 title = "Flagger"
 subtitle = """
-Flagger is a Kubernetes operator that automates the promotion of canary deployments using Istio,
-Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting and Prometheus
-metrics for canary analysis. The canary analysis can be extended with webhooks for running system
+Kubernetes Operator for the automation of promoting canaray deployments using Istio,
+Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic
+shifting, and Prometheus metrics for canary analysis.
+
+The canary analysis can be extended with webhooks for running system
 integration/acceptance tests, load tests, or any other custom validation.
 """
 image = "flagger-gitops.png"

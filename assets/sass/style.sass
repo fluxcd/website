@@ -46,11 +46,14 @@ $section-padding: 4.5rem 1.5rem
 $navbar-item-hover-color: $primary !important
 $navbar-item-hover-background-color: $dark !important
 $navbar-dropdown-item-hover-background-color: $light !important
-$colors: mergeColorMaps(("secondary": ($secondary, $white), "slack-green": ($slack-green, $white), "twitter-blue": ($twitter-blue, $white), "linkedin-blue": ($linkedin-blue, $white)), $colors)
+
+$colors: mergeColorMaps(("secondary": ($secondary, $white)), $colors)
+$colors: mergeColorMaps(("slack-green": ($slack-green, $white), "twitter-blue": ($twitter-blue, $white), "linkedin-blue": ($linkedin-blue, $white)), $colors)
 
 @import "bulma/bulma"
 
 @import "blog"
+@import "box"
 @import "card"
 @import "content"
 @import "docs"
