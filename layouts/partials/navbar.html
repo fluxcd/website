@@ -1,11 +1,11 @@
-{{ $home   := site.BaseURL }}
-{{ $title  := site.Title }}
-{{ $logo   := printf "img/logos/%s" site.Params.logos.navbar | relURL }}
-{{ $menu   := site.Menus.main }}
-{{ $repo   := site.Params.github_repo }}
-{{ $github := printf "https://github.com/%s" $repo }}
-{{ $slack  := site.Params.slack }}
-{{ $mail   := site.Params.mailing_list }}
+{{ $home    := site.BaseURL }}
+{{ $title   := site.Title }}
+{{ $logo    := printf "img/logos/%s" site.Params.logos.navbar | relURL }}
+{{ $menu    := site.Menus.main }}
+{{ $repo    := site.Params.github_repo }}
+{{ $github  := printf "https://github.com/%s" $repo }}
+{{ $support := printf "%s/discussions/categories/q-a" $github }}
+{{ $mail    := site.Params.mailing_list }}
 <nav class="navbar is-black is-fixed-top">
   <div class="container">
     <div class="navbar-brand">
@@ -55,12 +55,12 @@
               </span>
             </a>
 
-            <a class="button is-slack-green" href="{{ $slack }}" target="_blank">
+            <a class="button is-success" href="{{ $support }}" target="_blank">
               <span class="icon">
-                <i class="fab fa-slack"></i>
+                <i class="fa fa-comments"></i>
               </span>
               <span class="has-text-weight-bold">
-                Slack
+                Support
               </span>
             </a>
 
