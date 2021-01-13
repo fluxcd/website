@@ -37,6 +37,10 @@ name = "Blog"
 url = "/blog"
 
 [[menus.main]]
+name = "Community"
+url = "/community"
+
+[[menus.main]]
 identifier = "project"
 name = "Project"
 
