@@ -11,6 +11,7 @@ container-gen-content: ## Generates content from external sources within a conta
 	$(CONTAINER_RUN) $(CONTAINER_IMAGE) hack/gen-content.sh
 
 serve:
+	hack/gen-content.sh
 	hugo server \
 		--buildDrafts \
 		--buildFuture \
