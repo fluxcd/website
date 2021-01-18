@@ -2,6 +2,9 @@
 
 # Copyright 2019 The Kubernetes Authors.
 #
+# This is 69818fa of
+# http://sigs.k8s.io/contributor-site/hack/gen-content.sh
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
