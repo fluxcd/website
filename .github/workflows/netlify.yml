@@ -1,0 +1,12 @@
+name: Re-run build from 'main' on Netlify every two hours
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Deploy 'main' on Netlify
+        run: |
+          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}'
