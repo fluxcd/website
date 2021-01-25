@@ -1,11 +1,11 @@
-name: Re-run build from 'main' on Netlify every two hours
+name: Re-run build from 'main' on Netlify
 on:
   schedule:
     - cron: '0 */6 * * *'
-  pull_request:
+  workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy 'main' on Netlify
         run: |
