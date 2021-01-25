@@ -41,6 +41,10 @@ name = "Community"
 url = "/community"
 
 [[menus.main]]
+name = "Support"
+url = "/support"
+
+[[menus.main]]
 identifier = "project"
 name = "Project"
 
