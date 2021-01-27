@@ -97,6 +97,7 @@ font_awesome_version = "5.9.0"
 
 notification = """
 📣 **This is the new website for Flux version 2 and GitOps Toolkit, currently in active development.** If you are looking for the Flux v1 documentation, **[please click here](https://docs.fluxcd.io)**.<br /><br />
+📣 **[Flux v1 is in maintenance mode](https://github.com/fluxcd/flux/issues/3320)!** We will soon start publishing guides which help you migrate Flux v2 and the GitOps Toolkit.<br /><br />
 🎉 **[Flagger](https://flagger.app) is now officially a Flux project.** This is another great step for Flux to become the family of GitOps projects.
 """
 
