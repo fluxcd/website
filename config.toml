@@ -41,10 +41,6 @@ name = "Community"
 url = "/community"
 
 [[menus.main]]
-name = "Support"
-url = "/support"
-
-[[menus.main]]
 identifier = "project"
 name = "Project"
 
@@ -93,6 +89,7 @@ slack                = "https://cloud-native.slack.com/messages/flux"
 twitter              = "https://twitter.com/fluxcd"
 linkedin             = "https://linkedin.com/groups/8985374"
 mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
+support              = "/support"
 font_awesome_version = "5.9.0"
 
 notification = """
