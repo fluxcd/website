@@ -4,7 +4,7 @@
 {{ $menu    := site.Menus.main }}
 {{ $repo    := site.Params.github_repo }}
 {{ $github  := printf "https://github.com/%s" $repo }}
-{{ $support := printf "%s/discussions/categories/q-a" $github }}
+{{ $support := site.Params.support }}
 {{ $mail    := site.Params.mailing_list }}
 <nav class="navbar is-black is-fixed-top">
   <div class="container">

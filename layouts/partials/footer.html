@@ -5,7 +5,7 @@
 {{ $year     := now.Year }}
 {{ $author   := site.Params.copyright }}
 {{ $github   := printf "https://github.com/%s" site.Params.github_repo }}
-{{ $support  := printf "%s/discussions/categories/q-a" $github }}
+{{ $support  := site.Params.support }}
 {{ $slack    := site.Params.slack }}
 {{ $mail     := site.Params.mailing_list }}
 {{ $twitter  := site.Params.twitter }}
