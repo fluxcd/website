@@ -10,6 +10,8 @@
 {{ $mail     := site.Params.mailing_list }}
 {{ $twitter  := site.Params.twitter }}
 {{ $linkedin := site.Params.linkedin }}
+{{ $youtube  := site.Params.youtube }}
+{{ $rss      := site.Params.rss }}
 <footer class="footer has-background-black">
   <div class="container">
     <div class="columns is-vcentered">
@@ -101,6 +103,26 @@
                   LinkedIn
                 </span>
               </a>
+
+              <a class="button is-black is-inverted is-outlined" href="{{ $youtube }}" target="_blank">
+                <span class="icon">
+                  <i class="fab fa-youtube"></i>
+                </span>
+                <span>
+                  YouTube
+                </span>
+              </a>
+
+              {{with (not (in (.Site.Language.Get "disableKinds") "RSS")) }}
+              <a class="button is-black is-inverted is-outlined" href="{{ $rss }}" target="_blank" title="rss">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+                <span>
+                  RSS feed
+                </span>
+              </a>
+              {{ end }}
             </div>
           </div>
         </div>
@@ -109,7 +131,6 @@
 
         <p class="has-text-light has-text-weight-light">
           Copyright &copy; {{ $year }} {{ $author}}
-          {{- with (not (in (.Site.Language.Get "disableKinds") "RSS")) }} &#183; <a href="{{ "blog/index.xml" | absLangURL }}" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>{{ end }}
         </p>
       </div>
     </div>
