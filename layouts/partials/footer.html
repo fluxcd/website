@@ -10,6 +10,7 @@
 {{ $mail     := site.Params.mailing_list }}
 {{ $twitter  := site.Params.twitter }}
 {{ $linkedin := site.Params.linkedin }}
+{{ $youtube  := site.Params.youtube }}
 <footer class="footer has-background-black">
   <div class="container">
     <div class="columns is-vcentered">
@@ -99,6 +100,15 @@
                 </span>
                 <span>
                   LinkedIn
+                </span>
+              </a>
+
+              <a class="button is-black is-inverted is-outlined" href="{{ $youtube }}" target="_blank">
+                <span class="icon">
+                  <i class="fab fa-youtube"></i>
+                </span>
+                <span>
+                  YouTube
                 </span>
               </a>
             </div>
