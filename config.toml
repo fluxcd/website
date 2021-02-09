@@ -271,7 +271,7 @@ title = "Other Flux projects"
 [params.flagger]
 title = "Flagger"
 subtitle = """
-Kubernetes Operator for the automation of promoting canaray deployments using Istio,
+Kubernetes Operator for the automation of promoting canary deployments using Istio,
 Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic
 shifting, and Prometheus metrics for canary analysis.
 
