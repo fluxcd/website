@@ -198,7 +198,7 @@ title       = "Flux v2 with GitOps Toolkit by Viktor Farcic"
 description = """
 In this video, Viktor Farcic from "The DevOps Toolkit Series" demos and reviews Flux v2.
 """
-url         = "https://www.youtube.com/watch?v=R6OeIgb7lUI"
+youtube     = "R6OeIgb7lUI"
 
 [[params.resources.items]]
 title       = "Flux v2 series by Geert Baeke"
@@ -212,7 +212,7 @@ title       = "The Power of GitOps with Flux v2 and GitOps Toolkit II with Leigh
 description = """
 In this second demo, Leigh shows the multi-tenancy, remote cluster and dependency management capabilities of Flux.
 """
-url         = "https://www.youtube.com/watch?v=fC2YCxQRUwU"
+youtube     = "fC2YCxQRUwU"
 
 [[params.resources.items]]
 title       = "The Kubelist Podcast: Flux with Michael Bridgen"
@@ -226,7 +226,7 @@ title       = "Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan"
 description = """
 Stefan's introduction to Flux and GitOps Toolkit at Rawkode Live.
 """
-url         = "https://www.youtube.com/watch?v=HqTzuOBP0eY"
+youtube     = "HqTzuOBP0eY"
 
 [[params.resources.items]]
 title       = "The Power of GitOps with Flux v2 and GitOps Toolkit with Leigh Capili"
@@ -234,7 +234,7 @@ description = """
 Leigh talks about getting started with Flux and GitOps Toolkit, reconciliation and observability, and the
 powerful use of Prometheus and Grafana.
 """
-url         = "https://www.youtube.com/watch?v=0v5bjysXTL8"
+youtube     = "0v5bjysXTL8"
 
 [[params.resources.items]]
 title       = " Introduction to GitOps and GitOps Toolkit by Stefan Prodan"
@@ -243,7 +243,7 @@ Alexis Richardson, CEO at Weaveworks and Stefan Prodan, maintainer of the Flux p
 
 Talk from Cloud Native Nordics Tech Talks.
 """
-url         = "https://www.youtube.com/watch?v=qQBtSkgl7tI"
+youtube     = "qQBtSkgl7tI"
 
 # Toolkit hero element
 [params.toolkit]
