@@ -88,13 +88,14 @@ support              = "/support"
 rss                  = "/blog/index.xml"
 font_awesome_version = "5.9.0"
 
+
 #notification = """
 #"""
 
 [params.celebration]
-emoji = ""
-description = ""
-url = ""
+emoji = "🎉"
+description = "Flux is now a CNCF Incubation project!"
+url = "/blog/2021/03/flux-is-a-cncf-incubation-project/"
 
 [params.logos]
 navbar = "flux-horizontal-white.png"
@@ -109,12 +110,13 @@ type  = "sans_serif"
 
 # Flux hero element
 [params.flux]
-# title    = "Alternative title"
+title    = "Flux - the GitOps family of projects"
 subtitle = """
-Flux v2 will soon be generally available. It is the start of Flux as a GitOps family of projects.
-Open, extensible continuous and progressive delivery solutions for Kubernetes. Powered by the GitOps Toolkit.
+Flux is a set of continuous and progressive delivery solutions
+for Kubernetes, and they are open and extensible.
 
-Now is a good time to start familiarising yourself with Flux v2.
+Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated
+before the end of 2021, so now is a good time to start using v2.
 """
 
 [[params.flux.buttons]]
@@ -128,10 +130,11 @@ url  = "https://toolkit.fluxcd.io"
 
 # Overview hero element
 [params.overview]
-title   = "Overview"
+title   = "GitOps at your fingertips"
 summary = """
-Flux is a tool for keeping [Kubernetes](https://kubernetes.io) clusters in sync with sources of configuration
-(like Git repositories), and automating updates to configuration when there is new code to deploy.
+Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io) clusters in sync with
+sources of configuration (like Git repositories), and automating updates to configuration when there
+is new code to deploy.
 """
 
 ## Overview features
@@ -195,56 +198,50 @@ If you are new to Flux, you might want to check out some of the following resour
 
 ## Resource items
 [[params.resources.items]]
-title       = "Flux v2 with GitOps Toolkit by Viktor Farcic"
+title       = "The Evolution of Flux v2 with Stefan Prodan"
 description = """
-In this video, Viktor Farcic from "The DevOps Toolkit Series" demos and reviews Flux v2.
+Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
 """
-youtube     = "R6OeIgb7lUI"
+youtube     = "nGLpUCPX8JE"
 
 [[params.resources.items]]
-title       = "Flux v2 series by Geert Baeke"
+title       = "The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili"
 description = """
-In this series, Geert Baeke takes a deep dive in Flux v2 and the use of GitOps principles to deploy to Kubernetes.
-"""
-url         = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
-
-[[params.resources.items]]
-title       = "The Power of GitOps with Flux v2 and GitOps Toolkit II with Leigh Capili"
-description = """
-In this second demo, Leigh shows the multi-tenancy, remote cluster and dependency management capabilities of Flux.
-"""
-youtube     = "fC2YCxQRUwU"
-
-[[params.resources.items]]
-title       = "The Kubelist Podcast: Flux with Michael Bridgen"
-description = """
-Michael talks about Flux, as well as GitOps adoption and progressive delivery.
-"""
-url         = "https://www.heavybit.com/library/podcasts/the-kubelist-podcast/ep-5-flux-with-michael-bridgen-of-weaveworks/"
-
-[[params.resources.items]]
-title       = "Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan"
-description = """
-Stefan's introduction to Flux and GitOps Toolkit at Rawkode Live.
-"""
-youtube     = "HqTzuOBP0eY"
-
-[[params.resources.items]]
-title       = "The Power of GitOps with Flux v2 and GitOps Toolkit with Leigh Capili"
-description = """
-Leigh talks about getting started with Flux and GitOps Toolkit, reconciliation and observability, and the
-powerful use of Prometheus and Grafana.
+Leigh demos bootstrapping with GitOps Toolkit, app deployment, and monitoring with Prometheus.
 """
 youtube     = "0v5bjysXTL8"
 
 [[params.resources.items]]
-title       = " Introduction to GitOps and GitOps Toolkit by Stefan Prodan"
+title       = "Flux v2 for Helm Users with Scott Rigby"
 description = """
-Alexis Richardson, CEO at Weaveworks and Stefan Prodan, maintainer of the Flux project introduce you to GitOps Toolkit.
-
-Talk from Cloud Native Nordics Tech Talks.
+Scott covers what to keep in mind as Helm 2 support ends, the benefits of Helm Controller, and how to migrate from Helm Operator to Helm Controller.
 """
-youtube     = "qQBtSkgl7tI"
+youtube     = "JcKUawSQfQ0"
+
+
+[[params.resources.items]]
+title       = "Managing Remote Clusters with Flux v2 (CAPI demo) with Leigh Capili"
+description = """
+Leigh covers cluster API integration, dependency management & ordering, security model updates, and delegation & multi-tenancy via users.
+"""
+youtube     = "7W27tAv7Tvs"
+
+
+[[params.resources.items]]
+title       = "Flux v2 overview, demo, & review with Viktor Farcic"
+description = """
+Viktor demos Flux v2's flexibility & powerful capabilities by showing bootstrapping, creating sources, deploying releases, and promoting to production."""
+youtube     = "R6OeIgb7lUI"
+
+
+[[params.resources.items]]
+title       = "Flux v2 Deep Dive series with Geert Baeke"
+description = """
+In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
+"""
+url     = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+
+
 
 [params.family]
 title = "Other Flux projects"
