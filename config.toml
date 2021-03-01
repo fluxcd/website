@@ -51,27 +51,21 @@ url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
 weight = 1
 
 [[menus.main]]
-name = "Community"
-parent = "project"
-url = "https://github.com/fluxcd/community/blob/main/COMMUNITY.md"
-weight = 20
-
-[[menus.main]]
 name = "Contributing"
 parent = "project"
-url = "https://github.com/fluxcd/community/blob/main/CONTRIBUTING.md"
+url = "/contributing"
 weight = 30
 
 [[menus.main]]
 name = "Governance"
 parent = "project"
-url = "https://github.com/fluxcd/community/blob/main/GOVERNANCE.md"
+url = "/governance"
 weight = 40
 
 [[menus.main]]
 name = "Security"
 parent = "project"
-url = "https://github.com/fluxcd/community/blob/main/SECURITY.md"
+url = "/security"
 weight = 50
 
 [[menus.main]]
