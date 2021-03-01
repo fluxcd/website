@@ -1,4 +1,3 @@
-<!-- -*- fill-column: 100 -*- -->
 # Migrating image update automation to Flux v2
 
 "Image Update Automation" is a process in which Flux makes commits to your Git repository when it
