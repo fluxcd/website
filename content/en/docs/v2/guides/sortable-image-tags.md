@@ -1,4 +1,3 @@
-<!-- -*- fill-column: 100 -*- -->
 # How to make sortable image tags to use with automation
 
 Flux v2 does not support selecting the lastest image by build time. Obtaining the build time needs
