@@ -1,3 +1,10 @@
+---
+title: "Roadmap"
+linkTitle: "Roadmap"
+weight: 90
+description: >
+  Roadmap for Flux v2
+---
 # Roadmap
 
 !!! hint "Production readiness"

@@ -1,4 +1,10 @@
-# Core Concepts
+---
+title: "Core Concepts"
+linkTitle: "Core Concepts"
+weight: 10
+description: >
+  Core Concepts of Flux v2
+---
 
 !!! note "Work in progress"
     This document is a work in progress.

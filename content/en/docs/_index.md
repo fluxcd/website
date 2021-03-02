@@ -1,10 +1,10 @@
 ---
 title: "Documentation"
-linkTitle: "Flux v2"
+linkTitle: "Documentation"
 weight: 0
 menu:
   main:
-    weight: 20
+    weight: 0
 description: >
   Flux v2 Documentation.
 ---
