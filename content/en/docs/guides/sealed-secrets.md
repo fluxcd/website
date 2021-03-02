@@ -1,4 +1,9 @@
-# Sealed Secrets
+---
+title: "Sealed Secrets"
+linkTitle: "Sealed Secrets"
+weight: 60
+---
+
 
 In order to store secrets safely in a public or private Git repository, you can use
 Bitnami's [sealed-secrets controller](https://github.com/bitnami-labs/sealed-secrets)

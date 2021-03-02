@@ -5,7 +5,6 @@ weight: 90
 description: >
   Roadmap for Flux v2
 ---
-# Roadmap
 
 {{% note title="Production readiness" %}}
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`

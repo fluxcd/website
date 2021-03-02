@@ -1,4 +1,9 @@
-# Installation
+---
+title: "Installation"
+linkTitle: "Installation"
+weight: 10
+---
+
 
 This guide walks you through setting up Flux v2 (hereafter: "Flux") to
 manage one or more Kubernetes clusters.

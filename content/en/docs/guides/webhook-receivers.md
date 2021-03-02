@@ -1,4 +1,9 @@
-# Setup Webhook Receivers
+---
+title: "Setup Webhook Receivers"
+linkTitle: "Setup Webhook Receivers"
+weight: 40
+---
+
 
 The GitOps toolkit controllers are by design **pull-based**.
 In order to notify the controllers about changes in Git or Helm repositories,

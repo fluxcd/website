@@ -1,4 +1,8 @@
-# Manage Helm Releases
+---
+title: "Manage Helm Releases"
+linkTitle: "Manage Helm Releases"
+weight: 20
+---
 
 The [helm-controller](../components/helm/controller.md) allows you to
 declaratively manage Helm chart releases with Kubernetes manifests.
