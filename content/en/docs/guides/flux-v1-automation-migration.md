@@ -370,9 +370,10 @@ spec:
         image: ghcr.io/stefanprodan/podinfo:5.0.0
 ```
 
-!!! warning
-    A YAML file may have more than one manifest in it, separated with
-    `---`. Be careful to account for each manifest in a file.
+{{% note color="warning" %}}
+A YAML file may have more than one manifest in it, separated with
+`---`. Be careful to account for each manifest in a file.
+{{% /note %}}
 
 You may wish to try migrating the automation of just one file or manifest and follow it through to
 the end of the guide, before returning here to do the remainder.
@@ -429,9 +430,10 @@ spec:
   interval: 5m0s
 ```
 
-!!! hint
-  If you are using the same image repository in several manifests, you only need one
-  `ImageRepository` object for it.
+{{% note title="Note" %}}
+If you are using the same image repository in several manifests, you only need one
+`ImageRepository` object for it.
+{{% /note %}}
 
 ##### Using image registry credentials for scanning
 
