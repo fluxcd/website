@@ -1,4 +1,13 @@
-# Flux v2
+---
+title: "Documentation"
+linkTitle: "Flux v2"
+weight: 0
+menu:
+  main:
+    weight: 20
+description: >
+  Flux v2 Documentation.
+---
 
 Flux is a tool for keeping Kubernetes clusters in sync with sources of
 configuration (like Git repositories), and automating updates to
