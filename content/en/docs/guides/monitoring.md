@@ -1,4 +1,9 @@
-# Monitoring
+---
+title: "Monitoring with Prometheus"
+linkTitle: "Monitoring with Prometheus"
+weight: 50
+---
+
 
 This guide walks you through configuring monitoring for the Flux control plane.
 

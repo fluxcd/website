@@ -1,4 +1,9 @@
-# Setup Notifications
+---
+title: "Setup Notifications"
+linkTitle: "Setup Notifications"
+weight: 30
+---
+
 
 When operating a cluster, different teams may wish to receive notifications about
 the status of their GitOps pipelines.
