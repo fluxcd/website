@@ -1,4 +1,9 @@
-# Monitoring
+---
+title: "Monitoring with Prometheus"
+linkTitle: "Monitoring with Prometheus"
+weight: 50
+---
+
 
 This guide walks you through configuring monitoring for the Flux control plane.
 
@@ -52,9 +57,10 @@ Cluster reconciliation dashboard [http://localhost:3000/d/gitops-toolkit-cluster
 If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
 [GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
 
-!!! hint
-    Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
-    When using Prometheus Operator you should create a `PodMonitor` object for each controller to configure scraping.
+{{% note %}}
+Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
+When using Prometheus Operator you should create a `PodMonitor` object for each controller to configure scraping.
+{{% /note %}}
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1

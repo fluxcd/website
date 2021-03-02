@@ -1,4 +1,9 @@
-# Installation
+---
+title: "Installation"
+linkTitle: "Installation"
+weight: 10
+---
+
 
 This guide walks you through setting up Flux v2 (hereafter: "Flux") to
 manage one or more Kubernetes clusters.
@@ -61,10 +66,11 @@ flux bootstrap <GIT-PROVIDER> \
   --path=clusters/my-cluster
 ```
 
-!!! hint "Multi-arch images"
-    The component images are published as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-arch/)
-    with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
-    architectures.
+{{% note title="Multi-arch images" %}}
+The component images are published as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-arch/)
+with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
+architectures.
+{{% /note %}}
 
 If you wish to install a specific version, use the Flux
 [release tag](https://github.com/fluxcd/flux2/releases) e.g. `--version=v0.9.0`.
@@ -91,9 +97,10 @@ cluster e.g. `clusters/staging` and `clusters/production`:
 After running bootstrap you can place Kubernetes YAMLs inside a dir under path
 e.g. `clusters/staging/my-app`, and Flux will reconcile them on your cluster.
 
-!!! hint "Change the default branch"
-    If you wish to change the branch to something else than main, create the repository manually,
-    push a branch to origin and then use `flux bootstrap <GIT-PROVIDER> --branch=your-branch`.
+{{% note title="Change the default branch" %}}
+If you wish to change the branch to something else than main, create the repository manually,
+push a branch to origin and then use `flux bootstrap <GIT-PROVIDER> --branch=your-branch`.
+{{% /note %}}
 
 For examples on how you can structure your Git repository see:
 
@@ -121,11 +128,12 @@ flux bootstrap github \
   --personal
 ```
 
-!!! hint "Deploy key"
-    The bootstrap command creates an SSH key which it stores as a secret in the
-    Kubernetes cluster. The key is also used to create a deploy key in the GitHub
-    repository. The new deploy key will be linked to the personal access token used
-    to authenticate. **Removing the personal access token will also remove the deploy key.**
+{{% note title="Deploy key" %}}
+The bootstrap command creates an SSH key which it stores as a secret in the
+Kubernetes cluster. The key is also used to create a deploy key in the GitHub
+repository. The new deploy key will be linked to the personal access token used
+to authenticate. **Removing the personal access token will also remove the deploy key.**
+{{% /note %}}
 
 Run the bootstrap for a repository owned by a GitHub organization:
 
@@ -198,10 +206,11 @@ flux bootstrap gitlab \
   --path=clusters/my-cluster
 ```
 
-!!! hint "Authentication"
-    When providing the `--ssh-hostname`, a read-only (SSH) deploy key will be added
-    to your repository, otherwise your GitLab personal token will be used to
-    authenticate against the HTTPS endpoint instead.
+{{% note title="Authentication" %}}
+When providing the `--ssh-hostname`, a read-only (SSH) deploy key will be added
+to your repository, otherwise your GitLab personal token will be used to
+authenticate against the HTTPS endpoint instead.
+{{% /note %}}
 
 Run the bootstrap for a repository owned by a GitLab (sub)group:
 
@@ -331,40 +340,41 @@ flux create source git flux-system \
 You will be prompted to add a deploy key to your repository.
 If you don't specify the SSH algorithm, then `flux` will generate an RSA 2048 bits key.
 
-!!! hint "Azure DevOps"
-    Azure DevOps requires a non-default Git implementation (`libgit2`) to be enabled, so that the Git v2 protocol is supported.
-    Note that this implementation does not support shallow cloning, and it is therefore advised to only resort to this option if a
-    connection fails with the default configuration.
+{{% note title="Azure DevOps" %}}
+Azure DevOps requires a non-default Git implementation (`libgit2`) to be enabled, so that the Git v2 protocol is supported.
+Note that this implementation does not support shallow cloning, and it is therefore advised to only resort to this option if a
+connection fails with the default configuration.
 
-    If you are using Azure DevOps you need to specify a different Git implementation than the default:
-    
-    ```sh
-    flux create source git flux-system \
-      --git-implementation=libgit2 \
-      --url=ssh://git@ssh.dev.azure.com/v3/<org>/<project>/<repository> \
-      --branch=master \
-      --interval=1m
-    ```
+If you are using Azure DevOps you need to specify a different Git implementation than the default:
 
-    Note that unlike `git`, Flux does not support the
-    ["shorter" scp-like syntax for the SSH protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_ssh_protocol)
-    (e.g. `ssh.dev.azure.com:v3`).
-    Use the [RFC 3986 compatible syntax](https://tools.ietf.org/html/rfc3986#section-3) instead: `ssh.dev.azure.com/v3`.
+```sh
+flux create source git flux-system \
+  --git-implementation=libgit2 \
+  --url=ssh://git@ssh.dev.azure.com/v3/<org>/<project>/<repository> \
+  --branch=master \
+  --interval=1m
+```
 
-    If you wish to use Git over HTTPS, then generated a personal access token and supply it as the password:
+Note that unlike `git`, Flux does not support the
+["shorter" scp-like syntax for the SSH protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_ssh_protocol)
+(e.g. `ssh.dev.azure.com:v3`).
+Use the [RFC 3986 compatible syntax](https://tools.ietf.org/html/rfc3986#section-3) instead: `ssh.dev.azure.com/v3`.
 
-    ```sh
-    flux create source git flux-system \
-      --git-implementation=libgit2 \
-      --url=https://dev.azure.com/<org>/<project>/_git/<repository> \
-      --branch=master \
-      --username=git \
-      --password=token \
-      --interval=1m
-    ```
+If you wish to use Git over HTTPS, then generated a personal access token and supply it as the password:
 
-    Please consult the [Azure DevOps documentation](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page)
-    on how to generate personal access tokens for Git repositories.
+```sh
+flux create source git flux-system \
+  --git-implementation=libgit2 \
+  --url=https://dev.azure.com/<org>/<project>/_git/<repository> \
+  --branch=master \
+  --username=git \
+  --password=token \
+  --interval=1m
+```
+
+Please consult the [Azure DevOps documentation](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page)
+on how to generate personal access tokens for Git repositories.
+{{% /note %}}
 
 If your Git server supports basic auth, you can set the URL to HTTPS and specify the credentials with:
 
@@ -551,9 +561,10 @@ flux create helmrelease nginx \
 
 ## Upgrade
 
-!!! note "Patch versions"
-    It is safe and advised to use the latest PATCH version when upgrading to a
-    new MINOR version.
+{{% note title="Patch versions" %}}
+It is safe and advised to use the latest PATCH version when upgrading to a
+new MINOR version.
+{{% /note %}}
 
 Update Flux CLI to the latest release with `brew upgrade fluxcd/tap/flux` or by
 downloading the binary from [GitHub](https://github.com/fluxcd/flux2/releases).
@@ -593,10 +604,11 @@ Verify that the controllers have been upgrade with:
 flux check
 ```
 
-!!! hint "Automated upgrades"
-    You can automate the components manifest update with GitHub Actions
-    and open a PR when there is a new Flux version available.
-    For more details please see [Flux GitHub Action docs](https://github.com/fluxcd/flux2/tree/main/action).
+{{% note title="Automated upgrades" %}}
+You can automate the components manifest update with GitHub Actions
+and open a PR when there is a new Flux version available.
+For more details please see [Flux GitHub Action docs](https://github.com/fluxcd/flux2/tree/main/action).
+{{% /note %}}
 
 ### Terraform upgrade
 
@@ -651,6 +663,7 @@ can skip the namespace deletion with:
 flux uninstall --namespace=infra --keep-namespace
 ```
 
-!!! hint
-    Note that the `uninstall` command will not remove any Kubernetes objects
-    or Helm releases that were reconciled on the cluster by Flux.
+{{% note %}}
+Note that the `uninstall` command will not remove any Kubernetes objects
+or Helm releases that were reconciled on the cluster by Flux.
+{{% /note %}}

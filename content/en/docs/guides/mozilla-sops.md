@@ -1,4 +1,9 @@
-# Manage Kubernetes secrets with Mozilla SOPS
+---
+title: "Manage Kubernetes secrets with Mozilla SOPS"
+linkTitle: "Mozilla SOPS"
+weight: 70
+---
+ 
 
 In order to store secrets safely in a public or private Git repository, you can use
 Mozilla's [SOPS](https://github.com/mozilla/sops) CLI to encrypt
@@ -72,14 +77,16 @@ sops --encrypt \
 --in-place basic-auth.yaml
 ```
 
-!!! hint
-    Note that you should encrypt only the `data` section. Encrypting the Kubernetes
-    secret metadata, kind or apiVersion is not supported by kustomize-controller.
+{{% note %}}
+Note that you should encrypt only the `data` section. Encrypting the Kubernetes
+secret metadata, kind or apiVersion is not supported by kustomize-controller.
+{{% /note %}}
 
 You can now commit the encrypted secret to your Git repository.
 
-!!! hint
-    Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
+{{% note %}}
+Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
+{{% /note %}}
 
 ## Configure secrets decryption
 
@@ -194,8 +201,9 @@ spec:
       name: sops-gpg
 ```
 
-!!! hint
-    You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
+{{% note %}}
+You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
+{{% /note %}}
 
 Assuming a team member wants to deploy an application that needs to connect
 to a database using a username and password, they'll be doing the following:

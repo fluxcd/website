@@ -1,4 +1,9 @@
-# Sealed Secrets
+---
+title: "Sealed Secrets"
+linkTitle: "Sealed Secrets"
+weight: 60
+---
+
 
 In order to store secrets safely in a public or private Git repository, you can use
 Bitnami's [sealed-secrets controller](https://github.com/bitnami-labs/sealed-secrets)
@@ -147,8 +152,9 @@ spec:
   targetNamespace: flux-system
 ```
 
-!!! hint
-    You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
+{{% note %}}
+You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
+{{% /note %}}
 
 Once the sealed-secrets controller is installed, the admin fetches the 
 public key and shares it with the teams that operate on the fleet clusters via Git.

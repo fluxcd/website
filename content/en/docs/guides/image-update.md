@@ -1,4 +1,9 @@
-# Automate image updates to Git
+---
+title: "Automate image updates to Git"
+linkTitle: "Automate image updates to Git"
+weight: 80
+---
+
 
 This guide walks you through configuring container image scanning and deployment rollouts with Flux.
 
@@ -10,9 +15,10 @@ For a container image you can configure Flux to:
 - checkout a branch, commit and push the changes to the remote Git repository
 - apply the changes in-cluster and rollout the container image
 
-!!! warning "Alpha version"
-    Note that the image update feature is currently alpha,
-    see the [roadmap](../roadmap/index.md) for more details.
+{{% note title="Alpha version" color="warning" %}}
+Note that the image update feature is currently alpha,
+see the [roadmap](../roadmap/index.md) for more details.
+{{% /note %}}
 
 For production environments, this feature allows you to automatically deploy application patches
 (CVEs and bug fixes), and keep a record of all deployments in Git history.
@@ -56,11 +62,12 @@ export GITHUB_USER=<your-username>
 
 ## Install Flux
 
-!!! hint "Enable image automation components"
-    If you bootstrapped Flux before without the `--components-extra=` argument, you need to add
-    `--components-extra=image-reflector-controller,image-automation-controller` to your
-    bootstrapping routine as image automation components are not installed by default.
-    
+{{% note title="Enable image automation components" %}}
+If you bootstrapped Flux before without the `--components-extra=` argument, you need to add
+`--components-extra=image-reflector-controller,image-automation-controller` to your
+bootstrapping routine as image automation components are not installed by default.
+{{% /note %}}
+
 Install Flux with the image automation components:
 
 ```sh
@@ -78,11 +85,12 @@ The bootstrap command creates a repository if one doesn't exist, and commits the
 Flux components to the default branch at the specified path. It then configures the target cluster to
 synchronize with the specified path inside the repository.
 
-!!! hint "GitLab and other Git platforms"
-    You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
-    any other Git provider that support SSH or token-based authentication.
-    When using SSH, make sure the deploy key is configured with write access.
-    Please see the [installation guide](installation.md) for more details.
+{{% note title="GitLab and other Git platforms" %}}
+You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
+any other Git provider that support SSH or token-based authentication.
+When using SSH, make sure the deploy key is configured with write access.
+Please see the [installation guide](installation.md) for more details.
+{{% /note %}}
 
 ## Deploy a demo app
 
@@ -161,9 +169,10 @@ spec:
     name: regcred
 ```
 
-!!! hint "Storing secrets in Git"
-    Note that if you want to store the image pull secret in Git,  you can encrypt
-    the manifest with [Mozilla SOPS](mozilla-sops.md) or [Sealed Secrets](sealed-secrets.md).
+{{% note title="Storing secrets in Git" %}}
+Note that if you want to store the image pull secret in Git,  you can encrypt
+the manifest with [Mozilla SOPS](mozilla-sops.md) or [Sealed Secrets](sealed-secrets.md).
+{{% /note %}}
 
 Create an `ImagePolicy` to tell Flux which semver range to use when filtering tags:
 
@@ -190,15 +199,17 @@ spec:
       range: 5.0.x
 ```
 
-!!! hint "semver ranges"
-    A semver range that includes stable releases can be defined with
-    `1.0.x` (patch versions only) or `>=1.0.0 <2.0.0` (minor and patch versions).
-    If you want to include pre-release e.g. `1.0.0-rc.1`,
-    you can define a range like: `^1.x-0` or `>1.0.0-rc <2.0.0-rc`.
+{{% note title="semver ranges" %}}
+A semver range that includes stable releases can be defined with
+`1.0.x` (patch versions only) or `>=1.0.0 <2.0.0` (minor and patch versions).
+If you want to include pre-release e.g. `1.0.0-rc.1`,
+you can define a range like: `^1.x-0` or `>1.0.0-rc <2.0.0-rc`.
+{{% /note %}}
 
-!!! hint "Other policy examples"
-    For policies that make use of CalVer, build IDs or alphabetical sorting,
-    have a look at [the examples](../components/image/imagepolicies.md#examples).
+{{% note title="Other policy examples" %}}
+For policies that make use of CalVer, build IDs or alphabetical sorting,
+have a look at [the examples](../components/image/imagepolicies.md#examples).
+{{% /note %}}
 
 Commit and push changes to main branch:
 
@@ -423,10 +434,11 @@ Log in to DockerHub web interface, go to your image registry Settings and select
 Fill the form "Webhook URL" by composing the address using the receiver
 LB and the generated URL `http://<LoadBalancerAddress>/<ReceiverURL>`.
 
-!!! hint "Note"
-    Besides DockerHub, you can define receivers for **Harbor**, **Quay**, **Nexus**, **GCR**,
-    and any other system that supports webhooks e.g. GitHub Actions, Jenkins, CircleCI, etc.
-    See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
+{{% note title="Note" %}}
+Besides DockerHub, you can define receivers for **Harbor**, **Quay**, **Nexus**, **GCR**,
+and any other system that supports webhooks e.g. GitHub Actions, Jenkins, CircleCI, etc.
+See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
+{{% /note %}}
 
 ## Incident management
 
@@ -514,10 +526,11 @@ If relying on a cloud provider image repository, you might need to do some extra
 work in order to configure the ImageRepository resource credentials. Here are
 some common examples for the most popular cloud provider docker registries.
 
-!!! warning "Workarounds"
-    The examples below are intended as workaround solutions until native
-    authentication mechanisms are implemented in Flux itself to support this in
-    a more straightforward manner.
+{{% note title="Workarounds" color="warning" %}}
+The examples below are intended as workaround solutions until native
+authentication mechanisms are implemented in Flux itself to support this in
+a more straightforward manner.
+{{% /note %}}
 
 ### AWS Elastic Container Registry
 
@@ -630,11 +643,12 @@ spec:
                 --docker-password="$(</token/ecr-token)"
 ```
 
-!!! hint "Using IAM Roles for Service Accounts (IRSA)"
-    If using IRSA, make sure the role attached to the service account has
-    readonly access to ECR. The AWS managed policy
-    `arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly` can be attached
-    to the role.
+{{% note title="Using IAM Roles for Service Accounts (IRSA)" %}}
+If using IRSA, make sure the role attached to the service account has
+readonly access to ECR. The AWS managed policy
+`arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly` can be attached
+to the role.
+{{% /note %}}
 
 Since the cronjob will not create a job right away, after applying the manifest,
 you can manually create an init job using the following command:
@@ -657,11 +671,12 @@ spec:
 
 #### Using access token [short-lived]
 
-!!! note "Workload Identity"
-    Please ensure that you enable workload identity for your cluster, create a GCP service account that has
-    access to the container registry and create an IAM policy binding between the GCP service account and
-    the Kubernetes service account so that the pods created by the cronjob can access GCP APIs and get the token.
-    Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
+{{% note title="Workload Identity" %}}
+Please ensure that you enable workload identity for your cluster, create a GCP service account that has
+access to the container registry and create an IAM policy binding between the GCP service account and
+the Kubernetes service account so that the pods created by the cronjob can access GCP APIs and get the token.
+Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)
+{{% /note %}}
 
 The access token for GCR expires hourly.
 Considering this limitation, one needs to ensure the credentials are being
@@ -764,13 +779,14 @@ spec:
 
 #### Using a JSON key [long-lived]
 
-!!! warning "Less secure option"
-    From [Google documentation on authenticating container registry](https://cloud.google.com/container-registry/docs/advanced-authentication#json-key)
-    > A user-managed key-pair that you can use as a credential for a service account.
-    > Because the credential is long-lived, it is the least secure option of all the available authentication methods.
-    > When possible, use an access token or another available authentication method to reduce the risk of
-    > unauthorized access to your artifacts. If you must use a service account key,
-    > ensure that you follow best practices for managing credentials.
+{{% note title="Less secure option" color="warning" %}}
+From [Google documentation on authenticating container registry](https://cloud.google.com/container-registry/docs/advanced-authentication#json-key)
+> A user-managed key-pair that you can use as a credential for a service account.
+> Because the credential is long-lived, it is the least secure option of all the available authentication methods.
+> When possible, use an access token or another available authentication method to reduce the risk of
+> unauthorized access to your artifacts. If you must use a service account key,
+> ensure that you follow best practices for managing credentials.
+{{% /note %}}
 
 A Json key doesn't expire, so we don't need a cronjob,
 we just need to create the secret and reference it in the ImagePolicy.
@@ -807,8 +823,11 @@ Your cluster should have `--enable-managed-identity` configured.
 This software can be [installed via Helm](https://azure.github.io/aad-pod-identity/docs/getting-started/installation/) not managed by Azure.
 Use Flux's `HelmRepository` and `HelmRelease` object to manage the aad-pod-identity installation from a bootstrap repository.
 
-!!! As an alternative to Helm, the `--enable-aad-pod-identity` flag for the `az aks create` is currently in Preview.
-    Follow the Azure guide for [Creating an AKS cluster with AAD Pod Identity](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you would like to enable this feature with the Azure CLI.
+{{% note %}}
+As an alternative to Helm, the `--enable-aad-pod-identity` flag for the `az aks create` is currently in Preview.
+
+Follow the Azure guide for [Creating an AKS cluster with AAD Pod Identity](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you would like to enable this feature with the Azure CLI.
+{{% /note %}}
 
 Once we have AAD Pod Identity installed, we can create a Deployment that frequently refreshes an image pull secret into
 our desired Namespace.
@@ -863,7 +882,9 @@ folder into your own repository or use a git submodule to vendor it if preferred
 
 #### Using Static Credentials [long-lived]
 
-!!! Using a static credential requires a Secrets management solution compatible with your GitOps workflow.
+{{% note %}}
+Using a static credential requires a Secrets management solution compatible with your GitOps workflow.
+{{% /note %}}
 
 Follow the official Azure documentation for [Creating an Image Pull Secret for ACR](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes).
 
@@ -875,4 +896,6 @@ Update the `ImageRepository.spec.secretRef` to point to it.
 
 It is also possible to create [Repository Scoped Tokens](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-repository-scoped-permissions).
 
-!!! Note that this feature is in preview and does have limitations.
+{{% note %}}
+Note that this feature is in preview and does have limitations.
+{{% /note %}}
