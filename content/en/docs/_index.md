@@ -57,10 +57,11 @@ the API.
 
 ## Where do I start?
 
-!!!hint "Get started with Flux v2!"
-    Following this [guide](get-started/index.md) will just take a couple of minutes to complete:
-    After installing the `flux` CLI and running a couple of very simple commands,
-    you will have a GitOps workflow setup which involves a staging and a production cluster.
+{{% note title="Get started with Flux v2!" %}}
+Following this [guide](get-started/index.md) will just take a couple of minutes to complete:
+After installing the `flux` CLI and running a couple of very simple commands,
+you will have a GitOps workflow setup which involves a staging and a production cluster.
+{{% /note %}}
 
 If you should need help, please refer to our **[Support page](https://fluxcd.io/support/)**.
 
