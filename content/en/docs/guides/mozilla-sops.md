@@ -1,4 +1,9 @@
-# Manage Kubernetes secrets with Mozilla SOPS
+---
+title: "Manage Kubernetes secrets with Mozilla SOPS"
+linkTitle: "Mozilla SOPS"
+weight: 70
+---
+ 
 
 In order to store secrets safely in a public or private Git repository, you can use
 Mozilla's [SOPS](https://github.com/mozilla/sops) CLI to encrypt

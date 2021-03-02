@@ -1,4 +1,9 @@
-# How to make sortable image tags to use with automation
+---
+title: "How to make sortable image tags to use with automation"
+linkTitle: "Sortable image tags to use with automation"
+weight: 90
+---
+
 
 Flux v2 does not support selecting the lastest image by build time. Obtaining the build time needs
 the container config for each image, and fetching that is subject to strict rate limiting by image

@@ -1,4 +1,9 @@
-# Automate image updates to Git
+---
+title: "Automate image updates to Git"
+linkTitle: "Automate image updates to Git"
+weight: 80
+---
+
 
 This guide walks you through configuring container image scanning and deployment rollouts with Flux.
 
