@@ -1,4 +1,11 @@
-# Frequently asked questions
+---
+title: "Frequently asked questions"
+linkTitle: "FAQ"
+weight: 80
+description: >
+  Frequently asked questions regarding Flux v2
+---
+
 
 ## Kustomize questions
 

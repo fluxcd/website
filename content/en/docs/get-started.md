@@ -2,9 +2,6 @@
 title: "Get Started with Flux v2"
 linkTitle: "Get Started"
 weight: 20
-menu:
-  main:
-    weight: 20
 description: >
   Get started with Flux v2
 ---
