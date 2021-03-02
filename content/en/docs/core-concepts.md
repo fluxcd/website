@@ -6,8 +6,9 @@ description: >
   Core Concepts of Flux v2
 ---
 
-!!! note "Work in progress"
-    This document is a work in progress.
+{{% note title="Work in progress" %}}
+This document is a work in progress.
+{{% /note %}}
 
 These are some core concepts in Flux.
 
