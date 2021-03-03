@@ -1,4 +1,8 @@
-# Migrate from Flux v1 to v2
+---
+title: "Migrate from Flux v1 to v2"
+linkTitle: "Migrate from Flux v1"
+weight: 10
+---
 
 This guide walks you through migrating from Flux v1 to v2.
 Read the [FAQ](../faq/index.md) to find out what differences are between v1 and v2.
