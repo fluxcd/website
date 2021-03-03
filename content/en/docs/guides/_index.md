@@ -1,5 +1,5 @@
 ---
 title: "User Guides"
-linkTitle: "User Guides"
+linkTitle: "Guides"
 weight: 40
 ---
