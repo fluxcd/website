@@ -1,4 +1,9 @@
-# Migrating image update automation to Flux v2
+---
+title: "Migrating image update automation to Flux v2"
+linkTitle: "Migrate from Flux v1 image update automation"
+weight: 20
+---
+
 
 "Image Update Automation" is a process in which Flux makes commits to your Git repository when it
 detects that there is a new image to be used in a workload (e.g., a Deployment). In Flux v2 this
