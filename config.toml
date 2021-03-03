@@ -88,11 +88,13 @@ support              = "/support"
 rss                  = "/blog/index.xml"
 font_awesome_version = "5.9.0"
 
-notification = """
-📣 **This is the new website for Flux version 2 and GitOps Toolkit, currently in active development.** If you are looking for the Flux v1 documentation, **[please click here](https://docs.fluxcd.io)**.<br /><br />
-📣 **[Flux v1 is in maintenance mode](https://github.com/fluxcd/flux/issues/3320)!** We will soon start publishing guides which help you migrate Flux v2 and the GitOps Toolkit.<br /><br />
-🎉 **[Flagger](https://flagger.app) is now officially a Flux project.** This is another great step for Flux to become the family of GitOps projects.
-"""
+#notification = """
+#"""
+
+[params.celebration]
+emoji = ""
+description = ""
+url = ""
 
 [params.logos]
 navbar = "flux-horizontal-white.png"
@@ -108,7 +110,12 @@ type  = "sans_serif"
 # Flux hero element
 [params.flux]
 # title    = "Alternative title"
-subtitle = "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
+subtitle = """
+Flux v2 will soon be generally available. It is the start of Flux as a GitOps family of projects.
+Open, extensible continuous and progress delivery solutions for Kubernetes. Powered by the GitOps Toolkit.
+
+Now is a good time to start familiarising yourself with Flux v2.
+"""
 
 [[params.flux.buttons]]
 text  = "Get started"
@@ -239,6 +246,9 @@ Talk from Cloud Native Nordics Tech Talks.
 """
 youtube     = "qQBtSkgl7tI"
 
+[params.family]
+title = "Other Flux projects"
+
 # Toolkit hero element
 [params.toolkit]
 title = "GitOps Toolkit"
@@ -257,9 +267,6 @@ url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
 [[params.toolkit.buttons]]
 text = "Learn more"
 url = "https://toolkit.fluxcd.io/components/"
-
-[params.family]
-title = "Other Flux projects"
 
 # Flagger hero element
 [params.flagger]
@@ -282,6 +289,26 @@ url = "https://docs.flagger.app/"
 [[params.flagger.buttons]]
 text = "Learn more"
 url = "https://flagger.app/"
+
+[params.v1]
+title = "Flux v1 and Helm Operator"
+subtitle = """
+We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
+
+We strongly advise everyone to familiarise themselves with Flux v2 and start the process of migrating.
+"""
+image = "logos/flux-horizontal-color.png"
+
+[[params.v1.buttons]]
+text = "Flux v1 Documentation"
+color = "info"
+url = "https://docs.fluxcd.io/"
+
+[[params.v1.buttons]]
+text = "Helm Operator Documentation"
+color = "info"
+url = "https://docs.fluxcd.io/projects/helm-operator/"
+
 
 
 # Community hero element
