@@ -1,4 +1,9 @@
-# Migrate to the Helm Controller
+---
+title: "Migrate to the Helm Controller"
+linkTitle: "Migrate from the Helm Operator"
+weight: 30
+---
+
 
 This guide will learn you everything you need to know to be able to migrate from the [Helm Operator](https://github.com/fluxcd/helm-operator) to the [Helm Controller](https://github.com/fluxcd/helm-controller).
 
