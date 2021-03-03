@@ -1,8 +1,8 @@
-{{ $title    := site.Params.flagger.title }}
-{{ $subtitle := site.Params.flagger.subtitle | markdownify }}
-{{ $img      := printf "img/%s" site.Params.flagger.image | relURL }}
-{{ $buttons  := site.Params.flagger.buttons }}
-<section id="flagger" class="container box has-background-success has-text-white p-6 my-6">
+{{ $title    := site.Params.v1.title }}
+{{ $subtitle := site.Params.v1.subtitle | markdownify }}
+{{ $img      := printf "img/%s" site.Params.v1.image | relURL }}
+{{ $buttons  := site.Params.v1.buttons }}
+<section id="v1" class="container box p-6 my-6">
   <div class="columns is-vcentered">
     <div class="column is-half">
       <div class="content has-text-left">
