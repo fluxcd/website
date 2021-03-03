@@ -1,7 +1,7 @@
 ---
 title: "Frequently asked questions"
 linkTitle: "FAQ"
-weight: 80
+weight: 100
 description: >
   Frequently asked questions regarding Flux v2
 ---
