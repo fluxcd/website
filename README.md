@@ -1,8 +1,8 @@
 # fluxcd.io
 
-This repo houses the assets used to build the Flux project's landing page at https://fluxcd.io.
+This repo houses the assets used to build the Flux project's landing page at <https://fluxcd.io>.
 
-> **Note**: The sources for Flux's documentation, available at https://docs.fluxcd.io, are housed in the main Flux repo at https://github.com/fluxcd/flux. Issues and pull requests for the Flux documentation should be registered at that repo.
+> **Note**: The sources for Flux's documentation, available at <https://docs.fluxcd.io>, are housed in the main Flux repo at <https://github.com/fluxcd/flux>. Issues and pull requests for the Flux documentation should be registered at that repo.
 
 ## Running the site locally
 
@@ -13,17 +13,17 @@ In order to run the Flux site locally, you need to install:
 
 Once those tools are installed, fetch the assets necessary to run the site:
 
-```bash
+```cli
 npm install
 ```
 
 Then run the site in "server" mode:
 
-```bash
+```cli
 make serve
 ```
 
-Navigate to http://localhost:1313 to see the site running in your browser. As you make updates to the site, the browser will immediately update to reflect those changes.
+Navigate to <http://localhost:1313> to see the site running in your browser. As you make updates to the site, the browser will immediately update to reflect those changes.
 
 ## Publishing the site
 
