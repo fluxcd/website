@@ -41,7 +41,7 @@ fi
 
 # init_src
 # Intializes source repositores by pulling the latest content. If the repo
-# is alread present, fetch the latest content from the master branch.
+# is alread present, fetch the latest content from the main branch.
 # Args:
 # $1 - git repo to be cloned/fetched
 # $2 - path to destination directory for cloned repo
@@ -50,7 +50,7 @@ init_src() {
     echo "Cloning $1"
     git clone --depth=1 "$1" "$2"
   elif [[ $(git -C "$2" rev-parse --show-toplevel) == "$2" ]]; then
-    echo "Syncing with latest content from master."
+    echo "Syncing with latest content from main."
     git -C "$2" checkout .
     git -C "$2" pull
   else
@@ -191,7 +191,7 @@ gen_link() {
       local src=""
       repo="$(echo "${glsrcs[i]}" | cut -d '/' -f2)/$(echo "${glsrcs[i]}" | cut -d '/' -f3)"
       src="${glsrcs[i]#/${repo}}"
-      if echo "$generated_link" | grep -q -i -E "/${repo}(/(blob|tree)/master)?${src}"; then
+      if echo "$generated_link" | grep -q -i -E "/${repo}(/(blob|tree)/main)?${src}"; then
         generated_link="$src"
         break
       fi
@@ -247,7 +247,7 @@ gen_link() {
     if [[ "$internal_link" == "false" ]]; then
       local org
       org="$(echo "$2" | rev | cut -d '/' -f2 | rev)" # reverse the string to trim from the "right"
-      generated_link="https://github.com/$org/$(basename "$2")/blob/master${generated_link}"
+      generated_link="https://github.com/$org/$(basename "$2")/blob/main${generated_link}"
     fi
   fi
 
