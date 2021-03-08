@@ -112,7 +112,7 @@ type  = "sans_serif"
 # title    = "Alternative title"
 subtitle = """
 Flux v2 will soon be generally available. It is the start of Flux as a GitOps family of projects.
-Open, extensible continuous and progress delivery solutions for Kubernetes. Powered by the GitOps Toolkit.
+Open, extensible continuous and progressive delivery solutions for Kubernetes. Powered by the GitOps Toolkit.
 
 Now is a good time to start familiarising yourself with Flux v2.
 """
