@@ -12,6 +12,19 @@
     {{ end }}
   {{ end }}
 </ul>
+{{ else if $parent.Params.detailed_list}}
+{{/* Show a detailed list of subpages*/}}
+<hr>
+<div class="content">
+  {{ range $pages }}
+    {{ if eq .Parent $parent }}
+   
+      <h3><a href="{{ .RelPermalink }}">{{ .Title}}</a></h3>
+        <p>{{ .Description}}</p>
+   
+      {{ end }}
+    {{ end }}
+  </div>
 {{ else }}
 {{/* Show a nice formatted "card" list of subpages with page descriptions */}}
 <hr>
