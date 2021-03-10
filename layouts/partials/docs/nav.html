@@ -9,11 +9,8 @@
         </a>
       </p>
     </div>
-
     <nav id="sidebar-menu">
-      <ul>
-        {{ template "tree-nav" (dict "page" . "section" .FirstSection)  }}
-      </ul>
+      {{ template "tree-nav" (dict "page" . "section" .FirstSection) }}
     </nav>
   </div>
 </div>
@@ -21,15 +18,22 @@
 {{ $s := .section }}
 {{ $p := .page }}
 {{ $active := eq $p $s }}
-<li>
-  <a href="{{ $s.RelPermalink }}" class="{{ if $active }}is-active{{ end }}">{{ $s.LinkTitle }}</a>
-  {{ $pages := where (union $s.Pages $s.Sections).ByWeight ".Params.hidden" "!=" true }}
-  {{ if len $pages }}
+<ul>
+  <li class="align-left pl-0 pr-2">
+    <a href="{{ $s.RelPermalink }}" class="{{ if $active }}is-active{{ end }}">{{ $s.Title }}</a>
+  </li>
   <ul>
-    {{ range $pages }}
-    {{ template "tree-nav" (dict "page" $p "section" .) }}
-    {{ end }}
+    <li>
+      {{ $pages := where (union $s.Pages $s.Sections).ByWeight ".Params.hidden" "!=" true }}
+      {{ range $pages }}
+        {{ if .IsPage }}
+          {{ $active := eq . $p }}
+          <a class="{{ if $active }}is-active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ else }}
+          {{ template "tree-nav" (dict "page" $p "section" .) }}
+        {{ end }}
+      {{ end }}
+    </li>
   </ul>
-  {{ end }}
-</li>
+</ul>
 {{ end }}
