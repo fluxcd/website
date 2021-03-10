@@ -262,7 +262,7 @@ image = "building-blocks.svg"
 [[params.toolkit.buttons]]
 text = "Get started"
 color = "dark"
-url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
+url = "https://toolkit.fluxcd.io/components/"
 
 [[params.toolkit.buttons]]
 text = "Learn more"
