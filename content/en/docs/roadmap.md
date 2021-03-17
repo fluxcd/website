@@ -10,6 +10,7 @@ description: >
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
+Please see the [Migration and Suport Timetable](../migration/timetable.md) for our commitment to end users.
 {{% /note %}}
 
 The following components (included by default in [flux bootstrap](../guides/installation.md#bootstrap))
@@ -53,8 +54,6 @@ In our planning discussions we identified three areas of work:
 
 ### Flux read-only feature parity
 
-[= 100% "100%"]
-
 Flux v2 read-only is ready to try. See the [Getting
 Started](https://toolkit.fluxcd.io/get-started/) how-to, and the
 [Migration
@@ -66,9 +65,11 @@ and [FluxCloud](https://github.com/justinbarrick/fluxcloud) notifications.
 
 Goals
 
--  <span class="check-bullet">:material-check-bold:</span> [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
--  <span class="check-bullet">:material-check-bold:</span> [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
--  <span class="check-bullet">:material-check-bold:</span> [Offer a dedicated component for forwarding events to external messaging platforms](https://toolkit.fluxcd.io/guides/notifications/)
+State | Item
+----- | ----
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
+:heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](https://toolkit.fluxcd.io/guides/notifications/)
 
 Non-Goals
 
@@ -89,8 +90,6 @@ Tasks
 - [x]  <span style="color:grey">Include support for SOPS</span>
 
 ### Flux image update feature parity
-
-[= 100% "100%"]
 
 Image automation is available as a prerelease. See [this
 guide](https://toolkit.fluxcd.io/guides/image-update/) for how to
@@ -119,8 +118,6 @@ Tasks
 - [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](https://toolkit.fluxcd.io/guides/flux-v1-automation-migration/))</span>
 
 ### Helm v3 feature parity
-
-[= 100% "100%"]
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
 guide](https://toolkit.fluxcd.io/guides/helmreleases/), and the [Helm
