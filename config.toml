@@ -55,7 +55,6 @@ description          = "Open and extensible continuous delivery solution for Kub
 copyright            = "The Flux authors"
 github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
-youtube              = ""
 support              = "/support"
 font_awesome_version = "5.9.0"
 

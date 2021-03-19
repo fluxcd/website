@@ -1,6 +1,6 @@
 ---
 title: "Flux Documentation"
-linkTitle: "Documentation"
+linkTitle: "Docs"
 weight: 0
 menu:
   main:
