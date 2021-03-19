@@ -75,10 +75,10 @@ spec:
     branch: master
 ```
 
-{{% note title="Authentication" %}}
+{{% alert color="info" title="Authentication" %}}
 SSH or token based authentication can be configured for private repositories.
 See the [GitRepository CRD docs](../components/source/gitrepositories.md) for more details.
-{{% /note %}}
+{{% /alert %}}
 
 ## Define a Git repository receiver
 
@@ -112,11 +112,11 @@ spec:
       name: webapp
 ```
 
-{{% note title="Note" %}}
+{{% alert color="info" title="Note" %}}
 Besides GitHub, you can define receivers for **GitLab**, **Bitbucket**, **Harbor**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
 See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
-{{% /note %}}
+{{% /alert %}}
 
 The notification controller generates a unique URL using the provided token and the receiver name/namespace.
 

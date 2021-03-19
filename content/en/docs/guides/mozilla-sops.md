@@ -149,10 +149,10 @@ won't have to worry about specifying the proper key for the target cluster or na
 `encrypted_regex` helps encrypt the the proper `data` and `stringData` fields for Secrets.
 You may wish to add other fields if you are encrypting other types of Objects.
 
-{{% note title="Hint" %}}
+{{% alert color="info" title="Hint" %}}
 Note that you should encrypt only the `data` or `stringData` section. Encrypting the Kubernetes
 secret metadata, kind or apiVersion is not supported by kustomize-controller.
-{{% /note %}}
+{{% /alert %}}
 
 Ignore all `.sops.yaml` files in a [`.sourceignore`](../components/source/gitrepositories#excluding-files) file at the root of your repo.
 
@@ -276,9 +276,9 @@ spec:
       name: sops-gpg
 ```
 
-{{% note title="Hint" %}}
+{{% alert color="info" title="Hint" %}}
 You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
-{{% /note %}}
+{{% /alert %}}
 
 Assuming a team member wants to deploy an application that needs to connect
 to a database using a username and password, they'll be doing the following:

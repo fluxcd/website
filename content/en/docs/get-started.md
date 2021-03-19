@@ -6,11 +6,11 @@ description: >
   Get started with Flux v2
 ---
 
-{{% note title="Basic knowledge" %}}
+{{% alert color="info" title="Basic knowledge" %}}
 This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
 The core concepts used in this guide are [GitOps](../core-concepts/index.md#gitops),
 [Sources](../core-concepts/index.md#sources), [Kustomization](../core-concepts/index.md#kustomization).
-{{% /note %}}
+{{% /alert %}}
 
 In this tutorial, you will deploy an application to a kubernetes cluster with Flux
 and manage the cluster in a complete GitOps manner.
@@ -98,11 +98,11 @@ flux bootstrap github \
   --personal
 ```
 
-{{% note title="Multi-arch images" %}}
+{{% alert color="info" title="Multi-arch images" %}}
 The component images are published as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-arch/)
 with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
 architectures.
-{{% /note %}}
+{{% /alert %}}
 
 The bootstrap command creates a repository if one doesn't exist,
 commits the manifests for the Flux components to the default branch at the specified path,
@@ -149,13 +149,13 @@ deployment "notification-controller" successfully rolled out
 If you prefer GitLab, export `GITLAB_TOKEN` env var and
 use the command [flux bootstrap gitlab](../guides/installation.md#gitlab-and-gitlab-enterprise).
 
-{{% note title="Idempotency" %}}
+{{% alert color="info" title="Idempotency" %}}
 It is safe to run the bootstrap command as many times as you want.
 If the Flux components are present on the cluster,
 the bootstrap command will perform an upgrade if needed.
 You can target a specific Flux [version](https://github.com/fluxcd/flux2/releases)
 with `flux bootstrap --version=<semver>`.
-{{% /note %}}
+{{% /alert %}}
 
 ## Clone the git repository
 
@@ -286,10 +286,10 @@ NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)         
 service/podinfo      ClusterIP   10.100.149.126   <none>        9898/TCP,9999/TCP   108s
 ```
 
-{{% note %}}
+{{% alert color="info" %}}
 From this moment forward, any changes made to the podinfo
 Kubernetes manifests in the master branch will be synchronised with your cluster.
-{{% /note %}}
+{{% /alert %}}
 
 If a Kubernetes manifest is removed from the podinfo repository, Flux will remove it from your cluster.
 If you delete a `Kustomization` from the fleet-infra repository, Flux will remove all Kubernetes objects that

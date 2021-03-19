@@ -1,0 +1,121 @@
+$font-size: 16px;
+$width: 800px;
+$border-radius: 10px;
+
+$black: #222;
+$grey-dark: #999;
+$grey-light: #ddd;
+$blue: #09a3d5;
+$purple: #8130c9;
+$red: #e4514f;
+$yellow: #f4c025;
+$green: #3ec930;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  align-items: center;
+  background: $blue;
+  display: flex;
+  font: bold $font-size 'Lato', arial, sans-serif;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+.window {
+  background: $grey-light;
+  border-radius: $border-radius;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  width: $width;
+}
+.title {
+  flex: 1;
+  text-align: center;
+  padding: 0.75em;
+}
+.icons {
+  padding: 0.75em;
+  position: absolute;
+
+  span {
+    @extend icon;
+    background: $yellow;
+  }
+  &:before {
+    @extend icon;
+    content: '';
+    background: $red;
+  }
+  &:after {
+    @extend icon;
+    content: '';
+    background: $green;
+  }
+}
+icon {
+  display: inline-block;
+  float: left;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+pre {
+  background: #222;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  color: #fff;
+  overflow: scroll;
+  padding: 2.5em;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+
+  code {
+    font: bold #{1em}/#{1.75} 'Source Code Pro', monospace;
+
+    &:after {
+      animation: blink 0.9s infinite;
+      font: initial;
+      display: block;
+      opacity: 1;
+      content: '\258b';
+    }
+  }
+}
+.token.punctuation {
+  color: $grey-dark;
+}
+.token.boolean,
+.token.number {
+  color: $purple;
+}
+.token.keyword {
+  color: $blue;
+}
+.token.operator {
+  color: $red;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: #{$width}) {
+  pre {
+    font-size: 10px;
+  }
+  .window {
+    width: 70%;
+  }
+};

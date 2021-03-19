@@ -7,12 +7,12 @@ weight: 10
 This guide walks you through migrating from Flux v1 to v2.
 Read the [FAQ](../faq/index.md) to find out what differences are between v1 and v2.
 
-{{% note title="Automated image updates" %}}
+{{% alert color="info" title="Automated image updates" %}}
 The image automation feature is under development in Flux v2.
 Please consult the [roadmap](../roadmap/index.md) for more details.
-{{% /note %}}
+{{% /alert %}}
 
-{{% note title="Feature parity" %}}
+{{% alert color="info" title="Feature parity" %}}
 "Feature parity" does not mean Flux v2 works exactly the same as v1 (or is
 backward-compatible); it means you can accomplish the same results, while
 accounting for the fact that it's a system with a substantially different
@@ -20,7 +20,7 @@ design.
 This may at times mean that you have to make adjustments to the way your
 current cluster configuration is structured. If you are in this situation
 and need help, please refer to the [support page](https://fluxcd.io/support/).
-{{% /note %}}
+{{% /alert %}}
 
 ## Prerequisites
 
@@ -68,13 +68,13 @@ to define the state of your fleet of Kubernetes clusters.
 
 For a detailed walk-through of the bootstrap procedure please see the [installation guide](installation.md).
 
-{{% note color="warning" title="'flux bootstrap' target" %}}
+{{% alert color="info" color="warning" title="'flux bootstrap' target" %}}
 `flux bootstrap` should not be run against a Git branch or path
 that is already being synchronized by Flux v1, as this will make
 them fight over the resources. Instead, bootstrap to a **new Git
 repository, branch or path**, and continue with moving the
 manifests.
-{{% /note %}}
+{{% /alert %}}
 
 After you've installed Flux v2 on your cluster using bootstrap,
 you can delete the Flux v1 from your clusters and move the manifests from the
@@ -82,11 +82,11 @@ Flux v1 repository to the bootstrap one.
 
 ## In-place migration
 
-{{% note color="warning" %}}
+{{% alert color="info" color="warning" %}}
 For production use we recommend using the **bootstrap** procedure (see the [Gitops migration](#gitops-migration) section above),
 but if you wish to install Flux v2 in the
 same way as Flux v1 then follow along.
-{{% /note %}}
+{{% /alert %}}
 
 ### Flux read-only mode
 
@@ -111,10 +111,10 @@ fluxctl identity --k8s-fwd-ns flux
 fluxctl sync --k8s-fwd-ns flux
 ```
 
-{{% note title="Uninstall Flux v1" %}}
+{{% alert color="info" title="Uninstall Flux v1" %}}
 Before you proceed, scale the Flux v1 deployment to zero
 or delete its namespace and RBAC.
-{{% /note %}}
+{{% /alert %}}
 
 If there are YAML files in your `deploy` dir that are not meant to be
 applied on the cluster, you can exclude them by placing a `.sourceignore` in your repo root:
@@ -227,10 +227,10 @@ patchUpdated:
   patchFile: flux-patch.yaml
 ```
 
-{{% note title="Uninstall Flux v1" %}}
+{{% alert color="info" title="Uninstall Flux v1" %}}
 Before you proceed, delete the Flux v1 namespace
 and remove the `.flux.yaml` from your repo.
-{{% /note %}}
+{{% /alert %}}
 
 Install Flux v2 in the `flux-system` namespace:
 
