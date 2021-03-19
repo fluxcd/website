@@ -1,82 +1,47 @@
-{{ $home    := site.BaseURL }}
-{{ $title   := site.Title }}
-{{ $logo    := printf "img/logos/%s" site.Params.logos.navbar | relURL }}
-{{ $menu    := site.Menus.main }}
-{{ $repo    := site.Params.github_repo }}
-{{ $github  := printf "https://github.com/%s" $repo }}
-{{ $support := site.Params.support }}
-{{ $mail    := site.Params.mailing_list }}
-<nav class="navbar is-black is-fixed-top">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{{ $home }}">
-        <img src="{{ $logo }}" alt="{{ $title }} navbar logo">
-      </a>
-
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbar-menu" class="navbar-menu">
-      <div class="navbar-end">
-        {{ range $menu }}
+{{ $cover := .HasShortcode "blocks/cover" }}
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark {{ if $cover}} td-navbar-cover {{ end }}flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span>{{ .Site.Title }}</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			{{ $p := . }}
+			{{ range .Site.Menus.main }}
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
+				{{ with .Page }}
+				{{ $active = or $active ( $.IsDescendant .)  }}
+				{{ end }}
+				{{ $url := urls.Parse .URL }}
+				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
         {{ if .HasChildren }}
-        <div class="navbar-item has-dropdown is-hoverable has-text-weight-bold is-uppercase">
-          <a class="navbar-link is-arrowless"{{ with .URL }} href="{{ . }}"{{ end }}>
-            {{ .Name }}
-          </a>
-
-          <div class="navbar-dropdown">
-            {{ range .Children }}
-            <a class="navbar-item" href="{{ .URL }}">
-              {{ .Name }}
-            </a>
-            {{ end }}
-          </div>
-        </div>
-        {{ else }}
-        <a class="navbar-item has-text-weight-medium has-text-weight-bold is-uppercase" href="{{ .URL }}">
-          {{ .Name }}
-        </a>
-        {{ end }}
-        {{ end }}
-
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-light" href="{{ $github }}" target="_blank">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
-              <span class="has-text-weight-bold">
-                {{ $repo }}
-              </span>
-            </a>
-
-            <a class="button is-success" href="{{ $support }}" target="_blank">
-              <span class="icon">
-                <i class="fa fa-comments"></i>
-              </span>
-              <span class="has-text-weight-bold">
-                Support
-              </span>
-            </a>
-
-            <a class="button is-info" href="{{ $mail }}" target="_blank">
-              <span class="icon">
-                <i class="far fa-paper-plane"></i>
-              </span>
-              <span class="has-text-weight-bold">
-                Mailing list
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+			<li class="nav-item dropdown d-none d-lg-block">
+				<a class="nav-link {{if $active }} active{{end}} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{ .Name }}
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					{{ range .Children  }}
+					{{ $childrenurl := urls.Parse .URL }}
+					<a class="dropdown-item" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $childrenurl.Host $baseurl.Host }}target="_blank" {{ end }}>{{ .Name }}</a>
+					{{ end }}
+				</div>
+			</li>
+			{{ else }}
+				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
+			</li>
+			{{ end }}
+      {{ end }}
+			{{ if  .Site.Params.versions }}
+			<li class="nav-item dropdown d-none d-lg-block">
+				{{ partial "navbar-version-selector.html" . }}
+			</li>
+			{{ end }}
+			{{ if  (gt (len .Site.Home.Translations) 0) }}
+			<li class="nav-item dropdown d-none d-lg-block">
+				{{ partial "navbar-lang-selector.html" . }}
+			</li>
+			{{ end }}
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
 </nav>
-{{ partial "celebration.html" . }}
-{{ partial "notification.html" . }}

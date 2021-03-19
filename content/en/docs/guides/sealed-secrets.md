@@ -152,9 +152,9 @@ spec:
   targetNamespace: flux-system
 ```
 
-{{% note %}}
+{{% alert color="info" %}}
 You can generate the above manifests using `flux create <kind> --export > manifest.yaml`.
-{{% /note %}}
+{{% /alert %}}
 
 Once the sealed-secrets controller is installed, the admin fetches the 
 public key and shares it with the teams that operate on the fleet clusters via Git.

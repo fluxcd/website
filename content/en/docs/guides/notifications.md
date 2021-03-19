@@ -137,11 +137,11 @@ with the result and the commit hash it reconciled. Then notification-controller 
 when receiving the event.
 ![commit status flow](../_files/commit-status-flow.png)
 
-{{% note title="Limitations" %}}
+{{% alert color="info" title="Limitations" %}}
 The git notification providers require that a commit hash present in the meta data
 of the event. There for the the providers will only work with `Kustomization` as an
 event source, as it is the only resource which includes this data.
-{{% /note %}}
+{{% /alert %}}
 
 First follow the [get started guide](../../get-started) if you do not have a Kubernetes cluster with Flux installed in it.
 You will need a authentication token to communicate with the API. The authentication method depends on
