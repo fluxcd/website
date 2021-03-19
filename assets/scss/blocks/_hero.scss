@@ -1,0 +1,41 @@
+// A cover block is a full size cover with a fixed background for smaller screens.
+
+@include td-box-height-modifiers(".td-hero-block");
+.td-hero-logo {
+    margin-right: 0.5em;
+}
+
+.td-hero-block {
+    overflow: hidden;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background: {
+        repeat: no-repeat;
+        color: transparent;
+        // size: cover;
+    };
+
+    &::before {
+      position: absolute;
+      transform: skewY(-5deg);
+      right: 0;
+      bottom: 5vw;
+      width: 100%;
+      height: 150%;
+      content: "";
+      background: linear-gradient($flux-dark-blue 0%, $flux-dark-blue 25%, $flux-light-blue 30%, $flux-lighter-blue 39%, $flux-dark-blue);
+    }
+    
+    &.td-overlay {      
+      &::after {
+        top: -5vw;
+        transform: skewY(-5deg);
+      }
+
+  }
+    & > .byline {
+        position: absolute;
+        bottom: 2px;
+        right: 4px;
+    }
+}

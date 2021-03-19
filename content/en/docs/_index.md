@@ -1,10 +1,10 @@
 ---
-title: "Documentation"
-linkTitle: "Documentation"
+title: "Flux Documentation"
+linkTitle: "Docs"
 weight: 0
 menu:
   main:
-    weight: 0
+    weight: 10
 description: >
   Flux v2 Documentation.
 ---
@@ -57,11 +57,11 @@ the API.
 
 ## Where do I start?
 
-{{% note title="Get started with Flux v2!" %}}
+{{% alert title="Get started with Flux v2!" color="info" %}}
 Following this [guide](get-started/index.md) will just take a couple of minutes to complete:
 After installing the `flux` CLI and running a couple of very simple commands,
 you will have a GitOps workflow setup which involves a staging and a production cluster.
-{{% /note %}}
+{{% /alert %}}
 
 If you should need help, please refer to our **[Support page](https://fluxcd.io/support/)**.
 

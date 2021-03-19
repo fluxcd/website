@@ -168,12 +168,12 @@ The behavior of Kustomize used by the controller is currently configured as foll
 - `--load_restrictor` is set to `LoadRestrictionsNone`, so it allows loading files outside the dir containing `kustomization.yaml`.
 - `--reorder` resources is done in the `legacy` mode, so the output will have namespaces and cluster roles/role bindings first, CRDs before CRs, and webhooks last.
 
-{{% note title="kustomization.yaml validation" %}}
+{{% alert color="info" title="kustomization.yaml validation" %}}
 To validate changes before committing and/or merging, [a validation
 utility script is available](https://github.com/fluxcd/flux2-kustomize-helm-example/blob/main/scripts/validate.sh),
 it runs `kustomize` locally or in CI with the same set of flags as
 the controller and validates the output using `kubeval`.
-{{% /note %}}
+{{% /alert %}}
 
 ## Helm questions
 

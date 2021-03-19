@@ -1,0 +1,8 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<div class="terminal">
+  <div class="icons"><span></span></div>
+  <div class="terminal-title">Terminal</div>
+  <pre class="terminal-content">
+    <asciinema-player loop autoplay font-size="14px" rows=14 src="{{ index .Params 0 }}"></asciinema-player>
+  </pre>
+</div>

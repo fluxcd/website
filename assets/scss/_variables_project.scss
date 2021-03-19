@@ -1,0 +1,24 @@
+// Other colors
+$slack-green: #74cdb0;
+$twitter-blue: #1da1f2;
+$linkedin-blue: #0e76a8;
+
+// Flux color palette
+$flux-darkest-blue: #3570e3;
+$flux-dark-blue: #2a7de3;
+$flux-lighter-blue: #1b8de2;
+$flux-light-blue: #0096e1;
+$flux-black: #1a1a1a;
+
+$primary: $flux-dark-blue;
+$secondary: $flux-light-blue;
+$dark: $flux-black;
+$blue: $flux-dark-blue;
+
+$google_font_name: "Montserrat";
+$google_font_family: "Montserrat:300,300i,400,400i,600,600i,700,700i";
+
+$navbar-dark-color: rgba($dark, 0.75) !default;
+$navbar-dark-hover-color: rgba($white, 0.5) !default;
+$navbar-dark-active-color: $dark !default;
+$navbar-dark-disabled-color: rgba($dark, 0.25) !default;

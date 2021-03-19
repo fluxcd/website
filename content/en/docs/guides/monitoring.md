@@ -57,10 +57,10 @@ Cluster reconciliation dashboard [http://localhost:3000/d/gitops-toolkit-cluster
 If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
 [GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
 
-{{% note %}}
+{{% alert color="info" %}}
 Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
 When using Prometheus Operator you should create a `PodMonitor` object for each controller to configure scraping.
-{{% /note %}}
+{{% /alert %}}
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
