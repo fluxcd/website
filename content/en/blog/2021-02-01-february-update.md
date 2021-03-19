@@ -3,7 +3,6 @@ author: dholbach
 date: 2021-02-01 08:30:00+00:00
 title: February 2021 Update
 description: This month's edition of updates on Flux v2 developments - 0.7 release, Flagger 1.6 release, project and website changes, new events and more.
-url: /blog/2021/02/february-2021-update/
 ---
 
 ## Before we get started, what is GitOps?

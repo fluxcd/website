@@ -3,7 +3,6 @@ author: dholbach
 date: 2020-12-01 12:30:00+00:00
 title: December Update
 description: This month's edition of updates on Flux v2 developments - 0.4.0 release, new website, new maintainer, new guides and more.
-url: /blog/2020/12/december-update/
 ---
 
 ## Before we get started, what is GitOps?
