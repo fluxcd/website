@@ -1,3 +1,0 @@
-<p class="has-text-weight-light has-text-grey is-size-7">
-  {{ T "docs_last_mod"}} {{ .Lastmod.Format .Site.Params.time_format_default }}{{ with .GitInfo }}: <a  href="{{ $.Site.Params.github_website_repo }}/commit/{{ .Hash }}">{{ .Subject }} <code>{{ .AbbreviatedHash }}</code></a>{{ end }}
-</p>

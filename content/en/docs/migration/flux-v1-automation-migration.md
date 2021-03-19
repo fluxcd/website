@@ -375,10 +375,10 @@ spec:
         image: ghcr.io/stefanprodan/podinfo:5.0.0
 ```
 
-{{% note color="warning" %}}
+{{% alert color="info" color="warning" %}}
 A YAML file may have more than one manifest in it, separated with
 `---`. Be careful to account for each manifest in a file.
-{{% /note %}}
+{{% /alert %}}
 
 You may wish to try migrating the automation of just one file or manifest and follow it through to
 the end of the guide, before returning here to do the remainder.
@@ -435,10 +435,10 @@ spec:
   interval: 5m0s
 ```
 
-{{% note title="Note" %}}
+{{% alert color="info" title="Note" %}}
 If you are using the same image repository in several manifests, you only need one
 `ImageRepository` object for it.
-{{% /note %}}
+{{% /alert %}}
 
 ##### Using image registry credentials for scanning
 

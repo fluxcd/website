@@ -3,7 +3,6 @@ author: dholbach
 date: 2021-03-01 08:30:00+00:00
 title: March 2021 Update
 description: This month's edition of updates on Flux v2 developments - feature parity, 0.9 release, new Flagger logo, update on GA release, project and website changes, new events and more.
-url: /blog/2021/03/march-2021-update/
 ---
 
 ## Before we get started, what is GitOps?

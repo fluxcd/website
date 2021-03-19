@@ -9,6 +9,8 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 
+theme = ["docsy"]
+
 # Markup settings
 # Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
 [markup]
@@ -31,316 +33,58 @@ languageName = "English"
 languageCode = "en-us"
 time_format_default = "2006-01-02"
 time_format_blog = "2006-01-02"
+contentDir = "content/en"
 
-[[menus.main]]
-name = "Blog"
-url = "/blog"
+[params.ui]
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = true
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
+#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+navbar_logo = true
+# Set to true to disable the About link in the site footer
+footer_about_disable = false
 
-[[menus.main]]
-name = "Community"
-url = "/community"
-
-[[menus.main]]
-identifier = "project"
-name = "Project"
-
-[[menus.main]]
-name = "Code of Conduct"
-parent = "project"
-url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
-weight = 1
-
-[[menus.main]]
-name = "Contributing"
-parent = "project"
-url = "/contributing"
-weight = 30
-
-[[menus.main]]
-name = "Governance"
-parent = "project"
-url = "/governance"
-weight = 40
-
-[[menus.main]]
-name = "Security"
-parent = "project"
-url = "/security"
-weight = 50
-
-[[menus.main]]
-name = "Branding"
-parent = "project"
-url = "https://branding.cncf.io/projects/flux"
-weight = 9999
+[params.ui.readingtime]
+enable = false
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
 copyright            = "The Flux authors"
-github_repo          = "fluxcd/flux2"
 github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
-twitter              = "https://twitter.com/fluxcd"
-linkedin             = "https://linkedin.com/groups/8985374"
-mailing_list         = "https://lists.cncf.io/g/cncf-flux-dev"
-youtube              = "https://www.youtube.com/playlist?list=PLbx4FZ4kOKntmgJqaT-iJ8tn4xat150yL"
 support              = "/support"
-rss                  = "/blog/index.xml"
 font_awesome_version = "5.9.0"
 
+[params.links]
+# End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
-#notification = """
-#"""
+[[params.links.user]]
+	name ="Twitter"
+	url = "https://twitter.com/fluxcd"
+	icon = "fab fa-twitter"
+        desc = "Follow us on Twitter to get the latest news!"
 
-[params.celebration]
-emoji = "🎉"
-description = "Flux is now a CNCF Incubation project!"
-url = "/blog/2021/03/flux-is-a-cncf-incubation-project/"
-
-[params.logos]
-navbar = "flux-horizontal-white.png"
-hero   = "flux-horizontal-color.png"
-footer = "flux-stacked-white.png"
-cncf   = "cncf-color.png"
-
-[[params.fonts]]
-name  = "Montserrat"
-sizes = [300,400,600,700]
-type  = "sans_serif"
-
-# Flux hero element
-[params.flux]
-title    = "Flux - the GitOps family of projects"
-subtitle = """
-Flux is a set of continuous and progressive delivery solutions
-for Kubernetes, and they are open and extensible.
-
-Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated
-before the end of 2021, so now is a good time to start using v2.
-"""
-
-[[params.flux.buttons]]
-text  = "Get started"
-color = "warning"
-url   = "https://toolkit.fluxcd.io/get-started/"
-
-[[params.flux.buttons]]
-text = "Learn more"
-url  = "https://toolkit.fluxcd.io"
-
-# Overview hero element
-[params.overview]
-title   = "GitOps at your fingertips"
-summary = """
-Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io) clusters in sync with
-sources of configuration (like Git repositories), and automating updates to configuration when there
-is new code to deploy.
-"""
-
-## Overview features
-[[params.overview.features]]
-icon   = "fab fa-git-square fa-3x"
-header = "Declarative"
-text   = """
-Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration,
-dashboards, monitoring, and everything else.
-"""
-
-[[params.overview.features]]
-icon   = "fas fa-robot fa-3x"
-header = "Automated"
-text   = """
-Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run
-[`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes are synced automatically.
-"""
-
-[[params.overview.features]]
-icon   = "fas fa-code fa-3x"
-header = "Auditable"
-text   = """
-Everything is controlled through pull requests. Your Git history provides a sequence of transactions, allowing you to
-recover state from any snapshot.
-"""
-
-[[params.overview.features]]
-icon   = "fas fa-drafting-compass fa-3x"
-header = "Designed for Kubernetes"
-text   = """
-Declaratively configurable using Custom Resources, state reports in the
-[object's status](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
-and via [Kubernetes Events](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/),
-and integrations with Kubernetes RBAC.
-"""
-
-
-[[params.overview.features]]
-icon   = "fas fa-box-open fa-3x"
-header = "Out-of-the-box integrations"
-text   = """
-Support for e.g. [Kustomize](https://kustomize.io), [Helm](https://helm.sh); GitHub, GitLab, Harbor and custom
-webhooks; notifications to most team communication platforms; and many more.
-"""
-
-[[params.overview.features]]
-icon   = "fas fa-cube fa-3x"
-header = "Extensible"
-text   = """
-Easily create a continous delivery solution with only the components you need, or use the [GitOps Toolkit](#gitops-toolkit)
-to extend Flux.
-"""
-
-# Resources hero element
-[params.resources]
-title   = "Resources"
-summary = """
-If you are new to Flux, you might want to check out some of the following resources to get started.
-"""
-
-## Resource items
-[[params.resources.items]]
-title       = "The Evolution of Flux v2 with Stefan Prodan"
-description = """
-Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
-"""
-youtube     = "nGLpUCPX8JE"
-
-[[params.resources.items]]
-title       = "The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili"
-description = """
-Leigh demos bootstrapping with GitOps Toolkit, app deployment, and monitoring with Prometheus.
-"""
-youtube     = "0v5bjysXTL8"
-
-[[params.resources.items]]
-title       = "Flux v2 for Helm Users with Scott Rigby"
-description = """
-Scott covers what to keep in mind as Helm 2 support ends, the benefits of Helm Controller, and how to migrate from Helm Operator to Helm Controller.
-"""
-youtube     = "JcKUawSQfQ0"
-
-
-[[params.resources.items]]
-title       = "Managing Remote Clusters with Flux v2 (CAPI demo) with Leigh Capili"
-description = """
-Leigh covers cluster API integration, dependency management & ordering, security model updates, and delegation & multi-tenancy via users.
-"""
-youtube     = "7W27tAv7Tvs"
-
-
-[[params.resources.items]]
-title       = "Flux v2 overview, demo, & review with Viktor Farcic"
-description = """
-Viktor demos Flux v2's flexibility & powerful capabilities by showing bootstrapping, creating sources, deploying releases, and promoting to production."""
-youtube     = "R6OeIgb7lUI"
-
-
-[[params.resources.items]]
-title       = "Flux v2 Deep Dive series with Geert Baeke"
-description = """
-In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
-"""
-url     = "https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
-
-
-
-[params.family]
-title = "Other Flux projects"
-
-# Toolkit hero element
-[params.toolkit]
-title = "GitOps Toolkit"
-subtitle = """
-The set of APIs and controllers that make up the runtime for Flux.
-You can use the GitOps Toolkit to extend Flux, and to build your
-own systems for continuous delivery.
-"""
-image = "building-blocks.svg"
-
-[[params.toolkit.buttons]]
-text = "Get started"
-color = "dark"
-url = "https://toolkit.fluxcd.io/dev-guides/source-watcher/"
-
-[[params.toolkit.buttons]]
-text = "Learn more"
-url = "https://toolkit.fluxcd.io/components/"
-
-# Flagger hero element
-[params.flagger]
-title = "Flagger"
-subtitle = """
-Kubernetes Operator for the automation of promoting canary deployments using Istio,
-Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic
-shifting, and Prometheus metrics for canary analysis.
-
-The canary analysis can be extended with webhooks for running system
-integration/acceptance tests, load tests, or any other custom validation.
-"""
-image = "flagger-gitops.png"
-
-[[params.flagger.buttons]]
-text = "Get started"
-color = "dark"
-url = "https://docs.flagger.app/"
-
-[[params.flagger.buttons]]
-text = "Learn more"
-url = "https://flagger.app/"
-
-[params.v1]
-title = "Flux v1 and Helm Operator"
-subtitle = """
-We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
-
-We strongly advise everyone to familiarise themselves with Flux v2 and start the process of migrating.
-"""
-image = "logos/flux-horizontal-color.png"
-
-[[params.v1.buttons]]
-text = "Flux v1 Documentation"
-color = "info"
-url = "https://docs.fluxcd.io/"
-
-[[params.v1.buttons]]
-text = "Helm Operator Documentation"
-color = "info"
-url = "https://docs.fluxcd.io/projects/helm-operator/"
-
-
-
-# Community hero element
-[params.community]
-title = "Community"
-summary = """
-The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.<br>
-What we achieved up until today is only possible because of our community.
-"""
-
-[[params.community.highlights]]
-title = "GitHub Discussions"
-icon = "fab fa-github"
-text  = """
-Join the conversation in GitHub Discussions. Everything Flux v2 related ranging from specificiations and feature planning to Show & Tell happens here.
-
-[Join the discussion today](https://github.com/fluxcd/toolkit/discussions)!
-"""
-
-[[params.community.highlights]]
-title = "Slack"
-titleBgColor = "slack-green"
-icon = "fab fa-slack"
-text  = """
-If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
-
-[Get an invite](https://slack.cncf.io), or [go to the `#flux` channel](https://cloud-native.slack.com/messages/flux)
-"""
-
-[[params.community.highlights]]
-title = "Mailing list"
-titleBgColor = "info"
-icon = "far fa-paper-plane"
-text  = """
-Join our (low-traffic) mailing list to stay up to day on announcements and sporadic discussions.
-
-[Join the mailing list](https://lists.cncf.io/g/cncf-flux-dev)!
-"""
+# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+	name = "Flux GitHub Org"
+	url = "https://github.com/fluxcd"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+[[params.links.developer]]
+	name = "Slack"
+	url = "https://cloud-native.slack.com/messages/flux-contributors"
+	icon = "fab fa-slack"
+        desc = "Chat with other project developers"
+[[params.links.developer]]
+	name = "Developer mailing list"
+	url = "https://lists.cncf.io/g/cncf-flux-dev"
+	icon = "fa fa-envelope"
+        desc = "Discuss development issues around the project"
+[[params.links.developer]]
+  name="Past Flux Meetings"
+  url = "https://www.youtube.com/playlist?list=PLbx4FZ4kOKntmgJqaT-iJ8tn4xat150yL"
+  icon = "fab fa-youtube"
+    desc = "Recordings of past flux dev meetings"
