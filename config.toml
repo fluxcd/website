@@ -35,6 +35,9 @@ time_format_default = "2006-01-02"
 time_format_blog = "2006-01-02"
 contentDir = "content/en"
 
+[permalinks]
+  blog = "/:section/:year/:month/:slug/"
+
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = true
@@ -58,6 +61,13 @@ slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
 font_awesome_version = "5.9.0"
 
+
+[params.logos]
+navbar = "flux-horizontal-white.png"
+hero   = "flux-horizontal-color.png"
+footer = "flux-stacked-white.png"
+cncf   = "cncf-color.png"
+
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
@@ -65,26 +75,42 @@ font_awesome_version = "5.9.0"
 	name ="Twitter"
 	url = "https://twitter.com/fluxcd"
 	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
+	desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name ="LinkedIn"
+	url = "https://linkedin.com/groups/8985374"
+	icon = "fab fa-linkedin"
+	desc = "Join the Flux Community group on LinkedIn!"
+[[params.links.user]]
+	name = "RSS Feed"
+	url = "/blog/index.xml"
+	icon = "fa fa-rss"
+	desc = "Subscribe to the RSS feed of our blog!"
+[[params.links.user]]
+	name = "Support"
+	url = "/support"
+	icon = "fas fa-comments"
+	desc = "Subscribe to the RSS feed of our blog!"
+
 
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "Flux GitHub Org"
 	url = "https://github.com/fluxcd"
 	icon = "fab fa-github"
-        desc = "Development takes place here!"
+	desc = "Development takes place here!"
 [[params.links.developer]]
 	name = "Slack"
 	url = "https://cloud-native.slack.com/messages/flux-contributors"
 	icon = "fab fa-slack"
-        desc = "Chat with other project developers"
+	desc = "Chat with other project developers"
 [[params.links.developer]]
 	name = "Developer mailing list"
 	url = "https://lists.cncf.io/g/cncf-flux-dev"
 	icon = "fa fa-envelope"
-        desc = "Discuss development issues around the project"
+	desc = "Discuss development issues around the project"
 [[params.links.developer]]
-  name="Past Flux Meetings"
-  url = "https://www.youtube.com/playlist?list=PLbx4FZ4kOKntmgJqaT-iJ8tn4xat150yL"
-  icon = "fab fa-youtube"
-    desc = "Recordings of past flux dev meetings"
+	name="Past Flux Meetings"
+	url = "https://www.youtube.com/playlist?list=PLbx4FZ4kOKntmgJqaT-iJ8tn4xat150yL"
+	icon = "fab fa-youtube"
+	desc = "Recordings of past flux dev meetings"

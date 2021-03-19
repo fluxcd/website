@@ -9,6 +9,12 @@ description: >
 
 ---
 
+{{< blocks/celebration
+  emoji="🎉"
+  url="/blog/2021/03/flux-is-a-cncf-incubation-project/" >}}
+Flux is now a CNCF Incubation project!
+{{< /blocks/celebration >}}
+
 {{< blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" >}}
 
 Aliqua adipisicing enim duis irure incididunt culpa reprehenderit nisi. In esse cillum proident anim in ullamco. Laborum in irure quis tempor incididunt amet magna nisi fugiat labore.
@@ -65,3 +71,5 @@ to extend Flux.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
+
+{{< blocks/cncf >}}

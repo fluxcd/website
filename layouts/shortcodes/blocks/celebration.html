@@ -1,0 +1,15 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $blockID := printf "td-cover-block-%d" .Ordinal }}
+{{ $emoji := .Get "emoji" | default "" }}
+{{ $url := .Get "url" | default "/" }}
+
+<section id="{{ $blockID }}">
+    <div class="jumbotron -bg-yellow">
+        <h1 class="display-4">
+            {{ $emoji }}
+            <a href="{{ $url | safeURL }}">
+                {{ .Inner | markdownify }}
+            </a>
+        </h1>
+    </div>
+</section>
