@@ -17,3 +17,8 @@ $blue: $flux-dark-blue;
 
 $google_font_name: "Montserrat";
 $google_font_family: "Montserrat:300,300i,400,400i,600,600i,700,700i";
+
+$navbar-dark-color: rgba($dark, 0.75) !default;
+$navbar-dark-hover-color: rgba($white, 0.5) !default;
+$navbar-dark-active-color: $dark !default;
+$navbar-dark-disabled-color: rgba($dark, 0.25) !default;
