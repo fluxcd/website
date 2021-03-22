@@ -72,4 +72,48 @@ to extend Flux.
 
 {{< /blocks/section >}}
 
+<!-- RESOURCES HERE -->
+
+{{% blocks/section %}}
+
+If you are new to Flux, you might want to check out some of the following resources to get started.
+
+{{% blocks/resource
+  youtube="nGLpUCPX8JE"
+  title="The Evolution of Flux v2 with Stefan Prodan" %}}
+Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+  youtube="0v5bjysXTL8"
+  title="The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili" %}}
+Leigh demos bootstrapping with GitOps Toolkit, app deployment, and monitoring with Prometheus.
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+  youtube="JcKUawSQfQ0"
+  title="Flux v2 for Helm Users with Scott Rigby" %}}
+Scott covers what to keep in mind as Helm 2 support ends, the benefits of Helm Controller, and how to migrate from Helm Operator to Helm Controller.
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+  youtube="7W27tAv7Tvs"
+  title="Managing Remote Clusters with Flux v2 (CAPI demo) with Leigh Capili" %}}
+Leigh covers cluster API integration, dependency management & ordering, security model updates, and delegation & multi-tenancy via users.
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+  youtube="R6OeIgb7lUI"
+  title="Flux v2 overview, demo, & review with Viktor Farcic" %}}
+Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+  url="https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+  title="Flux v2 Deep Dive series with Geert Baeke" %}}
+In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
+{{% /blocks/resource %}}
+
+{{< /blocks/section >}}
+
 {{< blocks/cncf >}}
