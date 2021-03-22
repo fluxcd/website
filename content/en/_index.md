@@ -9,20 +9,23 @@ description: >
 
 ---
 
-{{< blocks/celebration
+{{% blocks/celebration
   emoji="🎉"
-  url="/blog/2021/03/flux-is-a-cncf-incubation-project/" >}}
+  url="/blog/2021/03/flux-is-a-cncf-incubation-project/" %}}
 Flux is now a CNCF Incubation project!
-{{< /blocks/celebration >}}
+{{% /blocks/celebration %}}
 
-{{< blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" >}}
+{{% blocks/hero
+  title="Flux - the GitOps family of projects"
+  color="primary" height="full" %}}
 
 Aliqua adipisicing enim duis irure incididunt culpa reprehenderit nisi. In esse cillum proident anim in ullamco. Laborum in irure quis tempor incididunt amet magna nisi fugiat labore.
 
 Labore magna dolore proident reprehenderit esse irure quis dolor occaecat laborum non dolore. Voluptate est aute duis sunt nisi amet aute elit amet nulla nostrud. Amet laborum culpa fugiat dolor incididunt aliqua sint tempor. In amet nulla amet officia duis pariatur.
 
-{{< /blocks/hero >}}
+<!-- Features -->
 
+{{% /blocks/hero %}}
 
 {{% blocks/section color="white" %}}
 
@@ -70,13 +73,15 @@ to extend Flux.
 
 {{% /blocks/feature %}}
 
-{{< /blocks/section >}}
+{{% /blocks/section %}}
 
 <!-- RESOURCES HERE -->
 
-{{% blocks/section %}}
-
+{{% blocks/lead %}}
 If you are new to Flux, you might want to check out some of the following resources to get started.
+{{% /blocks/lead %}}
+
+{{% blocks/section %}}
 
 {{% blocks/resource
   youtube="nGLpUCPX8JE"
@@ -114,6 +119,6 @@ Stefan introduces Flux v2, explains why it was reshaped into a composable contin
 In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
 {{% /blocks/resource %}}
 
-{{< /blocks/section >}}
+{{% /blocks/section %}}
 
 {{< blocks/cncf >}}
