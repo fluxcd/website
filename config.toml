@@ -61,6 +61,13 @@ slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
 font_awesome_version = "5.9.0"
 
+
+[params.logos]
+navbar = "flux-horizontal-white.png"
+hero   = "flux-horizontal-color.png"
+footer = "flux-stacked-white.png"
+cncf   = "cncf-color.png"
+
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
