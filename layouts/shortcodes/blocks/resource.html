@@ -1,0 +1,12 @@
+{{ $youtube := .Get "youtube" }}
+{{ $youtube_url := print "https://www.youtube.com/watch?v=" $youtube }}
+{{ $thumbnail := print "https://i3.ytimg.com/vi/" $youtube "/mqdefault.jpg" }}
+
+{{ $url := .Get "url" | default $youtube_url }}
+{{ $title := .Get "title" | default "Video title" }}
+
+<div class="col-lg-4 mb-5 mb-lg-0 text-center ">
+  <a href="{{ $url }}"><img src="{{ $thumbnail }}"></a>
+  <a href="{{ $url }}"><h4>{{ $title | markdownify }}</h4></a>
+  <p>{{ .Inner | markdownify }}</p>
+</div>
