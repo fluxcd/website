@@ -71,3 +71,5 @@ to extend Flux.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
+
+{{< blocks/cncf >}}
