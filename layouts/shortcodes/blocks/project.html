@@ -1,0 +1,31 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $blockID := printf "td-cover-block-%d" .Ordinal }}
+{{ $title    := .Get "title" | default "" }}
+{{ $img      := .Get "image" | relURL }}
+{{ $image_align := .Get "image-align" | default "left" }}
+{{ $bg_color := .Get "bg-color" | default "primary" }}
+{{ $b1_color := .Get "button1-color" | default "primary" }}
+{{ $b2_color := .Get "button2-color" | default "secondary" }}
+{{ $b1_caption := .Get "button1-caption" | default "Get started" }}
+{{ $b2_caption := .Get "button2-caption" | default "Learn more" }}
+{{ $b1_url := .Get "button1-url" | default "" }}
+{{ $b2_url := .Get "button2-url" | default "" }}
+
+
+<section id="{{ $blockID }}">
+    <div class="container p-3 mb-2 bg-{{ $bg_color }}">
+        <div class="row">
+            <div class="col">
+                <h1>{{ $title }}</h1>
+                <p>{{ .Inner | markdownify }}</p>
+            </div>
+            <div class="col">
+                <img class="img-fluid" src="{{ $img }}" alt="{{ $title }}">
+            </div>
+        </div>
+        <div class="row">
+            <a class="btn btn-lg btn-{{ $b1_color }}" href="{{ $b1_url }}" role="button">{{ $b1_caption }}</a>
+            <a class="btn btn-lg btn-{{ $b2_color }}" href="{{ $b2_url }}" role="button">{{ $b2_caption }}</a>
+        </div>
+    </div>
+</section>
