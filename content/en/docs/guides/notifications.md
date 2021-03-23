@@ -2,6 +2,9 @@
 title: "Setup Notifications"
 linkTitle: "Setup Notifications"
 weight: 30
+card:
+  name: tasks
+  weight: 50
 ---
 
 

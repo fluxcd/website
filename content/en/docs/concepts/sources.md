@@ -2,6 +2,9 @@
 title: Sources
 description: Sources are used to declare where resources are to be obtained from
 weight: 3
+card:
+  name: concepts
+  weight: 30
 ---
 
 ## What is a Source?
