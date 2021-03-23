@@ -78,6 +78,9 @@ to extend Flux.
 <!-- RESOURCES HERE -->
 
 {{% blocks/lead %}}
+
+## Resources
+
 If you are new to Flux, you might want to check out some of the following resources to get started.
 {{% /blocks/lead %}}
 
@@ -118,6 +121,45 @@ Stefan introduces Flux v2, explains why it was reshaped into a composable contin
   title="Flux v2 Deep Dive series with Geert Baeke" %}}
 In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
 {{% /blocks/resource %}}
+
+{{% /blocks/section %}}
+
+<!-- OTHER FLUX PROJECTS -->
+
+{{% blocks/lead %}}
+
+## Other Flux projects
+
+{{% /blocks/lead %}}
+
+{{% blocks/section type="section" %}}
+
+{{% blocks/project title="GitOps Toolkit"
+  image="/img/building-blocks.svg" image-align="left" bg-color="blue"
+  button1-url="https://toolkit.fluxcd.io/dev-guides/source-watcher/"
+  button2-url="https://toolkit.fluxcd.io/components/" %}}
+The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
+{{% /blocks/project %}}
+
+{{% blocks/project title="Flagger"
+  image="/img/flagger-gitops.png" image-align="right" bg-color="red"
+  button1-url="https://docs.flagger.app/"
+  button2-url="https://flagger.app/" %}}
+Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
+
+The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
+{{% /blocks/project %}}
+
+{{% blocks/project title="Flux v1 and Helm Operator"
+  image="/img/logos/flux-horizontal-color.png" image-align="right" bg-color="black"
+  button1-url="https://docs.fluxcd.io/" button1-caption="Flux v1 Documentation" button1-color="blue"
+  button2-url="https://docs.fluxcd.io/projects/helm-operator/" button2-caption="Helm Operator Documentation" button2-color="blue" %}}
+We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
+
+We strongly advise everyone to familiarise themselves with Flux v2 and start the process of migrating.
+{{% /blocks/project %}}
+
+
 
 {{% /blocks/section %}}
 
