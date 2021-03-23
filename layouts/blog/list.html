@@ -17,9 +17,13 @@
 						<h5 class="card-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h5>
 						<p class="card-text"><small class="text-muted">{{ .Date.Format ($.Param "time_format_blog") }} {{ T "ui_in"}} {{ .CurrentSection.LinkTitle }}</small></p>
 						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "float-left mr-3 pt-1 d-none d-md-block") }}
-						<p class="card-text">{{ .Plain | safeHTML | truncate 250 }}</p>
-						<p class="card-text"><a href="{{ .RelPermalink }}">{{ T "ui_read_more"}}</a></p>
+						<p class="card-text">{{ .Description }}</p>
+            
 					</div>
+          <div class="card-footer">
+
+						<p class="card-text"><a href="{{ .RelPermalink }}">{{ T "ui_read_more"}}</a></p>
+            </div>
 				</div>
 				{{ end }}
 			</div>
