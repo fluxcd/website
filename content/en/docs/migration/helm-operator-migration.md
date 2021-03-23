@@ -2,6 +2,9 @@
 title: "Migrate to the Helm Controller"
 linkTitle: "Migrate from the Helm Operator"
 weight: 30
+card:
+  name: migration
+  weight: 20
 ---
 
 

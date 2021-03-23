@@ -3,6 +3,9 @@ title: Overview
 description: >
   Get a high-level overview of Flux
 weight: 2
+card:
+  name: concepts
+  weight: 10
 ---
 
 # What is Flux?

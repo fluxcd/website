@@ -2,6 +2,9 @@
 title: "Monitoring with Prometheus"
 linkTitle: "Monitoring with Prometheus"
 weight: 50
+card:
+  name: tasks
+  weight: 40
 ---
 
 

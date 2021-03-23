@@ -2,6 +2,9 @@
 title: "Automate image updates to Git"
 linkTitle: "Automate image updates to Git"
 weight: 80
+card:
+  name: tasks
+  weight: 20
 ---
 
 
