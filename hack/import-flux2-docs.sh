@@ -4,7 +4,7 @@ COMPONENTS_DIR="content/en/docs/components"
 
 controller_version() {
   if [ ! $(which jq) ]; then
-    print "Please install 'jq'."
+    echo "Please install 'jq'."
     exit 1
   fi
   curl -s "https://registry.hub.docker.com/v2/repositories/fluxcd/$1/tags/?page_size=1" | jq -r .results[].name
