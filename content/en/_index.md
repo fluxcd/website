@@ -163,7 +163,38 @@ We owe our success and good reputation as GitOps project to Flux and Helm Operat
 We strongly advise everyone to familiarise themselves with Flux v2 and start the process of migrating.
 {{% /blocks/project %}}
 
+{{% /blocks/section %}}
 
+
+<!-- Community -->
+
+{{% blocks/lead color="dark" %}}
+## Community
+
+The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
+What we achieved up until today is only possible because of our community.
+{{% /blocks/lead %}}
+
+{{< blocks/section color="dark" type="features">}}
+{{% blocks/feature icon="fab fa-github" title="GitHub Discussions" url="https://github.com/fluxcd/flux2/discussions" %}}
+Join the conversation in GitHub Discussions. Everything Flux v2 related ranging from specificiations and feature planning to Show & Tell happens here.
+
+Join the discussion today!
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fab fa-slack" title="Slack" url="https://slack.cncf.io" %}}
+If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
+
+Get an invite, or go to the `#flux` channel.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fa fa-paper-plane" title="Mailing list" url="https://lists.cncf.io/g/cncf-flux-dev" %}}
+Join our (low-traffic) mailing list to stay up to day on announcements and sporadic discussions.
+
+Join the mailing list!
+{{% /blocks/feature %}}
 
 {{% /blocks/section %}}
 
