@@ -14,14 +14,22 @@ Flux is now a CNCF Incubation project!
 
 {{% blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" %}}
 
-Aliqua adipisicing enim duis irure incididunt culpa reprehenderit nisi. In esse cillum proident anim in ullamco. Laborum in irure quis tempor incididunt amet magna nisi fugiat labore.
+Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible.
 
-Labore magna dolore proident reprehenderit esse irure quis dolor occaecat laborum non dolore. Voluptate est aute duis sunt nisi amet aute elit amet nulla nostrud. Amet laborum culpa fugiat dolor incididunt aliqua sint tempor. In amet nulla amet officia duis pariatur.
-
+Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
 
 {{% /blocks/hero %}}
 
 <!-- features  -->
+
+{{% blocks/lead %}}
+
+## GitOps at your fingertips
+
+Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io/) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
+
+{{% /blocks/lead %}}
+
 
 {{% blocks/section color="white" %}}
 
@@ -155,7 +163,38 @@ We owe our success and good reputation as GitOps project to Flux and Helm Operat
 We strongly advise everyone to familiarise themselves with Flux v2 and start the process of migrating.
 {{% /blocks/project %}}
 
+{{% /blocks/section %}}
 
+
+<!-- Community -->
+
+{{% blocks/lead color="dark" %}}
+## Community
+
+The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
+What we achieved up until today is only possible because of our community.
+{{% /blocks/lead %}}
+
+{{< blocks/section color="dark" type="features">}}
+{{% blocks/feature icon="fab fa-github" title="GitHub Discussions" url="https://github.com/fluxcd/flux2/discussions" %}}
+Join the conversation in GitHub Discussions. Everything Flux v2 related ranging from specificiations and feature planning to Show & Tell happens here.
+
+Join the discussion today!
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fab fa-slack" title="Slack" url="https://slack.cncf.io" %}}
+If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
+
+Get an invite, or go to the `#flux` channel.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fa fa-paper-plane" title="Mailing list" url="https://lists.cncf.io/g/cncf-flux-dev" %}}
+Join our (low-traffic) mailing list to stay up to day on announcements and sporadic discussions.
+
+Join the mailing list!
+{{% /blocks/feature %}}
 
 {{% /blocks/section %}}
 
