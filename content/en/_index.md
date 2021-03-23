@@ -8,24 +8,20 @@ description: >
   This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
 
 ---
-
-{{% blocks/celebration
-  emoji="🎉"
-  url="/blog/2021/03/flux-is-a-cncf-incubation-project/" %}}
+{{% blocks/celebration emoji="🎉" url="/blog/2021/03/flux-is-a-cncf-incubation-project/" %}}
 Flux is now a CNCF Incubation project!
 {{% /blocks/celebration %}}
 
-{{% blocks/hero
-  title="Flux - the GitOps family of projects"
-  color="primary" height="full" %}}
+{{% blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" %}}
 
 Aliqua adipisicing enim duis irure incididunt culpa reprehenderit nisi. In esse cillum proident anim in ullamco. Laborum in irure quis tempor incididunt amet magna nisi fugiat labore.
 
 Labore magna dolore proident reprehenderit esse irure quis dolor occaecat laborum non dolore. Voluptate est aute duis sunt nisi amet aute elit amet nulla nostrud. Amet laborum culpa fugiat dolor incididunt aliqua sint tempor. In amet nulla amet officia duis pariatur.
 
-<!-- Features -->
 
 {{% /blocks/hero %}}
+
+<!-- features  -->
 
 {{% blocks/section color="white" %}}
 
