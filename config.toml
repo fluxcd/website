@@ -68,9 +68,39 @@ hero   = "flux-horizontal-color.png"
 footer = "flux-stacked-white.png"
 cncf   = "cncf-color.png"
 
+[[menus.main]]
+identifier = "Project"
+name = "Project"
 
+[[menus.main]]
+name = "Code of Conduct"
+parent = "Project"
+url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
+weight = 1
 
+[[menus.main]]
+name = "Contributing"
+parent = "Project"
+url = "/contributing"
+weight = 30
 
+[[menus.main]]
+name = "Governance"
+parent = "Project"
+url = "/governance"
+weight = 40
+
+[[menus.main]]
+name = "Security"
+parent = "Project"
+url = "/security"
+weight = 50
+
+[[menus.main]]
+name = "Branding"
+parent = "Project"
+url = "https://branding.cncf.io/projects/flux"
+weight = 9999
 
 
 [params.links]
