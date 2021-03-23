@@ -2,6 +2,9 @@
 title: "Manage Helm Releases"
 linkTitle: "Manage Helm Releases"
 weight: 20
+card:
+  name: tasks
+  weight: 30
 ---
 
 The [helm-controller](../components/helm/controller.md) allows you to

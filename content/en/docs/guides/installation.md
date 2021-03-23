@@ -2,6 +2,9 @@
 title: "Installation"
 linkTitle: "Installation"
 weight: 10
+card:
+  name: tasks
+  weight: 10
 ---
 
 
