@@ -60,6 +60,8 @@ github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
 font_awesome_version = "5.9.0"
+offlineSearch = true
+
 
 
 [params.logos]
