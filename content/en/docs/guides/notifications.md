@@ -100,7 +100,7 @@ encountered during the reconciliation process.
 This includes kustomize build and validation errors,
 apply errors and health check failures.
 
-![error alert](../_files/slack-error-alert.png)
+![error alert](/img/slack-error-alert.png)
 
 When the verbosity is set to `info`, the controller will alert if:
 
@@ -109,7 +109,7 @@ When the verbosity is set to `info`, the controller will alert if:
 * a dependency is delaying the execution
 * an error occurs
 
-![info alert](../_files/slack-info-alert.png)
+![info alert](/img/slack-info-alert.png)
 
 ## Git commit status
 
@@ -124,7 +124,7 @@ triggered the event. The linking is done by updating the commit status of a spec
 
 In GitHub the commit status set by notification-controller will result in a green checkmark or red cross next to the commit hash.
 Clicking the icon will show more detailed information about the status.
-![commit status GitHub overview](../_files/commit-status-github-overview.png)
+![commit status GitHub overview](/img/commit-status-github-overview.png)
 
 Receiving an event in the form of a commit status rather than a message in a chat conversation has the benefit
 that it closes the deployment loop giving quick and visible feedback if a commit has reconciled and if it succeeded.
@@ -138,7 +138,7 @@ When a new commit is pushed to the repository, source-controller will sync the c
 to reconcile the new commit. After this is done the kustomize-controller sends an event to the notification-controller
 with the result and the commit hash it reconciled. Then notification-controller can update the correct commit and repository
 when receiving the event.
-![commit status flow](../_files/commit-status-flow.png)
+![commit status flow](/img/commit-status-flow.png)
 
 {{% alert color="info" title="Limitations" %}}
 The git notification providers require that a commit hash present in the meta data
@@ -257,7 +257,7 @@ Clicking the check-mark should show a detailed view.
 
 | GitHub  | GitLab |
 | ------------- | ------------- |
-| ![commit status GitHub successful](../_files/commit-status-github-success.png) | ![commit status GitLab successful](../_files/commit-status-gitlab-success.png) |
+| ![commit status GitHub successful](/img/commit-status-github-success.png) | ![commit status GitLab successful](/img/commit-status-gitlab-success.png) |
 
 Generate error
 
@@ -282,7 +282,7 @@ for a new application to deploy.
 
 | GitHub  | GitLab |
 | ------------- | ------------- |
-| ![commit status GitHub failure](../_files/commit-status-github-failure.png) | ![commit status GitLab failure](../_files/commit-status-gitlab-failure.png) |
+| ![commit status GitHub failure](/img/commit-status-github-failure.png) | ![commit status GitLab failure](/img/commit-status-gitlab-failure.png) |
 
 
 ### Status changes

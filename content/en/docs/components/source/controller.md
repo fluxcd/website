@@ -9,7 +9,7 @@ The main role of the source management component is to provide a common interfac
 The source API defines a set of Kubernetes objects that cluster admins and various automated operators can
 interact with to offload the Git and Helm repositories operations to a dedicated controller.
 
-![](../../_files/source-controller.png)
+![](/img/source-controller.png)
 
 Features:
 
