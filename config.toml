@@ -74,6 +74,13 @@ cncf   = "cncf-color.png"
 identifier = "Project"
 name = "Project"
 
+
+[[menus.main]]
+name = "Community"
+url = "/community"
+weight = 20
+
+
 [[menus.main]]
 name = "Code of Conduct"
 parent = "Project"
