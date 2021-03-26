@@ -16,7 +16,7 @@ gen_crd_doc() {
   TMP="$(mktemp)"
   DEST="$2"
   curl -# -Lf "$URL" > "$TMP"
-  TITLE="$(head -n1 "$TMP"  | cut -d'<' -f2 | cut -d'>' -f2)"
+  TITLE="$(head -n1 "$TMP"  | cut -d'<' -f2 | cut -d'>' -f2 | sed 's/^\#\ //')"
 
   {
     echo "---"
