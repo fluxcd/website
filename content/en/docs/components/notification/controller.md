@@ -1,4 +1,9 @@
-# Notification Controller
+---
+title: Notification Controller
+linkTitle: Overview
+weight: 1
+---
+
 
 The Notification Controller is a Kubernetes operator, specialized in handling inbound and outbound events.
 

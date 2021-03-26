@@ -1,4 +1,9 @@
-# Image reflector and automation controllers
+---
+title: Image reflector and automation controllers
+linkTitle: Overview
+weight: 1
+---
+
 
 The image-reflector-controller and image-automation-controller work together to update a Git
 repository when new container images are available.
