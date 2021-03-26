@@ -1,4 +1,9 @@
-# Advanced debugging
+---
+title: "Advanced debugging"
+linkTitle: "Advanced debugging"
+weight: 20
+---
+
 
 This guide covers more advanced debugging topics such as collecting
 runtime profiling data from GitOps Toolkit components.
