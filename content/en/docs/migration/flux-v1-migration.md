@@ -12,7 +12,7 @@ Read the [FAQ]({{< relref "/faq-migration" >}}) to find out what differences are
 
 {{% alert color="info" title="Automated image updates" %}}
 The image automation feature is under development in Flux v2.
-Please consult the [roadmap](../roadmap/index.md) for more details.
+Please consult the [roadmap]({{< relref "../roadmap/_index.md" >}}) for more details.
 {{% /alert %}}
 
 {{% alert color="info" title="Feature parity" %}}
