@@ -1,4 +1,7 @@
-# Using Flux on Azure
+---
+title: Using Flux on Azure
+linkTitle: Azure
+---
 
 ## AKS Cluster Options
 
@@ -12,9 +15,9 @@ resolve flux reconciliation failures where source-controller is unreachable.
 Using `--network-plugin=azure --network-policy=calico` has been tested to work properly.
 This issue only affects you if you are using `--network-policy` on AKS, which is not a default option.
 
-!!! warning
-    AKS `--network-policy` is currently in Preview
-
+{{% alert color="warning" %}}
+AKS `--network-policy` is currently in Preview
+{{% /alert %}}
 ### AAD Pod-Identity
 
 Depending on the features you are interested in using with Flux, you may want to install AAD Pod Identity.
@@ -29,15 +32,17 @@ As a pre-requisite, your cluster must have `--enable-managed-identity` configure
 This software can be [installed via Helm](https://azure.github.io/aad-pod-identity/docs/getting-started/installation/) (unmanaged by Azure).
 Use Flux's `HelmRepository` and `HelmRelease` object to manage the aad-pod-identity installation from a bootstrap repository and keep it up to date.
 
-!!! note
-    As an alternative to Helm, the `--enable-aad-pod-identity` flag for the `az aks create` is currently in Preview.
-    Follow the Azure guide for [Creating an AKS cluster with AAD Pod Identity](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you would like to enable this feature with the Azure CLI.
+{{% alert %}}
+As an alternative to Helm, the `--enable-aad-pod-identity` flag for the `az aks create` is currently in Preview.
+Follow the Azure guide for [Creating an AKS cluster with AAD Pod Identity](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you would like to enable this feature with the Azure CLI.
+{{% /alert %}}
 
 ### Cluster Creation
 
-!!! info
-    When working with the Azure CLI, it can help to set a default `location`, `group`, and `acr`.
-    See `az configure --help`, `az configure --list-defaults`, and `az configure --defaults key=value`
+{{% alert %}}
+When working with the Azure CLI, it can help to set a default `location`, `group`, and `acr`.
+See `az configure --help`, `az configure --list-defaults`, and `az configure --defaults key=value`
+{{% /alert %}}
 
 The following creates an AKS cluster with some minimal configuration that will work well with Flux:
 
@@ -52,7 +57,7 @@ az aks create \
 
 ## Flux Installation with Azure DevOps Repos
 
-Ensure you can login to [https://dev.azure.com](dev.azure.com) for your proper organization, and create a new repo to hold your
+Ensure you can login to [dev.azure.com](https://dev.azure.com) for your proper organization, and create a new repo to hold your
 flux install and other necessary config.
 
 There is no bootstrap provider currently for Azure DevOps Repos,

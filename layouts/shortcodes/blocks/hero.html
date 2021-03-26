@@ -32,14 +32,24 @@
         <div class="col-md">
             {{ with .Get "title" }}<h1 class="display-1">{{ $title := . }}{{ with $logo_image }}{{ $logo_image_resized := (.Fit (printf "70x70 %s" $logo_anchor)) }}<img class="td-hero-logo" src="{{ $logo_image_resized.RelPermalink }}" alt="{{ $title | html }} Logo">{{ end }}{{ $title | html }}</h1>{{ end }}
             {{ with .Get "subtitle" }}<p>{{ . | html }}</p>{{ end }}
-        </div>
-        <div class="col-md">
+
             {{ if eq .Page.File.Ext "md" }}
               {{ .Inner | markdownify }}
             {{ else }}
               {{ .Inner | htmlUnescape | safeHTML }}
             {{ end }}
         </div>
+
+        <div class="col-md is-half is-hidden-touch">
+          <div class="terminal">
+            <div class="icons"><span></span></div>
+            <div class="terminal-title">Terminal</div>
+            <pre class="terminal-content">
+              <asciinema-player loop autoplay font-size="14px" rows=14 src="flux.cast"></asciinema-player>
+            </pre>
+          </div>
+        </div>
+
       </div>
   </div>
   {{ if $byline }}

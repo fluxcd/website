@@ -8,11 +8,11 @@ card:
 ---
 
 This guide walks you through migrating from Flux v1 to v2.
-Read the [FAQ](../faq/index.md) to find out what differences are between v1 and v2.
+Read the [FAQ]({{< relref "/faq-migration" >}}) to find out what differences are between v1 and v2.
 
 {{% alert color="info" title="Automated image updates" %}}
 The image automation feature is under development in Flux v2.
-Please consult the [roadmap](../roadmap/index.md) for more details.
+Please consult the [roadmap]({{< relref "../roadmap/_index.md" >}}) for more details.
 {{% /alert %}}
 
 {{% alert color="info" title="Feature parity" %}}
@@ -69,7 +69,8 @@ Kubernetes cluster and configure it to manage itself from a Git
 repository. The Git repository created during bootstrap can be used 
 to define the state of your fleet of Kubernetes clusters.
 
-For a detailed walk-through of the bootstrap procedure please see the [installation guide](installation.md).
+For a detailed walk-through of the bootstrap procedure please see the [installation
+guide]({{< relref "../guides/installation.md" >}}).
 
 {{% alert color="info" color="warning" title="'flux bootstrap' target" %}}
 `flux bootstrap` should not be run against a Git branch or path
@@ -192,7 +193,8 @@ $ flux create kustomization app \
 ✔ applied revision main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
 
-If your repository contains secrets encrypted with Mozilla SOPS, please read this [guide](mozilla-sops.md).
+If your repository contains secrets encrypted with Mozilla SOPS, please read this
+[guide]({{< relref "../guides/installation.md" >}}).
 
 Pull changes from Git and apply them immediately:
 
@@ -294,7 +296,8 @@ flux create alert app \
 ```
 
 For more details, read the guides on how to configure
-[notifications](notifications.md) and [webhooks](webhook-receivers.md).
+[notifications]({{< relref "../guides/notifications.md" >}}) and
+[webhooks]({{< relref "../guides/webhook-receivers.md" >}}).
 
 ### Flux debugging
 

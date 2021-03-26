@@ -9,7 +9,7 @@ description: >
 {{% alert color="info" title="💖 Flux Migration Commitment" %}}
 This public timetable clarifies our commitment to end users.
 Its purpose is to help improve your experience in deciding how and when to plan infra decisions related to Flux versions.
-Please refer to the [Roadmap](../../roadmap.md) for additional details.
+Please refer to the [Roadmap]({{< relref "../roadmap/_index.md" >}}) for additional details.
 {{% /alert %}}
 
 <!-- Note: this div allows us to set fixed column widths in custom.css -->

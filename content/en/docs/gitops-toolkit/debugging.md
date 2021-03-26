@@ -1,4 +1,9 @@
-# Advanced debugging
+---
+title: "Advanced debugging"
+linkTitle: "Advanced debugging"
+weight: 20
+---
+
 
 This guide covers more advanced debugging topics such as collecting
 runtime profiling data from GitOps Toolkit components.
@@ -9,7 +14,7 @@ to debug e.g. performance issues.
 
 ## Pprof
 
-The [GitOps Toolkit components](../components/index.md) serve [`pprof`](https://golang.org/pkg/net/http/pprof/)
+The [GitOps Toolkit components](../components/_index.md) serve [`pprof`](https://golang.org/pkg/net/http/pprof/)
 runtime profiling data on their metrics HTTP server (default `:8080`).
 
 ### Endpoints

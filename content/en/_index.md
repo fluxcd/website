@@ -6,29 +6,32 @@ description: >
   Flux v2 will be GA within the next few months! 
   
   This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
-
 ---
 {{% blocks/celebration emoji="🎉" url="/blog/2021/03/flux-is-a-cncf-incubation-project/" %}}
 Flux is now a CNCF Incubation project!
 {{% /blocks/celebration %}}
 
-{{% blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" %}}
+{{< blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" >}}
 
 Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible.
 
 Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
 
-{{% /blocks/hero %}}
+<div class="mx-auto mt-5">
+  {{< blocks/link-down color="info" >}}
+</div>
+
+{{< /blocks/hero >}}
 
 <!-- features  -->
 
-{{% blocks/lead %}}
+{{< blocks/lead >}}
 
-## GitOps at your fingertips
+<h2>GitOps at your fingertips</h2>
 
 Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io/) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
 
-{{% /blocks/lead %}}
+{{< /blocks/lead >}}
 
 
 {{% blocks/section color="white" %}}
@@ -81,12 +84,12 @@ to extend Flux.
 
 <!-- RESOURCES HERE -->
 
-{{% blocks/lead %}}
+{{< blocks/lead >}}
 
-## Resources
+<h2>Resources</h2>
 
 If you are new to Flux, you might want to check out some of the following resources to get started.
-{{% /blocks/lead %}}
+{{< /blocks/lead >}}
 
 {{% blocks/section %}}
 
@@ -130,13 +133,13 @@ In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of 
 
 <!-- OTHER FLUX PROJECTS -->
 
-{{% blocks/lead %}}
+{{< blocks/lead >}}
 
-## Other Flux projects
+<h2>Other Flux projects</h2>
 
-{{% /blocks/lead %}}
+{{< /blocks/lead >}}
 
-{{% blocks/section type="section" %}}
+{{% blocks/section type="section" color="white" %}}
 
 {{% blocks/project title="GitOps Toolkit"
   image="/img/building-blocks.svg" image-align="left" bg-color="blue"
@@ -146,7 +149,7 @@ The set of APIs and controllers that make up the runtime for Flux. You can use t
 {{% /blocks/project %}}
 
 {{% blocks/project title="Flagger"
-  image="/img/flagger-gitops.png" image-align="right" bg-color="red"
+  image="/img/flagger-gitops.png" image-align="right" bg-color="green"
   button1-url="https://docs.flagger.app/"
   button2-url="https://flagger.app/" %}}
 Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
@@ -168,8 +171,9 @@ We strongly advise everyone to familiarise themselves with Flux v2 and start the
 
 <!-- Community -->
 
-{{% blocks/lead color="dark" %}}
-## Community
+{{< blocks/lead color="dark" >}}
+
+<h2>Community</h2>
 
 The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
 What we achieved up until today is only possible because of our community.

@@ -8,8 +8,8 @@ description: >
 
 {{% alert color="info" title="Basic knowledge" %}}
 This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
-The core concepts used in this guide are [GitOps](../core-concepts/index.md#gitops),
-[Sources](../core-concepts/index.md#sources), [Kustomization](../core-concepts/index.md#kustomization).
+The core concepts used in this guide are [GitOps](../core-concepts/#gitops),
+[Sources](../core-concepts/#sources), [Kustomization](../core-concepts/#kustomization).
 {{% /alert %}}
 
 In this tutorial, you will deploy an application to a kubernetes cluster with Flux
@@ -59,14 +59,14 @@ binary).
 Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
 [release page](https://github.com/fluxcd/flux2/releases).
 
-To configure your shell to load `flux` [bash completions](../cmd/flux_completion_bash.md) add to your profile:
+To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
 
 ```sh
 # ~/.bashrc or ~/.bash_profile
 . <(flux completion bash)
 ```
 
-[`zsh`](../cmd/flux_completion_zsh.md), [`fish`](../cmd/flux_completion_fish.md), and [`powershell`](../cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
+[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md), and [`powershell`](./cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
 
 ## Install Flux components
 
@@ -147,7 +147,8 @@ deployment "notification-controller" successfully rolled out
 ```
 
 If you prefer GitLab, export `GITLAB_TOKEN` env var and
-use the command [flux bootstrap gitlab](../guides/installation.md#gitlab-and-gitlab-enterprise).
+use the command [flux bootstrap
+gitlab]({{< relref "./guides/installation.md#gitlab-and-gitlab-enterprise" >}}).
 
 {{% alert color="info" title="Idempotency" %}}
 It is safe to run the bootstrap command as many times as you want.
