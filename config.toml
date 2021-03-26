@@ -56,6 +56,9 @@ enable = false
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
 copyright            = "The Flux authors"
+github_repo  		 = "https://github.com/fluxcd/website"
+github_subdir	     = "content/en"
+github_branch		 = "main"
 github_website_repo  = "fluxcd/website"
 slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
@@ -73,6 +76,13 @@ cncf   = "cncf-color.png"
 [[menus.main]]
 identifier = "Project"
 name = "Project"
+
+
+[[menus.main]]
+name = "Community"
+url = "/community"
+weight = 20
+
 
 [[menus.main]]
 name = "Code of Conduct"

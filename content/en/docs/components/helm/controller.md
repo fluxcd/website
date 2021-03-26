@@ -1,4 +1,8 @@
-# Helm Controller
+---
+title: Helm Controller
+linkTitle: Overview
+weight: 1
+---
 
 The Helm Controller is a Kubernetes operator, allowing one to declaratively manage Helm chart
 releases with Kubernetes manifests.

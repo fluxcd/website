@@ -1,4 +1,9 @@
-# Kustomize Controller
+---
+title: Kustomize Controller
+linkTitle: Overview
+weight: 1
+---
+
 
 The kustomize-controller is a Kubernetes operator,
 specialized in running continuous delivery pipelines for infrastructure and

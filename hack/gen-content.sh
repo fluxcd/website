@@ -344,11 +344,10 @@ main() {
         fi
         # checks if both the source and destination would be the same. If so
         # skip updating.
-        # Ignore this step
-        # if [[ "$file" != "$filename" ]]; then
-        #   mv "$file" "$filename"
-        #   echo "Renamed: $file to $filename"
-        # fi
+        if [[ "$file" != "$filename" ]]; then
+          mv "$file" "$filename"
+          echo "Renamed: $file to $filename"
+        fi
       fi
     done < <(find_md_files "${TEMP_DIR}${srcs[i]}")
   done
