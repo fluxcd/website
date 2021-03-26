@@ -35,7 +35,8 @@ is produced.
 All sources are specified as Custom Resources in a Kubernetes cluster, examples
 of sources are `GitRepository`, `HelmRepository` and `Bucket` resources. 
 
-For more information, take a look at [the source controller documentation](../components/source/controller.md).
+For more information, take a look at [the source controller
+documentation]({{< relref "./components/source/controller.md" >}}).
 
 ## Reconciliation
 
@@ -49,11 +50,12 @@ Reconciliation refers to ensuring that a given state (e.g application running in
 
 The kustomization represents a local set of Kubernetes resources that Flux is supposed to reconcile in the cluster. The reconciliation runs every one minute by default but this can be specified in the kustomization. If you make any changes to the cluster using `kubectl edit` or `kubectl patch`, it will be promptly reverted. You either suspend the reconciliation or push your changes to a Git repository.
 
-For more information, take a look at [this documentation](../components/kustomize/kustomization.md).
+For more information, take a look at [this
+documentation]({{< relref "./components/kustomize/kustomization.md" >}}).
 
 ## Bootstrap
 
 The process of installing the Flux components in a complete GitOps way is called a bootstrap. The manifests are applied to the cluster, a `GitRepository` and `Kustomization` are created for the Flux components, and the manifests are pushed to an existing Git repository (or a new one is created). Flux can manage itself just as it manages other resources. 
 The bootstrap is done using the `flux` CLI `flux bootstrap`.
 
-For more information, take a look at [the documentation for the bootstrap command](../cmd/flux_bootstrap.md).
+For more information, take a look at [the documentation for the bootstrap command](./cmd/flux_bootstrap.md).
