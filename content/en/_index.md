@@ -139,7 +139,7 @@ In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of 
 
 {{< /blocks/lead >}}
 
-{{% blocks/section type="section" %}}
+{{% blocks/section type="section" color="white" %}}
 
 {{% blocks/project title="GitOps Toolkit"
   image="/img/building-blocks.svg" image-align="left" bg-color="blue"
@@ -149,7 +149,7 @@ The set of APIs and controllers that make up the runtime for Flux. You can use t
 {{% /blocks/project %}}
 
 {{% blocks/project title="Flagger"
-  image="/img/flagger-gitops.png" image-align="right" bg-color="red"
+  image="/img/flagger-gitops.png" image-align="right" bg-color="green"
   button1-url="https://docs.flagger.app/"
   button2-url="https://flagger.app/" %}}
 Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
