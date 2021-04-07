@@ -332,7 +332,7 @@ icon = "fab fa-slack"
 text  = """
 If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
 
-[Get an invite](https://slack.cnfc.io), or [go to the `#flux` channel](https://cloud-native.slack.com/messages/flux)
+[Get an invite](https://slack.cncf.io), or [go to the `#flux` channel](https://cloud-native.slack.com/messages/flux)
 """
 
 [[params.community.highlights]]
