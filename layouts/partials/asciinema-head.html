@@ -1,0 +1,4 @@
+{{ $css := resources.Get "css/asciinema-player.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ $js := resources.Get "js/asciinema-player.js" | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
