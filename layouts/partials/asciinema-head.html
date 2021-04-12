@@ -1,4 +1,16 @@
 {{ $css := resources.Get "css/asciinema-player.css" | fingerprint }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<!-- <link class="terminal" rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}"> -->
 {{ $js := resources.Get "js/asciinema-player.js" | fingerprint }}
-<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+<!-- <script class="terminal" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script> -->
+
+<script defer type="text/javascript">
+  $(function() {
+    if (window.matchMedia("(min-width: 992px)").matches) {
+      $('head').append( $('<link rel="stylesheet"/>').attr('href', "{{ $css.RelPermalink }}").attr('integrity', "{{ $css.Data.Integrity }}"));
+      $('head').append( $('<script defer/>').attr('src', "{{ $js.RelPermalink }}").attr('integrity', "{{ $js.Data.Integrity }}"));
+    } else {
+      console.log($('.col-terminal'));
+      $('.col-terminal').remove();
+    }
+  });
+</script>
