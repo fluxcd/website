@@ -465,7 +465,7 @@ $ git push
 Now you can sync the new commit, and check that the object is working:
 
 ```bash
-$ flux reocncile kustomization --with-source flux-system
+$ flux reconcile kustomization --with-source flux-system
 ► annotating GitRepository flux-system in flux-system namespace
 ✔ GitRepository annotated
 ◎ waiting for GitRepository reconciliation
@@ -547,13 +547,13 @@ spec:
       order: asc
 ```
 
-The `.spec.pattern` field gives a regular expression that a tag must match to be included. The
-`.spec.extract` field gives a replacement pattern that can refer back to capture groups in the
+The `.spec.filterTags.pattern` field gives a regular expression that a tag must match to be included. The
+`.spec.filterTags.extract` field gives a replacement pattern that can refer back to capture groups in the
 filter pattern. The extracted values are sorted to find the selected image tag. In this case, the
 timestamp part of the tag will be extracted and sorted numerically in ascending order. See [the
 reference docs][imagepolicy-ref] for more examples.
 
-Once you have made sure you have image tags and an `ImagePolicy` that works, jump ahead to [Checking
+Once you have made sure you have image tags and an `ImagePolicy`, jump ahead to [Checking
 the ImagePolicy works](#checking-that-the-image-policy-works).
 
 ### How to use SemVer image tags
