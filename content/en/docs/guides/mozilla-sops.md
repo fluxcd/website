@@ -43,7 +43,8 @@ EOF
 ```
 
 The above configuration creates an rsa4096 key that does not expire.
-For a full list of options to consider for your environment, see [Unattended GPG key generation](https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html).
+For a full list of options to consider for your environment, see
+[Unattended GPG key generation](https://www.gnupg.org/documentation/manuals/gnupg/Unattended-GPG-key-generation.html).
 
 Retrieve the GPG key fingerprint (second row of the sec column):
 
@@ -129,7 +130,8 @@ gpg --import ./clusters/cluster0/.sops.pub.asc
 
 ## Configure the Git directory for encryption
 
-Write a [SOPS config file](https://github.com/mozilla/sops#using-sops-yaml-conf-to-select-kms-pgp-for-new-files) to the specific cluster or namespace directory used
+Write a [SOPS config file](https://github.com/mozilla/sops#using-sops-yaml-conf-to-select-kms-pgp-for-new-files)
+to the specific cluster or namespace directory used
 to store encrypted objects with this particular GPG key's fingerprint.
 
 ```yaml
@@ -146,22 +148,13 @@ Multiple directories can use separate SOPS configs.
 Contributors using the `sops` CLI to create and encrypt files
 won't have to worry about specifying the proper key for the target cluster or namespace.
 
-`encrypted_regex` helps encrypt the the proper `data` and `stringData` fields for Secrets.
+`encrypted_regex` helps encrypt the `data` and `stringData` fields for Secrets.
 You may wish to add other fields if you are encrypting other types of Objects.
 
 {{% alert color="info" title="Hint" %}}
 Note that you should encrypt only the `data` or `stringData` section. Encrypting the Kubernetes
 secret metadata, kind or apiVersion is not supported by kustomize-controller.
 {{% /alert %}}
-
-Ignore all `.sops.yaml` files in a [`.sourceignore`](../components/source/gitrepositories#excluding-files) file at the root of your repo.
-
-```sh
-touch .sourceignore
-echo '**/.sops.yaml' >> .sourceignore
-```
-
-You can now commit your SOPS config.
 
 ## Encrypt secrets
 
@@ -183,8 +176,9 @@ sops --encrypt --in-place basic-auth.yaml
 
 You can now commit the encrypted secret to your Git repository.
 
-!!! hint
-    Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
+{{% alert color="info" title="Hint" %}}
+Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
+{{% /alert %}}
 
 ### Using various cloud providers
 
@@ -194,9 +188,15 @@ instead you'll have to bind an IAM Role with access to the KMS
 keys to the `kustomize-controller` service account of the `flux-system` namespace for
 kustomize-controller to be able to fetch keys from KMS.
 
-#### AWS 
+#### AWS
 
-IAM Role example:
+Enabled the [IAM OIDC provider](https://eksctl.io/usage/iamserviceaccounts/) on your EKS cluster:
+
+```sh
+eksctl utils associate-iam-oidc-provider --cluster=<clusterName>
+```
+
+Create an IAM Role with access to AWS KMS e.g.:
 
 ```json
 {
@@ -217,11 +217,114 @@ IAM Role example:
 }
 ```
 
+Bind the IAM role to the `kustomize-controller` service account:
+
+```sh
+eksctl create iamserviceaccount \
+--override-existing-serviceaccounts \
+--name=kustomize-controller \
+--namespace=flux-system \
+--attach-policy-arn=<policyARN> \
+--cluster=<clusterName>
+```
+
+Restart kustomize-controller for the binding to take effect:
+
+```sh
+kubectl -n flux-system rollout restart deployment/kustomize-controller
+```
+
 #### Azure
 
-When using Azure Key Vault you need to authenticate the kustomize controller either by passing
-[Service Principal credentials as environment variables](https://github.com/mozilla/sops#encrypting-using-azure-key-vault)
-or with [add-pod-identity](https://github.com/Azure/aad-pod-identity).
+When using Azure Key Vault you need to authenticate kustomize-controller either with [aad-pod-identity](../use-cases/azure.md#aad-pod-identity)
+or by passing [Service Principal credentials as environment variables](https://github.com/mozilla/sops#encrypting-using-azure-key-vault).
+
+Create the Azure Key-Vault:
+
+```sh
+export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
+export KEY_NAME="sops-cluster0"
+
+az keyvault create --name "${VAULT_NAME}"
+az keyvault key create --name "${KEY_NAME}" \
+  --vault-name "${VAULT_NAME}"
+  --protection software \
+  --ops encrypt decrypt
+az keyvault key show --name "${KEY_NAME}" \
+  --vault-name "${VAULT_NAME}" \
+  --query key.kid
+```
+
+If using AAD Pod-Identity, create an identity within Azure to bind against, then create an `AzureIdentity` object to match:
+
+```yaml
+# Create an identity in Azure and assign it a role to access Key Vault  (note: the identity's resourceGroup should match the desired Key Vault):
+#     az identity create -n sops-akv-decryptor
+#     az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n sops-akv-decryptor -o tsv --query principalId)"
+# Fetch the clientID and resourceID to configure the AzureIdentity spec below:
+#     az identity show -n sops-akv-decryptor -otsv --query clientId
+#     az identity show -n sops-akv-decryptor -otsv --query resourceId
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: sops-akv-decryptor  # kustomize-controller label will match this name
+  namespace: flux-system
+spec:
+  clientID: 58027844-6b86-424b-9888-b5ae2dc28b4f
+  resourceID: /subscriptions/8c69185e-55f9-4d00-8e71-a1b1bb1386a1/resourcegroups/stealthybox/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sops-akv-decryptor
+  type: 0  # user-managed identity
+```
+
+[Customize your Flux Manifests](../guides/installation.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
+Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` name.
+Additionally, the SOPS specific environment variable `AZURE_AUTH_METHOD=msi` to activate the proper auth method within kustomize-controller.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kustomize-controller
+  namespace: flux-system
+spec:
+  template:
+    metadata:
+      labels:
+        aadpodidbinding: sops-akv-decryptor  # match the AzureIdentity name
+    spec:
+      containers:
+      - name: manager
+        env:
+        - name: AZURE_AUTH_METHOD
+          value: msi
+```
+
+Alternatively, if using a Service Principal stored in a K8s Secret, patch the Pod's envFrom
+to reference the `AZURE_TENANT_ID`/`AZURE_CLIENT_ID`/`AZURE_CLIENT_SECRET`
+fields from your Secret.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kustomize-controller
+  namespace: flux-system
+spec:
+  template:
+    spec:
+      containers:
+      - name: manager
+        envFrom:
+        - secretRef:
+            name: sops-akv-decryptor-service-principal
+```
+
+At this point, kustomize-controller is now authorized to decrypt values in
+SOPS encrypted files from your Sources via the related Key Vault.
+
+See Mozilla's guide to
+[Encrypting Using Azure Key Vault](https://github.com/mozilla/sops#encrypting-using-azure-key-vault)
+to get started committing encrypted files to your Git Repository or other Sources.
 
 #### Google Cloud
 
