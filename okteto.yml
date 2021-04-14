@@ -1,0 +1,13 @@
+name: hugo
+image: fluxcd/website:hugo-support
+workdir: /site
+# command: ["bash", "--login"]
+command:
+  - sh
+  - -c
+  - make theme; make serve
+autocreate: true
+forward:
+  - 1313:1313
+persistentVolume:
+  enabled: false
