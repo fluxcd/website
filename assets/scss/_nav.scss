@@ -1,0 +1,10 @@
+// override docsy styles
+@include media-breakpoint-down(md) {
+  .navbar-nav {
+    margin-top: 0 !important;
+  
+    .nav-link {
+      font-size: 1rem;
+    }
+  }
+}
