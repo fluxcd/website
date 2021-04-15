@@ -18,7 +18,7 @@ Flux is a set of continuous and progressive delivery solutions for Kubernetes, a
 Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
 
 <div class="mx-auto mt-5">
-  {{< blocks/link-down color="info" >}}
+  {{< blocks/link-down id="gitops" color="info" >}}
 </div>
 
 {{< /blocks/hero >}}
@@ -27,14 +27,14 @@ Flux v2 will be GA within the next few months! This means that Flux v1 will be d
 
 {{< blocks/lead >}}
 
-<h2>GitOps at your fingertips</h2>
+<h2 id='gitops'>GitOps at your fingertips</h2>
 
 Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io/) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
 
 {{< /blocks/lead >}}
 
 
-{{% blocks/section color="white" %}}
+{{% blocks/section type="features" color="white" %}}
 
 {{% blocks/feature icon="fab fa-git-square fa-3x" title="Declarative" height="auto" color="blue" %}}
 
@@ -86,12 +86,12 @@ to extend Flux.
 
 {{< blocks/lead >}}
 
-<h2>Resources</h2>
+<h2 class="resources-label">Resources</h2>
 
 If you are new to Flux, you might want to check out some of the following resources to get started.
 {{< /blocks/lead >}}
 
-{{% blocks/section %}}
+{{% blocks/section type="resources" %}}
 
 {{% blocks/resource
   youtube="nGLpUCPX8JE"
