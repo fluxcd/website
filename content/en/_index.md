@@ -86,7 +86,7 @@ to extend Flux.
 
 {{< blocks/lead >}}
 
-<h2 class="resources-label">Resources</h2>
+<h2 class="section-label">Resources</h2>
 
 If you are new to Flux, you might want to check out some of the following resources to get started.
 {{< /blocks/lead >}}
@@ -173,33 +173,45 @@ We strongly advise everyone to familiarise themselves with Flux v2 and start the
 
 {{< blocks/lead color="dark" >}}
 
-<h2>Community</h2>
+<h2 class="section-label">Community</h2>
 
 The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
 What we achieved up until today is only possible because of our community.
 {{% /blocks/lead %}}
 
-{{< blocks/section color="dark" type="features">}}
-{{% blocks/feature icon="fab fa-github" title="GitHub Discussions" url="https://github.com/fluxcd/flux2/discussions" %}}
+<div class="section-community">
+{{< blocks/section color="dark" type="community">}}
+
+{{% blocks/feature icon="fab fa-github fa-3x" title="GitHub Discussions" url="https://github.com/fluxcd/flux2/discussions" %}}
 Join the conversation in GitHub Discussions. Everything Flux v2 related ranging from specificiations and feature planning to Show & Tell happens here.
 
+<div class="join-github">
 Join the discussion today!
+</div>
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fab fa-slack" title="Slack" url="https://slack.cncf.io" %}}
+
+{{% blocks/feature icon="fab fa-slack fa-3x" title="Slack" url="https://slack.cncf.io" %}}
 If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
 
+<div class="join-slack">
 Get an invite, or go to the `#flux` channel.
+</div>
+
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa fa-paper-plane" title="Mailing list" url="https://lists.cncf.io/g/cncf-flux-dev" %}}
+{{% blocks/feature icon="fa fa-paper-plane fa-3x" title="Mailing list" url="https://lists.cncf.io/g/cncf-flux-dev" %}}
 Join our (low-traffic) mailing list to stay up to day on announcements and sporadic discussions.
 
+<div class="join-ml">
 Join the mailing list!
+</div>
+
 {{% /blocks/feature %}}
 
 {{% /blocks/section %}}
+</div>
 
 {{< blocks/cncf >}}

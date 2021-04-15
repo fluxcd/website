@@ -1,3 +1,8 @@
+h2.section-label {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
 .features, .resources {
   .col-lg-4 {
     margin: 2rem 0rem !important;
@@ -31,12 +36,30 @@
   }
 }
 
-.resources-label {
-  font-weight: 600;
-}
-
 .flux-other-projects {
   section {
     margin: 0 auto;
+  }
+}
+
+.section-community {
+  section.row.td-box {
+    padding-top: 1rem;
+  }
+
+  .h3 {
+    font-weight: 600;
+  }
+
+  .join-github {
+    margin-top: 48px;
+  }
+
+  .join-slack, .join-ml  {
+    margin-top: 72px;
+  }
+
+  p > a {
+    font-size: 1.5rem;
   }
 }
