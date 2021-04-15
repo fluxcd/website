@@ -1,0 +1,42 @@
+.features, .resources {
+  .col-lg-4 {
+    margin: 2rem 0rem !important;
+    padding: 0 2rem !important;
+  }
+
+  .h3 {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-weight: 600;
+    margin: 0.85rem 0;
+  }
+}
+
+.features {
+  .fas, .fab, .fa {
+    color: #2a7de3;
+  }
+}
+
+.resources {
+  h4 {
+    color: white;
+  }
+  img {
+    width: 320px;
+    height: 180px;
+  }
+}
+
+.resources-label {
+  font-weight: 600;
+}
+
+.flux-other-projects {
+  section {
+    margin: 0 auto;
+  }
+}

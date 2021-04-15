@@ -139,7 +139,7 @@ In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of 
 
 {{< /blocks/lead >}}
 
-{{% blocks/section type="section" color="white" %}}
+{{% blocks/section type="flux-other-projects" color="white" %}}
 
 {{% blocks/project title="GitOps Toolkit"
   image="/img/building-blocks.svg" image-align="left" bg-color="blue"
