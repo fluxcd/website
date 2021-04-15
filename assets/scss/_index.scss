@@ -1,6 +1,25 @@
-h2.section-label {
-  font-weight: 600;
-  margin-bottom: 1rem;
+.lead-gitops {
+  section {
+    h2, p {
+      color: $flux-white;
+    }
+    h2 {
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    a {
+      color: $flux-white;
+      font-style: italic;
+    }
+    background-color: $flux-dark-blue;
+    .td-arrow-down {
+      &::before {
+        border: {
+          color: #{$flux-dark-blue} transparent transparent transparent;
+        }
+      }
+    }
+  }
 }
 
 .features, .resources {
@@ -22,13 +41,13 @@ h2.section-label {
 
 .features {
   .fas, .fab, .fa {
-    color: #2a7de3;
+    color: $flux-dark-blue;
   }
 }
 
 .resources {
   h4 {
-    color: white;
+    color: $flux-white;
   }
   img {
     width: 320px;
@@ -62,4 +81,9 @@ h2.section-label {
   p > a {
     font-size: 1.5rem;
   }
+}
+
+h2.section-label {
+  font-weight: 600;
+  margin-bottom: 1rem;
 }

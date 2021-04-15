@@ -24,7 +24,7 @@ Flux v2 will be GA within the next few months! This means that Flux v1 will be d
 {{< /blocks/hero >}}
 
 <!-- features  -->
-
+<div class="lead-gitops">
 {{< blocks/lead >}}
 
 <h2 id='gitops'>GitOps at your fingertips</h2>
@@ -32,7 +32,7 @@ Flux v2 will be GA within the next few months! This means that Flux v1 will be d
 Flux is a collection of tools for keeping [Kubernetes](https://kubernetes.io/) clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.
 
 {{< /blocks/lead >}}
-
+</div>
 
 {{% blocks/section type="features" color="white" %}}
 
@@ -135,7 +135,7 @@ In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of 
 
 {{< blocks/lead >}}
 
-<h2>Other Flux projects</h2>
+<h2 class="section-label">Other Flux projects</h2>
 
 {{< /blocks/lead >}}
 
