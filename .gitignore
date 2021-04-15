@@ -9,3 +9,6 @@ themes/docsy-*
 
 # Imported Flux CLI docs
 content/en/docs/cmd/flux*
+
+# Editors
+.vscode
