@@ -3,5 +3,9 @@
   .container {
     padding-top: 80px !important;
     padding-bottom: 8px !important;
+
+    @include media-breakpoint-down(sm) {
+      padding-top: 16px !important;
+    }
   }
 }
