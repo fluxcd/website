@@ -123,7 +123,7 @@ or delete its namespace and RBAC.
 If there are YAML files in your `deploy` dir that are not meant to be
 applied on the cluster, you can exclude them by placing a `.sourceignore` in your repo root:
 
-```console
+```cli
 $ cat .sourceignore
 # exclude all
 /*
@@ -181,7 +181,7 @@ Configure the reconciliation of the `deploy` dir on your cluster:
 
 ```console
 $ flux create kustomization app \
-  --source=app \
+  --source=GitRepository/app \
   --path="./deploy" \
   --prune=true \
   --interval=10m
