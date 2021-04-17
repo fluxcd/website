@@ -17,21 +17,17 @@
 
     &::before {
       position: absolute;
-      transform: skewY(-5deg);
       right: 0;
       bottom: 5vw;
       width: 100%;
       height: 150%;
       content: "";
-      background: linear-gradient($flux-dark-blue 0%,  $flux-lighter-blue 26%,  $flux-dark-blue);
+      background: linear-gradient(240deg, $flux-light-blue 0%, $flux-dark-blue 39%);
     }
+
+
     
     &.td-overlay {      
-      &::after {
-        top: -5vw;
-        transform: skewY(-5deg);
-      }
-
   }
     & > .byline {
         position: absolute;
