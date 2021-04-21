@@ -109,7 +109,7 @@ It does not stop there, using [`Receiver` Custom Resources](../components/notifi
 
 With the new [`flux` CLI](../cmd/flux.md) it is now possible to create and/or generate the Custom Resources mentioned earlier. To generate the YAML for a `HelmRepository` and `HelmRelease` resource, you can for example run:
 
-```console
+```sh
 $ flux create source helm podinfo \
     --url=https://stefanprodan.github.io/podinfo \
     --interval=10m \

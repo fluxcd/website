@@ -130,7 +130,7 @@ flux reconcile kustomization flux-system --with-source
 
 Print the podinfo image deployed on your cluster:
 
-```console
+```sh
 $ kubectl get deployment/podinfo -oyaml | grep 'image:'
 image: ghcr.io/stefanprodan/podinfo:5.0.0
 ```
@@ -230,7 +230,7 @@ flux reconcile kustomization flux-system --with-source
 
 Wait for Flux to fetch the image tag list from GitHub container registry:
 
-```console
+```sh
 $ flux get image repository podinfo
 NAME   	READY	MESSAGE                       	LAST SCAN
 podinfo	True 	successful scan, found 13 tags	2020-12-13T17:51:48+02:00
@@ -238,7 +238,7 @@ podinfo	True 	successful scan, found 13 tags	2020-12-13T17:51:48+02:00
 
 Find which image tag matches the policy semver range with:
 
-```console
+```sh
 $ flux get image policy podinfo
 NAME   	READY	MESSAGE                   
 podinfo	True 	Latest image tag for 'ghcr.io/stefanprodan/podinfo' resolved to: 5.0.3
@@ -313,14 +313,14 @@ flux reconcile kustomization flux-system --with-source
 In a couple of seconds, Flux will push a commit to your repository with
 the latest image tag that matches the podinfo policy:
 
-```console
+```sh
 $ git pull && cat clusters/my-cluster/podinfo-deployment.yaml | grep "image:"
 image: ghcr.io/stefanprodan/podinfo:5.0.3 # {"$imagepolicy": "flux-system:podinfo"}
 ```
 
 Wait for Flux to apply the latest commit on the cluster and verify that podinfo was updated to `5.0.3`:
 
-```console
+```sh
 $ watch "kubectl get deployment/podinfo -oyaml | grep 'image:'"
 image: ghcr.io/stefanprodan/podinfo:5.0.3
 ```
@@ -499,7 +499,7 @@ The notification-controller generates a unique URL using the provided token and 
 
 Find the URL with:
 
-```console
+```sh
 $ kubectl -n flux-system get receiver/podinfo
 
 NAME      READY   STATUS
@@ -729,7 +729,7 @@ to the role.
 Since the cronjob will not create a job right away, after applying the manifest,
 you can manually create an init job using the following command:
 
-```console
+```sh
 $ kubectl create job --from=cronjob/ecr-credentials-sync -n flux-system ecr-credentials-sync-init
 ```
 
@@ -839,7 +839,7 @@ spec:
 Since the cronjob will not create a job right away, after applying the manifest,
 you can manually create an init job using the following command:
 
-```console
+```sh
 $ kubectl create job --from=cronjob/gcr-credentials-sync -n flux-system gcr-credentials-sync-init
 ```
 

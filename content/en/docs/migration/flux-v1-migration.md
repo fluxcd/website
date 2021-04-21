@@ -123,7 +123,7 @@ or delete its namespace and RBAC.
 If there are YAML files in your `deploy` dir that are not meant to be
 applied on the cluster, you can exclude them by placing a `.sourceignore` in your repo root:
 
-```cli
+```sh
 $ cat .sourceignore
 # exclude all
 /*
@@ -136,7 +136,7 @@ $ cat .sourceignore
 
 Install Flux v2 in the `flux-system` namespace:
 
-```console
+```sh
 $ flux install \
   --arch=amd64 \
   --network-policy=true \
@@ -156,7 +156,7 @@ $ flux install \
 
 Register your Git repository and add the deploy key with read-only access:
 
-```console
+```sh
 $ flux create source git app \
   --url=ssh://git@github.com/org/app \
   --branch=main \
@@ -179,7 +179,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A...
 
 Configure the reconciliation of the `deploy` dir on your cluster:
 
-```console
+```sh
 $ flux create kustomization app \
   --source=GitRepository/app \
   --path="./deploy" \
@@ -266,7 +266,7 @@ flux create kustomization app \
 
 Check the status of the Kustomization reconciliation:
 
-```console
+```sh
 $ flux get kustomizations app
 NAME	REVISION                                     	SUSPENDED	READY
 app 	main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
@@ -303,7 +303,7 @@ For more details, read the guides on how to configure
 
 Check the status of Git operations:
 
-```console
+```sh
 $ kubectl -n flux-system get gitrepositories
 NAME	READY	MESSAGE                                                                                                                                                                                        
 app 	True 	Fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b                                                                                                                               	
@@ -312,7 +312,7 @@ test	False	SSH handshake failed: unable to authenticate, attempted methods [none
 
 Check the status of the cluster reconciliation with kubectl:
 
-```console
+```sh
 $ kubectl -n flux-system get kustomizations
 NAME   READY   STATUS
 app    True    Applied revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9
@@ -321,7 +321,7 @@ test   False   The Service 'backend' is invalid: spec.type: Unsupported value: '
 
 Suspend a reconciliation:
 
-```console
+```sh
 $ flux suspend kustomization app
 ► suspending kustomization app in flux-system namespace
 ✔ kustomization suspended
@@ -329,7 +329,7 @@ $ flux suspend kustomization app
 
 Check the status with kubectl:
 
-```console
+```sh
 $ kubectl -n flux-system get kustomization app
 NAME   READY   STATUS
 app    False   Kustomization is suspended, skipping reconciliation
@@ -337,7 +337,7 @@ app    False   Kustomization is suspended, skipping reconciliation
 
 Resume a reconciliation:
 
-```console
+```sh
 $ flux resume kustomization app
 ► resuming Kustomization app in flux-system namespace
 ✔ Kustomization resumed

@@ -85,7 +85,7 @@ Apply the above files or commit them to the `fleet-infra` repository.
 
 To verify that the alert has been acknowledge by the notification controller do:
 
-```console
+```sh
 $ kubectl -n flux-system get alerts
 
 NAME             READY   STATUS        AGE

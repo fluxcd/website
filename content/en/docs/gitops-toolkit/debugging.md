@@ -31,7 +31,7 @@ runtime profiling data on their metrics HTTP server (default `:8080`).
 To collect a profile, port-forward to the component's metrics endpoint
 and collect the data from the [endpoint](#endpoints) of choice:
 
-```console
+```sh
 $ kubectl port-forward -n <namespace> deploy/<component> 8080
 $ curl -Sk -v http://localhost:8080/debug/pprof/heap > heap.out
 ```

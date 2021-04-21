@@ -280,7 +280,7 @@ to download the `flux` binary, and the container images from a computer with acc
 
 List all container images:
 
-```console
+```sh
 $ flux install --export | grep ghcr.io
 
 image: ghcr.io/fluxcd/helm-controller:v0.8.0

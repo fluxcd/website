@@ -99,7 +99,7 @@ flux create source git test \
 
 The source-watcher should log the revision:
 
-```console
+```sh
 New revision detected   {"gitrepository": "flux-system/test", "revision": "4.0.0/ab953493ee14c3c9800bda0251e0c507f9741408"}
 Extracted tarball into /var/folders/77/3y6x_p2j2g9fspdkzjbm5_s40000gn/T/test292235827: 123 files, 29 dirs (32.603415ms)
 Processing files...
@@ -115,7 +115,7 @@ flux create source git test \
 
 The source-watcher should log the new revision:
 
-```console
+```sh
 New revision detected   {"gitrepository": "flux-system/test", "revision": "4.0.1/113360052b3153e439a0cf8de76b8e3d2a7bdf27"}
 ```
 

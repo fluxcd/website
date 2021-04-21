@@ -398,7 +398,7 @@ spec:
 If the `spec.chart.spec.valuesFile` doesn't exists inside the chart, helm-controller will not be able to
 fetch the chart. To determine why the `HelmChart` fails to produce an artifact, you can inspect the status with:
 
-```console
+```sh
 $ kubectl get helmcharts --all-namespaces
 NAME    READY   STATUS
 mongodb False   failed to locate override values file: values-prod.yaml
@@ -476,7 +476,7 @@ The notification-controller generates a unique URL using the provided token and 
 
 Find the URL with:
 
-```console
+```sh
 $ kubectl -n flux-system get receiver/helm-podinfo
 
 NAME           READY   STATUS

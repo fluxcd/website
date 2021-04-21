@@ -106,7 +106,7 @@ kubectl apply -f basic-auth-sealed.yaml
 
 Verify that the sealed-secrets controller has created the `basic-auth` Kubernetes Secret:
 
-```console
+```sh
 $ kubectl -n default get secrets basic-auth
 
 NAME         TYPE     DATA   AGE

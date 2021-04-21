@@ -182,7 +182,7 @@ the controller and validates the output using `kubeval`.
 Misconfiguring the `HelmRelease.spec.chart`, like a typo in the chart name, version or chart source URL
 would result in a "HelmChart is not ready" error displayed by:
 
-```console
+```sh
 $ flux get helmreleases --all-namespaces
 NAMESPACE	NAME   	READY	MESSAGE
 default  	podinfo	False 	HelmChart 'default/default-podinfo' is not ready
@@ -191,7 +191,7 @@ default  	podinfo	False 	HelmChart 'default/default-podinfo' is not ready
 In order to get to the root cause, first make sure the source e.g. the `HelmRepository`
 is configured properly and has access to the remote `index.yaml`:
 
-```console
+```sh
 $ flux get sources helm --all-namespaces 
 NAMESPACE  	NAME   	READY	MESSAGE
 default   	podinfo	False	failed to fetch https://stefanprodan.github.io/podinfo2/index.yaml : 404 Not Found
@@ -200,7 +200,7 @@ default   	podinfo	False	failed to fetch https://stefanprodan.github.io/podinfo2
 If the source is `Ready`, then the error must be caused by the chart,
 for example due to an invalid chart name or non-existing version:
 
-```console
+```sh
 $ flux get sources chart --all-namespaces 
 NAMESPACE  	NAME           	READY	MESSAGE
 default  	default-podinfo	False	no chart version found for podinfo-9.0.0

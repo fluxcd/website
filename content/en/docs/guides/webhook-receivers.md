@@ -122,7 +122,7 @@ The notification controller generates a unique URL using the provided token and 
 
 Find the URL with:
 
-```console
+```sh
 $ kubectl -n flux-system get receiver/webapp
 
 NAME     READY   STATUS
