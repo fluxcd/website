@@ -1,10 +1,42 @@
-// override docsy styles
-@include media-breakpoint-down(md) {
+// // override docsy styles
+nav.navbar {
+  padding: 0;
+  background: $flux-black;
+
+  @include media-breakpoint-down(md) {
+    padding: 10px;
+  }
+   
+  .navbar-brand {
+    flex-grow: 1;
+
+    svg {
+      display: inline-block;
+      margin: 0 10px;
+      height: 30px;
+    }
+  }
+
   .navbar-nav {
     margin-top: 0 !important;
-  
+    overflow: visible !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
     .nav-link {
       font-size: 1rem;
+      text-transform: none;
+      font-weight: 700;
+    }
+  }
+
+  .nav-search-item {
+    flex-grow: 10;
+
+    .td-search-input {
+      border: none;
+      max-width: 14rem;
+      padding-left: 9px;
     }
   }
 }
