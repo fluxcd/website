@@ -1,12 +1,12 @@
 // // override docsy styles
 nav.navbar {
-  padding: 0;
   background: $flux-black;
 
+  padding: 0;
   @include media-breakpoint-down(md) {
     padding: 10px;
   }
-   
+
   .navbar-brand {
     flex-grow: 1;
 
@@ -31,12 +31,14 @@ nav.navbar {
   }
 
   .nav-search-item {
-    flex-grow: 10;
-
     .td-search-input {
       border: none;
-      max-width: 14rem;
+      max-width: 11rem;
       padding-left: 9px;
+      margin-right: 1rem;
+      @include media-breakpoint-up(md) {
+        margin-left: 2rem;
+      }
     }
   }
 }
