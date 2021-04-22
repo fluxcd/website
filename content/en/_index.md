@@ -11,17 +11,14 @@ description: >
 Flux is now a CNCF Incubation project!
 {{% /blocks/celebration %}}
 
-{{< blocks/hero title="Flux - the GitOps family of projects" color="primary" height="full" >}}
+{{% blocks/hero title="Flux - the GitOps family of projects" color="primary"
+                height="full" link_title="Get started" link_url="/docs/get-started/" %}}
 
 Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible.
 
 Flux v2 will be GA within the next few months! This means that Flux v1 will be deprecated before the end of 2021, so now is a good time to start using v2.
 
-<div class="mx-auto mt-5">
-  {{< blocks/link-down id="gitops" color="info" >}}
-</div>
-
-{{< /blocks/hero >}}
+{{% /blocks/hero %}}
 
 <!-- features  -->
 <div class="lead-gitops">

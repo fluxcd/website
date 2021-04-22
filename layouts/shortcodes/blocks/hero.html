@@ -8,6 +8,8 @@
 {{/* Height can be one of: auto, min, med, max, full. */}}
 {{ $height := .Get "height" | default "max" }}
 {{ $byline := .Get "byline" | default "" }}
+{{ $link_url := .Get "link_url" | default "#" }}
+{{ $link_title := .Get "link_title" | default "Get started" }}
 {{ with $promo_image }}
 {{ $promo_image_big := (.Fill (printf "1920x1080 %s" $image_anchor)) }}
 {{ $promo_image_small := (.Fill (printf "960x540 %s" $image_anchor)) }}
@@ -37,6 +39,10 @@
               {{ .Inner | markdownify }}
             {{ else }}
               {{ .Inner | htmlUnescape | safeHTML }}
+            {{ end }}
+
+            {{ if ne $link_url "#" }}
+            <a class="btn btn-lg btn-info" href="{{ $link_url }}">{{ $link_title }}</a>
             {{ end }}
         </div>
 
