@@ -1,3 +1,6 @@
 .page {
   margin-top: 6rem;
+  @include media-breakpoint-down(md) {
+    margin-top: 2rem;
+  }
 }
