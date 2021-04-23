@@ -19,6 +19,7 @@ This issue only affects you if you are using `--network-policy` on AKS, which is
 {{% alert color="warning" %}}
 AKS `--network-policy` is currently in Preview
 {{% /alert %}}
+
 ### AAD Pod-Identity
 
 Depending on the features you are interested in using with Flux, you may want to install AAD Pod Identity.
@@ -123,11 +124,12 @@ to store credentials for automation.
 Using a machine-user also has the benefit of being able to be read-only or
 restricted to specific repositories if this is needed.
 
-!!! note
-    Unlike `git`, Flux does not support the
-    ["shorter" scp-like syntax for the SSH protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_ssh_protocol)
-    (e.g. `ssh.dev.azure.com:v3`).
-    Use the [RFC 3986 compatible syntax](https://tools.ietf.org/html/rfc3986#section-3) instead: `ssh.dev.azure.com/v3`.
+{{% alert color="info" %}}
+Unlike `git`, Flux does not support the ["shorter" scp-like syntax for the SSH
+protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_ssh_protocol)
+(e.g. `ssh.dev.azure.com:v3`).
+Use the [RFC 3986 compatible syntax](https://tools.ietf.org/html/rfc3986#section-3) instead: `ssh.dev.azure.com/v3`.
+{{% /alert %}}
 
 If you wish to use Git over HTTPS, then generate a personal access token and supply it as the password:
 
@@ -224,6 +226,7 @@ You will need to create an ACR registry and bind a credential such as a Service 
 If you want to use Managed Identities, install or enable [AAD Pod Identity](#aad-pod-identity).
 
 You may need to update your Flux install to include additional components:
+
 ```sh
 flux install \
   --components-extra="image-reflector-controller,image-automation-controller" \
