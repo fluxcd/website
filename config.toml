@@ -57,7 +57,6 @@ enable = false
 description          = "Open and extensible continuous delivery solution for Kubernetes."
 copyright            = "The Flux authors"
 github_repo  		 = "https://github.com/fluxcd/website"
-github_subdir	     = "en"
 github_branch		 = "main"
 github_project_repo  = "https://github.com/fluxcd/flux2"
 slack                = "https://cloud-native.slack.com/messages/flux"
