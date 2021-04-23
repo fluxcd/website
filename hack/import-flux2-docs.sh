@@ -21,6 +21,7 @@ gen_crd_doc() {
   {
     echo "---"
     echo "title: $TITLE"
+    echo "importedDoc: true"
     echo "---"
   } >> "$DEST"
   cat "$TMP" >> "$DEST"
