@@ -19,7 +19,7 @@ theme = ["docsy"]
 unsafe = true
 [markup.highlight]
 # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-style = "dracula"
+style = "paraiso-dark"
 [markup.parser]
 autoHeadingID = true
 autoHeadingIDType = "github"
@@ -117,7 +117,7 @@ weight = 9999
 
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
-	name = "Flux GitHub Org"
+	name = "Flux project on GitHub"
 	url = "https://github.com/fluxcd"
 	icon = "fab fa-github"
 	desc = "Development takes place here!"
