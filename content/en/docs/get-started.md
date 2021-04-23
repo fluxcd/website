@@ -8,8 +8,8 @@ description: >
 
 {{% alert color="info" title="Basic knowledge" %}}
 This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
-The core concepts used in this guide are [GitOps](../core-concepts/#gitops),
-[Sources](../core-concepts/#sources), [Kustomization](../core-concepts/#kustomization).
+The core concepts used in this guide are [GitOps](../concepts/#gitops),
+[Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
 {{% /alert %}}
 
 In this tutorial, you will deploy an application to a kubernetes cluster with Flux
