@@ -74,8 +74,9 @@ In case these examples are too heavy, this short link guide can help you navigat
 
 The entry point for these examples begins at `.github/workflows/` in any GitHub source repository where your YAML manifests are stored.
 
-!!! warning "`GitRepository` source only targets one branch"
-    While this first example operates on any branch (`branches: ['*']`), each `Kustomization` in Flux only deploys manifests from **one branch or tag** at a time. Understanding this is key for managing large Flux deployments and clusters with multiple `Kustomizations` and/or crossing several environments.
+{{% alert color="warning" title="GitRepository source only targets one branch" %}}
+While this first example operates on any branch (`branches: ['*']`), each `Kustomization` in Flux only deploys manifests from **one branch or tag** at a time. Understanding this is key for managing large Flux deployments and clusters with multiple `Kustomizations` and/or crossing several environments.
+{{% /alert %}}
 
 First add this directory if needed in your repositories. Find the example below in context, and read on to understand how it works: [01-manifest-generate.yaml].
 
@@ -122,8 +123,9 @@ echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 echo ::set-output name=VERSION::${VERSION}
 ```
 
-!!! note "When migrating to Flux v2"
-    Users will find that [some guidance has changed since Flux v1]. Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags], preferred by the `image-automation-controller`.
+{{% alert title="When migrating to Flux v2" %}}
+Users will find that [some guidance has changed since Flux v1]. Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags], preferred by the `image-automation-controller`.
+{{% /alert %}}
 
 Next we call out to a shell script `update-k8s.sh` taking one argument, the Git SHA value from GitHub:
 
@@ -266,8 +268,9 @@ Now for another staple workflow: building and pushing an OCI image tag from a Do
 
 From the Actions marketplace, [Build and push Docker images] provides the heavy lifting in this example. Flux has nothing to do with building images, but we include this still — as some images will need to be built for our use in these examples.
 
-!!! hint "`ImageRepository` can reflect both branches and tags"
-    This example builds an image for any branch or tag ref and pushes it to Docker Hub. (Note the omission of `branches: ['*']` that was in the prior example.) GitHub Secrets `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` are used here to authenticate with Docker Hub from within GitHub Actions.
+{{% alert title="ImageRepository can reflect both branches and tags" %}}
+This example builds an image for any branch or tag ref and pushes it to Docker Hub. (Note the omission of `branches: ['*']` that was in the prior example.) GitHub Secrets `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` are used here to authenticate with Docker Hub from within GitHub Actions.
+{{% /alert %}}
 
 We again borrow a [Prepare step] from Kustomize Controller's own release workflow. Find the example below in context, [02-docker-build.yaml], or copy it from below.
 
@@ -343,8 +346,9 @@ In application repositories, it is common to maintain an environment branch, a r
 
 It is recommended to follow these examples as they are written for better understanding, then later change and adapt them for your own release practices and environments.
 
-!!! note "`GitRepository` source only targets one branch"
-    Since Flux uses one branch per Kustomization, to trigger an update we must write to a `deploy` branch or tag. Even when new app images can come from any branch (eg. for Dev environments where any latest commit is to be deployed) the YAML manifests to deploy will be sourced from just one branch.
+{{% alert title="GitRepository source only targets one branch" %}}
+Since Flux uses one branch per Kustomization, to trigger an update we must write to a `deploy` branch or tag. Even when new app images can come from any branch (eg. for Dev environments where any latest commit is to be deployed) the YAML manifests to deploy will be sourced from just one branch.
+{{% /alert %}}
 
 It is advisable to protect repository main and release branches with eg. branch policies and review requirements, as through automation, these branches can directly represent the production environment.
 
@@ -436,8 +440,9 @@ While the remaining examples will be written to depend on `kubecfg`, some use ca
 
 The `jsonnet-render` step is borrowed from another source, again find it on [GitHub Actions Marketplace][actions/jsonnet-render] for more information. For Tanka users, there is also [letsbuilders/tanka-action] which describes itself as heavily inspired by `jsonnet-render`.
 
-!!! note "The `EndBug/add-and-commit` action is used again"
-    This time, with the help of `rake.sh`, our change is staged into a different target branch. This is the same `deploy` branch, regardless of which branch or tag the build comes from; any configured push event can trigger this workflow to trigger an update to the deploy branch.
+{{% alert title="The EndBug/add-and-commit action is used again" %}}
+This time, with the help of `rake.sh`, our change is staged into a different target branch. This is the same `deploy` branch, regardless of which branch or tag the build comes from; any configured push event can trigger this workflow to trigger an update to the deploy branch.
+{{% /alert %}}
 
 ```bash
 #!/bin/bash

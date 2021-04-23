@@ -123,10 +123,11 @@ Team members can then import this key when they pull the Git repository:
 gpg --import ./clusters/cluster0/.sops.pub.asc
 ```
 
-!!! hint
-    The public key is sufficient for creating brand new files.
-    The secret key is required for decrypting and editing existing files because SOPS computes a MAC on all values.
-    When using solely the public key to add or remove a field, the whole file should be deleted and recreated.
+{{% alert color="info" %}}
+The public key is sufficient for creating brand new files.
+The secret key is required for decrypting and editing existing files because SOPS computes a MAC on all values.
+When using solely the public key to add or remove a field, the whole file should be deleted and recreated.
+{{% /alert %}}
 
 ## Configure the Git directory for encryption
 
