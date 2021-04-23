@@ -16,7 +16,7 @@ The helm-controller is part of the default toolkit installation.
 
 ## Prerequisites
 
-To follow this guide you'll need a Kubernetes cluster with the GitOps 
+To follow this guide you'll need a Kubernetes cluster with the GitOps
 toolkit controllers installed on it.
 Please see the [get started guide](../get-started/index.md)
 or the [installation guide](installation.md).
@@ -75,7 +75,7 @@ later on in the guide).
 **There is one caveat you should be aware of:** to make the
 source-controller produce a new chart artifact, the `version` in the
 `Chart.yaml` of the chart must be bumped.
-  
+
 An example `GitRepository`:
 
 ```yaml
@@ -390,12 +390,14 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-      valuesFile: values-production.yaml
+      valuesFiles:
+        - values.yaml
+        - values-production.yaml
   values:
     replicaCount: 5
 ```
 
-If the `spec.chart.spec.valuesFile` doesn't exists inside the chart, helm-controller will not be able to
+If the `spec.chart.spec.valuesFiles` doesn't exists inside the chart, helm-controller will not be able to
 fetch the chart. To determine why the `HelmChart` fails to produce an artifact, you can inspect the status with:
 
 ```sh
@@ -451,7 +453,7 @@ First generate a random string and create a secret with a `token` field:
 TOKEN=$(head -c 12 /dev/urandom | shasum | cut -d ' ' -f1)
 echo $TOKEN
 
-kubectl -n flux-system create secret generic webhook-token \	
+kubectl -n flux-system create secret generic webhook-token \
 --from-literal=token=$TOKEN
 ```
 

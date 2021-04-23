@@ -291,20 +291,24 @@ $ flux create image update my-app-auto \
     --export > ./$AUTO_PATH/my-app-auto.yaml
 $ cat my-app-auto.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1alpha2
 kind: ImageUpdateAutomation
 metadata:
   name: my-app-auto
   namespace: flux-system
 spec:
-  checkout:
-    branch: main
-    gitRepositoryRef:
-      name: flux-system
-  commit:
-    authorEmail: fluxbot@example.com
-    authorName: FluxBot
   interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxbot@example.com
+        name: FluxBot
 ```
 
 #### Commit and check that the automation object works
@@ -361,14 +365,8 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.app: semver:^5.0
-  selector:
-    matchLabels:
-      app: podinfo
 spec:
   template:
-    metadata:
-      labels:
-        app: podinfo
     spec:
       containers:
       - name: app
@@ -400,14 +398,8 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.app: semver:^5.0
-  selector:
-    matchLabels:
-      app: podinfo
 spec:
   template:
-    metadata:
-      labels:
-        app: podinfo
     spec:
       containers:
       - name: app
@@ -425,7 +417,7 @@ $ flux create image repository podinfo-image \
     --export > ./$AUTO_PATH/podinfo-image.yaml
 $ cat ./$AUTO_PATH/podinfo-image.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1alpha2
 kind: ImageRepository
 metadata:
   name: podinfo-image
@@ -531,7 +523,7 @@ Say you want to filter for only images that are from `main` branch, and pick the
 `ImagePolicy` would look like this:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1alpha2
 kind: ImagePolicy
 metadata:
   name: my-app-policy
@@ -575,7 +567,7 @@ example, you might put a target environment as well as the version in your image
 Then you would use an `ImagePolicy` similar to this one:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1alpha2
 kind: ImagePolicy
 metadata:
   name: my-app-policy
@@ -606,7 +598,7 @@ $ flux create image policy my-app-policy \
     --export > ./$AUTO_PATH/my-app-policy.yaml
 $ cat ./$AUTO_PATH/my-app-policy.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
+apiVersion: image.toolkit.fluxcd.io/v1alpha2
 kind: ImagePolicy
 metadata:
   name: my-app-policy
@@ -665,14 +657,8 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.app: semver:^5.0 # <-- `.app` here
-  selector:
-    matchLabels:
-      app: podinfo
 spec:
   template:
-    metadata:
-      labels:
-        app: podinfo
     spec:
       containers:
       - name: app                  # <-- targets `app` here
@@ -691,14 +677,8 @@ kind: Deployment
 metadata:
   namespace: default
   name: my-app
-  selector:
-    matchLabels:
-      app: podinfo
 spec:
   template:
-    metadata:
-      labels:
-        app: podinfo
     spec:
       containers:
       - name: app
