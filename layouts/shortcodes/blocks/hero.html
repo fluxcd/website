@@ -28,8 +28,8 @@
   }
 </style>
 {{ end }}
-<section id="{{ $blockID }}" class="row td-hero-block td-overlay -bg-{{ $col_id }} ">
-  <div class="container td-overlay__inner" style="padding: 20px;">
+<section id="{{ $blockID }}" class="row td-hero-block">
+  <div class="container">
       <div class="row">
         <div class="col-md">
             {{ with .Get "title" }}<h1 class="display-1">{{ $title := . }}{{ with $logo_image }}{{ $logo_image_resized := (.Fit (printf "70x70 %s" $logo_anchor)) }}<img class="td-hero-logo" src="{{ $logo_image_resized.RelPermalink }}" alt="{{ $title | html }} Logo">{{ end }}{{ $title | html }}</h1>{{ end }}
@@ -58,9 +58,4 @@
 
       </div>
   </div>
-  {{ if $byline }}
-  <div class="byline">
-    <small>{{ $byline }}</small>
-  </div>
-  {{ end }}
 </section>

@@ -6,32 +6,50 @@
 }
 
 .td-hero-block {
-    overflow: hidden;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    background: {
-        repeat: no-repeat;
-        color: transparent;
-        // size: cover;
-    };
+    padding-bottom: 12rem;
 
-    &::before {
-      position: absolute;
-      right: 0;
-      bottom: 5vw;
-      width: 100%;
-      height: 150%;
-      content: "";
-      background: linear-gradient(240deg, $flux-light-blue 0%, $flux-dark-blue 39%);
+    background: $flux-dark-blue;
+    background: repeating-linear-gradient(45deg, rgba($flux-darkest-blue, 0.08) 0px,  rgba($flux-darkest-blue, 0.05) 2px,  rgba($flux-dark-blue, 0.08) 2px, rgba($flux-dark-blue, 0.05) 4px),
+                radial-gradient(circle at top right, rgba($flux-light-blue, 0.8), rgba($flux-lighter-blue, 0.5) 40%, rgba($flux-dark-blue, 0.8) 80%),
+                linear-gradient(120deg, rgba($flux-darkest-blue, 0.9), rgba($flux-lighter-blue, 0.9) 30%, $flux-dark-blue 60%),
+                $flux-dark-blue;
+
+    p {
+      color: $flux-white;
     }
 
+    h1 {
+      color: $flux-white;
+      background-color: $flux-white;
+      background-image: repeating-linear-gradient(45deg, $flux-white, $flux-white 2px, rgba(150,150,200, 0.1) 2px, rgba(150,150,200, 0.05) 4px);
+      background-size: 100%;
 
-    
-    &.td-overlay {      
-  }
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+
+    .fa-chevron-circle-down {
+      color: $flux-darkest-blue !important;
+    }
+
     & > .byline {
         position: absolute;
         bottom: 2px;
         right: 4px;
     }
+
+    .col-terminal {
+      padding-top: 0.5rem;
+    }
+}
+
+.lead-gitops section {
+  border-top: 1px dotted rgb(150,150,200);
+  padding: 3rem 0 2rem 0 !important;
+
+  background: $flux-dark-blue;
+  background: radial-gradient(circle at top right, rgba($flux-dark-blue, 0.05), rgba($flux-light-blue, 0.15) 20%, rgba($flux-darkest-blue, 0.1) 80%, $flux-dark-blue 100%),
+              $flux-dark-blue;
 }
