@@ -1,0 +1,37 @@
+// See https://getbootstrap.com/docs/4.0/getting-started/theming/#color
+
+$enable-gradients: false;
+$enable-rounded: true;
+$enable-shadows: true;
+
+// Border radius
+$border-radius: .25rem;
+$border-radius-lg: .3rem;
+$border-radius-sm: .2rem;
+
+// Other colors
+$slack-green: #74cdb0;
+$twitter-blue: #1da1f2;
+$linkedin-blue: #0e76a8;
+
+// Flux color palette
+$flux-darkest-blue: #243f80;
+$flux-dark-blue: #3d6ddd;
+$flux-lighter-blue: #5f86e3;
+$flux-light-blue: #c3d2f4;
+
+$flux-black: #1a1a1a;
+$flux-white: #ffffff;
+
+$primary: $flux-dark-blue;
+$secondary: $flux-light-blue;
+$dark: $flux-black;
+$blue: $flux-dark-blue;
+
+$google_font_name: "Montserrat";
+$google_font_family: "Montserrat:300,300i,400,400i,600,600i,700,700i";
+
+$navbar-dark-color: rgba($flux-white, 0.75) !default;
+$navbar-dark-hover-color: rgba($flux-white, 0.5) !default;
+$navbar-dark-active-color: $flux-white !default;
+$navbar-dark-disabled-color: rgba($flux-white, 0.25) !default;

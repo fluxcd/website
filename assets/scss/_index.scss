@@ -1,0 +1,89 @@
+.lead-gitops {
+  section {
+    h2, p {
+      color: $flux-white;
+    }
+    h2 {
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    a {
+      color: $flux-white;
+      font-style: italic;
+    }
+    background-color: $flux-dark-blue;
+    .td-arrow-down {
+      &::before {
+        border: {
+          color: #{$flux-dark-blue} transparent transparent transparent;
+        }
+      }
+    }
+  }
+}
+
+.features, .resources {
+  .col-lg-4 {
+    margin: 2rem 0rem !important;
+    padding: 0 2rem !important;
+  }
+
+  .h3 {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-weight: 600;
+    margin: 0.85rem 0;
+  }
+}
+
+.features {
+  .fas, .fab, .fa {
+    color: $flux-dark-blue;
+  }
+}
+
+.resources {
+  h4 {
+    color: $flux-white;
+  }
+  img {
+    width: 320px;
+    height: 180px;
+  }
+}
+
+.flux-other-projects {
+  section {
+    margin: 0 auto;
+  }
+}
+
+.section-community {
+  section.row.td-box {
+    padding-top: 1.5rem;
+  }
+
+  .h3 {
+    font-weight: 600;
+  }
+
+  .join-github {
+    margin-top: 48px;
+  }
+
+  .join-slack, .join-ml  {
+    margin-top: 72px;
+  }
+
+  p > a {
+    font-size: 1.5rem;
+  }
+}
+
+h2.section-label {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}

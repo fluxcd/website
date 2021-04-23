@@ -1,0 +1,9 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $blockID := printf "td-cover-block-%d" .Ordinal }}
+{{ $logo := printf "img/logos/%s" site.Params.logos.cncf | relURL }}
+<section id="{{ $blockID }}" class="">
+    <div class="p-3 mb-2 container">
+      <p class="h3 p-3 mb-2 text-muted text-center">Flux is a <a href="https://cncf.io">Cloud Native Computing Foundation</a> Incubation project</p>
+      <img class="p-3 mb-2 img-fluid is-cncf-logo" src="{{ $logo }}" alt="Cloud Native Computing Foundation logo">
+    </div>
+</section>

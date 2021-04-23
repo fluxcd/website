@@ -4,3 +4,11 @@ node_modules/
 # Hugo-generated assets
 public/
 resources/
+themes/docsy
+themes/docsy-*
+
+# Imported Flux CLI docs
+content/en/docs/cmd/flux*
+
+# Editors
+.vscode

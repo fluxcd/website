@@ -1,0 +1,44 @@
+// // override docsy styles
+nav.navbar {
+  background: $flux-black;
+
+  padding: 0;
+  @include media-breakpoint-down(md) {
+    padding: 10px;
+  }
+
+  .navbar-brand {
+    flex-grow: 1;
+
+    svg {
+      display: inline-block;
+      margin: 0 10px;
+      height: 30px;
+    }
+  }
+
+  .navbar-nav {
+    margin-top: 0 !important;
+    overflow: visible !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .nav-link {
+      font-size: 1rem;
+      text-transform: none;
+      font-weight: 700;
+    }
+  }
+
+  .nav-search-item {
+    .td-search-input {
+      border: none;
+      max-width: 11rem;
+      padding-left: 9px;
+      margin-right: 1rem;
+      @include media-breakpoint-up(md) {
+        margin-left: 2rem;
+      }
+    }
+  }
+}

@@ -4,11 +4,11 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 
 > **Note**: The sources for some of Flux's documentation are housed in the other Flux repositories within <https://github.com/fluxcd>. Issues and pull requests for this documentation should be registered at that repos.
 >
-> Project | Docs Site | Github Source
-> ------- | --------- | -------------
-> Flux v1 | <https://docs.fluxcd.io> | <https://github.com/fluxcd/flux>
+> Project       | Docs Site                                        | Github Source
+> ------------- | ------------------------------------------------ | -------------
+> Flux v1       | <https://docs.fluxcd.io>                         | <https://github.com/fluxcd/flux>
 > Helm Operator | <https://docs.fluxcd.io/projects/helm-operator/> | <https://github.com/fluxcd/helm-operator>
-> Flux v2 | <https://toolkit.fluxcd.io> | <https://github.com/fluxcd/flux2>
+> Flux v2       | <https://fluxcd.io/docs>                         | <https://github.com/fluxcd/website>
 >
 > We are in the process of moving everything into this repository: `/fluxcd/website`. The work can be tracked here: <https://github.com/fluxcd/website/issues/76>.
 
@@ -19,7 +19,8 @@ The main landing page of this website can be modified in `config.toml`.
 All other content lives in the `content` directory:
 
 - `./content/en/blog` contains all blog posts - make sure you update the front-matter for posts to show up correctly.
-- `./external-sources/` defines how files from other repositories are pulled in. We currently do this for Markdown files from the `/fluxcd/community` repository. (The `./hack/gen-content.sh` pulls these in.)
+- `./external-sources/` defines how files from other repositories are pulled in. We currently do this for Markdown files from the `/fluxcd/community` and `/fluxcd/.github` repositories. (`make gen-content` pulls these in.)
+- Flux CLI docs (`cmd`) and `components` docs: under `./content/en/docs` but pulled in through in `make gen-content` as well.
 
 ## Running the site locally
 
@@ -32,6 +33,7 @@ Once those tools are installed, fetch the assets necessary to run the site:
 
 ```cli
 npm install
+make theme
 ```
 
 Then run the site in "server" mode:
