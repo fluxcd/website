@@ -1,5 +1,5 @@
 ---
-title: GitHub Actions Manifest Generation
+title: Flux for Helm Users
 linkTitle: Helm
 ---
 
