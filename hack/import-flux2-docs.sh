@@ -3,6 +3,52 @@
 COMPONENTS_DIR="content/en/docs/components"
 FLUX_DIR="content/en/docs/cmd"
 
+fatal() {
+    echo '[ERROR] ' "$@" >&2
+    exit 1
+}
+
+# Set os, fatal if operating system not supported
+setup_verify_os() {
+    if [ -z "${OS}" ]; then
+        OS=$(uname)
+    fi
+    case ${OS} in
+        Darwin)
+            OS=darwin
+            ;;
+        Linux)
+            OS=linux
+            ;;
+        *)
+            fatal "Unsupported operating system ${OS}"
+    esac
+}
+
+# Set arch, fatal if architecture not supported
+setup_verify_arch() {
+    if [ -z "${ARCH}" ]; then
+        ARCH=$(uname -m)
+    fi
+    case ${ARCH} in
+        arm|armv6l|armv7l)
+            ARCH=arm
+            ;;
+        arm64|aarch64|armv8l)
+            ARCH=arm64
+            ;;
+        amd64)
+            ARCH=amd64
+            ;;
+        x86_64)
+            ARCH=amd64
+            ;;
+        *)
+            fatal "Unsupported architecture ${ARCH}"
+    esac
+}
+
+
 controller_version() {
   if [ ! "$(command -v jq)" ]; then
     echo "Please install 'jq'."
@@ -76,12 +122,22 @@ gen_crd_doc() {
 
 {
   # get flux cmd docs
+  setup_verify_os
+  setup_verify_arch
+
   TMP="$(mktemp -d)"
-  git clone -q --depth 1 git@github.com:fluxcd/flux2 "$TMP"
-  if [ ! -d "$FLUX_DIR" ]; then
-    mkdir "$FLUX_DIR"
-  fi
-  cp -r "$TMP"/docs/cmd/* $FLUX_DIR
+  TMP_METADATA="$TMP/flux.json"
+  TMP_BIN="$TMP/flux.tar.gz"
+
+  curl -o "${TMP_METADATA}" -sfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
+  VERSION_FLUX=$(grep '"tag_name":' "${TMP_METADATA}" | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
+
+  curl -o "${TMP_BIN}" -sfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
+  tar xfz "${TMP_BIN}" -C "${TMP}"
+
+  rm -rf "${FLUX_DIR:?}/*"
+  "${TMP}/flux" docgen --path "${FLUX_DIR}"
+
   rm -rf "$TMP"
   exit 0
 }
