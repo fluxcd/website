@@ -2,7 +2,7 @@
 other = "minute read"
 
 [ui_read_more]
-other = "Read more..."
+other = "Read more"
 
 [ui_pager_prev]
 other = "Previous"
