@@ -8,7 +8,7 @@ controller_version() {
     echo "Please install 'jq'."
     exit 1
   fi
-  curl -s "https://registry.hub.docker.com/v2/repositories/fluxcd/$1/tags/?page_size=1" | jq -r .results[].name
+  curl -s "https://api.github.com/repos/fluxcd/$1/releases" | jq -r '.[] | .tag_name' | sort -V | tail -n 1
 }
 
 gen_crd_doc() {
