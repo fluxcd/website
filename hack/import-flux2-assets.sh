@@ -139,5 +139,13 @@ gen_crd_doc() {
   "${TMP}/flux" docgen --path "${FLUX_DIR}"
 
   rm -rf "$TMP"
+}
+
+{
+  # provide Flux install script
+  if [ ! -d static ]; then
+    mkdir static
+  fi
+  curl -s -# -Lf https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh -o static/install.sh
   exit 0
 }
