@@ -54,7 +54,7 @@ The main difference is Flux client will not imperatively create resources in the
 Instead these commands create Custom Resource *files*, which are committed to version control as instructions only (note: you may use the `--export` flag to manage any file edits with finer grained control before pushing to version control).
 Separately, the Flux Helm Controller software agent automatically reconciles these instructions with the running state of your cluster based on your configured rules.
 
-Lets check out what the Custom Resoruce instruction files look like:
+Lets check out what the Custom Resource instruction files look like:
 
 ```yaml
 # /flux/boot/traefik/helmrepo.yaml
