@@ -7,8 +7,9 @@ resources/
 themes/docsy
 themes/docsy-*
 
-# Imported Flux CLI docs
+# Imported Flux CLI assets
 content/en/docs/cmd/flux*
+static/install.sh
 
 # Editors
 .vscode
