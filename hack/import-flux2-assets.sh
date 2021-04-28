@@ -62,16 +62,36 @@ gen_crd_doc() {
   TMP="$(mktemp)"
   DEST="$2"
   curl -# -Lf "$URL" > "$TMP"
-  TITLE="$(head -n1 "$TMP"  | cut -d'<' -f2 | cut -d'>' -f2 | sed 's/^\#\ //')"
 
-  {
-    echo "---"
-    echo "title: $TITLE"
-    echo "importedDoc: true"
-    echo "---"
-  } >> "$DEST"
-  cat "$TMP" >> "$DEST"
-  rm "$TMP"
+  # Ok, so this section is not pretty, but we have a number of issues we need to look at here:
+  #
+  # 1. Some lines start with editor instructions (<!-- line length, blah something .. -->)
+  # 2. Some title lines go <h1>Title is here</h1>
+  # 3. While others go     # Here is the title you're looking for...
+  #
+
+  FIRST_LINE="$(grep -vE "^<!--" "$TMP" | head -n1)"
+  if echo "$FIRST_LINE" | grep -q "<h1>" ; then
+    TITLE="$(echo "$FIRST_LINE" | cut -d'<' -f2 | cut -d'>' -f2 | sed 's/^\#\ //')"
+  elif echo "$FIRST_LINE" | grep -E "^# "; then
+    TITLE="$(echo "$FIRST_LINE" | sed 's/^\#\ //')"
+  else
+    echo "Don't know what to do with '$FIRST_LINE' in $TMP."
+    exit 1
+  fi
+
+  if [ -n "$TITLE" ]; then
+    {
+      echo "---"
+      echo "title: $TITLE"
+      echo "importedDoc: true"
+      echo "---"
+    } >> "$DEST"
+    grep -vE "^<!--" "$TMP" |sed '1d' >> "$DEST"
+    rm "$TMP"
+  else
+    mv "$TMP" "$DEST"
+  fi
 }
 
 {
