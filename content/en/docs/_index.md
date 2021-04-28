@@ -1,42 +1,9 @@
 ---
 title: "Flux Documentation"
 linkTitle: "Docs"
-weight: 0
 menu:
   main:
     weight: 10
-description: >
-  Flux v2 Documentation.
-layout: docsportal_home
-cards:
-- name: concepts
-  title: "Understand the basics"
-  description: "Learn about Flux and its fundamental concepts."
-  button: "Learn Concepts"
-  button_path: "/docs/concepts"
-- name: get started
-  title: "Try Flux"
-  description: "Follow our guide to getting started with Flux."
-  button: "View Guide"
-  button_path: "/docs/get-started"
-- name: tasks
-  title: "Learn how to use Flux"
-  description: "Look up common tasks and how to perform them using a short sequence of steps."
-  button: "View Tasks"
-  button_path: "/docs/guides"
-- name: migration
-  title: "Understand Migration Paths"
-  description: "Something migration"
-  button: "View Migration" 
-  button_path: "/docs/migration"
-- name: contribute
-  title: Contribute to Flux
-  description: Anyone can contribute, whether you're new to the project or you've been around a long time.
-  button: Contribute to the docs
-  button_path: /docs/contribute
-- name: about
-  title: About the documentation
-  description: This website contains documentation for the current version of Flux.
 ---
 
 Flux is a tool for keeping Kubernetes clusters in sync with sources of
@@ -49,7 +16,7 @@ components of the Kubernetes ecosystem. In version 2, Flux supports
 multi-tenancy and support for syncing an arbitrary number of Git
 repositories, among other long-requested features.
 
-Flux v2 is constructed with the [GitOps Toolkit](components/index.md),
+Flux v2 is constructed with the [GitOps Toolkit](components/),
 a set of composable APIs and specialized tools for building Continuous
 Delivery on top of Kubernetes.
 
@@ -61,7 +28,7 @@ Flux helps
 - **platform engineers** who build continuous delivery for developer teams;
 - **app developers** who rely on continuous delivery to get their code live.
 
-The [GitOps Toolkit](components/index.md) is for **platform
+The [GitOps Toolkit](components/) is for **platform
 engineers** who want to make their own continuous delivery system, and
 have requirements not covered by Flux.
 
@@ -83,17 +50,17 @@ The `flux` command-line tool is a convenient way to bootstrap the
 system in a cluster, and to access the custom resources that make up
 the API.
 
-![overview](_files/gitops-toolkit.png)
+![overview](/img/diagrams/gitops-toolkit.png)
 
 ## Where do I start?
 
 {{% alert title="Get started with Flux v2!" %}}
-Following this [guide](get-started/index.md) will just take a couple of minutes to complete:
+Following this [guide](get-started/) will just take a couple of minutes to complete:
 After installing the `flux` CLI and running a couple of very simple commands,
 you will have a GitOps workflow setup which involves a staging and a production cluster.
 {{% /alert %}}
 
-If you should need help, please refer to our **[Support page](https://fluxcd.io/support/)**.
+If you should need help, please refer to our **[Support page](/support/)**.
 
 ## More detail on what's in Flux
 
@@ -120,22 +87,22 @@ Need help or want to contribute? Please see the links below. The Flux project is
 new contributors and there are a multitude of ways to get involved.
 
 - Getting Started?
-    - Look at our [Get Started guide](https://toolkit.fluxcd.io/get-started/) and give us feedback
+    - Look at our [Get Started guide](get-started/) and give us feedback
 - Need help?
     - First: Ask questions on our [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
     - Second: Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
-    - Please follow our [Support Guidelines](https://fluxcd.io/support/)
+    - Please follow our [Support Guidelines](/support/)
       (in short: be nice, be respectful of volunteers' time, understand that maintainers and
       contributors cannot respond to all DMs, and keep discussions in the public #flux channel as much as possible).
 - Have feature proposals or want to contribute?
     - Propose features on our [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
     - Join our upcoming dev meetings ([meeting access and agenda](https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/view))
     - [Join the flux-dev mailing list](https://lists.cncf.io/g/cncf-flux-dev).
-    - Check out [how to contribute](contributing/index.md) to the project
+    - Check out [how to contribute](/contributing) to the project
 
 ### Events
 
-Check out our **[events calendar](https://fluxcd.io/community/#talks)**,
+Check out our **[events calendar](/community/#talks)**,
 both with upcoming talks you can attend or past events videos you can watch.
 
 We look forward to seeing you with us!
