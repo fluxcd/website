@@ -18,7 +18,7 @@ toolkit controllers installed on it.
 Please see the [get started guide](../get-started/index.md)
 or the [installation guide](installation.md).
 
-The [notification controller](../components/notification/controller.md)
+The [notification controller](../components/notification/_index.md)
 can handle events coming from external systems
 (GitHub, GitLab, Bitbucket, Harbor, Jenkins, etc)
 and notify the GitOps toolkit controllers about source changes.

@@ -36,7 +36,7 @@ All sources are specified as Custom Resources in a Kubernetes cluster, examples
 of sources are `GitRepository`, `HelmRepository` and `Bucket` resources. 
 
 For more information, take a look at [the source controller
-documentation]({{< relref "./components/source/controller.md" >}}).
+documentation]({{< relref "./components/source/_index.md" >}}).
 
 ## Reconciliation
 

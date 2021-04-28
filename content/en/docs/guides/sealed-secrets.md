@@ -33,7 +33,7 @@ For Linux or Windows you can download the kubeseal binary from
 
 ## Deploy sealed-secrets with a HelmRelease
 
-You'll be using [helm-controller](../components/helm/controller.md) APIs to install
+You'll be using [helm-controller](../components/helm/_index.md) APIs to install
 the sealed-secrets controller from its [Helm chart](https://hub.kubeapps.com/charts/stable/sealed-secrets).
 
 First you have to register the Helm repository where the sealed-secrets chart is published:
@@ -44,7 +44,7 @@ flux create source helm sealed-secrets \
 --url=https://bitnami-labs.github.io/sealed-secrets
 ```
 
-With `interval` we configure [source-controller](../components/source/controller.md) to download
+With `interval` we configure [source-controller](../components/source/_index.md) to download
 the Helm repository index every hour. If a newer version of sealed-secrets is published,
 source-controller will signal helm-controller that a new chart is available.
 
