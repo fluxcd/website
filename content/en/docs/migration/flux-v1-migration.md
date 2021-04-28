@@ -138,7 +138,6 @@ Install Flux v2 in the `flux-system` namespace:
 
 ```sh
 $ flux install \
-  --arch=amd64 \
   --network-policy=true \
   --watch-all-namespaces=true \
   --namespace=flux-system
@@ -258,7 +257,7 @@ Configure the reconciliation of the `prod` overlay on your cluster:
 
 ```sh
 flux create kustomization app \
-  --source=app \
+  --source=GitRepository/app \
   --path="./overlays/prod" \
   --prune=true \
   --interval=10m
