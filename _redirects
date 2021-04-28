@@ -1,0 +1,5 @@
+/docs/components/helm/controller            /docs/components/helm           301!
+/docs/components/image/controller           /docs/components/image          301!
+/docs/components/kustomize/controller       /docs/components/kustomize      301!
+/docs/components/notification/controller    /docs/components/notification   301!
+/docs/components/source/controller          /docs/components/source         301!

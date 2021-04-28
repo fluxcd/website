@@ -191,8 +191,8 @@ flux install \
 git add -A && git commit -m "Upgrade to $(flux -v)" && git push
 ```
 
-The [source-controller](../components/source/controller.md) will pull the changes on the cluster,
-then [kustomize-controller](../components/source/controller.md)
+The [source-controller](../components/source/_index.md) will pull the changes on the cluster,
+then [kustomize-controller](../components/source/_index.md)
 will perform a rolling update of all Flux components including itself.
 
 ## Helm Repositories on Azure Container Registry

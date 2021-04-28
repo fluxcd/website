@@ -24,11 +24,11 @@ When working with the Helm Operator, you had to mount various files to either ma
 
 By moving this configuration to [`HelmRepository`](../components/source/helmrepositories.md), [`GitRepository`](../components/source/gitrepositories.md), [`Bucket`](../components/source/buckets.md) and [`HelmChart`](../components/source/helmcharts.md) Custom Resources, they can now be declaratively described (including their credentials using references to `Secret` resources), and applied to the cluster.
 
-The reconciliation of these resources has been offloaded to a dedicated [Source Controller](../components/source/controller.md), specialized in the acquisition of artifacts from external sources.
+The reconciliation of these resources has been offloaded to a dedicated [Source Controller](../components/source/_index.md), specialized in the acquisition of artifacts from external sources.
 
 The result of this all is an easier and more flexible configuration, with much better observability. Failures are traceable to the level of the resource that lead to a failure, and are easier to resolve. As polling intervals can now be configured per resource, you can customize your repository and/or chart configuration to a much finer grain.
 
-From a technical perspective, this also means less overhead, as the resources managed by the Source  Controller can be shared between multiple `HelmRelease` resources, or even reused by other controllers like the [Kustomize Controller](../components/kustomize/controller.md).
+From a technical perspective, this also means less overhead, as the resources managed by the Source  Controller can be shared between multiple `HelmRelease` resources, or even reused by other controllers like the [Kustomize Controller](../components/kustomize/_index.md).
 
 ### The `HelmRelease` Custom Resource group domain changed
 
@@ -101,7 +101,7 @@ Other references to Kubernetes resources in the `HelmRelease`, like `ValuesRefer
 
 ### Added support for notifications and webhooks
 
-Sending notifications and/or alerts to Slack, Microsoft Teams, Discord, or Rocker is now possible using the [Notification Controller](../components/notification/controller.md), [`Provider` Custom Resources](../components/notification/provider.md) and [`Alert` Custom Resources](../components/notification/alert.md).
+Sending notifications and/or alerts to Slack, Microsoft Teams, Discord, or Rocker is now possible using the [Notification Controller](../components/notification/_index.md), [`Provider` Custom Resources](../components/notification/provider.md) and [`Alert` Custom Resources](../components/notification/alert.md).
 
 It does not stop there, using [`Receiver` Custom Resources](../components/notification/receiver.md) you can trigger **push based** reconciliations from Harbor, GitHub, GitLab, BitBucket or your CI system by making use of the webhook endpoint the resource creates.
 
@@ -860,7 +860,7 @@ Probably, but with some side notes:
 
 ### Can I use Helm Controller standalone?
 
-Helm Controller depends on [Source Controller](../components/source/controller.md), you can install both controllers
+Helm Controller depends on [Source Controller](../components/source/_index.md), you can install both controllers
 and manager Helm releases in a declarative way without GitOps.
 For more details please see this [answer]({{< relref "/faq.md#can-i-use-flux-helmreleases-without-gitops" >}}).
 

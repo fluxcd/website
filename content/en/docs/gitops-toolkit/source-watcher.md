@@ -9,7 +9,7 @@ In this guide you'll be developing a Kubernetes controller with
 [Kubebuilder](https://github.com/kubernetes-sigs/kubebuilder)
 that subscribes to [GitRepository](../components/source/gitrepositories.md)
 events and reacts to revision changes by downloading the artifact produced by
-[source-controller](../components/source/controller.md).
+[source-controller](../components/source/_index.md).
 
 ## Prerequisites
 

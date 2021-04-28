@@ -7,10 +7,10 @@ card:
   weight: 30
 ---
 
-The [helm-controller](../components/helm/controller.md) allows you to
+The [helm-controller](../components/helm/_index.md) allows you to
 declaratively manage Helm chart releases with Kubernetes manifests.
 It makes use of the artifacts produced by the
-[source-controller](../components/source/controller.md) from
+[source-controller](../components/source/_index.md) from
 `HelmRepository`, `GitRepository`, `Bucket` and `HelmChart` resources.
 The helm-controller is part of the default toolkit installation.
 
@@ -351,7 +351,7 @@ configurations:
   - kustomizeconfig.yaml
 ```
 
-When [kustomize-controller](../components/kustomize/controller.md) reconciles the above manifests, it will generate
+When [kustomize-controller](../components/kustomize/_index.md) reconciles the above manifests, it will generate
 a unique name of the `ConfigMap` every time `my-values.yaml` content is updated in Git:
 
 ```yaml
@@ -409,7 +409,7 @@ mongodb False   failed to locate override values file: values-prod.yaml
 ## Configure notifications
 
 The default toolkit installation configures the helm-controller to
-broadcast events to the [notification-controller](../components/notification/controller.md).
+broadcast events to the [notification-controller](../components/notification/_index.md).
 
 To receive the events as notifications, a `Provider` needs to be setup
 first as described in the [notifications guide](notifications.md#define-a-provider).

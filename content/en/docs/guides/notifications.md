@@ -22,7 +22,7 @@ Please see the [get started guide](../get-started/index.md)
 or the [installation guide](installation.md).
 
 The GitOps toolkit controllers emit Kubernetes events whenever a resource status changes.
-You can use the [notification-controller](../components/notification/controller.md)
+You can use the [notification-controller](../components/notification/_index.md)
 to forward these events to Slack, Microsoft Teams, Discord or Rocket chart.
 The notification controller is part of the default toolkit installation.
 
