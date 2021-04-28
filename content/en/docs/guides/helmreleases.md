@@ -138,7 +138,7 @@ for details about how to use other storage backends.
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
+kind: HelmRelease
 metadata:
   name: chartmuseum
   namespace: flux-system
