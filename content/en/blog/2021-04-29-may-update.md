@@ -30,8 +30,8 @@ Incredible, but true. The first experimentation around Flux v2 started
 about a year ago. It was only meant to be a proof of concept to
 illustrate that a set of small and targeted controllers could replace
 all of Flux eventually. We celebrate how far we have come: Flux v2 is
-not quite GA yet, but it already solves more problems than v1, it's way
-more flexible, ships more features and is easy to navigate and debug.
+closer to GA, and already solves more problems than v1. It's far
+more flexible, ships more features and is easier to navigate and debug.
 What's even more important is that our community has grown considerably
 since then. We have more maintainers from more organisations on board,
 more documentation and are looking forward to having you on the team as
