@@ -182,7 +182,7 @@ the GitOps world with Keynotes from Justin Cormack (CTO, Docker), Katie
 Gamanji (Ecosystem Advocate, CNCF), and Lei "Harry" Zhang (Staff
 Engineer at Alibaba Cloud).
 
-**09-10 Jun 2021** - [GitOps Days 2021](https://www.gitopsdays.com)
+- **09-10 Jun 2021** - [GitOps Days 2021](https://www.gitopsdays.com)
 
 Check out <https://fluxcd.io/community/#talks>
 for more upcoming events and links to recordings of past talks.
