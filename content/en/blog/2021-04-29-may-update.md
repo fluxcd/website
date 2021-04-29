@@ -219,7 +219,7 @@ website and has a long background in working with communities in the
 Kubernetes space. Recently she took on the role of chair in k8s SIG
 Contributor Experience as well!
 
-![Alison](/img/alison.jpg)
+![Alison](/static/img/alison.jpg)
 
 We feel very fortunate to have Alison on board!
 
