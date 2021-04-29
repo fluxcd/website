@@ -129,8 +129,7 @@ It's **[KubeCon EU
 2021](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/)**
 and because we are now an incubating project Flux will have a booth at
 the project pavilion for the first time! Stop by the booth to chat with
-us and get out our schedule of talks with various users, contributors,
-and maintainers.
+us and [get our booth schedule](https://bit.ly/Flux_KubeConEU2021) of talks with various users, contributors, and maintainers.
 
 The Flux maintainers will be speaking during the conference as well:
 
