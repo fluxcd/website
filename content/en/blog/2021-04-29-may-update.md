@@ -69,7 +69,10 @@ procedure](/docs/guides/installation/#generic-git-server).
 0.13 comes with **breaking changes to image automation** and has the
 following highlights:
 
-- The image automation APIs have been promoted to `v1alpha2`
+- The image automation APIs have been promoted to `v1alpha2`.
+  Users are encouraged to test this image automation beta candidate,
+  and give feedback before we move these APIs to beta (after which
+  there will be no further breaking API changes)
 - Allow pre-bootstrap customisation of Flux components (CLI)
 - Improved efficiency of Bucket downloads by including
   `.sourceignore` rules during bucket item downloads
