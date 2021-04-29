@@ -9,9 +9,8 @@ url: /blog/2021/04/may-2021-update/
 ## Before we get started, what is GitOps?
 
 If you are new to the community and GitOps, you might want to check out
-some general resources. We like the [GitOps
-manifesto](https://www.weave.works/blog/what-is-gitops-really)
-or the [official GitOps FAQ](https://www.weave.works/blog/the-official-gitops-faq)
+some general resources. We like ["What is GitOps?"](https://www.weave.works/blog/what-is-gitops-really)
+or ["The Official GitOps FAQ"](https://www.weave.works/blog/the-official-gitops-faq)
 written by folks at Weaveworks.
 
 ## The Road to Flux v2
