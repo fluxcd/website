@@ -133,9 +133,14 @@ and maintainers.
 The Flux maintainers will be speaking during the conference as well:
 
 **03 May 2021** - [GitOpsCon EU 2021](https://hopin.com/events/gitops-con) -
-you can still register for this KubeCon Day 0 co-located event organized
-by the GitOps Working Group. Co-hosted by Chris Short, Red Hat and Scott Rigby,
-Weaveworks.
+KubeCon Day 0 co-located event organized by the GitOps Working Group.
+Co-hosted by Scott Rigby, Weaveworks and Chris Short, Red Hat.
+You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/colocated-events/#gitops-con) to attend
+
+> GitOps Con Europe (#GitOpsCon) is designed to foster collaboration, discussion and knowledge sharing on GitOps.
+> This event is aimed at audiences that are new to GitOps as well as those currently using GitOps within their organization.
+> Get connected with others that are passionate about GitOps.
+> Learn from practitioners about pitfalls to avoid, hurdles to jump, and how to adopt GitOps in your cloud native environment.
 
 **04 May 2021** - [Meet the Maintainer - Stefan Prodan](https://sched.co/is3b) -
 you must be [registered here](https://community.cncf.io/e/m8rfv8/) to attend this
