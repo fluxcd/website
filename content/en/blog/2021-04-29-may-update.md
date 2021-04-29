@@ -133,48 +133,48 @@ us and [get our booth schedule](https://bit.ly/Flux_KubeConEU2021) of talks with
 
 The Flux maintainers will be speaking during the conference as well:
 
-**03 May 2021** - [GitOpsCon EU 2021](https://hopin.com/events/gitops-con) -
-KubeCon Day 0 co-located event organized by the GitOps Working Group.
-Co-hosted by Scott Rigby, Weaveworks and Chris Short, Red Hat.
-You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/colocated-events/#gitops-con) to attend
+- **03 May 2021** - [GitOpsCon EU 2021](https://hopin.com/events/gitops-con) -
+  KubeCon Day 0 co-located event organized by the GitOps Working Group.
+  Co-hosted by Scott Rigby, Weaveworks and Chris Short, Red Hat.
+  You must be [registered](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/colocated-events/#gitops-con) to attend
 
-> GitOps Con Europe (#GitOpsCon) is designed to foster collaboration, discussion and knowledge sharing on GitOps.
-> This event is aimed at audiences that are new to GitOps as well as those currently using GitOps within their organization.
-> Get connected with others that are passionate about GitOps.
-> Learn from practitioners about pitfalls to avoid, hurdles to jump, and how to adopt GitOps in your cloud native environment.
+  > GitOps Con Europe (#GitOpsCon) is designed to foster collaboration, discussion and knowledge sharing on GitOps.
+  > This event is aimed at audiences that are new to GitOps as well as those currently using GitOps within their organization.
+  > Get connected with others that are passionate about GitOps.
+  > Learn from practitioners about pitfalls to avoid, hurdles to jump, and how to adopt GitOps in your cloud native environment.
 
-**04 May 2021** - [Meet the Maintainer - Stefan Prodan](https://sched.co/is3b) -
-you must be [registered here](https://community.cncf.io/e/m8rfv8/) to attend this
-session.
+- **04 May 2021** - [Meet the Maintainer - Stefan Prodan](https://sched.co/is3b) -
+  you must be [registered here](https://community.cncf.io/e/m8rfv8/) to attend this
+  session.
 
-**05 May 2021** - [Keynote: CNCF Project Update: Flux - Stefan
-Prodan](https://sched.co/j7Dr) at KubeCon 2021 Europe.
+- **05 May 2021** - [Keynote: CNCF Project Update: Flux - Stefan
+  Prodan](https://sched.co/j7Dr) at KubeCon 2021 Europe.
 
-**05 May 2021** - [Helm Users! What Flux 2 Can Do For
-You](https://sched.co/iE1e) - Scott Rigby & Kingdon Barrett, Weaveworks
+- **05 May 2021** - [Helm Users! What Flux 2 Can Do For
+  You](https://sched.co/iE1e) - Scott Rigby & Kingdon Barrett, Weaveworks
 
-> Helm, the Package manager for Kubernetes. Flux, the GitOps continuous
-> delivery solution for Kubernetes. Both can be used independently, but
-> are more powerful together. Scott Rigby, Helm and Flux maintainer ---
-> and Kingdon Barrett, OSS engineer --- will share the benefits of Helm
-> and GitOps for developers, with live demos showcasing the extra
-> awesomeness of Flux v2 and Helm together. This talk is for Helm users
-> who have either never used Flux, or Flux v1 users looking forward to
-> new features in Flux v2.
+  > Helm, the Package manager for Kubernetes. Flux, the GitOps continuous
+  > delivery solution for Kubernetes. Both can be used independently, but
+  > are more powerful together. Scott Rigby, Helm and Flux maintainer ---
+  > and Kingdon Barrett, OSS engineer --- will share the benefits of Helm
+  > and GitOps for developers, with live demos showcasing the extra
+  > awesomeness of Flux v2 and Helm together. This talk is for Helm users
+  > who have either never used Flux, or Flux v1 users looking forward to
+  > new features in Flux v2.
 
-**06 May 2021** - [Flux: Multi-tenancy Deep Dive - Philip
-Laine](https://kccnceu2021.sched.com/event/iona) at KubeCon 2021 Europe
+- **06 May 2021** - [Flux: Multi-tenancy Deep Dive - Philip
+  Laine](https://kccnceu2021.sched.com/event/iona) at KubeCon 2021 Europe
 
-> Flux is a tool for keeping Kubernetes clusters in sync with sources of
-> configuration (like Git repositories) and automating updates to the
-> configuration when there is new code to deploy. In this presentation,
-> we will look at how Flux can be used in multi-tenant environments to
-> simplify the day to day work of developers and Kubernetes cluster
-> operators.
+  > Flux is a tool for keeping Kubernetes clusters in sync with sources of
+  > configuration (like Git repositories) and automating updates to the
+  > configuration when there is new code to deploy. In this presentation,
+  > we will look at how Flux can be used in multi-tenant environments to
+  > simplify the day to day work of developers and Kubernetes cluster
+  > operators.
 
-**07 May 2021** - [Meet the Maintainer - Aurel
-Canciu](https://sched.co/irBD) - you must be [registered
-here](https://community.cncf.io/e/m4zbxu/) to attend this session
+- **07 May 2021** - [Meet the Maintainer - Aurel
+  Canciu](https://sched.co/irBD) - you must be [registered
+  here](https://community.cncf.io/e/m4zbxu/) to attend this session
 
 Still a bit further down the line, but this will definitely be worth
 your time: an entire two-day conference about the newest developments in
