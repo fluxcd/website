@@ -1,7 +1,7 @@
 ---
 author: dholbach
 date: 2021-04-29 06:30:00+00:00
-title: April 2021 update
+title: May 2021 update
 description: Flux v2 has its first anniversary and reaches the 0.13 milestone, Alison joins maintainers, new guides and use-cases docs, upcoming events (yes we'll be at KubeCon!) and general community news!
 url: /blog/2021/04/may-2021-update/
 ---
@@ -129,7 +129,7 @@ It's **[KubeCon EU
 2021](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/)**
 and because we are now an incubating project Flux will have a booth at
 the project pavilion for the first time! Stop by the booth to chat with
-us and [get our booth schedule](https://bit.ly/Flux_KubeConEU2021) of talks with various users, contributors, and maintainers.
+us and [check out our booth schedule](https://bit.ly/Flux_KubeConEU2021) of talks with various users, contributors, and maintainers.
 
 The Flux maintainers will be speaking during the conference as well:
 
@@ -182,7 +182,7 @@ the GitOps world with Keynotes from Justin Cormack (CTO, Docker), Katie
 Gamanji (Ecosystem Advocate, CNCF), and Lei "Harry" Zhang (Staff
 Engineer at Alibaba Cloud).
 
-**09-10 Jun 2021** - [GitOps Days 2021](https://www.gitopsdays.com)
+- **09-10 Jun 2021** - [GitOps Days 2021](https://www.gitopsdays.com)
 
 Check out <https://fluxcd.io/community/#talks>
 for more upcoming events and links to recordings of past talks.
