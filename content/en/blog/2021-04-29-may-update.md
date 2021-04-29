@@ -2,7 +2,7 @@
 author: dholbach
 date: 2021-04-29 06:30:00+00:00
 title: April 2021 update
-description: Flux v2 has its first anniversary and reaches the 0.13 milestone, Alison joins maintainers, new guides and use-cases docs, upcoming events (yes we'll at KubeCon!) and general community news!
+description: Flux v2 has its first anniversary and reaches the 0.13 milestone, Alison joins maintainers, new guides and use-cases docs, upcoming events (yes we'll be at KubeCon!) and general community news!
 url: /blog/2021/04/may-2021-update/
 ---
 
