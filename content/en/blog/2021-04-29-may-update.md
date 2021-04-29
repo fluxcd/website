@@ -6,7 +6,6 @@ description: Flux v2 has its first anniversary and reaches the 0.13 milestone, A
 url: /blog/2021/04/may-2021-update/
 ---
 
-
 ## Before we get started, what is GitOps?
 
 If you are new to the community and GitOps, you might want to check out
@@ -83,19 +82,39 @@ following highlights:
   (notification-controller)
 - The HelmChart `ValueFile` field has been deprecated in favour of
   `ValuesFiles` (source-controller)
+- Support for decrypting Kubernetes Secrets generated with SOPS
+  and Kustomize `secretGenerator` (kustomize-controller)
 
 Please follow the [upgrade procedure for image
 automation](https://github.com/fluxcd/flux2/discussions/1333).
 
 Checkout the [new bootstrap customisation
-feature](/docs/guides/installation/\#customize-flux-manifests).
+feature](/docs/guides/installation/#customize-flux-manifests).
 
-The [Image Update guide](/docs/guides/image-update/) has been updated
-for the image automation changes, and also includes a reference to a
+The [Image automation guide](/docs/guides/image-update/) has been updated
+to the new APIs, and also includes a reference to a
 new [GitHub Actions use case guide](/docs/use-cases/gh-actions-auto-pr/),
 for automatic pull request creation with Flux and GitHub Actions. This
 guide is for you, if you want Flux updates to go to a staging branch,
 where they can be reviewed and approved before going to production.
+
+## Flagger v1.8.0
+
+Until now [Flagger](https://flagger.app) was compatible with Linkerd
+which implements the [Service Mesh Interface](https://smi-spec.io) (SMI) `v1alpha1`.
+Starting with v1.8.0, Flagger extends the SMI support for the
+`v1alpha2` and `v1alpha3` APIs.
+This means Flagger can be used to automate canary releases with
+progressive traffic shifting for **Open Service Mesh**,
+**NGINX Service Mesh**, **Consul Connect**,
+and any other service mesh conforming to SMI.
+
+More features have been included in v1.8.0 release,
+please see the [changelog](https://github.com/fluxcd/flagger/blob/main/CHANGELOG.md#180).
+
+If you want to get hands-on experience with GitOps (Flux v2) and Progressive Delivery (Flagger),
+check out Stefan's blog post:
+[A GitOps recipe for Progressive Delivery with Istio](https://dev.to/stefanprodan/a-gitops-recipe-for-progressive-delivery-2pa3).
 
 ## Upcoming events
 
