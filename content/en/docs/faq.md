@@ -155,7 +155,7 @@ The kustomize-controller creates `kustomization.yaml` files similar to:
 cd ./deploy/prod && kustomize create --autodetect --recursive
 ```
 
-### What is the behavior of Kustomize used by Flux
+### What is the behavior of Kustomize used by Flux?
 
 We referred to the **Kustomize v4** CLI flags here,
 so that you can replicate the same behavior using `kustomize build`:
@@ -171,6 +171,7 @@ it runs `kustomize` locally or in CI with the same set of flags as
 the controller and validates the output using `kubeval`.
 {{% /alert %}}
 
+<<<<<<< HEAD:content/en/docs/faq.md
 
 ### How to patch CoreDNS and other pre-installed addons?
 
@@ -210,6 +211,11 @@ spec:
       containers:
       - name: coredns
 ```
+
+## Git questions
+
+### How do I onboard a private Git repository? 
+For instructions on using private Git repositories, see [onboarding private repositories](onboarding-private-repositories.md).
 
 ## Helm questions
 
