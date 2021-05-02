@@ -20,9 +20,9 @@ For more information, take a look at ["What is GitOps?"](https://www.gitops.tech
 
 ## Sources
 
-A *Source* defines the origin of a source and the requirements to obtain
-it (e.g. credentials, version selectors). For example, the latest `1.x` tag
-available from a Git repository over SSH.
+A *Source* defines the origin of a repository containing the desired state of 
+the system and the requirements to obtain it (e.g. credentials, version selectors). 
+For example, the latest `1.x` tag available from a Git repository over SSH.
 
 Sources produce an artifact that is consumed by other Flux elements to perform
 actions, like applying the contents of the artifact on the cluster. A source
