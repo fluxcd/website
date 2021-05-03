@@ -9,20 +9,25 @@ if [ ! -x "$SCRIPT_NAME" ]; then
     exit 1
 fi
 
-if [ ! "$(which yq)" ]; then
-    echo "Please install 'yq'."
-    exit 1
+YQ=$(command -v yq)
+if [ ! "$YQ" ]; then
+    if [ -x "./yq" ]; then
+        YQ="./yq"
+    else
+        echo "Please install 'yq'."
+        exit 1
+    fi
 fi
 
 for fn in "$ADOPTERS_DIR"/*.yaml; do
-    PAGE_NAME=$(yq eval '.adopters.url' "$fn")
+    PAGE_NAME=$(${YQ} eval '.adopters.url' "$fn")
     PAGE_DIR=$(realpath "$(dirname "$CONTENT_DIR/${PAGE_NAME}")")
     if [ ! -d "$PAGE_DIR" ]; then
         mkdir -p "$PAGE_DIR"
     fi
     PAGE_FN=$(realpath "$CONTENT_DIR/${PAGE_NAME}.md")
-    PAGE_TITLE=$(yq eval '.adopters.project' "$fn")
-    PAGE_DESC=$(yq eval '.adopters.project' "$fn")
+    PAGE_TITLE=$(${YQ} eval '.adopters.project' "$fn")
+    PAGE_DESC=$(${YQ} eval '.adopters.project' "$fn")
     {
         echo "---"
         echo "title: ${PAGE_TITLE} Adopters"
@@ -34,11 +39,12 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
         echo "{{< cardcolumns >}}"
         echo
     } > "$PAGE_FN"
-    HOW_MANY=$(yq eval '.adopters.companies | length' "$fn")
-    for i in $(seq 0 "$(echo "${HOW_MANY}-1" | bc)"); do
-        COMP_NAME="$(yq eval ".adopters.companies[${i}].name" "$fn")"
-        COMP_URL="$(yq eval ".adopters.companies[${i}].url" "$fn")"
-        COMP_LOGO="$(yq eval ".adopters.companies[${i}].logo" "$fn")"
+    HOW_MANY=$(${YQ} eval '.adopters.companies | length' "$fn")
+    MINUS_ONE=$((HOW_MANY - 1))
+    for i in $(seq 0 "${MINUS_ONE}"); do
+        COMP_NAME="$(${YQ} eval ".adopters.companies[${i}].name" "$fn")"
+        COMP_URL="$(${YQ} eval ".adopters.companies[${i}].url" "$fn")"
+        COMP_LOGO="$(${YQ} eval ".adopters.companies[${i}].logo" "$fn")"
         {
             echo "{{% card header=\"[${COMP_NAME}](${COMP_URL})\" %}}"
             echo "![${COMP_NAME}](${COMP_LOGO})"

@@ -13,3 +13,6 @@ static/install.sh
 
 # Editors
 .vscode
+
+# Netlify build deps
+yq
