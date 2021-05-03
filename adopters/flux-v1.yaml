@@ -1,0 +1,9 @@
+adopters:
+  project: Flux v1
+  url: /adopters/flux-v1
+  description: >
+    Flux v1 adopters
+  companies:
+    - name: Weaveworks
+      url: https://weave.works
+      logo: https://www.weave.works/assets/images/blt37b3eb5030b2601f/weaveworks-logo-name.png

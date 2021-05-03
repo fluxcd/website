@@ -46,6 +46,7 @@ $(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
 gen-content: ## Generates content from external sources.
 	hack/gen-content.sh
 	hack/import-flux2-assets.sh
+	hack/generate-adopters-pages.sh
 
 serve: gen-content theme ## Spawns a development server.
 	hugo server \

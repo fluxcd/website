@@ -1,0 +1,13 @@
+adopters:
+  project: Flux v2
+  url: /adopters/flux-v2
+  description: >
+    Flux v2 adopters
+  companies:
+    - name: Weaveworks
+      url: https://weave.works
+      logo: https://www.weave.works/assets/images/blt37b3eb5030b2601f/weaveworks-logo-name.png
+    - name: Xenit SE
+      url: https://xenit.se/
+      logo: https://mk0xenit4piathk8dqa.kinstacdn.com/app/uploads/icon_logo.png
+
