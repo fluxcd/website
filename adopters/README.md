@@ -13,7 +13,7 @@ Simply follow these steps:
 1. Please add an entry to the file like this:
 
   ```yaml
-      - name: Xenit SE
+      - name: Xenit
         url: https://xenit.se/
         logo: /img/logos/xenit.png
   ```
