@@ -57,3 +57,5 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
         echo
     } >> "$PAGE_FN"
 done
+
+cp -r "$ADOPTERS_DIR/logos" static/img
