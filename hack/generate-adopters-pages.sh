@@ -47,6 +47,13 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
         COMP_NAME="$(${YQ} eval ".adopters.companies[${i}].name" "$fn")"
         COMP_URL="$(${YQ} eval ".adopters.companies[${i}].url" "$fn")"
         COMP_LOGO="$(${YQ} eval ".adopters.companies[${i}].logo" "$fn")"
+        if echo "${COMP_LOGO}" | grep -qvE "^https:"; then
+            if [ ! -f "${ADOPTERS_DIR}/${COMP_LOGO}" ]; then
+                echo "${ADOPTERS_DIR}/${COMP_LOGO} not found."
+                exit 1
+            fi
+            COMP_LOGO="/img/${COMP_LOGO}"
+        fi
         {
             echo "{{% card header=\"[${COMP_NAME}](${COMP_URL})\" %}}"
             echo "![${COMP_NAME}](${COMP_LOGO})"

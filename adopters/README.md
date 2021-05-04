@@ -15,7 +15,7 @@ Simply follow these steps:
   ```yaml
       - name: Xenit
         url: https://xenit.se/
-        logo: /img/logos/xenit.png
+        logo: logos/xenit.png
   ```
 
 1. It's really just the `name` of the organisation, `url` that links to its homepage, and the path to the `logo`. This can link off to `https` links too.

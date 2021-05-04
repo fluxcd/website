@@ -8,8 +8,8 @@ adopters:
   companies:
     - name: Weaveworks
       url: https://weave.works
-      logo: /img/logos/weaveworks.png
+      logo: logos/weaveworks.png
     - name: Xenit
       url: https://xenit.se/
-      logo: /img/logos/xenit.png
+      logo: logos/xenit.png
 
