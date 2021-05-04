@@ -1,3 +1,9 @@
+---
+title: "Onboarding a Private Git Repository"
+linkTitle: "Onboarding a Private Git Repository"
+weight: 20
+---
+
 # Onboarding a Private Git Repository
 
 This guide walks you through the common use-case of onboarding a private GitRepository source.
