@@ -27,12 +27,14 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
     fi
     PAGE_FN=$(realpath "$CONTENT_DIR/${PAGE_NAME}.md")
     PAGE_TITLE=$(${YQ} eval '.adopters.project' "$fn")
-    PAGE_DESC=$(${YQ} eval '.adopters.project' "$fn")
+    PAGE_DESC=$(${YQ} eval '.adopters.description' "$fn")
     {
         echo "---"
         echo "title: ${PAGE_TITLE} Adopters"
         echo "type: page"
         echo "---"
+        echo
+        echo "# ${PAGE_TITLE} Adopters"
         echo
         echo "${PAGE_DESC}"
         echo

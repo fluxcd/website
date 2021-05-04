@@ -2,7 +2,9 @@ adopters:
   project: Flux v2
   url: /adopters/flux-v2
   description: >
-    Flux v2 adopters
+    Organisations below all are using [Flux v2](https://fluxcd.io) in production.
+      
+    We are happy and proud to have you all as part of our community! 💖
   companies:
     - name: Weaveworks
       url: https://weave.works
