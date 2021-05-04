@@ -229,7 +229,7 @@ If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
 - Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings) on
-  2021-05-06 15:00 UTC, or 2021-05-12, 12:00 UTC
+  2021-05-12 12:00 UTC, or 2021-05-20 15:00 UTC
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our [Get
