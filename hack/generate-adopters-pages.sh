@@ -43,12 +43,17 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
         echo
         echo "${PAGE_DESC}"
         echo
-        echo "{{< cardcolumns >}}"
-        echo
     } >> "$PAGE_FN"
     HOW_MANY=$(${YQ} eval '.adopters.companies | length' "$fn")
     MINUS_ONE=$((HOW_MANY - 1))
     for i in $(seq 0 "${MINUS_ONE}"); do
+        if [ $((i % 5)) -eq 0 ]; then
+            {
+                echo "{{< cardpane >}}"
+                echo
+            } >> "$PAGE_FN"
+        fi
+
         COMP_NAME="$(${YQ} eval ".adopters.companies[${i}].name" "$fn")"
         COMP_URL="$(${YQ} eval ".adopters.companies[${i}].url" "$fn")"
         COMP_LOGO="$(${YQ} eval ".adopters.companies[${i}].logo" "$fn")"
@@ -63,16 +68,24 @@ for fn in "$ADOPTERS_DIR"/*.yaml; do
             COMP_LOGO="/img/${COMP_LOGO}"
         fi
         {
-            echo "{{% card header=\"[${COMP_NAME}](${COMP_URL})\" %}}"
-            echo "![${COMP_NAME}](${COMP_LOGO})"
-            echo "{{% /card %}}"
+            echo "  {{% card header=\"[${COMP_NAME}](${COMP_URL})\" %}}"
+            echo "  ![${COMP_NAME}](${COMP_LOGO})"
+            echo "  {{% /card %}}"
             echo
         } >> "$PAGE_FN"
+        if [ $((i % 5)) -eq 4 ]; then
+            {
+                echo "{{< /cardpane >}}"
+                echo
+            } >> "$PAGE_FN"
+        fi
     done
-    {
-        echo "{{< /cardcolumns >}}"
-        echo
-    } >> "$PAGE_FN"
+    if [ $((i % 5)) -ne 4 ]; then
+        {
+            echo "{{< /cardpane >}}"
+            echo
+        } >> "$PAGE_FN"
+    fi
 done
 
 cp -r "$ADOPTERS_DIR/logos" static/img
