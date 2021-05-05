@@ -127,18 +127,18 @@ spec:
 ```
 
 and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values, allowing reusability and/or greater security.
-See `HelmRelease` CRD [values overrides](https://toolkit.fluxcd.io/components/helm/helmreleases/#values-overrides) documentation for the latest spec.
+See `HelmRelease` CRD [values overrides](/docs/components/helm/helmreleases/#values-overrides) documentation for the latest spec.
 
 ## Managing Secrets and ConfigMaps
 
 You may manage these `ConfigMap` and `Secret` resources any way you wish, but there are several benefits to managing these with the Flux Kustomize Controller.
 
-It is fairly straigtforward to use Kustomize `configMapGenerator` to [trigger a Helm release upgrade every time the encoded values change](https://toolkit.fluxcd.io/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize).
+It is fairly straigtforward to use Kustomize `configMapGenerator` to [trigger a Helm release upgrade every time the encoded values change](/docs/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize).
 This common use case currently solveable in Helm by [adding specially crafted annotations](https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments) to a chart.
 The Flux Kustomize Controller method allows you to accomplish this on any chart without additional templated annotations.
 
-You may also use Kustomize Controller built-in [Mozilla SOPS integration](https://toolkit.fluxcd.io/components/kustomize/kustomization/#secrets-decryption) to securely manage your encrypted secrets stored in git.
-See the [Flux SOPS guide](https://toolkit.fluxcd.io/guides/mozilla-sops/) for step-by-step instructions through various use cases.
+You may also use Kustomize Controller built-in [Mozilla SOPS integration](/docs/components/kustomize/kustomization/#secrets-decryption) to securely manage your encrypted secrets stored in git.
+See the [Flux SOPS guide](/docs/guides/mozilla-sops/) for step-by-step instructions through various use cases.
 
 ## Automatic Release Upgrades
 
@@ -150,7 +150,7 @@ For full SemVer range syntax, see `Masterminds/semver` [Checking Version Constra
 
 ## Automatic Uninstalls and Rollback
 
-The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [spec.install.remediate](https://toolkit.fluxcd.io/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [spec.upgrade.remediate](https://toolkit.fluxcd.io/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [spec.rollback](https://toolkit.fluxcd.io/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [spec.uninstall](https://toolkit.fluxcd.io/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
+The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [spec.install.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [spec.upgrade.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [spec.rollback](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [spec.uninstall](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
 Features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
 
 Here is an example for configuring automated uninstalls (for all available fields, consult the `InstallRemediation` and `Uninstall` API references linked above):
@@ -206,6 +206,6 @@ spec:
 
 ## Next Steps
 
-- [Guides > Manage Helm Releases](/guides/helmreleases/)
-- [Toolkit Components > Helm Controller](/components/helm/controller/)
-- [Migration > Migrate to the Helm Controller](/guides/helm-operator-migration/)
+- [Guides > Manage Helm Releases](/docs/guides/helmreleases/)
+- [Toolkit Components > Helm Controller](/docs/components/helm/)
+- [Migration > Migrate to the Helm Controller](/docs/migration/helm-operator-migration/)
