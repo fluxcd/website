@@ -30,6 +30,9 @@ PAGE_FN=$(realpath "$CONTENT_DIR/adopters.md")
     echo "Organisations below all are using the [Flux family of projects](https://fluxcd.io) in production."
     echo "  "
     echo "We are happy and proud to have you all as part of our community! 💖"
+    echo
+    echo "To join this list, please follow <https://github.com/fluxcd/website/blob/main/adopters#readme>."
+    echo
 
 } > "$PAGE_FN"
 

@@ -19,19 +19,9 @@ Simply follow these steps:
   ```
 
 1. It's really just the `name` of the organisation, `url` that links to its homepage, and the path to the `logo`. This can link off to `https` links too.
-1. Save the file, `git add` the relevant files and commit.
+1. Save the file, `git add` all relevant files and commit using `git commit -s` (this is important because of [DCO](/contributing/#certificate-of-origin)).
 
 Push this as a PR to `fluxcd/website` and a preview build will turn up.
-
-To test this locally, at the very least run:
-
-```cli
-make theme
-make gen-content
-hugo server
-```
-
-Then point your browser to `http://localhost:1313`.
 
 Thanks a lot for your being part of our community - we very much appreciate it!
 
