@@ -3,8 +3,6 @@ adopters:
   description: >
     Check out everything about Flux v2 on our [website](https://fluxcd.io/docs/).
   companies:
-    - name: Test Corp
-      url: https://test.com
     - name: Weaveworks
       url: https://weave.works
       logo: logos/weaveworks.png
