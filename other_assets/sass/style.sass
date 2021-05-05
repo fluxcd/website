@@ -24,9 +24,6 @@ $linkedin-blue: #0e76a8
 @import url("{{ $fontsUrl }}")
 @import url("{{ $fontAwesomeUrl }}")
 
-@import "bulma/sass/utilities/initial-variables"
-@import "bulma/sass/utilities/functions"
-
 $primary: $flux-dark-blue
 $secondary: $flux-light-blue
 $dark: $flux-black
@@ -41,16 +38,12 @@ $navbar-dropdown-border-top: none
 $navbar-dropdown-radius: none
 $section-padding: 4.5rem 1.5rem
 
-@import "bulma/sass/utilities/derived-variables"
-
 $navbar-item-hover-color: $primary !important
 $navbar-item-hover-background-color: $dark !important
 $navbar-dropdown-item-hover-background-color: $light !important
 
 $colors: mergeColorMaps(("secondary": ($secondary, $white)), $colors)
 $colors: mergeColorMaps(("slack-green": ($slack-green, $white), "twitter-blue": ($twitter-blue, $white), "linkedin-blue": ($linkedin-blue, $white)), $colors)
-
-@import "bulma/bulma"
 
 @import "blog"
 @import "box"
