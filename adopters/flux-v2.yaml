@@ -6,6 +6,8 @@ adopters:
       
     We are happy and proud to have you all as part of our community! 💖
   companies:
+    - name: Test Corp
+      url: https://test.com
     - name: Weaveworks
       url: https://weave.works
       logo: logos/weaveworks.png

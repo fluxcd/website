@@ -34,3 +34,7 @@ hugo server
 Then point your browser to `http://localhost:1313`.
 
 Thanks a lot for your being part of our community - we very much appreciate it!
+
+### Addendum
+
+`/adopters/logo/logo-generic.png` is a slightly modified Flux logo.
