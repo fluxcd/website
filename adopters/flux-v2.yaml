@@ -1,10 +1,7 @@
 adopters:
   project: Flux v2
-  url: /adopters/flux-v2
   description: >
-    Organisations below all are using [Flux v2](https://fluxcd.io) in production.
-      
-    We are happy and proud to have you all as part of our community! 💖
+    Check out everything about Flux v2 on our [website](https://fluxcd.io/docs/).
   companies:
     - name: Test Corp
       url: https://test.com

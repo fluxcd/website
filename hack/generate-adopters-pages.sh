@@ -19,28 +19,32 @@ if [ ! "$YQ" ]; then
     fi
 fi
 
+PAGE_FN=$(realpath "$CONTENT_DIR/adopters.md")
+{
+    echo "---"
+    echo "title: Flux Adopters"
+    echo "type: page"
+    echo "---"
+    echo
+    echo "# Flux Adopters"
+    echo "Organisations below all are using the [Flux family of projects](https://fluxcd.io) in production."
+    echo "  "
+    echo "We are happy and proud to have you all as part of our community! 💖"
+
+} > "$PAGE_FN"
+
 for fn in "$ADOPTERS_DIR"/*.yaml; do
-    PAGE_NAME=$(${YQ} eval '.adopters.url' "$fn")
-    PAGE_DIR=$(realpath "$(dirname "$CONTENT_DIR/${PAGE_NAME}")")
-    if [ ! -d "$PAGE_DIR" ]; then
-        mkdir -p "$PAGE_DIR"
-    fi
-    PAGE_FN=$(realpath "$CONTENT_DIR/${PAGE_NAME}.md")
-    PAGE_TITLE=$(${YQ} eval '.adopters.project' "$fn")
+    SECTION_TITLE=$(${YQ} eval '.adopters.project' "$fn")
     PAGE_DESC=$(${YQ} eval '.adopters.description' "$fn")
     {
-        echo "---"
-        echo "title: ${PAGE_TITLE} Adopters"
-        echo "type: page"
-        echo "---"
         echo
-        echo "# ${PAGE_TITLE} Adopters"
+        echo "## ${SECTION_TITLE} Adopters"
         echo
         echo "${PAGE_DESC}"
         echo
         echo "{{< cardcolumns >}}"
         echo
-    } > "$PAGE_FN"
+    } >> "$PAGE_FN"
     HOW_MANY=$(${YQ} eval '.adopters.companies | length' "$fn")
     MINUS_ONE=$((HOW_MANY - 1))
     for i in $(seq 0 "${MINUS_ONE}"); do
