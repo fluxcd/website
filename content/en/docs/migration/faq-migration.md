@@ -15,7 +15,7 @@ You can install and operate Flux v2 simply using the `flux` command. You can eas
 The timeline we are looking at right now is:
 
 1. Put Flux v1 into maintenance mode (no new features being added; bugfixes and CVEs patched only).
-1. Continue work on the [Flux v2 roadmap](https://toolkit.fluxcd.io/roadmap/).
+1. Continue work on the [Flux v2 roadmap](/docs/roadmap/).
 1. We will provide transition guides for specific user groups, e.g. users of Flux v1 in read-only mode, or of Helm Operator v1, etc. once the functionality is integrated into Flux v2 and it's deemed "ready".
 1. Once the use-cases of Flux v1 are covered, we will continue supporting Flux v1 for 6 months. This will be the transition period before it's considered unsupported.
 
@@ -94,5 +94,5 @@ There are a variety of ways and we look forward to having you on board building 
 
 - [Discuss the direction](https://github.com/fluxcd/flux2/discussions) of Flux v2 with us
 - Join us in #flux-dev on the [CNCF Slack](https://slack.cncf.io)
-- Check out our [contributor docs](https://toolkit.fluxcd.io/contributing/)
-- Take a look at the [roadmap for Flux v2](https://toolkit.fluxcd.io/roadmap/)
+- Check out our [contributor docs](/contributing/)
+- Take a look at the [roadmap for Flux v2](/docs/roadmap/)

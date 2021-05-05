@@ -55,9 +55,9 @@ In our planning discussions we identified three areas of work:
 ### Flux read-only feature parity
 
 Flux v2 read-only is ready to try. See the [Getting
-Started](https://toolkit.fluxcd.io/get-started/) how-to, and the
+Started](/docs/get-started/) how-to, and the
 [Migration
-guide](https://toolkit.fluxcd.io/guides/flux-v1-migration/).
+guide](/docs/migration/flux-v1-migration/).
 
 This would be the first stepping stone: we want Flux v2 to be on-par with today's Flux in
 [read-only mode](https://github.com/fluxcd/flux/blob/master/docs/faq.md#can-i-run-flux-with-readonly-git-access)
@@ -67,9 +67,9 @@ Goals
 
 State | Item
 ----- | ----
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](https://toolkit.fluxcd.io/guides/flux-v1-migration/)
-:heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](https://toolkit.fluxcd.io/guides/notifications/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](/docs/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](/docs/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](/docs/guides/notifications/)
 
 Non-Goals
 
@@ -85,14 +85,14 @@ Tasks
 - [x]  <span style="color:grey">Implement a notification controller for Slack, MS Teams, Discord, Rocket</span>
 - [x]  <span style="color:grey">Implement Prometheus metrics in source and kustomize controllers</span>
 - [x]  <span style="color:grey">Review the git source and kustomize APIs</span>
-- [x]  <span style="color:grey">Support [bash-style variable substitution](https://toolkit.fluxcd.io/components/kustomize/kustomization/#variable-substitution) as an alternative to `flux.yaml` envsubst/sed usage</span>
+- [x]  <span style="color:grey">Support [bash-style variable substitution](/docs/components/kustomize/kustomization/#variable-substitution) as an alternative to `flux.yaml` envsubst/sed usage</span>
 - [x]  <span style="color:grey">Create a migration guide for `flux.yaml` kustomize users</span>
 - [x]  <span style="color:grey">Include support for SOPS</span>
 
 ### Flux image update feature parity
 
 Image automation is available as a prerelease. See [this
-guide](https://toolkit.fluxcd.io/guides/image-update/) for how to
+guide](/docs/guides/image-update/) for how to
 install and use it.
 
 Goals
@@ -113,16 +113,16 @@ Tasks
 - [x] <span style="color:grey">Design the automation component</span>
 - [x] <span style="color:grey">Implement the image scan/patch/push workflow</span>
 - [x] <span style="color:grey">Integrate the new components in the Flux CLI [fluxcd/flux2#538](https://github.com/fluxcd/flux2/pull/538)</span>
-- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](https://toolkit.fluxcd.io/guides/image-update/))</span>
-- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](https://toolkit.fluxcd.io/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
-- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](https://toolkit.fluxcd.io/guides/flux-v1-automation-migration/))</span>
+- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/guides/image-update/))</span>
+- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
+- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/migration/flux-v1-automation-migration/))</span>
 
 ### Helm v3 feature parity
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
-guide](https://toolkit.fluxcd.io/guides/helmreleases/), and the [Helm
+guide](/docs/guides/helmreleases/), and the [Helm
 controller migration
-guide](https://toolkit.fluxcd.io/guides/helm-operator-migration/).
+guide](/docs/migration/helm-operator-migration/).
 
 Goals
 
