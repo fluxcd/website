@@ -49,7 +49,9 @@ oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:image-reflect
 
 ## Flux Installation with CLI
 
-The best way to install Flux on OpenShift currently is to use the `flux bootstrap` command. Assuming that you are a GitHub user, you could start by preparing your GitHub credentials.
+The best way to install Flux on OpenShift currently is to use the `flux bootstrap` command. This command works with GitHub, GitLab as well as generic Git provider. Please refer to the command's documentations [here](../guides/installation/#bootstrap) in details.
+
+Assuming that you are a GitHub user, you could start by preparing your GitHub credentials.
 
 ```sh
 export GITHUB_TOKEN=<your-token>
@@ -95,3 +97,5 @@ flux bootstrap github \
   --path=./clusters/my-cluster \
   --personal
 ```
+
+Please see also the [upgrade](../guides/installation/#upgrade) and the [bootstrap upgrade](../guides/installation/#bootstrap-upgrade) documentations for details.
