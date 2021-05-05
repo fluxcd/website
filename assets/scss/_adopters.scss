@@ -1,0 +1,15 @@
+.card-deck {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+
+  .card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+}
+
+  

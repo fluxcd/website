@@ -1,0 +1,26 @@
+adopters:
+  project: Flagger
+  description: >
+    Check out everything about Flagger on <https://flagger.app>.
+  companies:
+    - name: Capra Consulting
+      url: https://www.capraconsulting.no
+    - name: Chick-fil-A
+      url: https://www.chick-fil-a.com
+    - name: DMM.com
+      url: https://dmm-corp.com
+    - name: eLife
+      url: https://elifesciences.org/
+    - name: Jumia Group
+      url: https://group.jumia.com
+    - name: MediaMarktSaturn
+      url: https://www.mediamarktsaturn.com
+    - name: OfferUp
+      url: https://www.offerup.com
+    - name: Sinch
+      url: https://www.sinch.com
+    - name: Trendhim
+      url: https://www.trendhim.com
+    - name: Weaveworks
+      url: https://weave.works
+      logo: logos/weaveworks.png

@@ -11,5 +11,11 @@ themes/docsy-*
 content/en/docs/cmd/flux*
 static/install.sh
 
+# Adopters logos
+static/img/logos
+
 # Editors
 .vscode
+
+# Netlify build deps
+yq

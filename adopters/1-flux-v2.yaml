@@ -1,0 +1,12 @@
+adopters:
+  project: Flux v2
+  description: >
+    Check out everything about Flux v2 on our [website](https://fluxcd.io/docs/).
+  companies:
+    - name: Weaveworks
+      url: https://weave.works
+      logo: logos/weaveworks.png
+    - name: Xenit
+      url: https://xenit.se/
+      logo: logos/xenit.png
+

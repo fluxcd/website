@@ -1,0 +1,172 @@
+adopters:
+  project: Flux v1
+  description: >
+    All of these organisations have been using Flux v1 and Helm Operator v1.
+  companies:
+    - name: ABA English
+      url: https://www.abaenglish.com
+    - name: Alea Play Solutions
+      url: http://www.alea.com
+    - name: Apester
+      url: https://apester.com
+    - name: APPUiO
+      url: https://appuio.ch
+    - name: ArangoDB Oasis
+      url: https://arangodb.com/managed-service
+    - name: Avisi
+      url: https://avisi.nl
+    - name: B3i
+      url: https://b3i.tech/
+    - name: Babylon Health
+      url: https://www.babylonhealth.com/
+    - name: Belvo
+      url: https://belvo.com/
+    - name: bimspot
+      url: https://bimspot.io
+    - name: Bink
+      url: https://bink.com
+    - name: BlaBlaCar
+      url: https://www.blablacar.com/
+    - name: blackmirror media
+      url: https://blackmirror.media
+    - name: Canva
+      url: https://www.canva.com/
+    - name: Carrot
+      url: https://carrot.com
+    - name: Chattigo
+      url: https://chattigo.com
+    - name: Cloudlets
+      url: https://cloudlets.io
+    - name: Cloudogu GmbH
+      url: https://cloudogu.com
+    - name: CLVR Cloud Ltd
+      url: https://clvr.cloud
+    - name: College of William & Mary
+      url: https://www.wm.edu
+    - name: Consorcio Chile
+      url: https://www.consorcio.cl
+    - name: Control Plane
+      url: https://control-plane.io
+    - name: CrowdRiff
+      url: https://crowdriff.com
+    - name: Cybrary
+      url: https://cybrary.it
+    - name: Duedil
+      url: https://www.duedil.com/
+    - name: Enliven Systems
+      url: https://enliven.systems
+    - name: FELFEL
+      url: https://felfel.ch/
+    - name: FireHydrant
+      url: https://firehydrant.io
+    - name: Frame.io
+      url: https://frame.io
+    - name: gastromatic
+      url: https://www.gastromatic.de/
+    - name: Gini
+      url: https://gini.net
+    - name: GlobalX
+      url: https://globalx.com.au
+    - name: Greenpass
+      url: https://www.greenpass.com.br/
+    - name: happn
+      url: https://www.happn.com
+    - name: HMCTS
+      url: https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service
+    - name: IBM Cloudant
+      url: https://www.ibm.com/cloud/cloudant
+    - name: Improwised Technologies
+      url: https://www.improwised.com/
+    - name: Infabode
+      url: https://infabode.com
+    - name: iQmetrix
+      url: https://www.iqmetrix.com
+    - name: karriere tutor GmbH
+      url: https://www.karrieretutor.de
+    - name: Limejump
+      url: https://limejump.com
+    - name: loveholidays
+      url: https://www.loveholidays.com/
+    - name: Luma Health
+      url: https://lumahealth.io/
+    - name: LUNAR
+      url: https://www.lunarway.com/
+    - name: MediaMarktSaturn
+      url: https://www.mediamarktsaturn.com
+    - name: Mettle
+      url: https://mettle.co.uk
+    - name: Mintel
+      url: https://www.mintel.com
+    - name: Multicaja S.A
+      url: https://www.multicaja.cl
+    - name: MyFitnessPal
+      url: https://www.myfitnesspal.com
+    - name: NetHunt
+      url: https://nethunt.com
+    - name: Okteto Cloud
+      url: https://okteto.com/
+    - name: Omise
+      url: https://www.omise.co
+    - name: Payout
+      url: https://payout.one
+    - name: Plex Systems
+      url: https://www.plex.com/
+    - name: Qordoba
+      url: https://qordoba.com
+    - name: Quivr
+      url: https://quivr.be
+    - name: Rakuten
+      url: https://rakuten.com
+    - name: RentPath
+      url: https://rentpath.com
+    - name: Replicated
+      url: https://replicated.com
+    - name: Resulta
+      url: https://resulta.com
+    - name: Rungway
+      url: https://rungway.com
+    - name: Sage AI Labs
+      url: https://www.sage.com
+    - name: Sngular
+      url: https://www.sngular.com
+    - name: Starbucks
+      url: https://www.starbucks.com/
+    - name: Stencila
+      url: https://stenci.la/
+    - name: SupplyStack
+      url: https://www.supplystack.com/
+    - name: Swoop
+      url: https://www.swoopfunding.com
+    - name: Talend
+      url: https://www.talend.com
+    - name: Troii
+      url: https://troii.com/
+    - name: UK Hydrographic Office
+      url: https://www.gov.uk/government/organisations/uk-hydrographic-office
+    - name: Under Armour
+      url: https://www.underarmour.com
+    - name: VSHN
+      url: https://vshn.ch
+    - name: Verifa Oy
+      url: https://verifa.io/
+    - name: Walmart Chile
+      url: https://www.walmartchile.cl
+    - name: Weave Cloud
+      url: https://cloud.weave.works
+      logo: logos/weaveworks.png
+    - name: Wildlife Studios
+      url: https://wildlifestudios.com
+    - name: Workable
+      url: https://www.workable.com
+    - name: Workarea
+      url: https://www.workarea.com
+    - name: Working Group Two
+      url: https://wgtwo.com
+    - name: Yad2
+      url: https://yad2.co.il
+    - name: Yusofleet
+      url: https://yusofleet.com
+    - name: Zaaksysteem
+      url: https://zaaksysteem.nl
+    - name: Zwift
+      url: https://zwift.com
