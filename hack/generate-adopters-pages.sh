@@ -37,7 +37,7 @@ PAGE_FN=$(realpath "$CONTENT_DIR/adopters.md")
 } > "$PAGE_FN"
 
 for fn in "$ADOPTERS_DIR"/*.yaml; do
-    SECTION_ID=$(basename "$fn" .yaml)
+    SECTION_ID=$(basename "$fn" .yaml | cut -d'-' -f2-5)
     SECTION_TITLE=$(${YQ} eval '.adopters.project' "$fn")
     PAGE_DESC=$(${YQ} eval '.adopters.description' "$fn")
     {
