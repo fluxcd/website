@@ -24,3 +24,6 @@ adopters:
     - name: Weaveworks
       url: https://weave.works
       logo: logos/weaveworks.png
+    - name: Sortlist
+      url: https://www.sortlist.com
+      logo: logos/sortlist.png
