@@ -19,3 +19,6 @@ static/img/logos
 
 # Netlify build deps
 yq
+
+# Mac specific things
+.DS_Store
