@@ -338,12 +338,14 @@ flux get images all --all-namespaces
 ## Configure image update for custom resources
 
 Besides Kubernetes native kinds (Deployment, StatefulSet, DaemonSet, CronJob),
-Flux can be used to patch image tags in any Kubernetes custom resource stored in Git.
+Flux can be used to patch image references in any Kubernetes custom resource
+stored in Git.
 
 The image policy marker format is:
 
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>"}`
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>:tag"}`
+* `{"$imagepolicy": "<policy-namespace>:<policy-name>:name"}`
 
 
 `HelmRelease` example:
@@ -357,7 +359,7 @@ metadata:
 spec:
   values:
     image:
-      repository: ghcr.io/stefanprodan/podinfo
+      repository: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
       tag: 5.0.0  # {"$imagepolicy": "flux-system:podinfo:tag"}
 ```
 
@@ -386,7 +388,7 @@ metadata:
 spec:
   images:
     - name: ghcr.io/stefanprodan/podinfo
-      newName: ghcr.io/stefanprodan/podinfo
+      newName: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
       newTag: 5.0.0 # {"$imagepolicy": "flux-system:podinfo:tag"}
 ```
 
@@ -399,7 +401,7 @@ resources:
 - deployment.yaml
 images:
 - name: ghcr.io/stefanprodan/podinfo
-  newName: ghcr.io/stefanprodan/podinfo
+  newName: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
   newTag: 5.0.0 # {"$imagepolicy": "flux-system:podinfo:tag"}
 ```
 
