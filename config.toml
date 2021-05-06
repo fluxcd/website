@@ -152,7 +152,7 @@ weight = 9999
 	desc = "Development takes place here!"
 [[params.links.developer]]
 	name = "Slack"
-	url = "https://cloud-native.slack.com/messages/flux-contributors"
+	url = "https://cloud-native.slack.com/messages/flux"
 	icon = "fab fa-slack"
 	desc = "Chat with other project developers"
 [[params.links.developer]]
