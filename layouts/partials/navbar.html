@@ -30,15 +30,6 @@
 				</li>
 			{{ end }}
 		{{ end }}
-
-		{{ $url := urls.Parse .Permalink }}
-		{{ if lt (len $url.Path) 6 }}
 		<li class="nav-item nav-search-item">{{ partial "search-input.html" . }}</li>
-		{{ else }}
-		{{ $path := slicestr $url.Path 0 6 }}
-		{{ if and (ne $path "/docs/") (ne $path "/blog/") }}
-		<li class="nav-item nav-search-item">{{ partial "search-input.html" . }}</li>
-		{{ end }}
-		{{ end }}
 	</ul>
 </nav>
