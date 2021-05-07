@@ -11,6 +11,11 @@
     max-width: 150px;
   }
 
+  .card-header {
+    overflow-wrap: break-all;
+    hyphens: auto;
+  }
+
   .card-body {
     align-items: center;
     display: flex;
