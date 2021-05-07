@@ -10,12 +10,14 @@ card:
 
 This guide walks you through configuring monitoring for the Flux control plane.
 
-Flux uses kube-prometheus-stack to provide a monitoring stack:
-The
-* **Prometheus Operator** - collects metrics from the toolkit controllers and stores them for 2h
-* **Grafana** dashboards - displays the control plane resource usage and reconciliation stats
+Flux uses [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) to provide a monitoring stack:
 
-## Install the kube-prometheus-operator
+The kube-promethus stack installs:
+* **Prometheus** server - collects metrics from the toolkit controllers
+* **Grafana** dashboards - displays the control plane resource usage and reconciliation stats
+* **kube-state-metrics** -  generates metrics about the state of the objects from API server
+
+## Install the kube-prometheus-stack
 
 To install the monitoring stack with `flux`, first register the toolkit Git repository on your cluster:
 
