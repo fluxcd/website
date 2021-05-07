@@ -44,12 +44,9 @@ $(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
 	ln -sf Font-Awesome themes/docsy/assets/vendor/Font-Awesome-${FONT_AWESOME_SEMVER}
 
 gen-content: ## Generates content from external sources.
+	hack/generate-adopters-pages.py
 	hack/gen-content.sh
 	hack/import-flux2-assets.sh
-	command -v yq > /dev/null || test -x ./yq || \
-		curl -Lfs https://github.com/mikefarah/yq/releases/download/v4.7.1/yq_linux_amd64 -o yq && \
-		chmod a+x yq
-	hack/generate-adopters-pages.sh
 
 serve: gen-content theme ## Spawns a development server.
 	hugo server \
