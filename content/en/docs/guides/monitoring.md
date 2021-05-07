@@ -10,12 +10,12 @@ card:
 
 This guide walks you through configuring monitoring for the Flux control plane.
 
-Flux comes with a monitoring stack composed of:
-
-* **Prometheus** server - collects metrics from the toolkit controllers and stores them for 2h
+Flux uses kube-prometheus-stack to provide a monitoring stack:
+The
+* **Prometheus Operator** - collects metrics from the toolkit controllers and stores them for 2h
 * **Grafana** dashboards - displays the control plane resource usage and reconciliation stats
 
-## Install the monitoring stack
+## Install the kube-prometheus-operator
 
 To install the monitoring stack with `flux`, first register the toolkit Git repository on your cluster:
 
@@ -26,7 +26,7 @@ flux create source git monitoring \
   --branch=main
 ```
 
-Then apply the [manifests/monitoring](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring)
+Then apply the [manifests/monitoring/kube-prometheus-stack](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/kube-prometheus-stack)
 kustomization:
 
 ```sh
@@ -34,15 +34,32 @@ flux create kustomization monitoring \
   --interval=1h \
   --prune=true \
   --source=monitoring \
-  --path="./manifests/monitoring" \
-  --health-check="Deployment/prometheus.flux-system" \
-  --health-check="Deployment/grafana.flux-system"
+  --path="./manifests/monitoring/kube-prometheus-stack" \
+  --health-check="Deployment/monitoring-kube-prometheus-operator.flux-system" \
+  --health-check="Deployment/monitoring-grafana.flux-system"
+```
+
+## Create `PodMonitor` and configmap for Grafana dashboards
+
+Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
+When using Prometheus Operator you need a `PodMonitor` object to configure scraping for the controllers.
+
+Apply the [manifests/monitoring/monitoring-config](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/monitoring-config) kustomization:
+
+```sh
+flux create kustomization monitoring \
+  --interval=1h \
+  --prune=true \
+  --source=monitoring \
+  --path="./manifests/monitoring/monitoring-config" \
+  --health-check="Deployment/monitoring-kube-prometheus-operator.flux-system" \
+  --health-check="Deployment/monitoring-grafana.flux-system"
 ```
 
 You can access Grafana using port forwarding:
 
 ```sh
-kubectl -n flux-system port-forward svc/grafana 3000:3000
+kubectl -n flux-system port-forward svc/monitory-grafana 3000:80
 ```
 
 ## Grafana dashboards
@@ -59,28 +76,6 @@ Cluster reconciliation dashboard [http://localhost:3000/d/gitops-toolkit-cluster
 
 If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
 [GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
-
-{{% alert color="info" %}}
-Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
-When using Prometheus Operator you should create a `PodMonitor` object for each controller to configure scraping.
-{{% /alert %}}
-
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  name: source-controller
-  namespace: flux-system
-spec:
-  namespaceSelector:
-    matchNames:
-      - flux-system
-  selector:
-    matchLabels:
-      app: source-controller
-  podMetricsEndpoints:
-  - port: http-prom
-```
 
 ## Metrics
 
