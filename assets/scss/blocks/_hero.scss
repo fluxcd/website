@@ -8,26 +8,26 @@
 .td-hero-block {
     padding-bottom: 12rem;
 
-    background: $flux-dark-blue;
-    background: repeating-linear-gradient(45deg, rgba($flux-darkest-blue, 0.08) 0px,  rgba($flux-darkest-blue, 0.05) 2px,  rgba($flux-dark-blue, 0.08) 2px, rgba($flux-dark-blue, 0.05) 4px),
-                radial-gradient(circle at top right, rgba($flux-light-blue, 0.8), rgba($flux-lighter-blue, 0.5) 40%, rgba($flux-dark-blue, 0.8) 80%),
-                linear-gradient(120deg, rgba($flux-darkest-blue, 0.9), rgba($flux-lighter-blue, 0.9) 30%, $flux-dark-blue 60%),
-                $flux-dark-blue;
+    // background: $flux-dark-blue;
+    // background: repeating-linear-gradient(45deg, rgba($flux-darkest-blue, 0.08) 0px,  rgba($flux-darkest-blue, 0.05) 2px,  rgba($flux-dark-blue, 0.08) 2px, rgba($flux-dark-blue, 0.05) 4px),
+    //             radial-gradient(circle at top right, rgba($flux-light-blue, 0.8), rgba($flux-lighter-blue, 0.5) 40%, rgba($flux-dark-blue, 0.8) 80%),
+    //             linear-gradient(120deg, rgba($flux-darkest-blue, 0.9), rgba($flux-lighter-blue, 0.9) 30%, $flux-dark-blue 60%),
+    //             $flux-dark-blue;
 
     p {
       color: $flux-white;
     }
 
     h1 {
-      color: $flux-white;
-      background-color: $flux-white;
-      background-image: repeating-linear-gradient(45deg, $flux-white, $flux-white 2px, rgba(150,150,200, 0.1) 2px, rgba(150,150,200, 0.05) 4px);
-      background-size: 100%;
+      // color: $flux-white;
+      // background-color: $flux-white;
+      // background-image: repeating-linear-gradient(45deg, $flux-white, $flux-white 2px, rgba(150,150,200, 0.1) 2px, rgba(150,150,200, 0.05) 4px);
+      // background-size: 100%;
 
-      -webkit-background-clip: text;
-      -moz-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -moz-text-fill-color: transparent;
+      // -webkit-background-clip: text;
+      // -moz-background-clip: text;
+      // -webkit-text-fill-color: transparent;
+      // -moz-text-fill-color: transparent;
     }
 
     .fa-chevron-circle-down {
@@ -46,10 +46,60 @@
 }
 
 .lead-gitops section {
-  border-top: 1px dotted rgb(150,150,200);
-  padding: 3rem 0 2rem 0 !important;
+  // border-top: 1px dotted rgb(150,150,200);
+  padding: 0rem 0 2rem 0 !important;
+  background: none;
+
+  .td-arrow-down {
+    &::before {
+      border: {
+        color: #{$flux-dark-blue} transparent transparent transparent;
+      }
+    }
+  }
+
+  // background: $flux-dark-blue;
+  // background: radial-gradient(circle at top right, rgba($flux-dark-blue, 0.05), rgba($flux-light-blue, 0.15) 20%, rgba($flux-darkest-blue, 0.1) 80%, $flux-dark-blue 100%),
+  //             $flux-dark-blue;
+}
+
+.hero-gitops {
+  margin-left: -15px;
+  margin-right: -15px;
 
   background: $flux-dark-blue;
-  background: radial-gradient(circle at top right, rgba($flux-dark-blue, 0.05), rgba($flux-light-blue, 0.15) 20%, rgba($flux-darkest-blue, 0.1) 80%, $flux-dark-blue 100%),
+
+  background: linear-gradient(0deg, $flux-dark-blue, rgba($flux-darkest-blue, 0.3) 30px, rgba($flux-darkest-blue, 0.3) 150px, transparent 400px),
+              linear-gradient(0deg, $flux-dark-blue, transparent 200px),
+              
+              radial-gradient(circle at top right, rgba($flux-light-blue, 0.8), rgba($flux-lighter-blue, 0.5) 40%, rgba($flux-dark-blue, 0.8) 50%, transparent),
+              radial-gradient(circle at bottom left, rgba($flux-darkest-blue, 0.8), rgba($flux-dark-blue, 0.5) 150px, transparent 300px),
+              repeating-linear-gradient(15deg, rgba($flux-darkest-blue, 0.2), rgba($flux-darkest-blue, 0.2) 2px,  rgba($flux-dark-blue, 0.2) 2px, rgba($flux-dark-blue, 0.2) 4px),
               $flux-dark-blue;
+
+  p {
+    color: $flux-white;
+  }
+  h1 {
+    color: rgba($flux-white, 0.95);
+  }
+  h2 {
+    color: rgba($flux-white, 0.95);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+  a {
+    color: $flux-light-blue !important;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  a.btn {
+    color: $flux-black !important;
+    font-style: normal;
+    font-weight: 600;
+    background-color: $flux-light-blue;
+  }
+
 }
