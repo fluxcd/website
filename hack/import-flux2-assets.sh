@@ -3,6 +3,11 @@
 COMPONENTS_DIR="content/en/docs/components"
 FLUX_DIR="content/en/docs/cmd"
 
+if [ ! "$(command -v jq)" ]; then
+  echo "Please install 'jq'."
+  exit 1
+fi
+
 fatal() {
     echo '[ERROR] ' "$@" >&2
     exit 1
@@ -50,10 +55,6 @@ setup_verify_arch() {
 
 
 controller_version() {
-  if [ ! "$(command -v jq)" ]; then
-    echo "Please install 'jq'."
-    exit 1
-  fi
   curl -s "https://api.github.com/repos/fluxcd/$1/releases" | jq -r '.[] | .tag_name' | sort -V | tail -n 1
 }
 
