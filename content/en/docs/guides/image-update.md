@@ -782,8 +782,9 @@ rules:
   resources:
   - secrets
   verbs:
-  - delete
+  - get
   - create
+  - patch
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -835,11 +836,12 @@ spec:
             - /bin/bash
             - -ce
             - |-
-              kubectl delete secret --ignore-not-found $SECRET_NAME
               kubectl create secret docker-registry $SECRET_NAME \
+                --dry-run=client \
                 --docker-server="$GCR_REGISTRY" \
                 --docker-username=oauth2accesstoken \
-                --docker-password="$(gcloud auth print-access-token)" 
+                --docker-password="$(gcloud auth print-access-token)" \
+                -o yaml | kubectl apply -f -
 ```
 
 Since the cronjob will not create a job right away, after applying the manifest,
