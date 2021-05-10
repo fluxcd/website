@@ -1,9 +1,9 @@
 ---
 title: "Watching for source changes"
 linkTitle: "Watching for source changes"
+description: "Develop a Kubernetes controller that reacts to source changes."
 weight: 10
 ---
-
 
 In this guide you'll be developing a Kubernetes controller with
 [Kubebuilder](https://github.com/kubernetes-sigs/kubebuilder)

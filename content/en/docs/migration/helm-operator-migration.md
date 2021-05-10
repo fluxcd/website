@@ -1,12 +1,12 @@
 ---
 title: "Migrate to the Helm Controller"
 linkTitle: "Migrate from the Helm Operator"
+description: "How to migrate from Helm Operator to Flux v2 and its Helm controller."
 weight: 30
 card:
   name: migration
   weight: 20
 ---
-
 
 This guide will learn you everything you need to know to be able to migrate from the [Helm Operator](https://github.com/fluxcd/helm-operator) to the [Helm Controller](https://github.com/fluxcd/helm-controller).
 

@@ -1,7 +1,8 @@
 ---
 title: Kustomize Controller
 linkTitle: Kustomize Controller
-weight: 1
+description: "The GitOps Toolkit Kustomize Controller documentation."
+weight: 2
 ---
 
 

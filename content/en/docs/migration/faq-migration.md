@@ -1,6 +1,7 @@
 ---
 title: FAQ
 linkTitle: FAQ
+description: "Flux v1 to v2 migration frequently asked questions."
 weight: 100
 ---
 
@@ -8,9 +9,11 @@ weight: 100
 
 ### What does Flux v2 mean for Flux?
 
-Flux v1 is a monolithic do-it-all operator; Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
+Flux v1 is a monolithic do-it-all operator; Flux v2 separates the
+functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
-You can install and operate Flux v2 simply using the `flux` command. You can easily pick and choose the functionality you need and extend it to serve your own purposes.
+You can install and operate Flux v2 simply using the `flux` command.
+You can easily pick and choose the functionality you need and extend it to serve your own purposes.
 
 The timeline we are looking at right now is:
 
@@ -21,9 +24,12 @@ The timeline we are looking at right now is:
 
 ### Why did you rewrite Flux?
 
-Flux v2 implements its functionality in individual controllers, which allowed us to address long-standing feature requests much more easily.
+Flux v2 implements its functionality in individual controllers,
+which allowed us to address long-standing feature requests much more easily.
 
-By basing these controllers on modern Kubernetes tooling (`controller-runtime` libraries), they can be dynamically configured with Kubernetes custom resources either by cluster admins or by other automated tools -- and you get greatly increased observability.
+By basing these controllers on modern Kubernetes tooling (`controller-runtime` libraries),
+they can be dynamically configured with Kubernetes custom resources either by cluster admins
+or by other automated tools -- and you get greatly increased observability.
 
 This gave us the opportunity to build Flux v2 with the top Flux v1 feature requests in mind:
 

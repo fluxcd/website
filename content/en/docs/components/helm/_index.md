@@ -1,7 +1,8 @@
 ---
 title: Helm Controller
 linkTitle: Helm Controller
-weight: 1
+description: "The GitOps Toolkit Helm Controller documentation."
+weight: 3
 ---
 
 The Helm Controller is a Kubernetes operator, allowing one to declaratively manage Helm chart

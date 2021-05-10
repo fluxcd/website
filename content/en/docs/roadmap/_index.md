@@ -1,9 +1,8 @@
 ---
 title: "Roadmap"
 linkTitle: "Roadmap"
+description: "Flux and the GitOps Toolkit roadmap."
 weight: 90
-description: >
-  Roadmap for Flux v2
 ---
 
 {{% alert color="info" title="Production readiness" %}}

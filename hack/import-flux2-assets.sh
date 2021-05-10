@@ -84,6 +84,7 @@ gen_crd_doc() {
     {
       echo "---"
       echo "title: $TITLE"
+      echo "description: The GitOps Toolkit Custom Resource Definitions documentation."
       echo "importedDoc: true"
       echo "---"
     } >> "$DEST"

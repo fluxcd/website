@@ -1,6 +1,7 @@
 ---
 title: "Migrate from Flux v1 to v2"
 linkTitle: "Migrate from Flux v1"
+description: "How to migrate from Flux v1 to v2."
 weight: 10
 card:
   name: migration
@@ -9,11 +10,6 @@ card:
 
 This guide walks you through migrating from Flux v1 to v2.
 Read the [FAQ]({{< relref "/faq-migration" >}}) to find out what differences are between v1 and v2.
-
-{{% alert color="info" title="Automated image updates" %}}
-The image automation feature is under development in Flux v2.
-Please consult the [roadmap]({{< relref "../roadmap/_index.md" >}}) for more details.
-{{% /alert %}}
 
 {{% alert color="info" title="Feature parity" %}}
 "Feature parity" does not mean Flux v2 works exactly the same as v1 (or is

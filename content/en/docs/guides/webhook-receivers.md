@@ -1,12 +1,12 @@
 ---
 title: "Setup Webhook Receivers"
 linkTitle: "Setup Webhook Receivers"
+description: "Configure webhook receivers for GitHub, GitLab, DockerHub and others using Flux notification controller."
 weight: 40
 ---
 
-
-The GitOps toolkit controllers are by design **pull-based**.
-In order to notify the controllers about changes in Git or Helm repositories,
+Flux is by design **pull-based**.
+In order to notify the Flux controllers about changes in Git or Helm repositories,
 you can setup webhooks and trigger a cluster reconciliation
 every time a source changes. Using webhook receivers, you can build **push-based**
 GitOps pipelines that react to external events.
@@ -112,7 +112,7 @@ spec:
       name: webapp
 ```
 
-{{% alert color="info" title="Note" %}}
+{{% alert color="info" title="Other receiver" %}}
 Besides GitHub, you can define receivers for **GitLab**, **Bitbucket**, **Harbor**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
 See the [Receiver CRD docs](../components/notification/receiver.md) for more details.

@@ -1,6 +1,7 @@
 ---
 title: GitHub Actions Auto Pull Request
 linkTitle: GitHub Actions Auto PR
+description: "How to configure GitHub Pull Requests for Flux image updates."
 ---
 
 This guide shows how to configure GitHub Actions to open a pull request whenever a selected branch is pushed.

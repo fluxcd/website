@@ -1,12 +1,12 @@
 ---
 title: "Setup Notifications"
 linkTitle: "Setup Notifications"
+description: "Configure alerting for Slack, Teams, Discord and others using Flux notification controller."
 weight: 30
 card:
   name: tasks
   weight: 50
 ---
-
 
 When operating a cluster, different teams may wish to receive notifications about
 the status of their GitOps pipelines.
@@ -16,15 +16,14 @@ of an app was deployed and if the deployment is healthy.
 
 ## Prerequisites
 
-To follow this guide you'll need a Kubernetes cluster with the GitOps
-toolkit controllers installed on it.
+To follow this guide you'll need a Kubernetes cluster with Flux installed on it.
 Please see the [get started guide](../get-started/index.md)
 or the [installation guide](installation.md).
 
-The GitOps toolkit controllers emit Kubernetes events whenever a resource status changes.
+The Flux controllers emit Kubernetes events whenever a resource status changes.
 You can use the [notification-controller](../components/notification/_index.md)
-to forward these events to Slack, Microsoft Teams, Discord or Rocket chart.
-The notification controller is part of the default toolkit installation.
+to forward these events to Slack, Microsoft Teams, Discord and others.
+The notification controller is part of the default Flux installation.
 
 ## Define a provider
 

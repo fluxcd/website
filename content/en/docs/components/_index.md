@@ -1,6 +1,7 @@
 ---
 title: "GitOps Toolkit components"
 linkTitle: "Toolkit Components"
+description: "The GitOps Toolkit documentation."
 weight: 50
 ---
 

@@ -1,12 +1,12 @@
 ---
 title: "Monitoring with Prometheus"
 linkTitle: "Monitoring with Prometheus"
+description: "Monitoring Flux with Prometheus and Grafana."
 weight: 50
 card:
   name: tasks
   weight: 40
 ---
-
 
 This guide walks you through configuring monitoring for the Flux control plane.
 

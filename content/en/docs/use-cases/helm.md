@@ -1,20 +1,24 @@
 ---
 title: Flux for Helm Users
 linkTitle: Helm
+description: "Declarative Helming with Flux Helm controller."
 ---
 
 Welcome Helm users!
-We think Flux's Helm Controller is the best way to do Helm according to GitOps principles, and we're dedicated to doing what we can to help you feel the same way.
+We think Flux's Helm Controller is the best way to do Helm according to GitOps principles,
+and we're dedicated to doing what we can to help you feel the same way.
 
 ## What Does Flux add to Helm?
 
 Helm 3 was designed with both a client and an SDK, but no running software agents.
-This architecture intended anything outside of the client scope to be addressed by other tools in the ecosystem, which could then make use of Helm's SDK.
+This architecture intended anything outside of the client scope to be addressed by other tools in the ecosystem,
+which could then make use of Helm's SDK.
 
-Built on Kubernetes controller-runtime, Flux's Helm Controller is an example of a mature software agent that uses Helm's SDK to full effect.
-<!-- Flux is the only CD project that uses Helm as a library – not shelling out to the client – and does not fork the SDK to diverge from how Helm does things. -->
+Built on Kubernetes controller-runtime, Flux's Helm Controller is an example of a mature software
+agent that uses Helm's SDK to full effect.
 
-Flux's biggest addition to Helm is a structured declaration layer for your releases that automatically gets reconciled to your cluster based on your configured rules:
+Flux's biggest addition to Helm is a structured declaration layer for your releases that
+automatically gets reconciled to your cluster based on your configured rules:
 
 - While the Helm client commands let you imperatively do things
 - Flux Helm Custom Resources let you declare what you want the Helm SDK to do automatically
@@ -50,11 +54,14 @@ flux create helmrelease --chart my-traefik \
   --namespace traefik
 ```
 
-The main difference is Flux client will not imperatively create resources in the cluster.
-Instead these commands create Custom Resource *files*, which are committed to version control as instructions only (note: you may use the `--export` flag to manage any file edits with finer grained control before pushing to version control).
-Separately, the Flux Helm Controller software agent automatically reconciles these instructions with the running state of your cluster based on your configured rules.
+The main difference is that the Flux client will not imperatively create resources in the cluster.
+Instead, these commands create Custom Resource *files*, which are committed to version control
+as instructions only (note: you may use the `--export` flag to manage any file edits with
+finer grained control before pushing to version control).
+Separately, the Flux Helm Controller automatically reconciles these instructions
+with the running state of your cluster based on your configured rules.
 
-Lets check out what the Custom Resource instruction files look like:
+Let's check out what the Custom Resource files look like:
 
 ```yaml
 # /flux/boot/traefik/helmrepo.yaml
@@ -86,18 +93,22 @@ spec:
   interval: 1m0s
 ```
 
-<!-- Using the Flux Kustomize Controller, these are automatically applied to your cluster, just as any other Kubernetes resources are. Note that while you may find value in combining Kustomize overlays with your Helm Controller manifests to further reduce file duplication, that is entirely optional and unrelated to the Helm Controller. -->
-
-Once these are applied to your cluster, the Flux Helm Controller automatically uses the Helm SDK to do your bidding according to the rules you've set.
+Once these are applied to your cluster, the Flux Helm Controller automatically
+uses the Helm SDK to do your bidding according to the rules you've set.
 
 Why is this important?
-If you or your team has ever collaborated with multiple engineers on one or more apps, and/or in more than one namespace or cluster, you probably have a good idea of how declarative, automatic reconciliation can help solve common problems.
+If you or your team has ever collaborated with multiple engineers on one or more apps,
+and/or in more than one namespace or cluster, you probably have a good idea of how declarative,
+automatic reconciliation can help solve common problems.
 If not, or either way, you may want to check out this [short introduction to GitOps](https://youtu.be/r-upyR-cfDY).
 
 ## Customizing Your Release
 
-While Helm charts are usually installable using default configurations, users will often customize charts with their preferred configuration by [overriding the default values](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing).
-The Helm client allows this by imperatively specifying override values with `--set` on the command line, and in additional `--values` files. For example:
+While Helm charts are usually installable using default configurations,
+users will often customize charts with their preferred configuration
+by [overriding the default values](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing).
+The Helm client allows this by imperatively specifying override values with `--set` on the command line,
+and in additional `--values` files. For example:
 
 ```console
 helm install my-traefik traefik/traefik --set service.type=ClusterIP
@@ -126,34 +137,52 @@ spec:
       type: ClusterIP
 ```
 
-and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values, allowing reusability and/or greater security.
-See `HelmRelease` CRD [values overrides](/docs/components/helm/helmreleases/#values-overrides) documentation for the latest spec.
+and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values,
+allowing reusability and/or greater security.
+See `HelmRelease` CRD [values overrides](/docs/components/helm/helmreleases/#values-overrides)
+documentation for the latest spec.
 
 ## Managing Secrets and ConfigMaps
 
-You may manage these `ConfigMap` and `Secret` resources any way you wish, but there are several benefits to managing these with the Flux Kustomize Controller.
+You may manage these `ConfigMap` and `Secret` resources any way you wish,
+but there are several benefits to managing these with the Flux Kustomize Controller.
 
-It is fairly straigtforward to use Kustomize `configMapGenerator` to [trigger a Helm release upgrade every time the encoded values change](/docs/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize).
-This common use case currently solveable in Helm by [adding specially crafted annotations](https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments) to a chart.
-The Flux Kustomize Controller method allows you to accomplish this on any chart without additional templated annotations.
+It is fairly straigtforward to use Kustomize `configMapGenerator`
+to [trigger a Helm release upgrade every time the encoded values change](/docs/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize).
+This common use case currently solveable in Helm
+by [adding specially crafted annotations](https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments)
+to a chart. The Flux Kustomize Controller method allows you to accomplish this
+on any chart without additional templated annotations.
 
-You may also use Kustomize Controller built-in [Mozilla SOPS integration](/docs/components/kustomize/kustomization/#secrets-decryption) to securely manage your encrypted secrets stored in git.
+You may also use Kustomize Controller
+built-in [Mozilla SOPS integration](/docs/components/kustomize/kustomization/#secrets-decryption)
+to securely manage your encrypted secrets stored in git.
 See the [Flux SOPS guide](/docs/guides/mozilla-sops/) for step-by-step instructions through various use cases.
 
 ## Automatic Release Upgrades
 
-If you want Helm Controller to automatically upgrade your releases when a new chart version is available in the release's referenced `HelmRepository`, you may specify a SemVer range (i.e. `>=4.0.0 <5.0.0`) instead of a fixed version.
+If you want Helm Controller to automatically upgrade your releases when a new chart version is available
+in the release's referenced `HelmRepository`,
+you may specify a SemVer range (i.e. `>=4.0.0 <5.0.0`) instead of a fixed version.
 
-This is useful if your release should use a fixed MAJOR chart version, but want the latest MINOR or PATCH versions as they become available.
+This is useful if your release should use a fixed MAJOR chart version,
+but want the latest MINOR or PATCH versions as they become available.
 
-For full SemVer range syntax, see `Masterminds/semver` [Checking Version Constraints](https://github.com/Masterminds/semver/blob/master/README.md#checking-version-constraints) documentation.
+For full SemVer range syntax,
+see `Masterminds/semver` [Checking Version Constraints](https://github.com/Masterminds/semver/blob/master/README.md#checking-version-constraints) documentation.
 
 ## Automatic Uninstalls and Rollback
 
-The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [spec.install.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [spec.upgrade.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [spec.rollback](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [spec.uninstall](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
-Features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
+The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails,
+using [spec.install.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
+[spec.upgrade.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
+[spec.rollback](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback)
+and [spec.uninstall](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
+Features include the option to remediate with an uninstall after an upgrade failure,
+and the option to keep a failed release for debugging purposes when it has run out of retries.
 
-Here is an example for configuring automated uninstalls (for all available fields, consult the `InstallRemediation` and `Uninstall` API references linked above):
+Here is an example for configuring automated uninstalls (for all available fields,
+consult the `InstallRemediation` and `Uninstall` API references linked above):
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
@@ -177,7 +206,8 @@ spec:
     keepHistory: false
 ```
 
-Here is an example of automated rollback configuration (for all available fields, consult the `UpgradeRemediation` and `Rollback` API references linked above):
+Here is an example of automated rollback configuration (for all available fields,
+consult the `UpgradeRemediation` and `Rollback` API references linked above):
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
