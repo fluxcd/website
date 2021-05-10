@@ -32,7 +32,7 @@ Then apply the [manifests/monitoring/kube-prometheus-stack](https://github.com/f
 kustomization:
 
 ```sh
-flux create kustomization monitoring \
+flux create kustomization monitoring-stack \
   --interval=1h \
   --prune=true \
   --source=monitoring \
@@ -49,7 +49,7 @@ When using Prometheus Operator you need a `PodMonitor` object to configure scrap
 Apply the [manifests/monitoring/monitoring-config](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/monitoring-config) kustomization:
 
 ```sh
-flux create kustomization monitoring \
+flux create kustomization monitoring-config \
   --interval=1h \
   --prune=true \
   --source=monitoring \
