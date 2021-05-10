@@ -638,8 +638,9 @@ rules:
   resources:
   - secrets
   verbs:
-  - delete
+  - get
   - create
+  - patch
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -718,11 +719,12 @@ spec:
             - /bin/bash
             - -ce
             - |-
-              kubectl delete secret --ignore-not-found $SECRET_NAME
               kubectl create secret docker-registry $SECRET_NAME \
+                --dry-run=client \
                 --docker-server="$ECR_REGISTRY" \
                 --docker-username=AWS \
                 --docker-password="$(</token/ecr-token)"
+                -o yaml | kubectl apply -f -
 ```
 
 {{% alert color="info" title="Using IAM Roles for Service Accounts (IRSA)" %}}
