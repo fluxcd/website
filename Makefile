@@ -86,30 +86,31 @@ branch-build: gen-content theme ## Builds a Git branch (for e.g. development bra
 		--minify \
 		--enableGitInfo
 
-hugo:
-	git clone https://github.com/gohugoio/hugo.git -b v$(HUGO_VERSION)
-
-.PHONY: docker-support
-docker-support: hugo
-	docker build -t $(DEV_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
-
-.PHONY: docker-image
-docker-image: docker-support
-	docker build -t $(PREVIEW_IMAGE_NAME) docker-support/
+.PHONY: docker-preview
+docker-preview: docker-theme docker-serve
 
 .PHONY: docker-theme
 docker-theme:
-	docker run -v $(shell pwd):/site -it $(PREVIEW_IMAGE_NAME) make theme
+	docker run -v $(shell pwd):/site -it $(PREVIEW_IMAGE_NAME) \
+		make \"MAKEFLAGS=$(MAKEFLAGS)\" theme
 
 .PHONY: docker-serve
 docker-serve:
 	docker run -v $(shell pwd):/site -p 1313:1313 -it $(PREVIEW_IMAGE_NAME) \
 		make \"MAKEFLAGS=$(MAKEFLAGS)\" serve HUGO_BIND_ADDRESS=0.0.0.0
 
-.PHONY: docker-preview
-docker-preview: docker-theme docker-serve
-
 .PHONY: docker-push
 docker-push: docker-image
 	docker push $(DEV_IMAGE_NAME)
 	docker push $(PREVIEW_IMAGE_NAME)
+
+.PHONY: docker-image
+docker-image: docker-support
+	docker build -t $(PREVIEW_IMAGE_NAME) docker-support/
+
+.PHONY: docker-support
+docker-support: hugo
+	docker build -t $(DEV_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
+
+hugo:
+	git clone https://github.com/gohugoio/hugo.git -b v$(HUGO_VERSION)
