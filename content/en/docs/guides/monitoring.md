@@ -37,8 +37,8 @@ flux create kustomization monitoring-stack \
   --prune=true \
   --source=monitoring \
   --path="./manifests/monitoring/kube-prometheus-stack" \
-  --health-check="Deployment/monitoring-kube-prometheus-operator.flux-system" \
-  --health-check="Deployment/monitoring-grafana.flux-system"
+  --health-check="Deployment/kube-prometheus-stack-operator.monitoring" \
+  --health-check="Deployment/kube-prometheus-stack-grafana.monitoring"
 ```
 
 ## Create `PodMonitor` and configmap for Grafana dashboards
@@ -53,9 +53,7 @@ flux create kustomization monitoring-config \
   --interval=1h \
   --prune=true \
   --source=monitoring \
-  --path="./manifests/monitoring/monitoring-config" \
-  --health-check="Deployment/monitoring-kube-prometheus-operator.flux-system" \
-  --health-check="Deployment/monitoring-grafana.flux-system"
+  --path="./manifests/monitoring/monitoring-config"
 ```
 
 You can access Grafana using port forwarding:
