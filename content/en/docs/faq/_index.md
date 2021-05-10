@@ -1,11 +1,9 @@
 ---
 title: "Frequently asked questions"
 linkTitle: "FAQ"
+description: "Flux and the GitOps Toolkit frequently asked questions."
 weight: 100
-description: >
-  Frequently asked questions regarding Flux v2
 ---
-
 
 ## Kustomize questions
 

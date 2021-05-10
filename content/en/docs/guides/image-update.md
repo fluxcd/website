@@ -1,12 +1,12 @@
 ---
 title: "Automate image updates to Git"
 linkTitle: "Automate image updates to Git"
+description: "Automate container image updates to Git with Flux."
 weight: 80
 card:
   name: tasks
   weight: 20
 ---
-
 
 This guide walks you through configuring container image scanning and deployment rollouts with Flux.
 
@@ -66,7 +66,7 @@ export GITHUB_USER=<your-username>
 ## Install Flux
 
 {{% alert color="info" title="Enable image automation components" %}}
-If you bootstrapped Flux before without the `--components-extra=` argument, you need to add
+If you bootstrapped Flux before, you need to add
 `--components-extra=image-reflector-controller,image-automation-controller` to your
 bootstrapping routine as image automation components are not installed by default.
 {{% /alert %}}
@@ -80,7 +80,7 @@ flux bootstrap github \
   --repository=flux-image-updates \
   --branch=main \
   --path=clusters/my-cluster \
-  --token-auth \
+  --read-write-key \
   --personal
 ```
 
@@ -91,7 +91,7 @@ synchronize with the specified path inside the repository.
 {{% alert color="info" title="GitLab and other Git platforms" %}}
 You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
 any other Git provider that support SSH or token-based authentication.
-When using SSH, make sure the deploy key is configured with write access.
+When using SSH, make sure the deploy key is configured with write access `--read-write-key`.
 Please see the [installation guide](installation.md) for more details.
 {{% /alert %}}
 
@@ -202,7 +202,7 @@ spec:
       range: 5.0.x
 ```
 
-{{% alert color="info" title="semver ranges" %}}
+{{% alert color="info" title="Semver Ranges" %}}
 A semver range that includes stable releases can be defined with
 `1.0.x` (patch versions only) or `>=1.0.0 <2.0.0` (minor and patch versions).
 If you want to include pre-release e.g. `1.0.0-rc.1`,
@@ -516,7 +516,7 @@ Log in to DockerHub web interface, go to your image registry Settings and select
 Fill the form "Webhook URL" by composing the address using the receiver
 LB and the generated URL `http://<LoadBalancerAddress>/<ReceiverURL>`.
 
-{{% alert color="info" title="Note" %}}
+{{% alert color="info" title="Other receivers" %}}
 Besides DockerHub, you can define receivers for **Harbor**, **Quay**, **Nexus**, **GCR**,
 and any other system that supports webhooks e.g. GitHub Actions, Jenkins, CircleCI, etc.
 See the [Receiver CRD docs](../components/notification/receiver.md) for more details.

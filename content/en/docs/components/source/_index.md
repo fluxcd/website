@@ -1,9 +1,9 @@
 ---
 title: Source Controller
 linkTitle: Source Controller
+description: "The GitOps Toolkit Source Controller documentation."
 weight: 1
 ---
-
 
 The main role of the source management component is to provide a common interface for artifacts acquisition.
 The source API defines a set of Kubernetes objects that cluster admins and various automated operators can

@@ -1,6 +1,7 @@
 ---
 title: "Flux Documentation"
 linkTitle: "Docs"
+description: "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
 menu:
   main:
     weight: 10

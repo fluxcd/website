@@ -1,9 +1,9 @@
 ---
 title: Image reflector and automation controllers
 linkTitle: Image Automation Controllers
-weight: 1
+description: "The GitOps Toolkit Image Automation Controllers documentation."
+weight: 5
 ---
-
 
 The image-reflector-controller and image-automation-controller work together to update a Git
 repository when new container images are available.
@@ -17,7 +17,7 @@ repository when new container images are available.
 
 Links:
 
-- Source code [fluxcd/image-reflector-controller](https://github.com/fluxcd/image-reflector-controller)
+- Reflector source code [fluxcd/image-reflector-controller](https://github.com/fluxcd/image-reflector-controller)
 - Reflector [specification docs](https://github.com/fluxcd/image-reflector-controller/tree/main/docs/spec)
-- Source code [fluxcd/image-automation-controller](https://github.com/fluxcd/image-automation-controller)
+- Automation source code [fluxcd/image-automation-controller](https://github.com/fluxcd/image-automation-controller)
 - Automation [specification docs](https://github.com/fluxcd/image-automation-controller/tree/main/docs/spec)

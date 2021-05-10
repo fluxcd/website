@@ -1,6 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
+description: "Flux install, bootstrap, upgrade and uninstall documentation."
 weight: 10
 card:
   name: tasks
@@ -8,7 +9,7 @@ card:
 ---
 
 
-This guide walks you through setting up Flux v2 (hereafter: "Flux") to
+This guide walks you through setting up Flux to
 manage one or more Kubernetes clusters.
 
 ## Prerequisites
@@ -579,7 +580,9 @@ can skip the namespace deletion with:
 flux uninstall --namespace=infra --keep-namespace
 ```
 
-{{% alert color="info" %}}
+{{% alert color="info" title="Reinstall" %}}
 Note that the `uninstall` command will not remove any Kubernetes objects
 or Helm releases that were reconciled on the cluster by Flux.
+It is safe to uninstall Flux and rerun the boostrap, any existing workloads
+will not be affected.
 {{% /alert %}}

@@ -1,6 +1,7 @@
 ---
 title: "Core Concepts"
 linkTitle: "Core Concepts"
+description: "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
 weight: 10
 description: >
   Core Concepts of Flux v2

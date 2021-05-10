@@ -1,6 +1,7 @@
 ---
 title: GitHub Actions Manifest Generation
 linkTitle: GitHub Actions Manifest Generation
+description: "How to use GitHub Actions for Kubernetes manifest generation."
 ---
 
 This example implements "build-time" manifest generation on GitHub Actions.
