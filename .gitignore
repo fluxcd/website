@@ -16,9 +16,3 @@ static/install.sh
 
 # Adopters logos
 static/img/logos
-
-# Editors
-.vscode
-
-# Mac specific things
-.DS_Store
