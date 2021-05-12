@@ -204,10 +204,10 @@ data:
   # HTTP/S basic auth credentials
   username: <base64 encoded username>
   password: <base64 encoded password>
-  # TLS credentials (certFile and keyFile, and/or caCert)
+  # TLS credentials (certFile and keyFile, and/or caFile)
   certFile: <base64 encoded certificate>
   keyFile: <base64 encoded key>
-  caCert: <base64 encoded CA certificate>
+  caFile: <base64 encoded CA certificate>
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
