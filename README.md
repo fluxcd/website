@@ -10,19 +10,21 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 > ------------- | ------------------------------------------------ | -------------
 > Flux v1       | <https://docs.fluxcd.io>                         | <https://github.com/fluxcd/flux>
 > Helm Operator | <https://docs.fluxcd.io/projects/helm-operator/> | <https://github.com/fluxcd/helm-operator>
+> Flagger       | <https://docs.flagger.app>                       | <https://github.com/fluxcd/flagger>
 > Flux v2       | <https://fluxcd.io/docs>                         | <https://github.com/fluxcd/website>
 >
-> We are in the process of moving everything into this repository: `/fluxcd/website`. The work can be tracked here: <https://github.com/fluxcd/website/issues/76>.
+> We are in the process of moving Flux v1, Helm Operator and Flagger docs into this repository as well.
 
 ## How to modify this website
 
 The main landing page of this website can be modified in `config.toml`.
 
-All other content lives in the `content` directory:
+Almost all of the content lives in the `content/en/docs` directory. Here are some special cases.
 
 - `./content/en/blog` contains all blog posts - make sure you update the front-matter for posts to show up correctly.
 - `./external-sources/` defines how files from other repositories are pulled in. We currently do this for Markdown files from the `/fluxcd/community` and `/fluxcd/.github` repositories. (`make gen-content` pulls these in.)
 - Flux CLI docs (`cmd`) and `components` docs: under `./content/en/docs` but pulled in through in `make gen-content` as well.
+- `/static/_redirects` defines redirects on <https://fluxcd.io>. Check out <https://docs.netlify.com/routing/redirects/> for the syntax definition and how to test if things work.
 
 ## Running the site locally
 
@@ -58,7 +60,7 @@ When you submit a pull request to this repository, Netlify builds a "deploy prev
 
 Run `make docker-preview` and wait until the following output appears:
 
-```
+```cli
 Environment: "development"
 Serving pages from memory
 Web Server is available at //localhost:1313/ (bind address 0.0.0.0)
