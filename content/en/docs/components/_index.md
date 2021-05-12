@@ -2,7 +2,7 @@
 title: "GitOps Toolkit components"
 linkTitle: "Toolkit Components"
 description: "The GitOps Toolkit documentation."
-weight: 50
+weight: 60
 ---
 
 The GitOps Toolkit is the set of APIs and controllers that make up the

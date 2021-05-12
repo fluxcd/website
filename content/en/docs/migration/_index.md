@@ -1,5 +1,6 @@
 ---
 title: "Migration"
 linkTitle: "Migration"
-weight: 35
+description: "Migration guides for Flux v1 and Helm Operator users."
+weight: 60
 ---

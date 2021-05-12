@@ -147,7 +147,7 @@ deployment "notification-controller" successfully rolled out
 
 If you prefer GitLab, export `GITLAB_TOKEN` env var and
 use the command [flux bootstrap
-gitlab]({{< relref "./guides/installation.md#gitlab-and-gitlab-enterprise" >}}).
+gitlab](installation/_index.md#gitlab-and-gitlab-enterprise).
 
 {{% alert color="info" title="Idempotency" %}}
 It is safe to run the bootstrap command as many times as you want.

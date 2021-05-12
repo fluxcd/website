@@ -12,7 +12,7 @@ Going forward, breaking changes to the beta CRDs will be accompanied by a conver
 Please see the [Migration and Suport Timetable](../migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
-The following components (included by default in [flux bootstrap](../guides/installation.md#bootstrap))
+The following components (included by default in [flux bootstrap](../installation/_index.md#bootstrap))
 are considered production ready:
 
 - [source-controller](../components/source)

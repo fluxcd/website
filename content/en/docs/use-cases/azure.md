@@ -2,6 +2,7 @@
 title: Using Flux on Azure
 linkTitle: Azure
 description: "How to boostrap Flux on Azure AKS with DevOps Git repositories."
+weight: 10
 ---
 
 ## AKS Cluster Options
@@ -79,7 +80,7 @@ Create a directory inside the repository:
 mkdir -p ./clusters/my-cluster/flux-system
 ```
 
-Download the [Flux CLI](../guides/installation.md#install-the-flux-cli) and generate the manifests with:
+Download the [Flux CLI](../installation/_index.md#install-the-flux-cli) and generate the manifests with:
 
 ```sh
 flux install \
