@@ -2,12 +2,8 @@
 title: "Installation"
 linkTitle: "Installation"
 description: "Flux install, bootstrap, upgrade and uninstall documentation."
-weight: 10
-card:
-  name: tasks
-  weight: 10
+weight: 30
 ---
-
 
 This guide walks you through setting up Flux to
 manage one or more Kubernetes clusters.
@@ -37,8 +33,8 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 Command-line completion for `zsh`, `fish`, and `powershell`
 are also supported with their own sub-commands.
 
-Binaries for macOS, Windows and Linux AMD64/ARM are available for download on the
-[release page](https://github.com/fluxcd/flux2/releases).
+Binaries for macOS AMD64/ARM64, Linux AMD64/ARM and Windows are available for
+download on the [release page](https://github.com/fluxcd/flux2/releases).
 
 A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
 

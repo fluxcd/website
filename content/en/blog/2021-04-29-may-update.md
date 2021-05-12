@@ -63,7 +63,7 @@ The Flux v2 CLI and the GitOps Toolkit controllers are now CII Best
 Practices certified.
 
 Checkout the [new bootstrap
-procedure](/docs/guides/installation/#generic-git-server).
+procedure](/docs/installation/_index.md#generic-git-server).
 
 0.13 comes with **breaking changes to image automation** and has the
 following highlights:
@@ -91,7 +91,7 @@ Please follow the [upgrade procedure for image
 automation](https://github.com/fluxcd/flux2/discussions/1333).
 
 Checkout the [new bootstrap customisation
-feature](/docs/guides/installation/#customize-flux-manifests).
+feature](/docs/installation/_index.md#customize-flux-manifests).
 
 The [Image automation guide](/docs/guides/image-update/) has been updated
 to the new APIs, and also includes a reference to a

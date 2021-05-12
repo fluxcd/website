@@ -2,6 +2,7 @@
 title: Flux for Helm Users
 linkTitle: Helm
 description: "Declarative Helming with Flux Helm controller."
+weight: 30
 ---
 
 Welcome Helm users!
@@ -37,7 +38,7 @@ Lets translate imperative Helm commands to Flux Helm Controller Custom Resources
 
 Helm client:
 
-```console
+```sh
 helm repo add traefik https://helm.traefik.io/traefik
 helm install my-traefik traefik/traefik \
   --version 9.18.2 \
@@ -46,7 +47,7 @@ helm install my-traefik traefik/traefik \
 
 Flux client:
 
-```console
+```sh
 flux create source helm traefik --url https://helm.traefik.io/traefik
 flux create helmrelease --chart my-traefik \
   --source HelmRepository/traefik \
@@ -110,13 +111,13 @@ by [overriding the default values](https://helm.sh/docs/intro/using_helm/#custom
 The Helm client allows this by imperatively specifying override values with `--set` on the command line,
 and in additional `--values` files. For example:
 
-```console
+```sh
 helm install my-traefik traefik/traefik --set service.type=ClusterIP
 ```
 
 and
 
-```console
+```sh
 helm install my-traefik traefik/traefik --values ci/kind-values.yaml
 ```
 
@@ -169,7 +170,9 @@ This is useful if your release should use a fixed MAJOR chart version,
 but want the latest MINOR or PATCH versions as they become available.
 
 For full SemVer range syntax,
-see `Masterminds/semver` [Checking Version Constraints](https://github.com/Masterminds/semver/blob/master/README.md#checking-version-constraints) documentation.
+see `Masterminds/semver`
+[Checking Version Constraints](https://github.com/Masterminds/semver/blob/master/README.md#checking-version-constraints)
+documentation.
 
 ## Automatic Uninstalls and Rollback
 
