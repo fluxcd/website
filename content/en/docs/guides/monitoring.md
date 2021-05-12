@@ -1,21 +1,19 @@
 ---
 title: "Monitoring with Prometheus"
 linkTitle: "Monitoring with Prometheus"
-description: "Monitoring Flux with Prometheus and Grafana."
+description: "Monitoring Flux with Prometheus Operator and Grafana."
 weight: 50
-card:
-  name: tasks
-  weight: 40
 ---
 
 This guide walks you through configuring monitoring for the Flux control plane.
 
-Flux uses [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) to provide a monitoring stack:
+Flux uses [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+to provide a monitoring stack made out of:
 
-The kube-promethus stack installs:
-* **Prometheus** server - collects metrics from the toolkit controllers
-* **Grafana** dashboards - displays the control plane resource usage and reconciliation stats
-* **kube-state-metrics** -  generates metrics about the state of the objects from API server
+* **Prometheus Operator** - manages Prometheus clusters atop Kubernetes
+* **Prometheus** - collects metrics from the Flux controllers and Kubernetes API
+* **Grafana** dashboards - displays the Flux control plane resource usage and reconciliation stats
+* **kube-state-metrics** - generates metrics about the state of the Kubernetes objects
 
 ## Install the kube-prometheus-stack
 
@@ -41,12 +39,22 @@ flux create kustomization monitoring-stack \
   --health-check="Deployment/kube-prometheus-stack-grafana.monitoring"
 ```
 
-## Create `PodMonitor` and configmap for Grafana dashboards
+The above Kustomization will install the kube-prometheus-stack in the `monitoring` namespace.
 
-Note that the toolkit controllers expose the `/metrics` endpoint on port `8080`.
+{{% alert color="warning" title="Prometheus Configuration" %}}
+Note that the above configuration is not suitable for production.
+In order to configure long term storage for metrics
+and highly availability for Prometheus consult the Helm
+chart [documentation](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack).
+{{% /alert %}}
+
+## Install Flux Grafana dashboards
+
+Note that the Flux controllers expose the `/metrics` endpoint on port `8080`.
 When using Prometheus Operator you need a `PodMonitor` object to configure scraping for the controllers.
 
-Apply the [manifests/monitoring/monitoring-config](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/monitoring-config) kustomization:
+Apply the [manifests/monitoring/monitoring-config](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/monitoring-config)
+containing the `PodMonitor` and the `ConfigMap` with Flux's Grafana dashboards:
 
 ```sh
 flux create kustomization monitoring-config \
@@ -62,7 +70,7 @@ You can access Grafana using port forwarding:
 kubectl -n flux-system port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
-## Grafana dashboards
+## Flux dashboards
 
 Control plane dashboard [http://localhost:3000/d/gitops-toolkit-control-plane](http://localhost:3000/d/gitops-toolkit-control-plane/gitops-toolkit-control-plane):
 
@@ -92,9 +100,15 @@ gotk_reconcile_condition{kind, name, namespace, type="Ready", status="Unknown"}
 gotk_reconcile_condition{kind, name, namespace, type="Ready", status="Deleted"}
 ```
 
+Suspend status metrics:
+
+```sh
+gotk_suspend_status{kind, name, namespace}
+```
+
 Time spent reconciling:
 
-```
+```sh
 gotk_reconcile_duration_seconds_bucket{kind, name, namespace, le}
 gotk_reconcile_duration_seconds_sum{kind, name, namespace}
 gotk_reconcile_duration_seconds_count{kind, name, namespace}
