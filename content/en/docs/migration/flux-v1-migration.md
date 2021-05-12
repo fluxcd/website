@@ -269,7 +269,8 @@ app 	main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
 
 ### Flux with Slack notifications
 
-Assuming you've configured Flux v1 to send notifications to Slack with FluxCloud.
+Assuming you have configured Flux v1 to send notifications to Slack with
+[FluxCloud](https://github.com/justinbarrick/fluxcloud).
 
 With Flux v2, create an alert provider for a Slack channel:
 
