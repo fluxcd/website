@@ -2,7 +2,7 @@
 title: "Advanced debugging"
 linkTitle: "Advanced debugging"
 description: "Configure Go profiling for the GitOps Toolkit controllers."
-weight: 20
+weight: 100
 ---
 
 This guide covers more advanced debugging topics such as collecting
