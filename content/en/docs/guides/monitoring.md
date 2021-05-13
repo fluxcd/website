@@ -67,7 +67,7 @@ flux create kustomization monitoring-config \
 You can access Grafana using port forwarding:
 
 ```sh
-kubectl -n flux-system port-forward svc/kube-prometheus-stack-grafana 3000:80
+kubectl -n monitoring port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
 ## Flux dashboards
