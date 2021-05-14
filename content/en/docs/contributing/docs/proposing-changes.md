@@ -200,7 +200,7 @@ When you are ready to submit a pull request, commit your changes.
    git commit -as --amend
    ```
 
-   - `-a`: commits all changes
+   - `-as`: commits all changes and adds your signoff
    - `--amend`: amends the previous commit, rather than creating a new one
 
 1. Update your commit message if needed.
