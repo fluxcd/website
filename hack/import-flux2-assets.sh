@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 COMPONENTS_DIR="content/en/docs/components"
 FLUX_DIR="content/en/docs/cmd"
 
