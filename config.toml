@@ -99,7 +99,7 @@ weight = 20
 [[menus.main]]
 name = "Contributing"
 parent = "Project"
-url = "/contributing"
+url = "/docs/contributing"
 weight = 30
 
 [[menus.main]]
