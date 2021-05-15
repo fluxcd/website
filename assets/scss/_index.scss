@@ -1,26 +1,4 @@
-.lead-gitops {
-  section {
-    h2, p {
-      color: $flux-white;
-    }
-    h2 {
-      font-weight: 800;
-      margin-bottom: 2rem;
-    }
-    a {
-      color: $flux-white;
-      font-style: italic;
-    }
-    background-color: $flux-dark-blue;
-    .td-arrow-down {
-      &::before {
-        border: {
-          color: #{$flux-dark-blue} transparent transparent transparent;
-        }
-      }
-    }
-  }
-}
+
 
 .features, .resources {
   .col-lg-4 {
