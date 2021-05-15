@@ -67,18 +67,18 @@ flux create kustomization monitoring-config \
 You can access Grafana using port forwarding:
 
 ```sh
-kubectl -n flux-system port-forward svc/kube-prometheus-stack-grafana 3000:80
+kubectl -n monitoring port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
 ## Flux dashboards
 
-Control plane dashboard [http://localhost:3000/d/gitops-toolkit-control-plane](http://localhost:3000/d/gitops-toolkit-control-plane/gitops-toolkit-control-plane):
+Control plane dashboard [http://localhost:3000/d/flux-control-plane](http://localhost:3000/d/flux-control-plane/flux-control-plane):
 
 ![](/img/cp-dashboard-p1.png)
 
 ![](/img/cp-dashboard-p2.png)
 
-Cluster reconciliation dashboard [http://localhost:3000/d/gitops-toolkit-cluster](http://localhost:3000/d/gitops-toolkit-cluster/gitops-toolkit-cluster-stats):
+Cluster reconciliation dashboard [http://localhost:3000/d/flux-cluster](http://localhost:3000/d/flux-cluster/flux-cluster-stats):
 
 ![](/img/cluster-dashboard.png)
 
