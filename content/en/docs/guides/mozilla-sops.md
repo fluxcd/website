@@ -14,7 +14,7 @@ Kubernetes secrets with OpenPGP, AWS KMS, GCP KMS and Azure Key Vault.
 To follow this guide you'll need a Kubernetes cluster with the GitOps
 toolkit controllers installed on it.
 Please see the [get started guide](../get-started/index.md)
-or the [installation guide](installation.md).
+or the [installation guide](../installation/).
 
 Install [gnupg](https://www.gnupg.org/) and [SOPS](https://github.com/mozilla/sops):
 

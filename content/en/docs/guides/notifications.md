@@ -18,7 +18,7 @@ of an app was deployed and if the deployment is healthy.
 
 To follow this guide you'll need a Kubernetes cluster with Flux installed on it.
 Please see the [get started guide](../get-started/index.md)
-or the [installation guide](installation.md).
+or the [installation guide](../installation/).
 
 The Flux controllers emit Kubernetes events whenever a resource status changes.
 You can use the [notification-controller](../components/notification/_index.md)
