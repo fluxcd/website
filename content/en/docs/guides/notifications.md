@@ -141,7 +141,7 @@ when receiving the event.
 
 {{% alert color="info" title="Limitations" %}}
 The git notification providers require that a commit hash present in the meta data
-of the event. There for the the providers will only work with `Kustomization` as an
+of the event. There for the providers will only work with `Kustomization` as an
 event source, as it is the only resource which includes this data.
 {{% /alert %}}
 
