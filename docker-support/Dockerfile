@@ -8,6 +8,7 @@ RUN apk update && \
 	make \
 	nodejs \
 	npm \
+	coreutils \
 	curl \
 	openssh-client \
 	jq \
