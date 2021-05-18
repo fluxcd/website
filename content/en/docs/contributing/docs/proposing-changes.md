@@ -1,6 +1,8 @@
 ---
-title: Adapting docs
-weight: 1
+title: Proposing changes
+weight: 10
+description: >
+   How to propose pull requests using either the Github UI or `git` locally.
 ---
 
 ## Getting started

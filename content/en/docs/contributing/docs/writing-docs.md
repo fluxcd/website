@@ -1,7 +1,7 @@
 ---
 title: Docs from the ground up
 linkTitle: Writing docs
-weight: 2
+weight: 20
 description: >
     Our docs are just Markdown, but offer you more flexibility and styling options.
 ---
