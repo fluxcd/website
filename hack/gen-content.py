@@ -34,6 +34,7 @@ def rewrite_header(out_file, title=None, docs=False):
     header_lines = [
         '---\n',
         'title: {}\n'.format(title),
+        'importedDoc: true\n',
         '---\n',
         '\n'
     ]
