@@ -171,20 +171,3 @@ gen_crd_doc() {
   curl -s -# -Lf https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh -o static/install.sh
 }
 
-{
-  # Not very nice - we should re-write `hack/gen-content.sh` in python and
-  # - make it read csv
-  # - (optionally re-write the title)
-  TMP="$(mktemp)"
-  curl -s -Lf https://raw.githubusercontent.com/fluxcd/community/main/CONTRIBUTING.md -o "$TMP"
-  {
-    echo "---"
-    echo "title: Contributing to Flux v2"
-    echo "weight: 1"
-    echo "---"
-    echo
-  } > content/en/docs/contributing/flux2.md
-  tail --lines=+2 "$TMP" >> content/en/docs/contributing/flux2.md
-  rm "$TMP"
-  exit 0
-}

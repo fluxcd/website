@@ -1,4 +1,4 @@
-# Fast NONBlOCKING IO to stdout caused by the hack/gen-content.sh script can
+# Fast NONBlOCKING IO to stdout can
 # cause Netlify builds to terminate unexpectantly. This forces stdout to block.
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
@@ -53,7 +53,7 @@ $(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
 
 gen-content: ## Generates content from external sources.
 	hack/generate-adopters-pages.py
-	hack/gen-content.sh
+	hack/gen-content.py
 	hack/import-flux2-assets.sh
 
 serve: gen-content theme ## Spawns a development server.
