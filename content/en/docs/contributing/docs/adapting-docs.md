@@ -1,5 +1,5 @@
 ---
-title: Proposing changes to the docs
+title: Adapting docs
 weight: 1
 ---
 
