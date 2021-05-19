@@ -16,6 +16,7 @@ RUN apk update && \
 	py3-pip
 
 RUN python3 -m pip install pyyaml
+RUN ln -s `which python3` /usr/bin/python
 
 # VOLUME /site	# provided by upstream
 # WORKDIR /site
