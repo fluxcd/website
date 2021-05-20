@@ -81,9 +81,7 @@ GitOps principles suggest that we should manage production workloads as purely d
 
 Many parts are needed for a complete continuous delivery pipeline with Jenkins and Flux.
 
-References are provided below to help highlight ideas that are likely to present in a functioning Jenkins image build pipeline. We'll also provide an example you may use to build images for development and testing. Then, with another Jenkins pipeline stage, we can run some tests in the image that was built.
-
-Finally, a release stage will publish/release image tags for production deployment, based on git tags.
+The reference below shows how to build and tag Docker images with Jenkins for development environments, for executing tests in a pipeline stage, and lastly tagging a release version for deployment in a production setting.
 
 ##### Testing Infrastructure
 
@@ -291,7 +289,7 @@ If you are concerned about running Docker and Kubernetes together, or if you nee
 
 These were recently presented together at [KubeCon/CloudNativeCon EU 2021].
 
-The finer points of building OCI images in Jenkins are out of scope for this guide. These examples are meant to be kept simple (though they should be complete), and we refrain from sharing strong opinions about how CI should work here, because it's simply out of scope for Flux to weigh in about these things. We meant to show some ways that Jenkins (or any similar functioning CI tool) can interact with Flux.
+The finer points of building OCI images in Jenkins are out of scope for this guide. These examples are meant to be kept simple, though complete, and we refrain from sharing strong opinions about how CI should work here, because it's simply out of scope for Flux to weigh in about these topics. We meant to show some ways that Jenkins CI, or any similar functioning tool, can be used with Flux.
 
 This works without Jenkins connecting to production clusters, only building images, and Flux only receives published image tags. So there is no strong coupling or inter-dependency between CI and CD!
 

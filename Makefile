@@ -15,11 +15,13 @@ FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT
 
 DEV_IMAGE_REGISTRY_NAME    := fluxcd
 HUGO_VERSION               ?= 0.78.2
-DEV_IMAGE_BASE_NAME        := website:hugo-$(HUGO_VERSION)-extended
-PREVIEW_IMAGE_BASE_NAME    := website:hugo-support
-DEV_IMAGE_NAME             := $(DEV_IMAGE_REGISTRY_NAME)/$(DEV_IMAGE_BASE_NAME)
-PREVIEW_IMAGE_NAME         := $(DEV_IMAGE_REGISTRY_NAME)/$(PREVIEW_IMAGE_BASE_NAME)
+HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
+SUPPORT_IMAGE_BASE_NAME    := website:hugo-support
+HUGO_IMAGE_NAME            := $(DEV_IMAGE_REGISTRY_NAME)/$(HUGO_IMAGE_BASE_NAME)
+SUPPORT_IMAGE_NAME         := $(DEV_IMAGE_REGISTRY_NAME)/$(SUPPORT_IMAGE_BASE_NAME)
 HUGO_BIND_ADDRESS          ?= 127.0.0.1
+BUILDER_CLI                := docker
+# BUILDER_CLI                := okteto
 
 help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
