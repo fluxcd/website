@@ -82,24 +82,28 @@ You can change the behavior in `okteto.yml` according to the [Okteto Manifest Re
 
 (For maintainers) Using a machine with `docker` and logged in with an account that has permission to push to `docker.io/fluxcd/website` repo, run `make docker-push`.
 
-The dependencies of `docker-push` are explained below. If the above worked then you are done, and should not need to read any further.
+The dependencies of `docker-push` are explained below. If the above worked then you are done, and should not need to read any further. Rebuilding `hugo` takes a long time and should be avoided when the version hasn't changed or it isn't needed; run `make docker-push-support` instead to skip building `hugo`.
 
-Update this image whenever build-time dependencies have changed.
+Update the `docker-support` image tag whenever build-time (or "serve"-time) dependencies have changed.
 
 #### How is the Development container made?
 
 These targets as explained below are run in the appropriate order as dependencies of `make docker-push`.
 
-`TODO`: add a system/integration test for `website` that verifies any changes have not broken `make docker-serve`, for example by adding new dependencies without mentioning them in the `docker-support/Dockerfile`.
+- [ ] `TODO`: add a system/integration test for `website` that verifies any changes have not broken `make docker-serve`, for example by adding new dependencies without mentioning them in the `docker-support/Dockerfile`.
 
 ##### Flux-specific Dependencies
 
-The FluxCD.io website has some build-time dependencies including Python3, PyYAML, `rsync`, `grep`, `nodejs`, `npm`, `curl`, `jq`, (and potentially others that may be added in the future.) Dependencies are prepared in an image that gets tagged as `docker.io/fluxcd/website:hugo-support`.
+The FluxCD.io website has some build-time dependencies including Python3, PyYAML, `rsync`, `grep`, `nodejs`, `npm`, `curl`, `jq`, (and potentially others that may be added in the future.) Flux-specific dependencies are prepared in an image that gets tagged as `docker.io/fluxcd/website:hugo-support`.
 
-This image is built from the `Dockerfile` in `docker-support/`; run `make docker-image` to rebuild it locally.
+This image is built from the `Dockerfile` in `docker-support/`; run `make docker-build-support` to rebuild it locally, (or run as `make docker-push-support` to build and also push.)
 
 ##### `gohugoio/hugo`
 
 FluxCD also depends on a specific version of Hugo, which unfortunately does not provide docker images for each version. So we build it from source, with the `HUGO_BUILD_TAGS=extended` build arg enabled.
 
-Run `make hugo` to get a clone of the `gohugoio/hugo` repository at the right `HUGO_VERSION` and `make docker-support` to build a hugo container base image. These are the dependencies of `make docker-image`. (The `docker-support` target compiles `golibsass` and may take a while.)
+Run `make docker-push-hugo` to build and also push this image target.
+
+This will run `make hugo` to get a shallow clone of the `gohugoio/hugo` repository at the right `HUGO_VERSION` and `make docker-build-hugo` to build a hugo container base image. (This target compiles `golibsass` which is very large, and may take a while.)
+
+These are all the dependencies of `make docker-push`.

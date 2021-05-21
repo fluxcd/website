@@ -15,11 +15,13 @@ FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT
 
 DEV_IMAGE_REGISTRY_NAME    := fluxcd
 HUGO_VERSION               ?= 0.78.2
-DEV_IMAGE_BASE_NAME        := website:hugo-$(HUGO_VERSION)-extended
-PREVIEW_IMAGE_BASE_NAME    := website:hugo-support
-DEV_IMAGE_NAME             := $(DEV_IMAGE_REGISTRY_NAME)/$(DEV_IMAGE_BASE_NAME)
-PREVIEW_IMAGE_NAME         := $(DEV_IMAGE_REGISTRY_NAME)/$(PREVIEW_IMAGE_BASE_NAME)
+HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
+SUPPORT_IMAGE_BASE_NAME    := website:hugo-support
+HUGO_IMAGE_NAME            := $(DEV_IMAGE_REGISTRY_NAME)/$(HUGO_IMAGE_BASE_NAME)
+SUPPORT_IMAGE_NAME         := $(DEV_IMAGE_REGISTRY_NAME)/$(SUPPORT_IMAGE_BASE_NAME)
 HUGO_BIND_ADDRESS          ?= 127.0.0.1
+BUILDER_CLI                := docker
+# BUILDER_CLI                := okteto
 
 help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -91,26 +93,32 @@ docker-preview: docker-theme docker-serve
 
 .PHONY: docker-theme
 docker-theme:
-	docker run -v $(shell pwd):/site -it $(PREVIEW_IMAGE_NAME) \
+	docker run -v $(shell pwd):/site -it $(SUPPORT_IMAGE_NAME) \
 		make \"MAKEFLAGS=$(MAKEFLAGS)\" theme
 
 .PHONY: docker-serve
 docker-serve:
-	docker run -v $(shell pwd):/site -p 1313:1313 -it $(PREVIEW_IMAGE_NAME) \
+	docker run -v $(shell pwd):/site -p 1313:1313 -it $(SUPPORT_IMAGE_NAME) \
 		make \"MAKEFLAGS=$(MAKEFLAGS)\" serve HUGO_BIND_ADDRESS=0.0.0.0
 
-.PHONY: docker-push
-docker-push: docker-image
-	docker push $(DEV_IMAGE_NAME)
-	docker push $(PREVIEW_IMAGE_NAME)
+.PHONY: docker-push docker-push-hugo docker-push-support
+docker-push: docker-push-hugo docker-push-support
 
-.PHONY: docker-image
-docker-image: docker-support
-	docker build -t $(PREVIEW_IMAGE_NAME) docker-support/
+docker-push-hugo: docker-build-hugo
+	$(BUILDER_CLI) push $(HUGO_IMAGE_NAME)
+#	cd hugo; $(BUILDER_CLI) push -t $(HUGO_IMAGE_NAME)
 
-.PHONY: docker-support
-docker-support: hugo
-	docker build -t $(DEV_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
+docker-push-support: docker-build-support
+	$(BUILDER_CLI) push $(SUPPORT_IMAGE_NAME)
+#	cd docker-support; $(BUILDER_CLI) push -t $(SUPPORT_IMAGE_NAME)
+
+.PHONY: docker-build-support
+docker-build-support:
+	$(BUILDER_CLI) build -t $(SUPPORT_IMAGE_NAME) docker-support/
+
+.PHONY: docker-build-hugo
+docker-build-hugo: hugo
+	$(BUILDER_CLI) build -t $(HUGO_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
 
 hugo:
-	git clone https://github.com/gohugoio/hugo.git -b v$(HUGO_VERSION)
+	git clone https://github.com/gohugoio/hugo.git --depth 1 -b v$(HUGO_VERSION)
