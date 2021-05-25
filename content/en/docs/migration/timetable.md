@@ -3,6 +3,7 @@ title: "Timetable"
 linkTitle: "Migration and Support Timetable"
 description: "Flux v1 to v2 migration and support timetable."
 weight: 5
+hugeTable: true
 ---
 
 {{% alert color="info" title="💖 Flux Migration Commitment" %}}

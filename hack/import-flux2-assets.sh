@@ -60,8 +60,10 @@ controller_version() {
 
 gen_crd_doc() {
   URL="$1"
-  TMP="$(mktemp)"
   DEST="$2"
+  HUGETABLE="$3"
+
+  TMP="$(mktemp)"
   curl -# -Lf "$URL" > "$TMP"
 
   # Ok, so this section is not pretty, but we have a number of issues we need to look at here:
@@ -87,6 +89,9 @@ gen_crd_doc() {
       echo "title: $TITLE"
       echo "description: The GitOps Toolkit Custom Resource Definitions documentation."
       echo "importedDoc: true"
+      if [ -n "$HUGETABLE" ]; then
+        echo "hugeTable: true"
+      fi
       echo "---"
     } >> "$DEST"
     grep -vE "^<!--" "$TMP" |sed '1d' >> "$DEST"
@@ -99,7 +104,7 @@ gen_crd_doc() {
 {
   # source-controller CRDs
   SOURCE_VER="$(controller_version source-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/source.md" "$COMPONENTS_DIR/source/api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/source.md" "$COMPONENTS_DIR/source/api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/gitrepositories.md" "$COMPONENTS_DIR/source/gitrepositories.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/helmrepositories.md" "$COMPONENTS_DIR/source/helmrepositories.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/helmcharts.md" "$COMPONENTS_DIR/source/helmcharts.md"
@@ -109,14 +114,14 @@ gen_crd_doc() {
 {
   # kustomize-controller CRDs
   KUSTOMIZE_VER="$(controller_version kustomize-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/kustomize.md" "$COMPONENTS_DIR/kustomize/api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/kustomize.md" "$COMPONENTS_DIR/kustomize/api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1beta1/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
 }
 
 {
   # helm-controller CRDs
   HELM_VER="$(controller_version helm-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/api/helmrelease.md" "$COMPONENTS_DIR/helm/api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/api/helmrelease.md" "$COMPONENTS_DIR/helm/api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/spec/v2beta1/helmreleases.md" "$COMPONENTS_DIR/helm/helmreleases.md"
 }
 
@@ -133,12 +138,12 @@ gen_crd_doc() {
 {
   # image-*-controller CRDs; these use the same API group
   IMG_REFL_VER="$(controller_version image-reflector-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/api/image-reflector.md" "$COMPONENTS_DIR/image/reflector-api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/api/image-reflector.md" "$COMPONENTS_DIR/image/reflector-api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1alpha2/imagerepositories.md" "$COMPONENTS_DIR/image/imagerepositories.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1alpha2/imagepolicies.md" "$COMPONENTS_DIR/image/imagepolicies.md"
 
   IMG_AUTO_VER="$(controller_version image-automation-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/api/image-automation.md" "$COMPONENTS_DIR/image/automation-api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/api/image-automation.md" "$COMPONENTS_DIR/image/automation-api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/spec/v1alpha2/imageupdateautomations.md" "$COMPONENTS_DIR/image/imageupdateautomations.md"
 }
 
