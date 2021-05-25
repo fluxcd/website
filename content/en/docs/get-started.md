@@ -1,5 +1,5 @@
 ---
-title: "Get Started with Flux v2"
+title: "Get Started with Flux"
 linkTitle: "Get Started"
 description: "Get Started with Flux and the GitOps Toolkit."
 weight: 20
