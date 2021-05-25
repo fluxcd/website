@@ -77,6 +77,7 @@ cncf   = "cncf-color.png"
 [[menus.main]]
 identifier = "Project"
 name = "Project"
+weight = 20
 
 [[menus.main]]
 name = "Code of Conduct"
@@ -109,17 +110,15 @@ url = "/governance"
 weight = 40
 
 [[menus.main]]
-name = "Adopters"
-parent = "Project"
-url = "/adopters"
-weight = 80
-
-[[menus.main]]
 name = "Branding"
 parent = "Project"
 url = "https://branding.cncf.io/projects/flux"
 weight = 9999
 
+[[menus.main]]
+name = "Adopters"
+url = "/adopters"
+weight = 80
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
