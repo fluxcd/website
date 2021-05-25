@@ -613,7 +613,7 @@ spec:
     timeout: 300
 ```
 
-The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediate`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [`spec.upgrade.remediate`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [`spec.rollback`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [`spec.uninstall`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
+The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [`spec.upgrade.remediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [`spec.rollback`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [`spec.uninstall`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
 
 #### Automated uninstalls
 
