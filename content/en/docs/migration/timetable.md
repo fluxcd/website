@@ -11,12 +11,6 @@ Its purpose is to help improve your experience in deciding how and when to plan 
 Please refer to the [Roadmap]({{< relref "../roadmap/_index.md" >}}) for additional details.
 {{% /alert %}}
 
-<!-- Note: this div allows us to set fixed column widths in custom.css -->
-<!-- See: https://github.com/squidfunk/mkdocs-material/issues/118 -->
-<div markdown="1" class="timetable-explicit-col-widths">
-
-<!-- Requires mkdocs markdown_extensions footnotes and pymdownx.caret -->
-<!-- markdownlint-disable-file MD033 -->
 | Date | Flux 1 | Flux 2 CLI | GOTK[^1] |
 | -- | -- | -- | -- |
 | Oct 6, 2020 | [Maintenance Mode](https://github.com/fluxcd/website/pull/25)<br><ul><li>Flux 1 releases only include critical bug fixes (which don’t require changing Flux 1 architecture), and security patches (for OS packages, Go runtime, and kubectl). No new features</li><li>Existing projects encouraged to test migration to Flux 2 pre-releases in non-production</li></ul> | Development Mode<br><ul><li>Working to finish parity with Flux 1</li><li>New projects encouraged to test Flux 2 pre-releases in non-production</li></ul> | All Alpha[^2] |
@@ -25,8 +19,6 @@ Feb 18, 2021 | Partial Migration Mode<br><ul><li>Existing projects encouraged to
 | TBD | Migration and security support only<br><ul><li>Flux 1 releases only include security patches (no bug fixes)</li><li>Maintainers support users with migration to Flux 2 only, no longer with Flux 1 issues</li><li>Flux 1 archive date announced</li></ul> | Public release (GA), Production Ready<br><ul><li>CLI commits to backwards compatibility moving forward</li><li>CLI follows kubectl style backwards compatibility support: +1 -1 MINOR version for server components (e.g., APIs, Controllers, validation webhooks)</li></ul> | All Beta, Production Ready |
 | TBD | Archived<br><ul><li>Flux 1 obsolete, no further releases or maintainer support</li><li>Flux 1 repo archived</li></ul> | Continued active development | Continued active development |
 
-<!-- end .timetable-explicit-col-widths -->
-</div>
 
 [^1]: GOTK is shorthand for the [GitOps Toolkit](/docs/components/) APIs and Controllers
 
