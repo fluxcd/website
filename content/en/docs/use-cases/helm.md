@@ -177,8 +177,8 @@ documentation.
 ## Automatic Uninstalls and Rollback
 
 The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails,
-using [spec.install.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
-[spec.upgrade.remediate](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
+using [spec.install.remediation](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
+[spec.upgrade.remediation](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
 [spec.rollback](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback)
 and [spec.uninstall](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
 Features include the option to remediate with an uninstall after an upgrade failure,
