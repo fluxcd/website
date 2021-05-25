@@ -13,7 +13,7 @@ FONT_AWESOME_SEMVER        ?= 5.15.3
 FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
 FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
 
-DEV_IMAGE_REGISTRY_NAME    := fluxcd
+DEV_IMAGE_REGISTRY_NAME    ?= fluxcd
 HUGO_VERSION               ?= 0.83.1
 HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
 SUPPORT_IMAGE_BASE_NAME    := website:hugo-support
