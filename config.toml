@@ -163,7 +163,7 @@ weight = 80
 	icon = "fa fa-envelope"
 	desc = "Discuss development issues around the project"
 [[params.links.developer]]
-	name="Past Flux Meetings"
-	url = "https://www.youtube.com/playlist?list=PLbx4FZ4kOKntmgJqaT-iJ8tn4xat150yL"
+	name="Flux YouTube channel"
+	url = "https://www.youtube.com/channel/UCoZxt-YMhGHb20ZkvcCc5KA"
 	icon = "fab fa-youtube"
-	desc = "Recordings of past flux dev meetings"
+	desc = "Recordings of past Flux dev meetings"
