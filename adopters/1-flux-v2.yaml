@@ -48,3 +48,6 @@ adopters:
     - name: Sage AI Labs
       url: https://www.sage.com
       logo: logos/sageailabs.png
+    - name: Quivr
+      url: https://quivr.be
+      logo: logos/quivr.svg

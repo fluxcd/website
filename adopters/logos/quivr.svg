@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 400 400">
+    <circle id="Background" cx="200" cy="200" r="200" style="fill:#ffd750" transform="translate(0,0)"/>
+    <circle id="C" cx="200" cy="200" r="124" style="fill:none; stroke:#FFF; stroke-width:26; stroke-linecap:round; stroke-dasharray:700 1000; stroke-dashoffset:-40;" transform="translate(0,0)"/>
+    <line id="Wijzer" x1="200" y1="200" x2="312" y2="312" style="fill:none; stroke:#FFF; stroke-width:26; stroke-linecap:round;" transform="translate(0,0)"/>
+</svg>
