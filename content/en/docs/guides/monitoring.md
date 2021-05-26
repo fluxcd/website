@@ -70,6 +70,12 @@ You can access Grafana using port forwarding:
 kubectl -n monitoring port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
+To log in to the Grafana dashboard, you can use the default credentials from the [kube-prometheus-stack chart](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml#L620):
+```yaml
+username: admin
+password: prom-operator
+```
+
 ## Flux dashboards
 
 Control plane dashboard [http://localhost:3000/d/flux-control-plane](http://localhost:3000/d/flux-control-plane/flux-control-plane):
