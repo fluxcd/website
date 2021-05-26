@@ -3,7 +3,7 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT 			   ?= fb2e9c9647e02109b018921d356ad3a7bed10a26
+DOCSY_COMMIT 			   ?= de9c79d62198c40ec267571c8ea0ec63654c4ad4
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
 BOOTSTRAP_SEMVER           ?= 4.6.0
