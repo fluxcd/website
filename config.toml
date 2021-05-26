@@ -55,6 +55,7 @@ enable = false
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
+images				 = ["img/flux-icon@2x.png"]
 copyright            = "The Flux authors"
 github_repo  		 = "https://github.com/fluxcd/website"
 github_branch		 = "main"
