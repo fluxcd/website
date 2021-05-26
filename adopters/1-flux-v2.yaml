@@ -45,3 +45,6 @@ adopters:
     - name: happn
       url: https://www.happn.com
       logo: logos/happn.png
+    - name: Sage AI Labs
+      url: https://www.sage.com
+      logo: logos/sageailabs.png
