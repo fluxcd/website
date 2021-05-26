@@ -241,3 +241,22 @@ Follow the [Image Update Automation Guide](../guides/image-update.md) and see th
 Your AKS cluster's configuration can also be updated to
 [allow the kubelets to pull images from ACR](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration)
 without ImagePullSecrets as an optional, complimentary step.
+
+## Azure Event Hub with Notification controller
+
+The Notification Controller supports both JWT and SAS based tokens but it also assumes that you will provide the notification-controller with a fresh token when needed.
+
+For JWT token based auth we have created a small example on how to automatically generate a new token that the notification-controller can use.
+
+First you will need to create a Azure Event Hub and bind a [credential](https://docs.microsoft.com/en-us/azure/event-hubs/authenticate-application) such as a Service Principal or Managed Identity to it.
+If you want to use Managed Identities, install or enable [AAD Pod Identity](#aad-pod-identity).
+
+We have two ways to [automatically generate](https://github.com/fluxcd/flux2/tree/main/manifests/integrations/eventhub-credentials-sync) new JWT tokens. Ether running as a deployment or a cronjob.
+
+If you are using Azure Event Hub in Azure we recommend that you use aadpodidentity.
+If you do you will need to update the [AzureIdentity config example](https://github.com/fluxcd/flux2/blob/main/manifests/integrations/eventhub-credentials-sync/azure/config-patches.yaml).
+
+If you are in none Azure environment like on-prem or another cloud then you can utilize client secret which you will find in the example [generic folder](https://github.com/fluxcd/flux2/tree/main/manifests/integrations/eventhub-credentials-sync/generic).
+Just like aadpodidentity you can use deployment based or a cronjob.
+
+For more info on how to use Azure Event Hub with the [notification controller](../components/notification/provider.md#azure-event-hub).
