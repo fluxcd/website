@@ -257,6 +257,17 @@ EOF
 Based on the above definition, Flux will upgrade the release automatically
 when Bitnami publishes a new version of the metrics-server chart.
 
+
+### How do I resolve a `Request entity too large: limit is 3145728` error during Helm install or upgrade?
+
+This error is returned by Helm when the release that is attempted to be made does not fit in a
+`Secret`. Most of the time this is due to exceptionally large (umbrella) charts, as explained
+in [`helm/helm#8281`](https://github.com/helm/helm/issues/8281).
+
+If you are running into this, confirm first that your chart has all the required excludes in
+their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
+[`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta1.GitRepository) files.
+
 ## Flux v1 vs v2 questions
 
 ### What are the differences between v1 and v2?
