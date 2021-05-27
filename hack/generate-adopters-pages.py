@@ -83,22 +83,16 @@ def main():
         companies = data['adopters']['companies']
         companies = sorted(companies, key=lambda x: x['name'].lower())
 
+        f.write('''{{< cardpane >}}
+''')
         for company in companies:
             i = companies.index(company)
-            if i % 5 == 0:
-                f.write('''{{< cardpane >}}
-''')
             if 'logo' not in company:
                 company['logo'] = 'logos/logo-generic.png'
             company['logo'] = fix_up_logo(adopters_dir, company['logo'])
             write_card_text(f, company['name'], company['url'], company['logo'])
 
-            if i % 5 == 4:
-                f.write('''{{< /cardpane >}}
-''')
-
-        if i % 5 != 4:
-            f.write('''{{< /cardpane >}}
+        f.write('''{{< /cardpane >}}
 ''')
 
     new_logos_dir = os.path.join(top_level_dir, 'static/img/logos')
