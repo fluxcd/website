@@ -15,13 +15,25 @@ and kubectl version **1.18** or newer.
 
 ## Install the Flux CLI
 
-With Homebrew:
+With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
 ```
 
-With Bash:
+With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
+
+```sh
+gofish install flux
+```
+
+With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
+
+```sh
+yay -S flux-bin
+```
+
+With Bash for macOS and Linux:
 
 ```sh
 curl -s https://fluxcd.io/install.sh | sudo bash
@@ -86,8 +98,8 @@ flux bootstrap git \
 The above command will generate a SSH key (defaults to RSA 2048 but can be changed with `--ssh-key-algorithm`),
 and it will prompt you to add the SSH public key as a deploy key to your repository.
 
-If you want to use your own SSH key, you can provide a **passwordless** private key using
-`--private-key-file=<path/to/private.key>`.
+If you want to use your own SSH key, you can provide a private key using
+`--private-key-file=<path/to/private.key>` (you can supply the passphrase with `--password=<key-passphrase>`).
 This option can also be used if no SSH agent is available on your machine.
 
 {{% alert color="info" title="Bootstrap options" %}}
