@@ -15,13 +15,25 @@ and kubectl version **1.18** or newer.
 
 ## Install the Flux CLI
 
-With Homebrew:
+With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
 ```
 
-With Bash:
+With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
+
+```sh
+gofish install flux
+```
+
+With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
+
+```sh
+yay -S flux-bin
+```
+
+With Bash for macOS and Linux:
 
 ```sh
 curl -s https://fluxcd.io/install.sh | sudo bash
