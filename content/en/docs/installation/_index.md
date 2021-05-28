@@ -98,8 +98,8 @@ flux bootstrap git \
 The above command will generate a SSH key (defaults to RSA 2048 but can be changed with `--ssh-key-algorithm`),
 and it will prompt you to add the SSH public key as a deploy key to your repository.
 
-If you want to use your own SSH key, you can provide a **passwordless** private key using
-`--private-key-file=<path/to/private.key>`.
+If you want to use your own SSH key, you can provide a private key using
+`--private-key-file=<path/to/private.key>` (you can supply the passphrase with `--password=<key-passphrase>`).
 This option can also be used if no SSH agent is available on your machine.
 
 {{% alert color="info" title="Bootstrap options" %}}
