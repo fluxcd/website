@@ -76,9 +76,17 @@
   }
 
   a.btn {
-    color: $flux-black !important;
+    margin-top: 1rem;
+    
+    color: $flux-white !important;
     font-style: normal;
     font-weight: 600;
-    background-color: $flux-light-blue;
+    font-size: 1.5rem;
+    background-color: $flux-darkest-blue;
+    border-color: $flux-black !important;
+    &:active {
+      background-color: $flux-light-blue !important;
+      box-shadow: none !important;
+    }
   }
 }
