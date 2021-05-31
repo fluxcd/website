@@ -180,7 +180,7 @@ the [Flux](https://branding.cncf.io/projects/flux/) and
 branding or our entry on the list of [CNCF
 projects](https://www.cncf.io/projects/#incubating).
 
-### Over and out
+## Over and out
 
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
