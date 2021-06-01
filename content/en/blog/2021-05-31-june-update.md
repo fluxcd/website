@@ -80,6 +80,8 @@ we'd like to share:
 - 05 May 2021 - [Keynote: CNCF Project Update: Flux - Stefan
   Prodan](https://youtu.be/kuzZpKHLoVM) at KubeCon 2021
   Europe
+- 05 May 2021 - [Helm Users! What Flux Can Do For
+  You - Scott Rigby & Kingdon Barrett](https://youtu.be/hCTgCRlU-M0) - at KubeCon 2021 Europe
 - 06 May 2021 - [Flux: Multi-tenancy Deep Dive - Philip
   Laine](https://youtu.be/F7B_TBcIyl8) at KubeCon 2021
   Europe
