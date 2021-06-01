@@ -2,7 +2,7 @@
 author: dholbach
 date: 2021-05-31 08:30:00+00:00
 title: June 2021 update
-description: Flux 0.14 and Flagger 1.10 with lots of new features, KubeCon talks galore, Flux at CNCF Store, lots of Flux adoption. We are reviewing the Flux governance.
+description: Flux 0.14 and Flagger 1.11 with lots of new features, KubeCon talks galore, Flux at CNCF Store, lots of Flux adoption. We are reviewing the Flux governance.
 url: /blog/2021/05/june-2021-update/
 images:
 - /img/2021-05-cncf-store.png
@@ -45,10 +45,10 @@ guide](/docs/get-started/). If you are on
 an older version of Flux, check out our [migration
 documentation](/docs/migration/).
 
-## Flagger 1.10 is here
+## Flagger 1.11 is here
 
-Over in the Flagger project, since our last blog the versions 1.9 and
-1.10 were released and they bring a number of nice new features and
+Over in the Flagger project, since our last blog the versions 1.9, 1.10 and
+1.11 were released and they bring a number of nice new features and
 improvements.
 
 1.9.0 came with improvements to the Gloo Edge integration:
@@ -59,10 +59,17 @@ improvements.
   (specified with .spec.upstreamRef) as a template.
 - Also: Adjusted Nginx ingress canary headers on init and promotion
 
-1.10 comes with support for Graphite metric templates, additionally:
+1.10.0 comes with support for Graphite metric templates, additionally:
 
 - ConfigTracker: Scan envFrom in init-containers
 - e2e: Update Istio to v1.10 and Contour to v1.15
+
+:warning: Flagger 1.11.0 comes with a breaking change: the minimum supported
+version of Kubernetes is v1.19.0.
+
+This release comes with support for Kubernetes Ingress `networking.k8s.io/v1`.
+The Ingress from `networking.k8s.io/v1beta1` is no longer supported, affected
+integrations: NGINX and Skipper ingress controllers.
 
 ## KubeCon round-up
 
