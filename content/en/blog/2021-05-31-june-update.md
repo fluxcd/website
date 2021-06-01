@@ -2,7 +2,7 @@
 author: dholbach
 date: 2021-05-31 08:30:00+00:00
 title: June 2021 update
-description: Flux 0.14 and Flagger 1.11 with lots of new features, KubeCon talks galore, Flux at CNCF Store, lots of Flux adoption. We are reviewing the Flux governance.
+description: Flux 0.14 and Flagger 1.11 with lots of new features, KubeCon talks galore, Flux at CNCF Store, lots of Flux adoption. Flux governance 6 month review.
 url: /blog/2021/05/june-2021-update/
 images:
 - /img/2021-05-cncf-store.png
