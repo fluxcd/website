@@ -104,6 +104,7 @@ adopters:
       url: https://www.myfitnesspal.com
     - name: NetHunt
       url: https://nethunt.com
+      logo: logos/nethunt.png
     - name: Okteto Cloud
       url: https://okteto.com/
     - name: Omise
