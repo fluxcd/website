@@ -1,4 +1,8 @@
-# Using a private Git host
+---
+type: docs
+title: Using a private Git host
+weight: 30
+---
 
 If you're using your own git host -- e.g., your own installation of
 gitlab, or bitbucket server -- you will need to add its host key to

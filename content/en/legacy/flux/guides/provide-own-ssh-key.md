@@ -1,4 +1,8 @@
-# Providing your own SSH key
+---
+type: docs
+title: Providing your own SSH key
+weight: 10
+---
 
 Flux connects to the repository using an SSH key it retrieves from a
 Kubernetes secret, if the configured (`--k8s-secret-name`) secret has
@@ -29,9 +33,10 @@ creating the configured secret in the expected format.
    (default: `flux-git-deploy`), set the `--k8s-secret-name` flag to
    the name of your secret (i.e. `--k8s-secret-name=foo`).
 
-!!!note
-    The SSH key must be configured to have R/W access to the
-    repository. More specifically, the SSH key must be able to create
-    and update tags. E.g. in Gitlab, that means it requires `Maintainer`
-    permissions. The `Developer` permission can create tags, but not
-    update them.
+{{% alert %}}
+The SSH key must be configured to have R/W access to the
+repository. More specifically, the SSH key must be able to create
+and update tags. E.g. in Gitlab, that means it requires `Maintainer`
+permissions. The `Developer` permission can create tags, but not
+update them.
+{{% /alert %}}

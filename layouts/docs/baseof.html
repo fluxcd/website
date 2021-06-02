@@ -23,6 +23,12 @@
           {{ end }}
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+            {{ if in .Permalink "/legacy" }}
+            <div class="pageinfo pageinfo-warning">
+              <h2>Flux v1 is in Maintenance Mode</h2>
+              <p>Please <a href="/docs/migration/">upgrade to Flux v2</a> as soon as possible.</p>
+            </div>
+            {{ end }}
             {{ block "main" . }}{{ end }}
           </main>
         </div>

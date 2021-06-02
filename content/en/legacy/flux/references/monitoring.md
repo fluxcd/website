@@ -1,4 +1,8 @@
-# Monitoring Flux
+---
+type: docs
+title: Monitoring Flux
+weight: 80
+---
 
 The Flux daemon exposes `/metrics` endpoints which can be scraped for
 monitoring data in Prometheus format; exact metric names and help are

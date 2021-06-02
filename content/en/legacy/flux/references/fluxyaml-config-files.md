@@ -1,13 +1,18 @@
-# Manifest generation through `.flux.yaml` configuration files
+---
+type: docs
+title: Manifest generation through .flux.yaml configuration files
+weight: 40
+---
 
 This feature lets you generate Kubernetes manifests with a program,
 instead of having to include them in your git repo as YAML files. For
 example, you can use `kustomize` to patch a common set of resources to
 suit a particular environment.
 
-!!!note
-    For a full, self-contained example of Flux generating manifests
-    with `kustomize` you can go to [https://github.com/fluxcd/flux-kustomize-example](https://github.com/fluxcd/flux-kustomize-example)
+{{% alert %}}
+For a full, self-contained example of Flux generating manifests
+with `kustomize` you can go to [https://github.com/fluxcd/flux-kustomize-example](https://github.com/fluxcd/flux-kustomize-example)
+{{% /alert %}}
 
 Manifest generation is controlled by the flags given to `fluxd`, and
 `.flux.yaml` files in your git repo.
@@ -242,9 +247,11 @@ gives a path, relative to the target path, in which to record
 patches. `fluxd` will create or update the file when needed, and
 commit any changes it makes to git.
 
-!!!note
-    At present, it is necessary to manually remove patches that
-    refer to deleted manifests. See [issue #2428][#2428].
+{{% alert %}}
+At present, it is necessary to manually remove patches that
+refer to deleted manifests. See [issue
+#2428](https://github.com/fluxcd/flux/issues/2428)).
+{{% /alert %}}
 
 ### Using command-updated configuration
 
@@ -348,6 +355,5 @@ command: context deadline exceeded`, you can increase the timeout with
 the `--sync-timeout` fluxd command flag or the `sync.timeout` Helm
 chart option.
 
-[#2428]: https://github.com/fluxcd/flux/issues/2428
 [flux-dockerfile]: https://github.com/fluxcd/flux/blob/master/docker/Dockerfile.flux
 [strategic-merge]: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md

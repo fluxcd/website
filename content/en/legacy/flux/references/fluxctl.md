@@ -1,4 +1,8 @@
-# `fluxctl`
+---
+type: docs
+title: fluxctl
+weight: 30
+---
 
 `fluxctl` provides an API that can be used from the command line.
 

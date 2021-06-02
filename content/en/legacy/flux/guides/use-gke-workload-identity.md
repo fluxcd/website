@@ -1,4 +1,9 @@
-# Using GKE Workload Identity with Flux
+---
+type: docs
+title: Using GKE Workload Identity with Flux
+linkTitle: Using GKE Workload Identity
+weight: 50
+---
 
 When Flux is running in a GKE cluster with [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) enabled and you use Google Container Registry to host private images in your project, there are additional steps required for Flux to be able to check for updated images.
 

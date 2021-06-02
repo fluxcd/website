@@ -1,10 +1,9 @@
-## Flux v1 is in Maintenance Mode
+---
+title: Flux documentation
+type: docs
+---
 
-Please [upgrade to Flux v2](https://toolkit.fluxcd.io/guides/flux-v1-migration/) as soon as possible. [Flux v1 is in Maintenance Mode](faq/#migrate-to-flux-v2)
-
-# Flux documentation
-
-![](_files/flux-cd-diagram.png)
+![Flux v1 Diagram](/img/flux-v1-diagram.png)
 
 Flux is a tool that automatically ensures that the state of a cluster matches
 the config in git. It uses [an operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)

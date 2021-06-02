@@ -1,4 +1,8 @@
-# Introducing Flux
+---
+type: docs
+title: Introducing Flux
+weight: 10
+---
 
 Continuous delivery is a term that encapsulates a set of best practices
 that surround building, deploying and monitoring applications. The

@@ -1,4 +1,8 @@
-# Automations, locks and annotations
+---
+type: docs
+title: Automations, locks and annotations
+weight: 40
+---
 
 In this tutorial we want to get a better feel for what we can do with
 Flux. We won't spend too much time with getting it up and running, so let's
@@ -32,10 +36,11 @@ In the second step we will use `fluxctl` to talk to Flux in the cluster and
 interact with the deployments. (It enables you to drive all of Flux, so have a look at the output of
 `fluxctl -h` to get a better idea.)
 
-!!!note
-    Another option (without installing `fluxctl` is to take a look
-    at the resulting annotation changes and make the changes in Git. This is
-    GitOps after all. :-)
+{{% alert %}}
+Another option (without installing `fluxctl` is to take a look
+at the resulting annotation changes and make the changes in Git. This is
+GitOps after all. :-)
+{{% /alert %}}
 
 Tell fluxctl in which namespace is Flux installed:
 

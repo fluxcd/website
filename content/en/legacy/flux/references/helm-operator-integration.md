@@ -1,4 +1,8 @@
-# Integration with the Helm Operator
+---
+type: docs
+title: Integration with the Helm Operator
+weight: 90
+---
 
 You can release charts to your cluster via "GitOps", by combining Flux
 and the [Helm Operator](https://github.com/fluxcd/helm-operator).
@@ -16,11 +20,12 @@ If the chart you're using in a `HelmRelease` lets you specify the
 particular images to run, you will usually be able to update them with
 Flux, the same way you can with Deployments and so on.
 
-!!!note
-    For automation to work, the repository _and_ tag should be
-    defined (either as a whole string, or under separate keys), as Flux
-    determines image updates based on what it reads in the `.spec.values`
-    of the `HelmRelease`.
+{{% alert %}}
+For automation to work, the repository _and_ tag should be
+defined (either as a whole string, or under separate keys), as Flux
+determines image updates based on what it reads in the `.spec.values`
+of the `HelmRelease`.
+{{% /alert %}}
 
 ### Automated image detection
 
@@ -101,8 +106,9 @@ is required for any of these to take effect.
 | `filter.fluxcd.io/<alias>`         | `glob:master-*`  |           |
 
 
-!!!note
-    Note: Glob patterns following `glob:` are sensitive to spaces
+{{% alert %}}
+Note: Glob patterns following `glob:` are sensitive to spaces
+{{% /alert %}}
 
 The following example `HelmRelease` specifies two images:
 

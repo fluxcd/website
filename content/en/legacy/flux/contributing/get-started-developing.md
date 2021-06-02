@@ -1,4 +1,8 @@
-# Get started developing
+---
+type: docs
+title: Get started developing
+weight: 10
+---
 
 This guide shows a workflow for making a small (actually, tiny) change
 to Flux, building and testing that change locally.

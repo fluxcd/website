@@ -1,4 +1,8 @@
-# Automated deployment of new container images
+---
+title: Automated deployment of new container images
+type: docs
+weight: 70
+---
 
 Flux can be used to automate container image updates in your cluster.
 Flux periodically scans the pods running in your cluster and builds a list of all container images.
@@ -9,9 +13,10 @@ You can enable the automate image tag updates by annotating your deployments, st
 daemonsets or cronjobs objects. You can also control what tags should be considered for an
 update by using glob, regex or semantic version expressions.
 
-!!!note
-    Flux only works with immutable image tags (`:latest` is not supported).
-    Every image tag must be unique, for this you can use the Git commit SHA or semver when tagging images.
+{{% alert %}}
+Flux only works with immutable image tags (`:latest` is not supported).
+Every image tag must be unique, for this you can use the Git commit SHA or semver when tagging images.
+{{% /alert %}}
 
 ## Examples
 

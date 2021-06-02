@@ -1,4 +1,8 @@
-# Garbage collection
+---
+type: docs
+title: Garbage collection
+weight: 50
+---
 
 Part of syncing a cluster with a git repository is getting rid of
 resources in the cluster that have been removed in the repository. You

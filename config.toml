@@ -69,11 +69,27 @@ algolia_docsearch = true
 offlineSearch = false
 
 
+version_menu         = "Docs"
+version              = "current"
+url_latest_version   = "/docs/"
+
+# Add your release versions here
+[[params.versions]]
+  version = "current"
+  url = "/docs"
+
+[[params.versions]]
+  version = "legacy"
+  url = "/legacy"
+
+
+
 [params.logos]
 navbar = "flux-horizontal-white.png"
 hero   = "flux-horizontal-color.png"
 footer = "flux-stacked-white.png"
 cncf   = "cncf-color.png"
+
 
 [[menus.main]]
 identifier = "Project"

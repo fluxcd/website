@@ -1,4 +1,8 @@
-# How to bootstrap Flux using Kustomize
+---
+type: docs
+title: How to bootstrap Flux using Kustomize
+weight: 30
+---
 
 This guide shows you how to use Kustomize to bootstrap Flux on a Kubernetes cluster.
 
@@ -37,10 +41,11 @@ patchesStrategicMerge:
 EOF
 ```
 
-!!!note
-    If you want to install a specific Flux release,
-    add the version number to the base URL:
-    `github.com/fluxcd/flux//deploy?ref=v1.14.1`
+{{% alert %}}
+If you want to install a specific Flux release,
+add the version number to the base URL:
+`github.com/fluxcd/flux//deploy?ref=v1.14.1`
+{{% /alert %}}
 
 Create a patch file for Flux deployment and set the `--git-url`
 parameter to point to the config repository

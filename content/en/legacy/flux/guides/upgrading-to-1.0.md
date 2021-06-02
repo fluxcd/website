@@ -1,4 +1,8 @@
-# Upgrading to Flux v1
+---
+type: docs
+title: Upgrading to Flux v1
+weight: 40
+---
 
 Flux v1 is a major improvement over the previous versions, and is
 different enough that you need to do a bit of work to upgrade it.

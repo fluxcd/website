@@ -1,4 +1,8 @@
-# Requirements and limitations
+---
+type: docs
+weight: 20
+title: Requirements and limitations
+---
 
 Flux has some requirements of the files it finds in your git repo.
 

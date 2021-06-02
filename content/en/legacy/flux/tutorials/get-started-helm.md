@@ -1,4 +1,9 @@
-# Get started with Flux using Helm
+---
+type: docs
+title: Get started with Flux using Helm
+linkTitle: Get started using Helm
+weight: 20
+---
 
 If you are using Helm already, this guide is for you. By the end
 you will have Helm installing Flux in the cluster and deploying
@@ -41,11 +46,12 @@ Deploy Tiller in `kube-system` namespace (Helm v2 only):
 helm init --skip-refresh --upgrade --service-account tiller --history-max 10
 ```
 
-!!!note
-    This is a quick guide and by no means a production ready
-    Tiller setup, please look into ['Securing your Helm installation'](https://helm.sh/docs/using_helm/#securing-your-helm-installation)
-    and be aware of the `--history-max` flag before promoting to
-    production.
+{{% alert %}}
+This is a quick guide and by no means a production ready
+Tiller setup, please look into ['Securing your Helm installation'](https://helm.sh/docs/using_helm/#securing-your-helm-installation)
+and be aware of the `--history-max` flag before promoting to
+production.
+{{% /alert %}}
 
 ## Install Flux
 
@@ -88,8 +94,9 @@ In this next step you install Flux using `helm`. Simply
             --namespace flux
          ```
 
-        !!!note
-            By default the helm-operator chart will install with support for both Helm v2 (which requires Tiller) and v3.  You can target specific versions by setting the `helm.versions` value, e.g. `--set helm.versions=v3`.
+        {{% alert %}}
+By default the helm-operator chart will install with support for both Helm v2 (which requires Tiller) and v3.  You can target specific versions by setting the `helm.versions` value, e.g. `--set helm.versions=v3`.
+        {{% /alert %}}
 
     - Using a private git server:
 
