@@ -1,14 +1,19 @@
-# Rollbacks
+---
+type: docs
+weight: 60
+title: Rollbacks
+---
 
 From time to time a release made by the Helm Operator may fail, this section
 of the guide will explain how you can recover from a failed release by enabling
 rollbacks.
 
-!!! caution
-    Rollbacks of Helm charts containing `StatefulSet` resources can be a
-    tricky operation, and are one of the main reasons automated rollbacks are not
-    enabled by default. Verify a manual rollback (using `helm`) of your Helm
-    chart does not cause any problems before enabling it.
+{{% alert color="warning" title="Caution" %}}
+Rollbacks of Helm charts containing `StatefulSet` resources can be a
+tricky operation, and are one of the main reasons automated rollbacks are not
+enabled by default. Verify a manual rollback (using `helm`) of your Helm
+chart does not cause any problems before enabling it.
+{{% /alert %}}
 
 ## Enabling rollbacks
 
@@ -61,11 +66,12 @@ The definition of the listed keys is as follows:
 * `timeout` _(Optional)_: Time to wait for any individual Kubernetes operation
   during rollback in seconds. Defaults to `300` when omitted.
 
-!!! warning
-    When your chart requires a high non-default `timeout` value it is advised
-    to increase the `terminationGracePeriod` on the Helm Operator pod to not
-    end up with a release in a faulty state due to the operator receiving a
-    `SIGKILL` signal during an upgrade.
+{{% alert color="warning" title="Warning" %}}
+When your chart requires a high non-default `timeout` value it is advised
+to increase the `terminationGracePeriod` on the Helm Operator pod to not
+end up with a release in a faulty state due to the operator receiving a
+`SIGKILL` signal during an upgrade.
+{{% /alert %}}
 
 ## Enabling retries of rolled back releases
 

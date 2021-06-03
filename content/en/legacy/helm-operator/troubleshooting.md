@@ -1,4 +1,8 @@
-# Troubleshooting
+---
+type: docs
+weight: 80
+title: Troubleshooting
+---
 
 Also see the [issues labeled with
 `question`](https://github.com/fluxcd/helm-operator/labels/question), which often

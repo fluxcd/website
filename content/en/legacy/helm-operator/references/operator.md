@@ -1,4 +1,8 @@
-# Operator reference
+---
+title: Operator reference
+type: docs
+weight: 10
+---
 
 The Helm Operator deals with Helm chart releases. The operator watches for
 changes of Custom Resources of kind `HelmRelease`. It receives Kubernetes

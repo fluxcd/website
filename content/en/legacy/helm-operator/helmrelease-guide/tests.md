@@ -1,4 +1,8 @@
-# Tests
+---
+type: docs
+weight: 70
+title: Tests
+---
 
 [Helm tests](https://helm.sh/docs/topics/chart_tests/) are a useful validation
 mechanism for Helm Releases, and thus are supported by the Helm Operator.

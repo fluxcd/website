@@ -1,4 +1,9 @@
-# Get started using Helm
+---
+title: Get started using Helm
+linkTitle: Using Helm
+type: docs
+weight: 30
+---
 
 This guide walks you through setting up the Helm Operator using the
 available [Helm chart](https://github.com/fluxcd/helm-operator/tree/master/chart/helm-operator).
@@ -17,7 +22,7 @@ CRD it will be possible to define `HelmRelease` resources on the
 cluster:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/{{ version }}/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.2.0/deploy/crds.yaml
 ```
 
 Using `helm`, add the Flux CD Helm repository:
@@ -51,10 +56,11 @@ NAME                             READY   STATUS    RESTARTS   AGE
 helm-operator-6985656995-dpmdl   1/1     Running   0          31s
 ```
 
-!!! note
-    This installs the Helm Operator with only support for Helm 3
-    enabled, to also enable support for Helm 2 and connect to Tiller, read
-    [with Tiller](#with-tiller-helm-2) below. 
+{{% alert color="info" title="Note" %}}
+This installs the Helm Operator with only support for Helm 3 enabled,
+to also enable support for Helm 2 and connect to Tiller, read [with
+Tiller](#with-tiller-helm-2) below. 
+{{% /alert %}}
 
 ### With Tiller (Helm 2)
 
@@ -94,12 +100,13 @@ $ kubectl logs -f deploy/helm-operator
 ts=2020-01-01T12:00:00.556712443Z caller=helm.go:71 component=helm version=v2 info="connected to Tiller" version="sem_ver:\"v2.16.3\" git_commit:\"1ee0254c86d4ed6887327dabed7aa7da29d7eb0d\" git_tree_state:\"clean\" " host=tiller-deploy.kube-system:44134 options="{Host: Port: Namespace:kube-system TLSVerify:false TLSEnable:true TLSKey:/etc/fluxd/helm/tls.key TLSCert:/etc/fluxd/helm/tls.crt TLSCACert: TLSHostname:}"
 ```
 
-!!! tip
-    Targeting a specific Helm version in a `HelmRelease` is possible by
-    defining the `spec.helmVersion`, e.g: `helmVersion: v3` to target
-    Helm 3. Read more about this in '[targeting a Helm
-    version](../helmrelease-guide/release-configuration.md#targeting-a-helm-version)'
-    in the `HelmRelease` guide.
+{{% alert color="info" title="Tip" %}}
+Targeting a specific Helm version in a `HelmRelease` is possible by
+defining the `spec.helmVersion`, e.g: `helmVersion: v3` to target
+Helm 3. Read more about this in '[targeting a Helm
+version](../helmrelease-guide/release-configuration.md#targeting-a-helm-version)'
+in the `HelmRelease` guide.
+{{% /alert %}}
 
 ## Next
 

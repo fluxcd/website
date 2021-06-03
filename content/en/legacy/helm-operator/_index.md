@@ -1,4 +1,9 @@
-# Helm Operator
+---
+title: Helm Operator
+type: docs
+weight: 20
+---
+
 
 The Helm Operator is a [Kubernetes operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/),
 allowing one to declaratively manage Helm chart releases. Combined with
@@ -11,7 +16,7 @@ Custom Resource named `HelmRelease`. Based on the creation, mutation or
 removal of a `HelmRelease` resource in the cluster, Helm actions are
 performed by the operator.
 
-![Helm Operator](_files/fluxcd-helm-operator-diagram.png)
+![Helm Operator](/img/fluxcd-helm-operator-diagram.png)
 
 ## Features
 

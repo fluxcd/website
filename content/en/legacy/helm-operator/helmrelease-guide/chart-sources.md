@@ -1,4 +1,8 @@
-# Chart sources
+---
+type: docs
+title: Chart sources
+weight: 20
+---
 
 In the introduction we created a simple `HelmRelease` that made use of a chart
 from a Helm repository, but the Helm Operator does support multiple chart
@@ -122,10 +126,11 @@ helm repo add \
     <alias> <URL>
 ```
 
-!!! note
-    For Azure ACR repositories, you will need to [create a service
-    principal](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal#create-a-service-principal)
-    and use the plain text ID and password this gives you.
+{{% alert color="info" title="Note" %}}
+For Azure ACR repositories, you will need to [create a service
+principal](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal#create-a-service-principal)
+and use the plain text ID and password this gives you.
+{{% /alert %}}
 
 If you need to define any certificates, edit the respective `caFile`, `certFile`
 and `keyFile` values of the entry you just added to the mount paths you will
@@ -162,7 +167,7 @@ operator deployment, and `volumeMounts` of the Helm Operator container. A good
 mount path for the `repositories.yaml` file that does not give conflicts with
 any Helm paths is `/root/.helm/repository/repositories.yaml`. Examples of this
 can be found in the commented-out sections of the [example
-deployment](https://github.com/fluxcd/helm-operator/blob/{{ version }}/deploy/deployment.yaml).
+deployment](https://github.com/fluxcd/helm-operator/blob/1.2.0/deploy/deployment.yaml).
 
 Lastly, configure the `--helm-repository-import` argument on the Helm Operator
 container for your enabled Helm versions:
@@ -172,19 +177,21 @@ container for your enabled Helm versions:
         - --helm-repository-import=v2:/root/.helm/repository/repositories.yaml,v3:/root/.helm/repository/repositories.yaml
 ```
 
-!!! note
-    There is no limit to the amount of repository files that can be imported
-    as the `--helm-repository-import` flag accepts a comma separated string
-    slice of `<Helm version>:<filepath>`, e.g. `v3:/my/path.yaml`.
-    Adding all entries to the same file and/or secret is thus not a requirement.
+{{% alert color="info" title="Note" %}}
+There is no limit to the amount of repository files that can be imported
+as the `--helm-repository-import` flag accepts a comma separated string
+slice of `<Helm version>:<filepath>`, e.g. `v3:/my/path.yaml`.
+Adding all entries to the same file and/or secret is thus not a requirement.
+{{% /alert %}}
 
-!!! hint
-    For the [Helm chart](../references/chart.md), this all can be done by setting
-    `configureRepositories.enable` to `true`, it will automatically pick up the 
-    `flux-helm-reposities` secret created earlier in this guide and configure the
-    `--helm-repository-import` flag for the enabled Helm versions. The certificate
-    secret can be mounted by configuring the `extraVolumes` and `extraVolumeMounts`
-    values.
+{{% alert color="info" title="Hint" %}}
+For the [Helm chart](../references/chart.md), this all can be done by setting
+`configureRepositories.enable` to `true`, it will automatically pick up the 
+`flux-helm-reposities` secret created earlier in this guide and configure the
+`--helm-repository-import` flag for the enabled Helm versions. The certificate
+secret can be mounted by configuring the `extraVolumes` and `extraVolumeMounts`
+values.
+{{% /alert %}}
 
 ### Extending the supported Helm repository protocols
 
@@ -282,11 +289,12 @@ spec:
     version: 1.0.0
 ```
 
-!!! caution
-    Most downloader plugins expect some form of credentials to be present to be
-    able to download a chart, make sure those are available in the Helm
-    operator's container before attempting to make use of the newly added
-    protocol.
+{{% alert color="warning" title="Caution" %}}
+Most downloader plugins expect some form of credentials to be present to be
+able to download a chart, make sure those are available in the Helm
+operator's container before attempting to make use of the newly added
+protocol.
+{{% /alert %}}
 
 ## Git repositories
 
@@ -329,9 +337,10 @@ being available yet or a cloning failure because of missing [credentials](#authe
 a status condition of type `ChartFetched` will be recorded on the `HelmRelease` resource with the
 returned error.
 
-!!! note
-    You can pin a chart to a specific version by changing the `.ref` to a tag
-    or commit hash.
+{{% alert color="info" title="Note" %}}
+You can pin a chart to a specific version by changing the `.ref` to a tag
+or commit hash.
+{{% /alert %}}
 
 ### Authentication
 
@@ -341,9 +350,10 @@ however likely that most of the time you will be using a Git repository
 chart source, some form of authentication is required before the repository
 can be accessed by the Helm Operator.
 
-!!! tip
-    Because the Helm Operator does not perform any write operations on the Git
-    repository, credentials with read permissions are always sufficient.
+{{% alert color="info" title="Tip" %}}
+Because the Helm Operator does not perform any write operations on the Git
+repository, credentials with read permissions are always sufficient.
+{{% /alert %}}
 
 #### SSH
 
@@ -362,7 +372,7 @@ kubectl create secret generic flux-git-deploy \
 ```
 
 Next, mount it into the Helm Operator container as shown in the
-[example deployment](https://github.com/fluxcd/helm-operator/blob/{{ version }}/deploy/deployment.yaml).
+[example deployment](https://github.com/fluxcd/helm-operator/blob/1.2.0/deploy/deployment.yaml).
 
 The default `ssh_config` that ships with the Helm Operator's Docker image
 expects an identity file at `/etc/fluxd/ssh/identity`, which is where it will
@@ -392,9 +402,10 @@ Host bitbucket.org
     IdentitiesOnly yes
 ```
 
-!!! note
-    The `IdentitiesOnly` ensures that only the `IdentityFile` for the
-    `Host` is used and any other identity files known are ignored.
+{{% alert color="info" title="Note" %}}
+The `IdentitiesOnly` ensures that only the `IdentityFile` for the
+`Host` is used and any other identity files known are ignored.
+{{% /alert %}}
 
 ###### Multiple private keys for Git repositories on the same host
 
@@ -464,9 +475,10 @@ credentials via a
 [`.netrc` file](https://ec.haxx.se/usingcurl/usingcurl-netrc) mounted in the
 `/root/` directory of the Helm Operator container.
 
-!!! caution
-     This approach suffers essentially from [the same caveat as mentioned for
-     Git over SSH](#multiple-private-keys-for-git-repositories-on-the-same-host).
+{{% alert color="warning" title="Caution" %}}
+This approach suffers essentially from [the same caveat as mentioned for
+Git over SSH](#multiple-private-keys-for-git-repositories-on-the-same-host).
+{{% /alert %}}
 
 To provide credentials for `github.com`, you would create a `.netrc` file like
 this:
@@ -520,7 +532,8 @@ $ curl -XPOST http://localhost:3030/api/v1/sync-git
 OK
 ```
 
-!!! warning
-    The HTTP API has no built-in authentication, this means you either need to
-    port forward before making the request or put something in front of it to
-    serve as a gatekeeper.
+{{% alert color="warning" title="Warning" %}}
+The HTTP API has no built-in authentication, this means you either need to
+port forward before making the request or put something in front of it to
+serve as a gatekeeper.
+{{% /alert %}}

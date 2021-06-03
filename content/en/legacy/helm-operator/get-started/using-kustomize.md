@@ -1,4 +1,9 @@
-# Get started using Kustomize
+---
+title: Get started using Kustomize
+linkTitle: Using Kustomize
+type: docs
+weight: 40
+---
 
 This guide walks you through setting up the Helm Operator using
 [Kustomize](https://kustomize.io).
@@ -20,7 +25,7 @@ mkdir helm-operator
 ```
 
 Create a `kustomization.yaml` file and use the [Helm Operator
-deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/{{ version }}/deploy)
+deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/1.2.0/deploy)
 as a base:
 
 ```sh
@@ -46,15 +51,16 @@ The `patchesJSON6902` target ensures only support for Helm 3 is
 enabled, to also enable support for Helm 2 and connect to Tiller,
 continue to read [Helm 2](#helm-2) below.
 
-!!! tip
-    If you want to install a specific Helm Operator release, add the
-    version number to the base URL:
-    
-    ```yaml
-    bases:
-     - github.com/fluxcd/helm-operator//deploy?ref={{ version }}
-    ```
-    
+{{% alert color="info" title="Tip" %}}
+If you want to install a specific Helm Operator release, add the
+version number to the base URL:
+
+```yaml
+bases:
+  - github.com/fluxcd/helm-operator//deploy?ref=1.2.0
+```
+{{% /alert %}}
+
 ### Helm 2
 
 To also enable support for Helm 2 and configure the Tiller settings, we

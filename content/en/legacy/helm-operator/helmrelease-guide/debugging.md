@@ -1,4 +1,8 @@
-# Debugging
+---
+title: Debugging
+type: docs
+weight: 90
+---
 
 Even after having read everything this guide has to offer it is possible that a
 `HelmRelease` fails and you want to debug it to get to the cause. This may be

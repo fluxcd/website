@@ -1,4 +1,8 @@
-# Release configuration
+---
+type: docs
+title: Release configuration
+weight: 40
+---
 
 When making use of the `helm` binary you can pass along various flags while
 making a release that influence how a release is performed. Most of these flags
@@ -129,19 +133,21 @@ spec:
   timeout: 300
 ```
 
-!!! warning
-    When your chart requires a high non-default `timeout` value it is advised
-    to increase the `terminationGracePeriod` on the Helm Operator pod to not
-    end up with a release in a faulty state due to the operator receiving a
-    `SIGKILL` signal during an upgrade.
+{{% alert color="warning" title="Warning" %}}
+When your chart requires a high non-default `timeout` value it is advised
+to increase the `terminationGracePeriod` on the Helm Operator pod to not
+end up with a release in a faulty state due to the operator receiving a
+`SIGKILL` signal during an upgrade.
+{{% /alert %}}
 
 ## Wait for resources to be ready
 
-!!! note
-    When you have many `HelmRelease` resources with the waiting enabled,
-    it is likely that you want to increase the amount of `--workers` to
-    ensure other releases are still processed, given the waiting process blocks
-    the worker from processing other `HelmRelease` resources.
+{{% alert color="info" title="Note" %}}
+When you have many `HelmRelease` resources with the waiting enabled,
+it is likely that you want to increase the amount of `--workers` to
+ensure other releases are still processed, given the waiting process blocks
+the worker from processing other `HelmRelease` resources.
+{{% /alert %}}
 
 By default, Helm will mark a release as successfully deployed as soon as the
 changes have been applied to the cluster. To instruct Helm to wait until
@@ -156,10 +162,11 @@ spec:
 
 ## Configuring the max number of revision saved
 
-!!! note
-    Setting this only has effect for a `HelmRelease` targeting Helm 3.
-    You can configure a global history limit for Helm 2 by [passing `--history-max
-    <int>` to `helm init`](https://v2.helm.sh/docs/using_helm/#initialize-helm-and-install-tiller).
+{{% alert color="info" title="Note" %}}
+Setting this only has effect for a `HelmRelease` targeting Helm 3.
+You can configure a global history limit for Helm 2 by [passing `--history-max
+<int>` to `helm init`](https://v2.helm.sh/docs/using_helm/#initialize-helm-and-install-tiller).
+{{% /alert %}}
 
 To configure the maximum number of revision saved by Helm for a `HelmRelease`,
 you can set `.maxHistory`. Use `0` for an unlimited number of revisions;

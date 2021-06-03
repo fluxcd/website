@@ -1,4 +1,8 @@
-# Automation
+---
+type: docs
+weight: 80
+title: Automation
+---
 
 This section of the guide is mostly a clarification of some common
 misconceptions about (non-existent) automation features of the Helm Operator.

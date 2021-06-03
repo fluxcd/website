@@ -1,4 +1,8 @@
-# Quickstart
+---
+title: Quickstart
+type: docs
+weight: 20
+---
 
 This guide walks you through to all steps required to quickly get
 started with the Helm Operator.
@@ -16,7 +20,7 @@ this CRD it will be possible to define `HelmRelease` resources on the
 cluster:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/{{ version }}/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.2.0/deploy/crds.yaml
 ```
 
 Create a new namespace:
@@ -42,10 +46,11 @@ helm upgrade -i helm-operator fluxcd/helm-operator \
 This installs the Helm Operator with default settings and support for
 Helm 3 enabled.
 
-!!! hint
-    See the [operator reference](../references/operator.md) and [chart
-    documentation](../references/chart.md#configuration)
-    for detailed configuration options.
+{{% alert color="info" title="Hint" %}}
+See the [operator reference](../references/operator.md) and [chart
+documentation](../references/chart.md#configuration)
+for detailed configuration options.
+{{% /alert %}}
 
 ## Create your first `HelmRelease`
 
@@ -75,11 +80,12 @@ release name the Helm Operator will use is composed out of the
 namespace and name of the `HelmRelease` resource (but can be
 configured): `default-podinfo`.
 
-!!! hint
-    Read more about different chart sources in the [chart
-    sources](../helmrelease-guide/chart-sources.md) section of the
-    `HelmRelease` guide.
-    
+{{% alert color="info" title="Hint" %}}
+Read more about different chart sources in the [chart
+sources](../helmrelease-guide/chart-sources.md) section of the
+`HelmRelease` guide.
+{{% /alert %}}
+
 ## Confirm the chart has been installed
 
 When a Helm chart has been successfully released the Helm Operator will
@@ -145,15 +151,17 @@ NAME                               READY   STATUS    RESTARTS   AGE
 default-podinfo-7f9759cc66-bslsl   1/1     Running   0          59s
 ```
 
-!!! tip
-    The available shorthand for `kubectl` operations on `helmrelease`
-    resources is `hr`, i.e:
-    
-    ```console
-    $ kubectl get hr
-    NAME      RELEASE           STATUS     MESSAGE                       AGE
-    podinfo   default-podinfo   deployed   Helm release sync succeeded   59s
-    ```
+{{% alert color="info" title="Tip" %}}
+The available shorthand for `kubectl` operations on `helmrelease`
+resources is `hr`, i.e:
+
+```console
+$ kubectl get hr
+NAME      RELEASE           STATUS     MESSAGE                       AGE
+podinfo   default-podinfo   deployed   Helm release sync succeeded   59s
+```
+
+{{% /alert %}}
 
 ## Make a modification
 
@@ -192,10 +200,11 @@ default-podinfo-7f9759cc66-w7fj7   0/1     Running             0          1s
 default-podinfo-7f9759cc66-w7fj7   1/1     Running             0          1s
 ```
 
-!!! hint
-    See the [values](../helmrelease-guide/values.md) and [release
-    configuration](../helmrelease-guide/release-configuration.md)
-    sections in the `HelmRelease` guide for more details.
+{{% alert color="info" title="Hint" %}}
+See the [values](../helmrelease-guide/values.md) and [release
+configuration](../helmrelease-guide/release-configuration.md)
+sections in the `HelmRelease` guide for more details.
+{{% /alert %}}
 
 ## Reconciliation
 
@@ -237,11 +246,12 @@ default-podinfo-7f9759cc66-kd5rk   0/1     Running             0          1s
 default-podinfo-7f9759cc66-kd5rk   1/1     Running             0          7s
 ```
 
-!!! hint
-    Read more about [reconciliation and
-    upgrades](../helmrelease-guide/reconciliation-and-upgrades.md) in
-    the `HelmRelease` guide.
-    
+{{% alert color="info" title="Hint" %}}
+Read more about [reconciliation and
+upgrades](../helmrelease-guide/reconciliation-and-upgrades.md) in
+the `HelmRelease` guide.
+{{% /alert %}}
+
 ## Uninstalling the chart
 
 To uninstall the chart and clean up the release, simply run `kubectl

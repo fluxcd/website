@@ -1,4 +1,9 @@
-# Upgrade from beta (>=0.5.0) to stable (>=1.0.0)
+---
+type: docs
+weight: 10
+title: Upgrade from beta (>=0.5.0) to stable (>=1.0.0)
+linkTitle: Upgrade to GA
+---
 
 Due to the Flux CD project joining the CNCF Sandbox and the API
 becoming stable, the Helm Operator has undergone changes that
@@ -32,19 +37,21 @@ since the new operator will ignore them.
 
 ## Updating custom resources
 
-!!! note
-         Once the new CRD is applied it is no longer possible to list your old
-         and new `HelmRelease` resources with just
-         `kubectl get <hr|helmrelease>` due to them sharing the same names. It
-         is however still possible to list them by their full name:
-         
-         ```console
-         # Old HelmRelease resources
-         kubectl get helmreleases.flux.weave.works
-         
-         # New HelmRelease resources
-         kubectl get helmreleases.helm.fluxcd.io
-         ```
+{{% alert color="info" title="Note" %}}
+Once the new CRD is applied it is no longer possible to list your old
+and new `HelmRelease` resources with just
+`kubectl get <hr|helmrelease>` due to them sharing the same names. It
+is however still possible to list them by their full name:
+
+```sh
+# Old HelmRelease resources
+kubectl get helmreleases.flux.weave.works
+
+# New HelmRelease resources
+kubectl get helmreleases.helm.fluxcd.io
+```
+
+{{% /alert %}}
 
 The only difference between the old resource format and the new is
 the changed API version.

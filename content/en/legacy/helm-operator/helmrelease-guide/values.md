@@ -1,4 +1,8 @@
-# Values
+---
+type: docs
+title: Values
+weight: 30
+---
 
 Now that we have a good understanding of where we can get our charts from and
 what they have to offer, it is time to examine how you can supply
@@ -38,10 +42,11 @@ This is useful if you want to have defaults such as the `region`,
 `clustername`, `environment`, a local docker registry URL, etc., or if you
 simply do not want the values to be visible as plaintext in the `HelmRelease`.
 
-!!! note
-    The Helm Operator does not watch the sources for updates. Changes to
-    sources are detected during the [reconciliation
-    loop](reconciliation-and-upgrades.md#reconciliation).
+{{% alert color="info" title="Note" %}}
+The Helm Operator does not watch the sources for updates. Changes to
+sources are detected during the [reconciliation
+loop](reconciliation-and-upgrades.md#reconciliation).
+{{% /alert %}}
 
 ### Config maps
 
@@ -118,9 +123,10 @@ The definition of the listed keys is as follows:
 
 ### Chart files
 
-!!! note
-    Values from chart files are only supported for charts from a [Git
-    repository](chart-sources.md#git-repositories).
+{{% alert color="info" title="Note" %}}
+Values from chart files are only supported for charts from a [Git
+repository](chart-sources.md#git-repositories).
+{{% /alert %}}
 
 When making use of a chart sourced from a Git repository, it is possible to
 refer to a values file relative to the path of the chart. This can for example

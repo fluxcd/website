@@ -1,4 +1,8 @@
-# Monitoring
+---
+title: Monitoring
+type: docs
+weight: 40
+---
 
 The Helm Operator exposes a metrics endpoint at `/metrics`  on the configured
 [`--listen`](operator.md#general-flags) address (defaults to `:3030`) with data

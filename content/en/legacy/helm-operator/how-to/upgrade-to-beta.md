@@ -1,4 +1,9 @@
-# Upgrade from alpha (<=0.4.0) to beta
+---
+type: docs
+weight: 20
+title: Upgrade from alpha (<=0.4.0) to beta
+linkTitle: Upgrade to beta
+---
 
 The Helm Operator has undergone changes that necessitate some changes
 to custom resources, and the deployment of the operator itself.

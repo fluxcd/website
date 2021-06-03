@@ -1,4 +1,8 @@
-# Get started developing
+---
+type: docs
+weight: 30
+title: Get started developing
+---
 
 This guide shows you how to make a small change to the Helm Operator and then build and test that change locally using a Kind cluster.
 

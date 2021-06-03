@@ -1,6 +1,7 @@
 ---
-title: Flux documentation
+title: Flux Legacy
 type: docs
+weight: 10
 ---
 
 ![Flux v1 Diagram](/img/flux-v1-diagram.png)

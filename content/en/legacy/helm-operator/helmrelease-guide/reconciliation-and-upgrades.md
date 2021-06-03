@@ -1,4 +1,8 @@
-# Reconciliation and upgrades
+---
+type: docs
+weight: 50
+title: Reconciliation and upgrades
+---
 
 Now that you know the ins and outs of configuring a release, we are going to
 have a better look at how the Helm Operator performs the actual Helm release.
@@ -39,11 +43,12 @@ being performed, otherwise no action is taken:
    the generation changes for example when the `.spec` is edited.
 1. The result of a dry-run upgrade for the `HelmRelease` differs from the
    latest release in the Helm storage.
-   
-!!! note
-    Mutations to live cluster-state are not detected and thus not
-    reverted. This will however be added in the foreseeable future.
-    
+
+{{% alert color="info" title="Note" %}}
+Mutations to live cluster-state are not detected and thus not
+reverted. This will however be added in the foreseeable future.
+{{% /alert %}}
+
 ## Upgrade failures
 
 When an upgrade fails, the Helm Operator will stop performing upgrades for the

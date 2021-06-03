@@ -1,6 +1,8 @@
 ---
 type: docs
 title: Building
+linkTitle: Building Flux
+weight: 20
 ---
 
 You'll need a working `go` environment version >= 1.11 (official releases are built against `1.13`).

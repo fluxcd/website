@@ -1,4 +1,9 @@
-# Frequently asked questions
+---
+type: docs
+weight: 70
+title: Frequently asked questions
+linkTitle: FAQ
+---
 
 ### A `HelmRelease` is stuck in a `failed` release state. How do I force it through?
 
