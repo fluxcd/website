@@ -33,3 +33,6 @@ adopters:
     - name: blackmirror media
       url: https://blackmirror.media
       logo: logos/blackmirror-media.png
+    - name: HybridK8s
+      url: https://hybridk8s.tech
+      logo: logos/hybridk8s.png
