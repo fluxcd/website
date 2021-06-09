@@ -12,10 +12,12 @@ The below examples and instructions assume you are using GitHub, but the same
 can apply for other providers and their support for access-token password auth.
 
 ## Creating Per-Repo Deploy Keys
+
 For detailed instructions on setting up per-repo deploy keys using SOPS/SSH- or
  token-based Git authentication, see [the documentation in our flux2-multi-tenancy example](https://github.com/fluxcd/flux2-multi-tenancy#onboard-tenants-with-private-repositories).
 
 ## Sharing Token Auth Across Repos
+
 If you are managing a multi-tenant cluster with Flux, you can cut a Personal 
 Access Token with `repo` access from a GitHub service account and use that 
 token for authenticating multiple private GitRepository sources.
@@ -32,6 +34,7 @@ than on a per-repo basis; you will have to manage access on the org/team/
 user-level. 
 
 ### HTTP/S Basic Auth Token Access
+
 1. Log into a GitHub service account that has `admin` access to the repo you 
 are onboarding, and visit [settings/tokens](https://github.com/settings/tokens) 
 to generate a Personal Access Token with `repo` scope. 
@@ -60,8 +63,9 @@ kubectl get secret flux-system -n flux-system -o yaml
 and reference the shared token `flux-system` Secret within `spec.secretRef`. This will authenticate
 the repository fetch without requiring an new, individual token or SSH deploy key to be generated.
 
-#### CLI Example
-You can do this on the command-line like so:
+#### Example
+
+Create a [GitRepository](https://fluxcd.io/docs/components/source/gitrepositories/) source pointing to my-org/my-private-repo's master branch:
 ```sh
 flux create source git podinfo \
     --url=https://github.com/my-org/my-private-repo \
@@ -69,9 +73,8 @@ flux create source git podinfo \
     --secret-ref=flux-system
 ```
 
-#### YAML Manifest Example
-If you are onboarding your source by checking in a YAML to your platform admin
- repo, it should look like this:
+The above command generates the following manifest:
+
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
@@ -91,14 +94,17 @@ spec:
 ```
 
 ### Note on namespaces
+
 **Note** that if you wish to manage your tenant `GitRepository` sources as part of a namespace that is _not_ flux-system (e.g. the `apps` namespace, [as in the multi-tenancy example](https://github.com/fluxcd/flux2-multi-tenancy/blob/main/tenants/base/dev-team/sync.yaml#L5)), the private source will not be able to read from the `flux-system` Secret.
 
 You will have to manually create a Kubernetes Secret with the `data.username` and `data.password` fields in the namespace that you are creating your `GitRepository` sources in. To keep Secrets private, consider using [kubeseal](sealed-secrets.md).
 ```sh
 # for GitRepository private sources stored in the `apps` namespace
-kubectl create secret generic repo-auth -n apps \
-	--from-literal=username=$GITHUB_USER \
-	--from-literal=password=$GITHUB_TOKEN
+kubectl create secret git repo-auth \
+    --namespace=apps \
+    --url=https://github.com/my-org/my-private-repo \
+	--username=$GITHUB_USER \
+	--password=$GITHUB_TOKEN
 ```
 
 To get your sources to use the Secret, just reference it by name in the `GitRepository.spec.secretRef` field:
