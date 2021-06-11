@@ -436,6 +436,53 @@ the customisations from `gotk-patches.yaml`.
 
 You can make changes to the patches after bootstrap and Flux will apply them in-cluster on its own.
 
+### Pod Security Policy
+
+Assuming you want to make the Flux controllers conform to Pod Security Policy or equivalent webhooks,
+create a file at `clusters/my-cluster/psp-patch.yaml` with the following content:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: all-flux-components
+spec:
+  template:
+    metadata:
+      annotations:
+        # Required by Kubernetes node autoscaler
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    spec:
+      securityContext:
+        runAsUser: 10000
+        fsGroup: 1337
+      containers:
+        - name: manager
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+```
+
+Edit `clusters/my-cluster/kustomization.yaml` and enable the patch:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- gotk-components.yaml
+- gotk-sync.yaml
+patches:
+  - path: psp-patch.yaml
+    target:
+      kind: Deployment
+```
+
+Push the changes to the main branch and run `flux bootstrap`.
+
 ## Dev install
 
 For testing purposes you can install Flux without storing its manifests in a Git repository:
