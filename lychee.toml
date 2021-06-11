@@ -1,0 +1,46 @@
+# Verbose program output
+verbose = true
+
+# Show progress
+progress = false
+
+max_redirects = 10
+
+# Comma-separated list of accepted status codes for valid links.
+# Omit to accept all response types.
+accept = "200,204,302,301"
+
+
+# Exclude all private IPs from checking
+# Equivalent to setting `exclude_private`, `exclude_link_local`, and `exclude_loopback` to true
+exclude_all_private = true
+
+# Exclude all mail addresses from checking
+exclude_mail = true
+
+exclude = [
+    "(.*?).example.com",
+    "https://customdomain.com",
+    "https://hooks.slack.com/*",
+    "https://eventhubs.azure.net",
+    "https://proxy.corp",
+    "https://customdomain.com",
+    "ssh://*",
+    "sb://*",
+    "http://localhost",
+    "https://api.crc.testing:6443",
+    "http://backend-podinfo",
+    'https://github.com/\$GITHUB_USER/',
+    "http://chartmuseum-chartmuseum",
+    "https://charts.bitnami.com/bitnami",
+    "https://chartmuseum.github.io/charts",
+    'https://github.com/\$%7Bvar.github_owner%7D/\$%7Bvar.repository_name%7D',
+    "https://kubernetes-charts.storage.googleapis.com",
+    "https://github.com/org/",
+    "https://github.com/org/repo",
+    "https://github.com/my-org/",
+    "http://github.com/org/repo",
+    "https://stefanprodan.github.io/podinfo",
+    "https://stefanprodan.github.io/podinfo2/index.yaml",
+    "https://cloud.weave.works/api/flux",
+]

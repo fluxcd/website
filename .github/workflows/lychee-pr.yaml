@@ -1,0 +1,35 @@
+on: pull_request
+name: lychee link Checker
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.8
+      - name: "Install prerequisites"
+        run: |
+          pip3 install -r requirements.txt
+      - name: get changed files
+        id: getfile
+        run: |
+          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }}| xargs)"
+      - name: echo the changed files
+        run: |
+          for i in ${{ steps.getfile.outputs.files }}
+          do
+              echo $i
+          done
+      - run: |
+          make gen-content
+      - name: lychee Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1.0.8
+        with:
+          args: --verbose --no-progress --exclude-all-private ${{ steps.getfile.outputs.files }}
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Fail if there were link errors
+        run: exit ${{ steps.lychee.outputs.exit_code }}
