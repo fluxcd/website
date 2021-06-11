@@ -22,6 +22,7 @@ SUPPORT_IMAGE_NAME         ?= $(DEV_IMAGE_REGISTRY_NAME)/$(SUPPORT_IMAGE_BASE_NA
 HUGO_BIND_ADDRESS          ?= 127.0.0.1
 BUILDER_CLI                := docker
 # BUILDER_CLI                := okteto
+LYCHEE_IMAGE_NAME          ?= lycheeverse/lychee:202105190720247e4977
 
 help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -123,3 +124,7 @@ docker-build-hugo: hugo
 
 hugo:
 	git clone https://github.com/gohugoio/hugo.git --depth 1 -b v$(HUGO_VERSION)
+
+.PHONY: lychee-docker
+lychee-docker: gen-content
+	docker run --rm -it -e "GITHUB_TOKEN=$GITHUB_TOKEN" -v $$(pwd):/app $(LYCHEE_IMAGE_NAME) "/app/**/*.md"
