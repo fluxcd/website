@@ -1,3 +1,23 @@
+@mixin white-background-a {
+  a {
+    color: $flux-lighter-blue !important;
+
+    &:hover {
+      color: $flux-darkest-blue !important;
+    }
+  }
+}
+
+@mixin gray-background-a {
+  a {
+    color: $flux-light-blue !important;
+
+    &:hover {
+      color: $flux-dark-blue !important;
+    }
+  }
+}
+
 .features, .resources {
   .col-lg-4 {
     margin: 2rem 0rem !important;
@@ -19,6 +39,8 @@
   .fas, .fab, .fa {
     color: $flux-dark-blue;
   }
+
+  @include white-background-a;
 }
 
 .resources {
@@ -59,11 +81,22 @@ h2.section-label {
     border-top-color: $flux-dark-blue;
   }
 
+  .-bg-blue {
+    @include projects-btn-primary;
+    @include projects-btn-secondary;
+  }
+
   .-bg-green {
     background-color: $flux-green;
+    
+    @include projects-btn-primary;
+    @include projects-btn-secondary;
+  }
+
+  .-bg-white {
+    @include white-background-a;
   }
 }
-
 
 .section-community {
   background-color: $flux-gray;
@@ -91,5 +124,10 @@ h2.section-label {
   h2.section-label {
     margin: 1rem 0 2rem 0;
   }
+
+  @include gray-background-a;
 }
 
+.cncf-footer {
+  @include white-background-a;
+}
