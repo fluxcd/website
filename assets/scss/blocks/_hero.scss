@@ -79,11 +79,20 @@
     margin-top: 1rem;
     
     color: $flux-white !important;
+    text-shadow: 4px 2px $flux-gray;
+    
     font-style: normal;
     font-weight: 600;
     font-size: 1.5rem;
     background-color: $flux-darkest-blue;
     border-color: $flux-black !important;
+    // border-color: $flux-white !important;
+
+    &:hover {
+      background-color: rgba($flux-darkest-blue, 0.7) !important;
+      box-shadow: none !important;
+    }
+
     &:active {
       background-color: $flux-light-blue !important;
       box-shadow: none !important;
