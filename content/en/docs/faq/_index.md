@@ -275,7 +275,7 @@ their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_
 Flux v1 is a monolithic do-it-all operator;
 Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
-You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../guides/faq-migration.md).
+You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration.md).
 
 ### How can I migrate from v1 to v2?
 
