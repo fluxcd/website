@@ -1,4 +1,22 @@
+@mixin white-background-a {
+  a {
+    color: $flux-lighter-blue !important;
 
+    &:hover {
+      color: $flux-darkest-blue !important;
+    }
+  }
+}
+
+@mixin gray-background-a {
+  a {
+    color: $flux-light-blue !important;
+
+    &:hover {
+      color: $flux-dark-blue !important;
+    }
+  }
+}
 
 .features, .resources {
   .col-lg-4 {
@@ -21,6 +39,8 @@
   .fas, .fab, .fa {
     color: $flux-dark-blue;
   }
+
+  @include white-background-a;
 }
 
 .resources {
@@ -33,13 +53,54 @@
   }
 }
 
-.flux-other-projects {
-  section {
-    margin: 0 auto;
+h2.section-label {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.td-content {
+  div.lead  {
+    display: none;
+  }
+}
+
+
+.section-resources {
+  .td-box {
+    background-color: $flux-gray;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234f4f4f' fill-opacity='0.43' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  }
+}
+
+.section-other-flux-projects {
+  section.td-box--6 {
+    background-color: $flux-dark-blue;
+  }
+
+  .td-arrow-down::before {
+    border-top-color: $flux-dark-blue;
+  }
+
+  .-bg-blue {
+    @include projects-btn-primary;
+    @include projects-btn-secondary;
+  }
+
+  .-bg-green {
+    background-color: $flux-green;
+    
+    @include projects-btn-primary;
+    @include projects-btn-secondary;
+  }
+
+  .-bg-white {
+    @include white-background-a;
   }
 }
 
 .section-community {
+  background-color: $flux-gray;
+
   section.row.td-box {
     padding-top: 1.5rem;
   }
@@ -59,15 +120,14 @@
   p > a {
     font-size: 1.5rem;
   }
-}
 
-h2.section-label {
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.td-content {
-  div.lead  {
-    display: none;
+  h2.section-label {
+    margin: 1rem 0 2rem 0;
   }
+
+  @include gray-background-a;
+}
+
+.cncf-footer {
+  @include white-background-a;
 }

@@ -27,9 +27,13 @@
 }
 
 .lead-gitops section {
-  // border-top: 1px dotted rgb(150,150,200);
   padding: 0rem 0 2rem 0 !important;
   background: none;
+
+
+  a[aria-hidden="true"] {
+    display: none;
+  }
 
   .td-arrow-down {
     &::before {
@@ -62,6 +66,8 @@
   }
   h1 {
     color: rgba($flux-white, 0.95);
+    text-shadow: -1px 1px $flux-gray;
+
   }
   h2 {
     color: rgba($flux-white, 0.95);
@@ -71,14 +77,39 @@
   }
   a {
     color: $flux-light-blue !important;
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
+
+    &:hover {
+      color: $flux-darkest-blue !important;
+      text-shadow: -1px 1px $flux-lighter-blue;
+    }
   }
 
   a.btn {
-    color: $flux-black !important;
+    margin-top: 1rem;
+    
+    color: $flux-white !important;
+    text-shadow: -2px 1px $flux-gray;
+    
     font-style: normal;
     font-weight: 600;
-    background-color: $flux-light-blue;
+    font-size: 1.5rem;
+    background-color: $flux-darkest-blue;
+    border-color: $flux-darkest-blue $flux-darkest-blue $flux-black $flux-black !important;
+
+    &:hover {
+      background-color: rgba($flux-darkest-blue, 0.7) !important;
+      box-shadow: none !important;
+    }
+
+    &:active {
+      background-color: $flux-light-blue !important;
+      box-shadow: none !important;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
   }
 }
