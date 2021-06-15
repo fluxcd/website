@@ -3,6 +3,10 @@
 # This was inspired by
 # http://sigs.k8s.io/contributor-site/hack/gen-content.sh
 
+# Check out
+# external-sources/README.md for some instructions on how
+# the file format works.
+
 import csv
 import os
 import re
@@ -26,15 +30,21 @@ We are adding basic Front-Matter here.
 
 `docs` files can't have front-matter and # (h1)
 '''
-def rewrite_header(out_file, title=None, docs=False):
+def rewrite_header(out_file, title=None, docs=False, weight=None):
     lines = open(out_file, 'r').readlines()
 
-    if not title:
+    if not title or title == '-':
         title = os.path.basename(out_file).split('.md')[0].title()
     header_lines = [
         '---\n',
         'title: {}\n'.format(title),
-        'importedDoc: true\n',
+        'importedDoc: true\n'
+    ]
+    if docs:
+        header_lines += ['type: docs\n']
+    if weight:
+        header_lines += ['weight: {}\n'.format(weight)]
+    header_lines += [
         '---\n',
         '\n'
     ]
@@ -44,7 +54,8 @@ def rewrite_header(out_file, title=None, docs=False):
 
     for line in lines:
         if not docs or not line.startswith('# ') or lines.index(line) >= 4:
-            f.write(line)
+            if not line.startswith('<!-- '): #FML!
+                f.write(line)
     f.close()
 
 class Repo():
@@ -97,11 +108,14 @@ class Repo():
             shutil.copyfile(
                 os.path.join(self.dest, entry[0]),
                 out_file)
-            docs = entry[1].startswith('docs/')
-            if len(entry) == 3:
-                rewrite_header(out_file, title=entry[2], docs=docs)
-            else:
-                rewrite_header(out_file, docs=docs)
+            docs = entry[1].startswith('docs/') or entry[1].startswith('legacy/')
+            title = None
+            weight = None
+            if len(entry) == 4:
+                weight = entry[3]
+            if len(entry) >= 3:
+                title = entry[2]
+            rewrite_header(out_file, title=title, docs=docs, weight=weight)
             self.rewrite_links(out_file)
 
 

@@ -2,6 +2,9 @@
 <html lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
     {{ partial "head.html" . }}
+    {{ if in .Permalink "/legacy" }}
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {{ end }}
   </head>
   <body class="td-{{ .Kind }}">
     <header>
@@ -23,6 +26,7 @@
           {{ end }}
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+            {{ if in .Permalink "/legacy" }}{{ partial "docs/legacy-warning.html" }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>
         </div>
