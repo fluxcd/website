@@ -67,6 +67,7 @@ serve: gen-content theme ## Spawns a development server.
 
 production-build: gen-content theme ## Builds production build.
 	hugo \
+		--baseURL $(URL) \
 		--gc \
 		--minify \
 		--enableGitInfo
