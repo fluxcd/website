@@ -157,14 +157,12 @@ cd ./deploy/prod && kustomize create --autodetect --recursive
 
 ### What is the behavior of Kustomize used by Flux
 
-We referred to the Kustomization CLI flags here, so that you can replicate the same behavior using the CLI.
-The behavior of Kustomize used by the controller is currently configured as following:
+We referred to the **Kustomize v4** CLI flags here,
+so that you can replicate the same behavior using `kustomize build`:
 
-- `--allow_id_changes` is set to false, so it does not change any resource IDs.
-- `--enable_kyaml` is disabled by default, so it currently used `k8sdeps` to process YAMLs.
-- `--enable_alpha_plugins` is disabled by default, so it uses only the built-in plugins.
-- `--load_restrictor` is set to `LoadRestrictionsNone`, so it allows loading files outside the dir containing `kustomization.yaml`.
-- `--reorder` resources is done in the `legacy` mode, so the output will have namespaces and cluster roles/role bindings first, CRDs before CRs, and webhooks last.
+- `---enable-alpha-plugins` is disabled by default, so it uses only the built-in plugins.
+- `--load-restrictor` is set to `LoadRestrictionsNone`, so it allows loading files outside the dir containing `kustomization.yaml`.
+- `--reorder` is set to `legacy`, so the output will have namespaces and cluster roles/role bindings first, CRDs before CRs, and webhooks last.
 
 {{% alert color="info" title="kustomization.yaml validation" %}}
 To validate changes before committing and/or merging, [a validation
