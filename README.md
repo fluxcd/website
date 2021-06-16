@@ -4,16 +4,14 @@
 
 This repo houses the assets used to build the Flux project's landing page at <https://fluxcd.io>.
 
-> **Note**: The sources for some of Flux's documentation are housed in the other Flux repositories within <https://github.com/fluxcd>. Issues and pull requests for this documentation should be registered at that repos.
+> **Note**: The sources for some of Flux's documentation are housed in other repositories within <https://github.com/fluxcd>. Documentation issues and pull requests should be made against those repos.
 >
-> Project       | Docs Site                                 | Github Source
-> ------------- | ------------------------------------------| -------------
-> Flux v1       | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
-> Helm Operator | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
-> Flagger       | <https://docs.flagger.app>                | <https://github.com/fluxcd/flagger>
-> Flux v2       | <https://fluxcd.io/docs>                  | <https://github.com/fluxcd/website>
->
-> We are in the process of moving Flagger docs into this repository as well.
+> Project          | Docs Site                                 | Github Source
+> ---------------- | ------------------------------------------| -------------
+> Flux v2          | <https://fluxcd.io/docs>                  | <https://github.com/fluxcd/website>
+> Flagger          | <https://docs.flagger.app>                | <https://github.com/fluxcd/flagger>
+> Flux v1          | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
+> Helm Operator v1 | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
 
 ## How to modify this website
 
