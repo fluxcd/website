@@ -849,7 +849,7 @@ If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomiz
 
 ### I am still running Helm v2, what is the right upgrade path for me?
 
-Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](https://docs.fluxcd.io/projects/helm-operator/en/stable/helmrelease-guide/release-configuration/#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
+Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](/legacy/helm-operator/helmrelease-guide/release-configuration/#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
 
 ### Is the Helm Controller ready for production?
 

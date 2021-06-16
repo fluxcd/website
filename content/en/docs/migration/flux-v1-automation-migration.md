@@ -743,7 +743,7 @@ from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2)
 
 [image-update-tute]: /docs/guides/image-update/
 [imagepolicy-ref]: /docs/components/image/imagepolicies/
-[helm-auto]: https://docs.fluxcd.io/en/1.21.1/references/helm-operator-integration/#automated-image-detection
+[helm-auto]: /legacy/flux/references/helm-operator-integration/#automated-image-detection
 [image-update-tute-custom]: /docs/guides/image-update/#configure-image-update-for-custom-resources
 [flux-v1-migration]: /docs/migration/flux-v1-migration/
 [install-cli]: /docs/get-started/#install-the-flux-cli
