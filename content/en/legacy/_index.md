@@ -1,4 +1,4 @@
 ---
-title: Flux Legacy
+title: Legacy documentation
 type: docs
 ---

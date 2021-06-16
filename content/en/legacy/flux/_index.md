@@ -1,5 +1,5 @@
 ---
-title: Flux Legacy
+title: Flux
 type: docs
 weight: 10
 ---
