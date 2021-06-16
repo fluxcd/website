@@ -18,8 +18,8 @@ For more information, take a look at ["What is GitOps?"](https://www.gitops.tech
 
 ## Sources
 
-A *Source* defines the origin of a repository containing the desired state of 
-the system and the requirements to obtain it (e.g. credentials, version selectors). 
+A *Source* defines the origin of a repository containing the desired state of
+the system and the requirements to obtain it (e.g. credentials, version selectors).
 For example, the latest `1.x` tag available from a Git repository over SSH.
 
 Sources produce an artifact that is consumed by other Flux components to perform
@@ -31,7 +31,7 @@ there is a newer version available that matches the criteria, a new artifact
 is produced.
 
 All sources are specified as Custom Resources in a Kubernetes cluster, examples
-of sources are `GitRepository`, `HelmRepository` and `Bucket` resources. 
+of sources are `GitRepository`, `HelmRepository` and `Bucket` resources.
 
 For more information, take a look at
 [the source controller documentation](components/source/_index.md).
