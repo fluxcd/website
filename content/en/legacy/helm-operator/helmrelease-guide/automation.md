@@ -17,7 +17,7 @@ itself due to it having no knowledge of available images or the origin of the
 `HelmRelease`.
 
 For more details about this Flux feature, please refer to the [documentation
-for the `HelmRelease` integration](https://docs.fluxcd.io/en/stable/references/helm-operator-integration).
+for the `HelmRelease` integration](/legacy/flux/references/helm-operator-integration).
 
 ## Helm repository chart updates
 
