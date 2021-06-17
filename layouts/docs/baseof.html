@@ -2,9 +2,6 @@
 <html lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
     {{ partial "head.html" . }}
-    {{ if in .Permalink "/legacy/helm-operator" }}
-    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    {{ end }}
   </head>
   <body class="td-{{ .Kind }}">
     <header>
