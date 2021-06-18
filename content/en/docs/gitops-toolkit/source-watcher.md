@@ -15,11 +15,11 @@ events and reacts to revision changes by downloading the artifact produced by
 
 On your dev machine install the following tools:
 
-* go >= 1.15
-* kubebuilder >= 2.3
+* go >= 1.16
+* kubebuilder >= 3.0
 * kind >= 0.8
 * kubectl >= 1.18
-* kustomize >= 3.5
+* kustomize >= 4.0
 * docker >= 19.03
 
 ## Install Flux
@@ -195,11 +195,16 @@ To add the watcher to an existing project, copy the controller and the revision 
 In your `main.go` init function, register the Source API schema:
 
 ```go
-import sourcev1 "github.com/fluxcd/source-controller/api/v1beta1"
+import (
+	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
+	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
+
+	sourcev1 "github.com/fluxcd/source-controller/api/v1beta1"
+)
 
 func init() {
-	_ = clientgoscheme.AddToScheme(scheme)
-	_ = sourcev1.AddToScheme(scheme)
+	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
+	utilruntime.Must(sourcev1.AddToScheme(scheme)
 
 	// +kubebuilder:scaffold:scheme
 }
@@ -221,14 +226,14 @@ func main()  {
 }
 ```
 
-Note that the watcher controller depends on Kubernetes client-go >= 1.20.
-Your `go.mod` should require controller-runtime v0.8 or newer:
+Note that the watcher controller depends on Kubernetes client-go >= 1.21.
+Your `go.mod` should require controller-runtime v0.9 or newer:
 
 ```go
 require (
-    k8s.io/apimachinery v0.20.2
-    k8s.io/client-go v0.20.2
-    sigs.k8s.io/controller-runtime v0.8.3
+    k8s.io/apimachinery v0.21.1
+    k8s.io/client-go v0.21.1
+    sigs.k8s.io/controller-runtime v0.9.0
 )
 ```
 
