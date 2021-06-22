@@ -74,6 +74,7 @@ adopters:
       url: https://www.greenpass.com.br/
     - name: HMCTS
       url: https://www.gov.uk/government/organisations/hm-courts-and-tribunals-service
+      logo: logos/hmcts.png
     - name: IBM Cloudant
       url: https://www.ibm.com/cloud/cloudant
     - name: Improwised Technologies
