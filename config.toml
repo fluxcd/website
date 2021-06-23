@@ -131,6 +131,12 @@ url = "/governance"
 weight = 40
 
 [[menus.main]]
+name = "Integrations"
+parent = "Project"
+url = "/integrations"
+weight = 50
+
+[[menus.main]]
 name = "Branding"
 parent = "Project"
 url = "https://branding.cncf.io/projects/flux"

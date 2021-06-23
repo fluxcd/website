@@ -85,7 +85,8 @@ def main():
         companies = data['adopters']['companies']
         companies = sorted(companies, key=lambda x: x['name'].lower())
 
-        f.write('''{{< cardpane >}}
+        f.write('''<div class="adopters">
+{{< cardpane >}}
 ''')
         for company in companies:
             i = companies.index(company)
@@ -95,6 +96,7 @@ def main():
             write_card_text(f, company['name'], company['url'], company['logo'])
 
         f.write('''{{< /cardpane >}}
+</div>
 ''')
 
     new_logos_dir = os.path.join(top_level_dir, 'static/img/logos')
