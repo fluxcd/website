@@ -1,0 +1,14 @@
+{{ $icon := .Get "icon" | default "fa-lightbulb" }}
+<div class="text-center community-item">
+  <div class="community-item-header">
+    <div class="h1">
+      <i class="{{ if not (or (hasPrefix $icon "fas ") (hasPrefix $icon "fab ")) }}fas {{ end }}{{ $icon }}"></i>
+    </div>
+    <h4 class="h3">
+      {{ .Get "title" | htmlUnescape | safeHTML }}
+    </h4>
+  </div>
+  <p>
+    {{ .Inner | htmlUnescape | safeHTML }}
+  </p>
+</div>
