@@ -266,6 +266,16 @@ If you are running into this, confirm first that your chart has all the required
 their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
 [`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta1.GitRepository) files.
 
+## Raspberry Pi questions
+
+### How do I resolve a `unable to open the Badger database` that puts `image-reflector-controller` in `CrashLoopBackOff`?
+
+This error is commonly found in low-memory environments where an Out Of Memory condition is likely
+to be experienced, like on Raspberry Pi 2 and 3 boards which have only 1GB of RAM each.
+
+If you are on Raspbian, the default size of 100MB swap file is not large enough to avoid the fault
+condition, and can be updated through configuration in `/etc/dphys-swapfile`: [add at least 1GB swap](https://raspberrypi.stackexchange.com/a/1605/82185).
+
 ## Flux v1 vs v2 questions
 
 ### What are the differences between v1 and v2?
