@@ -1,32 +1,29 @@
-.adopters {
-
-  .card-deck {
-    @include media-breakpoint-only(lg) {
-      column-count: 4;
-    }
-    @include media-breakpoint-only(xl) {
-      column-count: 5;
-    }
-
-    .card {
-      min-width: 150px;
-      max-width: 150px;
-    }
-
-    .card-header {
-      overflow-wrap: break-all;
-      hyphens: auto;
-    }
-
-    .card-body {
-      align-items: center;
-      display: flex;
-    }
-
-    .card-text {
-      width: 100%;
-      vertical-align: middle
-    }
+.card-deck {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
   }
 
+  .card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .card-header {
+    overflow-wrap: break-all;
+    hyphens: auto;
+  }
+
+  .card-body {
+    align-items: center;
+    display: flex;
+  }
+  
+  .card-text {
+    width: 100%;
+    vertical-align: middle
+  }
 }
+
