@@ -18,6 +18,15 @@
   }
 }
 
+.hero-gitops {
+  section.row {
+    margin-left: 0;
+    margin-right: 0;
+    // padding-left: 15px;
+    // padding-right: 15px;
+  }
+}
+
 .features, .resources {
   .col-lg-4 {
     margin: 2rem 0rem !important;
