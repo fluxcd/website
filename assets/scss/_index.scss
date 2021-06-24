@@ -82,6 +82,25 @@ h2.section-label {
 }
 
 .section-other-flux-projects {
+  section.row.td-box > .col > .row {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .container.rounded {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+
+    .col > img.img-fluid {
+      margin: 1rem 0 0 1rem;
+    }
+
+    .row .btn-primary {
+      margin-left: 12px;
+    }
+  }
+
   section.td-box--6 {
     background-color: $flux-dark-blue;
   }
