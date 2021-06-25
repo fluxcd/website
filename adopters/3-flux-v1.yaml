@@ -5,8 +5,9 @@ adopters:
   companies:
     - name: ABA English
       url: https://www.abaenglish.com
-    - name: Alea Play Solutions
-      url: http://www.alea.com
+    - name: Alea
+      url: https://www.alea.com
+      logo: logos/alea.png
     - name: Apester
       url: https://apester.com
     - name: APPUiO
