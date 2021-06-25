@@ -20,7 +20,7 @@ this CRD it will be possible to define `HelmRelease` resources on the
 cluster:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.2.0/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.0/deploy/crds.yaml
 ```
 
 Create a new namespace:
