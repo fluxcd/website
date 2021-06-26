@@ -18,6 +18,20 @@
   }
 }
 
+// center section contents and limit width for ultra-wide screens
+main.td-main {
+  section.row {
+    justify-content: center !important;
+    & > .col {
+      max-width: 1140px;
+      & > .row {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
 .hero-gitops {
   section.row {
     margin-left: 0;
