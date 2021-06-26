@@ -18,6 +18,27 @@
   }
 }
 
+// center section contents and limit width for ultra-wide screens
+main.td-main {
+  section.row {
+    justify-content: center !important;
+    & > .col {
+      max-width: 1140px;
+      & > .row {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.hero-gitops {
+  section.row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .features, .resources {
   .col-lg-4 {
     margin: 2rem 0rem !important;
@@ -73,6 +94,26 @@ h2.section-label {
 }
 
 .section-other-flux-projects {
+  section.row.td-box > .col > .row {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .container.rounded {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    margin: 0 !important;
+
+    .col > img.img-fluid {
+      margin: 1rem 0 0 1rem;
+    }
+
+    .row .btn-primary {
+      margin-left: 12px;
+    }
+  }
+
   section.td-box--6 {
     background-color: $flux-dark-blue;
   }
