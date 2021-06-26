@@ -97,14 +97,15 @@ spec:
 
 **Note** that if you wish to manage your tenant `GitRepository` sources as part of a namespace that is _not_ flux-system (e.g. the `apps` namespace, [as in the multi-tenancy example](https://github.com/fluxcd/flux2-multi-tenancy/blob/main/tenants/base/dev-team/sync.yaml#L5)), the private source will not be able to read from the `flux-system` Secret.
 
-You will have to manually create a Kubernetes Secret with the `data.username` and `data.password` fields in the namespace that you are creating your `GitRepository` sources in. To keep Secrets private, consider using [kubeseal](sealed-secrets.md).
+You will have to manually create a Kubernetes Secret with the `data.username` and `data.password` fields in the namespace that you are creating your `GitRepository` sources in. To keep Secrets private, consider using [kubeseal](sealed-secrets.md). For more on creating secrets, see [docs for `flux create secret git`](https://fluxcd.io/docs/cmd/flux_create_secret_git/).
 ```sh
 # for GitRepository private sources stored in the `apps` namespace
-kubectl create secret git repo-auth \
+flux create secret git repo-auth \
     --namespace=apps \
     --url=https://github.com/my-org/my-private-repo \
 	--username=$GITHUB_USER \
-	--password=$GITHUB_TOKEN
+	--password=$GITHUB_TOKEN \
+    --export > my-secret.yaml
 ```
 
 To get your sources to use the Secret, just reference it by name in the `GitRepository.spec.secretRef` field:
