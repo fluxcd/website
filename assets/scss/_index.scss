@@ -36,8 +36,6 @@ main.td-main {
   section.row {
     margin-left: 0;
     margin-right: 0;
-    // padding-left: 15px;
-    // padding-right: 15px;
   }
 }
 
@@ -105,6 +103,7 @@ h2.section-label {
   .container.rounded {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
+    margin: 0 !important;
 
     .col > img.img-fluid {
       margin: 1rem 0 0 1rem;
