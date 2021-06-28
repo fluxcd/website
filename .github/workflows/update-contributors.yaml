@@ -24,3 +24,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        with:
+          title: Update contributors section
+          signoff: true
