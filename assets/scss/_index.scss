@@ -140,26 +140,58 @@ h2.section-label {
 }
 
 .section-community {
-  background-color: $flux-gray;
+  .td-box--dark {
+    background-color: $flux-gray;
+  }
+
+  .section-label {
+    padding-top: 1.5rem;
+  }
 
   section.row.td-box {
-    padding-top: 1.5rem;
+    padding: 0 0 1.5rem 0;
+
+    .td-arrow-down::before {
+      display: none;
+    }
   }
 
   .h3 {
     font-weight: 600;
   }
 
-  .join-github {
-    margin-top: 48px;
-  }
+  .community-row {
+    padding: 0;
+    margin: 1rem 0 1.5rem 0;
+    justify-content: center !important;
 
-  .join-slack, .join-ml  {
-    margin-top: 72px;
-  }
+    .community-item {
+      flex: none;
 
-  p > a {
-    font-size: 1.5rem;
+      border: 1px solid $flux-white;
+      padding: 0.5rem 1rem;
+      margin: 1rem;
+      width: 320px;
+
+      .community-item-header {
+        display: flex;
+        justify-content: center;
+
+        margin: 1rem 0;
+
+        .h3 {
+          // flex-grow: 1;
+          font-size: 1.3rem;
+          margin-left: 1rem;
+          padding-top: 9px;
+        }
+      }
+
+      a {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    }
   }
 
   h2.section-label {
