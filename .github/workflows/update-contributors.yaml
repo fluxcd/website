@@ -1,0 +1,26 @@
+name: update contributors cronjob
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 20 1 * *"
+
+jobs:
+  updateContributors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.8
+      - uses: BSFishy/pip-action@v1
+        with:
+          requirements: requirements.txt
+      - run: |
+          ./hack/contributors.py
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3

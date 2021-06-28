@@ -3,6 +3,11 @@
 import os
 import sys
 
+# I hate doing this... but we've got to make this work on Github Actions...
+local_py_path = '/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/'
+if local_py_path not in sys.path:
+    sys.path.append(local_py_path)
+
 from github import (Github, GithubException)
 
 main_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
