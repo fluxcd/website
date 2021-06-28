@@ -153,7 +153,7 @@ Here is an example that filters for only images built from `main` branch, and se
 recent according to a timestamp (created with `date +%s`) or according to the run number (`github.run_number` for example):
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: image-repo-policy
@@ -173,7 +173,7 @@ spec:
 If you don't care about the branch, that part can be a wildcard in the pattern:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: image-repo-policy

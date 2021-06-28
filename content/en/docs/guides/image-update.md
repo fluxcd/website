@@ -18,11 +18,6 @@ For a container image you can configure Flux to:
 - checkout a branch, commit and push the changes to the remote Git repository
 - apply the changes in-cluster and rollout the container image
 
-{{% alert color="info" title="Alpha version" color="warning" %}}
-Note that the image update feature is currently alpha,
-see the [roadmap]({{< relref "../roadmap/" >}}) for more details.
-{{% /alert %}}
-
 For production environments, this feature allows you to automatically deploy application patches
 (CVEs and bug fixes), and keep a record of all deployments in Git history.
 
@@ -149,7 +144,7 @@ flux create image repository podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: podinfo
@@ -189,7 +184,7 @@ flux create image policy podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: podinfo
@@ -272,7 +267,7 @@ flux create image update flux-system \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1alpha2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
   name: flux-system

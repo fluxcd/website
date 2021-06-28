@@ -12,13 +12,14 @@ Going forward, breaking changes to the beta CRDs will be accompanied by a conver
 Please see the [Migration and Suport Timetable](../migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
-The following components (included by default in [flux bootstrap](../installation/_index.md#bootstrap))
-are considered production ready:
+The following components are considered production ready:
 
 - [source-controller](../components/source)
 - [kustomize-controller](../components/kustomize)
 - [notification-controller](../components/notification)
 - [helm-controller](../components/helm)
+- [image-reflector-controller](../components/image)
+- [image-automation-controller](../components/image)
 
 The following GitOps Toolkit APIs are considered production ready:
 
@@ -26,6 +27,7 @@ The following GitOps Toolkit APIs are considered production ready:
 - `kustomize.toolkit.fluxcd.io/v1beta1`
 - `notification.toolkit.fluxcd.io/v1beta1`
 - `helm.toolkit.fluxcd.io/v2beta1`
+- `image.toolkit.fluxcd.io/v1beta1`
 
 ## The road to Flux v2 GA
 
@@ -33,16 +35,15 @@ In our planning discussions we have identified these possible areas of work,
 this list is subject to change while we gather feedback:
 
 - Stabilize the image automation APIs
-    * Review the spec of `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation`
-    * Promote the image automation APIs to `v1beta1`
-    * Include the image automation controllers in the default components list
+    - [x] Review the spec of `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation`
+    - [x] Promote the image automation APIs to `v1beta1`
 
 - Improve the documentation
-    * Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
-    * Incident management and troubleshooting guides
-    * Cloud specific guides (AWS, Azure, Google Cloud, more?)
-    * Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
-    
+    - [ ] Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
+    - [ ] Incident management and troubleshooting guides
+    - [ ] Cloud specific guides (AWS, Azure, Google Cloud, more?)
+    - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
+
 ## The road to Flux v1 feature parity
 
 In our planning discussions we identified three areas of work:
