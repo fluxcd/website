@@ -12,12 +12,12 @@ In the past months we have had many folks reach out to us and ask where
 they could get involved, make their first steps in the Flux community
 and give back in a way.
 
-We started looking around and stole a concept from SIG Node (who also
-stole it from SIG CLI) over in the Kubernetes community. Because for us
-a great way to get started is to learn more about Flux through direct
-experience, when e.g. trying to reproduce issues from other Flux users,
-and the general business of chopping wood and carrying water. The
-**Flux Bug Scrub** is born.
+We started looking around and got inspired by a concept from SIG Node
+(who in turn were inspired by SIG CLI) over in the Kubernetes community.
+Because for us a great way to get started is to learn more about Flux
+through direct experience, when e.g. trying to reproduce issues from
+other Flux users, and the general business of chopping wood and
+carrying water. The **Flux Bug Scrub** is born.
 
 ## Here is how it works
 
