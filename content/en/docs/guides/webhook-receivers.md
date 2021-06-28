@@ -58,6 +58,30 @@ Wait for Kubernetes to assign a public address with:
 watch kubectl -n flux-system get svc/receiver
 ``` 
 
+...or, create an `Ingress` with the same destination, the `notification-webhook` http service on port 9292:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webhook-receiver
+  namespace: flux-system
+spec:
+  rules:
+  - host: flux-webhook.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: notification-webhook
+            port:
+              number: 9292
+```
+
+Add any necessary annotations for your ingress controller or, for example, cert-manager to encrypt the endpoint with TLS; full configuration of ingress controllers and TLS are beyond the scope of this documentation.
+
 ## Define a Git repository
 
 Create a Git source pointing to a GitHub repository that you have control over:
