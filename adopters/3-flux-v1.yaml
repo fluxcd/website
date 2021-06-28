@@ -178,3 +178,6 @@ adopters:
     - name: TietoEVRY
       url: https://www.tietoevry.com/
       logo: logos/tietoevry.png
+    - name: particule.
+      url: https://particule.io
+      logo: logos/particule.svg
