@@ -14,8 +14,8 @@ and give back in a way.
 
 We started looking around and got inspired by a concept from SIG Node
 (who in turn were inspired by SIG CLI) over in the Kubernetes community.
-Because for us a great way to get started is to learn more about Flux
-through direct experience, when e.g. trying to reproduce issues from
+For us, a great way to get started, is to learn more about Flux
+through direct experience, when e.g. trying to reproduce issues reported by
 other Flux users, and the general business of chopping wood and
 carrying water. The **Flux Bug Scrub** is born.
 
@@ -28,8 +28,8 @@ Show up at the appointed time, if you can. The first Bug Scrub is
 
 we will provide a Zoom link closer to the event time.
 
-We will have one or more contributors with Triage access in attendance,
-and attempt to visit each issue in the target group. (The targets will
+We will have one or more contributors with triage access in attendance,
+and attempt to review each issue in the target group. (The targets will
 vary by week, or by event date, as this will be a recurring event on
 some TBD schedule.) A key goal is to figure out if a given issue can be
 reproduced, and report our findings. Some issues don\'t provide enough
@@ -39,11 +39,11 @@ and wait for the submitter to respond.
 If someone present wants to volunteer to follow up an issue, we will
 make an assignment then. If all we can do is read the thread once and
 confirm that labels are still correct, (or fix them up when they were
-not,) then it will be providing a valuable service to Flux maintainers
+not) then it will be providing a valuable service to Flux maintainers
 and the community at large. A process will be demonstrated to avoid
 backtracking from week to week and maximize coverage. This is not a race
 to close the issues, but if an issue has received no reply and it looks
-like the submitter has lost interest, it can be closed.
+like the submitter has lost interest, it could be closed.
 
 ## Here's what you need
 
