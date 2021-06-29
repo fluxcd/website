@@ -3,7 +3,7 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT 			   ?= de9c79d62198c40ec267571c8ea0ec63654c4ad4
+DOCSY_COMMIT 			   ?= c36be07b2dcb9aa5aa01bad6ed0f8e111dd0452c
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
 BOOTSTRAP_SEMVER           ?= 4.6.0
@@ -14,7 +14,7 @@ FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
 FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
 
 DEV_IMAGE_REGISTRY_NAME    ?= fluxcd
-HUGO_VERSION               ?= 0.83.1
+HUGO_VERSION               ?= 0.84.3
 HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
 SUPPORT_IMAGE_BASE_NAME    := website:hugo-support
 HUGO_IMAGE_NAME            ?= $(DEV_IMAGE_REGISTRY_NAME)/$(HUGO_IMAGE_BASE_NAME)

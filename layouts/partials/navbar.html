@@ -4,11 +4,6 @@
 		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="text-uppercase font-weight-bold">{{ .Site.Title }}</span>
 	</a>
 		<ul class="navbar-nav mt-2 mt-lg-0">
-			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown d-lg-block">
-				{{ partial "navbar-version-selector.html" . }}
-			</li>
-			{{ end }}
 			{{ $p := . }}
 			{{ range .Site.Menus.main }}
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -35,6 +30,11 @@
 				{{ else }}
 				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}>{{ with .Pre}}{{ $pre }}{{ end }}<span{{if $active }} class="active"{{end}}>{{ .Name }}</span>{{ with .Post}}{{ $post }}{{ end }}</a>
 				{{ end }}
+			</li>
+			{{ end }}
+			{{ if  .Site.Params.versions }}
+			<li class="nav-item dropdown d-none d-lg-block">
+				{{ partial "navbar-version-selector.html" . }}
 			</li>
 			{{ end }}
 			{{ if  (gt (len .Site.Home.Translations) 0) }}

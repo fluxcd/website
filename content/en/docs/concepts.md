@@ -1,7 +1,6 @@
 ---
-title: "Core Concepts"
-linkTitle: "Core Concepts"
-description: "Core Concepts of Flux and the GitOps Toolkit."
+title: Core Concepts
+description: Core Concepts of Flux and the GitOps Toolkit.
 weight: 10
 ---
 
