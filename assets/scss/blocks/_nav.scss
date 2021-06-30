@@ -42,3 +42,21 @@ nav.navbar {
     }
   }
 }
+
+
+.td-sidebar-nav {
+  .td-sidebar-link.tree-root {
+    @include media-breakpoint-up(md) {
+      // https://github.com/fluxcd/website/pull/365#issuecomment-870876960
+      // maybe report upstream docsy and fix there?
+
+      margin-top: 1rem;
+    }
+  }
+
+  // some of the links looked "disabled" - maybe also report upstream?
+  .td-sidebar-link__page {
+    color: $gray-900;
+    font-weight: unset;
+  }
+}
