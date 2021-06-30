@@ -9,7 +9,7 @@ weight: 90
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
-Please see the [Migration and Support Timetable](../migration/timetable.md) for our commitment to end users.
+Please see the [Migration and Support Timetable](migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
 The following components are considered production ready:
