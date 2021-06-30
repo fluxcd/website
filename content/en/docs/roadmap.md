@@ -9,16 +9,17 @@ weight: 90
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
-Please see the [Migration and Suport Timetable](../migration/timetable.md) for our commitment to end users.
+Please see the [Migration and Support Timetable](../migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
-The following components (included by default in [flux bootstrap](../installation/_index.md#bootstrap))
-are considered production ready:
+The following components are considered production ready:
 
 - [source-controller](../components/source)
 - [kustomize-controller](../components/kustomize)
 - [notification-controller](../components/notification)
 - [helm-controller](../components/helm)
+- [image-reflector-controller](../components/image)
+- [image-automation-controller](../components/image)
 
 The following GitOps Toolkit APIs are considered production ready:
 
@@ -26,6 +27,7 @@ The following GitOps Toolkit APIs are considered production ready:
 - `kustomize.toolkit.fluxcd.io/v1beta1`
 - `notification.toolkit.fluxcd.io/v1beta1`
 - `helm.toolkit.fluxcd.io/v2beta1`
+- `image.toolkit.fluxcd.io/v1beta1`
 
 ## The road to Flux v2 GA
 
@@ -33,16 +35,28 @@ In our planning discussions we have identified these possible areas of work,
 this list is subject to change while we gather feedback:
 
 - Stabilize the image automation APIs
-    * Review the spec of `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation`
-    * Promote the image automation APIs to `v1beta1`
-    * Include the image automation controllers in the default components list
+    - [x] Review the spec of `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation`
+    - [x] Promote the image automation APIs to `v1beta1`
 
-- Improve the documentation
-    * Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
-    * Incident management and troubleshooting guides
-    * Cloud specific guides (AWS, Azure, Google Cloud, more?)
-    * Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
-    
+- Conformance testing
+    - [x] End-to-end testing for Flux bootstrap on AMD64 and ARM64 clusters
+    - [ ] End-to-end testing for Flux image automation
+
+- API consolidation
+    - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
+    - [ ] Standardize events and status conditions metadata
+
+- Multi-tenancy improvements (proposal [fluxcd/flux2#582](https://github.com/fluxcd/flux2/pull/582))
+    - [ ] Extend impersonation to Kubernetes users and groups
+    - [ ] Implement ACL for granting cross-namespace access to Flux sources
+
+- Documentation improvements
+    - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
+    - [ ] Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
+    - [ ] Incident management and troubleshooting guides
+    - [ ] Developer guides for contributing to and extending Flux
+    - [ ] Cloud specific guides (AWS, Azure, Google Cloud, more?)
+
 ## The road to Flux v1 feature parity
 
 In our planning discussions we identified three areas of work:

@@ -139,12 +139,12 @@ gen_crd_doc() {
   # image-*-controller CRDs; these use the same API group
   IMG_REFL_VER="$(controller_version image-reflector-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/api/image-reflector.md" "$COMPONENTS_DIR/image/reflector-api.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1alpha2/imagerepositories.md" "$COMPONENTS_DIR/image/imagerepositories.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1alpha2/imagepolicies.md" "$COMPONENTS_DIR/image/imagepolicies.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1beta1/imagerepositories.md" "$COMPONENTS_DIR/image/imagerepositories.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-reflector-controller/$IMG_REFL_VER/docs/spec/v1beta1/imagepolicies.md" "$COMPONENTS_DIR/image/imagepolicies.md"
 
   IMG_AUTO_VER="$(controller_version image-automation-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/api/image-automation.md" "$COMPONENTS_DIR/image/automation-api.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/spec/v1alpha2/imageupdateautomations.md" "$COMPONENTS_DIR/image/imageupdateautomations.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/spec/v1beta1/imageupdateautomations.md" "$COMPONENTS_DIR/image/imageupdateautomations.md"
 }
 
 {
