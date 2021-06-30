@@ -136,12 +136,6 @@ url = "/governance"
 weight = 40
 
 [[menus.main]]
-name = "Integrations"
-parent = "Project"
-url = "/integrations"
-weight = 50
-
-[[menus.main]]
 name = "Branding"
 parent = "Project"
 url = "https://branding.cncf.io/projects/flux"
@@ -151,6 +145,11 @@ weight = 9999
 name = "Adopters"
 url = "/adopters"
 weight = 80
+
+[[menus.main]]
+name = "Integrations"
+url = "/integrations"
+weight = 90
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
