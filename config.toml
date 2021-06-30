@@ -151,6 +151,13 @@ name = "Integrations"
 url = "/integrations"
 weight = 90
 
+[[menus.main]]
+url = "https://github.com/fluxcd/flux2"
+name = "Github"
+pre = "<i class='fab fa-github'></i> "
+weight = 100
+
+
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
