@@ -12,51 +12,43 @@
     }
 }
 
+@mixin flat-white-button {
+  color: $flux-mid-gray !important;
+  background-color: $flux-white !important;
+
+  &:hover {
+    color: $flux-gray !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  &:active {
+    box-shadow: none !important;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
 
 @mixin projects-btn-primary {
   a.btn-primary {
-    background-color: rgba($flux-darkest-blue, 0.5);
-    border-color: $flux-darkest-blue $flux-darkest-blue $flux-black $flux-black !important;
+    @include flat-white-button;
+
     margin-right: 1rem;
     padding-left: 1rem;
 
-    &:hover {
-      background-color: rgba($flux-darkest-blue, 0.7) !important;
-      box-shadow: none !important;
-    }
-
-    &:active {
-      background-color: $flux-light-blue !important;
-      box-shadow: none !important;
-    }
-
-    &:focus {
-      box-shadow: none !important;
-    }
+    font-weight: 600 !important;
   }
 }
 
 @mixin projects-btn-secondary {
   a.btn-secondary {
-    color: $flux-gray;
-    background-color: rgba($flux-light-blue, 1);
-    border-color: $flux-gray $flux-gray $flux-light-gray $flux-light-gray !important;
+    @include flat-white-button;
+    background-color: $flux-light-blue !important;
+    color: $flux-gray !important;
+
     margin-right: 1rem;
     padding-left: 1rem;
-
-    &:hover {
-      // color: $flux-lighter-blue;
-      background-color: rgba($flux-light-blue, 0.7) !important;
-      box-shadow: none !important;
-    }
-
-    &:active {
-      background-color: $flux-light-blue !important;
-      box-shadow: none !important;
-    }
-
-    &:focus {
-      box-shadow: none !important;
-    }
   }
 }
