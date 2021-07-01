@@ -46,6 +46,7 @@
   a.btn-secondary {
     @include flat-white-button;
     background-color: $flux-light-blue !important;
+    color: $flux-gray !important;
 
     margin-right: 1rem;
     padding-left: 1rem;
