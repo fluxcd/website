@@ -86,6 +86,7 @@
 
   a.btn {
     @include flat-white-button;
+    border: none;
 
     margin-top: 1rem;
     
