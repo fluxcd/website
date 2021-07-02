@@ -1,7 +1,7 @@
 ---
 author: dholbach
 date: 2021-07-02 11:30:00+00:00
-title: June 2021 update
+title: July 2021 update
 description: Stable Flux APIs from 0.16 onwards. 100 Flux releases. Bug Scrub community initiative. New Flagger release, Docs and website updates and lots more!
 url: /blog/2021/07/july-2021-update/
 images: [/img/2021-07-contributors-section.png]
