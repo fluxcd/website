@@ -42,9 +42,9 @@ some Flux facts - they are sort of our mission statement with Flux.
 
 2. **🤖 Just push to Git and Flux does the rest.** Flux
    enables application deployment (CD) and progressive delivery (PD)
-   through automatic reconciliation. Flux can even push back to Git
-   for you with automated container image updates to Git (image
-   scanning and patching).
+   through automatic reconciliation. Flux can update container image
+   declarations in your YAML and push them automatically back to Git
+   for you (based on new image tags discovered via scanning).
 
 3. **🔩 Flux plays nice with your existing tools**: your Git
    providers (GitHub, GitLab, Bitbucket, can even use s3-compatible
@@ -263,7 +263,7 @@ pieces of infrastructure and came from different repositories. They were
 hard to update and some of our users got confused about which docs they
 were looking at. If you have any feedback about this, let us know.
 
-🔋We also just added a [Flux Integrations
+🔋 We also just added a [Flux Integrations
 page](https://fluxcd.io/integrations/). If your extension
 or integration is not listed yet, please add yourself. We will make this
 page shine more in the future - we are also happy to work on joint blog
