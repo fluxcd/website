@@ -1,147 +1,82 @@
 ---
 title: "Migrating image update automation to Flux v2"
 linkTitle: "Migrate from Flux v1 image update automation"
-description: "How to migrate the image update automation from Flux v1 to v2."
+description: "How to migrate image update automation from Flux v1 to v2."
 weight: 20
 ---
 
-"Image Update Automation" is a process in which Flux makes commits to your Git repository when it
-detects that there is a new image to be used in a workload (e.g., a Deployment). In Flux v2 this
-works quite differently to how it worked in Flux v1. This guide explains the differences and how to
-port your cluster configuration from v1 to v2. There is also a [tutorial for using image update
-automation with a new cluster][image-update-tute].
+"Image Update Automation" (from here, "image automation") is the process where Flux makes commits to your Git repository when detecting that there is a new image to use in a workload (e.g., a Deployment).
 
-## Overview of changes between v1 and v2
+This guide will show you how to port your cluster configuration from v1 to v2.
 
-In Flux v1, image update automation (from here, just "automation") was built into the Flux daemon,
-which scanned everything it found in the cluster and updated the Git repository it was syncing.
+For setting up image update automation on a new cluster see [Automate image updates to Git][image-update-tute].
 
-In Flux v2,
+## Migrating to v2 Automation
 
- - automation is controlled with custom resources, not annotations
- - ordering images by build time is not supported (there is [a section
-   below](#how-to-migrate-annotations-to-image-policies) explaining what to do instead)
- - the fields to update in files are marked explicitly, rather than inferred from annotations.
+Migrating to Flux v2 automation, involves the following:
 
-#### Automation is now controlled by custom resources
+- Ensure automation controllers are running in your cluster
+- Declare automation with an `ImageUpdateAutomation` object
+- Migrating each manifest from Flux v1 to Flux v2
 
-Flux v2 breaks down the functions in Flux v1's daemon into controllers, with each having a specific
-area of concern. Automation is now done by two controllers: one which scans image repositories to
-find the latest images, and one which uses that information to commit changes to git
-repositories. These are in turn separate to the syncing controllers.
+### Considerations
 
-This means that automation in Flux v2 is governed by custom resources. In Flux v1 the daemon scanned
-everything, and looked at annotations on the resources to determine what to update. Automation in v2
-is more explicit than in v1 -- you have to mention exactly which images you want to be scanned, and
-which fields you want to be updated.
+#### Where to keep `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation` manifests
 
-A consequence of using custom resources is that with Flux v2 you can have an arbitrary number of
-automations, targeting different Git repositories if you wish, and updating different sets of
-images. If you run a multitenant cluster, the tenants can define automation in their own namespaces,
-for their own Git repositories.
-
-#### Selecting an image is more flexible
-
-The ways in which you choose to select an image have changed. In Flux v1, you generally supply a
-filter pattern, and the latest image is the image with the most recent build time out of those
-filtered. In Flux v2, you choose an ordering, and separately specify a filter for the tags to
-consider. These are dealt with in detail below.
-
-Selecting an image by build time is no longer supported. This is the implicit default in Flux v1. In
-Flux v2, you will need to tag images so that they sort in the order you would like -- [see
-below](#how-to-use-sortable-image-tags) for how to do this conveniently.
-
-#### Fields to update are explicitly marked
-
-Lastly, in Flux v2 the fields to update in files are marked explicitly. In Flux v1 they are inferred
-from the type of the resource, along with the annotations given. The approach in Flux v1 was limited
-to the types that had been programmed in, whereas Flux v2 can update any Kubernetes object (and some
-files that aren't Kubernetes objects, like `kustomization.yaml`).
-
-## Preparing for migration
-
-It is best to complete migration of your system to _Flux v2 syncing_ first, using the [Flux v1
-migration guide][flux-v1-migration]. This will remove Flux v1 from the system, along with its image
-automation. You can then reintroduce automation with Flux v2 by following the instructions in this
-guide.
-
-It is safe to leave the annotations for Flux v1 in files while you reintroduce automation, because
-Flux v2 will ignore them.
-
-To migrate to Flux v2 automation, you will need to do three things:
-
- - make sure you are running the automation controllers; then,
- - declare the automation with an `ImageUpdateAutomation` object; and,
- - migrate each manifest by translate Flux v1 annotations to Flux v2 `ImageRepository` and
-   `ImagePolicy` objects, and putting update markers in the manifest file.
-
-### Where to keep `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation` manifests
-
-This guide assumes you want to manage automation itself via Flux. In the following sections,
-manifests for the objects controlling automation are saved in files, committed to Git, and applied
-in the cluster with Flux.
+The following example demonstrates how and where to store your `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation` manifests.
 
 A Flux v2 installation will typically have a Git repository structured like this:
 
-```
-<...>/flux-system/
-        gotk-components.yaml
-        gotk-sync.yaml
-<...>/app/
-        # deployments etc.
-```
-
-The `<...>` is the path to a particular cluster's definitions -- this may be simply `.`, or
-something like `clusters/my-cluster`. To get the files in the right place, set a variable for this
-path:
-
 ```bash
-$ CLUSTER_PATH=<...> # e.g., "." or "clusters/my-cluster", or ...
-$ AUTO_PATH=$CLUSTER_PATH/automation
-$ mkdir ./$AUTO_PATH
+your-flux-repo/
+├── flux-system/
+│    ├── gotk-components.yaml
+│    └── gotk-sync.yaml
+├── app/
+│    └── my-cool-app.yaml
+└── automation/
 ```
 
-The file `$CLUSTER_PATH/flux-system/gotk-components.yaml` has definitions of all the Flux v2
-controllers and custom resource definitions. The file `gotk-sync.yaml` defines a `GitRepository` and
-a `Kustomization` which will sync manifests under `$CLUSTER_PATH/`.
-
-To these will be added definitions for automation objects. This guide puts manifest files for
-automation in `$CLUSTER_PATH/automation/`, but there is no particular structure required
-by Flux. The automation objects do not have to be in the same namespace as the objects to be
-updated.
+In the above example
+`your-flux-repo` is the path to a cluster's definitions
+`your-flux-repo/flux-system/` stores manifests for deploying Flux v2
+`your-flux-repo/flux-system/gotk-components.yaml` contains definitions for Flux v2 controllers and custom resource definitions.
+`your-flux-repo/flux-system/gotk-components.yaml`contains definitions for syncing manifests in `your-flux-repo`
 
 #### Migration on a branch
 
-This guide assumes you will commit changes to the branch that is synced by Flux, as this is the
-simplest way to understand.
+This guide assumes you will commit changes to a separate branch that is synced by Flux.
 
-It may be less disruptive to put migration changes on a branch, then merging when you have completed
-the migration. You would need to either change the `GitRepository` to point at the migration branch,
-or have separate `GitRepository` and `Kustomization` objects for the migrated parts of your Git
-repository. The main thing to avoid is syncing the same objects in two different places; e.g., avoid
-having Kustomizations that sync both the unmigrated and migrated application configuration.
+It is less disruptive to put migration changes on a branch, then merging when you have completed the migration.
 
-### Installing the command-line tool `flux`
+You can either change the `GitRepository` to point at the migration branch, or have separate `GitRepository` and `Kustomization` objects for the migrated parts of your Git repository.
 
-The command-line tool `flux` will be used below; see [these instructions][install-cli] for how to
-install it.
+Avoid syncing the same objects in two different places; for example, avoid having Kustomizations that sync both unmigrated and migrated application configuration.
+
+<!--
+If we're assuming they have already followed the read only migration do they need to install the Flux CLI tool again?
+
+ ### Installing the command-line tool `flux`
+
+The command-line tool `flux` will be used below; see [these instructions][install-cli] for how to install it. -->
 
 ## Running the automation controllers
 
-The first thing to do is to deploy the automation controllers to your cluster. The best way to
-proceed will depend on the approach you took when following the [Flux read-only migration
-guide][flux-v1-migration].
+Deploy the image automation controllers to your cluster.
 
- - If you used `flux bootstrap` to create a new Git repository, then ported your cluster
-   configuration to that repository, use [After `flux bootstrap`](#after-flux-bootstrap);
- - If you used `flux install` to install the controllers directly, use [After migrating Flux v1 in
-   place](#after-migrating-flux-v1-in-place);
- - If you used `flux install` and exported the configuration to a file, use [After committing Flux
-   v2 configuration to Git](#after-committing-a-flux-v2-configuration-to-git).
+How you do this will depend on the approach you took when following the [Flux read-only migration guide][flux-v1-migration].
+
+| Read Only Migration Approach                                                                               | Guide to follow                                                                                   |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `flux bootstrap` to create a new Git repository, then ported your cluster configuration to that repository | [After `flux bootstrap`](#after-flux-bootstrap)                                                   |
+| `flux install` to install the controllers directly                                                         | [After migrating Flux v1 in place](#after-migrating-flux-v1-in-place)                             |
+| `flux install` and exported the configuration to a file                                                    | [After committing Flux v2 configuration to Git](#after-committing-a-flux-v2-configuration-to-git) |
 
 ### After `flux bootstrap`
 
-When starting from scratch, you are likely to have used `flux bootstrap`. Rerun the command, and
+When starting from scratch, you are likely to have used `flux bootstrap`.
+
+Rerun the command, and
 include the image automation controllers in your starting configuration with the flag
 `--components-extra`, [as shown in the installation guide][flux-bootstrap].
 
@@ -155,28 +90,21 @@ Now jump to the section [Migrating each manifest to Flux v2](#migrating-each-man
 
 ### After migrating Flux v1 in place
 
-If you followed the [Flux v1 migration guide][flux-v1-migration], you will already be running some
-Flux v2 controllers. The automation controllers are currently considered an optional extra to those,
-but are installed and run in much the same way. You may or may not have committed the Flux v2
-configuration to your Git repository. If you did, go to the section [After committing Flux v2
-configuration to Git](#after-committing-flux-v2-configuration-to-git).
+If you followed the [Flux v1 migration guide][flux-v1-migration], you will already be running some Flux v2 controllers. The automation  controllers are currently considered an optional extra to those, but are installed and run in much the same way. You may or may not have committed the Flux v2 configuration to your Git repository. If you did, go to the section [After committing Flux v2 configuration to Git](#after-committing-flux-v2-configuration-to-git).
 
 If _not_, you will be installing directly to the cluster:
 
 ```bash
-$ flux install --components-extra=image-reflector-controller,image-automation-controller
+flux install --components-extra=image-reflector-controller,image-automation-controller
 ```
 
-It is safe to repeat the installation command, or to run it after using `flux bootstrap`, so long as
-you repeat any arguments you supplied the first time.
+It is safe to repeat the installation command, or to run it after using `flux bootstrap`, so long as you repeat any arguments you supplied the first time.
 
 Now jump ahead to [Migrating each manifest to Flux v2](#migrating-each-manifest-to-flux-v2).
 
 #### After committing a Flux v2 configuration to Git
 
-If you added the Flux v2 configuration to your git repository, assuming it's in the file
-`$CLUSTER_PATH/flux-system/gotk-components.yaml` as used in the guide, use `flux install` and write
-it back to that file:
+If you added the Flux v2 configuration to your git repository, assuming it's in the file `$CLUSTER_PATH/flux-system/gotk-components.yaml` as used in the guide, use `flux install` and write it back to that file:
 
 ```bash
 $ flux install \
@@ -187,58 +115,47 @@ $ flux install \
 Commit changes to the `$CLUSTER_PATH/flux-system/gotk-components.yaml` file and sync the cluster:
 
 ```bash
-$ git add $CLUSTER_PATH/flux-system/gotk-components.yaml
-$ git commit -s -m "Add image automation controllers to Flux config"
-$ git push
-$ flux reconcile kustomization --with-source flux-system
+git add $CLUSTER_PATH/flux-system/gotk-components.yaml
+git commit -s -m "Add image automation controllers to Flux config"
+git push
+flux reconcile kustomization --with-source flux-system
 ```
 
-## Controlling automation with an `ImageUpdateAutomation` object
+## Controlling image automation with an `ImageUpdateAutomation` object
 
-In Flux v1, automation was run by default. With Flux v2, you have to explicitly tell the controller
-which Git repository to update and how to do so. These are defined in an `ImageUpdateAutomation`
-object; but first, you need a `GitRepository` with write access, for the automation to use.
+In Flux v1, image automation was run by default. With Flux v2, you have to explicitly tell the controller which Git repository to update and how to do so. These are defined in an `ImageUpdateAutomation` object; but first, you need a `GitRepository` with write access, for the automation to use.
 
-If you followed the [Flux v1 read-only migration guide][flux-v1-migration], you will have a
-`GitRepository` defined in the namespace `flux-system`, for syncing to use. This `GitRepository`
-will have _read_ access to the Git repository by default, and automation needs _write_ access to
-push commits.
+If you followed the [Flux v1 read-only migration guide][flux-v1-migration], you will have a `GitRepository` defined in the namespace `flux-system`, for syncing to use. This `GitRepository` will have _read_ access to the Git repository by default, and automation needs _write_ access to push commits.
 
-To give it write access, you can replace the secret it refers to. How to do this will depend on what
-kind of authentication you used to install Flux v2.
+To give it write access, you can replace the secret it refers to. How to do this will depend on what kind of authentication you used to install Flux v2.
 
 ### Replacing the Git credentials secret
 
-The secret with Git credentials will be named in the `.spec.secretRef.name` field of the
-`GitRepository` object. Say your `GitRepository` is in the _namespace_ `flux-system` and _named_
-`flux-system` (these are the defaults if you used `flux bootstrap`); you can retrieve the secret
+The secret with Git credentials will be named in the `.spec.secretRef.name` field of the `GitRepository` object. Say your `GitRepository` is in the _namespace_ `flux-system` and _named_ `flux-system` (these are the defaults if you used `flux bootstrap`); you can retrieve the secret
 name and Git URL with:
 
 ```bash
-$ FLUX_NS=flux-system
-$ GIT_NAME=flux-system
-$ SECRET_NAME=$(kubectl -n $FLUX_NS get gitrepository $GIT_NAME -o jsonpath={.spec.secretRef.name})
-$ GIT_URL=$(kubectl -n $FLUX_NS get gitrepository $GIT_NAME -o jsonpath='{.spec.url}')
-$ echo $SECRET_NAME $GIT_URL # make sure they have values
+FLUX_NS=flux-system
+GIT_NAME=flux-system
+SECRET_NAME=$(kubectl -n $FLUX_NS get gitrepository $GIT_NAME -o jsonpath={.spec.secretRef.name})
+GIT_URL=$(kubectl -n $FLUX_NS get gitrepository $GIT_NAME -o jsonpath='{.spec.url}')
+echo $SECRET_NAME $GIT_URL # make sure they have values
 ```
 
 If you're not sure which kind of credentials you're using, look at the secret:
 
 ```bash
-$ kubectl -n $FLUX_NS describe secret $SECRET_NAME
+kubectl -n $FLUX_NS describe secret $SECRET_NAME
 ```
 
-An entry at `.data.identity` indicates that you are using an SSH key (the [first
-section](#replacing-an-ssh-key-secret) below); an entry at `.data.username` indicates you are using
-a username and password or token (the [second section](#replacing-a-usernamepassword-secret)
-below).
+An entry at `.data.identity` indicates that you are using an SSH key (the [first section](#replacing-an-ssh-key-secret) below); an entry at `.data.username` indicates you are using a username and password or token (the [second section](#replacing-a-usernamepassword-secret) below).
 
 #### Replacing an SSH key secret
 
 When using an SSH (deploy) key, create a new key:
 
 ```bash
-$ flux create secret git -n $FLUX_NS $SECRET_NAME --url=$GIT_URL
+flux create secret git -n $FLUX_NS $SECRET_NAME --url=$GIT_URL
 ```
 
 You will need to copy the public key that's printed out, and install that as a deploy key for your
@@ -434,14 +351,15 @@ If you are using the same image repository in several manifests, you only need o
 
 ##### Using image registry credentials for scanning
 
-When your image repositories are private, you supply Kubernetes with "image pull secrets" with
+When your image repositories are private, you supply Kubernetes with "image pull secrets" that contain
 credentials for accessing the image registry (e.g., DockerHub). The image reflector controller needs
 the same kind of credentials to scan image repositories.
 
-There are several ways that image pull secrets can be made available for the image reflector
-controller. The [image update tutorial][image-update-tute-creds] describes how to create or arrange
-secrets for scanning to use. Also see later in the tutorial for [instructions specific to some cloud
-platforms][image-update-tute-clouds].
+There are several ways that image pull secrets can be made available for the image reflector controller.
+
+The [image update tutorial][image-update-tute-creds] describes how to create or arrange secrets for scanning to use.
+
+Also see later in the tutorial for [Cloud Provider Specific][image-update-tute-clouds].
 
 ##### Committing and checking the ImageRepository
 
@@ -490,37 +408,37 @@ example, the prefix is `semver:`:
 
 These are the prefixes supported in Flux v1, and what to use in Flux v2:
 
-| Flux v1 prefix | Meaning | Flux v2 equivalent |
-|----------------|---------|--------------------|
-| `glob:`        | Filter for tags matching the glob pattern, then select the newest by build time | [Use sortable tags](#how-to-use-sortable-image-tags) |
-| `regex:`       | Filter for tags matching the regular expression, then select the newest by build time |[Use sortable tags](#how-to-use-sortable-image-tags) |
+| Flux v1 prefix | Meaning                                                                                    | Flux v2 equivalent                                   |
+| -------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| `glob:`        | Filter for tags matching the glob pattern, then select the newest by build time            | [Use sortable tags](#using-sortable-image-tags)      |
+| `regex:`       | Filter for tags matching the regular expression, then select the newest by build time      | [Use sortable tags](#using-sortable-image-tags)      |
 | `semver:`      | Filter for tags that represent versions, and select the highest version in the given range | [Use semver ordering](#how-to-use-semver-image-tags) |
 
-#### How to use sortable image tags
+#### Using sortable image tags
 
-To give image tags a useful ordering, you can use a timestamp or serial number as part of each
-image's tag, then sort either alphabetically or numerically.
+Use a timestamp or serial number as part of each image's tag, then sort either alphabetically or numerically.
 
-This is a change from Flux v1, in which the build time was fetched from each image's config, and
-didn't need to be included in the image tag. Therefore, this is likely to require a change to your
-build process.
+In Flux v1 the build time was fetched from each image's config, and didn't need to be included in the image tag. This is likely to require a change to your build process.
 
-The guide [How to make sortable image tags][image-tags-guide] explains how to change your build
-process to tag images with a timestamp. This will mean Flux v2 can sort the tags to find the most
-recently built image.
+See the guide [How to make sortable image tags][image-tags-guide] for information on how to change your build process to tag images with a timestamp.
+
+This will mean Flux v2 can sort the tags to find the most recently built image.
 
 ##### Filtering the tags in an `ImagePolicy`
 
 The recommended format for image tags using a timestamp is:
 
-    <branch>-<sha1>-<timestamp>
+```bash
+<branch>-<sha1>-<timestamp>
+```
 
-The timestamp (or serial number) is the part of the tag that you want to order on. The SHA1 is there
-so you can trace an image back to the commit from which it was built. You don't need the branch for
-sorting, but you may want to include only builds from a specific branch.
+The timestamp (or serial number) is the part of the tag that you want to order on.
 
-Say you want to filter for only images that are from `main` branch, and pick the most recent. Your
-`ImagePolicy` would look like this:
+The SHA1 is there so you can trace an image back to the commit from which it was built.
+
+You don't need the branch for sorting, but you may want to include only builds from a specific branch.
+
+Filter for only images that are from `main` branch, and pick the most recent. Your `ImagePolicy` would look like this:
 
 ```yaml
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -539,16 +457,17 @@ spec:
       order: asc
 ```
 
-The `.spec.filterTags.pattern` field gives a regular expression that a tag must match to be included. The
-`.spec.filterTags.extract` field gives a replacement pattern that can refer back to capture groups in the
-filter pattern. The extracted values are sorted to find the selected image tag. In this case, the
-timestamp part of the tag will be extracted and sorted numerically in ascending order. See [the
-reference docs][imagepolicy-ref] for more examples.
+`.spec.filterTags.pattern` gives a regular expression that a tag must match to be included.
+`.spec.filterTags.extract` gives a replacement pattern that can refer back to capture groups in the filter pattern.
 
-Once you have made sure you have image tags and an `ImagePolicy`, jump ahead to [Checking
-the ImagePolicy works](#checking-that-the-image-policy-works).
+The extracted values are sorted to find the selected image tag.
+In this case, the timestamp part of the tag will be extracted and sorted numerically in ascending order. 
 
-### How to use SemVer image tags
+See [the reference docs][imagepolicy-ref] for more examples.
+
+Once you have made sure you have image tags and an `ImagePolicy`, jump ahead to [Checking the ImagePolicy works](#checking-that-the-image-policy-works).
+
+### Using SemVer image tags
 
 The other kind of sorting is by [SemVer][semver], picking the highest version from among those
 included by the filter. A semver range will also filter for tags that fit in the range. For example,
@@ -622,7 +541,7 @@ $ git push
 # ...
 ```
 
-Then you can reconcile and check that the image policy works:
+Reconcile and check that the image policy works:
 
 ```bash
 $ flux reconcile kustomization --with-source flux-system
@@ -723,35 +642,35 @@ $ flux reconcile image update my-app-auto
 
 If a change was not pushed by the image automation, there's several things you can check:
 
- - it's possible it made a change that is not reported in the latest status -- pull from the origin
+- it's possible it made a change that is not reported in the latest status -- pull from the origin
    and check the commit log
- - check that the name used in the marker corresponds to the namespace and name of an `ImagePolicy`
- - check that the `ImageUpdateAutomation` is in the same namespace as the `ImagePolicy` objects
+- check that the name used in the marker corresponds to the namespace and name of an `ImagePolicy`
+- check that the `ImageUpdateAutomation` is in the same namespace as the `ImagePolicy` objects
    named in markers
- - check that the image policy and the image repository are both reported as `Ready`
- - check that the credentials referenced by the `GitRepository` object have write permission, and
+- check that the image policy and the image repository are both reported as `Ready`
+- check that the credentials referenced by the `GitRepository` object have write permission, and
    create new credentials if necessary.
 
 As a fallback, you can scan the logs of the automation controller to see if it logged errors:
 
 ```bash
-$ kubectl logs -n flux-system deploy/image-automation-controller
+kubectl logs -n flux-system deploy/image-automation-controller
 ```
 
 Once you are satisfied that it is working, you can migrate the rest of the manifests using the steps
 from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2) above.
 
+[auto-object-ref]: /docs/components/image/imageupdateautomations/
+[auto-ref]: /docs/components/image/imageupdateautomations/
+[flux-bootstrap]: /docs/installation/_index.md#bootstrap
+[flux-v1-migration]: /docs/migration/flux-v1-migration/
+[github-pat]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
+[helm-auto]: /legacy/flux/references/helm-operator-integration/#automated-image-detection
+[image-tags-guide]: /docs/guides/sortable-image-tags/
+[image-update-tute-clouds]: /docs/guides/image-update/#imagerepository-cloud-providers-authentication
+[image-update-tute-creds]: /docs/guides/image-update/#configure-image-scanning
+[image-update-tute-custom]: /docs/guides/image-update/#configure-image-update-for-custom-resources
 [image-update-tute]: /docs/guides/image-update/
 [imagepolicy-ref]: /docs/components/image/imagepolicies/
-[helm-auto]: /legacy/flux/references/helm-operator-integration/#automated-image-detection
-[image-update-tute-custom]: /docs/guides/image-update/#configure-image-update-for-custom-resources
-[flux-v1-migration]: /docs/migration/flux-v1-migration/
 [install-cli]: /docs/get-started/#install-the-flux-cli
-[flux-bootstrap]: /docs/installation/_index.md#bootstrap
-[github-pat]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
-[auto-object-ref]: /docs/components/image/imageupdateautomations/
-[image-update-tute-creds]: /docs/guides/image-update/#configure-image-scanning
-[image-update-tute-clouds]: /docs/guides/image-update/#imagerepository-cloud-providers-authentication
-[image-tags-guide]: /docs/guides/sortable-image-tags/
-[auto-ref]: /docs/components/image/imageupdateautomations/
 [semver]: https://semver.org

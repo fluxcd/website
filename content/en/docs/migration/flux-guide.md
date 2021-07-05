@@ -9,6 +9,7 @@ card:
 ---
 
 This guide walks you through migrating from Flux v1 to v2.
+
 Read the [FAQ]({{< relref "/faq-migration" >}}) to find out what differences are between v1 and v2.
 
 {{% alert color="info" title="Feature parity" %}}
@@ -18,75 +19,46 @@ accounting for the fact that it's a system with a substantially different
 design.
 This may at times mean that you have to make adjustments to the way your
 current cluster configuration is structured. If you are in this situation
-and need help, please refer to the [support page](https://fluxcd.io/support/).
+and need help, refer to the [support page](https://fluxcd.io/support/).
 {{% /alert %}}
 
 ## Prerequisites
 
-You will need a Kubernetes cluster version **1.16** or newer
-and kubectl version **1.18** or newer.
-
-### Install Flux v2 CLI
-
-With Homebrew:
-
-```sh
-brew install fluxcd/tap/flux
-```
-
-With Bash:
-
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
-
-# enable completions in ~/.bash_profile
-. <(flux completion bash)
-```
-
-Command-line completion for `zsh`, `fish`, and `powershell`
-are also supported with their own sub-commands.
-
-Binaries for macOS, Windows and Linux AMD64/ARM are available for download on the
-[release page](https://github.com/fluxcd/flux2/releases).
-
-Verify that your cluster satisfies the prerequisites with:
-
-```sh
-flux check --pre
-```
+- Flux CLI
+- Kubernetes cluster version **1.16** or newer
+- ``kubectl`` version **1.18** or newer.
 
 ## GitOps migration
+
+With this method, you follow the usual bootstrap procedure, which creates a new git repository, then move your manifests over.
 
 Flux v2 offers an installation procedure that is declarative first
 and disaster resilient.
 
-Using the `flux bootstrap` command you can install Flux on a
-Kubernetes cluster and configure it to manage itself from a Git
-repository. The Git repository created during bootstrap can be used 
-to define the state of your fleet of Kubernetes clusters.
+Using the `flux bootstrap` command you can install Flux on a Kubernetes cluster and configure it to manage itself from a Git repository. The Git repository created during bootstrap can be used to define the state of your fleet of Kubernetes clusters.
 
-For a detailed walk-through of the bootstrap procedure please see the [installation
+For a detailed walk-through of the bootstrap procedure see the [installation
 guide](../installation/_index.md).
 
 {{% alert color="info" color="warning" title="'flux bootstrap' target" %}}
-`flux bootstrap` should not be run against a Git branch or path
+`flux bootstrap` must not be run against a Git branch or path
 that is already being synchronized by Flux v1, as this will make
-them fight over the resources. Instead, bootstrap to a **new Git
+them fight over the resources. Bootstrap to a **new Git
 repository, branch or path**, and continue with moving the
 manifests.
 {{% /alert %}}
 
-After you've installed Flux v2 on your cluster using bootstrap,
-you can delete the Flux v1 from your clusters and move the manifests from the
-Flux v1 repository to the bootstrap one.
+After installing Flux v2 on your cluster using bootstrap, you can delete the Flux v1 from your clusters and move the manifests from the Flux v1 repository to the bootstrap one.
 
 ## In-place migration
 
 {{% alert color="info" color="warning" %}}
-For production use we recommend using the **bootstrap** procedure (see the [Gitops migration](#gitops-migration) section above),
-but if you wish to install Flux v2 in the
-same way as Flux v1 then follow along.
+For production use we recommend using the **bootstrap** procedure (see the [Gitops migration](#gitops-migration) section above).
 {{% /alert %}}
+
+With this migration method, you use the same repo for your flux V1 installation for flux v2.
+
+This method installs flux v2 in a similar way to how you would install flux v1
 
 ### Flux read-only mode
 
@@ -116,8 +88,9 @@ Before you proceed, scale the Flux v1 deployment to zero
 or delete its namespace and RBAC.
 {{% /alert %}}
 
-If there are YAML files in your `deploy` dir that are not meant to be
-applied on the cluster, you can exclude them by placing a `.sourceignore` in your repo root:
+#### Excluding Source Files
+
+You can exclude YAML files from being applied on the cluster by placing a `.sourceignore` file in your repo root.
 
 ```sh
 $ cat .sourceignore
@@ -130,7 +103,7 @@ $ cat .sourceignore
 /deploy/**/charts
 ```
 
-Install Flux v2 in the `flux-system` namespace:
+#### Install Flux v2 in the `flux-system` namespace
 
 ```sh
 $ flux install \
@@ -149,30 +122,32 @@ $ flux install \
 ✔ install finished
 ```
 
-Register your Git repository and add the deploy key with read-only access:
+#### Register your Git repository and add the deploy key with read-only access
+
+Create a source for the Git Repository you have configured with Flux V1
 
 ```sh
-$ flux create source git app \
+flux create source git app \
   --url=ssh://git@github.com/org/app \
   --branch=main \
   --interval=1m
+```
+
+While creating the source, a deploy key will be generated.
+
+Add the deploy key as Read Only to your repository, input ``y`` and enter to continue
+
+```bash
 ► generating deploy key pair
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCp2x9ghVmv1zD...
 Have you added the deploy key to your repository: y
-► collecting preferred public key from SSH server
-✔ collected public key from SSH server:
-github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A...
-► applying secret with keys
-✔ authentication configured
-✚ generating GitRepository source
-► applying GitRepository source
-✔ GitRepository source created
+...
 ◎ waiting for GitRepository source reconciliation
 ✔ GitRepository source reconciliation completed
 ✔ fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
 
-Configure the reconciliation of the `deploy` dir on your cluster:
+#### Configure the reconciliation of the `deploy` dir on your cluster
 
 ```sh
 $ flux create kustomization app \
@@ -188,14 +163,14 @@ $ flux create kustomization app \
 ✔ applied revision main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
 
-If your repository contains secrets encrypted with Mozilla SOPS, please read this
+If your repository contains secrets encrypted with Mozilla SOPS, read this
 [guide](../installation/_index.md).
 
 Pull changes from Git and apply them immediately:
 
 ```sh
 flux reconcile kustomization app --with-source 
-``` 
+```
 
 List all Kubernetes objects reconciled by `app`:
 
@@ -207,7 +182,7 @@ kubectl get all --all-namespaces \
 
 ### Flux with Kustomize
 
-Assuming you've installed Flux v1 to sync a Kustomize overlay from an HTTPS Git repository:
+This guide assumes your Flux v1 installation is configured to sync a Kustomize overlay from an HTTPS Git repository.
 
 ```sh
 fluxctl install \
@@ -263,8 +238,8 @@ Check the status of the Kustomization reconciliation:
 
 ```sh
 $ flux get kustomizations app
-NAME	REVISION                                     	SUSPENDED	READY
-app 	main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
+NAME  REVISION                                      SUSPENDED READY
+app  main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b False     True
 ```
 
 ### Flux with Slack notifications
@@ -272,41 +247,24 @@ app 	main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
 Assuming you have configured Flux v1 to send notifications to Slack with
 [FluxCloud](https://github.com/justinbarrick/fluxcloud).
 
-With Flux v2, create an alert provider for a Slack channel:
+Follow the [notifications guide]({{< relref "../guides/notifications.md" >}}) to setup slack notifications for Flux V2
 
-```sh
-flux create alert-provider slack \
-  --type=slack \
-  --channel=general \
-  --address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
-```
-
-And configure notifications for the `app` reconciliation events:
-
-```sh
-flux create alert app \
-  --provider-ref=slack \
-  --event-severity=info \
-  --event-source=GitRepository/app \
-  --event-source=Kustomization/app
-```
-
-For more details, read the guides on how to configure
+For more details on setting up notifications see
 [notifications]({{< relref "../guides/notifications.md" >}}) and
 [webhooks]({{< relref "../guides/webhook-receivers.md" >}}).
 
 ### Flux debugging
 
-Check the status of Git operations:
+Check the status of Git operations by running the command
 
 ```sh
 $ kubectl -n flux-system get gitrepositories
-NAME	READY	MESSAGE                                                                                                                                                                                        
-app 	True 	Fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b                                                                                                                               	
-test	False	SSH handshake failed: unable to authenticate, attempted methods [none publickey]
+NAME READY MESSAGE                                                                                                                                                                                      
+app  True  Fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b                                                                                                                                
+test False SSH handshake failed: unable to authenticate, attempted methods [none publickey]
 ```
 
-Check the status of the cluster reconciliation with kubectl:
+Check the status of the cluster reconciliation with `kubectl`
 
 ```sh
 $ kubectl -n flux-system get kustomizations
@@ -315,7 +273,7 @@ app    True    Applied revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9
 test   False   The Service 'backend' is invalid: spec.type: Unsupported value: 'Ingress'
 ```
 
-Suspend a reconciliation:
+Suspend a reconciliation
 
 ```sh
 $ flux suspend kustomization app
@@ -323,7 +281,7 @@ $ flux suspend kustomization app
 ✔ kustomization suspended
 ```
 
-Check the status with kubectl:
+Check the status with `kubectl`
 
 ```sh
 $ kubectl -n flux-system get kustomization app
@@ -331,7 +289,7 @@ NAME   READY   STATUS
 app    False   Kustomization is suspended, skipping reconciliation
 ```
 
-Resume a reconciliation:
+Resume a reconciliation
 
 ```sh
 $ flux resume kustomization app

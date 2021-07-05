@@ -1,11 +1,11 @@
 ---
 title: FAQ
 linkTitle: FAQ
-description: "Flux v1 to v2 migration frequently asked questions."
+description: "Flux and Helm Operator migration frequently asked questions."
 weight: 100
 ---
 
-## Flux v1 vs v2 questions
+## v1 and v2
 
 ### What does Flux v2 mean for Flux?
 
@@ -39,50 +39,6 @@ This gave us the opportunity to build Flux v2 with the top Flux v1 feature reque
 
 On top of that, testing the individual components and understanding the codebase becomes a lot easier.
 
-### What are significant new differences between Flux v1 and Flux v2?
-
-#### Reconciliation
-
-Flux v1                            | Flux v2
----------------------------------- | ----------------------------------
-Limited to a single Git repository | Multiple Git repositories
-Declarative config via arguments in the Flux deployment | `GitRepository` custom resource, which produces an artifact which can be reconciled by other controllers
-Follow `HEAD` of Git branches | Supports Git branches, pinning on commits and tags, follow SemVer tag ranges
-Suspending of reconciliation by downscaling Flux deployment | Reconciliation can be paused per resource by suspending the `GitRepository`
-Credentials config via Arguments and/or Secret volume mounts in the Flux pod | Credentials config per `GitRepository` resource: SSH private key, HTTP/S username/password/token, OpenPGP public keys
-
-#### `kustomize` support
-
-Flux v1                            | Flux v2
----------------------------------- | ----------------------------------
-Declarative config through `.flux.yaml` files in the Git repository | Declarative config through a `Kustomization` custom resource, consuming the artifact from the GitRepository
-Manifests are generated via shell exec and then reconciled by `fluxd` | Generation, server-side validation, and reconciliation is handled by a specialised `kustomize-controller`
-Reconciliation using the service account of the Flux deployment | Support for service account impersonation
-Garbage collection needs cluster role binding for Flux to query the Kubernetes discovery API | Garbage collection needs no cluster role binding or access to Kubernetes discovery API
-Support for custom commands and generators executed by fluxd in a POSIX shell | No support for custom commands
-
-#### Helm integration
-
-Flux v1                            | Flux v2
----------------------------------- | ----------------------------------
-Declarative config in a single Helm custom resource | Declarative config through `HelmRepository`, `GitRepository`, `Bucket`, `HelmChart` and `HelmRelease` custom resources
-Chart synchronisation embedded in the operator | Extensive release configuration options, and a reconciliation interval per source
-Support for fixed SemVer versions from Helm repositories | Support for SemVer ranges for `HelmChart` resources
-Git repository synchronisation on a global interval | Planned support for charts from GitRepository sources
-Limited observability via the status object of the HelmRelease resource | Better observability via the HelmRelease status object, Kubernetes events, and notifications
-Resource heavy, relatively slow | Better performance
-Chart changes from Git sources are determined from Git metadata | Chart changes must be accompanied by a version bump in `Chart.yaml` to produce a new artifact
-
-#### Notifications, webhooks, observability
-
-Flux v1                            | Flux v2
----------------------------------- | ----------------------------------
-Emits "custom Flux events" to a webhook endpoint | Emits Kubernetes events for included custom resources
-RPC endpoint can be configured to a 3rd party solution like FluxCloud to be forwarded as notifications to e.g. Slack | Flux v2 components can be configured to POST the events to a `notification-controller` endpoint. Selective forwarding of POSTed events as notifications using `Provider` and `Alert` custom resources.
-Webhook receiver is a side-project | Webhook receiver, handling a wide range of platforms, is included
-Unstructured logging | Structured logging for all components
-Custom Prometheus metrics | Generic / common `controller-runtime` Prometheus metrics
-
 ### Are there any breaking changes?
 
 - In Flux v1 Kustomize support was implemented through `.flux.yaml` files in the Git repository. As indicated in the comparison table above, while this approach worked, we found it to be error-prone and hard to debug. The new [Kustomization CR](https://github.com/fluxcd/kustomize-controller/blob/master/docs/spec/v1beta1/kustomization.md) should make troubleshooting much easier. Unfortunately we needed to drop the support for custom commands as running arbitrary shell scripts in-cluster poses serious security concerns.
@@ -93,6 +49,39 @@ Custom Prometheus metrics | Generic / common `controller-runtime` Prometheus met
 In an announcement in August 2019, the expectation was set that the Flux project would integrate the GitOps Engine, then being factored out of ArgoCD. Since the result would be backward-incompatible, it would require a major version bump: Flux v2.
 
 After experimentation and considerable thought, we (the maintainers) have found a path to Flux v2 that we think better serves our vision of GitOps: the GitOps Toolkit. In consequence, we do not now plan to integrate GitOps Engine into Flux.
+
+## Helm Operator and Helm Controller
+
+### Are automated image updates supported?
+
+Not yet, but the feature is under active development. See the [image update feature parity section on the roadmap](/docs/roadmap/#flux-image-update-feature-parity) for updates on this topic.
+
+### How do I automatically apply my `HelmRelease` resources to the cluster?
+
+If you are currently a Flux v1 user, you can commit the `HelmRelease` resources to Git, and Flux will automatically apply them to the cluster like any other resource. It does however not support automated image updates for Helm Controller resources.
+
+If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](/docs/components/kustomize/controller/) will serve your needs.
+
+### I am still running Helm v2, what is the right upgrade path for me?
+
+Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](/legacy/helm-operator/helmrelease-guide/release-configuration/#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
+
+### Is the Helm Controller ready for production?
+
+Probably, but with some side notes:
+
+1. It is still under active development, and while our focus has been to stabilize the API as much as we can during the first development phase, we do not guarantee there will not be any breaking changes before we reach General Availability. We are however committed to provide [conversion webhooks](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion) for upcoming API versions.
+1. There may be (internal) behavioral changes in upcoming releases, but they should be aimed at further stabilizing the Helm Controller itself, solving edge case issues, providing better logging, observability, and/or other improvements.
+
+### Can I use Helm Controller standalone?
+
+Helm Controller depends on [Source Controller](../components/source/_index.md), you can install both controllers
+and manager Helm releases in a declarative way without GitOps.
+For more details please see this [answer]({{< relref "/faq.md#can-i-use-flux-helmreleases-without-gitops" >}}).
+
+### I have another question
+
+Given the amount of changes, it is quite possible that this document did not provide you with a clear answer for you specific setup. If this applies to you, do not hesitate to ask for help in the [GitHub Discussions](https://github.com/fluxcd/flux2/discussions/new?category_id=31999889) or on the [`#flux` CNCF Slack channel](https://slack.cncf.io)!
 
 ### How can I get involved?
 
