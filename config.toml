@@ -45,7 +45,9 @@ page = [ "HTML" ]
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = true
-sidebar_menu_foldable = true
+sidebar_menu_foldable = false 	# for now until https://github.com/google/docsy/issues/616 is fixed
+sidebar_menu_truncate = 1000
+
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
