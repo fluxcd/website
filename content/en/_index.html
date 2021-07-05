@@ -17,26 +17,86 @@ Flux is now a CNCF Incubation project!
                   height="full" link_title="Get started" link_url="/docs/get-started/" %}}
   Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible.
 
-  Some of the biggest organisations have adopted the Flux family of projects for their GitOps needs.
-  See [who is part of our community](/adopters) and how about joining yourself?
-
   The latest version of Flux brings many new features and made Flux more flexible and versatile.
   {{% /blocks/hero %}}
 
-
-  <div class="lead-gitops">
+  <div class="lead-flux">
   {{< blocks/lead >}}
 
-  <h2 id='gitops'>GitOps at your fingertips</h2>
+  <h2 id='flux-facts'>Flux Facts!</h2>
 
-  <p>Flux is a collection of tools for keeping <a href="https://kubernetes.io/">Kubernetes</a> clusters in sync with sources of configuration (like Git repositories), and automating updates to configuration when there is new code to deploy.</p>
+  <p>Some of the biggest organisations have adopted the Flux family of projects for their GitOps needs.
+     See <a href="/adopters">who is part of our community</a> and how about joining yourself?</p>
 
   {{< /blocks/lead >}}
   </div>
 </div>
 
 
-<!-- features  -->
+<!-- flux features  -->
+{{< blocks/section type="features" color="white" >}}
+
+{{% blocks/feature icon="fa fa-users fa-3x" title="Provides GitOps for both apps and infrastructure"
+                   height="auto" color="blue" %}}
+Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any
+Kubernetes resource. Infrastructure and workload dependency management is built in.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fas fa-robot fa-3x" title="Just push to Git and Flux does the rest"
+                   height="auto" color="blue" %}}
+Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD)
+through automatic reconciliation. Flux can even push back to Git for you with automated container
+image updates to Git (image scanning and patching).
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa fa-wrench fa-3x" title="Works with your existing tools"
+                   height="auto" color="blue" %}}
+Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use S3-compatible
+buckets as a source), all major container registries, and all CI workflow providers.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fas fa-drafting-compass fa-3x"
+                   title="Works with any Kubernetes and all common Kubernetes tooling"
+                   height="auto" color="blue" %}}
+Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers)
+so it simply falls into place.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fas fa-globe fa-3x"
+                   title="Flux does Multi-Tenancy (and “Multi-everything”)"
+                   height="auto" color="blue" %}}
+Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories.
+Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use
+one Kubernetes cluster to manage apps in either the same or other clusters, spin up
+additional clusters themselves, and manage clusters including lifecycle and fleets.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fas fa-phone fa-3x" title="Alerts and notifies"
+                   height="auto" color="blue" %}}
+Flux provides health assessments, alerting to external systems, and external events
+handling. Just “git push”, and get notified on Slack and [other chat
+systems](/docs/components/notification/provider/).
+{{% /blocks/feature %}}
+
+<p>Flux has a lovely community that is very easy to work with! We welcome contributors
+   of any kind. 💖</p>
+<p>The components of Flux are on Kubernetes core <tt>controller-runtime</tt>,
+   so anyone can contribute and its functionality can be extended very easily.</p>
+
+{{< /blocks/section >}}
+
+<!-- gitops -->
+
+{{% blocks/lead title="GitOps at your fingertips" color="primary" %}}
+
+<h2 class="section-label">GitOps at your fingertips</h2>
+
+Flux is a collection of tools for keeping <a href="https://kubernetes.io/">Kubernetes</a> clusters
+in sync with sources of configuration (like Git repositories), and automating updates to configuration
+when there is new code to deploy.
+
+{{< /blocks/lead >}}
+
 {{< blocks/section type="features" color="white" >}}
 
 {{% blocks/feature icon="fab fa-git-square fa-3x" title="Declarative" height="auto" color="blue" %}}
@@ -72,6 +132,8 @@ to extend Flux.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
+
+
 
 <!-- RESOURCES HERE -->
 
