@@ -7,7 +7,7 @@ title: Get started
 All you need is a Kubernetes cluster and a git repo. The git repo
 contains [manifests](https://kubernetes.io/docs/concepts/configuration/overview/)
 (as YAML files) describing what should run in the cluster. Flux imposes
-[some requirements](../requirements.md) on these files.
+[some requirements](../requirements) on these files.
 
 ## Installing Flux
 
