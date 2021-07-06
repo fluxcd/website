@@ -24,7 +24,7 @@ Flux v1 implementation of image automation has serious performance issues scalin
 
 That's right, rate limiting undoutedly happened because of abusive clients pulling image metadata from many images (like Flux v1 did,) images that might only be stored for the purpose of retention policies, that might be relegated to cold storage if they were not being periodically retrieved.
 
-Flux v2 resolved this with [sortable image tags](/guides/sortable-image-tags/); (this is a breaking change.)
+Flux v2 resolved this with [sortable image tags](/docs/guides/sortable-image-tags/); (this is a breaking change.)
 
 Flux v1 requires one Flux daemon to be running per git repository/branch that syncs to the cluster. Flux v2 only expects cluster operators to run one source-controller instance, allowing to manage multiple repositories, or multiple clusters (or an entire fleet) with just one Flux installation.
 
