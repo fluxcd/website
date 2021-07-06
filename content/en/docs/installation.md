@@ -374,7 +374,7 @@ touch clusters/my-cluster/flux-system/gotk-components.yaml \
 ```
 
 Assuming you want to add custom annotations and labels to the Flux controllers,
-edit `clusters/my-cluster/gotk-patches.yaml` and set the metadata for source-controller and kustomize-controller pods:
+edit `clusters/my-cluster/flux-system/gotk-patches.yaml` and set the metadata for source-controller and kustomize-controller pods:
 
 ```yaml
 apiVersion: apps/v1
@@ -404,7 +404,7 @@ spec:
         custom: label
 ```
 
-Edit `clusters/my-cluster/kustomization.yaml` and set the resources and patches:
+Edit `clusters/my-cluster/flux-system/kustomization.yaml` and set the resources and patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -467,7 +467,7 @@ spec:
                 - ALL
 ```
 
-Edit `clusters/my-cluster/kustomization.yaml` and enable the patch:
+Edit `clusters/my-cluster/flux-system/kustomization.yaml` and enable the patch:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -476,7 +476,7 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 patches:
-  - path: psp-patch.yaml
+  - path: ../psp-patch.yaml
     target:
       kind: Deployment
 ```
