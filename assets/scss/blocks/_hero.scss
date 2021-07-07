@@ -26,7 +26,7 @@
     }
 }
 
-.lead-gitops section {
+.lead-flux section {
   padding: 0rem 0 2rem 0 !important;
   background: none;
 
@@ -99,6 +99,41 @@
       display: block;
       float: right;
       margin: 11px 0 0 14px;
+    }
+  }
+}
+
+#feature-list {
+  tr:nth-child(even) {
+    background-color:rgb(241, 241, 241);
+  }
+
+  table th, table td {
+    @include media-breakpoint-down(xl) {
+      padding: 1rem;
+      font-size: large;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include media-breakpoint-down(md) {
+      font-size: medium;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+  }
+
+  td:nth-child(1) {
+    @include media-breakpoint-down(xl) {
+      padding: 2rem;
+      font-size: 5rem;
+    }
+    @include media-breakpoint-down(md) {
+      padding: 1rem;
+      font-size: 2rem;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 1rem;
     }
   }
 }
