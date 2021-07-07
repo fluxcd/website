@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    if: github.repository == 'fluxcd/website'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy 'main' on Netlify
