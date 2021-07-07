@@ -112,6 +112,16 @@ h2.section-label {
     .row .btn-primary {
       margin-left: 12px;
     }
+
+    @include media-breakpoint-down(sm) {
+      .row .btn-secondary {
+        margin: 12px 0 0 12px;
+      }
+
+      .btn {
+        text-align:left;
+      }
+    }
   }
 
   section.td-box--6 {
