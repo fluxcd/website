@@ -107,14 +107,33 @@
   tr:nth-child(even) {
     background-color:rgb(241, 241, 241);
   }
+
   table th, table td {
-    padding: 10px;
-    font-size: large;
-    padding-left: 20px;
-    padding-right: 20px;
+    @include media-breakpoint-down(xl) {
+      padding: 1rem;
+      font-size: large;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include media-breakpoint-down(md) {
+      font-size: medium;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
   }
+
   td:nth-child(1) {
-    padding: 30px;
-    font-size: xx-large;
+    @include media-breakpoint-down(xl) {
+      padding: 2rem;
+      font-size: 5rem;
+    }
+    @include media-breakpoint-down(md) {
+      padding: 1rem;
+      font-size: 2rem;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 1rem;
+    }
   }
 }
