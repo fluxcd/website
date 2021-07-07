@@ -85,9 +85,37 @@ h2.section-label {
   }
 }
 
+.adopters {
+  margin-bottom: 2rem;
+
+  .section-label {
+    margin-bottom: 0;
+  }
+  .carousel {
+    .carousel-inner {
+      background: $flux-white;
+      .carousel-item {
+        height: 220px;
+
+        padding: 1rem;
+        text-align: center;
+        img {
+          height: 160px;
+          object-fit: contain;
+        }
+        .carousel-item-caption {
+          margin: 0;
+          padding: 0;
+          color: $flux-gray;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
 
 .section-resources {
-  .td-box--6 {
+  .td-box--7 {
     background-color: $flux-white !important;
     color: #222;
     padding: 1rem 0 4rem 0;
@@ -98,14 +126,14 @@ h2.section-label {
     }
   }
 
-  .td-box--7 {
+  .td-box--8 {
     background-color: $flux-gray;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234f4f4f' fill-opacity='0.43' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
   }
 }
 
 .section-other-flux-projects {
-  .td-box--8 {
+  .td-box--9 {
     background-color: $flux-gray;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234f4f4f' fill-opacity='0.43' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
@@ -146,7 +174,7 @@ h2.section-label {
     }
   }
 
-  section.td-box--6 {
+  section.td-box--7 {
     background-color: $flux-dark-blue;
   }
 
