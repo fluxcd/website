@@ -15,11 +15,17 @@ and kubectl version **1.18** or newer.
 
 ## Install the Flux CLI
 
+{{% tabs %}}
+{{% tab "Homebrew" %}}
+
 With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
 ```
+
+{{% /tab %}}
+{{% tab "GoFish" %}}
 
 With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
 
@@ -27,11 +33,17 @@ With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
 gofish install flux
 ```
 
+{{% /tab %}}
+{{% tab "yay" %}}
+
 With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
 
 ```sh
 yay -S flux-bin
 ```
+
+{{% /tab %}}
+{{% tab "bash" %}}
 
 With Bash for macOS and Linux:
 
@@ -41,6 +53,9 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 # enable completions in ~/.bash_profile
 . <(flux completion bash)
 ```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 Command-line completion for `zsh`, `fish`, and `powershell`
 are also supported with their own sub-commands.
