@@ -85,3 +85,16 @@ If you want to illustrate the documentation and make things easier to read, ther
 - [`tabpane`](https://www.docsy.dev/docs/adding-content/shortcodes/#tabbed-panes) for pieces of text that go in different tabs
 - [`cardpane` and `card`](https://www.docsy.dev/docs/adding-content/shortcodes/#card-panes) for adding cards and card panes
 - [`gist`, `youtube`, `tweet` and more](https://gohugo.io/content-management/shortcodes/): lots of shortcodes we get from Hugo itself.
+
+## Code snippets
+
+You can embed code snippets from a file.
+
+``language`` is any [language supported by GitHub flavored markdown](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+``file`` is the path to the file you want to use in the code block.
+
+```go-html-template
+{{%/* codeblock file="/static/snippet/example.yaml" language="yaml" */%}}
+```
+
+{{% codeblock file="/static/snippet/example.yaml" language="yaml" %}}
