@@ -75,7 +75,7 @@ spec:
         path: /
         backend:
           service:
-            name: notification-webhook
+            name: webhook-receiver
             port:
               number: 9292
 ```
