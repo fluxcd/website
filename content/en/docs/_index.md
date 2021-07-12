@@ -8,13 +8,13 @@ Flux is a tool for keeping Kubernetes clusters in sync with sources of
 configuration (like Git repositories), and automating updates to
 configuration when there is new code to deploy.
 
-Flux version 2 ("Flux v2") is built from the ground up to use Kubernetes'
+The new version of Flux is built from the ground up to use Kubernetes'
 API extension system, and to integrate with Prometheus and other core
 components of the Kubernetes ecosystem. In version 2, Flux supports
 multi-tenancy and support for syncing an arbitrary number of Git
 repositories, among other long-requested features.
 
-Flux v2 is constructed with the [GitOps Toolkit](components/),
+Flux is constructed with the [GitOps Toolkit](components/),
 a set of composable APIs and specialized tools for building Continuous
 Delivery on top of Kubernetes.
 
@@ -52,7 +52,7 @@ the API.
 
 ## Where do I start?
 
-{{% alert title="Get started with Flux v2!" %}}
+{{% alert title="Get started with Flux!" %}}
 Following this [guide](get-started/) will just take a couple of minutes to complete:
 After installing the `flux` CLI and running a couple of very simple commands,
 you will have a GitOps workflow setup which involves a staging and a production cluster.

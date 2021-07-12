@@ -5,7 +5,7 @@ description: "how to construct container image tags compatible with Flux automat
 weight: 90
 ---
 
-Flux v2 does not support selecting the latest image by build time. Obtaining the build time needs
+Flux does not support selecting the latest image by build time. Obtaining the build time needs
 the container config for each image, and fetching that is subject to strict rate limiting by image
 registries (e.g., by [DockerHub][dockerhub-rates]).
 

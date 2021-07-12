@@ -1,7 +1,7 @@
 adopters:
-  project: Flux v1
+  project: Flux (legacy)
   description: >
-    All of these organisations have been using Flux v1 and Helm Operator v1.
+    All of these organisations have been using Flux and Helm Operator.
   companies:
     - name: ABA English
       url: https://www.abaenglish.com
