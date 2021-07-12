@@ -27,6 +27,13 @@ To add your organisation follow these steps:
    ```
 
    You can just add to the end of the file, we already sort alphabetically by name of organisation.
+   If your company logo does not contain the company name, you might want to add
+
+   ```yaml
+         needs-name: true
+   ```
+
+   to your entry.
 1. Save the file, then do `git add -A` and commit using `git commit -s -m "Add MY-ORG to adopters"` (commit signoff is required, see [DCO](https://fluxcd.io/contributing/#certificate-of-origin)).
 1. Push the commit with `git push origin main`.
 1. Open a Pull Request to [fluxcd/website](https://github.com/fluxcd/website) and a preview build will turn up.

@@ -2,6 +2,7 @@
 
 import glob
 import os
+import random
 import shutil
 import sys
 
@@ -11,6 +12,11 @@ if local_py_path not in sys.path:
     sys.path.append(local_py_path)
 
 import yaml
+
+DEFAULT_LOGO = 'logos/logo-generic.png'
+top_level_dir = os.path.realpath(
+    os.path.join(os.path.dirname(__file__), '..'))
+content_dir = os.path.join(top_level_dir, 'content/en')
 
 def write_page_header(f):
     f.write('''---
@@ -60,16 +66,35 @@ def write_card_text(f, company_name, company_url, company_logo):
     f.write(card_text)
 
 
-def main():
-    top_level_dir = os.path.realpath(
-        os.path.join(os.path.dirname(__file__), '..'))
+def write_adopters_section_for_landing_page(data):
+    html = ""
+    random.shuffle(data)
+    for entry in data:
+        if not entry['logo'].endswith(DEFAULT_LOGO):
+            html += \
+                """
+        <div class="carousel-item {active}">
+            <img class="d-block w-100" src="{logo}" alt="{caption}">
+            <span class="carousel-item-caption">{caption}</span>
+        </div>
+""".format(active='active' if data.index(entry) == 0 else '',
+           logo=entry['logo'],
+           caption=entry['name'] if 'needs-name' in entry and \
+                         entry['needs-name'] else '')
 
+    out_file = os.path.join(content_dir, 'adopters_carousel_include.html')
+    if os.path.exists(out_file):
+        os.remove(out_file)
+    f = open(out_file, 'w')
+    f.write(html)
+    f.close()
+
+def main():
     if os.getcwd() != top_level_dir:
         print('Please run this script from top-level of the repository.')
         sys.exit(1)
 
     adopters_dir = os.path.join(top_level_dir, 'adopters')
-    content_dir = os.path.join(top_level_dir, 'content/en')
     adopters_page_fn = os.path.join(content_dir, 'adopters.md')
 
     f = open(adopters_page_fn, 'w')
@@ -77,6 +102,7 @@ def main():
     write_page_header(f)
 
     adopters_files = sorted(glob.glob(adopters_dir+'/*.yaml'))
+    all_companies = []
     for yaml_fn in adopters_files:
         with open(yaml_fn, 'r') as File:
             data = yaml.safe_load(File)
@@ -89,15 +115,17 @@ def main():
 {{< cardpane >}}
 ''')
         for company in companies:
-            i = companies.index(company)
             if 'logo' not in company:
-                company['logo'] = 'logos/logo-generic.png'
+                company['logo'] = DEFAULT_LOGO
             company['logo'] = fix_up_logo(adopters_dir, company['logo'])
+            if company not in all_companies:
+                all_companies += [company]
             write_card_text(f, company['name'], company['url'], company['logo'])
 
         f.write('''{{< /cardpane >}}
 </div>
 ''')
+    f.close()
 
     new_logos_dir = os.path.join(top_level_dir, 'static/img/logos')
     if not os.path.exists(new_logos_dir):
@@ -110,7 +138,8 @@ def main():
             os.path.join(new_logos_dir,
                          os.path.basename(img)))
 
-    f.close()
+    write_adopters_section_for_landing_page(all_companies)
+
 
 if __name__ == '__main__':
     try:

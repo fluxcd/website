@@ -24,6 +24,7 @@ adopters:
     - name: SoulCycle
       url: https://www.soul-cycle.com
       logo: logos/soulcycle.png
+      needs-name: true
     - name: Luminovo
       url: https://luminovo.ai
       logo: logos/luminovo.png
@@ -45,15 +46,19 @@ adopters:
     - name: happn
       url: https://www.happn.com
       logo: logos/happn.png
+      needs-name: true
     - name: Sage AI Labs
       url: https://www.sage.com
       logo: logos/sageailabs.png
+      needs-name: true
     - name: Quivr
       url: https://quivr.be
       logo: logos/quivr.svg
+      needs-name: true
     - name: HybridK8s
       url: https://hybridk8s.tech
       logo: logos/hybridk8s.png
+      needs-name: true
     - name: D2iQ
       url: https://d2iq.com
       logo: logos/d2iq.png
@@ -63,3 +68,4 @@ adopters:
     - name: FourteenFish
       url: https://www.fourteenfish.com
       logo: logos/fourteenfish.png
+      needs-name: true
