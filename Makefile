@@ -55,7 +55,7 @@ $(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
 	ln -sf Font-Awesome themes/docsy/assets/vendor/Font-Awesome-${FONT_AWESOME_SEMVER}
 
 gen-content: ## Generates content from external sources.
-	hack/generate-adopters-pages.py
+	hack/adopters.py
 	hack/gen-content.py
 	hack/import-flux2-assets.sh
 
