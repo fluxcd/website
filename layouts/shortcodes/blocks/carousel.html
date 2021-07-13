@@ -1,22 +1,13 @@
-<div class="row adopters p-0">
+<section class="row adopters p-0">
   <div class="col">
     <h2 class="text-center section-label">Adopted by</h2>
-    <div id="carousel-selected-indicator" class="carousel slide" data-ride="carousel" data-interval="3000">
-      <!--
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-selected-indicator" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-selected-indicator" data-slide-to="1"></li>
-        <li data-target="#carousel-selected-indicator" data-slide-to="2"></li>
-        <li data-target="#carousel-selected-indicator" data-slide-to="3"></li>
-        <li data-target="#carousel-selected-indicator" data-slide-to="4"></li>
-      </ol>
-      -->
+    <div id="carousel-selected-indicator" class="carousel slide" data-ride="carousel" data-interval=4000>
       <div class="carousel-inner">
         <a href="/adopters">
           {{ readFile "/content/en/adopters_carousel_include.html" | safeHTML }}
         </a>
       </div>
-      <!--
+
       <a class="carousel-control-prev" href="#carousel-selected-indicator" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -25,8 +16,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-      -->
     </div>
   </div>
-</div>
+</section>
   

@@ -69,18 +69,19 @@ def write_card_text(f, company_name, company_url, company_logo):
 def write_adopters_section_for_landing_page(data):
     html = ""
     random.shuffle(data)
+    data = [entry for entry in data if not entry['logo'].endswith(DEFAULT_LOGO)]
+
     for entry in data:
-        if not entry['logo'].endswith(DEFAULT_LOGO):
-            html += \
-                """
-        <div class="carousel-item {active}">
-            <img class="d-block w-100" src="{logo}" alt="{caption}">
-            <span class="carousel-item-caption">{caption}</span>
-        </div>
+        html += \
+            """
+    <div class="carousel-item {active}">
+        <img class="d-block w-100" src="{logo}" alt="{caption}">
+        <span class="carousel-item-caption">{caption}</span>
+    </div>
 """.format(active='active' if data.index(entry) == 0 else '',
-           logo=entry['logo'],
-           caption=entry['name'] if 'needs-name' in entry and \
-                         entry['needs-name'] else '')
+        logo=entry['logo'],
+        caption=entry['name'] if 'needs-name' in entry and \
+                        entry['needs-name'] else '')
 
     out_file = os.path.join(content_dir, 'adopters_carousel_include.html')
     if os.path.exists(out_file):
