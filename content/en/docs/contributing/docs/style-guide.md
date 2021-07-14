@@ -92,7 +92,7 @@ Do | Don't
 Set the value of the `interval` field in the configuration file. | Set the value of the "interval" field in the configuration file.
 The value of the `chart` field is an HelmChartTemplate object. | The value of the "chart" field is an HelmChartTemplate object.
 
-### Use code style for fluxcd command tool and component names
+### Use code style for Flux command tool and component names
 
 Do | Don't
 :--| :-----
