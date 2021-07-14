@@ -17,6 +17,7 @@ DEFAULT_LOGO = 'logos/logo-generic.png'
 top_level_dir = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
 content_dir = os.path.join(top_level_dir, 'content/en')
+adopters_dir = os.path.join(top_level_dir, 'adopters')
 
 def write_page_header(f):
     f.write('''---
@@ -47,7 +48,7 @@ def write_section_header(yaml_fn, data, f):
 {}
 '''.format(section_id, section_title, page_description))
 
-def fix_up_logo(adopters_dir, logo_entry):
+def fix_up_logo(logo_entry):
     if not logo_entry.startswith('https:'):
         logo_fn = os.path.join(adopters_dir, logo_entry)
         if not os.path.exists(logo_fn):
@@ -65,41 +66,70 @@ def write_card_text(f, company_name, company_url, company_logo):
     card_text += '{{% /card %}}\n'
     f.write(card_text)
 
-
-def write_adopters_section_for_landing_page(data):
+def write_adopter_logos_for_landing_page(data):
     html = ""
     random.shuffle(data)
-    data = [entry for entry in data if not entry['logo'].endswith(DEFAULT_LOGO)]
 
+    data = [entry for entry in data
+            if not entry['logo'].endswith(DEFAULT_LOGO)]
     for entry in data:
-        html += \
-            """
-    <div class="carousel-item {active}">
-        <img class="d-block w-100" src="{logo}" alt="{caption}">
-        <span class="carousel-item-caption">{caption}</span>
-    </div>
-""".format(active='active' if data.index(entry) == 0 else '',
-        logo=entry['logo'],
-        caption=entry['name'] if 'needs-name' in entry and \
-                        entry['needs-name'] else '')
+        if entry['logo'] not in html:
+            html += """
+        <img src="{logo}" alt="{caption}">""".format(
+            logo=entry['logo'],
+            caption=entry['name'] if 'needs-name' in entry and \
+                entry['needs-name'] else '')
 
-    out_file = os.path.join(content_dir, 'adopters_carousel_include.html')
+    out_file = os.path.join(content_dir, 'adopters_bg_include.html')
     if os.path.exists(out_file):
         os.remove(out_file)
     f = open(out_file, 'w')
     f.write(html)
     f.close()
 
-def main():
-    if os.getcwd() != top_level_dir:
-        print('Please run this script from top-level of the repository.')
-        sys.exit(1)
+def read_endorsements():
+    endorsements_fn = os.path.join(content_dir, 'endorsements.yaml')
+    with open(endorsements_fn, 'r') as File:
+        data = yaml.safe_load(File)
+    return data
 
-    adopters_dir = os.path.join(top_level_dir, 'adopters')
+def write_endorsements(data):
+    html = ""
+    for entry in data['endorsements']:
+        html += """
+    <div class="carousel-item {active}">
+        <div class="row">
+            <div class="col d-block">
+                <img src="{image}" alt="">
+            </div>
+            <div class="col">
+                <div class="carousel-caption">
+                    <span class="d-none d-md-block">
+                        {text}
+                    </span>
+                    <p>
+                        {subtitle}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>""".format(
+        active='active' if data['endorsements'].index(entry) == 0 else '',
+        image=entry['image'], text=entry['text'], subtitle=entry['subtitle']
+    )
+
+    endorsements_html_fn = os.path.join(content_dir, 'adopters_carousel_include.html')
+    if os.path.exists(endorsements_html_fn):
+        os.remove(endorsements_html_fn)
+    f = open(endorsements_html_fn, 'w')
+    f.write(html)
+    f.close()
+
+
+def write_adopters_page():
     adopters_page_fn = os.path.join(content_dir, 'adopters.md')
 
     f = open(adopters_page_fn, 'w')
-
     write_page_header(f)
 
     adopters_files = sorted(glob.glob(adopters_dir+'/*.yaml'))
@@ -118,7 +148,7 @@ def main():
         for company in companies:
             if 'logo' not in company:
                 company['logo'] = DEFAULT_LOGO
-            company['logo'] = fix_up_logo(adopters_dir, company['logo'])
+            company['logo'] = fix_up_logo(company['logo'])
             if company not in all_companies:
                 all_companies += [company]
             write_card_text(f, company['name'], company['url'], company['logo'])
@@ -127,6 +157,17 @@ def main():
 </div>
 ''')
     f.close()
+    return all_companies
+
+def main():
+    if os.getcwd() != top_level_dir:
+        print('Please run this script from top-level of the repository.')
+        sys.exit(1)
+
+    endorsements = read_endorsements()
+    write_endorsements(endorsements)
+
+    all_companies = write_adopters_page()
 
     new_logos_dir = os.path.join(top_level_dir, 'static/img/logos')
     if not os.path.exists(new_logos_dir):
@@ -139,7 +180,7 @@ def main():
             os.path.join(new_logos_dir,
                          os.path.basename(img)))
 
-    write_adopters_section_for_landing_page(all_companies)
+    write_adopter_logos_for_landing_page(all_companies)
 
 
 if __name__ == '__main__':
