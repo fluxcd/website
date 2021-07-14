@@ -17,7 +17,7 @@ Do | Don't
 
 ### Use angle brackets for placeholders
 
-Use angle brackets for placeholders. Tell the reader what a placeholder represents, for example
+Use angle brackets (`<>`) for placeholders. Tell the reader what a placeholder represents, for example
 
 Reconcile a kustomization :
 
