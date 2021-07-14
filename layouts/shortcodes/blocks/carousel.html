@@ -1,7 +1,12 @@
 <section class="row adopters p-0">
-  <div class="col">
+  <div id="background-logos">
+    <div class="col">
+      {{ readFile "/content/en/adopters_bg_include.html" | safeHTML }}
+    </div>
+  </div>
+  <div id="foreground-adopters">
     <h2 class="text-center section-label">Adopted by</h2>
-    <div id="carousel-selected-indicator" class="carousel slide" data-ride="carousel" data-interval=4000>
+    <div id="carousel-selected-indicator" class="carousel slide" data-ride="carousel" data-interval=8000>
       <div class="carousel-inner">
         <a href="/adopters">
           {{ readFile "/content/en/adopters_carousel_include.html" | safeHTML }}
