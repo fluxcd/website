@@ -359,9 +359,20 @@ Exception: Use "etc." for et cetera.
 
 Using "we" in a sentence can be confusing, because the reader might not know whether they're part of the "we" you're describing.
 
+Do | Don't
+:--| :-----
+Version 2 includes ... | In version 2, we have added ...
+Flux provides a new feature for ... | We provide a new feature ...
+This page teaches you how to use Kustomizations. | In this page, we are going to learn about Kustomizations.
+
 ### Avoid jargon and idioms
 
 Some readers speak English as a second language. Avoid jargon and idioms to help them understand better.
+
+Do | Don't
+:--| :-----
+Internally, ... | Under the hood, ...
+Create a new cluster. | Turn up a new cluster.
 
 ### Avoid statements about the future
 
@@ -373,6 +384,18 @@ An exception to this rule is documentation about announced deprecations targetin
 
 Avoid words like "currently" and "new." A feature that is new today might not be considered new in a few months.
 
+Do | Don't
+:--| :-----
+In version 2, ... | In the current version, ...
+The Image Update Automation feature provides ... | The new Image Update Automation provides ...
+
 ### Avoid statements that assume a specific level of understanding
 
 Avoid words such as "just", "simply", "easy", "easily", "basically" or "simple". These words do not add value.
+
+Do | Don't
+:--| :-----
+Include one command in ... | Include just one command in ...
+Commit the Kustomization ... | Simply commit the Kustomization ...
+You can remove ... | You can easily remove ...
+These steps ... | These simple steps ...
