@@ -15,6 +15,16 @@ Flux documentation uses [Goldmark Markdown Renderer](https://github.com/yuin/gol
 
 ### Use upper camel case for API objects
 
+When you refer specifically to interacting with an API object, use [UpperCamelCase](https://en.wikipedia.org/wiki/Camel_case), also known as Pascal case.
+
+When you are generally discussing an API object, use sentence-style capitalization.
+
+You may use the word "resource", "API", or "object" to clarify a Flux resource type in a sentence.
+
+Don't split an API object name into separate words. For example, use HelmRelease, not Helm Release.
+
+The following examples focus on capitalization. For more information about formatting API object names, review the related guidance on [Code Style](#code-style-inline-code).
+
 Do | Don't
 :--| :-----
 | The GitRepository resource is responsible for ... | The Git Repository resource is responsible for ... |
