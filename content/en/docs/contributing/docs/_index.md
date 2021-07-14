@@ -1,6 +1,6 @@
 ---
 title: Documentation
-weight: 10
+weight: 2
 ---
 
 Flux welcomes improvements from all contributors, new and experienced!

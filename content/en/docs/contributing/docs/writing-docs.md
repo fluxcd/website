@@ -1,7 +1,7 @@
 ---
 title: Docs from the ground up
 linkTitle: Writing docs
-weight: 20
+weight: 4
 description: >
     Our docs are just Markdown, but offer you more flexibility and styling options.
 ---
@@ -62,20 +62,6 @@ You can easily link to other places using either
   - `[link](article2.md)`
   - `[link](../article2/)`
   - `[link](/docs/section-a/article2/)`
-
-## Getting the readers attention
-
-Sometimes you will need to get the reader's attention and clearly point out an edge case, or the current state of things. A good way to do this is using Docsy's `alert` shortcode. Here is a simple example:
-
-```go-html-template
-{{%/* alert title="Warning" color="warning" */%}}
-This is a warning.
-{{%/* /alert */%}}
-```
-
-The `title` and `color` keywords are optional.
-
-Please refer to [Docsy's documentation](https://www.docsy.dev/docs/adding-content/shortcodes/#alert) of the feature.
 
 ## Media, illustrations and more
 
