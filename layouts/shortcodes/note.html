@@ -1,0 +1,4 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<div class="alert alert-info" role="alert">
+<strong>{{ T "note" }}</strong> {{ trim .Inner " \n" | markdownify }}
+</div>

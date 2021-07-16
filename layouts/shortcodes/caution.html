@@ -1,0 +1,4 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<div class="alert alert-warning" role="alert">
+<strong>{{ T "caution" }}</strong> {{ trim .Inner " \n" | markdownify }}
+</div>

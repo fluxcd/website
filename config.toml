@@ -30,7 +30,7 @@ enableGitInfo = true
 [languages]
 [languages.en]
 languageName = "English"
-languageCode = "en-us"
+languageCode = "en"
 time_format_default = "2006-01-02"
 time_format_blog = "2006-01-02"
 contentDir = "content/en"
