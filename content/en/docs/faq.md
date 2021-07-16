@@ -283,7 +283,7 @@ condition, and can be updated through configuration in `/etc/dphys-swapfile`: [a
 Flux v1 is a monolithic do-it-all operator;
 Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
-You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration.md).
+You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration/).
 
 ### How can I migrate from v1 to v2?
 
