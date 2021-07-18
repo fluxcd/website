@@ -111,22 +111,8 @@ h2.section-label {
   .section-label {
     margin-bottom: 0;
   }
-
-  #foreground-adopters {
-    position: absolute;
-  }
-
-  #background-logos {
-    opacity: 0.1;
-
-    img {
-      max-height: 160px;
-      height: auto;
-      max-width: 200px;
-    }
-  }
-
   .carousel {
+
     &:hover {
       @include carousel-controls-hover();
     }
@@ -137,11 +123,29 @@ h2.section-label {
     }
 
     .carousel-inner {
+      background: $flux-white;
       .carousel-item {
-        padding: 1rem;
+        height: 220px;
 
-        #carousel-caption {
-          color: $flux-darkest-blue;
+        padding: 1rem;
+        text-align: center;
+
+        img {
+          height: 160px;
+          object-fit: contain;
+          padding: 0 100px;
+
+          @include media-breakpoint-down(sm) {
+            padding: 0 75px;
+          }
+
+          @include media-breakpoint-down(xs) {
+            padding: 0 50px;
+          }
+        }
+        .carousel-item-caption {
+          color: $flux-gray;
+          font-size: 1.8rem;
         }
       }
     }
