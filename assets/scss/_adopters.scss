@@ -1,5 +1,193 @@
-.adopters {
 
+@mixin carousel-controls-hover {
+  .carousel-control-next, .carousel-control-prev {
+    &:focus {
+      opacity: 0.5;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%233d6ddd' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+   }
+
+   .carousel-control-next-icon {
+     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%233d6ddd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+   }
+}
+
+$gradient-width: 90px;
+$foreground-color: rgba($flux-white, 0.85);
+
+.adopters-carousel {
+  margin-bottom: 2rem;
+  justify-content: center;
+
+  .foreground-item::before {
+    width: $gradient-width;
+    height: 600px;
+    display: block;
+    background: linear-gradient(90deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
+    content: "";
+    position: absolute;
+    left: -$gradient-width;
+    top: 0;
+  }
+
+  .foreground-item::after {
+    width: 60px;
+    height: 600px;
+    display: block;
+    background: linear-gradient(270deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: 0;
+  }
+
+
+  #foreground-adopters {
+
+    .section-label {
+      margin-bottom: 2rem;
+    }
+
+    .carousel-item {
+      padding: 0 15px;
+      height: 600px;
+      width: 100vw;
+
+      .foreground-item {
+        max-width: 600px;
+        height: 600px;
+
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 0rem auto;
+        padding-top: 1rem;
+
+        background-color: $foreground-color;
+      }
+
+      .logo {
+        height: 120px;
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 0rem auto;
+
+        img {
+          max-width: 600px;
+          max-height: 120px;
+
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+      }
+
+      .case-study {
+        display: flex;
+        padding: 2.5rem 12px 0 12px;
+
+        max-width: 600px;
+        height: 480px;
+        margin: 0 auto;
+
+        flex-wrap: wrap;
+        .summary {
+          flex: 2 0 0;
+          min-width: 280px;
+          padding-right: 1rem;
+
+          .business ul {
+            list-style-type: none;
+            margin: 0 0 0px 2px;
+            padding-left: 0;
+
+            font-size: 1.1rem;
+
+            li {
+              padding-bottom: 6px;
+            }
+          }
+
+          .details {
+            padding-top: 8px;
+            ul {
+              padding-left: 1.5rem;
+            }
+
+            h3 {
+              font-variant-caps: all-small-caps;
+              font-weight: 700;
+              color: $flux-lighter-blue;
+            }
+          }
+        }
+
+        .description {
+          flex: 1 0 0;
+          min-width: 220px;
+        }
+      }
+    }
+  }
+
+  #background-logos {
+    opacity: 0.1;
+    position: absolute;
+    display: flex;
+    align-items: center;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+    height: 600px;
+
+    .col {
+      position: static;
+      max-height: 600px;
+
+      img {
+        height: 96px;
+        width: auto;
+        margin: 12px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .carousel {
+    &:hover {
+      @include carousel-controls-hover();
+    }
+
+    // touchscreen
+    @media (hover: none) {
+      @include carousel-controls-hover();
+    }
+
+    .carousel-inner {
+      .carousel-item {
+        padding: 1rem;
+
+        #carousel-caption {
+          color: $flux-darkest-blue;
+        }
+      }
+    }
+  }
+}
+
+/* /adopters page */
+.adopters {
   .card-deck {
     @include media-breakpoint-only(lg) {
       column-count: 4;
