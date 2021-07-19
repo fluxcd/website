@@ -49,7 +49,7 @@ Flux client:
 
 ```sh
 flux create source helm traefik --url https://helm.traefik.io/traefik
-flux create helmrelease --chart my-traefik \
+flux create helmrelease my-traefik --chart traefik \
   --source HelmRepository/traefik \
   --chart-version 9.18.2 \
   --target-namespace traefik
