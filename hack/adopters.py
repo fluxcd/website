@@ -98,18 +98,14 @@ def write_endorsements(data):
     for entry in data['endorsements']:
         html += """
     <div class="carousel-item {active}">
-        <div class="row">
-            <div class="col d-block">
+          <div class="foreground-item">
+            <div class="logo">
                 <img src="{image}" alt="">
             </div>
-            <div class="col">
-                <div class="carousel-caption">
-                    <span class="d-none d-md-block">
-                        {text}
-                    </span>
-                    <p>
-                        {subtitle}
-                    </p>
+            <div class="case-study">
+                {text}
+                <div class="description">
+                    {subtitle}
                 </div>
             </div>
         </div>
