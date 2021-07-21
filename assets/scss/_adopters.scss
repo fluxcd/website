@@ -27,7 +27,7 @@ $foreground-color: rgba($flux-white, 0.85);
 
   .foreground-item::before {
     width: $gradient-width;
-    height: 600px;
+    height: 620px;
     display: block;
     background: linear-gradient(90deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
     content: "";
@@ -38,7 +38,7 @@ $foreground-color: rgba($flux-white, 0.85);
 
   .foreground-item::after {
     width: 60px;
-    height: 600px;
+    height: 620px;
     display: block;
     background: linear-gradient(270deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
     content: "";
@@ -49,57 +49,73 @@ $foreground-color: rgba($flux-white, 0.85);
 
 
   #foreground-adopters {
-
     .section-label {
       margin-bottom: 2rem;
     }
 
     .carousel-item {
-      padding: 0 15px;
-      height: 600px;
+      height: 620px;
+
+      @media (max-width: 560px) {
+        height: 800px;
+      }
+
+      @media (max-width: 460px) {
+        height: 900px;
+      }
+
       width: 100vw;
 
-      .foreground-item {
-        max-width: 600px;
-        height: 600px;
+      padding: 0 15px;
 
+      .foreground-item {
+        height: 620px;
+
+        @media (max-width: 560px) {
+          height: 800px;
+        }
+
+        @media (max-width: 460px) {
+          height: 900px;
+        }
+
+        max-width: 600px;
         position: relative;
         left: 0;
         right: 0;
         margin: 0rem auto;
-        padding-top: 1rem;
 
         background-color: $foreground-color;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       .logo {
         height: 120px;
-        position: relative;
-        left: 0;
-        right: 0;
-        margin: 0rem auto;
-
+        display: flex;
+        background-color: $flux-white;
+        opacity: 1;
         img {
-          max-width: 600px;
+          max-width: 552px;
           max-height: 120px;
+          object-fit: contain;
 
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
+          @include media-breakpoint-down(sm) {
+            max-width: 75vw;
+          }
         }
+
+
       }
 
       .case-study {
         display: flex;
-        padding: 2.5rem 12px 0 12px;
+        padding: 1rem 12px 0 24px;
 
         max-width: 600px;
-        height: 480px;
-        margin: 0 auto;
-
         flex-wrap: wrap;
         .summary {
           flex: 2 0 0;
@@ -141,25 +157,32 @@ $foreground-color: rgba($flux-white, 0.85);
   }
 
   #background-logos {
-    opacity: 0.1;
+    opacity: 0.25;
     position: absolute;
     display: flex;
     align-items: center;
+    height: 620px;
+
 
     @include media-breakpoint-down(md) {
       display: none;
     }
-    height: 600px;
 
     .col {
       position: static;
       max-height: 600px;
+      width: 100vw;
+      display: flex; 
+      flex-wrap: wrap-reverse;
+      justify-content: space-between;
+      
 
       img {
         height: 96px;
         width: auto;
-        margin: 12px;
-        object-fit: cover;
+        max-width: 200px;
+        margin: 12px 24px;
+        object-fit: contain;
       }
     }
   }
@@ -172,6 +195,40 @@ $foreground-color: rgba($flux-white, 0.85);
     // touchscreen
     @media (hover: none) {
       @include carousel-controls-hover();
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+      width: 20px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+    .carousel-control-prev span {
+      position: absolute;
+      left: -320px;
+    }
+
+    .carousel-control-next span {
+      position: absolute;
+      left: 320px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      .carousel-control-prev {
+        left: 4px;
+        right: auto;
+      }
+
+      .carousel-control-next {
+        left: auto;
+        right: 4px;
+      }
+
+      .carousel-control-prev, .carousel-control-next {
+        span {
+          position: static;
+        }
+      }
     }
 
     .carousel-inner {
