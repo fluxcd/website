@@ -1,7 +1,7 @@
 adopters:
-  project: Flux v2
+  project: Flux
   description: >
-    Check out everything about Flux v2 on our [website](https://fluxcd.io/docs/).
+    Check out everything about Flux on our [website](https://fluxcd.io/docs/).
   companies:
     - name: Weaveworks
       url: https://weave.works

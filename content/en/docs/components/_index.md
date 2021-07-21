@@ -6,7 +6,7 @@ weight: 60
 ---
 
 The GitOps Toolkit is the set of APIs and controllers that make up the
-runtime for Flux v2. The APIs comprise Kubernetes custom resources,
+runtime for Flux. The APIs comprise Kubernetes custom resources,
 which can be created and updated by a cluster user, or by other
 automation tooling.
 

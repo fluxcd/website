@@ -8,10 +8,10 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 >
 > Project          | Docs Site                                 | Github Source
 > ---------------- | ------------------------------------------| -------------
-> Flux v2          | <https://fluxcd.io/docs>                  | <https://github.com/fluxcd/website>
+> Flux             | <https://fluxcd.io/docs>                  | <https://github.com/fluxcd/website>
 > Flagger          | <https://docs.flagger.app>                | <https://github.com/fluxcd/flagger>
-> Flux v1          | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
-> Helm Operator v1 | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
+> Flux (legacy)    | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
+> Helm Operator    | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
 
 ## How to modify this website
 
