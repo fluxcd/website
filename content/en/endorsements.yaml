@@ -68,3 +68,17 @@ endorsements:
       <i>At DT Technik we have built our own Kubernetes platform “Das Schiff” which we offer to our internal customers as a managed service. It is based around FluxCD and cluster-api and brings GitOps to the centre of large-scale infrastructure management.</i>
       <br/><br/>
       Maximilian Rink & Marcel Fest, DevOps Engineers, <b>Deutsche Telekom</b>
+  - image: https://i3.ytimg.com/vi/ewCnqDgewMg/0.jpg
+    text: >
+      <div class="summary">
+        <div class="business">
+          <a href="https://www.youtube.com/watch?v=ewCnqDgewMg">How DoD Uses K8s & Flux to Achieve Compliance & Deployment Consistency</a>
+        </div>
+        <div class="details">
+          This session will walk through the migration steps, what it takes to operate Flux in an air-gapped environment and how we achieved parity when applications are deployed to environments with different constraints.
+        </div>
+      </div>
+    subtitle: >
+      <i>By introducing Helm and Flux, DoD moved to a more declarative model where everything is version controlled and deployed by Flux thereby reducing manual operations, improving deployment consistency and also bringing more compliance with regard to change management and application life cycle.</i>
+      <br/><br/>
+      Michael Medellin & Gordon Tillman, <b>Department of Defense</b>
