@@ -54,3 +54,17 @@ endorsements:
       <i>For Kubernetes, Gitops provides a simple audit trail that is invaluable in figuring out what has broken. Flux (and our Tidebot) give our developers a low-risk self-deployment option. Together, Flux and GitOps accelerate our innovation.</i>
       <br/><br/>
       <a href="https://www.weave.works/blog/case-study-tidepool-streamlines-and-secures-cluster-lifecycle-with-gitops"> Tidepool case study with Weaveworks</a>
+  - image: https://i3.ytimg.com/vi/59mTx8tBYag/0.jpg
+    text: >
+      <div class="summary">
+        <div class="business">
+          <a href="https://www.youtube.com/watch?v=59mTx8tBYag">GitOps Days 2021: How We Sailed into Production - GitOps-based CaaS at Deutsche Telekom</a>
+        </div>
+        <div class="details">
+          In this talk we will share what early mistakes we made adopting GitOps, explain how FluxCD v2 helped us with solving many of those problems and show you how does our current solution looks like. We will also go into detail what benefits we have harvested with GitOps in contrast to other models and which pain points GitOps helped us eliminate/avoid. Finally, we will elaborate our way forward into the rough sea of 100s of clusters.
+        </div>
+      </div>
+    subtitle: >
+      <i>At DT Technik we have built our own Kubernetes platform “Das Schiff” which we offer to our internal customers as a managed service. It is based around FluxCD and cluster-api and brings GitOps to the centre of large-scale infrastructure management.</i>
+      <br/><br/>
+      Maximilian Rink & Marcel Fest, DevOps Engineers, <b>Deutsche Telekom</b>
