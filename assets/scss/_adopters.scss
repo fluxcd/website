@@ -49,7 +49,6 @@ $foreground-color: rgba($flux-white, 0.85);
 
 
   #foreground-adopters {
-
     .section-label {
       margin-bottom: 2rem;
     }
@@ -190,17 +189,39 @@ $foreground-color: rgba($flux-white, 0.85);
     }
 
     .carousel-control-prev, .carousel-control-next {
-      width: 25%;
-      @include media-breakpoint-down(md) {
-        width: 15%;
-        margin: 4px;
+      width: 20px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+    .carousel-control-prev span {
+      position: absolute;
+      left: -320px;
+    }
+
+    .carousel-control-next span {
+      position: absolute;
+      left: 320px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      .carousel-control-prev {
+        left: 4px;
+        right: auto;
       }
 
-      @include media-breakpoint-down(sm) {
-        width: 5%;
-        margin: 4px;
+      .carousel-control-next {
+        left: auto;
+        right: 4px;
+      }
+
+      .carousel-control-prev, .carousel-control-next {
+        span {
+          position: static;
+        }
       }
     }
+
 
     .carousel-inner {
       .carousel-item {
