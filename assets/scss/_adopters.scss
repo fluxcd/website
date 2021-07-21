@@ -96,6 +96,8 @@ $foreground-color: rgba($flux-white, 0.85);
       .logo {
         height: 120px;
         display: flex;
+        background-color: $flux-white;
+        opacity: 1;
         img {
           max-width: 552px;
           max-height: 120px;
@@ -159,21 +161,28 @@ $foreground-color: rgba($flux-white, 0.85);
     position: absolute;
     display: flex;
     align-items: center;
+    height: 620px;
+
 
     @include media-breakpoint-down(md) {
       display: none;
     }
-    height: 600px;
 
     .col {
       position: static;
       max-height: 600px;
+      width: 100vw;
+      display: flex; 
+      flex-wrap: wrap-reverse;
+      justify-content: space-between;
+      
 
       img {
         height: 96px;
         width: auto;
-        margin: 12px;
-        object-fit: cover;
+        max-width: 200px;
+        margin: 12px 24px;
+        object-fit: contain;
       }
     }
   }
@@ -221,7 +230,6 @@ $foreground-color: rgba($flux-white, 0.85);
         }
       }
     }
-
 
     .carousel-inner {
       .carousel-item {
