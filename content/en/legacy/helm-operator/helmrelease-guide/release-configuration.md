@@ -126,11 +126,11 @@ spec:
 ## Configuring the timeout
 
 To configure how many seconds Helm should wait for any individual Kubernetes operations
-you can set `.timeout`, the default is `300`:
+you can set `.timeout`, the default is `300s`:
 
 ```yaml
 spec:
-  timeout: 300
+  timeout: 300s
 ```
 
 {{% alert color="warning" title="Warning" %}}
