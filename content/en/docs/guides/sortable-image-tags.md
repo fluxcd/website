@@ -162,7 +162,7 @@ spec:
   imageRepositoryRef:
     name: image-repo
   filterTags:
-    ## use "pattern: '(?P<ts>.*)-.+'" if you copied the workflow example using github.run_number
+    ## use "pattern: '[a-f0-9]+-(?P<ts>[0-9]+)'" if you copied the workflow example using github.run_number
     pattern: '^main-[a-f0-9]+-(?P<ts>[0-9]+)'
     extract: '$ts'
   policy:
