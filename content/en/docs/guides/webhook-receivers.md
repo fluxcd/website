@@ -58,7 +58,7 @@ Wait for Kubernetes to assign a public address with:
 watch kubectl -n flux-system get svc/receiver
 ``` 
 
-...or, create an `Ingress` with the same destination, the `notification-webhook` http service on port 9292:
+...or, create an `Ingress` with the same destination, the `notification-webhook` http service on port 80:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -77,7 +77,7 @@ spec:
           service:
             name: webhook-receiver
             port:
-              number: 9292
+              number: 80
 ```
 
 Add any necessary annotations for your ingress controller or, for example, cert-manager to encrypt the endpoint with TLS; full configuration of ingress controllers and TLS are beyond the scope of this documentation.
