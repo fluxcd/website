@@ -80,13 +80,13 @@ Depending on your configuration, a reconciliation can mean:
 * health checking of deployed workloads
 * garbage collection of resources removed from Git
 * issuing events about the reconciliation result
-* recoding metrics about the reconciliation process 
+* recoding metrics about the reconciliation process
 
 The 15 minutes reconciliation interval, is the interval at which you want to undo manual changes
 .e.g. `kubectl set image deployment/my-app` by reapplying the latest commit on the cluster.
 
 Note that a reconciliation will override all fields of a Kubernetes object, that diverge from Git.
-For example, you'll have to omit the `spec.replicas` field from your `Deployments` YAMLs if you 
+For example, you'll have to omit the `spec.replicas` field from your `Deployments` YAMLs if you
 are using a `HorizontalPodAutoscaler` that changes the replicas in-cluster.
 
 ### Can I use repositories with plain YAMLs?
@@ -171,6 +171,46 @@ it runs `kustomize` locally or in CI with the same set of flags as
 the controller and validates the output using `kubeval`.
 {{% /alert %}}
 
+
+### How to patch CoreDNS and other pre-installed addons?
+
+To patch a pre-installed addon like CoreDNS with customized content.
+Simple add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository.
+
+Example CoreDNS with podAntiAffinity
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: kube-dns
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+  name: coredns
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kube-dns
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-dns
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  k8s-app: kube-dns
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - name: coredns
+```
+
 ## Helm questions
 
 ### How to debug "not ready" errors?
@@ -188,7 +228,7 @@ In order to get to the root cause, first make sure the source e.g. the `HelmRepo
 is configured properly and has access to the remote `index.yaml`:
 
 ```sh
-$ flux get sources helm --all-namespaces 
+$ flux get sources helm --all-namespaces
 NAMESPACE  	NAME   	READY	MESSAGE
 default   	podinfo	False	failed to fetch https://stefanprodan.github.io/podinfo2/index.yaml : 404 Not Found
 ```
@@ -197,7 +237,7 @@ If the source is `Ready`, then the error must be caused by the chart,
 for example due to an invalid chart name or non-existing version:
 
 ```sh
-$ flux get sources chart --all-namespaces 
+$ flux get sources chart --all-namespaces
 NAMESPACE  	NAME           	READY	MESSAGE
 default  	default-podinfo	False	no chart version found for podinfo-9.0.0
 ```
