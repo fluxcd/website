@@ -1,4 +1,4 @@
-FROM fluxcd/website:hugo-0.78.2-extended
+FROM fluxcd/website:hugo-0.86.0-extended
 
 RUN apk update && \
     apk add --no-cache \
