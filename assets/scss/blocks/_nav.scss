@@ -60,10 +60,3 @@ nav.navbar {
     font-weight: unset;
   }
 }
-
-// for now until https://github.com/google/docsy/issues/616 is fixed
-nav.foldable-nav {
-  input:checked ~ ul.foldable {
-    max-height: 1000vmax;
-  }
-}
