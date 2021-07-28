@@ -839,11 +839,11 @@ kubectl delete crd helmreleases.helm.fluxcd.io
 
 ### Are automated image updates supported?
 
-Not yet, but the feature is under active development. See the [image update feature parity section on the roadmap](/docs/roadmap/#flux-image-update-feature-parity) for updates on this topic.
+Yes, image updates are supported for `HelmRelease` as well as any other Kubernetes custom resources stored in Git. See the [Image Update Guide](/docs/guides/image-update/#configure-image-update-for-custom-resources) for more information.
 
 ### How do I automatically apply my `HelmRelease` resources to the cluster?
 
-If you are currently a Flux v1 user, you can commit the `HelmRelease` resources to Git, and Flux will automatically apply them to the cluster like any other resource. It does however not support automated image updates for Helm Controller resources.
+If you are currently a Flux v1 user, you can commit the `HelmRelease` resources to Git, and Flux will automatically apply them to the cluster like any other resource.
 
 If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](/docs/components/kustomize/controller/) will serve your needs.
 
