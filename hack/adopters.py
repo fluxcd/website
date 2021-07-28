@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+#
+# Generate adopters content for landing page and /adopters
+#
 
 import glob
 import os
@@ -7,20 +10,20 @@ import shutil
 import sys
 
 # Workaround to make this work in Netlify...
-local_py_path = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
-if local_py_path not in sys.path:
-    sys.path.append(local_py_path)
+LOCAL_PY_PATH = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
+if LOCAL_PY_PATH not in sys.path:
+    sys.path.append(LOCAL_PY_PATH)
 
 import yaml
 
 DEFAULT_LOGO = 'logos/logo-generic.png'
-top_level_dir = os.path.realpath(
+TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
-content_dir = os.path.join(top_level_dir, 'content/en')
-adopters_dir = os.path.join(top_level_dir, 'adopters')
+CONTENT_DIR = os.path.join(TOP_LEVEL_DIR, 'content/en')
+ADOPTERS_DIR = os.path.join(TOP_LEVEL_DIR, 'adopters')
 
-def write_page_header(f):
-    f.write('''---
+def write_page_header(file_descriptor):
+    file_descriptor.write('''---
 title: Flux Adopters
 type: page
 description: >
@@ -38,11 +41,11 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 To join this list, please follow [these instructions](https://github.com/fluxcd/website/blob/main/adopters#readme).
 ''')
 
-def write_section_header(yaml_fn, data, f):
+def write_section_header(yaml_fn, data, file_descriptor):
     section_id = os.path.basename(yaml_fn).split('.yaml')[0][2:]
     section_title = data['adopters']['project']
     page_description = data['adopters']['description']
-    f.write('''
+    file_descriptor.write('''
 <h2 id="{}">{} Adopters</h2>
 
 {}
@@ -50,21 +53,21 @@ def write_section_header(yaml_fn, data, f):
 
 def fix_up_logo(logo_entry):
     if not logo_entry.startswith('https:'):
-        logo_fn = os.path.join(adopters_dir, logo_entry)
+        logo_fn = os.path.join(ADOPTERS_DIR, logo_entry)
         if not os.path.exists(logo_fn):
             print('"{}" not found.'.format(logo_fn))
             sys.exit(1)
         logo_entry = '/img/' + logo_entry
     return logo_entry
 
-def write_card_text(f, company_name, company_url, company_logo):
+def write_card_text(file_descriptor, company_name, company_url, company_logo):
     card_text = '{{% card header="[' + \
         company_name + '](' + \
         company_url + ')" %}}\n'
     card_text += '![' + company_name + '](' + \
         company_logo + ')\n'
     card_text += '{{% /card %}}\n'
-    f.write(card_text)
+    file_descriptor.write(card_text)
 
 def write_adopter_logos_for_landing_page(data):
     html = ""
@@ -79,17 +82,17 @@ def write_adopter_logos_for_landing_page(data):
             logo=entry['logo'],
             caption=entry['name'])
 
-    out_file = os.path.join(content_dir, 'adopters_bg_include.html')
+    out_file = os.path.join(CONTENT_DIR, 'adopters_bg_include.html')
     if os.path.exists(out_file):
         os.remove(out_file)
-    f = open(out_file, 'w')
-    f.write(html)
-    f.close()
+    file_descriptor = open(out_file, 'w')
+    file_descriptor.write(html)
+    file_descriptor.close()
 
 def read_endorsements():
-    endorsements_fn = os.path.join(content_dir, 'endorsements.yaml')
-    with open(endorsements_fn, 'r') as File:
-        data = yaml.safe_load(File)
+    endorsements_fn = os.path.join(CONTENT_DIR, 'endorsements.yaml')
+    with open(endorsements_fn, 'r') as endorsements_fd:
+        data = yaml.safe_load(endorsements_fd)
     return data
 
 def write_endorsements(data):
@@ -113,31 +116,31 @@ def write_endorsements(data):
         image=entry['image'], text=entry['text'], subtitle=entry['subtitle']
     )
 
-    endorsements_html_fn = os.path.join(content_dir, 'adopters_carousel_include.html')
+    endorsements_html_fn = os.path.join(CONTENT_DIR, 'adopters_carousel_include.html')
     if os.path.exists(endorsements_html_fn):
         os.remove(endorsements_html_fn)
-    f = open(endorsements_html_fn, 'w')
-    f.write(html)
-    f.close()
+    file_descriptor = open(endorsements_html_fn, 'w')
+    file_descriptor.write(html)
+    file_descriptor.close()
 
 
 def write_adopters_page():
-    adopters_page_fn = os.path.join(content_dir, 'adopters.md')
+    adopters_page_fn = os.path.join(CONTENT_DIR, 'adopters.md')
 
-    f = open(adopters_page_fn, 'w')
-    write_page_header(f)
+    file_descriptor = open(adopters_page_fn, 'w')
+    write_page_header(file_descriptor)
 
-    adopters_files = sorted(glob.glob(adopters_dir+'/*.yaml'))
+    adopters_files = sorted(glob.glob(ADOPTERS_DIR+'/*.yaml'))
     all_companies = []
     for yaml_fn in adopters_files:
-        with open(yaml_fn, 'r') as File:
-            data = yaml.safe_load(File)
-        write_section_header(yaml_fn, data, f)
+        with open(yaml_fn, 'r') as endorsements_fd:
+            data = yaml.safe_load(endorsements_fd)
+        write_section_header(yaml_fn, data, file_descriptor)
 
         companies = data['adopters']['companies']
         companies = sorted(companies, key=lambda x: x['name'].lower())
 
-        f.write('''<div class="adopters">
+        file_descriptor.write('''<div class="adopters">
 {{< cardpane >}}
 ''')
         for company in companies:
@@ -146,16 +149,17 @@ def write_adopters_page():
             company['logo'] = fix_up_logo(company['logo'])
             if company not in all_companies:
                 all_companies += [company]
-            write_card_text(f, company['name'], company['url'], company['logo'])
+            write_card_text(file_descriptor, company['name'],
+                            company['url'], company['logo'])
 
-        f.write('''{{< /cardpane >}}
+        file_descriptor.write('''{{< /cardpane >}}
 </div>
 ''')
-    f.close()
+    file_descriptor.close()
     return all_companies
 
 def main():
-    if os.getcwd() != top_level_dir:
+    if os.getcwd() != TOP_LEVEL_DIR:
         print('Please run this script from top-level of the repository.')
         sys.exit(1)
 
@@ -164,12 +168,12 @@ def main():
 
     all_companies = write_adopters_page()
 
-    new_logos_dir = os.path.join(top_level_dir, 'static/img/logos')
+    new_logos_dir = os.path.join(TOP_LEVEL_DIR, 'static/img/logos')
     if not os.path.exists(new_logos_dir):
         os.makedirs(new_logos_dir)
 
     for img in glob.glob(
-            os.path.join(adopters_dir, 'logos')+'/*'):
+            os.path.join(ADOPTERS_DIR, 'logos')+'/*'):
         shutil.copyfile(
             img,
             os.path.join(new_logos_dir,

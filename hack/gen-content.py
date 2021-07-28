@@ -16,9 +16,9 @@ import subprocess
 import tempfile
 
 # Workaround to make this work in Netlify...
-local_py_path = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
-if local_py_path not in sys.path:
-    sys.path.append(local_py_path)
+LOCAL_PY_PATH = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
+if LOCAL_PY_PATH not in sys.path:
+    sys.path.append(LOCAL_PY_PATH)
 
 import pathlib
 
@@ -49,14 +49,14 @@ def rewrite_header(out_file, title=None, docs=False, weight=None):
         '\n'
     ]
 
-    f = open(out_file, 'w')
-    f.writelines(header_lines)
+    file_desc = open(out_file, 'w')
+    file_desc.writelines(header_lines)
 
     for line in lines:
         if not docs or not line.startswith('# ') or lines.index(line) >= 4:
             if not line.startswith('<!-- '): #FML!
-                f.write(line)
-    f.close()
+                file_desc.write(line)
+    file_desc.close()
 
 class Repo():
     def __init__(self, external_sources_dir, repo_fn):
@@ -68,8 +68,8 @@ class Repo():
         self.file_list = []
 
         global link_mapping
-        with open(self.repo_fn, 'r') as f:
-            csv_reader = csv.reader(f)
+        with open(self.repo_fn, 'r') as file_desc:
+            csv_reader = csv.reader(file_desc)
             for line in csv_reader:
                 self.file_list += [[entry.strip('/') for entry in line]]
                 link_mapping += [[entry.strip('/') for entry in line]]
@@ -78,7 +78,8 @@ class Repo():
         shutil.rmtree(self.temp_dir)
 
     def clone_repo(self):
-        subprocess.call(['git', 'clone', '--depth=1', '-q',
+        subprocess.call([
+            'git', 'clone', '--depth=1', '-q',
             self.gh_source, self.dest])
 
     def rewrite_links(self, out_file):
@@ -94,13 +95,13 @@ class Repo():
                         link, '/{}'.format(entry[1].lower().split('.md')[0]))
                 elif link.startswith(self.gh_source) and link.endswith(entry[0]):
                     content = content.replace(
-                        link,  '/{}'.format(entry[1].lower().split('.md')[0]))
+                        link, '/{}'.format(entry[1].lower().split('.md')[0]))
             if not link.startswith('https://'):
                 content = content.replace(
                     link, '{}/blob/main/{}'.format(self.gh_source, link))
-        f = open(out_file, 'w')
-        f.write(content)
-        f.close()
+        file_desc = open(out_file, 'w')
+        file_desc.write(content)
+        file_desc.close()
 
     def copy_files(self, content_dir):
         for entry in self.file_list:
