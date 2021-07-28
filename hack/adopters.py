@@ -77,8 +77,7 @@ def write_adopter_logos_for_landing_page(data):
             html += """
         <img src="{logo}" alt="{caption}">""".format(
             logo=entry['logo'],
-            caption=entry['name'] if 'needs-name' in entry and \
-                entry['needs-name'] else '')
+            caption=entry['name'])
 
     out_file = os.path.join(content_dir, 'adopters_bg_include.html')
     if os.path.exists(out_file):

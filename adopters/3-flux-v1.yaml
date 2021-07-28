@@ -131,7 +131,6 @@ adopters:
     - name: Sage AI Labs
       url: https://www.sage.com
       logo: logos/sageailabs.png
-      needs-name: true
     - name: Sngular
       url: https://www.sngular.com
       logo: logos/sngular.png
