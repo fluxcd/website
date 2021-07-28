@@ -1,0 +1,84 @@
+endorsements:
+  - image: /img/logos/mettle.png
+    text: >
+            <div class="summary">
+              <div class="business">
+                <ul>
+                <li><strong>Industry: </strong>Finance</li>
+                <li><strong>Location: </strong>London</li>
+                </ul>
+              </div>
+
+              <div class="details">
+                <h3>Highlights</h3>
+                <ul>
+                  <li>Production speed increased by 50%</li>
+                  <li>Deployments increased by 75%</li>
+                  <li>MTTR in 20min for all clusters</li>
+                  <li>Devs 75% less focused on operations</li>
+                </ul>
+              </div>
+
+              <div class="details">
+                <h3>Key Benefits</h3>
+                <ul>
+                  <li>GitOps enabled a self-service Development Team</li>
+                  <li>Weave Flux enabled greater security into their workflows</li>
+                </ul>
+              </div>
+            </div>
+    subtitle: >
+      <i>Leveraging GitOps has allowed us to create a self-service platform for engineers so they can concentrate on delivering business value through innovation, without the full need for Platform Team assistance. The engineers focus on building container images and managing the testing of their microservices and Weave Flux handles the deployments.</i>
+      <br/><br/>
+      <a href="https://www.weave.works/blog/case-study-mettle-leverages-gitops-for-self-service-developer-platform"> Mettle case study with Weaveworks</a>
+  - image: /img/logos/tidepool.png
+    text: >
+              <div class="summary">
+                <div class="business">
+                  <ul>
+                  <li><strong>Industry: </strong>Software</li>
+                  <li><strong>Location: </strong>United States of America</li>
+                  </ul>
+                </div>
+
+                <div class="details">
+                  <h3>Key Benefits</h3>
+                  <ul>
+                    <li>GitOps provides a low-risk self-deployment model</li>
+                    <li>Significant time savings with automated cluster lifecycle management</li>
+                    <li>Robust and secure platform with built-in auditability</li>
+                  </ul>
+                </div>
+              </div>
+    subtitle: >
+      <i>For Kubernetes, Gitops provides a simple audit trail that is invaluable in figuring out what has broken. Flux (and our Tidebot) give our developers a low-risk self-deployment option. Together, Flux and GitOps accelerate our innovation.</i>
+      <br/><br/>
+      <a href="https://www.weave.works/blog/case-study-tidepool-streamlines-and-secures-cluster-lifecycle-with-gitops"> Tidepool case study with Weaveworks</a>
+  - image: https://i3.ytimg.com/vi/59mTx8tBYag/0.jpg
+    text: >
+      <div class="summary">
+        <div class="business">
+          <a href="https://www.youtube.com/watch?v=59mTx8tBYag">GitOps Days 2021: How We Sailed into Production - GitOps-based CaaS at Deutsche Telekom</a>
+        </div>
+        <div class="details">
+          In this talk we will share what early mistakes we made adopting GitOps, explain how FluxCD v2 helped us with solving many of those problems and show you how does our current solution looks like. We will also go into detail what benefits we have harvested with GitOps in contrast to other models and which pain points GitOps helped us eliminate/avoid. Finally, we will elaborate our way forward into the rough sea of 100s of clusters.
+        </div>
+      </div>
+    subtitle: >
+      <i>At DT Technik we have built our own Kubernetes platform “Das Schiff” which we offer to our internal customers as a managed service. It is based around FluxCD and cluster-api and brings GitOps to the centre of large-scale infrastructure management.</i>
+      <br/><br/>
+      Maximilian Rink & Marcel Fest, DevOps Engineers, <b>Deutsche Telekom</b>
+  - image: https://i3.ytimg.com/vi/ewCnqDgewMg/0.jpg
+    text: >
+      <div class="summary">
+        <div class="business">
+          <a href="https://www.youtube.com/watch?v=ewCnqDgewMg">How DoD Uses K8s & Flux to Achieve Compliance & Deployment Consistency</a>
+        </div>
+        <div class="details">
+          This session will walk through the migration steps, what it takes to operate Flux in an air-gapped environment and how we achieved parity when applications are deployed to environments with different constraints.
+        </div>
+      </div>
+    subtitle: >
+      <i>By introducing Helm and Flux, DoD moved to a more declarative model where everything is version controlled and deployed by Flux thereby reducing manual operations, improving deployment consistency and also bringing more compliance with regard to change management and application life cycle.</i>
+      <br/><br/>
+      Michael Medellin & Gordon Tillman, <b>Department of Defense</b>

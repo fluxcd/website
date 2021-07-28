@@ -24,9 +24,6 @@ Flux APIs are now stable!
 
   <h2 id="flux-facts">Flux in short</h2>
 
-  <p>Some of the biggest organisations have adopted the Flux family of projects for their GitOps needs.</p>
-  <p>See <a href="/adopters">who is part of our community</a> and how about joining yourself?</p>
-
   {{< /blocks/lead >}}
   </div>
 </div>
@@ -96,96 +93,18 @@ to extend Flux.
 {{< /blocks/section >}}
 
 
+<!-- ADOPTERS SUBSECTION -->
+{{% blocks/lead title="Who is using Flux" color="primary" %}}
+<h2 class="section-label">Who is using Flux</h2>
 
-<!-- RESOURCES HERE -->
+Some of the biggest organisations have adopted the Flux family of projects for their GitOps needs.
 
-<div class="section-resources">
-
-{{< blocks/lead >}}
-<h2 class="section-label">Resources</h2>
-
-If you are new to Flux, you might want to check out some of the following resources to get started.
+See <a href="/adopters">who is part of our community</a> and how about joining yourself?
 {{< /blocks/lead >}}
 
+{{< blocks/carousel >}}
 
-{{% blocks/section type="resources" %}}
 
-{{% blocks/resource
-  youtube="nGLpUCPX8JE"
-  title="The Evolution of Flux v2 with Stefan Prodan" %}}
-Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
-{{% /blocks/resource %}}
-
-{{% blocks/resource
-  youtube="0v5bjysXTL8"
-  title="The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili" %}}
-Leigh demos bootstrapping with GitOps Toolkit, app deployment, and monitoring with Prometheus.
-{{% /blocks/resource %}}
-
-{{% blocks/resource
-  youtube="JcKUawSQfQ0"
-  title="Flux v2 for Helm Users with Scott Rigby" %}}
-Scott covers what to keep in mind as Helm 2 support ends, the benefits of Helm Controller, and how to migrate from Helm Operator to Helm Controller.
-{{% /blocks/resource %}}
-
-{{% blocks/resource
-  youtube="7W27tAv7Tvs"
-  title="Managing Remote Clusters with Flux v2 (CAPI demo) with Leigh Capili" %}}
-Leigh covers cluster API integration, dependency management & ordering, security model updates, and delegation & multi-tenancy via users.
-{{% /blocks/resource %}}
-
-{{% blocks/resource
-  youtube="R6OeIgb7lUI"
-  title="Flux v2 overview, demo, & review with Viktor Farcic" %}}
-Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
-{{% /blocks/resource %}}
-
-{{% blocks/resource
-  url="https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
-  title="Flux v2 Deep Dive series with Geert Baeke" %}}
-In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
-{{% /blocks/resource %}}
-
-{{% /blocks/section %}}
-</div>
-
-<!-- OTHER FLUX PROJECTS -->
-<div class="section-other-flux-projects">
-{{< blocks/lead >}}
-
-<h2 class="section-label">Other Flux projects</h2>
-
-{{< /blocks/lead >}}
-
-{{% blocks/section color="white" %}}
-
-{{% blocks/project title="GitOps Toolkit"
-  image="/img/building-blocks.svg" image-align="left" bg-color="blue"
-  button1-url="/docs/gitops-toolkit/source-watcher/"
-  button2-url="/docs/components/" %}}
-The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
-{{% /blocks/project %}}
-
-{{% blocks/project title="Flagger"
-  image="/img/flagger-gitops.png" image-align="right" bg-color="green"
-  button1-url="https://docs.flagger.app/"
-  button2-url="https://flagger.app/" %}}
-Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
-
-The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
-{{% /blocks/project %}}
-
-{{% blocks/project title="Flux v1 and Helm Operator"
-  image="/img/logos/flux-horizontal-color.png" image-align="right" bg-color="white"
-  button1-url="/legacy/flux" button1-caption="Flux v1 Documentation" button1-color="blue"
-  button2-url="/legacy/helm-operator/" button2-caption="Helm Operator Documentation" button2-color="blue" %}}
-We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
-
-We **strongly advise** everyone to familiarise themselves with the latest version of Flux and [start the process of migrating](/docs/migration/).
-{{% /blocks/project %}}
-
-{{% /blocks/section %}}
-</div>
 
 <!-- Community -->
 <div class="section-community">
@@ -220,17 +139,107 @@ Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="h
 
 {{< /blocks/community >}}
 
-{{< blocks/lead color="dark" >}}
-<h2 class="section-label">Meet our contributors</h2>
-
-{{< blocks/contributors >}}
-
-{{< /blocks/lead >}}
 
 
 
 
 {{< /blocks/section >}}
 </div>
+
+<!-- RESOURCES HERE -->
+
+<div class="section-resources">
+
+  {{< blocks/lead color="primary" >}}
+  <h2 class="section-label">Resources</h2>
+
+  If you are new to Flux, you might want to check out some of the following resources to get started.
+  {{< /blocks/lead >}}
+
+
+  {{% blocks/section color="primary" type="resources" %}}
+
+  {{% blocks/resource
+    youtube="nGLpUCPX8JE"
+    title="The Evolution of Flux v2 with Stefan Prodan" %}}
+  Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
+  {{% /blocks/resource %}}
+
+  {{% blocks/resource
+    youtube="0v5bjysXTL8"
+    title="The Power of GitOps with Flux v2 & GitOps Toolkit with Leigh Capili" %}}
+  Leigh demos bootstrapping with GitOps Toolkit, app deployment, and monitoring with Prometheus.
+  {{% /blocks/resource %}}
+
+  {{% blocks/resource
+    youtube="JcKUawSQfQ0"
+    title="Flux v2 for Helm Users with Scott Rigby" %}}
+  Scott covers what to keep in mind as Helm 2 support ends, the benefits of Helm Controller, and how to migrate from Helm Operator to Helm Controller.
+  {{% /blocks/resource %}}
+
+  {{% blocks/resource
+    youtube="7W27tAv7Tvs"
+    title="Managing Remote Clusters with Flux v2 (CAPI demo) with Leigh Capili" %}}
+  Leigh covers cluster API integration, dependency management & ordering, security model updates, and delegation & multi-tenancy via users.
+  {{% /blocks/resource %}}
+
+  {{% blocks/resource
+    youtube="R6OeIgb7lUI"
+    title="Flux v2 overview, demo, & review with Viktor Farcic" %}}
+  Stefan introduces Flux v2, explains why it was reshaped into a composable continuous delivery solution that goes beyond Git sync to accommodate multi-tenancy, infrastructure dependencies and cluster-api fleet management.
+  {{% /blocks/resource %}}
+
+  {{% blocks/resource
+    url="https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
+    title="Flux v2 Deep Dive series with Geert Baeke" %}}
+  In this 5 video series, Geert Baeke takes a deep dive of Flux v2 and the use of GitOps principles with an Intro to Flux v2, Intro to Kustomize, Deploying Manifests, Monitoring & Alerting, and Helm Basics.
+  {{% /blocks/resource %}}
+
+  {{% /blocks/section %}}
+  </div>
+
+  <!-- OTHER FLUX PROJECTS -->
+  <div class="section-other-flux-projects">
+  {{< blocks/lead color="blue">}}
+
+  <h2 class="section-label">Other Flux projects</h2>
+
+  {{< /blocks/lead >}}
+
+  {{% blocks/section color="white" %}}
+
+  {{% blocks/project title="GitOps Toolkit"
+    image="/img/building-blocks.svg" image-align="left" bg-color="blue"
+    button1-url="/docs/gitops-toolkit/source-watcher/"
+    button2-url="/docs/components/" %}}
+  The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
+  {{% /blocks/project %}}
+
+  {{% blocks/project title="Flagger"
+    image="/img/flagger-gitops.png" image-align="right" bg-color="green"
+    button1-url="https://docs.flagger.app/"
+    button2-url="https://flagger.app/" %}}
+  Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
+
+  The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
+  {{% /blocks/project %}}
+
+  {{% blocks/project title="Flux v1 and Helm Operator"
+    image="/img/logos/flux-horizontal-color.png" image-align="right" bg-color="white"
+    button1-url="/legacy/flux" button1-caption="Flux v1 Documentation" button1-color="blue"
+    button2-url="/legacy/helm-operator/" button2-caption="Helm Operator Documentation" button2-color="blue" %}}
+  We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
+
+  We **strongly advise** everyone to familiarise themselves with the latest version of Flux and [start the process of migrating](/docs/migration/).
+  {{% /blocks/project %}}
+
+  {{% /blocks/section %}}
+  </div>
+
+{{< blocks/lead color="dark" >}}
+<h2 class="section-label">Made possible by our contributors</h2>
+
+{{< blocks/contributors >}}
+{{< /blocks/lead >}}
 
 {{< blocks/cncf >}}

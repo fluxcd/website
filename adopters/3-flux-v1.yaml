@@ -98,6 +98,7 @@ adopters:
       url: https://www.mediamarktsaturn.com
     - name: Mettle
       url: https://mettle.co.uk
+      logo: logos/mettle.png
     - name: Mintel
       url: https://www.mintel.com
     - name: Multicaja S.A
@@ -130,6 +131,7 @@ adopters:
     - name: Sage AI Labs
       url: https://www.sage.com
       logo: logos/sageailabs.png
+      needs-name: true
     - name: Sngular
       url: https://www.sngular.com
       logo: logos/sngular.png

@@ -85,9 +85,75 @@ h2.section-label {
   }
 }
 
+@mixin carousel-controls-hover {
+  .carousel-control-next, .carousel-control-prev {
+    &:focus {
+      opacity: 0.5;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%233d6ddd' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+   }
+
+   .carousel-control-next-icon {
+     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%233d6ddd' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+   }
+}
+
+.adopters {
+  margin-bottom: 2rem;
+  justify-content: center;
+
+  .section-label {
+    margin-bottom: 0;
+  }
+  .carousel {
+
+    &:hover {
+      @include carousel-controls-hover();
+    }
+
+    // touchscreen
+    @media (hover: none) {
+      @include carousel-controls-hover();
+    }
+
+    .carousel-inner {
+      background: $flux-white;
+      .carousel-item {
+        height: 220px;
+
+        padding: 1rem;
+        text-align: center;
+
+        img {
+          height: 160px;
+          object-fit: contain;
+          padding: 0 100px;
+
+          @include media-breakpoint-down(sm) {
+            padding: 0 75px;
+          }
+
+          @include media-breakpoint-down(xs) {
+            padding: 0 50px;
+          }
+        }
+        .carousel-item-caption {
+          color: $flux-gray;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
 
 .section-resources {
-  .td-box--6 {
+  .td-box--7 {
     background-color: $flux-white !important;
     color: #222;
     padding: 1rem 0 4rem 0;
@@ -98,14 +164,14 @@ h2.section-label {
     }
   }
 
-  .td-box--7 {
+  .td-box--8 {
     background-color: $flux-gray;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234f4f4f' fill-opacity='0.43' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
   }
 }
 
 .section-other-flux-projects {
-  .td-box--8 {
+  .td-box--9 {
     background-color: $flux-gray;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%234f4f4f' fill-opacity='0.43' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 
@@ -146,7 +212,7 @@ h2.section-label {
     }
   }
 
-  section.td-box--6 {
+  section.td-box--7 {
     background-color: $flux-dark-blue;
   }
 

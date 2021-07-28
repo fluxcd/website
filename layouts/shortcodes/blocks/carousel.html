@@ -1,0 +1,25 @@
+<section class="row adopters-carousel p-0">
+
+  <div id="foreground-adopters">
+    <div id="carousel-selected-indicator" class="carousel slide" data-ride="carousel" data-interval="6000">
+      <div class="carousel-inner">
+        <div id="background-logos">
+          <div class="col">
+            {{ readFile "/content/en/adopters_bg_include.html" | safeHTML }}
+          </div>
+        </div>
+
+      {{ readFile "/content/en/adopters_carousel_include.html" | safeHTML }}
+
+      <a class="carousel-control-prev" href="#carousel-selected-indicator" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel-selected-indicator" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</section>
+  
