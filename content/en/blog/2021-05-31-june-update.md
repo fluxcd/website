@@ -184,8 +184,8 @@ and we just made sure to update all relevant information, branding and
 logos. If you ever need to borrow our logos, colours or any other info
 for a presentation or something, check out the [CNCF CI/CD
 Landscape](https://landscape.cncf.io/card-mode?category=continuous-integration-delivery&grouping=category),
-the [Flux](https://branding.cncf.io/projects/flux/) and
-[Flagger](https://branding.cncf.io/projects/flagger/)
+the [Flux](https://github.com/cncf/artwork/tree/master/projects/flux) and
+[Flagger](https://github.com/cncf/artwork/tree/master/projects/flagger)
 branding or our entry on the list of [CNCF
 projects](https://www.cncf.io/projects/#incubating).
 
