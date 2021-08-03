@@ -389,7 +389,7 @@ touch clusters/my-cluster/flux-system/gotk-components.yaml \
 ```
 
 Assuming you want to add custom annotations and labels to the Flux controllers,
-edit `clusters/my-cluster/gotk-patches.yaml` and set the metadata for source-controller and kustomize-controller pods:
+edit `clusters/my-cluster/flux-system/gotk-patches.yaml` and set the metadata for source-controller and kustomize-controller pods:
 
 ```yaml
 apiVersion: apps/v1
@@ -419,7 +419,7 @@ spec:
         custom: label
 ```
 
-Edit `clusters/my-cluster/kustomization.yaml` and set the resources and patches:
+Edit `clusters/my-cluster/flux-system/kustomization.yaml` and set the resources and patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -454,7 +454,7 @@ You can make changes to the patches after bootstrap and Flux will apply them in-
 ### Pod Security Policy
 
 Assuming you want to make the Flux controllers conform to Pod Security Policy or equivalent webhooks,
-create a file at `clusters/my-cluster/psp-patch.yaml` with the following content:
+create a file at `clusters/my-cluster/flux-system/psp-patch.yaml` with the following content:
 
 ```yaml
 apiVersion: apps/v1
@@ -482,7 +482,7 @@ spec:
                 - ALL
 ```
 
-Edit `clusters/my-cluster/kustomization.yaml` and enable the patch:
+Edit `clusters/my-cluster/flux-system/kustomization.yaml` and enable the patch:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
