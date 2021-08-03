@@ -48,11 +48,11 @@ helm install my-traefik traefik/traefik \
 Flux client:
 
 ```sh
-flux create source helm traefik --url https://helm.traefik.io/traefik
+flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik
 flux create helmrelease my-traefik --chart traefik \
   --source HelmRepository/traefik \
   --chart-version 9.18.2 \
-  --target-namespace traefik
+  --namespace traefik
 ```
 
 The main difference is that the Flux client will not imperatively create resources in the cluster.
