@@ -178,7 +178,7 @@ git add -A && git commit -m "add sync manifests" && git push
 Wait for Flux to reconcile your previous commit with:
 
 ```sh
-watch flux get kustomization flux-system
+flux get kustomizations --watch
 ```
 
 ### Flux Upgrade
