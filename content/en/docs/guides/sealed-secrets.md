@@ -71,7 +71,7 @@ You can retrieve the public key with:
 
 ```sh
 kubeseal --fetch-cert \
---controller-name=sealed-secrets \
+--controller-name=sealed-secrets-controller \
 --controller-namespace=flux-system \
 > pub-sealed-secrets.pem
 ``` 
