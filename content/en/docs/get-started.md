@@ -269,7 +269,7 @@ fleet-infra
 In about 30s the synchronization should start:
 
 ```console
-$ watch flux get kustomizations
+$ flux get kustomizations --watch
 NAME            READY   MESSAGE
 flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
 podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
