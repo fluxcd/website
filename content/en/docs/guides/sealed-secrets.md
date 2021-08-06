@@ -53,7 +53,7 @@ Create a Helm release that installs the latest version of sealed-secrets control
 ```sh
 flux create helmrelease sealed-secrets \
 --interval=1h \
---release-name=sealed-secrets \
+--release-name=sealed-secrets-controller \
 --target-namespace=flux-system \
 --source=HelmRepository/sealed-secrets \
 --chart=sealed-secrets \
@@ -149,7 +149,7 @@ spec:
         name: sealed-secrets
       version: ">=1.15.0-0"
   interval: 1h0m0s
-  releaseName: sealed-secrets
+  releaseName: sealed-secrets-controller
   targetNamespace: flux-system
   install:
     crds: Create
