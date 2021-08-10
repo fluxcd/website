@@ -57,6 +57,7 @@ $(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
 gen-content: ## Generates content from external sources.
 	hack/adopters.py
 	hack/gen-content.py
+	hack/import-calendar.py
 	hack/import-flux2-assets.sh
 
 serve: gen-content theme ## Spawns a development server.

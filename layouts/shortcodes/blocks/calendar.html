@@ -1,0 +1,7 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ if (fileExists "/content/en/calendar_include.html") -}}
+<div class="container calendar">
+    <h3>Our team calendar</h3>
+    {{ readFile "/content/en/calendar_include.html" | safeHTML }}
+</div>
+{{ end }}
