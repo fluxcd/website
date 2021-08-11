@@ -53,7 +53,14 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 # enable completions in ~/.bash_profile
 . <(flux completion bash)
 ```
+{{% /tab %}}
+{{% tab "nix" %}}
 
+With Nix:
+
+```sh
+nix-env -i fluxcd
+```
 {{% /tab %}}
 {{% /tabs %}}
 
