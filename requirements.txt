@@ -3,5 +3,6 @@ pathlib
 pygithub
 python-dateutil>=2.8.1
 pyYaml
+pytz
 recurring-ical-events
 urllib3

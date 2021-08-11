@@ -21,6 +21,7 @@ if os.path.exists('/opt/hostedtoolcache/Python'):
 
 
 from icalendar import Calendar
+import pytz
 import recurring_ical_events
 import urllib3
 
@@ -46,7 +47,9 @@ def read_calendar(cal):
     next_month = today+timedelta(days=30)
     for event in recurring_ical_events.of(gcal).between(today, next_month):
         events += [
-            (event['dtstart'].dt, event['summary'], event['description'])
+            (event['dtstart'].dt.astimezone(pytz.utc),
+             event['summary'],
+             event['description'])
         ]
     events.sort()
     return events
@@ -66,11 +69,9 @@ def write_events_html(events):
         <tr>
             <td>{}<td>
             <td>{}<td>
-            <td>{}<td>
         </tr>
 """.format(
     event[0].strftime('%F %H:%M'),
-    event[0].tzinfo,
     event[1])
 
     html += """
