@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from datetime import (date, timedelta)
+import glob
 import os
 import sys
 
@@ -8,6 +9,16 @@ import sys
 LOCAL_PY_PATH = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
 if LOCAL_PY_PATH not in sys.path:
     sys.path.append(LOCAL_PY_PATH)
+
+# I hate doing this... but we've got to make this work on Github Actions...
+if os.path.exists('/opt/hostedtoolcache/Python'):
+    VERSION_INFO = sys.version_info
+    LOCATION = '/opt/hostedtoolcache/Python/{}.{}.*/*/lib/python*/site-packages'.format(
+        VERSION_INFO.major, VERSION_INFO.minor)
+    LOCAL_PY_PATHS = glob.glob(LOCATION)
+    if LOCAL_PY_PATHS and LOCAL_PY_PATHS[0] not in sys.path:
+        sys.path.append(LOCAL_PY_PATHS[0])
+
 
 from icalendar import Calendar
 import recurring_ical_events
