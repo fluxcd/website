@@ -1,7 +1,10 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-{{ if (fileExists "/content/en/calendar_include.html") -}}
 <div class="container calendar">
     <h3>Our team calendar</h3>
+    {{ if (fileExists "/content/en/calendar_include.html") -}}
+    <p>The upcoming meetings, talks and community events in the next month are listed below.</p>
     {{ readFile "/content/en/calendar_include.html" | safeHTML }}
+    {{ end }}
+    <p>See <a href="https://lists.cncf.io/g/cncf-flux-dev/calendar">this page</a>
+        for more detail and subscription options.</p>
 </div>
-{{ end }}
