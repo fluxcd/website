@@ -67,11 +67,13 @@ def write_events_html(events):
     for event in events:
         html += """
         <tr>
-            <td>{}<td>
-            <td>{}<td>
+            <td class="date">{}</td>
+            <td class="time">{}</td>
+            <td class="label">{}</td>
         </tr>
 """.format(
-    event[0].strftime('%F %H:%M'),
+    event[0].strftime('%F'),
+    event[0].strftime('%H:%M'),
     event[1])
 
     html += """
