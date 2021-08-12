@@ -16,10 +16,24 @@
 {{ partialCached "favicons.html" . }}
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Site.Params.Description }}">
-{{- template "_internal/opengraph.html" . -}}
-{{- template "_internal/google_news.html" . -}}
-{{- template "_internal/schema.html" . -}}
-{{- template "_internal/twitter_cards.html" . -}}
+
+
+<meta property="og:title" content="Flux - the GitOps family of projects" />
+<meta property="og:description" content="<h1>Flux</h1> is a <strong>set</set> of <pre>continuous</pre> and progressive delivery solutions for Kubernetes, <h3>and</h3> they are open and extensible. 
+The APIs of Flux are stable now. Now is the best time to start using Flux, or start your migration if you are a legacy user." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="//localhost:1313/" /><meta property="og:image" content="//localhost:1313/img/flux-social.png"/>
+
+<meta itemprop="name" content="Flux - the GitOps family of projects">
+<meta itemprop="description" content="<h1>Flux</h1> is a <strong>set</set> of <pre>continuous</pre> and progressive delivery solutions for Kubernetes, <h3>and</h3> they are open and extensible. 
+  The APIs of Flux are stable now. Now is the best time to start using Flux, or start your migration if you are a legacy user.">
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="//localhost:1313/img/flux-social.png"/>
+
+<meta name="twitter:title" content="Flux - the GitOps family of projects"/>
+<meta name="twitter:description" content="<h1>Flux</h1> is a <strong>set</set> of <pre>continuous</pre> and progressive delivery solutions for Kubernetes, <h3>and</h3> they are open and extensible. 
+  The APIs of Flux are stable now. Now is the best time to start using Flux, or start your migration if you are a legacy user."/>
 
 {{ partialCached "head-css.html" . "asdf" }}
 <script
