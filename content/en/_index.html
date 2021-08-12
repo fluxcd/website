@@ -30,15 +30,36 @@ Flux APIs are now stable!
 
 <div id="feature-list">
 {{% blocks/section color="white" %}}
-   |    |
--- | -- | --
-🤝 | **Flux provides GitOps for both apps and infrastructure** | Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in.
-🤖 | **Just push to Git and Flux does the rest** | Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching).
-🔩 | **Flux works with your existing tools** | Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets as a source), all major container registries, and all CI workflow providers.
-☸️ | **Flux works with any Kubernetes and all common Kubernetes tooling** | Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place.
-🤹 | **Flux does Multi-Tenancy (and “Multi-everything”)** | Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories. Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use one Kubernetes cluster to manage apps in either the same or other clusters, spin up additional clusters themselves, and manage clusters including lifecycle and fleets.
-📞 | **Flux alerts and notifies** | Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and [other chat systems](/docs/components/notification/provider/).
-💖 | **Flux has a lovely community that is very easy to work with!** | We welcome contributors of any kind. The components of Flux are on Kubernetes core controller-runtime, so anyone can contribute and its functionality can be extended very easily.
+  <div class="feature-items">
+
+  {{< blocks/featureitem emoji="🤝" caption="Flux provides GitOps for both apps and infrastructure" >}}
+    Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in.
+  {{< /blocks/featureitem >}}
+  
+  {{< blocks/featureitem emoji="🤖" caption="Just push to Git and Flux does the rest" >}}
+    Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching).
+  {{< /blocks/featureitem >}}
+
+  {{< blocks/featureitem emoji="🔩" caption="Flux works with your existing tools" >}}
+    Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets as a source), all major container registries, and all CI workflow providers.
+  {{< /blocks/featureitem >}}
+
+  {{< blocks/featureitem emoji="☸️" caption="Flux works with any Kubernetes and all common Kubernetes tooling" >}}
+    Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place.
+  {{< /blocks/featureitem >}}
+
+  {{< blocks/featureitem emoji="🤹" caption="Flux does Multi-Tenancy (and “Multi-everything”)" >}}
+    Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories. Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use one Kubernetes cluster to manage apps in either the same or other clusters, spin up additional clusters themselves, and manage clusters including lifecycle and fleets.
+  {{< /blocks/featureitem >}}
+
+  {{< blocks/featureitem emoji="📞" caption="Flux alerts and notifies" >}}
+    Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and [other chat systems](/docs/components/notification&shy;/provider/).
+  {{< /blocks/featureitem >}}
+
+  {{< blocks/featureitem emoji="💖" caption="Flux has a lovely community that is very easy to work with!" >}}
+    We welcome contributors of any kind. The components of Flux are on Kubernetes core controller-runtime, so anyone can contribute and its functionality can be extended very easily.
+  {{< /blocks/featureitem >}}
+  </div>
 {{% /blocks/section %}}
 </div>
 
