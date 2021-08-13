@@ -1,6 +1,6 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="calendar">
-    <h3>Our Team Calendar</h3>
+<div class="team-calendar">
+    <h3 id="calendar">Our Team Calendar</h3>
     {{ if (fileExists "/content/en/calendar_include.html") -}}
     <p class="caption">The upcoming meetings, talks and community events in the next month are listed below. (All times are UTC.)</p>
     {{ readFile "/content/en/calendar_include.html" | safeHTML }}
