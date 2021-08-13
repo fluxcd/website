@@ -2,6 +2,10 @@
 {{ $youtube_url := print "https://www.youtube.com/watch?v=" $youtube }}
 {{ $thumbnail := printf "https://i3.ytimg.com/vi/%s/0.jpg" $youtube }}
 
+{{ if .Get "thumbnail" }}
+{{ $thumbnail = printf "https://i3.ytimg.com/vi/%s/0.jpg" (.Get "thumbnail") }}
+{{ end }}
+
 {{ $url := .Get "url" | default $youtube_url }}
 {{ $title := .Get "title" | default "Video title" }}
 
