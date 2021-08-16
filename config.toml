@@ -114,6 +114,12 @@ url = "https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md"
 weight = 1
 
 [[menus.main]]
+name = "Resources"
+parent = "Project"
+url = "/resources"
+weight = 5
+
+[[menus.main]]
 name = "Support"
 parent = "Project"
 url = "/support"

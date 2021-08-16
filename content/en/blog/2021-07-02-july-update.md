@@ -213,7 +213,7 @@ these events as they happen. Also reach out to Kingdon if you want to
 get involved in any bug scrubbing.
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 

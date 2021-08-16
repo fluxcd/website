@@ -185,7 +185,7 @@ Engineer at Alibaba Cloud).
 - **09-10 Jun 2021** - [GitOps Days 2021](https://www.gitopsdays.com)
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 

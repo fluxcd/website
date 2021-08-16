@@ -218,7 +218,7 @@ The schedule is not yet available, but will be soon. Now is a good time
 though to register.
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 
