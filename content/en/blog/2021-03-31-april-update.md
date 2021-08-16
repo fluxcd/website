@@ -206,9 +206,8 @@ coming up for you:
 > and the Call for Papers is still open. So if you have something you'd
 > like to talk about, head to the website and submit your talk!
 
-Check out
-[https://fluxcd.io/community/\#talks](https://fluxcd.io/community/#talks)
-for more upcoming and links to recordings of past talks.
+Check out [our calendar section](/#calendar) for more upcoming
+and [links to recordings](/community#talks) of past talks.
 
 ## In other news
 

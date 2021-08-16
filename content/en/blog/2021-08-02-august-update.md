@@ -217,9 +217,8 @@ sessions, and thought leadership.
 The schedule is not yet available, but will be soon. Now is a good time
 though to register.
 
-*Apart from that, there's also
-<https://fluxcd.io/community/#talk>
-for more links to recordings of past talks.*
+Check out [our calendar section](/#calendar) for more upcoming
+and [links to recordings](/community#talks) of past talks.
 
 ## In other news
 

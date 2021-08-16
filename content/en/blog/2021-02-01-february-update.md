@@ -197,15 +197,15 @@ Security](https://kubesec.aquasec.com/enterprise_online_na_2021)
 >   at Sysdig and
 > - Leigh Capili, Developer Experience Engineer at Weaveworks
 
-Check out [our talks section](/community/#talks) for more upcoming
-and links to recordings of past talks.
+Check out [our calendar section](/#calendar) for more upcoming
+and [links to recordings](/community#talks) of past talks.
 
 ## Get involved and join us
 
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings) on
+- Join our [upcoming dev meetings](/community/#meetings) on
   Feb, 3rd 10:00 UTC, or Feb 11th, 15:00 UT
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)

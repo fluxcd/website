@@ -153,8 +153,8 @@ Docker), Katie Gamanji (Ecosystem Advocate, CNCF), and Lei "Harry" Zhang
 Sign up for it today, share it with your friends far and wide. It's a
 free event!
 
-*Apart from that, there's also <https://fluxcd.io/community/#talks>
-for more links to recordings of past talks.*
+Check out [our calendar section](/#calendar) for more upcoming
+and [links to recordings](/community#talks) of past talks.
 
 ## In other news
 
