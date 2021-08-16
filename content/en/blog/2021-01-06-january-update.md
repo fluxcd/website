@@ -135,7 +135,7 @@ big discussions:
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev meeting](https://github.com/fluxcd/community#meetings) on Jan 14
+- Join our [upcoming dev meeting](https://fluxcd.io/community/#meetings) on Jan 14
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our [Get Started guide](https://toolkit.fluxcd.io/get-started/) and give us feedback

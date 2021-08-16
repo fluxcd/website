@@ -100,7 +100,7 @@ new contributors and there are a multitude of ways to get involved.
 
 ### Events
 
-Check out our **[events calendar](/community/#talks)**,
+Check out our **[events calendar](/#calendar)**,
 both with upcoming talks you can attend or past events videos you can watch.
 
 We look forward to seeing you with us!
