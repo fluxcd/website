@@ -154,7 +154,7 @@ Sign up for it today, share it with your friends far and wide. It's a
 free event!
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 

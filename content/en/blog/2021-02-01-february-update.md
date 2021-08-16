@@ -198,7 +198,7 @@ Security](https://kubesec.aquasec.com/enterprise_online_na_2021)
 > - Leigh Capili, Developer Experience Engineer at Weaveworks
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## Get involved and join us
 

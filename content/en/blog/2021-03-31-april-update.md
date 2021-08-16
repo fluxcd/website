@@ -207,7 +207,7 @@ coming up for you:
 > like to talk about, head to the website and submit your talk!
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 

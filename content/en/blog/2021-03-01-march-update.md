@@ -125,7 +125,7 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 > 📍 Flux v2 roadmap: <https://toolkit.fluxcd.io/roadmap/>
 
 Check out [our calendar section](/#calendar) for more upcoming
-and [links to recordings](/community#talks) of past talks.
+and [links to recordings](/resources) of past talks.
 
 ## In other news
 
