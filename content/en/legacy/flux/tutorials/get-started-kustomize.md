@@ -111,6 +111,10 @@ patchesStrategicMerge:
   - patch.yaml
 ```
 
+Remember to update the content of `patch.yaml` with the new namespace as in
+`--memcached-hostname memcached.namespace`, using your own namespace here
+instead of the `flux` namespace, if you have enabled memcached as above.
+
 ## Install Flux with Kustomize
 
 In the next step, deploy Flux to the cluster (you'll need kubectl **1.14** or newer):
