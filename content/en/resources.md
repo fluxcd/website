@@ -14,12 +14,6 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
-url="https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
-thumbnail="N6UCKF7JD7k"
-title="Flux v2 Deep Dive series with Geert Baeke" %}}
-{{% /blocks/resource %}}
-
-{{% blocks/resource
 youtube="Gidqz3D9yes"
 title="Cloud Native @Scale Meetup: CNCF Incubating Projects featuring Flux with Leigh Capili" %}}
 {{% /blocks/resource %}}
@@ -116,6 +110,11 @@ title="GitOps Guide to the Galaxy (Ep 13): Digging deeper into Flux with Weavewo
 {{% /blocks/resource %}}
 
 {{% blocks/resource
+youtube="va1iho7O4WQ"
+title="CNCF Webinar: Flux is Incubating + The Road Ahead" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 youtube="K6OQ93UNSB8"
 title="Flux v2 on Azure with Leigh Capili" %}}
 {{% /blocks/resource %}}
@@ -167,12 +166,6 @@ title="Helm + GitOps = ⚡️⚡️⚡️ with Scott Rigby" %}}
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
-url="https://www.youtube.com/playlist?list=PLG9qZAczREKmCq6on_LG8D0uiHMx1h3yn"
-thumbnail="N6UCKF7JD7k"
-title="Flux v2 Deep Dive series with Geert Baeke" %}}
-{{% /blocks/resource %}}
-
-{{% blocks/resource
 youtube="cB7iXeNLteE"
 title="The Power of GitOps with Flux and Flagger (GitOps Hands-On) with Leigh Capili" %}}
 {{% /blocks/resource %}}
@@ -193,11 +186,6 @@ title="The evolution of Flux with Stefan Prodan at GitOps Days EMEA" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
-youtube="JcKUawSQfQ0"
-title="Helm Users! What Flux 2 can do for you! by Scott Rigby at GitOps Days EMEA" %}}
-{{% /blocks/resource %}}
-
-{{% blocks/resource
 youtube="7W27tAv7Tvs"
 title="The Power of GitOps with Flux v2: Managing Remote Clusters (CAPI demo) with Leigh Capili at GitOps Days EMEA" %}}
 {{% /blocks/resource %}}
@@ -208,13 +196,18 @@ title="Helm Users! What Flux 2 can do for you! by Scott Rigby at GitOps Days EME
 {{% /blocks/resource %}}
 
 {{% blocks/resource
-youtube="JcKUawSQfQ0"
+youtube="fC2YCxQRUwU"
 title="The Power of GitOps with Flux & GitOps Toolkit - Part 2" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
 url="https://www.heavybit.com/library/podcasts/the-kubelist-podcast/ep-5-flux-with-michael-bridgen-of-weaveworks/"
 title="The Kubelist Podcast: Flux with Michael Bridgen" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="0v5bjysXTL8"
+title="The Power of GitOps with Flux & GitOps Toolkit - Part 1" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
