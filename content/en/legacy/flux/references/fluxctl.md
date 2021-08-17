@@ -472,8 +472,10 @@ started with several flags that impact the commit information:
 
 Actions triggered by a user through the CLI `fluxctl`
 tool, can have the commit author information customized. This is handy for providing extra context in the
-notifications and history. Whether the customization is possible, depends on the Flux daemon (`fluxd`)
-`git-set-author` flag. If set, the commit author will be customized in the following way:
+notifications and history.  Whether the customization is possible, depends on the Flux daemon (`fluxd`) `git-set-author` flag.
+If set, the commit author will be customized in the following way: the author
+of git commits will reflect the user who initiated the commit and will differ
+from the git committer.
 
 ## Image Tag Filtering
 

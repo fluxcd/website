@@ -37,7 +37,7 @@ Version controlling of cluster manifests provides reproducibility and a historic
 
 ## Setup and configuration
 
-`fluxd` requires setup and offers customization though a multitude of flags.
+`fluxd` requires setup and offers customization through a multitude of flags.
 
 | Flag                                             | Default                            | Purpose
 | ------------------------------------------------ | ---------------------------------- | ---
