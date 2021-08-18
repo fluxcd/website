@@ -34,6 +34,11 @@ title="Building a Web Scale Internal Developer Platform at Alibaba - Lei “Harr
 {{% /blocks/resource %}}
 
 {{% blocks/resource
+youtube="dtGgOVYJTv8"
+title="GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris Sanders & Jonathan Innis" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 youtube="laMwuG8r7Tw"
 title="Handling Dependencies with Flux - Jason Morgan" %}}
 {{% /blocks/resource %}}
