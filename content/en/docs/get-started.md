@@ -7,8 +7,7 @@ weight: 20
 
 {{% alert color="info" title="Basic knowledge" %}}
 This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
-The core concepts used in this guide are [GitOps](../concepts/#gitops),
-[Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
+The core concepts used in this guide are [GitOps](../concepts/#gitops), [Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
 {{% /alert %}}
 
 In this tutorial, you will deploy an application to a kubernetes cluster with Flux
@@ -326,6 +325,51 @@ If you alter the podinfo deployment using `kubectl edit`, the changes will be re
 the state described in Git. When dealing with an incident, you can pause the reconciliation of a
 kustomization with `flux suspend kustomization <name>`. Once the debugging session
 is over, you can re-enable the reconciliation with `flux resume kustomization <name>`.
+
+## Customize podinfo deployment
+
+To customise a deployment that comes from a repository that you don't control, you can use Flux
+[in-line patches](../components/kustomize/kustomization/#override-kustomize-config).
+
+Assuming you want to change the number of minimum replicas, you can patch the HPA object like so:
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./kustomize
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: podinfo
+  validation: client
+  patchesStrategicMerge:
+    - apiVersion: autoscaling/v2beta2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: podinfo
+      spec:
+        minReplicas: 3
+```
+
+Commit and push the `podinfo-kustomization.yaml` changes:
+
+```sh
+git add -A && git commit -m "Increase podinfo minimum replicas"
+git push
+```
+
+Tell Flux to apply the changes in-cluster with:
+
+```sh
+flux reconcile kustomization flux-system --with-source
+```
+
+After the synchronization finishes, running `kubectl get pods` should display 3 pods.
 
 ## Multi-cluster Setup
 
