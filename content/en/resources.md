@@ -90,7 +90,7 @@ title="GitOpsCon at KubeCon EU!" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
-url="https://www.conf42.com/Cloud_Native_2021_Leonardo_Murillo_gitops_multicloud_crossplane_flux2"
+youtube="AyRhi92v9O0?t=40"
 title="Doing GitOps for multicloud resource management using Crossplane and Flux2 (at Conf42: Cloud Native 2021)" %}}
 {{% /blocks/resource %}}
 
