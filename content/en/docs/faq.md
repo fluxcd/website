@@ -175,11 +175,9 @@ the controller and validates the output using `kubeval`.
 ### How to patch CoreDNS and other pre-installed addons?
 
 To patch a pre-installed addon like CoreDNS with customized content.
-Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository. The `kustomize.toolkit.fluxcd.io/v1beta1` processing this manifest should have `validation: server`.
+Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository.
 
-In addition you will notice that fields such as `selector` and `template` exist and contain an empty map. This will not override the existing values but is required for the patching to work.
-
-Example CoreDNS with custom replicas:
+Example CoreDNS with custom replicas, the `spec.containers[]` empty list is needed for the patch to work and will not override the existing containers.
 ```yaml
 ---
 apiVersion: apps/v1
@@ -191,15 +189,18 @@ metadata:
     kustomize.toolkit.fluxcd.io/prune: disabled
   name: coredns
   namespace: kube-system
-spec:
-  replicas: 3
-  selector: {}
+  selector:
+    matchLabels:
+      eks.amazonaws.com/component: coredns
+      k8s-app: kube-dns
   template:
-    metadata: {}
+    metadata:
+      labels:
+        eks.amazonaws.com/component: coredns
+        k8s-app: kube-dns
     spec:
       containers: []
 ```
-
 Note that only non-managed fields should be modified else there will be a conflict with the `manager` of the fields (e.g. `eks`). For example, while you will be able to modify affinity/antiaffinity fields, the `manager` (e.g. `eks`) will revert those changes and that might not be immediately visible to you (with EKS that would be an interval of once every 30 minutes). The deployment will go into a rolling upgrade and flux will revert it back to the patched version.
 
 ## Helm questions
