@@ -91,6 +91,7 @@ title="GitOpsCon at KubeCon EU!" %}}
 
 {{% blocks/resource
 youtube="AyRhi92v9O0?t=40"
+thumbnail="AyRhi92v9O0"
 title="Doing GitOps for multicloud resource management using Crossplane and Flux2 (at Conf42: Cloud Native 2021)" %}}
 {{% /blocks/resource %}}
 
