@@ -35,25 +35,52 @@ export GITHUB_USER=<your-username>
 
 ## Install the Flux CLI
 
-To install the latest `flux` release on MacOS and Linux using
-[Homebrew](https://brew.sh/) run:
+{{% tabs %}}
+{{% tab "Homebrew" %}}
+
+With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
 ```
 
-Or install `flux` by downloading precompiled binaries using a Bash script:
+{{% /tab %}}
+{{% tab "GoFish" %}}
+
+With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
+
+```sh
+gofish install flux
+```
+
+{{% /tab %}}
+{{% tab "bash" %}}
+
+With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
 
 ```sh
 curl -s https://fluxcd.io/install.sh | sudo bash
 ```
 
-The install script downloads the flux binary to `/usr/local/bin`.
+{{% /tab %}}
+{{% tab "yay" %}}
 
-If using Arch Linux, install the latest stable version from **AUR** using
-either [flux-bin](https://aur.archlinux.org/packages/flux-bin) (pre-built
-binary) or [flux-go](https://aur.archlinux.org/packages/flux-go) (locally built
-binary).
+With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
+
+```sh
+yay -S flux-bin
+```
+
+{{% /tab %}}
+{{% tab "nix" %}}
+
+With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
+
+```sh
+nix-env -i fluxcd
+```
+{{% /tab %}}
+{{% /tabs %}}
 
 Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
 [release page](https://github.com/fluxcd/flux2/releases).
@@ -147,7 +174,7 @@ deployment "notification-controller" successfully rolled out
 
 If you prefer GitLab, export `GITLAB_TOKEN` env var and
 use the command [flux bootstrap
-gitlab](installation/_index.md#gitlab-and-gitlab-enterprise).
+gitlab](installation.md#gitlab-and-gitlab-enterprise).
 
 {{% alert color="info" title="Idempotency" %}}
 It is safe to run the bootstrap command as many times as you want.
