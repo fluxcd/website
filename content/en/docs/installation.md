@@ -34,6 +34,15 @@ gofish install flux
 ```
 
 {{% /tab %}}
+{{% tab "bash" %}}
+
+With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
+
+```sh
+curl -s https://fluxcd.io/install.sh | sudo bash
+```
+
+{{% /tab %}}
 {{% tab "yay" %}}
 
 With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
@@ -43,20 +52,9 @@ yay -S flux-bin
 ```
 
 {{% /tab %}}
-{{% tab "bash" %}}
-
-With Bash for macOS and Linux:
-
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
-
-# enable completions in ~/.bash_profile
-. <(flux completion bash)
-```
-{{% /tab %}}
 {{% tab "nix" %}}
 
-With Nix:
+With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
 
 ```sh
 nix-env -i fluxcd
@@ -64,11 +62,17 @@ nix-env -i fluxcd
 {{% /tab %}}
 {{% /tabs %}}
 
-Command-line completion for `zsh`, `fish`, and `powershell`
-are also supported with their own sub-commands.
+Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
+[release page](https://github.com/fluxcd/flux2/releases).
 
-Binaries for macOS AMD64/ARM64, Linux AMD64/ARM and Windows are available for
-download on the [release page](https://github.com/fluxcd/flux2/releases).
+To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
+
+```sh
+# ~/.bashrc or ~/.bash_profile
+. <(flux completion bash)
+```
+
+[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md), and [`powershell`](./cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
 
 A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
 

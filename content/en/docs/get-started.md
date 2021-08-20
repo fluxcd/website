@@ -7,8 +7,7 @@ weight: 20
 
 {{% alert color="info" title="Basic knowledge" %}}
 This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
-The core concepts used in this guide are [GitOps](../concepts/#gitops),
-[Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
+The core concepts used in this guide are [GitOps](../concepts/#gitops), [Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
 {{% /alert %}}
 
 In this tutorial, you will deploy an application to a kubernetes cluster with Flux
@@ -35,25 +34,52 @@ export GITHUB_USER=<your-username>
 
 ## Install the Flux CLI
 
-To install the latest `flux` release on MacOS and Linux using
-[Homebrew](https://brew.sh/) run:
+{{% tabs %}}
+{{% tab "Homebrew" %}}
+
+With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
 ```
 
-Or install `flux` by downloading precompiled binaries using a Bash script:
+{{% /tab %}}
+{{% tab "GoFish" %}}
+
+With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
+
+```sh
+gofish install flux
+```
+
+{{% /tab %}}
+{{% tab "bash" %}}
+
+With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
 
 ```sh
 curl -s https://fluxcd.io/install.sh | sudo bash
 ```
 
-The install script downloads the flux binary to `/usr/local/bin`.
+{{% /tab %}}
+{{% tab "yay" %}}
 
-If using Arch Linux, install the latest stable version from **AUR** using
-either [flux-bin](https://aur.archlinux.org/packages/flux-bin) (pre-built
-binary) or [flux-go](https://aur.archlinux.org/packages/flux-go) (locally built
-binary).
+With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
+
+```sh
+yay -S flux-bin
+```
+
+{{% /tab %}}
+{{% tab "nix" %}}
+
+With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
+
+```sh
+nix-env -i fluxcd
+```
+{{% /tab %}}
+{{% /tabs %}}
 
 Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
 [release page](https://github.com/fluxcd/flux2/releases).
@@ -147,7 +173,7 @@ deployment "notification-controller" successfully rolled out
 
 If you prefer GitLab, export `GITLAB_TOKEN` env var and
 use the command [flux bootstrap
-gitlab](installation/_index.md#gitlab-and-gitlab-enterprise).
+gitlab](installation.md#gitlab-and-gitlab-enterprise).
 
 {{% alert color="info" title="Idempotency" %}}
 It is safe to run the bootstrap command as many times as you want.
@@ -299,6 +325,51 @@ If you alter the podinfo deployment using `kubectl edit`, the changes will be re
 the state described in Git. When dealing with an incident, you can pause the reconciliation of a
 kustomization with `flux suspend kustomization <name>`. Once the debugging session
 is over, you can re-enable the reconciliation with `flux resume kustomization <name>`.
+
+## Customize podinfo deployment
+
+To customise a deployment that comes from a repository that you don't control, you can use Flux
+[in-line patches](../components/kustomize/kustomization/#override-kustomize-config).
+
+Assuming you want to change the number of minimum replicas, you can patch the HPA object like so:
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./kustomize
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: podinfo
+  validation: client
+  patchesStrategicMerge:
+    - apiVersion: autoscaling/v2beta2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: podinfo
+      spec:
+        minReplicas: 3
+```
+
+Commit and push the `podinfo-kustomization.yaml` changes:
+
+```sh
+git add -A && git commit -m "Increase podinfo minimum replicas"
+git push
+```
+
+Tell Flux to apply the changes in-cluster with:
+
+```sh
+flux reconcile kustomization flux-system --with-source
+```
+
+After the synchronization finishes, running `kubectl get pods` should display 3 pods.
 
 ## Multi-cluster Setup
 
