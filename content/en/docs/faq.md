@@ -175,8 +175,9 @@ the controller and validates the output using `kubeval`.
 ### How to patch CoreDNS and other pre-installed addons?
 
 To patch a pre-installed addon like CoreDNS with customized content.
-Simple add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository.
-In addition, fields such as selector and template should exist and contain an empty map. This will not override the existing values.
+Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository. The `kustomize.toolkit.fluxcd.io/v1beta1` processing this manifest should have `validation: server`.
+
+In addition you will notice that fields such as `selector` and `template` exist and contain an empty map. This will not override the existing values but is required for the patching to work.
 
 Example CoreDNS with custom replicas:
 ```yaml
