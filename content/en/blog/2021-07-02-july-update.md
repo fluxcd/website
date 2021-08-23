@@ -126,8 +126,7 @@ The highlights are:
     Message:        Fetched revision: 8411f23d07d3701f0e96e7d9e503b7936d7e1d56
     ```
 
-:notebook_with_decorative_cover: Check out the Flux roadmap updates
-<https://fluxcd.io/docs/roadmap/>.
+:notebook_with_decorative_cover: Check out the [Flux roadmap](/roadmap/) updates.
 
 ### ⚠ Breaking Changes in 0.15
 

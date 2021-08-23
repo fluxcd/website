@@ -1,9 +1,12 @@
 ---
-title: "Roadmap"
+title: "Flux Roadmap"
 linkTitle: "Roadmap"
 description: "Flux and the GitOps Toolkit roadmap."
 weight: 90
+type: page
 ---
+
+# Flux Roadmap
 
 {{% alert color="info" title="Production readiness" %}}
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
