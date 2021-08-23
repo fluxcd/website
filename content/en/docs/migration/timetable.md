@@ -9,7 +9,7 @@ hugeTable: true
 {{% alert color="info" title="💖 Flux Migration Commitment" %}}
 This public timetable clarifies our commitment to end users.
 Its purpose is to help improve your experience in deciding how and when to plan infra decisions related to Flux versions.
-Please refer to the [Roadmap]({{< relref "../roadmap/_index.md" >}}) for additional details.
+Please refer to the [Roadmap]({{< relref "../../roadmap.md" >}}) for additional details.
 {{% /alert %}}
 
 | Date | Flux 1 | Flux 2 CLI | GOTK[^1] |
@@ -25,7 +25,7 @@ Feb 18, 2021 | Partial Migration Mode<br><ul><li>Existing projects encouraged to
 
 [^2]: Versioning: Flux 2 is a multi-service architecture, so requires a more complex explanation than Flux 1:
      - Flux 2 CLI follows [Semantic Versioning](https://semver.org/) scheme
-     - The GitOps Toolkit APIs follow the [Kubernetes API versioning](https://kubernetes.io/docs/reference/using-api/#api-versioning) pattern. See [Roadmap](/docs/roadmap/) for component versions.
+     - The GitOps Toolkit APIs follow the [Kubernetes API versioning](https://kubernetes.io/docs/reference/using-api/#api-versioning) pattern. See [Roadmap](/roadmap/) for component versions.
      - These are coordinated for cross-compatibility: For each Flux 2 CLI tag, CLI and GOTK versions are end-to-end tested together, so you may safely upgrade from one MINOR/PATCH version to another.
 
 [^3]: The GOTK Custom Resource Definitions which are at `v1beta1` and `v2beta1` and their controllers are considered stable and production ready. Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.

@@ -42,9 +42,8 @@ achieved this.
 
 So what's left to do? This does not mean Flux v2 is GA just yet. We are
 in the process of finalising all APIs, updating our documentation and
-generally consolidating everything. You can find more details on our
-roadmap here:
-[https://toolkit.fluxcd.io/roadmap/](https://toolkit.fluxcd.io/roadmap/)
+generally consolidating everything. You can find more details on [our
+roadmap](/roadmap/).
 
 This means that we will spend some more time on stabilisation and we
 need your help testing. Flux v2 is only a couple of weeks away and it
@@ -122,7 +121,7 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 > 📍 Flux v2 Guide Migrate from Flux v1:
 > <https://toolkit.fluxcd.io/guides/flux-v1-migration/>
 >
-> 📍 Flux v2 roadmap: <https://toolkit.fluxcd.io/roadmap/>
+> 📍 [Flux v2 roadmap](/roadmap/).
 
 Check out [our calendar section](/#calendar) for more upcoming
 and [links to recordings](/resources) of past talks.

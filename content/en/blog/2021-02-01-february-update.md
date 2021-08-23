@@ -48,11 +48,10 @@ importantly these new features have been added:
 - Flux bootstrap comes with support for GitLab sub-groups and project
   tokens.
 
-If you have been watching [our roadmap
-document](https://toolkit.fluxcd.io/roadmap/), you might have noticed
-that we hit the 80% mark of automated image updates milestone. This
-means we are getting closer and closer to feature parity with Flux v1
-overall.
+If you have been watching [our roadmap document](/roadmap/), you might
+have noticed that we hit the 80% mark of automated image updates
+milestone. This means we are getting closer and closer to feature parity
+with Flux v1 overall.
 
 Some bits are still on our to-do list, but soon we are going to start
 working on a migration guide for this particular feature and
