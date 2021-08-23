@@ -12,17 +12,17 @@ type: page
 The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
-Please see the [Migration and Support Timetable](migration/timetable.md) for our commitment to end users.
+Please see the [Migration and Support Timetable](docs/migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
 The following components are considered production ready:
 
-- [source-controller](../components/source)
-- [kustomize-controller](../components/kustomize)
-- [notification-controller](../components/notification)
-- [helm-controller](../components/helm)
-- [image-reflector-controller](../components/image)
-- [image-automation-controller](../components/image)
+- [source-controller](docs/components/source)
+- [kustomize-controller](docs/components/kustomize)
+- [notification-controller](docs/components/notification)
+- [helm-controller](docs/components/helm)
+- [image-reflector-controller](docs/components/image)
+- [image-automation-controller](docs/components/image)
 
 The following GitOps Toolkit APIs are considered production ready:
 
@@ -164,4 +164,4 @@ Tasks
 - [x]  <span style="color:grey">Implement support for Helm charts from Git</span>
 - [x]  <span style="color:grey">Implement support for referring to an alternative chart values file</span>
 - [x]  <span style="color:grey">Stabilize API</span>
-- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](../migration/helm-operator-migration.md)</span>
+- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](docs/migration/helm-operator-migration.md)</span>
