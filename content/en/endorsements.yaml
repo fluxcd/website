@@ -82,3 +82,17 @@ endorsements:
       <i>By introducing Helm and Flux, DoD moved to a more declarative model where everything is version controlled and deployed by Flux thereby reducing manual operations, improving deployment consistency and also bringing more compliance with regard to change management and application life cycle.</i>
       <br/><br/>
       Michael Medellin & Gordon Tillman, <b>Department of Defense</b>
+  - image: https://i3.ytimg.com/vi/dtGgOVYJTv8/0.jpg
+    text: >
+      <div class="summary">
+        <div class="business">
+          <a href="https://www.youtube.com/watch?v=dtGgOVYJTv8">GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris Sanders & Jonathan Innis</a>
+        </div>
+        <div class="details">
+          In this session we show how CNCF Flux is enabled in Azure Arc enabled Kubernetes and Azure Kubernetes Services and also give a sneak peek at implementation of Flux v2.
+        </div>
+      </div>
+    subtitle: >
+      <i>To provide Kubernetes admins and app developers with the latest tooling for managing configuration and application deployment, Azure enables GitOps with Flux.</i>
+      <br/><br/>
+      Chris Sanders & Jonathan Innis, <b>Microsoft</b>

@@ -3,13 +3,13 @@ title: Resources
 type: page
 ---
 
-## Resources
+# Resources
 
 We are very happy that our community has os actively put resources together which you can learn from. Enjoy and please give feedback!
 
 These resources are sorted by date - new entries are added to the top.
 
-### 2021
+## 2021
 
 {{% blocks/section color="white" %}}
 
@@ -31,6 +31,11 @@ title="Flux Bug Scrub #0001" %}}
 {{% blocks/resource
 youtube="dEMYVkIU0aU"
 title="Building a Web Scale Internal Developer Platform at Alibaba - Lei “Harry” Zhang" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="dtGgOVYJTv8"
+title="GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris Sanders & Jonathan Innis" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -162,7 +167,7 @@ title="Helm + GitOps = ⚡️⚡️⚡️ with Scott Rigby" %}}
 
 {{% /blocks/section %}}
 
-### 2020
+## 2020
 
 {{% blocks/section color="white" %}}
 
