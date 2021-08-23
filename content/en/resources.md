@@ -3,13 +3,13 @@ title: Resources
 type: page
 ---
 
-## Resources
+# Resources
 
 We are very happy that our community has os actively put resources together which you can learn from. Enjoy and please give feedback!
 
 These resources are sorted by date - new entries are added to the top.
 
-### 2021
+## 2021
 
 {{% blocks/section color="white" %}}
 
@@ -167,7 +167,7 @@ title="Helm + GitOps = ⚡️⚡️⚡️ with Scott Rigby" %}}
 
 {{% /blocks/section %}}
 
-### 2020
+## 2020
 
 {{% blocks/section color="white" %}}
 
