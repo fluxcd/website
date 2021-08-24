@@ -7,7 +7,7 @@ weight: 20
 
 ## OpenShift Setup
 
-Steps described in this document have been tested on OpenShift 4.6 only. 
+Steps described in this document have been tested on OpenShift 4.6, 4.7 and 4.8.
 You require cluster-admin privileges to install Flux on OpenShift.
 This means that it currently is not possible to install Flux on the OpenShift Developer Sandbox.
 
@@ -18,8 +18,7 @@ which could be obtained from [here](https://developers.redhat.com/products/coder
 With this setup, you require a physical Linux box. An OpenShift cluster will run inside a VM installed by CRC. 
 
 {{% alert color="info" title="Resource Usage" %}}
-Despite being a single node, the cluster will consume a large amount of both CPU and memory resources.
-Your desktop / laptop must have at least 8 CPU cores with 32 GB of RAM as it is recommended to allocate
+Please note that your desktop / laptop should have at least 8 CPU cores with 32 GB of RAM as it is recommended to allocate
 at least 4 CPU cores and 18 GB of RAM for the cluster to have a good experience.
 {{% /alert %}}
 
