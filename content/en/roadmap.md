@@ -45,17 +45,17 @@ this list is subject to change while we gather feedback:
     - [x] End-to-end testing for Flux bootstrap on AMD64 and ARM64 clusters
     - [ ] End-to-end testing for Flux image automation
 
-- API consolidation
+- API consolidation ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
     - [ ] Standardize events and status conditions metadata
 
 - Multi-tenancy improvements (proposal [fluxcd/flux2#582](https://github.com/fluxcd/flux2/pull/582))
     - [ ] Extend impersonation to Kubernetes users and groups
-    - [ ] Implement ACL for granting cross-namespace access to Flux sources
+    - [ ] Implement ACL for granting cross-namespace access to Flux sources ([fluxcd/flux2#1704](https://github.com/fluxcd/flux2/issues/1704))
 
 - Documentation improvements
     - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
-    - [ ] Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
+    - [x] Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
     - [ ] Incident management and troubleshooting guides
     - [ ] Developer guides for contributing to and extending Flux
     - [ ] Cloud specific guides (AWS, Azure, Google Cloud, more?)
@@ -64,9 +64,9 @@ this list is subject to change while we gather feedback:
 
 In our planning discussions we identified three areas of work:
 
-- Feature parity with Flux v1 in read-only mode
-- Feature parity with the image-update functionality in Flux v1
-- Feature parity with Helm Operator v1
+- [x] Feature parity with Flux v1 in read-only mode
+- [x] Feature parity with the image-update functionality in Flux v1
+- [x] Feature parity with Helm Operator v1
 
 ### Flux read-only feature parity
 
