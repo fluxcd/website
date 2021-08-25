@@ -61,9 +61,9 @@ nix-env -i fluxcd
 ```
 
 {{% /tab %}}
-{{$ tab "Chocolatey" }}
+{{%  tab "Chocolatey" %}}
 
-With [Chocolatey]("https://chocolatey.org/") for Windows:
+With [Chocolatey](https://chocolatey.org/) for Windows:
 
 ```powershell
 choco install flux

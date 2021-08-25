@@ -5,25 +5,30 @@ description: "Get Started with Flux and the GitOps Toolkit."
 weight: 20
 ---
 
-{{% alert color="info" title="Basic knowledge" %}}
-This guide assumes you have some understanding of the core concepts and have read the introduction to Flux.
-The core concepts used in this guide are [GitOps](../concepts/#gitops), [Sources](../concepts/#sources), [Kustomization](../concepts/#kustomization).
-{{% /alert %}}
-
-In this tutorial, you will deploy an application to a kubernetes cluster with Flux
-and manage the cluster in a complete GitOps manner.
-You'll be using a dedicated Git repository e.g. `fleet-infra` to manage your Kubernetes clusters.
+In this tutorial you will bootstrap Flux to a Kubernetes cluster and deploy a sample application in a GitOps manner.
 
 ## Prerequisites
 
-In order to follow the guide, you will need a Kubernetes cluster version 1.16 or newer and kubectl version 1.18.
-For a quick local test, you can use [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/).
-Any other Kubernetes setup will work as well though.
+Before starting this tutorial, you should be familiar with the following core concepts:
 
-Flux is installed in a GitOps way and its manifest will be pushed to the repository,
-so you will also need a GitHub account and a
-[personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
-that can create repositories (check all permissions under `repo`) to enable Flux do this.
+- [GitOps](../concepts/#gitops)
+- [Sources](../concepts/#sources)
+- [Kustomization](../concepts/#kustomization)
+
+To follow the guide, you will need the following:
+
+- **A Kubernetes cluster version 1.16 or newer.** We recommend [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/) if you are trying Flux out in a local development environment.
+- **kubectl version 1.18 or newer.**
+- **The `flux` command line tool**. See [Installation](./installation.md) for more details.
+- **A GitHub personal access token with repo permissions.** See the GitHub documentation on [creating a personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+
+## Objectives
+
+- Bootstrap Flux on a Kubernetes Cluster
+- Deploy a sample application using Flux
+- Customize application configuration through Kustomize patches
+
+## Export your credentials
 
 Export your GitHub personal access token and username:
 
@@ -31,67 +36,6 @@ Export your GitHub personal access token and username:
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
-
-## Install the Flux CLI
-
-{{% tabs %}}
-{{% tab "Homebrew" %}}
-
-With [Homebrew](https://brew.sh) for macOS and Linux:
-
-```sh
-brew install fluxcd/tap/flux
-```
-
-{{% /tab %}}
-{{% tab "GoFish" %}}
-
-With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
-
-```sh
-gofish install flux
-```
-
-{{% /tab %}}
-{{% tab "bash" %}}
-
-With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
-
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
-```
-
-{{% /tab %}}
-{{% tab "yay" %}}
-
-With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
-
-```sh
-yay -S flux-bin
-```
-
-{{% /tab %}}
-{{% tab "nix" %}}
-
-With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
-
-```sh
-nix-env -i fluxcd
-```
-{{% /tab %}}
-{{% /tabs %}}
-
-Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
-[release page](https://github.com/fluxcd/flux2/releases).
-
-To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
-
-```sh
-# ~/.bashrc or ~/.bash_profile
-. <(flux completion bash)
-```
-
-[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md), and [`powershell`](./cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
 
 ## Install Flux components
 
