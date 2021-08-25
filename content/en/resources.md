@@ -20,7 +20,7 @@ title="Cloud Native @Scale Meetup: CNCF Incubating Projects featuring Flux with 
 
 {{% blocks/resource
 youtube="kX1fxly9-4Y"
-title="GitOps Guide to the Galaxy: Helm GitOps Workflows wtiht he Flux Helm Controller - Scott Rigby" %}}
+title="GitOps Guide to the Galaxy: Helm GitOps Workflows with he Flux Helm Controller - Scott Rigby" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -97,7 +97,7 @@ title="GitOpsCon at KubeCon EU!" %}}
 {{% blocks/resource
 youtube="AyRhi92v9O0?t=40"
 thumbnail="AyRhi92v9O0"
-title="Doing GitOps for multicloud resource management using Crossplane and Flux2 (at Conf42: Cloud Native 2021)" %}}
+title="Doing GitOps for multi-cloud resource management using Crossplane and Flux2 (at Conf42: Cloud Native 2021)" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -152,7 +152,7 @@ title="Manage Kubernetes Secrets with Mozilla SOPS & Flux" %}}
 
 {{% blocks/resource
 youtube="WnVTY9KQXE0"
-title="Fluxv2 Image Update Automation Sneak Peak with Leigh Capili" %}}
+title="Flux v2 Image Update Automation Sneak Peak with Leigh Capili" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
