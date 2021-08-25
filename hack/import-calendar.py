@@ -66,10 +66,21 @@ def write_events_html(events):
 
     for event in events:
         html += """
-        <tr>
+        <tr class="calendar-row">
             <td class="date">{}</td>
             <td class="time">{}</td>
             <td class="label">{}</td>
+        </tr>
+        <tr class="calendar-card">
+            <td colspan=3>
+                <dt>Where</dt>
+                <dd><a href="#">https://zoom.com/abcd</a></dd>
+
+                <dt>Organizer</dt>
+                <dd>Daniel Holback <a href="#">daniel@weave.works</a></dd>
+
+                <span class="description">Meetings minute agenda and videos <a href="#">https://docs.google.com/spreadsheets/d/1WcRgC7tXNpCK4AGm7fg37oesyVKr3THdJXQBlVq0rG8/edit#gid=220199767</a></span>
+            </td>
         </tr>
 """.format(
     event[0].strftime('%F'),

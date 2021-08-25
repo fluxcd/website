@@ -305,65 +305,6 @@ h2.section-label {
   h2.section-label {
     margin: 1rem 0 2rem 0;
   }
-
-  .team-calendar {
-    // margin: 0 -15px;
-    padding: 0 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-
-    h3 {
-      font-weight: 600;
-      text-align: center;
-    }
-    p.caption {
-      text-align: center;
-      margin: 1rem 0 2rem 0;
-    }
-
-    p.details {
-      padding-top: 2rem;
-      font-weight: 500;
-    }
-
-    table {
-      margin: 0 auto;
-
-      tr {
-        border-bottom: 1px solid rgba($flux-white, 0.25);
-
-        &:last-child {
-          border: none;
-        }
-
-        td {
-          vertical-align: top;
-          padding: 6px 0;
-        }
-        td.date {
-          width: 6rem;
-          text-align: left;
-          font-weight: 500;
-        }
-
-        td.time {
-          width: 3rem;
-          padding-right: 1rem;
-          font-weight: 200;
-        }
-
-        td.label {
-          font-weight: 500;
-        }
-
-      }
-    }
-
-
-  }
-
-
-
 }
 
 .container.contributors {

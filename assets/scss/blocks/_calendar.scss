@@ -1,0 +1,127 @@
+$card-bg: rgba(white, 0.75);
+
+
+.team-calendar {
+  // margin: 0 -15px;
+  padding: 0 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h3 {
+    font-weight: 600;
+    text-align: center;
+  }
+  p.caption {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+  }
+
+  p.details {
+    padding-top: 2rem;
+    font-weight: 500;
+  }
+
+  table {
+    margin: 0 auto;
+
+    tr {
+      border-bottom: 1px solid rgba($flux-white, 0.25);
+
+      &:last-child {
+        border: none;
+      }
+
+      td {
+        vertical-align: bottom;
+        padding: 6px 0;
+      }
+      td.date {
+        width: 7rem;
+        text-align: left;
+        font-weight: 500;
+        padding-left: 1rem;
+      }
+
+      td.time {
+        width: 3rem;
+        padding-right: 1rem;
+        font-weight: 200;
+      }
+
+      td.label {
+        font-weight: 500;
+      }
+
+    }
+    tr.calendar-card td {
+      display: none;
+      max-width: 600px;
+    }
+
+    tr:nth-child(5) {
+      border-bottom: none;
+      td {
+        // background: $card-bg;
+        // color: $flux-black;
+        font-weight: 600;
+        // border-bottom: 1px solid rgba($flux-black, 0.25);
+        border-bottom: none;
+
+        text-decoration: underline;
+
+      }
+
+      td.label {
+        // font-size: 1.2rem;
+      }
+
+    }
+
+    tr.calendar-card {
+      td {
+        // margin-top: 1.5rem;
+
+        display: table-cell;
+        // background: $card-bg;
+        // color: $flux-b0 lack;
+
+        padding: 0 1rem 1rem 1rem;
+        word-break: break-all;
+        border-bottom: none;
+        font-size: 0.9rem;
+        
+        dt:first-child {
+          // margin-top: 4px;
+          // margin-bottom: 4px;
+        }
+
+        dt:nth-of-type(2) {
+          margin-bottom: 8px;
+        }
+
+        dt {
+          // margin-top: 0.5rem;
+          color: rgba($flux-white, 0.75);
+          display: inline-block;
+          width: 8.5rem;
+          text-align: right;
+          // margin-bottom: 6px;
+        }
+
+        dd {
+          padding-left: 1rem;
+          color: rgba($flux-white, 1);
+          display: inline;
+          clear: both;
+        }
+
+        dd::after { content: '\A'; white-space:pre; height: 0px; font-size: 1px;}
+
+        a {
+            // color: $flux-darkest-blue !important; 
+        }
+      }
+    }
+  }
+}
+
