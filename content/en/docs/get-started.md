@@ -5,21 +5,13 @@ description: "Get Started with Flux and the GitOps Toolkit."
 weight: 20
 ---
 
-In this tutorial you will bootstrap Flux to a Kubernetes cluster and deploy a sample application in a GitOps manner.
+This tutorial shows you how to bootstrap Flux to a Kubernetes cluster and deploy a sample application in a GitOps manner.
 
-## Prerequisites
+## Before you begin
 
-Before starting this tutorial, you should be familiar with the following core concepts:
+To follow the guide, you need the following:
 
-- [GitOps](../concepts/#gitops)
-- [Sources](../concepts/#sources)
-- [Kustomization](../concepts/#kustomization)
-
-To follow the guide, you will need the following:
-
-- **A Kubernetes cluster version 1.16 or newer.** We recommend [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/) if you are trying Flux out in a local development environment.
-- **kubectl version 1.18 or newer.**
-- **The `flux` command line tool**. See [Installation](./installation.md) for more details.
+- **A Kubernetes cluster** We recommend [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/) for trying Flux out in a local development environment.
 - **A GitHub personal access token with repo permissions.** See the GitHub documentation on [creating a personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
 ## Objectives
@@ -27,6 +19,18 @@ To follow the guide, you will need the following:
 - Bootstrap Flux on a Kubernetes Cluster
 - Deploy a sample application using Flux
 - Customize application configuration through Kustomize patches
+
+## Install the Flux CLI
+
+The `flux` command-line interface (CLI) is used to bootstrap and interact with Flux.
+
+To install the CLI with Homebrew run:
+
+```sh
+brew install fluxcd/tap/flux
+```
+
+For other installation methods, see [Installation](installation.md).
 
 ## Export your credentials
 
@@ -37,24 +41,26 @@ export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
 
-## Install Flux components
+## Check your Kubernetes cluster
 
-Create the cluster using Kubernetes kind or set the kubectl context to an existing cluster:
+Check you have everything needed to run Flux by running the following command:
 
-```sh
-kind create cluster
-kubectl cluster-info
+```bash
+flux check --pre
 ```
 
-Verify that your staging cluster satisfies the prerequisites with:
+The output is similar to:
 
-```console
-$ flux check --pre
+```
 ► checking prerequisites
 ✔ kubectl 1.18.3 >=1.18.0
 ✔ kubernetes 1.18.2 >=1.16.0
 ✔ prerequisites checks passed
 ```
+
+## Install Flux onto your cluster
+
+For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Installation](installation.md).
 
 Run the bootstrap command:
 
@@ -67,36 +73,11 @@ flux bootstrap github \
   --personal
 ```
 
-{{% alert color="info" title="Multi-arch images" %}}
-The component images are published as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-arch/)
-with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
-architectures.
-{{% /alert %}}
+The output is similar to:
 
-The bootstrap command creates a repository if one doesn't exist,
-commits the manifests for the Flux components to the default branch at the specified path,
-and installs the Flux components.
-Then it configures the target cluster to synchronize with the specified path inside the repository.
-
-If you wish to create the repository under a GitHub organization:
-
-```sh
-flux bootstrap github \
-  --owner=<organization> \
-  --repository=<repo-name> \
-  --branch=<organization default branch> \
-  --team=<team1-slug> \
-  --team=<team2-slug> \
-  --path=./clusters/my-cluster
 ```
-
-Example output:
-
-```console
-$ flux bootstrap github --owner=gitopsrun --team=devs --repository=fleet-infra --path=./clusters/my-cluster 
 ► connecting to github.com
 ✔ repository created
-✔ devs team access granted
 ✔ repository cloned
 ✚ generating manifests
 ✔ components manifests pushed
@@ -115,26 +96,16 @@ deployment "notification-controller" successfully rolled out
 ✔ bootstrap finished
 ```
 
-If you prefer GitLab, export `GITLAB_TOKEN` env var and
-use the command [flux bootstrap
-gitlab](installation.md#gitlab-and-gitlab-enterprise).
+The bootstrap command above does following:
 
-{{% alert color="info" title="Idempotency" %}}
-It is safe to run the bootstrap command as many times as you want.
-If the Flux components are present on the cluster,
-the bootstrap command will perform an upgrade if needed.
-You can target a specific Flux [version](https://github.com/fluxcd/flux2/releases)
-with `flux bootstrap --version=<semver>`.
-{{% /alert %}}
+- Creates a git repository `fleet-infra` on your GitHub account
+- Adds Flux component manifests to the repository
+- Deploys Flux Components to your Kubernetes Cluster
+- Configures Flux components to track the path `/clusters/my-cluster/` in the repository
 
 ## Clone the git repository
 
-We are going to drive app deployments in a GitOps manner,
-using the Git repository as the desired state for our cluster.
-Instead of applying the manifests directly to the cluster,
-Flux will apply it for us instead.
-
-Therefore, we need to clone the repository to our local machine:
+Clone the `fleet-infra` repository to your local machine:
 
 ```sh
 git clone https://github.com/$GITHUB_USER/fleet-infra
@@ -143,175 +114,168 @@ cd fleet-infra
 
 ## Add podinfo repository to Flux
 
-We will be using a public repository [github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo),
+This example uses a public repository [github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo),
 podinfo is a tiny web application made with Go.
 
-Create a [GitRepository](../components/source/gitrepositories/)
-manifest pointing to podinfo repository's master branch:
+1. Create a [GitRepository](../components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
+    ```sh
+    flux create source git podinfo \
+      --url=https://github.com/stefanprodan/podinfo \
+      --branch=master \
+      --interval=30s \
+      --export > ./clusters/my-cluster/podinfo-source.yaml
+    ```
 
-```sh
-flux create source git podinfo \
-  --url=https://github.com/stefanprodan/podinfo \
-  --branch=master \
-  --interval=30s \
-  --export > ./clusters/my-cluster/podinfo-source.yaml
-```
+    The output is similar to:
 
-The above command generates the following manifest:
+    ```yaml
+    apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+    kind: Kustomization
+    metadata:
+      name: podinfo
+      namespace: flux-system
+    spec:
+      interval: 5m0s
+      path: ./kustomize
+      prune: true
+      sourceRef:
+        kind: GitRepository
+        name: podinfo
+      validation: client
+    ```
 
-```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: podinfo
-  namespace: flux-system
-spec:
-  interval: 30s
-  ref:
-    branch: master
-  url: https://github.com/stefanprodan/podinfo
-```
+2. Commit and push the `podinfo-source.yaml` file to the `fleet-infra` repository:
 
-Commit and push it to the `fleet-infra` repository:
-
-```sh
-git add -A && git commit -m "Add podinfo GitRepository"
-git push
-```
+    ```sh
+    git add -A && git commit -m "Add podinfo GitRepository"
+    git push
+    ```
 
 ## Deploy podinfo application
 
-We will create a Flux [Kustomization](../components/kustomize/kustomization/) manifest for podinfo.
-This configures Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
+Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
 directory located in the podinfo repository.
 
-```sh
-flux create kustomization podinfo \
-  --source=podinfo \
-  --path="./kustomize" \
-  --prune=true \
-  --validation=client \
-  --interval=5m \
-  --export > ./clusters/my-cluster/podinfo-kustomization.yaml
-```
+1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization/) that applies the podinfo deployment.
+    ```sh
+    flux create kustomization podinfo \
+      --source=podinfo \
+      --path="./kustomize" \
+      --prune=true \
+      --validation=client \
+      --interval=5m \
+      --export > ./clusters/my-cluster/podinfo-kustomization.yaml
+    ```
 
-The above command generates the following manifest:
+    The output is similar to:
 
-```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: podinfo
-  namespace: flux-system
-spec:
-  interval: 5m0s
-  path: ./kustomize
-  prune: true
-  sourceRef:
+    ```yaml
+    ---
+    apiVersion: source.toolkit.fluxcd.io/v1beta1
     kind: GitRepository
-    name: podinfo
-  validation: client
-```
+    metadata:
+      name: podinfo
+      namespace: flux-system
+    spec:
+      interval: 30s
+      ref:
+        branch: master
+      url: https://github.com/stefanprodan/podinfo
+    ```
 
-Commit and push the `Kustomization` manifest to the repository:
+1. Commit and push the `Kustomization` manifest to the repository:
 
-```sh
-git add -A && git commit -m "Add podinfo Kustomization"
-git push
-```
+    ```sh
+    git add -A && git commit -m "Add podinfo Kustomization"
+    git push
+    ```
 
-The structure of your repository should look like this:
+    The structure of the `fleet-infra` repo should be similar to:
 
-```
-fleet-infra
-└── clusters/
-    └── my-cluster/
-        ├── flux-system/                        
-        │   ├── gotk-components.yaml
-        │   ├── gotk-sync.yaml
-        │   └── kustomization.yaml
-        ├── podinfo-kustomization.yaml
-        └── podinfo-source.yaml
-```
+      ```
+      fleet-infra
+      └── clusters/
+          └── my-cluster/
+              ├── flux-system/                        
+              │   ├── gotk-components.yaml
+              │   ├── gotk-sync.yaml
+              │   └── kustomization.yaml
+              ├── podinfo-kustomization.yaml
+              └── podinfo-source.yaml
+      ```
 
 ## Watch Flux sync the application
 
-In about 30s the synchronization should start:
+1. Use the `flux get` command to watch the podinfo app
 
-```console
-$ flux get kustomizations --watch
-NAME            READY   MESSAGE
-flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
-podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
-```
+  ```sh
+  flux get kustomizations --watch
+  ```
 
-When the synchronization finishes you can check that podinfo has been deployed on your cluster:
+  The output is similar to:
 
-```console
-$ kubectl -n default get deployments,services
-NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/podinfo   2/2     2            2           108s
+  ```
+  NAME            READY   MESSAGE
+  flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
+  podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
+  ```
 
-NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-service/podinfo      ClusterIP   10.100.149.126   <none>        9898/TCP,9999/TCP   108s
-```
+2. Check podinfo has been deployed on your cluster:
 
-{{% alert color="info" %}}
-From this moment forward, any changes made to the podinfo
-Kubernetes manifests in the master branch will be synchronised with your cluster.
-{{% /alert %}}
+  ```sh
+  kubectl -n default get deployments,services
+  ```
 
-If a Kubernetes manifest is removed from the podinfo repository, Flux will remove it from your cluster.
-If you delete a `Kustomization` from the fleet-infra repository, Flux will remove all Kubernetes objects that
-were previously applied from that `Kustomization`.
+  The output is similar to:
 
-If you alter the podinfo deployment using `kubectl edit`, the changes will be reverted to match
-the state described in Git. When dealing with an incident, you can pause the reconciliation of a
-kustomization with `flux suspend kustomization <name>`. Once the debugging session
-is over, you can re-enable the reconciliation with `flux resume kustomization <name>`.
+  ```
+  NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+  deployment.apps/podinfo   2/2     2            2           108s
+
+  NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+  service/podinfo      ClusterIP   10.100.149.126   <none>        9898/TCP,9999/TCP   108s
+  ```
+
+Changes made to the podinfo
+Kubernetes manifests in the master branch are reflected in your cluster.
+
+When a Kubernetes manifest is removed from the podinfo repository, Flux removes it from your cluster.
+When you delete a `Kustomization` from the fleet-infra repository, Flux removes all Kubernetes objects previously applied from that `Kustomization`.
+
+When you alter the podinfo deployment using `kubectl edit`, the changes are reverted to match
+the state described in Git.
+
+## Suspend updates
+
+Suspending updates to a kustomization allows you to directly edit objects applied from a kustomization, without your changes being reverted by the state in Git.
+
+To suspend updates for a kustomization, run the command `flux suspend kustomization <name>`.
+
+To resume updates run the command `flux resume kustomization <name>`.
 
 ## Customize podinfo deployment
 
-To customise a deployment that comes from a repository that you don't control, you can use Flux
-[in-line patches](../components/kustomize/kustomization/#override-kustomize-config).
+To customize a deployment from a repository you don't control, you can use Flux
+[in-line patches](../components/kustomize/kustomization/#override-kustomize-config). The following example shows how to use in-line patches to change the podinfo deployment.
 
-Assuming you want to change the number of minimum replicas, you can patch the HPA object like so:
+1. Add the following to the end of your `podinfo-kustomization.yaml` file:
 
-```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
-metadata:
-  name: podinfo
-  namespace: flux-system
-spec:
-  interval: 5m0s
-  path: ./kustomize
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: podinfo
-  validation: client
-  patchesStrategicMerge:
-    - apiVersion: autoscaling/v2beta2
-      kind: HorizontalPodAutoscaler
-      metadata:
-        name: podinfo
-      spec:
-        minReplicas: 3
-```
+  ```yaml clusters/my-cluster/podinfo-kustomization.yaml
+    patchesStrategicMerge:
+      - apiVersion: autoscaling/v2beta2
+        kind: HorizontalPodAutoscaler
+        metadata:
+          name: podinfo
+        spec:
+          minReplicas: 3
+  ```
 
-Commit and push the `podinfo-kustomization.yaml` changes:
+1. Commit and push the `podinfo-kustomization.yaml` changes:
 
-```sh
-git add -A && git commit -m "Increase podinfo minimum replicas"
-git push
-```
-
-Tell Flux to apply the changes in-cluster with:
-
-```sh
-flux reconcile kustomization flux-system --with-source
-```
+  ```sh
+  git add -A && git commit -m "Increase podinfo minimum replicas"
+  git push
+  ```
 
 After the synchronization finishes, running `kubectl get pods` should display 3 pods.
 
