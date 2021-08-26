@@ -208,33 +208,33 @@ directory located in the podinfo repository.
 
 1. Use the `flux get` command to watch the podinfo app
 
-  ```sh
-  flux get kustomizations --watch
-  ```
+    ```sh
+    flux get kustomizations --watch
+    ```
 
-  The output is similar to:
+    The output is similar to:
 
-  ```
-  NAME            READY   MESSAGE
-  flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
-  podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
-  ```
+    ```
+    NAME            READY   MESSAGE
+    flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
+    podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
+    ```
 
 2. Check podinfo has been deployed on your cluster:
 
-  ```sh
-  kubectl -n default get deployments,services
-  ```
+    ```sh
+    kubectl -n default get deployments,services
+    ```
 
-  The output is similar to:
+    The output is similar to:
 
-  ```
-  NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-  deployment.apps/podinfo   2/2     2            2           108s
+    ```
+    NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/podinfo   2/2     2            2           108s
 
-  NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-  service/podinfo      ClusterIP   10.100.149.126   <none>        9898/TCP,9999/TCP   108s
-  ```
+    NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+    service/podinfo      ClusterIP   10.100.149.126   <none>        9898/TCP,9999/TCP   108s
+    ```
 
 Changes made to the podinfo
 Kubernetes manifests in the master branch are reflected in your cluster.
@@ -260,22 +260,22 @@ To customize a deployment from a repository you don't control, you can use Flux
 
 1. Add the following to the end of your `podinfo-kustomization.yaml` file:
 
-  ```yaml clusters/my-cluster/podinfo-kustomization.yaml
-    patchesStrategicMerge:
-      - apiVersion: autoscaling/v2beta2
-        kind: HorizontalPodAutoscaler
-        metadata:
-          name: podinfo
-        spec:
-          minReplicas: 3
-  ```
+    ```yaml clusters/my-cluster/podinfo-kustomization.yaml
+      patchesStrategicMerge:
+        - apiVersion: autoscaling/v2beta2
+          kind: HorizontalPodAutoscaler
+          metadata:
+            name: podinfo
+          spec:
+            minReplicas: 3
+    ```
 
 1. Commit and push the `podinfo-kustomization.yaml` changes:
 
-  ```sh
-  git add -A && git commit -m "Increase podinfo minimum replicas"
-  git push
-  ```
+    ```sh
+    git add -A && git commit -m "Increase podinfo minimum replicas"
+    git push
+    ```
 
 After the synchronization finishes, running `kubectl get pods` should display 3 pods.
 
