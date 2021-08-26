@@ -59,6 +59,16 @@ With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) f
 ```sh
 nix-env -i fluxcd
 ```
+
+{{% /tab %}}
+{{%  tab "Chocolatey" %}}
+
+With [Chocolatey](https://chocolatey.org/) for Windows:
+
+```powershell
+choco install flux
+```
+
 {{% /tab %}}
 {{% /tabs %}}
 
