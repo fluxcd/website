@@ -30,7 +30,7 @@ To install the CLI with Homebrew run:
 brew install fluxcd/tap/flux
 ```
 
-For other installation methods, see [Installation](installation.md).
+For other installation methods, see the [CLI install documentation](installation.md#install-the-flux-cli).
 
 ## Export your credentials
 
@@ -118,12 +118,52 @@ This example uses a public repository [github.com/stefanprodan/podinfo](https://
 podinfo is a tiny web application made with Go.
 
 1. Create a [GitRepository](../components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
+
     ```sh
     flux create source git podinfo \
       --url=https://github.com/stefanprodan/podinfo \
       --branch=master \
       --interval=30s \
       --export > ./clusters/my-cluster/podinfo-source.yaml
+    ```
+
+    The output is similar to:
+
+    ```yaml
+    apiVersion: source.toolkit.fluxcd.io/v1beta1
+    kind: GitRepository
+    metadata:
+      name: podinfo
+      namespace: flux-system
+    spec:
+      interval: 30s
+      ref:
+        branch: master
+      url: https://github.com/stefanprodan/podinfo
+    ```
+
+2. Commit and push the `podinfo-source.yaml` file to the `fleet-infra` repository:
+
+    ```sh
+    git add -A && git commit -m "Add podinfo GitRepository"
+    git push
+    ```
+
+## Deploy podinfo application
+
+Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
+directory located in the podinfo repository.
+
+1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization/) that applies the podinfo deployment.
+
+    ```sh
+    flux create kustomization podinfo \
+      --source=podinfo \
+      --path="./kustomize" \
+      --prune=true \
+      --validation=client \
+      --interval=5m \
+      --export > ./clusters/my-cluster/podinfo-kustomization.yaml
     ```
 
     The output is similar to:
@@ -144,46 +184,7 @@ podinfo is a tiny web application made with Go.
       validation: client
     ```
 
-2. Commit and push the `podinfo-source.yaml` file to the `fleet-infra` repository:
-
-    ```sh
-    git add -A && git commit -m "Add podinfo GitRepository"
-    git push
-    ```
-
-## Deploy podinfo application
-
-Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
-directory located in the podinfo repository.
-
-1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization/) that applies the podinfo deployment.
-    ```sh
-    flux create kustomization podinfo \
-      --source=podinfo \
-      --path="./kustomize" \
-      --prune=true \
-      --validation=client \
-      --interval=5m \
-      --export > ./clusters/my-cluster/podinfo-kustomization.yaml
-    ```
-
-    The output is similar to:
-
-    ```yaml
-    ---
-    apiVersion: source.toolkit.fluxcd.io/v1beta1
-    kind: GitRepository
-    metadata:
-      name: podinfo
-      namespace: flux-system
-    spec:
-      interval: 30s
-      ref:
-        branch: master
-      url: https://github.com/stefanprodan/podinfo
-    ```
-
-1. Commit and push the `Kustomization` manifest to the repository:
+2. Commit and push the `Kustomization` manifest to the repository:
 
     ```sh
     git add -A && git commit -m "Add podinfo Kustomization"
