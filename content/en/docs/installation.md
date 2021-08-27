@@ -15,6 +15,10 @@ and kubectl version **1.18** or newer.
 
 ## Install the Flux CLI
 
+The Flux CLI is available as a binary executable for all major platforms,
+the binaries can be downloaded form GitHub
+[releases page](https://github.com/fluxcd/flux2/releases).
+
 {{% tabs %}}
 {{% tab "Homebrew" %}}
 
@@ -72,28 +76,20 @@ choco install flux
 {{% /tab %}}
 {{% /tabs %}}
 
-Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
-[release page](https://github.com/fluxcd/flux2/releases).
-
 To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
 
 ```sh
-# ~/.bashrc or ~/.bash_profile
 . <(flux completion bash)
 ```
 
-[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md), and [`powershell`](./cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
+[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md),
+and [`powershell`](./cmd/flux_completion_powershell.md)
+are also supported with their own sub-commands.
 
 A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
 
 * `docker.io/fluxcd/flux-cli:<version>`
 * `ghcr.io/fluxcd/flux-cli:<version>`
-
-Verify that your cluster satisfies the prerequisites with:
-
-```sh
-flux check --pre
-```
 
 ## Bootstrap
 
