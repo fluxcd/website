@@ -62,33 +62,40 @@ def write_events_html(events):
         return
 
     html = """
-    <table>"""
+    <ul class="calendar-list">"""
 
     for event in events:
         html += """
-        <tr class="calendar-row">
-            <td class="date">{}</td>
-            <td class="time">{}</td>
-            <td class="label">{}</td>
-        </tr>
-        <tr class="calendar-card">
-            <td colspan=3>
-                <dt>Where</dt>
-                <dd><a href="#">https://zoom.com/abcd</a></dd>
-
-                <dt>Organizer</dt>
-                <dd>Daniel Holback <a href="#">daniel@weave.works</a></dd>
+        <li>
+            <div class="calendar-row">
+                <div class="date">{}</div>
+                <div class="time">{}</div>
+                <div class="label">{}</div>
+            </div>
+            <div class="calendar-card">
+                <ul class="details-list">
+                    <li>
+                        <dt>Where</dt>
+                        <dd><a href="#">https://zoom.com/abcd</a></dd>
+                    </li>
+                    
+                    <li>
+                        <dt>Organizer</dt>
+                        <dd>Daniel Holback <a href="#">daniel@weave.works</a></dd>
+                    </li>
+                </ul>
 
                 <span class="description">Meetings minute agenda and videos <a href="#">https://docs.google.com/spreadsheets/d/1WcRgC7tXNpCK4AGm7fg37oesyVKr3THdJXQBlVq0rG8/edit#gid=220199767</a></span>
-            </td>
-        </tr>
+            </div>
+        </li>
+
 """.format(
     event[0].strftime('%F'),
     event[0].strftime('%H:%M'),
     event[1])
 
     html += """
-    </table>"""
+    </ul>"""
 
     f = open(CALENDAR_INCLUDE_HTML, 'w')
     f.write(html)

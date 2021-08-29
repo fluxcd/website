@@ -1,7 +1,12 @@
 {{ if isset .Site.Params "algolia_docsearch" }}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
 {{ $tabs := resources.Get "js/tabs.js" | js.Build "tabs.js" }}
 <script type="text/javascript" src="{{ $tabs.RelPermalink }}" defer></script>
+
+{{ $calendar := resources.Get "js/calendar.js" | js.Build "calendar.js" }}
+<script type="text/javascript" src="{{ $calendar.RelPermalink }}" defer></script>
+
 <script type="text/javascript"> docsearch({
 apiKey: '45f9f14d53600b0a2cafa46a26ee10f4',
 indexName: 'fluxcd',

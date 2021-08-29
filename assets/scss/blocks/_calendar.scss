@@ -1,8 +1,4 @@
-$card-bg: rgba(white, 0.75);
-
-
 .team-calendar {
-  // margin: 0 -15px;
   padding: 0 1rem;
   max-width: 600px;
   margin: 0 auto;
@@ -21,105 +17,108 @@ $card-bg: rgba(white, 0.75);
     font-weight: 500;
   }
 
-  table {
+  ul.calendar-list {
     margin: 0 auto;
+    list-style-type: none;
 
-    tr {
+    & > li {
       border-bottom: 1px solid rgba($flux-white, 0.25);
+     
+      .label {
+        text-decoration: underline 0.15em rgba($flux-white, 0);
+        text-underline-offset: 0.2em;
+        transition: text-decoration-color 300ms;
+      }
+
+      &:hover {
+        .label {
+          text-decoration-color: rgba($flux-white, 0.75);
+          text-underline-offset: 0.2em;
+          cursor: pointer;
+        }
+      }
+
+      @media (hover: none) {
+        border-bottom: none;
+        .label {
+          text-underline-offset: 0.2em;
+          text-decoration: underline 0.15em rgba($flux-white, 0.25);
+        }
+      }
 
       &:last-child {
         border: none;
       }
 
-      td {
-        vertical-align: bottom;
-        padding: 6px 0;
-      }
-      td.date {
-        width: 7rem;
+      .date {
+        display: inline-block;
+        width: 6rem;
         text-align: left;
         font-weight: 500;
-        padding-left: 1rem;
+        color:rgba($flux-white, 0.75);
+
+        padding: 6px 0;
+
+        vertical-align: bottom;
       }
 
-      td.time {
+      .time {
+        display: inline-block;
         width: 3rem;
-        padding-right: 1rem;
-        font-weight: 200;
+
+        padding: 6px 0;
+        padding-right: 2rem;
+        font-weight: 300;
+        color:rgba($flux-white, 0.75);
+
+        vertical-align: bottom;
       }
 
-      td.label {
+      .label {
+        display: inline-block;
+
+        padding: 6px 0;
         font-weight: 500;
+        vertical-align: bottom;
       }
-
     }
-    tr.calendar-card td {
+
+    .calendar-card {
       display: none;
       max-width: 600px;
-    }
 
-    tr:nth-child(5) {
+      padding: 0 1rem 1rem 1rem;
+      word-break: break-all;
       border-bottom: none;
-      td {
-        // background: $card-bg;
-        // color: $flux-black;
-        font-weight: 600;
-        // border-bottom: 1px solid rgba($flux-black, 0.25);
-        border-bottom: none;
+      font-size: 0.9rem;
 
-        text-decoration: underline;
-
+      ul.details-list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        li {
+          margin-top: 3px;
+        }
+      }
+      
+      dt {
+        color: rgba($flux-white, 0.75);
+        display: inline-block;
+        width: 7.5rem;
+        text-align: right;
       }
 
-      td.label {
-        // font-size: 1.2rem;
+      dd {
+        margin: 0;
+        padding-left: 14px;
+        color: rgba($flux-white, 1);
+        display: inline-block;
+        clear: both;
       }
 
-    }
-
-    tr.calendar-card {
-      td {
-        // margin-top: 1.5rem;
-
-        display: table-cell;
-        // background: $card-bg;
-        // color: $flux-b0 lack;
-
-        padding: 0 1rem 1rem 1rem;
-        word-break: break-all;
-        border-bottom: none;
-        font-size: 0.9rem;
-        
-        dt:first-child {
-          // margin-top: 4px;
-          // margin-bottom: 4px;
-        }
-
-        dt:nth-of-type(2) {
-          margin-bottom: 8px;
-        }
-
-        dt {
-          // margin-top: 0.5rem;
-          color: rgba($flux-white, 0.75);
-          display: inline-block;
-          width: 8.5rem;
-          text-align: right;
-          // margin-bottom: 6px;
-        }
-
-        dd {
-          padding-left: 1rem;
-          color: rgba($flux-white, 1);
-          display: inline;
-          clear: both;
-        }
-
-        dd::after { content: '\A'; white-space:pre; height: 0px; font-size: 1px;}
-
-        a {
-            // color: $flux-darkest-blue !important; 
-        }
+      .description {
+        margin-top: 12px;
+        display: block;
       }
     }
   }
