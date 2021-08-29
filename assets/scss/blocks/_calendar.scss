@@ -88,12 +88,13 @@
       max-width: 600px;
 
       padding: 0 1rem 1rem 1rem;
-      word-break: break-all;
+      // word-break: break-all;
       border-bottom: none;
       font-size: 0.9rem;
 
       ul.details-list {
         margin: 0;
+        margin-top: 0.5rem;
         padding: 0;
         list-style-type: none;
         li {

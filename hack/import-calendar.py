@@ -4,6 +4,7 @@ from datetime import (date, timedelta)
 import glob
 import os
 import sys
+import re
 
 # Workaround to make this work in Netlify...
 LOCAL_PY_PATH = '/opt/buildhome/python3.8/lib/python3.8/site-packages/'
@@ -32,6 +33,27 @@ TOP_LEVEL_DIR = os.path.realpath(
 CONTENT_DIR = os.path.join(TOP_LEVEL_DIR, 'content/en')
 CALENDAR_INCLUDE_HTML = os.path.join(CONTENT_DIR, 'calendar_include.html')
 
+URL_RE = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", re.MULTILINE|re.UNICODE)
+
+# Ex: https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/edit# ( https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/edit )
+DOUBLE_URL_RE = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)(\s\(\s((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)\s\))", re.MULTILINE|re.UNICODE)
+
+
+def replace_url_to_link(value):
+    return URL_RE.sub(r'<a href="\1" target="_blank">here</a><br/>', value)
+
+def fix_double_url(text):
+    # icalendar description inserts some noisy url data
+    # like this:
+    # Meeting agenda, minutes and videos: https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/edit# ( https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/edit )
+    # or this:
+    # Find your local number: https://zoom.us/u/adZJ8PKSIP ( https://www.google.com/url?q=https://zoom.us/u/adZJ8PKSIP&sa=D&source=calendar&ust=1604867561566000&usg=AOvVaw2W04x-xaitfml1SAw4m10z )
+
+    # Until the source data is fixed, the this will find every "URL1 ( URL2 )" and replace it with "URL1"
+    return DOUBLE_URL_RE.sub(r"\1", text)
+
+
+
 def download_calendar():
     http = urllib3.PoolManager()
     r = http.request('GET', CAL_URL)
@@ -40,19 +62,44 @@ def download_calendar():
         return None
     return r.data
 
+
+def read_organizer(event):
+    organizer = event['organizer']
+    email = organizer.title().split(':')[1].lower()
+    name = email
+    if 'cn' in organizer.params:
+        name = organizer.params['cn']
+
+    mailto_href = ''.format(email, name)
+    return {"name": name, "email": email}
+
 def read_calendar(cal):
     events = []
     gcal = Calendar.from_ical(cal)
     today = date.today()
     next_month = today+timedelta(days=30)
     for event in recurring_ical_events.of(gcal).between(today, next_month):
+        description = replace_url_to_link(fix_double_url(event['description']))
         events += [
-            (event['dtstart'].dt.astimezone(pytz.utc),
-             event['summary'],
-             event['description'])
+            {
+                "time": event['dtstart'].dt.astimezone(pytz.utc),
+                "title": event['summary'],
+                "location": event['location'].title().lower(),
+                "organizer": read_organizer(event),
+                "description": description
+            }
         ]
-    events.sort()
+    events.sort(key=lambda e: e['time'])
     return events
+
+def format_location_html(event):
+    lc = event['location'].lower()
+    if lc.startswith("http://") or lc.startswith("https://"):
+        return f'<a href="{lc}">{event["location"]}</a>'
+    elif lc.find("slack") or lc.find('#flux'):
+        return f'<a href="https://cloud-native.slack.com/messages/flux">{event["location"]}</a>'
+    else:
+        return event['location']
 
 def write_events_html(events):
     if os.path.exists(CALENDAR_INCLUDE_HTML):
@@ -65,35 +112,31 @@ def write_events_html(events):
     <ul class="calendar-list">"""
 
     for event in events:
-        html += """
+        html += f"""
         <li>
             <div class="calendar-row">
-                <div class="date">{}</div>
-                <div class="time">{}</div>
-                <div class="label">{}</div>
+                <div class="date">{event['time'].strftime('%F')}</div>
+                <div class="time">{event['time'].strftime('%H:%M')}</div>
+                <div class="label">{event['title']}</div>
             </div>
             <div class="calendar-card">
                 <ul class="details-list">
                     <li>
                         <dt>Where</dt>
-                        <dd><a href="#">https://zoom.com/abcd</a></dd>
+                        <dd>{format_location_html(event)}</dd>
                     </li>
                     
                     <li>
                         <dt>Organizer</dt>
-                        <dd>Daniel Holback <a href="#">daniel@weave.works</a></dd>
+                        <dd><a href="mailto:{event['organizer']['email']}">{event['organizer']['name']}</a></dd>
                     </li>
                 </ul>
 
-                <span class="description">Meetings minute agenda and videos <a href="#">https://docs.google.com/spreadsheets/d/1WcRgC7tXNpCK4AGm7fg37oesyVKr3THdJXQBlVq0rG8/edit#gid=220199767</a></span>
+                <span class="description">{event['description']}</span>
             </div>
         </li>
 
-""".format(
-    event[0].strftime('%F'),
-    event[0].strftime('%H:%M'),
-    event[1])
-
+"""
     html += """
     </ul>"""
 
