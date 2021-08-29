@@ -70,7 +70,6 @@ def read_organizer(event):
     if 'cn' in organizer.params:
         name = organizer.params['cn']
 
-    mailto_href = ''.format(email, name)
     return {"name": name, "email": email}
 
 def read_calendar(cal):
@@ -94,12 +93,14 @@ def read_calendar(cal):
 
 def format_location_html(event):
     lc = event['location'].lower()
+    location = event['location']
+    html = event['location']
     if lc.startswith("http://") or lc.startswith("https://"):
-        return f'<a href="{lc}">{event["location"]}</a>'
+        html = f"""<a href="{lc}">{location}</a>"""
     elif lc.find("slack") or lc.find('#flux'):
-        return f'<a href="https://cloud-native.slack.com/messages/flux">{event["location"]}</a>'
-    else:
-        return event['location']
+        html = f"""<a href="https://cloud-native.slack.com/messages/flux">{location}</a>"""
+    return html
+
 
 def write_events_html(events):
     if os.path.exists(CALENDAR_INCLUDE_HTML):
