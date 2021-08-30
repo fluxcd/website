@@ -10,7 +10,7 @@ import shutil
 import sys
 
 # Workaround to make this work in Netlify...
-LOCAL_PY_PATH = '/opt/buildhome/python3.7/lib/python3.7/site-packages/'
+LOCAL_PY_PATH = '/opt/buildhome/python3.8/lib/python3.8/site-packages/'
 if LOCAL_PY_PATH not in sys.path:
     sys.path.append(LOCAL_PY_PATH)
 
