@@ -1,0 +1,127 @@
+.team-calendar {
+  padding: 0 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h3 {
+    font-weight: 600;
+    text-align: center;
+  }
+  p.caption {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+  }
+
+  p.details {
+    padding-top: 2rem;
+    font-weight: 500;
+  }
+
+  ul.calendar-list {
+    margin: 0 auto;
+    list-style-type: none;
+
+    & > li {
+      border-bottom: 1px solid rgba($flux-white, 0.25);
+     
+      .label {
+        text-decoration: underline 0.15em rgba($flux-white, 0);
+        text-underline-offset: 0.2em;
+        transition: text-decoration-color 300ms;
+      }
+
+      &:hover {
+        .label {
+          text-decoration-color: rgba($flux-white, 0.75);
+          text-underline-offset: 0.2em;
+          cursor: pointer;
+        }
+      }
+
+      @media (hover: none) {
+        border-bottom: none;
+        .label {
+          text-underline-offset: 0.2em;
+          text-decoration: underline 0.15em rgba($flux-white, 0.25);
+        }
+      }
+
+      &:last-child {
+        border: none;
+      }
+
+      .date {
+        display: inline-block;
+        width: 6rem;
+        text-align: left;
+        font-weight: 500;
+        color:rgba($flux-white, 0.75);
+
+        padding: 6px 0;
+
+        vertical-align: bottom;
+      }
+
+      .time {
+        display: inline-block;
+        width: 3rem;
+
+        padding: 6px 0;
+        padding-right: 2rem;
+        font-weight: 300;
+        color:rgba($flux-white, 0.75);
+
+        vertical-align: bottom;
+      }
+
+      .label {
+        display: inline-block;
+
+        padding: 6px 0;
+        font-weight: 500;
+        vertical-align: bottom;
+      }
+    }
+
+    .calendar-card {
+      display: none;
+      max-width: 600px;
+
+      padding: 0 1rem 1rem 1rem;
+      // word-break: break-all;
+      border-bottom: none;
+      font-size: 0.9rem;
+
+      ul.details-list {
+        margin: 0;
+        margin-top: 0.5rem;
+        padding: 0;
+        list-style-type: none;
+        li {
+          margin-top: 3px;
+        }
+      }
+      
+      dt {
+        color: rgba($flux-white, 0.75);
+        display: inline-block;
+        width: 7.5rem;
+        text-align: right;
+      }
+
+      dd {
+        margin: 0;
+        padding-left: 14px;
+        color: rgba($flux-white, 1);
+        display: inline-block;
+        clear: both;
+      }
+
+      .description {
+        margin-top: 12px;
+        display: block;
+      }
+    }
+  }
+}
+
