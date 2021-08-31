@@ -152,7 +152,7 @@ weight = 50
 [[menus.main]]
 name = "Branding"
 parent = "Project"
-url = "https://branding.cncf.io/projects/flux"
+url = "https://github.com/cncf/artwork/tree/master/projects/flux"
 weight = 9999
 
 [[menus.main]]
