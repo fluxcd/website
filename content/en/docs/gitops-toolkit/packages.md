@@ -112,7 +112,7 @@ Download package
 
 ```sh
 go get github.com/fluxcd/image-reflector-controller/api
-go get github.com/fluxcd/imame-automation-controller/api
+go get github.com/fluxcd/image-automation-controller/api
 ```
 
 Import package
