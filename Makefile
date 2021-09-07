@@ -14,7 +14,7 @@ FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
 FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
 
 DEV_IMAGE_REGISTRY_NAME    ?= fluxcd
-HUGO_VERSION               ?= 0.88.1
+HUGO_VERSION               ?= $(shell grep HUGO_VERSION netlify.toml | cut -d'"' -f2)
 HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
 SUPPORT_IMAGE_BASE_NAME    := website:hugo-support
 HUGO_IMAGE_NAME            ?= $(DEV_IMAGE_REGISTRY_NAME)/$(HUGO_IMAGE_BASE_NAME)
