@@ -1,10 +1,6 @@
 {
-  "engines": {
-    "node": ">= 12"
-  },
   "devDependencies": {
     "autoprefixer": "^10.3.4",
-    "hugo-extended": "^0.88.1",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1"
   }
