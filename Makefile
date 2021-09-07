@@ -113,11 +113,11 @@ docker-push-hugo: docker-build-hugo
 
 docker-push-support: docker-build-support
 	$(BUILDER_CLI) push $(SUPPORT_IMAGE_NAME)
-#	cd docker-support; $(BUILDER_CLI) push -t $(SUPPORT_IMAGE_NAME)
+#	$(BUILDER_CLI) push -t $(SUPPORT_IMAGE_NAME)
 
 .PHONY: docker-build-support
 docker-build-support:
-	$(BUILDER_CLI) build -t $(SUPPORT_IMAGE_NAME) docker-support/
+	$(BUILDER_CLI) build -t $(SUPPORT_IMAGE_NAME) .
 
 .PHONY: docker-build-hugo
 docker-build-hugo: hugo

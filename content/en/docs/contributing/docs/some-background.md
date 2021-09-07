@@ -29,7 +29,7 @@ Once those tools are installed, fetch the assets necessary to run the site:
 ```cli
 npm install
 make theme
-pip3 install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Then run the site in "server" mode:
@@ -91,13 +91,13 @@ Update the `docker-support` image tag whenever build-time (or "serve"-time) depe
 
 These targets as explained below are run in the appropriate order as dependencies of `make docker-push`.
 
-- [ ] `TODO`: add a system/integration test for `website` that verifies any changes have not broken `make docker-serve`, for example by adding new dependencies without mentioning them in the `docker-support/Dockerfile`.
+- [ ] `TODO`: add a system/integration test for `website` that verifies any changes have not broken `make docker-serve`, for example by adding new dependencies without mentioning them in the `./Dockerfile`.
 
 ##### Flux-specific Dependencies
 
 The FluxCD.io website has some build-time dependencies including Python3, PyYAML, `rsync`, `grep`, `nodejs`, `npm`, `curl`, `jq`, (and potentially others that may be added in the future.) Flux-specific dependencies are prepared in an image that gets tagged as `docker.io/fluxcd/website:hugo-support`.
 
-This image is built from the `Dockerfile` in `docker-support/`; run `make docker-build-support` to rebuild it locally, (or run as `make docker-push-support` to build and also push.)
+This image is built from the `Dockerfile` in `./`; run `make docker-build-support` to rebuild it locally, (or run as `make docker-push-support` to build and also push.)
 
 ##### `gohugoio/hugo`
 
