@@ -29,6 +29,7 @@ Once those tools are installed, fetch the assets necessary to run the site:
 ```cli
 npm install
 make theme
+pip3 install -r requirements.txt
 ```
 
 Then run the site in "server" mode:
