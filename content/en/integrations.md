@@ -1,5 +1,6 @@
 ---
 title: Flux Integrations
+description: "Projects that extend and integrate with Flux."
 type: page
 ---
 
@@ -17,11 +18,15 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 
 ## Flux Extensions
 
+These projects extend Flux with new capabilities. 
+
 | Source                                                                        | Description |
 | ----------------------------------------------------------------------------- | ----------- |
 | [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller) | A Flux controller for managing manifests declared in jsonnet. |
 
 ## Integrations
+
+These projects make use of Flux to offer GitOps capabilities to their users.
 
 | Source                                                                      | Description |
 | --------------------------------------------------------------------------- | ----------- |
@@ -31,5 +36,5 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 | [microsoft/fabrikate](https://github.com/microsoft/fabrikate)               | Making GitOps with Kubernetes easier one component at a time. |
 | [microsoft/gitops-connector](https://github.com/microsoft/gitops-connector) | A GitOps Connector integrates a GitOps operator with CI/CD orchestrator. |
 | [telekom/das-schiff](https://github.com/telekom/das-schiff)                 | This is home of Das Schiff - Deutsche Telekom Technik's engine for Kubernetes Cluster as a Service (CaaS) in on-premise environment on top of bare-metal servers and VMs. |
-| [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                   | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
-| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
+| [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                   | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
+| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
