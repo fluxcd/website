@@ -4,6 +4,10 @@
     padding-top: 80px !important;
     padding-bottom: 8px !important;
 
+    @media (max-width: 991px) {
+      padding-top: 136px !important;
+    }
+
     @include media-breakpoint-down(sm) {
       padding-top: 16px !important;
     }
