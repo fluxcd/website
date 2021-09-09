@@ -25,9 +25,11 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 
 | Source                                                                      | Description |
 | --------------------------------------------------------------------------- | ----------- |
+| [aws/eks-anywhere](https://github.com/aws/eks-anywhere)                     | Amazon EKS Anywhere is an open-source deployment option for Amazon EKS that allows customers to create and operate Kubernetes clusters on-premises. |
 | [fidelity/kraan](https://github.com/fidelity/kraan)                         | Kraan is a Kubernetes Controller that manages the deployment of HelmReleases to a cluster. |
 | [microsoft/bedrock](https://github.com/microsoft/bedrock)                   | Automation for Production Kubernetes Clusters with a GitOps Workflow. |
 | [microsoft/fabrikate](https://github.com/microsoft/fabrikate)               | Making GitOps with Kubernetes easier one component at a time. |
 | [microsoft/gitops-connector](https://github.com/microsoft/gitops-connector) | A GitOps Connector integrates a GitOps operator with CI/CD orchestrator. |
 | [telekom/das-schiff](https://github.com/telekom/das-schiff)                 | This is home of Das Schiff - Deutsche Telekom Technik's engine for Kubernetes Cluster as a Service (CaaS) in on-premise environment on top of bare-metal servers and VMs. |
-| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
+| [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                   | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
+| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
