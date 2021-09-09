@@ -1,48 +1,6 @@
 // A cover block is a full size cover with a fixed background for smaller screens.
 
 @include td-box-height-modifiers(".td-hero-block");
-.td-hero-logo {
-    margin-right: 0.5em;
-}
-
-.td-hero-block {
-    padding-bottom: 12rem;
-    p {
-      color: $flux-white;
-    }
-
-    .fa-chevron-circle-down {
-      color: $flux-darkest-blue !important;
-    }
-
-    & > .byline {
-        position: absolute;
-        bottom: 2px;
-        right: 4px;
-    }
-
-    .col-terminal {
-      padding-top: 0.5rem;
-    }
-}
-
-.lead-flux section {
-  padding: 0rem 0 2rem 0 !important;
-  background: none;
-
-
-  a[aria-hidden="true"] {
-    display: none;
-  }
-
-  .td-arrow-down {
-    &::before {
-      border: {
-        color: #{$flux-dark-blue} transparent transparent transparent;
-      }
-    }
-  }
-}
 
 .hero-gitops {
   margin-left: -15px;
@@ -58,21 +16,54 @@
               linear-gradient(0deg, $flux-dark-blue, rgba($flux-darkest-blue, 0.3) 30px, rgba($flux-darkest-blue, 0.3) 150px, transparent 400px),
               linear-gradient(0deg, $flux-dark-blue, transparent 200px),
               radial-gradient(circle at top right, rgba($flux-light-blue, 0.8), rgba($flux-lighter-blue, 0.5) 40%, rgba($flux-dark-blue, 0.8) 50%, transparent),
-              repeating-linear-gradient(15deg, rgba($flux-darkest-blue, 0.2), rgba($flux-darkest-blue, 0.2) 2px,  rgba($flux-dark-blue, 0.2) 2px, rgba($flux-dark-blue, 0.2) 4px),
+              repeating-linear-gradient(15deg, rgba($flux-darkest-blue, 0.3), rgba($flux-darkest-blue, 0.3) 2px,  rgba($flux-dark-blue, 0.3) 2px, rgba($flux-dark-blue, 0.3) 4px),
               $flux-dark-blue;
+
+
+  .td-hero-block {
+    padding-bottom: 4rem;
+
+  }
+
+  section.row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero-details {
+    margin-top: 1.5rem;
+
+    p {
+      color: $flux-white;
+      font-weight: 500;
+      font-size: 1.4rem;
+    }
+
+    p:first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    .col-terminal {
+      padding-top: 6px;
+    }
+  }
 
   p {
     color: $flux-white;
   }
+
   h1 {
     color: rgba($flux-white, 0.95);
+    font-size: 3.8em;
+    padding-left: 14px;
   }
+
   h2 {
     color: rgba($flux-white, 0.95);
-    font-weight: 800;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+    font-weight: 600;
+    font-size: 1.4em;
   }
+
   a {
     color: $flux-light-blue !important;
     font-weight: 400;
@@ -99,6 +90,24 @@
       display: block;
       float: right;
       margin: 11px 0 0 14px;
+    }
+  }
+}
+
+.lead-flux section {
+  padding: 0rem 0 1rem 0 !important;
+  background: none;
+
+
+  a[aria-hidden="true"] {
+    display: none;
+  }
+
+  .td-arrow-down {
+    &::before {
+      border: {
+        color: #{$flux-dark-blue} transparent transparent transparent;
+      }
     }
   }
 }
