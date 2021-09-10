@@ -31,14 +31,14 @@ nav.navbar {
   }
 
   .nav-search-item {
+    height: 40px;
+    margin-bottom: 8px;
+
     .td-search-input {
       border: none;
       max-width: 11rem;
       padding-left: 9px;
       margin-right: 1rem;
-      @include media-breakpoint-up(md) {
-        margin-left: 2rem;
-      }
     }
   }
 }
