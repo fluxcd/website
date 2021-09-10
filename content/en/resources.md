@@ -5,13 +5,18 @@ type: page
 
 # Resources
 
-We are very happy that our community has os actively put resources together which you can learn from. Enjoy and please give feedback!
+We are very happy that our community has actively put resources together which you can learn from. Enjoy and please give feedback!
 
 These resources are sorted by date - new entries are added to the top.
 
 ## 2021
 
 {{% blocks/section color="white" %}}
+
+{{% blocks/resource
+youtube="JR8rev98SH0"
+title="FluxCD Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal" %}}
+{{% /blocks/resource %}}
 
 {{% blocks/resource
 youtube="Gidqz3D9yes"
