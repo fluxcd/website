@@ -63,6 +63,7 @@ HTTP/S basic and TLS authentication can be configured for private
 Helm repositories. See the [`HelmRepository` CRD docs](../components/source/helmrepositories.md)
 for more details.
 {{% /alert %}}
+
 ### Git repository
 
 Charts from Git repositories can be released by declaring a
@@ -72,10 +73,6 @@ repository on an interval and expose it as an artifact.
 The source-controller can build and expose Helm charts as artifacts
 from the contents of the `GitRepository` artifact (more about this
 later on in the guide).
-
-**There is one caveat you should be aware of:** to make the
-source-controller produce a new chart artifact, the `version` in the
-`Chart.yaml` of the chart must be bumped.
 
 An example `GitRepository`:
 
@@ -505,3 +502,23 @@ Besides Harbor, you can define receivers for **GitHub**, **GitLab**, **Bitbucket
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
 See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
 {{% /alert %}}
+
+## Release when a source revision changes for Git and Cloud Storage
+
+It is possible create a new chart artifact when a Source's revision has changed, but the
+`version` in the Chart.yml has not been bumped, for `GitRepository` and `Bucket` sources.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v2beta1
+kind: HelmChart
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  chart: ./charts/podinfo
+  sourceRef:
+    name: podinfo
+    kind: <GitRepository|Bucket>
+  interval: 10m
+  reconcileStrategy: Revision
+```
