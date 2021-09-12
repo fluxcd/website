@@ -59,6 +59,7 @@ gen-content: ## Generates content from external sources.
 	hack/gen-content.py
 	hack/import-calendar.py
 	hack/import-flux2-assets.sh
+	hack/get-release.sh
 
 serve: gen-content theme ## Spawns a development server.
 	hugo server \
