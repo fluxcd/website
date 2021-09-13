@@ -110,7 +110,7 @@ If your Git provider is **GitHub**, **GitLab** or **Azure DevOps** please follow
 
 * [GitHub.com and GitHub Enterprise](#github-and-github-enterprise)
 * [GitLab.com and GitLab Enterprise](#gitlab-and-gitlab-enterprise)
-* [Azure DevOps](../use-cases/azure#flux-installation-for-azure-devops)
+* [Azure DevOps](use-cases/azure.md##flux-installation-for-azure-devops)
 
 ### Generic Git Server
 
@@ -645,4 +645,4 @@ kustomize build https://github.com/fluxcd/flux2/manifests/install?ref=main | kub
 
 ## Uninstall
 
-See [Uninstall Flux](guides/uninstall.md).
+See [Uninstall Flux](uninstall.md).
