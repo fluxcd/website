@@ -183,19 +183,7 @@ flux get kustomizations --watch
 
 ### Flux Upgrade
 
-To upgrade the Flux components to a newer version, download the latest `flux` binary,
-run the install command in your repository root, commit and push the changes:
-
-```sh
-flux install \
-  --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
-
-git add -A && git commit -m "Upgrade to $(flux -v)" && git push
-```
-
-The [source-controller](../components/source/_index.md) will pull the changes on the cluster,
-then [kustomize-controller](../components/source/_index.md)
-will perform a rolling update of all Flux components including itself.
+See [Upgrade an Azure DevOps deployment of Flux](../deploy-manage-flux/upgrade/azure-devops.md).
 
 ## Helm Repositories on Azure Container Registry
 
