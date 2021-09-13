@@ -1,6 +1,5 @@
 ---
 title: "Install the Flux CLI"
-linkTitle: "Install the Flux CLI"
 description: "Flux install, bootstrap, upgrade and uninstall documentation."
 no_list: true
 weight: 41

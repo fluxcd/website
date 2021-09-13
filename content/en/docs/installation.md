@@ -9,9 +9,9 @@ weight: 30
 
 The Flux CLI is installable on a variety of Linux platforms, macOS and Windows. Find your preferred operating system below.
 
-- [Install the Flux CLI on Linux](linux.md)
-- [Install the Flux CLI on macOS](osx.md)
-- [Install the Flux CLI on Windows](windows.md)
+- [Install the Flux CLI on Linux](install/linux.md)
+- [Install the Flux CLI on macOS](install/osx.md)
+- [Install the Flux CLI on Windows](install/windows.md)
 
 ## Bootstrap
 
@@ -32,7 +32,7 @@ If your Git provider is **GitHub**, **GitLab** or **Azure DevOps** please follow
 
 * [GitHub.com and GitHub Enterprise](#github-and-github-enterprise)
 * [GitLab.com and GitLab Enterprise](#gitlab-and-gitlab-enterprise)
-* [Azure DevOps](../use-cases/azure#flux-installation-for-azure-devops)
+* [Azure DevOps](use-cases/azure#flux-installation-for-azure-devops)
 
 ### Generic Git Server
 

@@ -3,6 +3,6 @@ To configure your shell to load `flux` [bash completions](./cmd/flux_completion_
 ```sh
 . <(flux completion bash)
 ```
-[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md),
-and [`powershell`](./cmd/flux_completion_powershell.md)
+[`zsh`](/docs/cmd/flux_completion_zsh), [`fish`](/docs/cmd/flux_completion_fish),
+and [`powershell`](/docs/cmd/flux_completion_powershell)
 are also supported with their own sub-commands.

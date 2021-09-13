@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 list=$(curl --silent "https://api.github.com/repos/fluxcd/flux2/releases/latest" | jq -r '.assets[] | select(.name | test("^.*(flux_).*$")).browser_download_url')
 snippet_loc="static/snippet/docs/install"
 rel_loc="static/snippet/docs/latestrelease.md"
