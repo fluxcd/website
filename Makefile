@@ -117,11 +117,11 @@ docker-push-support: docker-build-support
 
 .PHONY: docker-build-support
 docker-build-support:
-	$(BUILDER_CLI) build -t $(SUPPORT_IMAGE_NAME) .
+	$(BUILDER_CLI) build --build-arg HUGO_VERSION=${HUGO_VERSION} -t $(SUPPORT_IMAGE_NAME) .
 
 .PHONY: docker-build-hugo
 docker-build-hugo: hugo
-	$(BUILDER_CLI) build -t $(HUGO_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
+	$(BUILDER_CLI) build --build-arg HUGO_VERSION=${HUGO_VERSION} -t $(HUGO_IMAGE_NAME) --build-arg HUGO_BUILD_TAGS=extended hugo/
 
 hugo:
 	git clone https://github.com/gohugoio/hugo.git --depth 1 -b v$(HUGO_VERSION)
