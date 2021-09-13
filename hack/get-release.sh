@@ -1,46 +1,44 @@
-#!/usr/bin/bash
+#!/bin/sh
 
-list=($(curl --silent "https://api.github.com/repos/fluxcd/flux2/releases/latest" | jq -r '.assets[] | select(.name | test("^.*(flux_).*$")).browser_download_url'))
+set -x
 
-echo "| Download URL | Platform |" > static/snippet/docs/latestrelease.md
-echo "| ------------ | ------------ |" >> static/snippet/docs/latestrelease.md
-validatelinux=""
-validateosxintel=""
-validateosxarm=""
-validatechecksum=""
-validatechecksumwin=""
-validatewin=""
-for i in "${list[@]}"; do
-    filename=$(echo $i | grep -o -P '(\w+)(\.\w+)+(?!.*(\w+)(\.\w+)+)')
-    if [[ $i != *checksums* ]]; then
-      arch=$(echo $i | grep -o -P '(?<=[0-9]_).*(?=.tar.gz)')$(echo $i | grep -o -P '(?<=[0-9]_).*(?=.zip)')
-      printf "| $i | $arch |\n" >> static/snippet/docs/latestrelease.md
-      if [[ $i == *linux_amd64* ]]; then
-        printf "\`\`\`bash\ncurl -LO \"$i\"\n\`\`\`\n" > static/snippet/docs/install/curllinux.md
-        printf "\`\`\`bash\ntar -xzof $filename\n\`\`\`\n" > static/snippet/docs/install/extractlinux.md
-        validatelinux=$(printf "\`\`\`bash\nsha256sum $filename -c ")
-      elif [[ $i == *darwin_amd64* ]]; then
-        printf "\`\`\`bash\ncurl -LO \"$i\"\n\`\`\`\n" > static/snippet/docs/install/curlosxintel.md
-        printf "\`\`\`bash\ntar -xzof $filename\n\`\`\`\n" > static/snippet/docs/install/extractosxintel.md
-        validateosxintel=$(printf "\`\`\`bash\nsha256sum $filename -c ")
-      elif [[ $i == *darwin_arm64* ]]; then
-        printf "\`\`\`bash\ncurl -LO \"$i\"\n\`\`\`\n" > static/snippet/docs/install/curlosxarm.md
-        printf "\`\`\`bash\ntar -xzof $filename\n\`\`\`\n" > static/snippet/docs/install/extractosxarm.md
-        validateosxarm=$(printf "\`\`\`bash\nsha256sum $filename -c ")
-      elif [[ $i == *windows_amd64* ]]; then
-        printf "\`\`\`bash\ncurl -LO \"$i\"\n\`\`\`\n" > static/snippet/docs/install/curlwindowsamd.md
-        validatewinfile=$(printf "$filename")
-        printf "\`\`\`powershell\nExpand-Archive -Path $filename -DestinationPath .\n\`\`\`\n" > static/snippet/docs/install/extractwinamd.md
-      fi
-    else
-      printf "\`\`\`bash\ncurl -LO \"$i\"\n\`\`\`\n" > static/snippet/docs/install/downloadchecksum.md
-      
-      validatechecksum=$(printf "$filename --ignore-missing\n\`\`\`\n")
-      validatechecksumfilewin=$(printf "$filename")
-    fi
+list=$(curl --silent "https://api.github.com/repos/fluxcd/flux2/releases/latest" | jq -r '.assets[] | select(.name | test("^.*(flux_).*$")).browser_download_url')
+snippet_loc="static/snippet/docs/install"
+rel_loc="static/snippet/docs/latestrelease.md"
+echo "| Download URL | Platform |" > "$rel_loc"
+echo "| ------------ | ------------ |" >> "$rel_loc"
+
+for item in $list; do
+
+  filename=$(basename "$item")
+  arch=$(echo "$filename" | grep -oP '(?<=[0-9]_).*(?=.tar.gz|.zip)' )
+
+  ver=$(echo "flux_0.17.0_linux_amd64.tar.gz" | cut -f1,2 -d'_')
+
+  if [ -n "$arch" ] ; then
+    echo "| $item | $arch |" >> "$rel_loc"
+    
+  fi
+
+  case "$arch" in
+    # On Mac and Linux tar achive and sha256 sum
+    "darwin_amd64" | "linux_amd64" | "darwin_arm64")
+       printf "tar -xzof %s\n" "$filename" > "${snippet_loc}/tar${arch}.sh"
+       printf "sha256sum %s -c %s_checksums.txt\n" "$filename" "$ver" > "${snippet_loc}/verify${arch}.sh"
+       printf "curl -LO %s\n" "$item" > "${snippet_loc}/curl${arch}.sh"
+    ;;
+    # On windows powershell use expand-archive and
+    "windows_amd64")
+        printf "Expand-Archive -Path %s -DestinationPath .\n" "$filename" > "${snippet_loc}/zip${arch}.ps1"
+        printf "Select-String -Path '%s_checksums.txt' -Pattern ((Get-FileHash %s).Hash)\n" "$ver" "$filename" > "${snippet_loc}/verify${arch}.ps1"
+        printf "curl -LO %s\n" "$item" > "${snippet_loc}/curl${arch}.ps1"
+    ;;
+    "")
+    printf "curl -LO %s\n" "$item" > "${snippet_loc}/curlchecksum.sh"
+    ;;
+    *)
+    
+    ;; 
+  esac
+
 done
-
-printf "$validatelinux$validatechecksum" > static/snippet/docs/install/verifychecksumlinux.md
-printf "$validateosxintel$validatechecksum" > static/snippet/docs/install/verifychecksumosxintel.md
-printf "$validateosxarm$validatechecksum" > static/snippet/docs/install/verifychecksumosxarm.md
-printf "\`\`\`powershell\nSelect-String -Path $validatechecksumfilewin -Pattern ((Get-FileHash '$validatewinfile').Hash)\n\`\`\`\n" > static/snippet/docs/install/verifychecksumwin.md

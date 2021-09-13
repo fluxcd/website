@@ -3,7 +3,7 @@
   command = "make production-build"
 
 [build.environment]
-  HUGO_VERSION = "0.86.0"
+  HUGO_VERSION = "0.88.1"
 
 [context.production.environment]
   HUGO_ENV = "production"

@@ -5,85 +5,13 @@ description: "Flux install, bootstrap, upgrade and uninstall documentation."
 weight: 30
 ---
 
-This guide walks you through setting up Flux to
-manage one or more Kubernetes clusters.
+## Installation
 
-## Prerequisites
+The Flux CLI is installable on a variety of Linux platforms, macOS and Windows. Find your preferred operating system below.
 
-You will need a Kubernetes cluster version **1.16** or newer
-and kubectl version **1.18** or newer.
-
-## Install the Flux CLI
-
-{{% tabs %}}
-{{% tab "Homebrew" %}}
-
-With [Homebrew](https://brew.sh) for macOS and Linux:
-
-```sh
-brew install fluxcd/tap/flux
-```
-
-{{% /tab %}}
-{{% tab "GoFish" %}}
-
-With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
-
-```sh
-gofish install flux
-```
-
-{{% /tab %}}
-{{% tab "bash" %}}
-
-With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
-
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
-```
-
-{{% /tab %}}
-{{% tab "yay" %}}
-
-With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
-
-```sh
-yay -S flux-bin
-```
-
-{{% /tab %}}
-{{% tab "nix" %}}
-
-With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
-
-```sh
-nix-env -i fluxcd
-```
-{{% /tab %}}
-{{% /tabs %}}
-
-Binaries for **macOS**, **Windows** and **Linux** AMD64/ARM are available for download on the
-[release page](https://github.com/fluxcd/flux2/releases).
-
-To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
-
-```sh
-# ~/.bashrc or ~/.bash_profile
-. <(flux completion bash)
-```
-
-[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md), and [`powershell`](./cmd/flux_completion_powershell.md) are also supported with their own sub-commands.
-
-A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
-
-* `docker.io/fluxcd/flux-cli:<version>`
-* `ghcr.io/fluxcd/flux-cli:<version>`
-
-Verify that your cluster satisfies the prerequisites with:
-
-```sh
-flux check --pre
-```
+- [Install the Flux CLI on Linux](linux.md)
+- [Install the Flux CLI on macOS](osx.md)
+- [Install the Flux CLI on Windows](windows.md)
 
 ## Bootstrap
 
