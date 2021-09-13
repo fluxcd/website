@@ -41,17 +41,17 @@ nix-env -f channel:nixos-unstable -iA fluxcd
 
 1. Download the latest release with the command:
 
-    {{< readFile file="static/snippet/docs/install/curllinux.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/curllinux_amd64.sh" language="bash" >}}
 
-1. Validate the archive (optional)
+2. Validate the archive (optional)
 
     Download the checksum file:
 
-    {{< readFile file="static/snippet/docs/install/downloadchecksum.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/curlchecksum.sh" language="bash" >}}
 
     Validate the flux archive against the checksum file
 
-    {{< readFile file="static/snippet/docs/install/verifychecksumlinux.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/verifylinux_amd64.sh" language="bash" >}}
 
     If valid, the output is similar to:
 
@@ -65,17 +65,17 @@ nix-env -f channel:nixos-unstable -iA fluxcd
     flux_0.17.0_linux_amd64.tar.gz: no file was verified
     ```
 
-2. Extract the binary
+3. Extract the binary
 
-    {{< readFile file="static/snippet/docs/install/extractlinux.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/tarlinux_amd64.sh" language="bash" >}}
 
-3. Install Flux
+4. Install Flux
 
     ```bash
     sudo install -o root -g root -m 0755 flux /usr/local/bin/flux
     ```
 
-4. Verify installation
+5. Verify installation
 
     ```bash
     flux --version

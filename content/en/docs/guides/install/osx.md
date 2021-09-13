@@ -21,17 +21,17 @@ description: "Flux install, bootstrap, upgrade and uninstall documentation."
 
 ## Install using curl
 
-1. Download the latest release:
+1. Download the latest release using ``curl``:
 
   {{% tabs %}}
   {{% tab "Intel" %}}
 
-  {{< readFile file="static/snippet/docs/install/curlosxintel.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/curldarwin_amd64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% tab "Apple Silicon" %}}
 
-  {{< readFile file="static/snippet/docs/install/curlosxarm.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/curldarwin_arm64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% /tabs %}}
@@ -40,19 +40,19 @@ description: "Flux install, bootstrap, upgrade and uninstall documentation."
 
   Download the flux checksum file:
 
-  {{< readFile file="static/snippet/docs/install/downloadchecksum.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/curlchecksum.sh" language="bash" >}}
 
   Validate the archive against the checksum file:
 
   {{% tabs %}}
   {{% tab "Intel" %}}
 
-  {{< readFile file="static/snippet/docs/install/verifychecksumosxintel.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/verifydarwin_amd64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% tab "Apple Silicon" %}}
 
-  {{< readFile file="static/snippet/docs/install/verifychecksumosxarm.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/verifydarwin_arm64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% /tabs %}}
@@ -69,17 +69,17 @@ description: "Flux install, bootstrap, upgrade and uninstall documentation."
   flux_0.17.0_darwin_amd64.tar.gz: no file was verified
   ```
 
-3. Extract the archive
+3. Extract the archive with ``tar``:
 
   {{% tabs %}}
   {{% tab "Intel" %}}
 
-  {{< readFile file="static/snippet/docs/install/extractosxintel.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/tardarwin_amd64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% tab "Apple Silicon" %}}
 
-  {{< readFile file="static/snippet/docs/install/extractosxarm.md" markdown="true" >}}
+  {{< codeblock file="static/snippet/docs/install/tardarwin_arm64.sh" language="bash" >}}
 
   {{% /tab %}}
   {{% /tabs %}}
@@ -93,7 +93,9 @@ description: "Flux install, bootstrap, upgrade and uninstall documentation."
 
 5. Verify installation
 
-  ```flux --version```
+  ```bash
+  flux --version
+  ```
 
 ## Enable shell autocompletion
 

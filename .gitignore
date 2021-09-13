@@ -19,3 +19,19 @@ static/img/logos
 
 # local GH token, used for some scripts
 .gh-token
+
+# Imported snippets
+static/snippet/docs/install/curlchecksum.sh
+static/snippet/docs/install/curldarwin_amd64.sh
+static/snippet/docs/install/curldarwin_arm64.sh
+static/snippet/docs/install/curllinux_amd64.sh
+static/snippet/docs/install/curlwindows_amd64.ps1
+static/snippet/docs/install/tardarwin_amd64.sh
+static/snippet/docs/install/tardarwin_arm64.sh
+static/snippet/docs/install/tarlinux_amd64.sh
+static/snippet/docs/install/verifydarwin_amd64.sh
+static/snippet/docs/install/verifydarwin_arm64.sh
+static/snippet/docs/install/verifylinux_amd64.sh
+static/snippet/docs/install/verifywindows_amd64.ps1
+static/snippet/docs/install/zipwindows_amd64.ps1
+static/snippet/docs/latestrelease.md

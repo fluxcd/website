@@ -27,17 +27,17 @@ choco install flux
 
 1. Download the latest release
 
-    {{< readFile file="static/snippet/docs/install/curlwindowsamd.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/curlwindows_amd64.ps1" language="powershell" >}}
 
 1. Validate the archive (optional)
 
     Download the checksum file
 
-    {{< readFile file="static/snippet/docs/install/downloadchecksum.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/curlchecksum.sh" language="powershell" >}}
 
     Validate the archive against the checksum file
 
-    {{< readFile file="static/snippet/docs/install/verifychecksumwin.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/verifywindows_amd64.ps1" language="powershell" >}}
     
     If valid, the output is similar to:
 
@@ -49,7 +49,7 @@ choco install flux
 
 2. Extract the binary
 
-    {{< readFile file="static/snippet/docs/install/extractwinamd.md" markdown="true" >}}
+    {{< codeblock file="static/snippet/docs/install/zipwindows_amd64.ps1" language="powershell" >}}
 
 3. Add the binary in to your ``PATH``.
 
