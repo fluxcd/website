@@ -1,21 +1,27 @@
 FROM fluxcd/website:hugo-0.88.1-extended
 
 RUN apk update && \
-    apk add --no-cache \
-	grep \
-	rsync \
+	apk add --no-cache \
 	bash \
+	coreutils \
+	curl \
+	gcc \
+	grep \
+	jq \
+	libc-dev \
+	libffi-dev \
+	linux-headers \
 	make \
 	nodejs \
 	npm \
-	coreutils \
-	curl \
 	openssh-client \
-	jq \
+	py3-pip \
 	python3 \
-	py3-pip
+	python3-dev \
+	rsync
 
-RUN python3 -m pip install pyyaml pathlib
+COPY requirements.txt /tmp
+RUN python3 -m pip install -r /tmp/requirements.txt
 RUN ln -s `which python3` /usr/bin/python
 
 # VOLUME /site	# provided by upstream
