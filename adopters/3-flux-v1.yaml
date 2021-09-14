@@ -55,7 +55,8 @@ adopters:
     - name: CrowdRiff
       url: https://crowdriff.com
     - name: Cybrary
-      url: https://cybrary.it
+      url: https://www.cybrary.it
+      logo: logos/cybrary.svg
     - name: Duedil
       url: https://www.duedil.com/
     - name: Enliven Systems
