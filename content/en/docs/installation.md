@@ -645,4 +645,4 @@ kustomize build https://github.com/fluxcd/flux2/manifests/install?ref=main | kub
 
 ## Uninstall
 
-See [Uninstall Flux](uninstall.md).
+See [Uninstall Flux](deploy-manage-flux/uninstall.md).
