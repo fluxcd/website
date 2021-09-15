@@ -565,7 +565,7 @@ flux create helmrelease nginx \
 
 ## Upgrade
 
-See [Upgrade Flux](upgrade/_index.md) for instructions for all upgrade methods.
+See [Upgrade Flux](deploy-manage-flux/upgrade/_index.md) for instructions for all upgrade methods.
 
 ## Uninstall
 
