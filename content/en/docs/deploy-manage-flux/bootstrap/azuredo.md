@@ -7,7 +7,7 @@ linkTitle: Azure DevOps
 
 To follow this guide you will need the following:
 
-- The Flux CLI. See [Install the Flux CLI](../installation.md#install-the-flux-cli) for instructions.
+- The Flux CLI. See [Install the Flux CLI](../../installation.md#install-the-flux-cli) for instructions.
 - A Kubernetes Cluster. If using a cluster hosted on Azure see the [Azure use cases](../../use-cases/azure.md) guide for recommended cluster settings.
 - An Azure DevOps Git Repository to hold your Flux install and Kubernetes resources
 - An Azure DevOps account that Flux will use to authenticate with Azure DevOps.

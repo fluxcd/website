@@ -7,7 +7,7 @@ linkTitle: GitLab
 
 To follow this guide you will need the following:
 
-- The Flux CLI. [Install the Flux CLI](../installation.md#install-the-flux-cli)
+- The Flux CLI. [Install the Flux CLI](../../installation.md#install-the-flux-cli)
 - A Kubernetes Cluster.
 
 ## Export your personal access token

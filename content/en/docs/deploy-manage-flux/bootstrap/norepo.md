@@ -14,7 +14,7 @@ Bootstrapping using this method is only for testing and development purposes. By
 
 To follow this guide you will need the following:
 
-- The Flux CLI. [Install the Flux CLI](../installation.md#install-the-flux-cli)
+- The Flux CLI. [Install the Flux CLI](../../installation.md#install-the-flux-cli)
 - A Kubernetes Cluster.
 
 ## Install Flux
