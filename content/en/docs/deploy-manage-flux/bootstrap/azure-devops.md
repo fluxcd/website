@@ -34,7 +34,7 @@ mkdir -p ./flux-system
 ```
 
 {{% note %}}
-If you are planning to use the same repo for multiple clusters, you can place the ``flux-system`` inside a nested directory. See [Repository Structure](../repository-structure.md) for more information.
+If you are planning to use the same repo for multiple clusters, you can place the ``flux-system`` inside a nested directory. See [Repository Structure](../../guides/repository-structure.md) for more information.
 {{% /note %}}
 
 ## Generate Flux Component Manifests

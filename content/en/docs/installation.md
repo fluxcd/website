@@ -93,7 +93,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 
 ## Bootstrap
 
-See [Bootstrap](bootstrap/_index.md) for instructions on how to bootstrap.
+See [Bootstrap](deploy-manage-flux/bootstrap/_index.md) for instructions on how to bootstrap.
 
 ## Upgrade
 

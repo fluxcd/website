@@ -1,7 +1,6 @@
 ---
 title: Using Flux on Azure
 linkTitle: Azure
-description: "How to boostrap Flux on Azure AKS with DevOps Git repositories."
 weight: 10
 ---
 
@@ -64,7 +63,7 @@ See `az configure --help`, `az configure --list-defaults`, and `az configure --d
 
 ## Flux Installation for Azure DevOps
 
-See [Bootstrap Flux with Azure DevOps](../guides/bootstrap/azuredo.md).
+See [Bootstrap Flux with Azure DevOps](../deploy-manage-flux/bootstrap/azure-devops.md).
 
 ### Flux Upgrade
 
