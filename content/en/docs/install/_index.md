@@ -11,7 +11,7 @@ The Flux command-line tool, flux , allows you to
 - Generate Flux resource definitions
 - Monitor flux components and resources
 
-For more information including a complete list of flux operations, see the [`flux` reference documentation](../../cmd/_index.md).
+For more information including a complete list of flux operations, see the [`flux` reference documentation](../cmd/_index.md).
 
 The Flux CLI is installable on a variety of Linux platforms, macOS and Windows. Find your preferred operating system below.
 
