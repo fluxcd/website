@@ -1,5 +1,6 @@
 ---
-title: "Bootstrap with a Generic Git Server"
+title: "Bootstrap Flux on a Generic Git Server"
+linkTitle: "Generic Git"
 ---
 
 ## Before you begin

@@ -1,6 +1,7 @@
 ---
 title: "Bootstrap Flux on GitHub"
 description: Bootstrap Flux for a GitHub account or GitHub Organization
+linkTitle: "GitHub"
 ---
 
 ## Before you begin

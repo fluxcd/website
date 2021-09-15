@@ -1,6 +1,6 @@
 ---
-title: "Bootstrap Flux with Azure DevOps"
-description: 
+title: "Bootstrap Flux on Azure DevOps"
+linkTitle: Azure DevOps
 ---
 
 ## Before you begin

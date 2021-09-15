@@ -1,6 +1,7 @@
 ---
-title: "Bootstrap Flux with GitHub Enterprise"
+title: "Bootstrap Flux on GitHub Enterprise"
 description: Bootstrap Flux using a GitHub enterprise
+linkTitle: GitHub Enterprise
 ---
 
 ##  Before you begin

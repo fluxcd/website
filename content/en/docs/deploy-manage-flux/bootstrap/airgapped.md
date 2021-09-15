@@ -1,5 +1,6 @@
 ---
 title: "Bootstrap Flux in an Air-gapped Environment"
+linkTitle: "Airgapped"
 ---
 
 ## Before you begin

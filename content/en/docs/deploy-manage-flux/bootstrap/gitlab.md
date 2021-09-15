@@ -1,6 +1,6 @@
 ---
-title: "Gitlab"
-description: Bootstrap flux with GitLab
+title: "Bootstrap Flux on GitLab"
+linkTitle: GitLab
 ---
 
 ## Before you begin
