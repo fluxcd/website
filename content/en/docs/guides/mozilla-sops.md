@@ -80,11 +80,12 @@ gpg --delete-secret-keys "${KEY_FP}"
 
 ## Configure in-cluster secrets decryption
 
-Register the Git repository on your cluster:
+Register the Git repository on your cluster (*If the Git repository is private you will need to add the generated key to the repository's deploy keys*):
 
 ```sh
 flux create source git my-secrets \
---url=https://github.com/my-org/my-secrets
+--url=https://github.com/my-org/my-secrets \
+--branch=main
 ```
 
 Create a kustomization for reconciling the secrets on the cluster:
