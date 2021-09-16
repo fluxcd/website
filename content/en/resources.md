@@ -14,6 +14,12 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/R0BA2QMPWTE?t=720"
+thumbnail="R0BA2QMPWTE"
+title="Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch & Matheiu Gillot (at DevSecOps Road Trip: France)" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 youtube="JR8rev98SH0"
 title="FluxCD Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal" %}}
 {{% /blocks/resource %}}
