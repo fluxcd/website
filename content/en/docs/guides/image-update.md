@@ -2,10 +2,7 @@
 title: "Automate image updates to Git"
 linkTitle: "Automate image updates to Git"
 description: "Automate container image updates to Git with Flux."
-weight: 80
-card:
-  name: tasks
-  weight: 20
+weight: 680
 ---
 
 This guide walks you through configuring container image scanning and deployment rollouts with Flux.

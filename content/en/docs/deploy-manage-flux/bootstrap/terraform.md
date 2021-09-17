@@ -2,6 +2,7 @@
 title: "Bootstrap Flux using the Flux Terraform provider"
 description: Use the Terraform provider for Flux
 linkTitle: Terraform Provider
+weight: 517
 ---
 
 You can bootstrap Flux with Terraform using the Flux provider published on

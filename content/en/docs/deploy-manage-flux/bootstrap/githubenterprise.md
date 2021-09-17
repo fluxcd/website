@@ -2,6 +2,7 @@
 title: "Bootstrap Flux on GitHub Enterprise"
 description: Bootstrap Flux using a GitHub enterprise
 linkTitle: GitHub Enterprise
+weight: 512
 ---
 
 ##  Before you begin

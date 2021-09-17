@@ -1,6 +1,7 @@
 ---
 title: "Upgrade Flux with the bootstrap command"
 linkTitle: "With the bootstrap command"
+weight: 521
 ---
 
 ## Before you begin

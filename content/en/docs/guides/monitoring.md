@@ -2,7 +2,7 @@
 title: "Monitoring with Prometheus"
 linkTitle: "Monitoring with Prometheus"
 description: "Monitoring Flux with Prometheus Operator and Grafana."
-weight: 50
+weight: 650
 ---
 
 This guide walks you through configuring monitoring for the Flux control plane.

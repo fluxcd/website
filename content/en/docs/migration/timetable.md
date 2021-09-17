@@ -2,7 +2,7 @@
 title: "Timetable"
 linkTitle: "Migration and Support Timetable"
 description: "Flux v1 to v2 migration and support timetable."
-weight: 5
+weight: 810
 hugeTable: true
 ---
 

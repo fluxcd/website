@@ -1,7 +1,7 @@
 ---
 title: Docs from the ground up
 linkTitle: Writing docs
-weight: 4
+weight: 1330
 description: >
     Our docs are just Markdown, but offer you more flexibility and styling options.
 ---
@@ -23,7 +23,7 @@ For now, let's take a look at a quick example which should explain the most rele
 title: Using Flux on OpenShift
 linkTitle: OpenShift
 description: "How to bootstrap Flux on OpenShift."
-weight: 20
+weight: 720
 ---
 
 ## OpenShift Setup

@@ -1,7 +1,7 @@
 ---
 title: Documentation Style Guide
 linkTitle: Documentation Style Guide
-weight: 6
+weight: 1350
 description: >
     Style Guide for Flux Documentation
 ---

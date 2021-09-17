@@ -2,7 +2,7 @@
 title: Source Controller
 linkTitle: Source Controller
 description: "The GitOps Toolkit Source Controller documentation."
-weight: 1
+weight: 910
 ---
 
 The main role of the source management component is to provide a common interface for artifacts acquisition.

@@ -2,7 +2,7 @@
 title: "Watching for source changes"
 linkTitle: "Watching for source changes"
 description: "Develop a Kubernetes controller that reacts to source changes."
-weight: 20
+weight: 1020
 ---
 
 In this guide you'll be developing a Kubernetes controller with

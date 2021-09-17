@@ -1,6 +1,7 @@
 ---
 title: "Bootstrap Flux on GitLab"
 linkTitle: GitLab
+weight: 513
 ---
 
 ## Before you begin

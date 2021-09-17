@@ -1,7 +1,7 @@
 ---
 title: 'Flux CLI'
 description: "The Flux Command-Line Interface documentation."
-weight: 80
+weight: 1100
 ---
 
 The Flux CLI is available as a binary executable for all major platforms,

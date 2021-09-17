@@ -1,6 +1,7 @@
 ---
 title: "Bootstrap Flux on Azure DevOps"
 linkTitle: Azure DevOps
+weight: 516
 ---
 
 ## Before you begin

@@ -2,7 +2,7 @@
 title: "How to make sortable image tags to use with automation"
 linkTitle: "Sortable image tags to use with automation"
 description: "how to construct container image tags compatible with Flux automation."
-weight: 90
+weight: 690
 ---
 
 Flux does not support selecting the latest image by build time. Obtaining the build time needs

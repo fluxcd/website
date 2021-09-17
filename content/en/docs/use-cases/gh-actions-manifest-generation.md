@@ -2,7 +2,7 @@
 title: GitHub Actions Manifest Generation
 linkTitle: GitHub Actions Manifest Generation
 description: "How to use GitHub Actions for Kubernetes manifest generation."
-weight: 40
+weight: 740
 ---
 
 This example implements "build-time" manifest generation on GitHub Actions.

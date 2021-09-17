@@ -2,7 +2,7 @@
 title: "Install the Flux CLI"
 description: "Flux install, bootstrap, upgrade and uninstall documentation."
 no_list: true
-weight: 41
+weight: 400
 ---
 
 The Flux command-line tool, flux , allows you to 

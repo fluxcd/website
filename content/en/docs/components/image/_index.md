@@ -2,7 +2,7 @@
 title: Image reflector and automation controllers
 linkTitle: Image Automation Controllers
 description: "The GitOps Toolkit Image Automation Controllers documentation."
-weight: 5
+weight: 950
 ---
 
 The image-reflector-controller and image-automation-controller work together to update a Git

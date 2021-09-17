@@ -1,6 +1,6 @@
 ---
 title: Contributing
-weight: 120
+weight: 1300
 ---
 
 Flux welcomes improvements from all contributors, new and experienced!

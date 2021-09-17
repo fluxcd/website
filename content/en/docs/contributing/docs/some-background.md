@@ -1,7 +1,7 @@
 ---
 title: Where to find the docs and how to contribute
 linkTitle: Some background
-weight: 3
+weight: 1320
 description: >
    Where to find the documentation in the repository and how everything fits together.
 ---

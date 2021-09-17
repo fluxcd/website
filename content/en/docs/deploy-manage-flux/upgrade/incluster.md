@@ -2,6 +2,7 @@
 title: "Upgrade Flux In Cluster"
 linkTitle: "In Cluster"
 description: Upgrade Flux directly with the CLI and kubectl
+weight: 524
 ---
 
 ## Before you begin

@@ -2,6 +2,7 @@
 title: "Bootstrap Flux on a privately hosted GitLab instance"
 description: Bootstrap Flux with a privately hosted GitLab instance
 linkTitle: Privately Hosted GitLab
+weight: 514
 ---
 
 ## Before you begin

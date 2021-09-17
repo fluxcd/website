@@ -2,7 +2,7 @@
 title: Using Flux on OpenShift
 linkTitle: OpenShift
 description: "How to bootstrap Flux on OpenShift."
-weight: 20
+weight: 720
 ---
 
 ## OpenShift Setup

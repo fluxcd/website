@@ -2,7 +2,7 @@
 title: "Ways of structuring your repositories"
 linkTitle: "Ways of structuring your repositories"
 description: "How to structure your Git repositories for a smooth GitOps experience with Flux."
-weight: 10
+weight: 610
 ---
 
 This guide walks you through several approaches of organizing repositories

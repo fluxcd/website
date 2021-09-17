@@ -1,6 +1,7 @@
 ---
 title: "Bootstrap Flux on a Generic Git Server"
 linkTitle: "Generic Git"
+weight: 515
 ---
 
 ## Before you begin

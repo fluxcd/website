@@ -1,7 +1,7 @@
 ---
 title: Using Flux on Azure
 linkTitle: Azure
-weight: 10
+weight: 710
 ---
 
 ## AKS Cluster Options

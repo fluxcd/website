@@ -2,7 +2,7 @@
 title: "Get Started with Flux"
 linkTitle: "Get Started"
 description: "Get Started with Flux and the GitOps Toolkit."
-weight: 20
+weight: 300
 ---
 
 This tutorial shows you how to bootstrap Flux to a Kubernetes cluster and deploy a sample application in a GitOps manner.

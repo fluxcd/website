@@ -2,7 +2,7 @@
 title: Notification Controller
 linkTitle: Notification Controller
 description: "The GitOps Toolkit Notification Controller documentation."
-weight: 4
+weight: 940
 ---
 
 The Notification Controller is a Kubernetes operator, specialized in handling inbound and outbound events.

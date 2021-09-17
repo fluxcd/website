@@ -2,7 +2,7 @@
 title: FAQ
 linkTitle: FAQ
 description: "Flux v1 to v2 migration frequently asked questions."
-weight: 100
+weight: 850
 ---
 
 ## Flux v1 vs v2 questions

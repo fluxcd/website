@@ -2,7 +2,7 @@
 title: Flux for Helm Users
 linkTitle: Helm
 description: "Declarative Helming with Flux Helm controller."
-weight: 30
+weight: 730
 ---
 
 Welcome Helm users!

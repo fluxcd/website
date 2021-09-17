@@ -1,6 +1,7 @@
 ---
 title: "Upgrade an Azure DevOps deployment of Flux"
 linkTitle: "With Azure DevOps"
+weight: 522
 ---
 
 ## Before you begin

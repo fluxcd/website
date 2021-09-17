@@ -2,6 +2,7 @@
 title: "Bootstrap Flux on GitHub"
 description: Bootstrap Flux for a GitHub account or GitHub Organization
 linkTitle: "GitHub"
+weight: 511
 ---
 
 ## Before you begin

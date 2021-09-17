@@ -2,7 +2,7 @@
 title: "Using the GitOps Toolkit APIs with Go"
 linkTitle: "Using the GitOps Toolkit APIs with Go"
 description: "The GitOps Toolkit client libraries documentation."
-weight: 10
+weight: 1010
 ---
 
 While you can use the GitOps Toolkit APIs in a declarative manner with `kubectl apply`,

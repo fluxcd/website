@@ -1,7 +1,7 @@
 ---
 title: Custom Hugo Shortcodes
 linkTitle: hugo-shortcodes
-weight: 10
+weight: 1360
 ---
 
 This page explains the custom Hugo shortcodes that can be used in Flux Markdown documentation.

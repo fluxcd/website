@@ -2,6 +2,7 @@
 title: "Bootstrap Flux without a Git Repository"
 description: Bootstrap Flux without a Git Repository for testing and development purposes.
 linkTitle: Without Git
+weight: 519
 ---
 
 {{% warning %}}

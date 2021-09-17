@@ -1,6 +1,6 @@
 ---
 title: Proposing changes
-weight: 5
+weight: 1340
 description: >
    How to propose pull requests using either the Github UI or `git` locally.
 ---

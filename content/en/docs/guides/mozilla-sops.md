@@ -2,7 +2,7 @@
 title: "Manage Kubernetes secrets with Mozilla SOPS"
 linkTitle: "Mozilla SOPS"
 description: "Manage Kubernetes secrets with Mozilla SOPS, OpenPGP, Age and Cloud KMS."
-weight: 70
+weight: 670
 ---
 
 In order to store secrets safely in a public or private Git repository, you can use

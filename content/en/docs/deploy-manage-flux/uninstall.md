@@ -1,5 +1,6 @@
 ---
 title: "Uninstall Flux"
+weight: 530
 ---
 
 ## Run the uninstall command

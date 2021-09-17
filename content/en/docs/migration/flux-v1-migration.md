@@ -2,10 +2,7 @@
 title: "Migrate from Flux v1 to v2"
 linkTitle: "Migrate from Flux v1"
 description: "How to migrate from Flux v1 to v2."
-weight: 10
-card:
-  name: migration
-  weight: 10
+weight: 820
 ---
 
 This guide walks you through migrating from Flux v1 to v2.

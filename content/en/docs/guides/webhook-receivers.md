@@ -2,7 +2,7 @@
 title: "Setup Webhook Receivers"
 linkTitle: "Setup Webhook Receivers"
 description: "Configure webhook receivers for GitHub, GitLab, DockerHub and others using Flux notification controller."
-weight: 40
+weight: 640
 ---
 
 Flux is by design **pull-based**.

@@ -2,7 +2,7 @@
 title: Jenkins + Flux
 linkTitle: Jenkins + Flux
 description: "How to use Jenkins CI for building images together with Flux CD's image update automation."
-weight: 50
+weight: 760
 ---
 
 This guide explains how to configure Flux with Jenkins, with the core ideas of [GitOps Principles] in mind. Let Jenkins handle CI (or Continuous Integration: image build and test, tagging and pushing), and let Flux handle CD (or Continuous Deployment) by making use of the Image Update Automation feature.

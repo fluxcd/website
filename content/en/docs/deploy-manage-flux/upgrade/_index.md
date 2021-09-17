@@ -1,6 +1,6 @@
 ---
 title: "Upgrade Flux"
-weight: 43
+weight: 520
 ---
 
 {{% note %}}

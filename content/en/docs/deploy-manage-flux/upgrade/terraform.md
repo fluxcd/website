@@ -1,6 +1,7 @@
 ---
 title: "Upgrade Flux using the Terraform provider"
 linkTitle: "With the Terraform Provider"
+weight: 523
 ---
 
 ## Update the Flux Provider

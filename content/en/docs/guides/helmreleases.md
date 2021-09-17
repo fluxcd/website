@@ -2,10 +2,7 @@
 title: "Manage Helm Releases"
 linkTitle: "Manage Helm Releases"
 description: "Manage Helm Releases in a declarative manner with Flux."
-weight: 20
-card:
-  name: tasks
-  weight: 30
+weight: 620
 ---
 
 The [helm-controller](../components/helm/_index.md) allows you to
