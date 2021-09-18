@@ -140,7 +140,7 @@ spec:
 
 and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values,
 allowing reusability and/or greater security.
-See `HelmRelease` CRD [values overrides](/docs/components/helm/helmreleases/#values-overrides)
+See `HelmRelease` CRD [values overrides](../components/helm/helmreleases.md#values-overrides)
 documentation for the latest spec.
 
 ## Managing Secrets and ConfigMaps
@@ -149,16 +149,16 @@ You may manage these `ConfigMap` and `Secret` resources any way you wish,
 but there are several benefits to managing these with the Flux Kustomize Controller.
 
 It is fairly straigtforward to use Kustomize `configMapGenerator`
-to [trigger a Helm release upgrade every time the encoded values change](/docs/guides/helmreleases/#refer-to-values-in-configmaps-generated-with-kustomize).
+to [trigger a Helm release upgrade every time the encoded values change](../guides/helmreleases.md#refer-to-values-in-configmaps-generated-with-kustomize).
 This common use case currently solveable in Helm
 by [adding specially crafted annotations](https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments)
 to a chart. The Flux Kustomize Controller method allows you to accomplish this
 on any chart without additional templated annotations.
 
 You may also use Kustomize Controller
-built-in [Mozilla SOPS integration](/docs/components/kustomize/kustomization/#secrets-decryption)
+built-in [Mozilla SOPS integration](../components/kustomize/kustomization.md#secrets-decryption)
 to securely manage your encrypted secrets stored in git.
-See the [Flux SOPS guide](/docs/guides/mozilla-sops/) for step-by-step instructions through various use cases.
+See the [Flux SOPS guide](../guides/mozilla-sops.md) for step-by-step instructions through various use cases.
 
 ## Automatic Release Upgrades
 
@@ -177,10 +177,10 @@ documentation.
 ## Automatic Uninstalls and Rollback
 
 The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails,
-using [spec.install.remediation](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
-[spec.upgrade.remediation](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
-[spec.rollback](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback)
-and [spec.uninstall](/docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
+using [spec.install.remediation](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
+[spec.upgrade.remediation](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
+[spec.rollback](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback)
+and [spec.uninstall](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
 Features include the option to remediate with an uninstall after an upgrade failure,
 and the option to keep a failed release for debugging purposes when it has run out of retries.
 
@@ -239,6 +239,6 @@ spec:
 
 ## Next Steps
 
-- [Guides > Manage Helm Releases](/docs/guides/helmreleases/)
-- [Toolkit Components > Helm Controller](/docs/components/helm/)
-- [Migration > Migrate to the Helm Controller](/docs/migration/helm-operator-migration/)
+- [Guides > Manage Helm Releases](../guides/helmreleases.md)
+- [Toolkit Components > Helm Controller](../components/helm/_index.md)
+- [Migration > Migrate to the Helm Controller](../migration/helm-operator-migration.md)
