@@ -113,6 +113,6 @@ On the workstation with access to your air-gapped cluster:
 {{% note %}}
 When running `flux bootstrap` without specifying a `--version`,
 the CLI will use the manifests embedded in its binary instead of downloading
-them from GitHub. You can determine which version you'll be installing,
+them from GitHub. You can determine which version you will be installing,
 with `flux --version`.
 {{% /note %}}
