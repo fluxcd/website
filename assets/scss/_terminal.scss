@@ -21,7 +21,6 @@
  */
 
 $terminal-border-radius: 10px;
-$terminal-width: 100%;
 
 .terminal {
   background: #ddd;
@@ -29,7 +28,7 @@ $terminal-width: 100%;
   display: flex;
   flex-flow: row wrap;
   position: relative;
-  width: $terminal-width;
+  width: 100%;
 
   .terminal-title {
     flex: 1;
@@ -76,6 +75,9 @@ $terminal-width: 100%;
 
   pre {
     &.terminal-content {
+      height: 295px;
+      width: 602px;
+
       background: #222;
       border-bottom-left-radius: $terminal-border-radius;
       border-bottom-right-radius: $terminal-border-radius;
@@ -83,7 +85,6 @@ $terminal-width: 100%;
       overflow: scroll;
       padding: 0;
       font-size: 0;
-      width: 100%;
       -webkit-font-smoothing: antialiased;
     }
 
