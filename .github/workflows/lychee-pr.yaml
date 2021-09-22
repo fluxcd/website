@@ -27,6 +27,7 @@ jobs:
       - run: |
           make gen-content
       - name: lychee Link Checker
+        if: ${{ steps.getfile.outputs.ts != '' }}
         id: lychee
         uses: lycheeverse/lychee-action@v1.0.8
         with:
