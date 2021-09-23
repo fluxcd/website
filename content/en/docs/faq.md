@@ -322,7 +322,7 @@ You can find a detailed comparison of Flux v1 and v2 features in the [migration 
 The Flux community has created guides and example repositories
 to help you migrate to Flux v2:
 
-- [Migrate from Flux v1](/docs/migration/flux-v1-migration/)
+- [Migrate from Flux v1](../migration/flux-v1-migration.md)
 - [Migrate from `.flux.yaml` and kustomize](/docs/migration/flux-v1-migration/#flux-with-kustomize)
 - [Migrate from Flux v1 automated container image updates](/docs/migration/flux-v1-automation-migration/)
 - [How to manage multi-tenant clusters with Flux v2](https://github.com/fluxcd/flux2-multi-tenancy)
