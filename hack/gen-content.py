@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # This was inspired by
 # http://sigs.k8s.io/contributor-site/hack/gen-content.sh
