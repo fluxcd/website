@@ -12,7 +12,7 @@ automation tooling.
 
 You can use the toolkit to extend Flux, and to build your own systems
 for continuous delivery. The [the source-watcher
-guide](../gitops-toolkit/source-watcher/) is a good place to start.
+guide](../gitops-toolkit/source-watcher.md) is a good place to start.
 
 A reference for each component and API type is linked below.
 
