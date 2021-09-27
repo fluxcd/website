@@ -38,3 +38,5 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 | [telekom/das-schiff](https://github.com/telekom/das-schiff)                 | This is home of Das Schiff - Deutsche Telekom Technik's engine for Kubernetes Cluster as a Service (CaaS) in on-premise environment on top of bare-metal servers and VMs. |
 | [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                   | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
 | [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
+| [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook)       | A [pre-commit](http://pre-commit.com) that validates values of HelmRelease using helm lint |
+
