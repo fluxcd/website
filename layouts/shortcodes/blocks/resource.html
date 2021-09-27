@@ -9,7 +9,7 @@
 {{ $url := .Get "url" | default $youtube_url }}
 {{ $title := .Get "title" | default "Video title" }}
 
-<div class="col-lg-4 mb-5 mb-lg-0 text-center ">
+<div class="col-lg-4 mb-3 mb-lg-0 text-center ">
   <a href="{{ $url }}"><img class="img-fluid img-thumbnail" src="{{ $thumbnail }}"></a>
   <a href="{{ $url }}"><h4>{{ $title | markdownify }}</h4></a>
   <p>{{ .Inner | markdownify }}</p>

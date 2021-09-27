@@ -138,37 +138,39 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
 {{< blocks/lead color="dark" >}}
 
 <h2 class="section-label">
-  <a href="/community">Community</a>
+  Community
 </h2>
 
-The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
-What we achieved up until today is only possible because of <a href="/community">our community</a>.
+<p>The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
+What we achieved up until today is only possible because of <a href="/community">our community</a>.</p>
 
 {{< /blocks/lead >}}
 
-{{< blocks/section color="dark" type="community-row">}}
+<div class="subsection-community-row">
+  {{< blocks/section color="dark" type="community-row">}}
 
-{{< blocks/community icon="fab fa-github" title="GitHub Discussions" >}}
-<a href="https://github.com/fluxcd/flux2/discussions">Join the conversation in GitHub Discussions</a>. Everything Flux related ranging from specifications and feature planning to Show & Tell happens here.
+  {{< blocks/community icon="fab fa-github" title="GitHub Discussions" >}}
+  <a href="https://github.com/fluxcd/flux2/discussions">Join the conversation in GitHub Discussions</a>. Everything Flux related ranging from specifications and feature planning to Show & Tell happens here.
 
-{{< /blocks/community >}}
-
-
-{{< blocks/community icon="fab fa-slack" title="Slack" >}}
-If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
-
-Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="https://cloud-native.slack.com/messages/flux"><code>#flux</code> channel</a>.
+  {{< /blocks/community >}}
 
 
-{{< /blocks/community >}}
+  {{< blocks/community icon="fab fa-slack" title="Slack" >}}
+  If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
+
+  Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="https://cloud-native.slack.com/messages/flux"><code>#flux</code> channel</a>.
 
 
-{{< blocks/community icon="fa fa-paper-plane" title="Mailing list" >}}
-<a href="https://lists.cncf.io/g/cncf-flux-dev">Join our (low-traffic) mailing list</a> to stay up to day on announcements and sporadic discussions.
+  {{< /blocks/community >}}
 
-{{< /blocks/community >}}
 
-{{< /blocks/section >}}
+  {{< blocks/community icon="fa fa-paper-plane" title="Mailing list" >}}
+  <a href="https://lists.cncf.io/g/cncf-flux-dev">Join our (low-traffic) mailing list</a> to stay up to day on announcements and sporadic discussions.
+
+  {{< /blocks/community >}}
+
+  {{< /blocks/section >}}
+</div>
 
 {{< blocks/section color="dark" type="calendar-row">}}
 {{< blocks/calendar >}}
@@ -188,7 +190,7 @@ Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="h
   <p>Find more on our dedicated <a href="/resources">resources page</a>.</p>
   {{< /blocks/lead >}}
 
-
+  <div class="subsection-resources">
   {{% blocks/section color="primary" type="resources" %}}
 
   {{% blocks/resource
@@ -230,6 +232,7 @@ Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="h
   {{% /blocks/resource %}}
 
   {{% /blocks/section %}}
+  </div>
   </div>
 
   <!-- OTHER FLUX PROJECTS -->

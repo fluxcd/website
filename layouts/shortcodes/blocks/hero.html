@@ -31,10 +31,11 @@
 <section id="{{ $blockID }}" class="row td-hero-block">
   <div class="container">
       <div class="row">
+          {{ with .Get "title" }}<h1 class="display-1">{{ $title := . }}{{ with $logo_image }}{{ $logo_image_resized := (.Fit (printf "70x70 %s" $logo_anchor)) }}<img class="td-hero-logo" src="{{ $logo_image_resized.RelPermalink }}" alt="{{ $title | html }} Logo">{{ end }}{{ $title | html }}</h1>{{ end }}
+          {{ with .Get "subtitle" }}<p>{{ . | html }}</p>{{ end }}
+      </div>
+      <div class="row hero-details">
         <div class="col-md">
-            {{ with .Get "title" }}<h1 class="display-1">{{ $title := . }}{{ with $logo_image }}{{ $logo_image_resized := (.Fit (printf "70x70 %s" $logo_anchor)) }}<img class="td-hero-logo" src="{{ $logo_image_resized.RelPermalink }}" alt="{{ $title | html }} Logo">{{ end }}{{ $title | html }}</h1>{{ end }}
-            {{ with .Get "subtitle" }}<p>{{ . | html }}</p>{{ end }}
-
             {{ if eq .Page.File.Ext "md" }}
               {{ .Inner | markdownify }}
             {{ else }}
