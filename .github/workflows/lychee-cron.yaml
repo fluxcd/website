@@ -21,7 +21,7 @@ jobs:
       - run: |
           make gen-content
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.0.8
+        uses: lycheeverse/lychee-action@v1.0.9
         with:
           args: --verbose --no-progress --exclude-all-private **/*.md
         env:
