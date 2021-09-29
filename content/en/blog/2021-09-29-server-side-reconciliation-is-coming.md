@@ -13,8 +13,10 @@ improve overall observability and going forward will allow us to add new
 capabilities, like being able to preview local changes to manifests
 without pushing to upstream.
 
-⚠ **Changes required**: We need Kubernetes v1.18.8 as a
-minimum. The logs, events and alerts that report Kubernetes namespaced
+⚠ **Changes required**: Due to a [Kubernetes
+issue](https://github.com/kubernetes/kubernetes/pull/91748), we require
+a certain set of Kubernetes releases (starting `1.6.11` - more on this below)
+as a minimum. The logs, events and alerts that report Kubernetes namespaced
 object changes are now using the `Kind/Namespace/Name` format instead of
 `Kind/Name`.
 
@@ -67,9 +69,16 @@ the API to `v1beta2`.
 
 ## This is what you need to do to prepare
 
-**Kubernetes v1.18.8** is the new minimum supported version (required by
-the [managed fields
-feature](https://kubernetes.io/blog/2020/04/01/kubernetes-1.18-feature-server-side-apply-beta-2/)).
+**Check the Kubernetes version you are running in your cluster.**
+All the versions below fix a regression in the [managed fields and field
+type](https://github.com/kubernetes/kubernetes/pull/91748).
+
+| Kubernetes version | Minimum required |
+| --- | --- |
+| `v1.16` | `>= 1.16.11` |
+| `v1.17` | `>= 1.17.7` |
+| `v1.18` | `>= 1.18.4` |
+| `v1.19` and later | `>= 1.19.0` |
 
 **Namespaced objects must contain metadata.namespace, defaulting to the
 default namespace is no longer supported**. This means you will need to
@@ -149,7 +158,7 @@ following steps:
 
    ```cli
    kubectl -n flux-system set image deployment/kustomize-controller \
-              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-c5b3161c
+              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-8426b396
    ```
 
 Please comment on [this
@@ -166,7 +175,7 @@ our TODO list until the release:
   `flux bootstrap` and `flux install`
 - Use the SSA manager in Flux CLI to implement `flux build` and `flux
   diff` commands
-- Bump the minimum Kubernetes version to 1.18.8 in `flux check --pre`
+- Update the minimum Kubernetes versions in `flux check --pre`
 
 ## This is great - I want to participate in this
 
