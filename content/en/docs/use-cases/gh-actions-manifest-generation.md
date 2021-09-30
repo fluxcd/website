@@ -126,7 +126,7 @@ echo ::set-output name=VERSION::${VERSION}
 ```
 
 {{% alert title="When migrating to Flux v2" %}}
-Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "../guides/sortable-image-tags/" >}}), preferred by the `image-automation-controller`.
+Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "../guides/sortable-image-tags.md" >}}), preferred by the `image-automation-controller`.
 {{% /alert %}}
 
 Next we call out to a shell script `update-k8s.sh` taking one argument, the Git SHA value from GitHub:
@@ -1238,16 +1238,16 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 
 [flux2/discussions/802]: https://github.com/fluxcd/flux2/discussions/802
 [flux2/issues/543]: https://github.com/fluxcd/flux2/issues/543
-[image update guide]: /docs/guides/image-update/
+[image update guide]: ../guides/image-update.md
 [any old app]: https://github.com/kingdonb/any_old_app
-[Flux bootstrap guide]: /docs/get-started/
+[Flux bootstrap guide]: ../get-started.md
 [String Substitution with sed -i]: #string-substitution-with-sed-i
 [Docker Build and Tag with Version]: #docker-build-and-tag-with-version
 [Jsonnet for YAML Document Rehydration]: #jsonnet-for-yaml-document-rehydration
 [Commit Across Repositories Workflow]: #commit-across-repositories-workflow
 [01-manifest-generate.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/01-manifest-generate.yaml
 [some guidance has changed since Flux v1]: https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189
-[Sortable image tags]: /guides/sortable-image-tags/
+[Sortable image tags]: ../guides/sortable-image-tags.md
 [Okteto's Getting Started Guides]: https://github.com/okteto/go-getting-started/blob/master/k8s.yml
 [Build and push Docker images]: https://github.com/marketplace/actions/build-and-push-docker-images
 [Prepare step]: https://github.com/fluxcd/kustomize-controller/blob/5da1fc043db4a1dc9fd3cf824adc8841b56c2fcd/.github/workflows/release.yml#L17-L25
@@ -1273,17 +1273,17 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [Manual Gating]: https://docs.flagger.app/usage/webhooks#manual-gating
 [flux create tenant]: /cmd/flux_create_tenant
 [Flux 2 Multi-Tenancy Guide]: https://github.com/fluxcd/flux2-multi-tenancy
-[Mozilla SOPS]: /guides/mozilla-sops/
+[Mozilla SOPS]: ../guides/mozilla-sops.md
 [example 10.4 jsonnet]: https://github.com/kingdonb/any_old_app/blob/release/0.10.4/manifests/example.jsonnet
 [anguslees example jsonnet]: https://github.com/anguslees/kustomize-libsonnet/blob/master/example.jsonnet
 [Kubernetes docs on Using Service Accounts]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-multiple-service-accounts
 [sops/issues/315]: https://github.com/mozilla/sops/issues/315
-[using various cloud providers]: /guides/mozilla-sops/#using-various-cloud-providers
+[using various cloud providers]: ../guides/mozilla-sops.md#using-various-cloud-providers
 [Decrypt SOPS Secrets]: https://github.com/marketplace/actions/decrypt-sops-secrets
 [Sops Binary Installer]: https://github.com/marketplace/actions/sops-binary-installer
 [04-update-fleet-infra.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/04-update-fleet-infra.yaml
 [Push directory to another repository]: https://github.com/marketplace/actions/push-directory-to-another-repository
-[Flux v2 image automation]: /docs/guides/image-update/
-[Image Automation Controllers]: /docs/components/image/
-[Example of a build process with timestamp tagging]: /docs/guides/sortable-image-tags/#example-of-a-build-process-with-timestamp-tagging
-[Sortable image tags to use with automation]: /docs/guides/sortable-image-tags/#formats-and-alternatives
+[Flux v2 image automation]: ../guides/image-update.md
+[Image Automation Controllers]: ../components/image/
+[Example of a build process with timestamp tagging]: ../guides/sortable-image-tags.md#example-of-a-build-process-with-timestamp-tagging
+[Sortable image tags to use with automation]: ../guides/sortable-image-tags.md#formats-and-alternatives
