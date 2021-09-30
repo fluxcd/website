@@ -110,7 +110,7 @@ If your Git provider is **GitHub**, **GitLab** or **Azure DevOps** please follow
 
 * [GitHub.com and GitHub Enterprise](#github-and-github-enterprise)
 * [GitLab.com and GitLab Enterprise](#gitlab-and-gitlab-enterprise)
-* [Azure DevOps](../use-cases/azure#flux-installation-for-azure-devops)
+* [Azure DevOps](./use-cases/azure.md#flux-installation-for-azure-devops)
 
 ### Generic Git Server
 
