@@ -87,7 +87,7 @@ synchronize with the specified path inside the repository.
 You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
 any other Git provider that support SSH or token-based authentication.
 When using SSH, make sure the deploy key is configured with write access `--read-write-key`.
-Please see the [installation guide](../installation/) for more details.
+Please see the [installation guide](../installation.md) for more details.
 {{% /alert %}}
 
 ## Deploy a demo app
@@ -419,7 +419,7 @@ spec:
 ```
 
 You can use CI automation e.g. GitHub Actions such as
-Flux's [GitHub Actions Auto PR](/docs/use-cases/gh-actions-auto-pr) example
+Flux's [GitHub Actions Auto PR](../use-cases/gh-actions-auto-pr.md) example
 to open a pull request against the checkout branch.
 
 This way you can manually approve the image updates before they are applied on your clusters.
