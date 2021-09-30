@@ -80,7 +80,7 @@ Create a directory inside the repository:
 mkdir -p ./clusters/my-cluster/flux-system
 ```
 
-Download the [Flux CLI](../installation/_index.md#install-the-flux-cli) and generate the manifests with:
+Download the [Flux CLI](../installation.md#install-the-flux-cli) and generate the manifests with:
 
 ```sh
 flux install \
