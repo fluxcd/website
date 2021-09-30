@@ -13,8 +13,8 @@ Kubernetes secrets with OpenPGP, AWS KMS, GCP KMS and Azure Key Vault.
 
 To follow this guide you'll need a Kubernetes cluster with the GitOps
 toolkit controllers installed on it.
-Please see the [get started guide](../get-started/index.md)
-or the [installation guide](../installation/).
+Please see the [get started guide](../get-started.md)
+or the [installation guide](../installation.md).
 
 Install [gnupg](https://www.gnupg.org/) and [SOPS](https://github.com/mozilla/sops):
 
@@ -277,7 +277,7 @@ spec:
   type: 0  # user-managed identity
 ```
 
-[Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
+[Customize your Flux Manifests](../installation.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
 Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` name.
 Additionally, the SOPS specific environment variable `AZURE_AUTH_METHOD=msi` to activate the proper auth method within kustomize-controller.
 
