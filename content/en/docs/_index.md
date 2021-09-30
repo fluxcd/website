@@ -53,7 +53,7 @@ the API.
 ## Where do I start?
 
 {{% alert title="Get started with Flux!" %}}
-Following this [guide](get-started/) will just take a couple of minutes to complete:
+Following this [guide](./get-started.md) will just take a couple of minutes to complete:
 After installing the `flux` CLI and running a couple of very simple commands,
 you will have a GitOps workflow setup which involves a staging and a production cluster.
 {{% /alert %}}
@@ -85,18 +85,18 @@ Need help or want to contribute? Please see the links below. The Flux project is
 new contributors and there are a multitude of ways to get involved.
 
 - Getting Started?
-    - Look at our [Get Started guide](get-started/) and give us feedback
+    - Look at our [Get Started guide](./get-started.md) and give us feedback
 - Need help?
     - First: Ask questions on our [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
     - Second: Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
-    - Please follow our [Support Guidelines](/support/)
+    - Please follow our [Support Guidelines](/support.md)
       (in short: be nice, be respectful of volunteers' time, understand that maintainers and
       contributors cannot respond to all DMs, and keep discussions in the public #flux channel as much as possible).
 - Have feature proposals or want to contribute?
     - Propose features on our [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
     - Join our upcoming dev meetings ([meeting access and agenda](https://docs.google.com/document/d/1l_M0om0qUEN_NNiGgpqJ2tvsF2iioHkaARDeh6b70B0/view))
     - [Join the flux-dev mailing list](https://lists.cncf.io/g/cncf-flux-dev).
-    - Check out [how to contribute](/contributing) to the project
+    - Check out [how to contribute](/CONTRIBUTING.md) to the project
 
 ### Events
 
