@@ -117,7 +117,7 @@ cd fleet-infra
 This example uses a public repository [github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo),
 podinfo is a tiny web application made with Go.
 
-1. Create a [GitRepository](../components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
+1. Create a [GitRepository](../components/source/gitrepositories.md) manifest pointing to podinfo repository's master branch:
 
     ```sh
     flux create source git podinfo \
@@ -154,7 +154,7 @@ podinfo is a tiny web application made with Go.
 Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
 directory located in the podinfo repository.
 
-1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization/) that applies the podinfo deployment.
+1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization.md) that applies the podinfo deployment.
 
     ```sh
     flux create kustomization podinfo \
@@ -257,7 +257,7 @@ To resume updates run the command `flux resume kustomization <name>`.
 ## Customize podinfo deployment
 
 To customize a deployment from a repository you don't control, you can use Flux
-[in-line patches](../components/kustomize/kustomization/#override-kustomize-config). The following example shows how to use in-line patches to change the podinfo deployment.
+[in-line patches](../components/kustomize/kustomization.md#override-kustomize-config). The following example shows how to use in-line patches to change the podinfo deployment.
 
 1. Add the following to the end of your `podinfo-kustomization.yaml` file:
 
