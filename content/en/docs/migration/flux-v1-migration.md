@@ -66,7 +66,7 @@ repository. The Git repository created during bootstrap can be used
 to define the state of your fleet of Kubernetes clusters.
 
 For a detailed walk-through of the bootstrap procedure please see the [installation
-guide](../installation/_index.md).
+guide](../installation.md).
 
 {{% alert color="info" color="warning" title="'flux bootstrap' target" %}}
 `flux bootstrap` should not be run against a Git branch or path
