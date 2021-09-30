@@ -96,7 +96,7 @@ There is a new `spec.suspend` field, that if set to `true` causes the Helm Contr
 
 We have added support for making Helm releases to other clusters. If the `spec.kubeConfig` field in the `HelmRelease` is set, Helm actions will run against the default cluster specified in that KubeConfig instead of the local cluster that is responsible for the reconciliation of the `HelmRelease`.
 
-The Helm storage is stored on the remote cluster in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.storageNamespace`. The release itself is made in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.targetNamespace`. The namespaces are expected to exist, and can for example be created using the [Kustomize Controller](/docs/components/kustomize/controller/) which has the same cross-cluster support.
+The Helm storage is stored on the remote cluster in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.storageNamespace`. The release itself is made in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.targetNamespace`. The namespaces are expected to exist, and can for example be created using the [Kustomize Controller](../components/kustomize/controller.md) which has the same cross-cluster support.
 Other references to Kubernetes resources in the `HelmRelease`, like `ValuesReference` resources, are expected to exist on the reconciling cluster.
 
 ### Added support for notifications and webhooks
@@ -682,7 +682,7 @@ Here are some things to know:
 * If both the Helm Controller and Helm Operator are running, and both a new and old custom resources define a release, they will fight over the release.
 * The Helm Controller will always perform an upgrade the first time it encounters a new `HelmRelease` for an existing release; this is [due to the changes to release mechanics and bookkeeping](#helm-storage-drift-detection-no-longer-relies-on-dry-runs).
 
-The safest way to upgrade is to avoid deletions and fights by stopping the Helm Operator. Once the operator is not running, it is safe to deploy the Helm Controller (e.g., by following the [Get Started guide](../get-started/index.md), [utilizing `flux install`](../cmd/flux_install.md), or using the manifests from the [release page](https://github.com/fluxcd/helm-controller/releases)), and start replacing the old resources with new resources. You can keep the old resources around during this process, since the Helm Controller will ignore them.
+The safest way to upgrade is to avoid deletions and fights by stopping the Helm Operator. Once the operator is not running, it is safe to deploy the Helm Controller (e.g., by following the [Get Started guide](../get-started.md), [utilizing `flux install`](../cmd/flux_install.md), or using the manifests from the [release page](https://github.com/fluxcd/helm-controller/releases)), and start replacing the old resources with new resources. You can keep the old resources around during this process, since the Helm Controller will ignore them.
 
 ### Steps
 
@@ -839,17 +839,17 @@ kubectl delete crd helmreleases.helm.fluxcd.io
 
 ### Are automated image updates supported?
 
-Yes, image updates are supported for `HelmRelease` as well as any other Kubernetes custom resources stored in Git. See the [Image Update Guide](/docs/guides/image-update/#configure-image-update-for-custom-resources) for more information.
+Yes, image updates are supported for `HelmRelease` as well as any other Kubernetes custom resources stored in Git. See the [Image Update Guide](../guides/image-update.md#configure-image-update-for-custom-resources) for more information.
 
 ### How do I automatically apply my `HelmRelease` resources to the cluster?
 
 If you are currently a Flux v1 user, you can commit the `HelmRelease` resources to Git, and Flux will automatically apply them to the cluster like any other resource.
 
-If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](/docs/components/kustomize/controller/) will serve your needs.
+If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](../components/kustomize/controller.md) will serve your needs.
 
 ### I am still running Helm v2, what is the right upgrade path for me?
 
-Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](/legacy/helm-operator/helmrelease-guide/release-configuration/#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
+Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](../../legacy/helm-operator/helmrelease-guide/release-configuration.md#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
 
 ### Is the Helm Controller ready for production?
 
