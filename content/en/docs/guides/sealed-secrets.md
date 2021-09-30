@@ -15,8 +15,8 @@ nobody else can obtain the original secret, even if they have access to the Git 
 
 To follow this guide you'll need a Kubernetes cluster with the GitOps 
 toolkit controllers installed on it.
-Please see the [get started guide](../get-started/index.md)
-or the [installation guide](../installation/).
+Please see the [get started guide](../get-started.md)
+or the [installation guide](../installation.md).
 
 The sealed-secrets controller comes with a companion CLI tool called kubeseal.
 With kubeseal you can create SealedSecret custom resources in YAML format
