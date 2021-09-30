@@ -296,7 +296,7 @@ in [`helm/helm#8281`](https://github.com/helm/helm/issues/8281).
 
 If you are running into this, confirm first that your chart has all the required excludes in
 their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
-[`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta1.GitRepository) files.
+[`.sourceignore`](./components/source/api.md#source.toolkit.fluxcd.io/v1beta1.GitRepository) files.
 
 ## Raspberry Pi questions
 
@@ -315,16 +315,16 @@ condition, and can be updated through configuration in `/etc/dphys-swapfile`: [a
 Flux v1 is a monolithic do-it-all operator;
 Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
-You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration/).
+You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](./migration/faq-migration.md).
 
 ### How can I migrate from v1 to v2?
 
 The Flux community has created guides and example repositories
 to help you migrate to Flux v2:
 
-- [Migrate from Flux v1](/docs/migration/flux-v1-migration/)
-- [Migrate from `.flux.yaml` and kustomize](/docs/migration/flux-v1-migration/#flux-with-kustomize)
-- [Migrate from Flux v1 automated container image updates](/docs/migration/flux-v1-automation-migration/)
+- [Migrate from Flux v1](./migration/flux-v1-migration.md)
+- [Migrate from `.flux.yaml` and kustomize](./migration/flux-v1-migration.md#flux-with-kustomize)
+- [Migrate from Flux v1 automated container image updates](./migration/flux-v1-automation-migration.md)
 - [How to manage multi-tenant clusters with Flux v2](https://github.com/fluxcd/flux2-multi-tenancy)
-- [Migrate from Helm Operator to Flux v2](/docs/migration/helm-operator-migration/)
+- [Migrate from Helm Operator to Flux v2](./migration/helm-operator-migration.md)
 - [How to structure your HelmReleases](https://github.com/fluxcd/flux2-kustomize-helm-example)
