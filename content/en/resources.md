@@ -14,6 +14,12 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/gXUXdaVT__U?t=199"
+thumbnail="gXUXdaVT__U"
+title="The Power of Three: Flux, Flagger, & Linkerd with Kingdon Barrett & Jason Morgan" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 url="https://youtu.be/R0BA2QMPWTE?t=720"
 thumbnail="R0BA2QMPWTE"
 title="Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch & Matheiu Gillot (at DevSecOps Road Trip: France)" %}}
