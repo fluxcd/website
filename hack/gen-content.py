@@ -98,7 +98,8 @@ class Repo():
                         link, '/{}'.format(entry[1].lower().split('.md')[0]))
             if not link.startswith('https://'):
                 content = content.replace(
-                    link, '{}/blob/main/{}'.format(self.gh_source, link))
+                    '({})'.format(link),
+                    '({}/blob/main/{})'.format(self.gh_source, link))
         file_desc = open(out_file, 'w')
         file_desc.write(content)
         file_desc.close()
