@@ -15,7 +15,7 @@ without pushing to upstream.
 
 ⚠ **Changes required**: Due to a [Kubernetes
 issue](https://github.com/kubernetes/kubernetes/pull/91748), we require
-a certain set of Kubernetes releases (starting `1.6.11` - more on this below)
+a certain set of Kubernetes releases (starting `1.16.11` - more on this below)
 as a minimum. The logs, events and alerts that report Kubernetes namespaced
 object changes are now using the `Kind/Namespace/Name` format instead of
 `Kind/Name`.
