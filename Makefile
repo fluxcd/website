@@ -129,3 +129,9 @@ hugo:
 .PHONY: lychee-docker
 lychee-docker: gen-content
 	docker run --rm -it -e "GITHUB_TOKEN=$GITHUB_TOKEN" -v $$(pwd):/app $(LYCHEE_IMAGE_NAME) "/app/**/*.md"
+
+print-hugo-version:
+	echo hugo_version=$(HUGO_VERSION)
+
+print-repo-owner:
+	echo repo_owner=$(DEV_IMAGE_REGISTRY_NAME)
