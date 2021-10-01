@@ -699,7 +699,7 @@ spec:
             - -ce
             - aws ecr get-login-password --region ${REGION} > /token/ecr-token
           containers:
-          - image: bitnami/kubectl
+          - image: ghcr.io/fluxcd/flux-cli:v0.17.2
             name: create-secret
             imagePullPolicy: IfNotPresent
             env:
@@ -711,14 +711,14 @@ spec:
             - mountPath: /token
               name: token
             command:
-            - /bin/bash
+            - /bin/sh
             - -ce
             - |-
               kubectl create secret docker-registry $SECRET_NAME \
                 --dry-run=client \
                 --docker-server="$ECR_REGISTRY" \
                 --docker-username=AWS \
-                --docker-password="$(</token/ecr-token)" \
+                --docker-password="token/ecr-token" \
                 -o yaml | kubectl apply -f -
 ```
 
