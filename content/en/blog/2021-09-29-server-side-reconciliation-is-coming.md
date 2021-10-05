@@ -158,7 +158,7 @@ following steps:
 
    ```cli
    kubectl -n flux-system set image deployment/kustomize-controller \
-              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-8426b396
+              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-50c71354
    ```
 
 Please comment on [this
