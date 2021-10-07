@@ -108,12 +108,12 @@ the Kubernetes API server, and no preparation is required. You may wish
 to translate your Flux `Kustomization` resources, though, according to the
 following table.
 
-Additions, deprecations and removals:
+Additions and deprecations:
 
 | Change in the new version  | What you should do |
 | -------------------------- | ------------------ |
 | Version is now `v1beta2`   | Change the version: `apiVersion: kustomize.toolkit.fluxcd.io/v1beta2`  |
-| `.spec.validation removed` | Server-side validation is now assumed. Remove this field from `.spec.` |
+| `.spec.validation` deprecated | Server-side validation is now assumed. Remove this field from `.spec.` |
 | `.spec.patchesStrategicMerge` deprecated in favour of `.spec.patches` | Convert each entry from `.spec.patchesStrategicMerge` into an inline strategic merge patch, like [this example given in the Kustomize documentation](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/#patch-using-inline-strategic-merge), and append to `.spec.patches.`. Note that the value in the patch field is quoted; that is, it is the YAML or JSON of the patch, stringified. |
 | `.spec.patchesJson6902` deprecated in favour of `.spec.patches` | Convert each entry from `.spec.patchesJson6902` into [an inline JSON6902 patch](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/#patch-using-inline-json6902), and append to `.spec.patches`. Note that the value in the patch field is quoted; that is, it is the YAML or JSON of the patch, stringified. |
 | `.status.snapshot` replaced by `.status.inventory` | `.status` is not kept in files, so you will not need to account for this. |

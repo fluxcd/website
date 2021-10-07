@@ -24,6 +24,7 @@ Assuming an app repository with `./deploy/prod/kustomization.yaml`:
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: default
 resources:
   - deployment.yaml
   - service.yaml
@@ -50,7 +51,7 @@ Then define a `kustomization.kustomize.toolkit.fluxcd.io` that uses the `kustomi
 from `./deploy/prod` to determine which resources to create, update or delete:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: my-app
@@ -131,7 +132,7 @@ spec:
 Then create a `Kustomization` definition to reconcile the `./deploy/prod` dir:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: my-app

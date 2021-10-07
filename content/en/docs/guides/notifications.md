@@ -178,7 +178,7 @@ metadata:
 
 Then create a Kustomization to deploy podinfo.
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: podinfo

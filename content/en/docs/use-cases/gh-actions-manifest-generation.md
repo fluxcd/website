@@ -211,7 +211,7 @@ A configmap is an ideal place to write a variable that is needed by any downstre
 
 ```yaml
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: any-old-app-devl
@@ -223,7 +223,6 @@ spec:
     kind: GitRepository
     name: any-old-app-prod
   targetNamespace: prod
-  validation: client
   postBuild:
     substituteFrom:
       - kind: ConfigMap
