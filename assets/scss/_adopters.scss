@@ -20,7 +20,7 @@
 
 
 #adopters-wall {
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(xs) {
     display: none;
   }
 
@@ -47,9 +47,23 @@
       
 
       img {
-        height: 96px;
-        width: 200px;
-        margin: 36px 12px;
+        height: 48px;
+        width: 100px;
+        margin: 18px 6px;
+
+        @media (min-width: 992px) {
+          height: 64px;
+          width: 150px;
+          margin: 24px 8px;
+        }
+
+
+        @media (min-width: 1800px) {
+          height: 96px;
+          width: 200px;
+          margin: 36px 12px;
+        }
+
         object-fit: contain;
       }
     }
@@ -78,7 +92,6 @@
       }
 
       width: 100vw;
-
       padding: 0 15px;
 
       .item {
@@ -118,8 +131,6 @@
             max-width: 75vw;
           }
         }
-
-
       }
 
       .case-study {
@@ -196,13 +207,13 @@
 
     @include media-breakpoint-down(sm) {
       .carousel-control-prev {
-        left: 4px;
+        left: 10px;
         right: auto;
       }
 
       .carousel-control-next {
         left: auto;
-        right: 4px;
+        right: 10px;
       }
 
       .carousel-control-prev, .carousel-control-next {
