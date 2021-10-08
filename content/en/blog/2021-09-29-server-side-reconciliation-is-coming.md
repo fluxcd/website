@@ -136,46 +136,21 @@ Please take a look at [the PR introducing this
 change](https://github.com/fluxcd/kustomize-controller/pull/426),
 as it talks at length about the issues which are solved by this.
 
-## Sneak-preview and leaving feedback
+## Sneak-preview
 
-If you would like a sneak-preview of the feature before it gets released
-and try out the v1beta2 API on your own test cluster, please follow the
-following steps:
+**Updated on 2021-10-08**
 
-1. Install the latest Flux controllers
-
-   ```cli
-   flux install
-   ```
-
-1. Apply the CRDs from this branch
-
-   ```cli
-   kubectl apply -k https://github.com/fluxcd/kustomize-controller/config/crd?ref=v1beta2
-   ```
-
-1. Deploy the kustomize-controller build of this branch
-
-   ```cli
-   kubectl -n flux-system set image deployment/kustomize-controller \
-              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-50c71354
-   ```
-
-Please comment on [this
-PR](https://github.com/fluxcd/kustomize-controller/pull/426)
-and let us know your thoughts about this.
+The server-side reconciliation has been released in flux2 [v0.18.0](https://github.com/fluxcd/flux2/releases/tag/v0.18.0).
 
 ## What's next?
 
 The biggest parts of the work have been done, here is what is still on
 our TODO list until the release:
 
-- Move the SSA resource manager to `fluxcd/pkg/ssa`
-- Use the SSA manager in Flux CLI to replace `kubectl shell` execs for
-  `flux bootstrap` and `flux install`
+- Use the SSA manager in Flux CLI to for the `flux create` commands
 - Use the SSA manager in Flux CLI to implement `flux build` and `flux
   diff` commands
-- Update the minimum Kubernetes versions in `flux check --pre`
+
 
 ## This is great - I want to participate in this
 
