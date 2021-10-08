@@ -82,7 +82,7 @@ def write_adopter_logos_for_landing_page(data):
             logo=entry['logo'],
             caption=entry['name'])
 
-    out_file = os.path.join(CONTENT_DIR, 'adopters_bg_include.html')
+    out_file = os.path.join(CONTENT_DIR, 'adopters_wall_include.html')
     if os.path.exists(out_file):
         os.remove(out_file)
     file_descriptor = open(out_file, 'w')
@@ -100,7 +100,7 @@ def write_endorsements(data):
     for entry in data['endorsements']:
         html += """
     <div class="carousel-item {active}">
-          <div class="foreground-item">
+          <div class="item">
             <div class="logo">
                 <img src="{image}" alt="">
             </div>

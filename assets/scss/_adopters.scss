@@ -18,37 +18,64 @@
    }
 }
 
-$gradient-width: 90px;
-$foreground-color: rgba($flux-white, 0.85);
+
+#adopters-wall {
+  @include media-breakpoint-down(xs) {
+    display: none;
+  }
+
+  .adopters-label {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  #logos {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    .col {
+      position: static;
+      width: 100%;
+      display: flex; 
+      flex-wrap: wrap;
+      justify-content: center;
+      
+
+      img {
+        height: 48px;
+        width: 100px;
+        margin: 18px 6px;
+
+        @media (min-width: 992px) {
+          height: 64px;
+          width: 150px;
+          margin: 24px 8px;
+        }
+
+
+        @media (min-width: 1800px) {
+          height: 96px;
+          width: 200px;
+          margin: 36px 12px;
+        }
+
+        object-fit: contain;
+      }
+    }
+  }
+}
 
 .adopters-carousel {
   margin-bottom: 2rem;
   justify-content: center;
 
-  .foreground-item::before {
-    width: $gradient-width;
-    height: 620px;
-    display: block;
-    background: linear-gradient(90deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
-    content: "";
-    position: absolute;
-    left: -$gradient-width;
-    top: 0;
-  }
 
-  .foreground-item::after {
-    width: 60px;
-    height: 620px;
-    display: block;
-    background: linear-gradient(270deg, transparent, $foreground-color $gradient-width/2, $foreground-color $gradient-width);
-    content: "";
-    position: absolute;
-    right: -60px;
-    top: 0;
-  }
-
-
-  #foreground-adopters {
+  #adopters {
     .section-label {
       margin-bottom: 2rem;
     }
@@ -65,10 +92,9 @@ $foreground-color: rgba($flux-white, 0.85);
       }
 
       width: 100vw;
-
       padding: 0 15px;
 
-      .foreground-item {
+      .item {
         height: 620px;
 
         @media (max-width: 560px) {
@@ -84,8 +110,6 @@ $foreground-color: rgba($flux-white, 0.85);
         left: 0;
         right: 0;
         margin: 0rem auto;
-
-        background-color: $foreground-color;
 
         display: flex;
         flex-direction: column;
@@ -107,8 +131,6 @@ $foreground-color: rgba($flux-white, 0.85);
             max-width: 75vw;
           }
         }
-
-
       }
 
       .case-study {
@@ -156,36 +178,6 @@ $foreground-color: rgba($flux-white, 0.85);
     }
   }
 
-  #background-logos {
-    opacity: 0.25;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    height: 620px;
-
-
-    @include media-breakpoint-down(md) {
-      display: none;
-    }
-
-    .col {
-      position: static;
-      max-height: 600px;
-      width: 100vw;
-      display: flex; 
-      flex-wrap: wrap-reverse;
-      justify-content: space-between;
-      
-
-      img {
-        height: 96px;
-        width: auto;
-        max-width: 200px;
-        margin: 12px 24px;
-        object-fit: contain;
-      }
-    }
-  }
 
   .carousel {
     &:hover {
@@ -215,13 +207,13 @@ $foreground-color: rgba($flux-white, 0.85);
 
     @include media-breakpoint-down(sm) {
       .carousel-control-prev {
-        left: 4px;
+        left: 10px;
         right: auto;
       }
 
       .carousel-control-next {
         left: auto;
-        right: 4px;
+        right: 10px;
       }
 
       .carousel-control-prev, .carousel-control-next {
