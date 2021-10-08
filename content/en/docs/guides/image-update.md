@@ -718,7 +718,7 @@ spec:
                 --dry-run=client \
                 --docker-server="$ECR_REGISTRY" \
                 --docker-username=AWS \
-                --docker-password="{<token/ecr-token}" \
+                --docker-password="$(<token/ecr-token)" \
                 -o yaml | kubectl apply -f -
 ```
 
