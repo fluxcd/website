@@ -115,7 +115,7 @@ gen_crd_doc() {
   # kustomize-controller CRDs
   KUSTOMIZE_VER="$(controller_version kustomize-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/kustomize.md" "$COMPONENTS_DIR/kustomize/api.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1beta1/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1beta2/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
 }
 
 {
