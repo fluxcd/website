@@ -108,12 +108,12 @@ the Kubernetes API server, and no preparation is required. You may wish
 to translate your Flux `Kustomization` resources, though, according to the
 following table.
 
-Additions, deprecations and removals:
+Additions and deprecations:
 
 | Change in the new version  | What you should do |
 | -------------------------- | ------------------ |
 | Version is now `v1beta2`   | Change the version: `apiVersion: kustomize.toolkit.fluxcd.io/v1beta2`  |
-| `.spec.validation removed` | Server-side validation is now assumed. Remove this field from `.spec.` |
+| `.spec.validation` deprecated | Server-side validation is now assumed. Remove this field from `.spec.` |
 | `.spec.patchesStrategicMerge` deprecated in favour of `.spec.patches` | Convert each entry from `.spec.patchesStrategicMerge` into an inline strategic merge patch, like [this example given in the Kustomize documentation](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/#patch-using-inline-strategic-merge), and append to `.spec.patches.`. Note that the value in the patch field is quoted; that is, it is the YAML or JSON of the patch, stringified. |
 | `.spec.patchesJson6902` deprecated in favour of `.spec.patches` | Convert each entry from `.spec.patchesJson6902` into [an inline JSON6902 patch](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/#patch-using-inline-json6902), and append to `.spec.patches`. Note that the value in the patch field is quoted; that is, it is the YAML or JSON of the patch, stringified. |
 | `.status.snapshot` replaced by `.status.inventory` | `.status` is not kept in files, so you will not need to account for this. |
@@ -136,46 +136,21 @@ Please take a look at [the PR introducing this
 change](https://github.com/fluxcd/kustomize-controller/pull/426),
 as it talks at length about the issues which are solved by this.
 
-## Sneak-preview and leaving feedback
+## Sneak-preview
 
-If you would like a sneak-preview of the feature before it gets released
-and try out the v1beta2 API on your own test cluster, please follow the
-following steps:
+**Updated on 2021-10-08**
 
-1. Install the latest Flux controllers
-
-   ```cli
-   flux install
-   ```
-
-1. Apply the CRDs from this branch
-
-   ```cli
-   kubectl apply -k https://github.com/fluxcd/kustomize-controller/config/crd?ref=v1beta2
-   ```
-
-1. Deploy the kustomize-controller build of this branch
-
-   ```cli
-   kubectl -n flux-system set image deployment/kustomize-controller \
-              manager=ghcr.io/fluxcd/kustomize-controller:v1beta2-50c71354
-   ```
-
-Please comment on [this
-PR](https://github.com/fluxcd/kustomize-controller/pull/426)
-and let us know your thoughts about this.
+The server-side reconciliation has been released in flux2 [v0.18.0](https://github.com/fluxcd/flux2/releases/tag/v0.18.0).
 
 ## What's next?
 
 The biggest parts of the work have been done, here is what is still on
 our TODO list until the release:
 
-- Move the SSA resource manager to `fluxcd/pkg/ssa`
-- Use the SSA manager in Flux CLI to replace `kubectl shell` execs for
-  `flux bootstrap` and `flux install`
+- Use the SSA manager in Flux CLI to for the `flux create` commands
 - Use the SSA manager in Flux CLI to implement `flux build` and `flux
   diff` commands
-- Update the minimum Kubernetes versions in `flux check --pre`
+
 
 ## This is great - I want to participate in this
 

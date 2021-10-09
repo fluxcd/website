@@ -53,8 +53,7 @@ The output is similar to:
 
 ```
 ► checking prerequisites
-✔ kubectl 1.18.3 >=1.18.0
-✔ kubernetes 1.18.2 >=1.16.0
+✔ kubernetes 1.22.2 >=1.19.0
 ✔ prerequisites checks passed
 ```
 
@@ -158,10 +157,10 @@ directory located in the podinfo repository.
 
     ```sh
     flux create kustomization podinfo \
+      --targetNamespace=default \
       --source=podinfo \
       --path="./kustomize" \
       --prune=true \
-      --validation=client \
       --interval=5m \
       --export > ./clusters/my-cluster/podinfo-kustomization.yaml
     ```
@@ -169,7 +168,7 @@ directory located in the podinfo repository.
     The output is similar to:
 
     ```yaml
-    apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+    apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
     kind: Kustomization
     metadata:
       name: podinfo
@@ -181,7 +180,7 @@ directory located in the podinfo repository.
       sourceRef:
         kind: GitRepository
         name: podinfo
-      validation: client
+      targetNamespace: default
     ```
 
 2. Commit and push the `Kustomization` manifest to the repository:
@@ -262,13 +261,17 @@ To customize a deployment from a repository you don't control, you can use Flux
 1. Add the following to the end of your `podinfo-kustomization.yaml` file:
 
     ```yaml clusters/my-cluster/podinfo-kustomization.yaml
-      patchesStrategicMerge:
-        - apiVersion: autoscaling/v2beta2
-          kind: HorizontalPodAutoscaler
-          metadata:
+      patches:
+        - patch: |-
+            apiVersion: autoscaling/v2beta2
+            kind: HorizontalPodAutoscaler
+            metadata:
+              name: podinfo
+            spec:
+              minReplicas: 3     
+          target:
             name: podinfo
-          spec:
-            minReplicas: 3
+            kind: HorizontalPodAutoscaler
     ```
 
 1. Commit and push the `podinfo-kustomization.yaml` changes:

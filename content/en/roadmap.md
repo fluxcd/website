@@ -9,7 +9,7 @@ type: page
 # Flux Roadmap
 
 {{% alert color="info" title="Production readiness" %}}
-The Flux custom resource definitions which are at `v1beta1` and `v2beta1`
+The Flux custom resource definitions which are at `v1beta1`, `v1beta2` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
 Please see the [Migration and Support Timetable](docs/migration/timetable.md) for our commitment to end users.
@@ -27,7 +27,7 @@ The following components are considered production ready:
 The following GitOps Toolkit APIs are considered production ready:
 
 - `source.toolkit.fluxcd.io/v1beta1`
-- `kustomize.toolkit.fluxcd.io/v1beta1`
+- `kustomize.toolkit.fluxcd.io/v1beta2`
 - `notification.toolkit.fluxcd.io/v1beta1`
 - `helm.toolkit.fluxcd.io/v2beta1`
 - `image.toolkit.fluxcd.io/v1beta1`
@@ -43,7 +43,11 @@ this list is subject to change while we gather feedback:
 
 - Conformance testing
     - [x] End-to-end testing for Flux bootstrap on AMD64 and ARM64 clusters
-    - [ ] End-to-end testing for Flux image automation
+    - [x] End-to-end testing for Flux image automation
+
+- Adopt Kubernetes server-side apply ([fluxcd/flux2#1889](https://github.com/fluxcd/flux2/issues/1889))
+    - [x] Replace `kubectl` usage in Flux CLI with server-side apply
+    - [x] Rewrite the kustomize-controller reconciler using server-side apply
 
 - API consolidation ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions

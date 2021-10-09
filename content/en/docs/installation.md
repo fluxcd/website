@@ -10,8 +10,16 @@ manage one or more Kubernetes clusters.
 
 ## Prerequisites
 
-You will need a Kubernetes cluster version **1.16** or newer
-and kubectl version **1.18** or newer.
+You will need a Kubernetes cluster version **1.19** or newer.
+
+Older versions are also supported, but we don't recommend running EOL Kubernetes versions in production:
+
+| Kubernetes version | Minimum required |
+| --- | --- |
+| `v1.16` | `>= 1.16.11` |
+| `v1.17` | `>= 1.17.7` |
+| `v1.18` | `>= 1.18.4` |
+| `v1.19` and newer | `>= 1.19.0` |
 
 ## Install the Flux CLI
 
