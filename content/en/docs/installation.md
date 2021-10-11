@@ -14,12 +14,21 @@ You will need a Kubernetes cluster version **1.19** or newer.
 
 Older versions are also supported, but we don't recommend running EOL Kubernetes versions in production:
 
-| Kubernetes version | Minimum required |
+| Kubernetes version | Minimum required\* |
 | --- | --- |
 | `v1.16` | `>= 1.16.11` |
 | `v1.17` | `>= 1.17.7` |
 | `v1.18` | `>= 1.18.4` |
-| `v1.19` and newer | `>= 1.19.0` |
+| `v1.19` and later | `>= 1.19.0` |
+
+*\* Update 2021-10-11:*
+
+If you are using `APIService` objects (for example
+[metrics-server](https://github.com/kubernetes-sigs/metrics-server)),
+you will need to update to `1.18.18`, `1.19.10`, `1.20.6` or `1.21.0`
+at least. See [this
+post](https://github.com/fluxcd/flux2/discussions/1916#discussioncomment-1458041)
+for more information.
 
 ## Install the Flux CLI
 
