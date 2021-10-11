@@ -144,7 +144,7 @@ flux bootstrap git \
   --path=clusters/my-cluster
 ```
 
-The above command will generate a SSH key (defaults to RSA 2048 but can be changed with `--ssh-key-algorithm`),
+The above command will generate an SSH key (defaults to RSA 2048 but can be changed with `--ssh-key-algorithm`),
 and it will prompt you to add the SSH public key as a deploy key to your repository.
 
 If you want to use your own SSH key, you can provide a private key using
@@ -199,7 +199,7 @@ For examples on how you can structure your Git repository see:
 The `bootstrap github` command creates a GitHub repository if one doesn't exist and
 commits the Flux components manifests to specified branch. Then it
 configures the target cluster to synchronize with that repository by
-setting up a SSH deploy key or by using token-based authentication.
+setting up an SSH deploy key or by using token-based authentication.
 
 Generate a [personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 that can create repositories by checking all permissions under `repo`.
@@ -269,7 +269,7 @@ flux bootstrap github \
 The `bootstrap gitlab` command creates a GitLab repository if one doesn't exist and
 commits the Flux components manifests to specified branch. Then it
 configures the target cluster to synchronize with that repository by
-setting up a SSH deploy key or by using token-based authentication.
+setting up an SSH deploy key or by using token-based authentication.
 
 Generate a [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
 that grants complete read/write access to the GitLab API.
