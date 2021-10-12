@@ -157,7 +157,7 @@ directory located in the podinfo repository.
 
     ```sh
     flux create kustomization podinfo \
-      --targetNamespace=default \
+      --target-namespace=default \
       --source=podinfo \
       --path="./kustomize" \
       --prune=true \
