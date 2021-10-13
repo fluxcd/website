@@ -165,6 +165,13 @@ so that you can replicate the same behavior using `kustomize build`:
 - `--load-restrictor` is set to `LoadRestrictionsNone`, so it allows loading files outside the dir containing `kustomization.yaml`.
 - `--reorder` is set to `legacy`, so the output will have namespaces and cluster roles/role bindings first, CRDs before CRs, and webhooks last.
 
+To replicate the build and apply dry run locally:
+
+```sh
+kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy . \
+| kubectl apply --server-side --dry-run=server -f-
+```
+
 {{% alert color="info" title="kustomization.yaml validation" %}}
 To validate changes before committing and/or merging, [a validation
 utility script is available](https://github.com/fluxcd/flux2-kustomize-helm-example/blob/main/scripts/validate.sh),
