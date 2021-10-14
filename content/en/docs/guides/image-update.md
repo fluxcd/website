@@ -102,11 +102,33 @@ git clone https://github.com/$GITHUB_USER/flux-image-updates
 cd flux-image-updates
 ```
 
-Add the podinfo Kubernetes deployment file inside `cluster/my-cluster`:
+Create a deployment for [podinfo](https://github.com/stefanprodan/podinfo) inside `clusters/my-cluster`:
 
 ```sh
-curl -sL https://raw.githubusercontent.com/stefanprodan/podinfo/5.0.0/kustomize/deployment.yaml \
-> ./clusters/my-cluster/podinfo-deployment.yaml
+cat <<EOF > ./clusters/my-cluster/podinfo-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfod
+          image: ghcr.io/stefanprodan/podinfo:5.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9898
+              protocol: TCP
+EOF
 ```
 
 Commit and push changes to main branch:
