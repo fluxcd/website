@@ -60,6 +60,9 @@ footer_about_disable = false
 [params.ui.readingtime]
 enable = false
 
+[params.markmap]
+enable = true
+
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
 copyright            = "The Flux authors"
