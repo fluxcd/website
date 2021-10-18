@@ -42,23 +42,6 @@ contentDir = "content/en"
 home = [ "HTML" ]
 page = [ "HTML" ]
 
-[params.ui]
-# Enable to show the side bar menu in its compact state.
-sidebar_menu_compact = true
-sidebar_menu_foldable = true
-sidebar_menu_truncate = 1000
-
-#  Set to true to disable breadcrumb navigation.
-breadcrumb_disable = false
-#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
-sidebar_search_disable = true
-#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
-navbar_logo = true
-# Set to true to disable the About link in the site footer
-footer_about_disable = false
-
-[params.ui.readingtime]
-enable = false
 
 [params]
 description          = "Open and extensible continuous delivery solution for Kubernetes."
@@ -90,17 +73,91 @@ offlineSearch = false
 #  url = "/legacy"
 #
 
-[[menus.main]]
-url = "/docs"
-name = "Docs"
-weight = 1
-
 
 [params.logos]
 navbar = "flux-horizontal-white.png"
 hero   = "flux-horizontal-color.png"
 footer = "flux-stacked-white.png"
 cncf   = "cncf-color.png"
+
+
+
+[params.ui]
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = true
+sidebar_menu_foldable = true
+sidebar_menu_truncate = 1000
+
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = true
+#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+navbar_logo = true
+# Set to true to disable the About link in the site footer
+footer_about_disable = false
+
+[params.ui.readingtime]
+enable = false
+
+[params.markmap]
+enable = true
+
+
+[params.links]
+# End user relevant links. These will show up on left side of footer and in the community page if you have one.
+
+[[params.links.user]]
+	name ="Twitter"
+	url = "https://twitter.com/fluxcd"
+	icon = "fab fa-twitter"
+	desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name ="LinkedIn"
+	url = "https://linkedin.com/groups/8985374"
+	icon = "fab fa-linkedin"
+	desc = "Join the Flux Community group on LinkedIn!"
+[[params.links.user]]
+	name = "RSS Feed"
+	url = "/blog/index.xml"
+	icon = "fa fa-rss"
+	desc = "Subscribe to the RSS feed of our blog!"
+[[params.links.user]]
+	name = "Support"
+	url = "/support"
+	icon = "fas fa-comments"
+	desc = "Subscribe to the RSS feed of our blog!"
+
+
+# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+	name = "Flux project on GitHub"
+	url = "https://github.com/fluxcd"
+	icon = "fab fa-github"
+	desc = "Development takes place here!"
+[[params.links.developer]]
+	name = "Slack"
+	url = "https://cloud-native.slack.com/messages/flux"
+	icon = "fab fa-slack"
+	desc = "Chat with other project developers"
+[[params.links.developer]]
+	name = "Developer mailing list"
+	url = "https://lists.cncf.io/g/cncf-flux-dev"
+	icon = "fa fa-envelope"
+	desc = "Discuss development issues around the project"
+[[params.links.developer]]
+	name="Flux YouTube channel"
+	url = "https://www.youtube.com/channel/UCoZxt-YMhGHb20ZkvcCc5KA"
+	icon = "fab fa-youtube"
+	desc = "Recordings of past Flux dev meetings"
+
+
+
+[[menus.main]]
+url = "/docs"
+name = "Docs"
+weight = 1
+
 
 [[menus.main]]
 identifier = "Project"
@@ -172,49 +229,3 @@ pre = "<i class='fab fa-github'></i> "
 weight = 100
 
 
-[params.links]
-# End user relevant links. These will show up on left side of footer and in the community page if you have one.
-
-[[params.links.user]]
-	name ="Twitter"
-	url = "https://twitter.com/fluxcd"
-	icon = "fab fa-twitter"
-	desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-	name ="LinkedIn"
-	url = "https://linkedin.com/groups/8985374"
-	icon = "fab fa-linkedin"
-	desc = "Join the Flux Community group on LinkedIn!"
-[[params.links.user]]
-	name = "RSS Feed"
-	url = "/blog/index.xml"
-	icon = "fa fa-rss"
-	desc = "Subscribe to the RSS feed of our blog!"
-[[params.links.user]]
-	name = "Support"
-	url = "/support"
-	icon = "fas fa-comments"
-	desc = "Subscribe to the RSS feed of our blog!"
-
-
-# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
-[[params.links.developer]]
-	name = "Flux project on GitHub"
-	url = "https://github.com/fluxcd"
-	icon = "fab fa-github"
-	desc = "Development takes place here!"
-[[params.links.developer]]
-	name = "Slack"
-	url = "https://cloud-native.slack.com/messages/flux"
-	icon = "fab fa-slack"
-	desc = "Chat with other project developers"
-[[params.links.developer]]
-	name = "Developer mailing list"
-	url = "https://lists.cncf.io/g/cncf-flux-dev"
-	icon = "fa fa-envelope"
-	desc = "Discuss development issues around the project"
-[[params.links.developer]]
-	name="Flux YouTube channel"
-	url = "https://www.youtube.com/channel/UCoZxt-YMhGHb20ZkvcCc5KA"
-	icon = "fab fa-youtube"
-	desc = "Recordings of past Flux dev meetings"
