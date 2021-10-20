@@ -43,6 +43,7 @@ adopters:
     - name: Cloudlets
       url: https://cloudlets.io
     - name: Cloudogu GmbH
+      logo: logos/cloudogu.svg
       url: https://cloudogu.com
     - name: CLVR Cloud Ltd
       url: https://clvr.cloud
