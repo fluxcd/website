@@ -197,6 +197,7 @@ metadata:
     kustomize.toolkit.fluxcd.io/prune: disabled
   name: coredns
   namespace: kube-system
+spec:
   selector:
     matchLabels:
       eks.amazonaws.com/component: coredns
