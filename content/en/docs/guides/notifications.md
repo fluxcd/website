@@ -141,7 +141,7 @@ when receiving the event.
 
 {{% alert color="info" title="Limitations" %}}
 The git notification providers require that a commit hash present in the meta data
-of the event. There for the providers will only work with `Kustomization` as an
+of the event. Therefore the providers will only work with `Kustomization` as an
 event source, as it is the only resource which includes this data.
 {{% /alert %}}
 
@@ -291,7 +291,7 @@ be received for the same commit hash. The git providers are configured to only u
 the status if the status has changed. This is to avoid spamming the commit status
 history with the same status over and over again.
 
-There is an aspect of state fullness that needs to be considered, compared to the other
+There is an aspect of statefullness that needs to be considered, compared to the other
 notification providers, as the events are stored by the git provider. This means that
 the status of a commit can change over time. Initially a deployment may be healthy, resulting
 in a successful status. Down the line the application, and the health check, may start failing
