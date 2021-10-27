@@ -156,7 +156,7 @@ The kustomize-controller creates `kustomization.yaml` files similar to:
 cd ./deploy/prod && kustomize create --autodetect --recursive
 ```
 
-### What is the behavior of Kustomize used by Flux
+### What is the behavior of Kustomize used by Flux?
 
 We referred to the **Kustomize v4** CLI flags here,
 so that you can replicate the same behavior using `kustomize build`:
@@ -179,13 +179,55 @@ it runs `kustomize` locally or in CI with the same set of flags as
 the controller and validates the output using `kubeval`.
 {{% /alert %}}
 
+### How do I resolve `webhook does not support dry run` errors?
+
+If you've installed Kubernetes dynamic admission controls you may see Flux
+failing to reconcile with an error similar to
+`dry-run failed, error: admission webhook "validation-service.default.svc" does not support dry run`.
+
+To fix this issue, you'll have to find the `ValidatingWebhookConfiguration` or the `MutatingWebhookConfiguration`,
+and set the `sideEffects` to `None` or `NoneOnDryRun`:
+
+```yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+webhooks:
+- name: my-webhook.example.com
+  sideEffects: None
+```
+
+### How do I resolve `some/resource configured` events spam?
+
+If the controller emits change events for a specific resource (even if the resource hasn't changed),
+you'll need to edit your YAML manifests and remove any optional field that is set to `null`,
+empty string or empty object.
+
+Example of empty fields that will trigger drift events:
+
+```yaml
+apiVersion: v1
+kind: Example
+metadata:
+  name: example
+spec:
+  field1: null
+  field2: {}
+  field3:
+```
+
+The kustomize-controller detects drift between the manifests and the in-cluster resources
+by running a server-side apply dry-run, removing the empty fields from your manifests
+will help the controller detect drift correctly.
 
 ### How to patch CoreDNS and other pre-installed addons?
 
 To patch a pre-installed addon like CoreDNS with customized content.
-Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled` annotation into your git repository.
+Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled`
+annotation into your git repository.
 
-Example CoreDNS with custom replicas, the `spec.containers[]` empty list is needed for the patch to work and will not override the existing containers.
+Example CoreDNS with custom replicas, the `spec.containers[]` empty list is needed
+for the patch to work and will not override the existing containers:
+
 ```yaml
 ---
 apiVersion: apps/v1
@@ -198,6 +240,7 @@ metadata:
   name: coredns
   namespace: kube-system
 spec:
+  replicas: 5
   selector:
     matchLabels:
       eks.amazonaws.com/component: coredns
@@ -210,7 +253,13 @@ spec:
     spec:
       containers: []
 ```
-Note that only non-managed fields should be modified else there will be a conflict with the `manager` of the fields (e.g. `eks`). For example, while you will be able to modify affinity/antiaffinity fields, the `manager` (e.g. `eks`) will revert those changes and that might not be immediately visible to you (with EKS that would be an interval of once every 30 minutes). The deployment will go into a rolling upgrade and flux will revert it back to the patched version.
+
+Note that only non-managed fields should be modified else there will be a conflict with
+the `manager` of the fields (e.g. `eks`). For example, while you will be able to modify
+affinity/antiaffinity fields, the `manager` (e.g. `eks`) will revert those changes and
+that might not be immediately visible to you
+(with EKS that would be an interval of once every 30 minutes).
+The deployment will go into a rolling upgrade and Flux will revert it back to the patched version.
 
 ## Helm questions
 
@@ -295,7 +344,6 @@ EOF
 
 Based on the above definition, Flux will upgrade the release automatically
 when Bitnami publishes a new version of the metrics-server chart.
-
 
 ### How do I resolve a `Request entity too large: limit is 3145728` error during Helm install or upgrade?
 
