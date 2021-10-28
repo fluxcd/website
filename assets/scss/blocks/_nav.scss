@@ -27,6 +27,8 @@ nav.navbar {
       font-size: 1rem;
       text-transform: none;
       font-weight: 700;
+
+      margin-top: 3px;
     }
   }
 
@@ -38,6 +40,11 @@ nav.navbar {
       border: none;
       max-width: 11rem;
       padding-left: 9px;
+      padding-top: 12px;
+      @include media-breakpoint-down(md) {
+        padding-top: 10px;
+      }
+
       margin-right: 1rem;
     }
   }
