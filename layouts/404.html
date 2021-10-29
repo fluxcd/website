@@ -1,9 +1,38 @@
 {{ define "main"}}
-    <main id="main">
-      <div>
-       <h1 id="title">Sorry, page not found ... 🤷</h1>
-       <p>Oops! This page doesn't exist. Try going back to our <a href="{{ "/" | relURL }}">home page</a>.</p>
-       <!-- Customise 404 page even more: https://gohugo.io/templates/404/ -->
+<main id="main">
+  <div class="d-flex justify-content-center">
+    <div class="page404">
+      <h1 id="title">Sorry, page not found ... 🤷</h1>
+        <h3>Were you looking for?</h3>
+        <div class="links404">
+          <a href="/docs">Documentation</a>
+          <a href="/blog">Blog</a>
+          <a href="/support">Support</a>
+          <a href="/roadmap">Roadmap</a>
+        </div>
+
+      <div class="search404">
+        <h3>Something else...</h3>
+        <div>
+          <input type="search" class="form-control search-404-input"
+          aria-label="{{ T "ui_search" }}"
+          autocomplete="off">
+        </div>
       </div>
-    </main>
+    </div>
+  </div>
+</main>
+
+<script defer type="text/javascript">
+  $(function() {
+    const docsearch = docsearchInit('.search-404-input');
+    const ac = docsearch.autocomplete.autocomplete
+
+    let algoliaQuery = document.location.pathname.replace(/\.\w+/, '').replace(/\W/g, ' ').trim();
+    algoliaQuery = 'helm';
+    ac.setVal(algoliaQuery);
+    ac.open();
+  });
+</script>
+
 {{ end }}
