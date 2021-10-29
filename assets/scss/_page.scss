@@ -4,3 +4,41 @@
     margin-top: 2rem;
   }
 }
+
+.td-404 .td-main {
+  margin-bottom: 450px;
+
+  @include media-breakpoint-down(md) {
+    margin-top: 50px;
+  }
+}
+
+.page404 {
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .links404 {
+    a {
+      display: block;
+      font-weight: 600;
+      margin: 4px 0;
+    }
+  }
+
+  .search404 {
+    margin-top: 1.5rem;
+    input.search-404-input {
+      margin-top: 4px;
+    }
+  }
+}
