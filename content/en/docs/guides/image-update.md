@@ -628,10 +628,33 @@ some common examples for the most popular cloud provider docker registries.
 {{% alert color="info" title="Workarounds" color="warning" %}}
 The examples below are intended as workaround solutions until native
 authentication mechanisms are implemented in Flux itself to support this in
-a more straightforward manner.
+a more straightforward manner. There is also an experimental native container
+registry support in Flux for the AWS ECR autologin feature, described below.
 {{% /alert %}}
 
 ### AWS Elastic Container Registry
+
+Two methods are available for authenticating AWS Elastic Container Registries as
+`ImageRepository` resources in Flux:
+
+* Experimental Native Auto-Login, or
+* a `CronJob` which does not rely on native platform support in Flux,
+  (instead storing credentials as Kubernetes secrets which are periodically refreshed.)
+
+#### Using Native AWS ECR Auto-Login
+
+There is [native support for the AWS Elastic Container Registry](https://fluxcd.io/docs/components/image/imagerepositories/#ecr-and-eks),
+available since `image-reflector-controller` [v0.13.0](https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0130)
+which was released with Flux release v0.19. This depends on setting the `--aws-autologin-for-ecr`
+flag, which assumes any ECR repositories with IAM roles assigned to the cluster can
+be freely shared across any cluster tenants.
+
+Put another way, the autologin strategy assumes that there are no important security
+boundaries for ECR inside the cluster. For a more isolated configuration, with behavior
+that is more consistent with the standard [multi-tenant security model](https://github.com/fluxcd/flux2-multi-tenancy)
+of Flux, the guidance that follows should be considered instead.
+
+#### Using CronJob to sync ECR credentials as a Kubernetes secret
 
 The registry authentication credentials for ECR expire every 12 hours.
 Considering this limitation, one needs to ensure the credentials are being
