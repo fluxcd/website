@@ -1,7 +1,7 @@
 adopters:
   project: Flagger
   description: >
-    Check out everything about Flagger on <https://flagger.app>.
+    Check out everything about Flagger on [its website](/flagger).
   companies:
     - name: Capra Consulting
       url: https://www.capraconsulting.no

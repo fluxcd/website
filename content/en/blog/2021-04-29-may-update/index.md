@@ -106,7 +106,7 @@ where they can be reviewed and approved before going to production.
 
 ## Flagger v1.8.0
 
-Until now [Flagger](https://flagger.app) was compatible with Linkerd
+Until now [Flagger](/flagger) was compatible with Linkerd
 which implements the [Service Mesh Interface](https://smi-spec.io) (SMI) `v1alpha1`.
 Starting with v1.8.0, Flagger extends the SMI support for the
 `v1alpha2` and `v1alpha3` APIs.

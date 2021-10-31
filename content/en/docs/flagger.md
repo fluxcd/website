@@ -1,6 +1,5 @@
 ---
 title: Flagger
-manualLink: https://docs.flagger.app
-manualLinkTarget: _blank
+manualLink: /flagger
 weight: 150
 ---

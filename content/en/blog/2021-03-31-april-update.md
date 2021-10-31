@@ -119,7 +119,7 @@ history, the move itself and what it means:
 
 ## Flagger v1.7.0 is out
 
-This release comes with support for manually approving the traffic weight increase. Starting with this version, Flagger can be used with Linkerd v2.10 and its new Viz addon, please see [the updated guide](https://docs.flagger.app/tutorials/linkerd-progressive-delivery). Thanks to the Linkerd team for contributing to Flagger.
+This release comes with support for manually approving the traffic weight increase. Starting with this version, Flagger can be used with Linkerd v2.10 and its new Viz addon, please see [the updated guide](/flagger/tutorials/linkerd-progressive-delivery). Thanks to the Linkerd team for contributing to Flagger.
 
 ## Upcoming events
 

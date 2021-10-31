@@ -1269,7 +1269,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [kubecfg yaml parser]: https://github.com/bitnami/kubecfg/blob/master/lib/kubecfg.libsonnet#L25
 [bitnami-labs/kube-libsonnet]: https://github.com/bitnami-labs/kube-libsonnet
 [example 10.3 jsonnet]: https://github.com/kingdonb/any_old_app/blob/release/0.10.3/manifests/example.jsonnet
-[Manual Gating]: https://docs.flagger.app/usage/webhooks#manual-gating
+[Manual Gating]: /flagger/usage/webhooks#manual-gating
 [flux create tenant]: /cmd/flux_create_tenant
 [Flux 2 Multi-Tenancy Guide]: https://github.com/fluxcd/flux2-multi-tenancy
 [Mozilla SOPS]: /guides/mozilla-sops/
