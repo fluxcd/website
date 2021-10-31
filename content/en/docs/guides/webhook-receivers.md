@@ -8,8 +8,8 @@ weight: 40
 Flux is by design **pull-based**.
 In order to notify the Flux controllers about changes in Git or Helm repositories,
 you can setup webhooks and trigger a cluster reconciliation
-every time a source changes. Using webhook receivers, you can build **push-based**
-GitOps pipelines that react to external events.
+every time a source changes. Using webhook receivers make
+**pull-based** pipelines as responsive as **push-based** pipelines.
 
 ## Prerequisites
 
