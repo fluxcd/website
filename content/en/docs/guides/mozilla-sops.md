@@ -205,10 +205,7 @@ Create an IAM Role with access to AWS KMS e.g.:
     "Statement": [
         {
             "Action": [
-                "kms:Encrypt",
                 "kms:Decrypt",
-                "kms:ReEncrypt*",
-                "kms:GenerateDataKey*",
                 "kms:DescribeKey"
             ],
             "Effect": "Allow",
@@ -217,6 +214,12 @@ Create an IAM Role with access to AWS KMS e.g.:
     ]
 }
 ```
+
+{{% alert color="info" title="Hint" %}}
+The above policy represents the minimal permissions needed for the controller
+to be able to decrypt secrets. Policies for users/clients who are meant to be encrypting and managing
+secrets will additionally require the `kms:Encrypt`, `kms:ReEncrypt*` and `kms:GenerateDataKey*` actions.
+{{% /alert %}}
 
 Bind the IAM role to the `kustomize-controller` service account:
 
