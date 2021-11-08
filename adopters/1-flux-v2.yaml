@@ -84,3 +84,6 @@ adopters:
     - name: Liggo
       url: https://liggo.com
       logo: logos/liggo.png
+    - name: identinet
+      url: https://identinet.id
+      logo: logos/identinet.svg
