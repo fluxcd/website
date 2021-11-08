@@ -29,7 +29,7 @@ jobs:
       - name: lychee Link Checker
         if: ${{ steps.getfile.outputs.ts != '' }}
         id: lychee
-        uses: lycheeverse/lychee-action@v1.0.9
+        uses: lycheeverse/lychee-action@v1.1.0
         with:
           args: --verbose --no-progress --exclude-all-private ${{ steps.getfile.outputs.ts }}
         env:
