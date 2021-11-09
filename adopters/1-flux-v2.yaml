@@ -87,3 +87,6 @@ adopters:
     - name: identinet
       url: https://identinet.id
       logo: logos/identinet.svg
+    - name: Omaze
+      url: https://omaze.com
+      logo: logos/omaze.png
