@@ -136,6 +136,9 @@ spec:
       name: webapp
 ```
 
+* When the receiver type is set to generic, the controller will not perform token validation nor event filtering
+* Generic receiver's payload content is not validated. Only the signature is verified using HMAC
+
 {{% alert color="info" title="Other receiver" %}}
 Besides GitHub, you can define receivers for **GitLab**, **Bitbucket**, **Harbor**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
@@ -162,7 +165,7 @@ Fill the form with:
 With the above settings, when you push a commit to the repository, the following happens:
 
 * GitHub sends the Git push event to the receiver address
-* Notification controller validates the authenticity of the payload using HMAC
+* Notification controller validates an incoming GitHub Webhook event request's signature using HMAC and returns the (JSON) payload
 * Source controller is notified about the changes
 * Source controller pulls the changes into the cluster and updates the `GitRepository` revision
 * Kustomize controller is notified about the revision change
