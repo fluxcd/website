@@ -50,6 +50,7 @@ Declarative config via arguments in the Flux deployment | `GitRepository` custom
 Follow `HEAD` of Git branches | Supports Git branches, pinning on commits and tags, follow SemVer tag ranges
 Suspending of reconciliation by downscaling Flux deployment | Reconciliation can be paused per resource by suspending the `GitRepository`
 Credentials config via Arguments and/or Secret volume mounts in the Flux pod | Credentials config per `GitRepository` resource: SSH private key, HTTP/S username/password/token, OpenPGP public keys
+Ignoring resources with `fluxcd.io/ignore: "true"` annotation | Ignoring resources with `kustomize.toolkit.fluxcd.io/reconcile: disabled` annotation 
 
 #### `kustomize` support
 
