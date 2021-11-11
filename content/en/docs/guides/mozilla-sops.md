@@ -84,7 +84,8 @@ Register the Git repository on your cluster:
 
 ```sh
 flux create source git my-secrets \
---url=https://github.com/my-org/my-secrets
+--url=https://github.com/my-org/my-secrets \
+--branch=main
 ```
 
 Create a kustomization for reconciling the secrets on the cluster:
