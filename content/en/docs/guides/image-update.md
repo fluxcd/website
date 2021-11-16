@@ -30,7 +30,7 @@ For production environments, this feature allows you to automatically deploy app
 * CD: update the image tag in the app manifest to `v1.0.1` (Flux cluster to Git reconciliation)
 * CD: deploy `v1.0.1` to production clusters (Flux Git to cluster reconciliation)
 
-For staging environments, this features allow you to deploy the latest build of a branch,
+For staging environments, this feature allows you to deploy the latest build of a branch,
 without having to manually edit the app deployment manifest in Git.
 
 **Staging CI/CD workflow**
