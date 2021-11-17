@@ -242,7 +242,7 @@ between Stefan Prodan, one of our Flux maintainers and Chris Wright, the
 Red Hat CTO. They cover GitOps from various interesting angles. It's
 certainly worth your time.
 
-{{< tweet 1453353304101203977 >}}
+{{< tweet user=RedHat id=1453353304101203977 >}}
 
 ## In other news
 
