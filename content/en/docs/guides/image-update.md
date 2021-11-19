@@ -364,6 +364,12 @@ The image policy marker format is:
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>:tag"}`
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>:name"}`
 
+These markers are placed inline in the target YAML, as a comment.  The "Setter" strategy refers to
+[kyaml setters](https://github.com/fluxcd/flux2/discussions/107#discussioncomment-82746)
+which Flux can find and replace during reconciliation, when directed to do so by an `ImageUpdateAutomation` 
+like the one [above](#configure-image-updates).
+
+Here are some examples of using this marker in a variety of Kubernetes resources.
 
 `HelmRelease` example:
 
