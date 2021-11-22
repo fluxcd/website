@@ -3,6 +3,9 @@ author: dholbach
 date: 2021-03-01 08:30:00+00:00
 title: March 2021 Update
 description: This month's edition of updates on Flux v2 developments - feature parity, 0.9 release, new Flagger logo, update on GA release, project and website changes, new events and more.
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 ## Before we get started, what is GitOps?
@@ -146,7 +149,7 @@ Costanzo](https://github.com/bia) for working on this! Thanks
 also everyone else for updating the diagrams, website and CNCF
 Landscape.
 
-![Flagger logo](https://raw.githubusercontent.com/fluxcd/flagger/main/docs/logo/flagger-stacked-color%402x.png)
+![Flagger logo](flagger-stacked-color-featured.png)
 
 **Meeting times**: the Flux team holds weekly, public meetings. To make
 these accessible to everyone we offer an "early" and a "late" meeting to

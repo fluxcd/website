@@ -3,6 +3,9 @@ author: dholbach
 date: 2021-03-10 06:30:00+00:00
 title: Flux is a CNCF Incubation project
 description: The Cloud Native Computing Foundation promoted Flux to Incubation status. We celebrate all the great work that turned Flux into a GitOps family of projects.
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 ![Incubation](/img/incubation.png)
@@ -22,7 +25,7 @@ this process. Thanks to our friends at Deutsche Telekom, Lunar,
 MediaMarktSaturn and Sortlist who spoke in favour of Flux and explained
 their GitOps implementation in user interviews with the CNCF.
 
-![Incubation Infographics](/img/incubation-infographics.png)
+![Incubation Infographics](incubation-infographics.png)
 
 As a project we have come quite far in the last 5 years. From the time
 when it was a Weaveworks-internal project to make simple deployments
