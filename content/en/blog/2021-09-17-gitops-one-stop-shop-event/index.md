@@ -5,11 +5,13 @@ title: GitOps One-Stop Shop Event
 description: >
   Flux will be part of the GitOps Days community special event again. Learn from vendors who chose Flux for their GitOps offering: Amazon, D2IQ, Microsoft, Weaveworks.
 url: /blog/2021/09/gitops-one-stop-shop/
-images:
-- /img/2021-09-gitops-one-stop-shop-event.jpg
+resources:
+- src: "**.jpg"
+  title: "Image #:counter"
+
 ---
 
-![](/img/2021-09-gitops-one-stop-shop-event.jpg)
+![](featured-image.jpg)
 
 Flux is going to be center stage at the [GitOps One Stop Shop Event](https://gitopsdays.com) on Oct 20th, 2021.
 

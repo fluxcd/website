@@ -4,7 +4,9 @@ date: 2021-07-30 15:30:00+00:00
 title: August 2021 update
 description: Controller refactoring coming up, Flux migration moving forward, Flux Bug Scrub is a regular event now! GitOpsCon North America coming up. Talk to us in Flux User Interviews! Website and Docs news, and more!
 url: /blog/2021/08/august-2021-update/
-images: [/img/2021-07-flux-users-screenshot.png]
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 As the Flux family of projects and its communities are growing, we
@@ -240,7 +242,7 @@ more short-codes we can use to express ourselves in our documentation.
 Alison also improved the ways tabs look as you can see
 [here](/docs/installation/):
 
-![Tabs in our docs](/img/2021-07-tabs-screenshot.png)
+![Tabs in our docs](tabs-screenshot.png)
 
 Alison also put quite a bit of work into [writing
 up](/docs/contributing/docs/style-guide/)
@@ -257,7 +259,7 @@ Additionally, to give some of the success stories Flux users have shared
 more room, we added this section to the landing page of
 <https://fluxcd.io> - if you have more, we are all ears!
 
-![Who is using Flux](/img/2021-07-flux-users-screenshot.png)
+![Who is using Flux](flux-users-screenshot-featured.png)
 
 Many others helped us improve the site and docs in other ways - thanks
 to everyone!

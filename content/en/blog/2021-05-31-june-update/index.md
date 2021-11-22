@@ -4,9 +4,9 @@ date: 2021-05-31 08:30:00+00:00
 title: June 2021 update
 description: Flux 0.14 and Flagger 1.11 with lots of new features, KubeCon talks galore, Flux at CNCF Store, lots of Flux adoption. Flux governance 6 month review.
 url: /blog/2021/05/june-2021-update/
-images:
-- /img/2021-05-cncf-store.png
-- /img/2021-05-flux-adopters.png
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 As the Flux family of projects and its communities are growing, we
@@ -104,7 +104,7 @@ us at KubeCon!
 
 ## The CNCF Flux Store is up
 
-![Flux at CNCF Store](/img/2021-05-cncf-store.png)
+![Flux at CNCF Store](cncf-store-featured.png)
 
 As one of the perks of reaching Incubation status within the CNCF, there
 is now a Flux section in the CNCF Store. If you are looking for a new
@@ -120,7 +120,7 @@ channel](https://cloud-native.slack.com/archives/CLAJ40HV3)!
 
 ## Our community is growing
 
-![Flux Adopters](/img/2021-05-flux-adopters.png)
+![Flux Adopters](flux-adopters.png)
 
 We finally built a nicer home to show off who all is part of our
 community: <https://fluxcd.io/adopters>.

@@ -4,7 +4,9 @@ date: 2021-07-02 11:30:00+00:00
 title: July 2021 update
 description: Stable Flux APIs from 0.16 onwards. 100 Flux releases. Bug Scrub community initiative. New Flagger release, Docs and website updates and lots more!
 url: /blog/2021/07/july-2021-update/
-images: [/img/2021-07-contributors-section.png]
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 As the Flux family of projects and its communities are growing, we
@@ -272,7 +274,7 @@ posts, etc. Just come and talk to us!
 contributors! It's great to be able to see everyone who is making this
 happen.
 
-![Contributors section](/img/2021-07-contributors-section.png)
+![Contributors section](contributors-section-featured.png)
 
 Many docs have received updates and more information and we are pleased
 that many new docs PRs have been coming in from new contributors! We now

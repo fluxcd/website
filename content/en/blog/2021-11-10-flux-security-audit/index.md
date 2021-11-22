@@ -4,8 +4,9 @@ date: 2021-11-10 12:30:00+00:00
 title: Flux Security Audit has concluded
 description: Flux just went through a CNCF-funded Security Audit. Here we publicly release and discuss the report. We also disclose our first CVE, which was fixed in Flux v0.18.0 - please upgrade as soon as you can!
 url: /blog/2021-11-10-flux-security-audit/
-images:
-- /img/2021-11-security-audit.png
+resources:
+- src: "**.png"
+  title: "Image #:counter"
 ---
 
 As Flux is an Incubation project within the [Cloud Native Computing
@@ -21,7 +22,7 @@ The Flux maintainers and community are very grateful for the work put
 into this by everyone and the opportunity to grow and improve as a
 project.
 
-![ADA Logics, CNCF, OSTIF](/img/2021-11-security-audit.png)
+![ADA Logics, CNCF, OSTIF](featured-image.png)
 
 ## Our first CVE in Flux
 
