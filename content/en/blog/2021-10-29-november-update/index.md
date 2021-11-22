@@ -4,8 +4,9 @@ date: 2021-10-29 20:30:00+00:00
 title: November 2021 update
 description: New releases in the Flux family (Server-Side Apply in Flux, Flagger 1.15). Max Jonas Werner (D2IQ) and Soulé Ba + Sunny (Weaveworks) are new Flux maintainers, lots of event news, Flux and OpenShift and much much more!
 url: /blog/2021/11/november-2021-update/
-images:
-- /img/2021-09-gitops-one-stop-shop-event.jpg
+resources:
+- src: "**.png"
+  title: "Image #:counter"
 ---
 
 As the Flux family of projects and its communities are growing, we
@@ -138,7 +139,7 @@ everything you do! 💖
 > "I\'m very happy to be joining a lively community and an extremely
 > exciting project as a maintainer. Thank you for the warm welcome."
 
-![Max Jonas Werner](/img/2021-10-max-jonas-werner-jpg)
+![Max Jonas Werner](max-jonas-werner.jpg)
 
 #### Sunny and Soulé Ba from Weaveworks
 
@@ -190,7 +191,7 @@ videos!
 
 ### GitOps One-Stop Shop Event
 
-![GitOps One-Stop Shop Event](/img/2021-09-gitops-one-stop-shop-event.jpg)
+![GitOps One-Stop Shop Event](featured-image.jpg)
 
 This was a half day event on October 20, 2021 to celebrate a major
 milestone for our project! Speakers from top cloud and GitOps vendors -

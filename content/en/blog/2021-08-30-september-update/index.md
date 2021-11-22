@@ -4,11 +4,9 @@ date: 2021-08-30 13:30:00+00:00
 title: September 2021 update
 description: Flux 0.17 released, Flagger 1.13 with OpenServiceMesh support, Flux joins OperatorHub for OpenShift, Somtochi Onyekwere joins maintainers, event news and more
 url: /blog/2021/09/september-2021-update/
-images:
-- /img/2021-08-flux-operator-screenshot1.png
-- /img/2021-08-flux-operator-screenshot2.png
-- /img/2021-08-resources-section.png
-- /img/2021-08-somtochi-avatar.jpg
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 As the Flux family of projects and its communities are growing, we
@@ -120,12 +118,12 @@ Flux on OpenShift Features
 
 The Flux Operator for OpenShift provides a UI for all Flux Resources.
 
-![Flux Operator](/img/2021-08-flux-operator-screenshot1.png)
+![Flux Operator](flux-operator-screenshot1-featured.png)
 
 In the following example, you see the UI of GitRepository, which could
 create a new GitRepository object as a source for other objects.
 
-![Flux Operator](/img/2021-08-flux-operator-screenshot2.png)
+![Flux Operator](flux-operator-screenshot2.png)
 
 Please consult the [Flux OpenShift documentation](/docs/use-cases/openshift/)
 for the installation steps.
@@ -193,7 +191,7 @@ they now have their own page and can shine there:
 
 If you prefer learning about Flux through videos, you might enjoy this!
 
-![Resources section on the website](/img/2021-08-resources-section.png)
+![Resources section on the website](resources-section.png)
 
 **📆 Our calendar**: From now on all upcoming Flux-related events,
 meetings, workshops and sessions will be mentioned in our new calendar
@@ -226,7 +224,7 @@ Kubernetes SIG Cluster Lifecycle. Check out her write-up about the
 Thanks a lot for all your hard work Somtochi - we are very happy to have
 you on the team!
 
-![Somtochi Onyekwere](/img/2021-08-somtochi-avatar.jpg)
+![Somtochi Onyekwere](somtochi-avatar.jpg)
 
 ### People writing about Flux
 
