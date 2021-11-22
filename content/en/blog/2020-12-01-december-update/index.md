@@ -3,6 +3,9 @@ author: dholbach
 date: 2020-12-01 12:30:00+00:00
 title: December Update
 description: This month's edition of updates on Flux v2 developments - 0.4.0 release, new website, new maintainer, new guides and more.
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 ## Before we get started, what is GitOps?
@@ -56,7 +59,7 @@ Ever since Flux moved into the CNCF Sandbox, we had a website for it which Luc P
 
 Thanks to Hidde Beydals’s tireless work we were able to complete stage 1 and 2. Below is what it currently looks like:
 
-![New fluxcd.io homepage](https://i.imgur.com/l8WHF4L.png)
+![New fluxcd.io homepage](featured-image.png)
 
 If you want to help out with the [next steps](https://github.com/fluxcd/website), please reach out.
 

@@ -4,6 +4,9 @@ date: 2021-04-29 06:30:00+00:00
 title: May 2021 update
 description: Flux v2 has its first anniversary and reaches the 0.13 milestone, Alison joins maintainers, new guides and use-cases docs, upcoming events (yes we'll be at KubeCon!) and general community news!
 url: /blog/2021/04/may-2021-update/
+resources:
+- src: "**.{png,jpg}"
+  title: "Image #:counter"
 ---
 
 ## Before we get started, what is GitOps?
@@ -219,7 +222,7 @@ website and has a long background in working with communities in the
 Kubernetes space. Recently she took on the role of chair in k8s SIG
 Contributor Experience as well!
 
-![Alison](/img/alison.jpg)
+![Alison](alison-featured.jpg)
 
 We feel very fortunate to have Alison on board!
 

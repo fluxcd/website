@@ -43,4 +43,5 @@ exclude = [
     "https://stefanprodan.github.io/podinfo",
     "https://stefanprodan.github.io/podinfo2/index.yaml",
     "https://cloud.weave.works/api/flux",
+    "https://weaveworks.zoom.us/webinar/register/*",
 ]
