@@ -2,6 +2,7 @@
 node_modules/
 
 # Hugo-generated assets
+.hugo_build.lock
 public/
 resources/
 themes/docsy
