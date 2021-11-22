@@ -232,7 +232,7 @@ A new instalment of the Falcosidekick series has been written by Batuhan Apaydı
 
 ![Flux v2 with Falcosidekick](https://falco.org/docs/images/kre_flux_v2_gitops_toolkit.png)
 
-The article takes a step-by-step approach and is nicely written. We are very pleased to continue the collaboration with the Falco project. Check out the full article here: <https://falco.org/blog/falcosidekick-reponse-engine-part-8-fluxv2/>
+The article takes a step-by-step approach and is nicely written. We are very pleased to continue the collaboration with the Falco project. Check out the full article here: <https://falco.org/blog/falcosidekick-response-engine-part-8-fluxv2/>
 
 ## Over and out
 
