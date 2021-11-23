@@ -50,9 +50,3 @@ Instead you specify a different service account in your manifest, and the Flux c
 In this way, policy restrictions for this service account are applied to the manifests being reconciled.
 If the binding is not defined for the correct service account and namespace, it will fail.
 The roles and permissions for this multi-tenancy approach are described in detail here: https://github.com/fluxcd/flux2-multi-tenancy
-
-## External audit
-
-- In 2021 there was a security assessment and fuzzer development of the FluxCD repositories made by Ada Logics and funded by the OSTIF.
-- For a summary, please see [this blog post](https://fluxcd.io/blog/2021-11-10-flux-security-audit/)
-- For all details, please read the [audit full technical report](https://fluxcd.io/FluxFinalReport-v1.1.pdf)
