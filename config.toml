@@ -209,7 +209,7 @@ weight = 50
 [[menus.main]]
 name = "Security"
 parent = "Project"
-url = "/docs/security"
+url = "/security"
 weight = 60
 
 [[menus.main]]
