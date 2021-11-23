@@ -30,7 +30,7 @@ We are adding basic Front-Matter here.
 
 `docs` files can't have front-matter and # (h1)
 '''
-def rewrite_header(out_file, title=None, docs=False, weight=None):
+def rewrite_header(out_file, title=None, docs=False, weight=None, link_title=None):
     lines = open(out_file, 'r').readlines()
 
     if not title or title == '-':
@@ -44,6 +44,8 @@ def rewrite_header(out_file, title=None, docs=False, weight=None):
         header_lines += ['type: docs\n']
     if weight:
         header_lines += ['weight: {}\n'.format(weight)]
+    if link_title:
+        header_lines += ['linkTitle: {}\n'.format(link_title)]
     header_lines += [
         '---\n',
         '\n'
@@ -113,11 +115,15 @@ class Repo():
             docs = entry[1].startswith('docs/') or entry[1].startswith('legacy/')
             title = None
             weight = None
-            if len(entry) == 4:
+            link_title = None
+            print(entry)
+            if len(entry) == 5:
+                link_title = entry[4]
+            if len(entry) >= 4:
                 weight = entry[3]
             if len(entry) >= 3:
                 title = entry[2]
-            rewrite_header(out_file, title=title, docs=docs, weight=weight)
+            rewrite_header(out_file, title=title, docs=docs, weight=weight, link_title=link_title)
             self.rewrite_links(out_file)
 
 
