@@ -16,7 +16,7 @@ Please follow [this GitHub issue](https://github.com/fluxcd/website/issues/598) 
 
 Flux has a multi-component design, and integrates with many other systems. This document outlines an overview of security considerations for Flux components, project processes, artifacts, as well as Flux configurable options and what they enable for both Kubernetes cluster and external system security.
 
-See our [security processes document](/security) for vulnerability reporting, handling, and disclosure of information for the Flux project and community.
+See our [security processes document](/security-processes) for vulnerability reporting, handling, and disclosure of information for the Flux project and community.
 
 Note that while Flux is very active it is a vendor-neutral CNCF project maintained by volunteers, not by a single company. As such,  security issue handling is done on a best-effort basis.
 
