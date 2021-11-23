@@ -207,6 +207,12 @@ url = "/roadmap"
 weight = 50
 
 [[menus.main]]
+name = "Security"
+parent = "Project"
+url = "/docs/security"
+weight = 60
+
+[[menus.main]]
 name = "Branding"
 parent = "Project"
 url = "https://github.com/cncf/artwork/blob/master/examples/incubating.md#flux-logos"
