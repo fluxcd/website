@@ -4,7 +4,7 @@ linkTitle: "Security"
 description: "Flux Security documentation."
 ---
 
-<!-- For doc writers: Step-by-step security instructions should live on the appropriate documentation pages. To fulfil our primise to end users, we should briefly outline the context here, and link to the more detailed instruction pages from each relevant part of this outline. -->
+<!-- For doc writers: Step-by-step security instructions should live on the appropriate documentation pages. To fulfil our promise to end users, we should briefly outline the context here, and link to the more detailed instruction pages from each relevant part of this outline. -->
 
 {{% alert color="info" title="✍️⏳ Work in progress" %}}
 This document is a work in progress.
