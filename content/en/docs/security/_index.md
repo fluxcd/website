@@ -7,14 +7,15 @@ description: "Flux Security documentation."
 <!-- For doc writers: Step-by-step security instructions should live on the appropriate documentation pages. To fulfil our primise to end users, we should briefly outline the context here, and link to the more detailed instruction pages from each relevant part of this outline. -->
 
 {{% alert color="info" title="✍️⏳ Work in progress" %}}
-This security document is a work in progress.
-Its purpose is to provide an overview of security considerations for existing and potential Flux users.
+This document is a work in progress.
 Please follow [this GitHub issue](https://github.com/fluxcd/website/issues/598) to stay updated on goals and progress as we complete this page.
 {{% /alert %}}
 
 ## Introduction
 
-Flux has a multi-component design, and integrates with many other systems. This document outlines an overview of security considerations for Flux components, project processes, artifacts, as well as Flux configurable options and what they enable for both Kubernetes cluster and external system security.
+Flux has a multi-component design, and integrates with many other systems.
+
+This document outlines an overview of security considerations for Flux components, project processes, artifacts, as well as Flux configurable options and what they enable for both Kubernetes cluster and external system security.
 
 See our [security processes document](/security-processes) for vulnerability reporting, handling, and disclosure of information for the Flux project and community.
 
