@@ -19,8 +19,6 @@ This document outlines an overview of security considerations for Flux component
 
 See our [security processes document](/security) for vulnerability reporting, handling, and disclosure of information for the Flux project and community.
 
-Note that while Flux is very active it is a vendor-neutral CNCF project maintained by volunteers, not by a single company. As such,  security issue handling is done on a best-effort basis.
-
 ## Controller permissions
 
 While Flux integrates with other systems it is built on Kubernetes core controller-runtime and properly adheres to Kubernetes security model including RBAC.
