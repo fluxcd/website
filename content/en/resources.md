@@ -14,6 +14,41 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+youtube="qm1ZKsTcxa4"
+title="GitOps with VMware Tanzu Application Platform VMware - Ben Hale & Leigh Capili" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="8ybCtNVP5To"
+title="GitOps with Flux + OpenShift - Andrew Block (Red Hat)" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="ShRjg9uWSaw"
+title="How D2iQ leverages Flux for a Declarative Approach to Cluster and Application Lifecycle Management" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="FCtImtLNnjk"
+title="GitOps with Amazon EKS Anywhere - Chandler Hoisington & Joey Wang" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="GJ-Tq5w5sgE"
+title="GitOps with Azure Arc Kubernetes - Jason Hansen & Jonathan Innis (Microsoft)" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="nke29laH8Xk"
+title="GitOps with Weave GitOps - Liz Warner & Mark Ramm (Weaveworks)" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="UZO051oMdN4"
+title="A Major Milestone for a CNCF Project Flux - Ihor Dvoretsky" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 url="https://youtu.be/gXUXdaVT__U?t=199"
 thumbnail="gXUXdaVT__U"
 title="The Power of Three: Flux, Flagger, & Linkerd with Kingdon Barrett & Jason Morgan" %}}
