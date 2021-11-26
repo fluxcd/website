@@ -25,7 +25,7 @@ mkdir helm-operator
 ```
 
 Create a `kustomization.yaml` file and use the [Helm Operator
-deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/1.4.0/deploy)
+deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/1.4.1/deploy)
 as a base:
 
 ```sh
@@ -57,7 +57,7 @@ version number to the base URL:
 
 ```yaml
 bases:
-  - github.com/fluxcd/helm-operator//deploy?ref=1.4.0
+  - github.com/fluxcd/helm-operator//deploy?ref=1.4.1
 ```
 {{% /alert %}}
 
