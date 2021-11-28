@@ -9,6 +9,7 @@ nav.navbar {
 
   .navbar-brand {
     flex-grow: 1;
+    padding-bottom: 2px;
 
     svg {
       display: inline-block;
@@ -34,13 +35,13 @@ nav.navbar {
 
   .nav-search-item {
     height: 40px;
-    margin-bottom: 8px;
 
     .td-search-input {
+      height: 28px;
       border: none;
       max-width: 11rem;
       padding-left: 9px;
-      padding-top: 12px;
+      margin-top: 8px;
       @include media-breakpoint-down(md) {
         padding-top: 10px;
       }
