@@ -158,7 +158,7 @@ Note that you should encrypt only the `data` or `stringData` section. Encrypting
 secret metadata, kind or apiVersion is not supported by kustomize-controller.
 {{% /alert %}}
 
-## Encrypt secrets
+## Encrypting secrets using OpenPGP
 
 Generate a Kubernetes secret manifest with kubectl:
 
@@ -182,7 +182,13 @@ You can now commit the encrypted secret to your Git repository.
 Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
 {{% /alert %}}
 
-### Using various cloud providers
+## Encrypting secrets using age
+
+[age](https://github.com/FiloSottile/age) is a simple, modern alternative to OpenPGP. It's recommended to use age over OpenPGP, if possible.
+
+Encrypting with age follows the same workflow than PGP. See the [Kustomization-controller API doc](/docs/components/kustomize/kustomization/#age) for more details.
+
+## Encrypting secrets using various cloud providers
 
 When using AWS/GCP KMS, you don't have to include the gpg `secretRef` under
 `spec.provider` (you can skip the `--decryption-secret` flag when running `flux create kustomization`),
