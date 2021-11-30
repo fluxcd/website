@@ -139,7 +139,9 @@ everything you do! 💖
 > "I\'m very happy to be joining a lively community and an extremely
 > exciting project as a maintainer. Thank you for the warm welcome."
 
-![Max Jonas Werner](max-jonas-werner.jpg)
+{{< imgproc max-jonas-werner Resize 500x >}}
+Max Jonas Werner
+{{< /imgproc >}}
 
 #### Sunny and Soulé Ba from Weaveworks
 
