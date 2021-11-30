@@ -127,7 +127,8 @@ If your Git provider is **GitHub**, **GitLab**, **Azure DevOps** or **Bitbucket 
 
 * [GitHub.com and GitHub Enterprise](#github-and-github-enterprise)
 * [GitLab.com and GitLab Enterprise](#gitlab-and-gitlab-enterprise)
-* [Azure DevOps](../use-cases/azure#flux-installation-for-azure-devops)
+* [Azure DevOps](./use-cases/azure.md#flux-installation-for-azure-devops)
+* [AWS CodeCommit](./use-cases/aws-codecommit.md#flux-installation-for-aws-codecommit)
 * [Bitbucket Server and Data Center](#bitbucket-server-and-data-center)
 ### Generic Git Server
 
