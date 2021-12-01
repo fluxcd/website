@@ -14,6 +14,12 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+youtube="1X3JgCnRNsw"
+title="Flux CD v2 - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 1-Dec-2021)
+
+{{% blocks/resource
 youtube="jD0fi5vKCV0"
 title="Technically Speaking (S1E09): Get into GitOps with Stefan Prodan and Chris Wright" %}}
 {{% /blocks/resource %}}
@@ -236,6 +242,7 @@ title="Keynote: CNCF Project Update: Flux - Stefan Prodan" %}}
 youtube="hCTgCRlU-M0"
 title="Helm Users! What Flux Can Do For You - Scott Rigby & Kingdon Barrett" %}}
 {{% /blocks/resource %}}
+[//]: # (Date of video: 14-May-2021)
 
 {{% blocks/resource
 thumbnail="KbFLAl7zZKo"
