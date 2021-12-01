@@ -14,6 +14,13 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+youtube="jD0fi5vKCV0"
+title="Technically Speaking (S1E09): Get into GitOps with Stefan Prodan and Chris Wright" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 27-Oct-2021)
+
+[//]: # (End GitOps-One-Stop Shop Videos - 20-Oct-2021)
+{{% blocks/resource
 youtube="qm1ZKsTcxa4"
 title="GitOps with VMware Tanzu Application Platform VMware - Ben Hale & Leigh Capili" %}}
 {{% /blocks/resource %}}
@@ -44,26 +51,116 @@ title="GitOps with Weave GitOps - Liz Warner & Mark Ramm (Weaveworks)" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
+youtube="yg2EglZwUXE"
+title="Fireside Chat with Flux creator Michael Bridgen" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
 youtube="UZO051oMdN4"
 title="A Major Milestone for a CNCF Project Flux - Ihor Dvoretsky" %}}
 {{% /blocks/resource %}}
+[//]: # (Begin GitOps-One-Stop Shop Videos - 20-Oct-2021)
+
+[//]: # (End KubeCon NA 2021 Videos - 12-Oct-2021 thru 15-Oct-2021)
+{{% blocks/resource
+youtube="MpGFC7xO6P0"
+title="Orchestrating Software Factories for the Department of Defense by Tom Runyon" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="yzE-9qgyJGg"
+title="GitOps and Cloud Native API Gateways by Dan Wessels" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="IiFj6DVKRoc"
+title="Architecting a Multi tenant Application Platform using Flux and Friends by Michael Irwin" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="8RFxYooMc5A"
+title="Flux's Roadmap to General Availability - Hidde Beydals & Michael Bridgen" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="nItIDpKsing"
+title="Authentication Challenges in multi tenant Flux by Philip Laine" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="rtkBnADRpNE"
+title="GitOps+Jenkins-CI With Declarative Everything - Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="8lodCio_EnU"
+title="TheCube KubeCon NA 2021 Coverage: Flux Interview with Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 14-Oct-2021)
+
+{{% blocks/resource
+youtube="PTsDNC33SFo"
+title="Flexing the Flux - Multi-Cluster, Multi-Cloud - somewhat opinionated take by Mohsin Shafique" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="bzuvsrmzh6o"
+title="Flux as a Community and Project by Daniel Holbach" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="MwUEpGuP7FU"
+title="Best Practices for securing the GitOps pipeline by Stefan Prodan" %}}
+{{% /blocks/resource %}}
+[//]: # (Begin KubeCon NA 2021 Videos - 12-Oct-2021 thru 15-Oct-2021)
+
+[//]: # (END GitOps Con Videos - 12-Oct-2021)
+{{% blocks/resource
+youtube="9_hoXNZKfOk"
+title="Building Flux's Multi-Tenant API with K8s User Impersonation - Leigh Capili, VMware" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="MiDKZ56aTsY"
+title="A Day in the Life of the GitOps Platform Team - Mae Large & Priyanka Ravi, State Farm" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="rT9VM_JSf5A"
+title="Managing Apps Dependencies and Kubernetes Versions with Kraan and Flux - Adrian Vacaru, Fidelity" %}}
+{{% /blocks/resource %}}
+
+{{% blocks/resource
+youtube="nJ1PCIsIoK0"
+title="Gitopsify Cellular Architecture - Ayush Ghosh & Sergey Sergeev, Cisco Systems, Inc." %}}
+{{% /blocks/resource %}}
+[//]: # (Begin GitOps Con Videos - 12-Oct-2021)
 
 {{% blocks/resource
 url="https://youtu.be/gXUXdaVT__U?t=199"
 thumbnail="gXUXdaVT__U"
 title="The Power of Three: Flux, Flagger, & Linkerd with Kingdon Barrett & Jason Morgan" %}}
 {{% /blocks/resource %}}
+[//]: # (Date of video: 29-Sep-2021)
 
 {{% blocks/resource
 url="https://youtu.be/R0BA2QMPWTE?t=720"
 thumbnail="R0BA2QMPWTE"
 title="Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch & Matheiu Gillot (at DevSecOps Road Trip: France)" %}}
 {{% /blocks/resource %}}
+[//]: # (Date of video: 15-Sep-2021)
 
 {{% blocks/resource
 youtube="JR8rev98SH0"
 title="FluxCD Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal" %}}
 {{% /blocks/resource %}}
+[//]: # (Date of video: 09-Sep-2021)
+
+{{% blocks/resource
+youtube="p5TOfD_MsWw"
+title="FluxCD Controllers in Kubernetes with Terraform by Philip Laine" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 27-Aug-2021)
 
 {{% blocks/resource
 youtube="Gidqz3D9yes"
