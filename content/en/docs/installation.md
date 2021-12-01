@@ -123,13 +123,15 @@ as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-ar
 with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
 architectures.
 
-If your Git provider is **GitHub**, **GitLab**, **Azure DevOps** or **Bitbucket Server** please follow the specific bootstrap procedure:
+If your Git provider is **AWS CodeCommit**, **Azure DevOps**, **Bitbucket Server**, **GitHub** or **GitLab** please
+follow the specific bootstrap procedure:
 
+* [AWS CodeCommit](./use-cases/aws-codecommit.md#flux-installation-for-aws-codecommit)
+* [Azure DevOps](./use-cases/azure.md#flux-installation-for-azure-devops)
+* [Bitbucket Server and Data Center](#bitbucket-server-and-data-center)
 * [GitHub.com and GitHub Enterprise](#github-and-github-enterprise)
 * [GitLab.com and GitLab Enterprise](#gitlab-and-gitlab-enterprise)
-* [Azure DevOps](./use-cases/azure.md#flux-installation-for-azure-devops)
-* [AWS CodeCommit](./use-cases/aws-codecommit.md#flux-installation-for-aws-codecommit)
-* [Bitbucket Server and Data Center](#bitbucket-server-and-data-center)
+
 ### Generic Git Server
 
 The `bootstrap git` command takes an existing Git repository, clones it and
