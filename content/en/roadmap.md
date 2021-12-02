@@ -53,9 +53,10 @@ this list is subject to change while we gather feedback:
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
     - [ ] Standardize events and status conditions metadata
 
-- Multi-tenancy improvements (proposal [fluxcd/flux2#582](https://github.com/fluxcd/flux2/pull/582))
-    - [ ] Extend impersonation to Kubernetes users and groups
-    - [ ] Implement ACL for granting cross-namespace access to Flux sources ([fluxcd/flux2#1704](https://github.com/fluxcd/flux2/issues/1704))
+- Reach consensus on multi-tenancy
+    - [ ] [RFC-0001](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
+    - [ ] [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) Access control for cross-namespace source references
+    - [ ] [RFC-0003](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
 
 - Documentation improvements
     - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
