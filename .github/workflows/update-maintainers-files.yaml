@@ -25,6 +25,7 @@ jobs:
           requirements: temp/project/requirements.txt
       - run: |
           ./temp/project/generate-maintainers-file.py website -o MAINTAINERS
+          rm -rf ./temp
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Create Pull Request
