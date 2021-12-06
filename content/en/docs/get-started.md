@@ -258,7 +258,7 @@ To resume updates run the command `flux resume kustomization <name>`.
 To customize a deployment from a repository you don't control, you can use Flux
 [in-line patches](../components/kustomize/kustomization/#override-kustomize-config). The following example shows how to use in-line patches to change the podinfo deployment.
 
-1. Add the following to the end of your `podinfo-kustomization.yaml` file:
+1. Add the following to the field `spec` of your `podinfo-kustomization.yaml` file:
 
     ```yaml clusters/my-cluster/podinfo-kustomization.yaml
       patches:
