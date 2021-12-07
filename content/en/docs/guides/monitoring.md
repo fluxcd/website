@@ -124,13 +124,13 @@ Alert manager example:
 
 ```yaml
 groups:
-- name: GitOpsToolkit
-  rules:
-  - alert: ReconciliationFailure
-    expr: max(gotk_reconcile_condition{status="False",type="Ready"}) by (namespace, name, kind) + on(namespace, name, kind) (max(gotk_reconcile_condition{status="Deleted"}) by (namespace, name, kind)) * 2 == 1
-    for: 10m
-    labels:
-      severity: page
-    annotations:
-      summary: '{{ $labels.kind }} {{ $labels.namespace }}/{{ $labels.name }} reconciliation has been failing for more than ten minutes.'
+  - name: GitOpsToolkit
+    rules:
+      - alert: ReconciliationFailure
+        expr: max(gotk_reconcile_condition{status="False",type="Ready"}) by (exported_namespace, name, kind) + on(exported_namespace, name, kind) (max(gotk_reconcile_condition{status="Deleted"}) by (exported_namespace, name, kind)) * 2 == 1
+        for: 10m
+        labels:
+          severity: page
+        annotations:
+          summary: '{{ $labels.kind }} {{ $labels.exported_namespace }}/{{ $labels.name }} reconciliation has been failing for more than ten minutes.'
 ```
