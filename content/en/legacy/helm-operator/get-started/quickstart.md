@@ -29,7 +29,7 @@ Create a new namespace:
 kubectl create ns flux
 ```
 
-Using `helm`, first add the Flux CD Helm repository:
+Using `helm`, first add the Flux Helm repository:
 
 ```sh
 helm repo add fluxcd https://charts.fluxcd.io
