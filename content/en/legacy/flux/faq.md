@@ -10,7 +10,7 @@ weight: 80
 
 ### Why should I upgrade
 
-Flux v2 includes some breaking changes, which means there is some work required to migrate. We hope that Flux users can all be persuaded to upgrade. There are some great reasons to follow the FluxCD organization's latest hard work and consider upgrading to Flux v2:
+Flux v2 includes some breaking changes, which means there is some work required to migrate. We hope that Flux users can all be persuaded to upgrade. There are some great reasons to follow the Flux organization's latest hard work and consider upgrading to Flux v2:
 
 #### Flux v1 runtime behavior doesn't scale well
 
