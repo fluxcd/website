@@ -5,7 +5,7 @@ title: Upgrade from beta (>=0.5.0) to stable (>=1.0.0)
 linkTitle: Upgrade to GA
 ---
 
-Due to the Flux CD project joining the CNCF Sandbox and the API
+Due to the Flux project joining the CNCF Sandbox and the API
 becoming stable, the Helm Operator has undergone changes that
 necessitate some changes to your `HelmRelease` resources.
 
