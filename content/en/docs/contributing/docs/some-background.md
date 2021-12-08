@@ -22,7 +22,7 @@ Almost all of the content lives in the `content/en/docs` directory. Here are som
 In order to run the Flux site locally, you need to install:
 
 - [Node.js](https://www.npmjs.com/get-npm)
-- The [Hugo](https://gohugo.io) static site generator. Make sure to [install](https://gohugo.io/getting-started/installing/) the "extended" variant of Hugo with support for the [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) feature and to check the [`netlify.toml`](./netlify.toml) configuration file for which version of Hugo you should install.
+- The [Hugo](https://gohugo.io) static site generator. Make sure to [install](https://gohugo.io/getting-started/installing/) the "extended" variant of Hugo with support for the [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) feature and to check the [`netlify.toml`](https://github.com/fluxcd/website/blob/main/netlify.toml) configuration file for which version of Hugo you should install.
 
 Once those tools are installed, fetch the assets necessary to run the site:
 
@@ -95,13 +95,13 @@ These targets as explained below are run in the appropriate order as dependencie
 
 ##### Flux-specific Dependencies
 
-The FluxCD.io website has some build-time dependencies including Python3, PyYAML, `rsync`, `grep`, `nodejs`, `npm`, `curl`, `jq`, (and potentially others that may be added in the future.) Flux-specific dependencies are prepared in an image that gets tagged as `docker.io/fluxcd/website:hugo-support`.
+The Flux website has some build-time dependencies including Python3, PyYAML, `rsync`, `grep`, `nodejs`, `npm`, `curl`, `jq`, (and potentially others that may be added in the future.) Flux-specific dependencies are prepared in an image that gets tagged as `docker.io/fluxcd/website:hugo-support`.
 
 This image is built from the `Dockerfile` in `./`; run `make docker-build-support` to rebuild it locally, (or run as `make docker-push-support` to build and also push.)
 
 ##### `gohugoio/hugo`
 
-FluxCD also depends on a specific version of Hugo, which unfortunately does not provide docker images for each version. So we build it from source, with the `HUGO_BUILD_TAGS=extended` build arg enabled.
+The Flux website also depends on a specific version of Hugo, which unfortunately does not provide docker images for each version. So we build it from source, with the `HUGO_BUILD_TAGS=extended` build arg enabled.
 
 Run `make docker-push-hugo` to build and also push this image target.
 
