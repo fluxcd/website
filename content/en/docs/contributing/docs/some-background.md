@@ -22,7 +22,7 @@ Almost all of the content lives in the `content/en/docs` directory. Here are som
 In order to run the Flux site locally, you need to install:
 
 - [Node.js](https://www.npmjs.com/get-npm)
-- The [Hugo](https://gohugo.io) static site generator. Make sure to [install](https://gohugo.io/getting-started/installing/) the "extended" variant of Hugo with support for the [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) feature and to check the [`netlify.toml`](../../../../../netlify.toml) configuration file for which version of Hugo you should install.
+- The [Hugo](https://gohugo.io) static site generator. Make sure to [install](https://gohugo.io/getting-started/installing/) the "extended" variant of Hugo with support for the [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) feature and to check the [`netlify.toml`](https://github.com/fluxcd/website/blob/main/netlify.toml) configuration file for which version of Hugo you should install.
 
 Once those tools are installed, fetch the assets necessary to run the site:
 
