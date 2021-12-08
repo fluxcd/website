@@ -25,7 +25,7 @@ cluster:
 kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.1/deploy/crds.yaml
 ```
 
-Using `helm`, add the Flux CD Helm repository:
+Using `helm`, add the Flux Helm repository:
 
 ```sh
 helm repo add fluxcd https://charts.fluxcd.io
