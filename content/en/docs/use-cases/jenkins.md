@@ -1,7 +1,7 @@
 ---
 title: Jenkins + Flux
 linkTitle: Jenkins + Flux
-description: "How to use Jenkins CI for building images together with Flux CD's image update automation."
+description: "How to use Jenkins CI for building images together with Flux's image update automation."
 weight: 50
 ---
 
