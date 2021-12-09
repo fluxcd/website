@@ -205,7 +205,10 @@ configures the target cluster to synchronize with that repository by
 setting up an SSH deploy key or by using token-based authentication.
 
 Generate a [personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
-that can create repositories by checking all permissions under `repo`.
+(PAT) that can create repositories by checking all permissions under `repo`. If
+a pre-existing repository is to be used the PAT's user will require `admin`
+[permissions](https://docs.github.com/en/organizations/managing-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role)
+on the repository in order to create a deploy key.
 
 Export your GitHub personal access token as an environment variable:
 
