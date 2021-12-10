@@ -188,6 +188,62 @@ Note that you shouldn't apply the encrypted secrets onto the cluster with kubect
 
 Encrypting with age follows the same workflow than PGP. See the [Kustomization-controller API doc](/docs/components/kustomize/kustomization/#age) for more details.
 
+
+## Encrypting secrets using HashiCorp Vault
+
+Sops needs a valid Vault token in an environment variable named `VAULT_TOKEN` to decrypt the secrets.
+
+Create a Kubernetes secret named `sops-vault-token` in the `flux-system` namespace:
+
+```sh
+kubectl create secret generic sops-vault-token \
+--namespace=flux-system \
+--from-literal=token=$VAULT_TOKEN
+```
+
+[Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
+Patch the kustomize-controller Pod template so that the `VAULT_TOKEN` environment variable is set:
+
+`clusters/cluster0/flux-system/kustomization.yaml`
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - gotk-components.yaml
+ - gotk-sync.yaml
+ patches:
+   - path: sops-kustomize-patch.yaml
+     target:
+       kind: Deployment
+```
+
+`clusters/cluster0/flux-system/sops-kustomize-patch.yaml`
+```yaml
+apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: kustomize-controller
+   namespace: flux-system
+ spec:
+   template:
+     spec:
+       containers:
+       - name: manager
+         env:
+           - name: VAULT_TOKEN
+             valueFrom:
+               secretKeyRef:
+                 name: sops-vault-token
+                 key: token
+```
+
+At this point, kustomize-controller is now authorized to decrypt values in
+SOPS encrypted files from your Sources via the related Vault instance.
+
+See Mozilla's guide to
+[Encrypting using Hashicorp Vault](https://github.com/mozilla/sops#encrypting-using-hashicorp-vault)
+to get started committing encrypted files to your Git Repository or other Sources.
+
 ## Encrypting secrets using various cloud providers
 
 When using AWS/GCP KMS, you don't have to include the gpg `secretRef` under
