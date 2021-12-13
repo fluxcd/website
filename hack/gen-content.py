@@ -72,7 +72,7 @@ class Repo():
             csv_reader = csv.reader(file_desc)
             for line in csv_reader:
                 self.file_list += [[entry.strip('/') for entry in line]]
-                link_mapping += [[entry.strip('/') for entry in line]]
+                link_mapping += [[self.gh_source]+[entry.strip('/') for entry in line]]
 
     def __del__(self):
         shutil.rmtree(self.temp_dir)
@@ -83,26 +83,49 @@ class Repo():
             self.gh_source, self.dest])
 
     def rewrite_links(self, out_file):
-        content = open(out_file, 'r').read()
-        for link in re.findall(r'\[.+?\]\((.+?)\)', content, re.MULTILINE):
-            link = link.split('#')[0]
+        '''
+        Types of links in Markdown
+
+        1: <url>                # hard to find - we have markdown that's mixed with html
+        2: [label](url)
+        3: [url]
+        4: [label]: url     together with   [label]
+        '''
+        with open(out_file, 'r') as file_desc:
+            content = file_desc.read()
+
+        # links_1 = re.findall(r'\<.+?\>', content, re.MULTILINE)
+        links_2 = re.findall(r'\[.+?\]\((.+?)\)', content, re.MULTILINE)
+        links_3 = re.findall(r'\[(.+?)]\s+', content, re.MULTILINE)
+        links_4 = re.findall(r'\[(.+?)\]\:\s+.+?', content, re.MULTILINE)
+
+        # set()                 because we only want to review every link just once
+        # str.split('#')[0]     because we ignore anchors
+        links = set([a.split('#')[0]
+                     for a in links_2+links_3+links_4
+                     if not a.startswith('#')])
+
+        link_rewrites = {}
+        for link in links:
             if not link:
                 continue
             global link_mapping
+
             for entry in link_mapping:
-                if link == entry[0]:
-                    content = content.replace(
-                        link, '/{}'.format(entry[1].lower().split('.md')[0]))
-                elif link.startswith(self.gh_source) and link.endswith(entry[0]):
-                    content = content.replace(
-                        link, '/{}'.format(entry[1].lower().split('.md')[0]))
-            if not link.startswith('https://'):
-                content = content.replace(
-                    '({})'.format(link),
-                    '({}/blob/main/{})'.format(self.gh_source, link))
-        file_desc = open(out_file, 'w')
-        file_desc.write(content)
-        file_desc.close()
+                if link == entry[1]:
+                    link_rewrites[link] = '/{}'.format(entry[2].lower().split('.md')[0])
+                elif link.startswith(self.gh_source) and link.endswith(entry[1]) and \
+                     self.gh_source == entry[0]:
+                    link_rewrites[link] = '/{}'.format(entry[2].lower().split('.md')[0])
+            if link not in link_rewrites and os.path.exists(os.path.join(self.dest, link)) and \
+               not link.startswith('https://') and not link.startswith('http://'):
+                link_rewrites[link] = os.path.join(self.gh_source, 'blob/main', link)
+
+        for key in link_rewrites:
+            content = content.replace(key, link_rewrites[key])
+
+        with open(out_file, 'w') as file_desc:
+            file_desc.write(content)
 
     def copy_files(self, content_dir):
         for entry in self.file_list:
