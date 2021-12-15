@@ -52,7 +52,8 @@ spec:
     name: slack-url
 ```
 
-The provider type can be `slack`, `msteams`, `discord`, `rocket`, `googlechat`, `webex`, `sentry` or `generic`.
+The provider type can be: `slack`, `msteams`, `rocket`, `discord`, `googlechat`, `webex`,
+`sentry`, `telegram`, `lark`, `matrix`, `azureeventhub`, `opsgenie`, `alertmanager` or `generic`.
 
 When type `generic` is specified, the notification controller will post the incoming
 [event](../components/notification/event.md) in JSON format to the webhook address.
