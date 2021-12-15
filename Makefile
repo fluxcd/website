@@ -3,13 +3,13 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT 			   ?= 2f4b0cf6f3fcb51b145999ed3d766431f6066b46
+DOCSY_COMMIT 			   ?= 3e2cfeba3ad12f23a150934a2620cd8f98d64252
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
-BOOTSTRAP_SEMVER           ?= 4.6.0
+BOOTSTRAP_SEMVER           ?= 4.6.1
 BOOTSTRAP_SEMVER_FOLDER    := bootstrap-$(BOOTSTRAP_SEMVER)
 BOOTSTRAP_TARGET           := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(BOOTSTRAP_SEMVER_FOLDER)
-FONT_AWESOME_SEMVER        ?= 5.15.3
+FONT_AWESOME_SEMVER        ?= 5.15.4
 FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
 FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
 
