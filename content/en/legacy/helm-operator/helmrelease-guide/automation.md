@@ -43,6 +43,6 @@ for `foo-chart`, you would define the following in the `dependencies` of your
 ```yaml
 dependencies:
 - name: 
-  version: ~1.4.1
+  version: ~1.4.2
   repository: https://charts.example.com
 ```
