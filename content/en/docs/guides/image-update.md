@@ -652,7 +652,7 @@ Two methods are available for authenticating AWS Elastic Container Registries as
 There is [native support for the AWS Elastic Container Registry](https://fluxcd.io/docs/components/image/imagerepositories/#ecr-and-eks),
 available since `image-reflector-controller` [v0.13.0](https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0130)
 which was released with Flux release v0.19. This depends on setting the `--aws-autologin-for-ecr`
-flag, which assumes any ECR repositories with IAM roles assigned to the cluster can
+flag, which can be set in controller deployment defined in `flux-system/gotk-components.yaml`. When set, it assumes any ECR repositories with IAM roles assigned to the cluster can
 be freely shared across any cluster tenants.
 
 Put another way, the autologin strategy assumes that there are no important security
