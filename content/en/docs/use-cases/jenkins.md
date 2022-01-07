@@ -136,7 +136,7 @@ pipeline {
             developmentTag = "${branchName}-${gitCommit}-${unixTime}"
             developmentImage = "${dockerRepoUser}/${dockerRepoProj}:${developmentTag}"
           }
-          sh "docker build -t ${developmentImage} ./"
+          sh "docker build -t ${developmentImage} ./ "
         }
       }
     }
