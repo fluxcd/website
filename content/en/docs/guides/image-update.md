@@ -87,7 +87,7 @@ synchronize with the specified path inside the repository.
 You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
 any other Git provider that support SSH or token-based authentication.
 When using SSH, make sure the deploy key is configured with write access `--read-write-key`.
-Please see the [installation guide](../installation/) for more details.
+Please see the [installation guide](../installation.md) for more details.
 {{% /alert %}}
 
 ## Deploy a demo app
@@ -631,7 +631,7 @@ Two methods are available for authenticating container registers as
 `ImageRepository` resources in Flux:
 
 * Experimental authentication mechanisms (where the controller retrieves the credentials itself 
-and is only for the three major cloud providers), or
+and is only available for the three major cloud providers), or
 * a [`CronJob`](cron-job-image-auth.md) which does not rely on native platform support in Flux,
   (instead storing credentials as Kubernetes secrets which are periodically refreshed.)
 
@@ -705,7 +705,7 @@ patches:
 #### Using Native Azure ACR Auto-Login
 
 There is native support for the Azure Container Registry] available since 
-`image-reflector-controller` [v<add-image-version>](<link-chnagelog-here>)
+`image-reflector-controller` [v<add-image-version>][<link-chnagelog-here>]
 which was released with Flux release v<add-image-version>. This feature is enabled by setting the `--azure-autologin-for-acr`
 flag, This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
 similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
