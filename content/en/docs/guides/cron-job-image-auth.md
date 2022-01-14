@@ -103,7 +103,7 @@ spec:
             - -ce
             - aws ecr get-login-password --region ${REGION} > /token/ecr-token
           containers:
-          - image: bitnami/kubectl
+          - image: ghcr.io/fluxcd/flux-cli:v0.25.2
             name: create-secret
             imagePullPolicy: IfNotPresent
             env:
