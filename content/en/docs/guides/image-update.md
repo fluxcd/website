@@ -690,17 +690,19 @@ patches:
       path: /spec/template/spec/containers/0/args/-
       value: --gcp-autologin-for-gcr
  ### add this patch to annotate service account if you are using Workload identity
-- target:
-    version: v1
-    group: ""
-    kind: ServiceAccount
+patchesStrategicMerge:
+- |-
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
     name: image-reflector-controller
     namespace: flux-system
-  patch: |-
-    - op: add
-      path: /metadata/annotations/spec/
-      value: <gcp-service-account-name>.<PROJECT_ID>.iam.gserviceaccount.com
+    annotations:
+      iam.gke.io/gcp-service-account: <gcp-service-account-name>@<PROJECT_ID>.iam.gserviceaccount.com
 ```
+
+Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) for more
+information about setting up GKE Workload Identity.
 
 #### Using Native Azure ACR Auto-Login
 
