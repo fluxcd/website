@@ -21,7 +21,7 @@ See our [security processes document](/security) for vulnerability reporting, ha
 
 ## Controller permissions
 
-While Flux integrates with other systems it is built on Kubernetes core controller-runtime and properly adheres to Kubernetes security model including RBAC.
+While Flux integrates with other systems it is built on Kubernetes core controller-runtime and properly adheres to Kubernetes security model including RBAC [^1].
 
 <!-- See [Flux RBAC manifests](https://github.com/fluxcd/flux2/tree/main/manifests/rbac)
 - Scott: spell out here in high-level human-readable terms -->
@@ -49,4 +49,8 @@ However in a soft multi-tenancy setup, Flux does not reconcile a tenant's repo u
 Instead you specify a different service account in your manifest, and the Flux controllers will use the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account.
 In this way, policy restrictions for this service account are applied to the manifests being reconciled.
 If the binding is not defined for the correct service account and namespace, it will fail.
-The roles and permissions for this multi-tenancy approach are described in detail here: https://github.com/fluxcd/flux2-multi-tenancy
+The roles and permissions for this multi-tenancy approach are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
+
+[^1]: However, by design cross-namespace references are an exception to RBAC.
+See how these are handled in [ImagePolicy](https://fluxcd.io/docs/components/image/imagepolicies/#specification) and [ImageRepository](https://fluxcd.io/docs/components/image/imagerepositories/#allow-cross-namespace-references).
+Also see [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) about making all Flux APIs handle cross-namespace references to sources consistent with this approach.

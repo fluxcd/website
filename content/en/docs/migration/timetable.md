@@ -20,7 +20,6 @@ Feb 18, 2021 | Partial Migration Mode<br><ul><li>Existing projects encouraged to
 | TBD | Migration and security support only<br><ul><li>Flux 1 releases only include security patches (no bug fixes)</li><li>Maintainers support users with migration to Flux 2 only, no longer with Flux 1 issues</li><li>Flux 1 archive date announced</li></ul> | Public release (GA), Production Ready<br><ul><li>CLI commits to backwards compatibility moving forward</li><li>CLI follows kubectl style backwards compatibility support: +1 -1 MINOR version for server components (e.g., APIs, Controllers, validation webhooks)</li></ul> | All Beta, Production Ready |
 | TBD | Archived<br><ul><li>Flux 1 obsolete, no further releases or maintainer support</li><li>Flux 1 repo archived</li></ul> | Continued active development | Continued active development |
 
-
 [^1]: GOTK is shorthand for the [GitOps Toolkit](/docs/components/) APIs and Controllers
 
 [^2]: Versioning: Flux 2 is a multi-service architecture, so requires a more complex explanation than Flux 1:
