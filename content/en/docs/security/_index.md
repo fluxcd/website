@@ -41,7 +41,7 @@ These include:
     - References `cluster-admin` `ClusterRole`
     - Bound to service accounts for only `kustomize-controller` and `helm-controller`
 
-Flux uses these two `ClusterRoleBinding` strategies in order to follow the principle of least privilege, and to allow for clear access separation using tools purpose built for policy enforcement (OPA, Kyverno, admission controllers).
+Flux uses these two `ClusterRoleBinding` strategies in order to allow for clear access separation using tools purpose built for policy enforcement (OPA, Kyverno, admission controllers).
 
 For example, the design allows all controllers to access Flux CRDs (binds to `crd-controller` `ClusterRole`), but only binds the Flux reconciler controllers for Kustomize and Helm to `cluster-admin` `ClusterRole`, as these are the only two controllers that manage resources in the cluster.
 
