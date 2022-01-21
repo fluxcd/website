@@ -45,8 +45,8 @@ Flux uses these two `ClusterRoleBinding` strategies in order to allow for clear 
 
 For example, the design allows all controllers to access Flux CRDs (binds to `crd-controller` `ClusterRole`), but only binds the Flux reconciler controllers for Kustomize and Helm to `cluster-admin` `ClusterRole`, as these are the only two controllers that manage resources in the cluster.
 
-However in a soft multi-tenancy setup, Flux does not reconcile a tenant's repo under the `cluster-admin` role.
-Instead you specify a different service account in your manifest, and the Flux controllers will use the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account.
+However in a [soft multi-tenancy setup]({{< relref "../get-started#multi-cluster-setup" >}}), Flux does not reconcile a tenant's repo under the `cluster-admin` role.
+Instead you specify a different service account in your manifest, and the Flux controllers will use the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account for most operations [^2].
 In this way, policy restrictions for this service account are applied to the manifests being reconciled.
 If the binding is not defined for the correct service account and namespace, it will fail.
 The roles and permissions for this multi-tenancy approach are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
@@ -54,3 +54,5 @@ The roles and permissions for this multi-tenancy approach are described in detai
 [^1]: However, by design cross-namespace references are an exception to RBAC.
 See how these are handled in [ImagePolicy](https://fluxcd.io/docs/components/image/imagepolicies/#specification) and [ImageRepository](https://fluxcd.io/docs/components/image/imagerepositories/#allow-cross-namespace-references).
 Also see [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) about making all Flux APIs handle cross-namespace references to sources consistent with this approach.
+[^2]: Impersonation is used for most operations except accessing sources.
+For additional details on the impersonation mechanism, see [RFC-0001 Memorandum on Flux Authorization](https://github.com/fluxcd/flux2/tree/main/rfcs/0001-authorization#impersonation).
