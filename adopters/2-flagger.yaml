@@ -21,6 +21,7 @@ adopters:
       url: https://www.sinch.com
     - name: Trendhim
       url: https://www.trendhim.com
+      logo: logos/trendhim.svg
     - name: Weaveworks
       url: https://weave.works
       logo: logos/weaveworks.png
