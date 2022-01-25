@@ -132,7 +132,7 @@ pipeline {
           script {
             gitCommit = env.GIT_COMMIT.substring(0,8)
             branchName = env.BRANCH_NAME
-            unixTime = (new Date().time / 1000) as Integer
+            unixTime = (new Date().time.intdiv(1000))
             developmentTag = "${branchName}-${gitCommit}-${unixTime}"
             developmentImage = "${dockerRepoUser}/${dockerRepoProj}:${developmentTag}"
           }
