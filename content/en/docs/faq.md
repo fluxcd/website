@@ -212,7 +212,8 @@ metadata:
 spec:
   field1: null
   field2: {}
-  field3:
+  field3: []
+  field4:
 ```
 
 The kustomize-controller detects drift between the manifests and the in-cluster resources
