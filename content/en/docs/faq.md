@@ -390,4 +390,4 @@ to help you migrate to Flux v2:
 
 ### Where can I find information on how long versions are supported and how often to expect releases?
 
-Releases are as needed for now and a release page with the schedule will be created when Flux reaches general availability status ([Flux roadmap can be found here](https://fluxcd.io/roadmap/)). We understand the importance of having a release schedule and are aware that such a schedule will support the users' ability to plan for an upgrade in advance.
+Releases are as needed for now and a release page with the schedule will be created when Flux reaches general availability status ([Flux roadmap can be found here](https://fluxcd.io/roadmap/)). We understand the importance of having a release schedule and are aware that such a schedule will support the users' ability to plan for an upgrade in advance. For now you can expect the current release cadence of at least once per month to continue.
