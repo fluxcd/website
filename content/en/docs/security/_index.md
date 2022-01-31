@@ -26,7 +26,7 @@ and disclosure of information for the Flux project and community.
 
 ## Signed container images
 
-The Flux CLI and the controllers' images are signed using [Sigstore](https://www.sigstore.dev/) Consign and GitHub OIDC.
+The Flux CLI and the controllers' images are signed using [Sigstore](https://www.sigstore.dev/) Cosign and GitHub OIDC.
 The container images along with their signatures are published on GitHub Container Registry and Docker Hub.
 
 To verify the authenticity of Flux's container images,
@@ -94,17 +94,14 @@ as these are the only two controllers that manage resources in the cluster.
 However in a [soft multi-tenancy setup]({{< relref "../get-started#multi-cluster-setup" >}}),
 Flux does not reconcile a tenant's repo under the `cluster-admin` role.
 Instead, you specify a different service account in your manifest, and the Flux controllers will use
-the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account for most operations [^2].
+the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account [^2].
 In this way, policy restrictions for this service account are applied to the manifests being reconciled.
 If the binding is not defined for the correct service account and namespace, it will fail.
 The roles and permissions for this multi-tenancy approach
 are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
 
 [^1]: However, by design cross-namespace references are an exception to RBAC.
-See how these are handled in [ImagePolicy](https://fluxcd.io/docs/components/image/imagepolicies/#specification)
-and [ImageRepository](https://fluxcd.io/docs/components/image/imagerepositories/#allow-cross-namespace-references).
-Also see [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) about making all Flux APIs handle cross-namespace
-references to sources consistent with this approach.
-[^2]: Impersonation is used for most operations except accessing sources.
-For additional details on the impersonation mechanism,
-see [RFC-0001 Memorandum on Flux Authorization](https://github.com/fluxcd/flux2/tree/main/rfcs/0001-authorization#impersonation).
+Platform admins have to option to turnoff cross-namespace references as described in the
+[installation documentation](../installation/_index.md#multi-tenancy-lockdown).
+[^2]: Platform admins have to option to enforce impersonation as described in the
+[installation documentation](../installation/_index.md#multi-tenancy-lockdown).
