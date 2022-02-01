@@ -1,12 +1,21 @@
 ---
 title: "GitOps Toolkit components"
 linkTitle: "Toolkit Components"
-description: "The GitOps Toolkit documentation."
+description: "Documentation of the individual GitOps Toolkit components and their APIs."
 weight: 60
 ---
 
-The GitOps Toolkit is the set of APIs and controllers that make up the
-runtime for Flux. The APIs comprise Kubernetes custom resources,
+Flux is constructed with the [GitOps Toolkit components](components/), which is a set of
+
+- specialized tools and Flux Controllers
+- composable APIs
+- reusable Go packages for GitOps under the [fluxcd GitHub organisation](https://github.com/fluxcd)
+
+for building Continuous Delivery on top of Kubernetes.
+
+![GitOps Toolkit overview](/img/diagrams/gitops-toolkit.png)
+
+The APIs comprise Kubernetes custom resources,
 which can be created and updated by a cluster user, or by other
 automation tooling.
 

@@ -1,6 +1,6 @@
 ---
 title: Core Concepts
-description: Core Concepts of Flux and the GitOps Toolkit.
+description: Core Concepts of Flux.
 weight: 10
 ---
 

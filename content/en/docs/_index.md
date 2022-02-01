@@ -1,7 +1,7 @@
 ---
 title: "Flux Documentation"
 linkTitle: "Docs"
-description: "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
+description: "Open and extensible continuous delivery solution for Kubernetes."
 ---
 
 Flux is a tool for keeping Kubernetes clusters in sync with sources of
@@ -14,10 +14,6 @@ components of the Kubernetes ecosystem. In version 2, Flux supports
 multi-tenancy and support for syncing an arbitrary number of Git
 repositories, among other long-requested features.
 
-Flux is constructed with the [GitOps Toolkit](components/),
-a set of composable APIs and specialized tools for building Continuous
-Delivery on top of Kubernetes.
-
 ## Who is Flux for?
 
 Flux helps
@@ -25,10 +21,6 @@ Flux helps
 - **cluster operators** who automate provision and configuration of clusters;
 - **platform engineers** who build continuous delivery for developer teams;
 - **app developers** who rely on continuous delivery to get their code live.
-
-The [GitOps Toolkit](components/) is for **platform
-engineers** who want to make their own continuous delivery system, and
-have requirements not covered by Flux.
 
 ## What can I do with Flux?
 
@@ -47,8 +39,6 @@ synced and ready, and receive webhooks to tell it when to sync.
 The `flux` command-line tool is a convenient way to bootstrap the
 system in a cluster, and to access the custom resources that make up
 the API.
-
-![overview](/img/diagrams/gitops-toolkit.png)
 
 ## Where do I start?
 
@@ -78,6 +68,22 @@ Features:
 - Seamless integration with Git providers (GitHub, GitLab, Bitbucket)
 - Interoperability with workflow providers (GitHub Actions, Tekton, Argo)
 - Interoperability with Cluster API (CAPI) providers
+
+## What is the GitOps Toolkit?
+
+Flux is constructed with the [GitOps Toolkit components](components/), which is a set of
+
+- specialized tools and Flux Controllers
+- composable APIs
+- reusable Go packages for GitOps under the [fluxcd GitHub organisation](https://github.com/fluxcd)
+
+for building Continuous Delivery on top of Kubernetes.
+
+The [GitOps Toolkit](components/) can be used individually by **platform
+engineers** who want to make their own continuous delivery system, and
+have requirements not covered by Flux.
+
+![GitOps Toolkit overview](/img/diagrams/gitops-toolkit.png)
 
 ## Community
 
