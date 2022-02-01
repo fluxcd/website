@@ -53,7 +53,7 @@ The output is similar to:
 
 ```
 ► checking prerequisites
-✔ kubernetes 1.22.2 >=1.19.0
+✔ kubernetes 1.22.2 >=1.20.6
 ✔ prerequisites checks passed
 ```
 

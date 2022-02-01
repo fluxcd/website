@@ -10,25 +10,17 @@ manage one or more Kubernetes clusters.
 
 ## Prerequisites
 
-You will need a Kubernetes cluster version **1.19** or newer.
+You will need a Kubernetes cluster that matches one of the following versions:
 
-Older versions are also supported, but we don't recommend running EOL Kubernetes versions in production:
+| Kubernetes version | Minimum required |
+|--------------------|------------------|
+| `v1.20`            | `>= 1.20.6`      |
+| `v1.21`            | `>= 1.21.0`      |
+| `v1.22`            | `>= 1.22.0`      |
+| `v1.23` and later  | `>= 1.23.0`      |
 
-| Kubernetes version | Minimum required\* |
-| --- | --- |
-| `v1.16` | `>= 1.16.11` |
-| `v1.17` | `>= 1.17.7` |
-| `v1.18` | `>= 1.18.4` |
-| `v1.19` and later | `>= 1.19.0` |
-
-*\* Update 2021-10-11:*
-
-If you are using `APIService` objects (for example
-[metrics-server](https://github.com/kubernetes-sigs/metrics-server)),
-you will need to update to `1.18.18`, `1.19.10`, `1.20.6` or `1.21.0`
-at least. See [this
-post](https://github.com/fluxcd/flux2/discussions/1916#discussioncomment-1458041)
-for more information.
+Note that Flux may work on Kubernetes 1.19,
+but we don't recommend running EOL versions in production.
 
 ## Install the Flux CLI
 
@@ -564,52 +556,50 @@ the customisations from `gotk-patches.yaml`.
 
 You can make changes to the patches after bootstrap and Flux will apply them in-cluster on its own.
 
-### Pod Security Policy
+### Multi-tenancy lockdown
 
-Assuming you want to make the Flux controllers conform to Pod Security Policy or equivalent webhooks,
-create a file at `clusters/my-cluster/flux-system/psp-patch.yaml` with the following content:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: all-flux-components
-spec:
-  template:
-    metadata:
-      annotations:
-        # Required by Kubernetes node autoscaler
-        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-    spec:
-      securityContext:
-        runAsUser: 10000
-        fsGroup: 1337
-      containers:
-        - name: manager
-          securityContext:
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            capabilities:
-              drop:
-                - ALL
-```
-
-Edit `clusters/my-cluster/flux-system/kustomization.yaml` and enable the patch:
+Assuming you want to lock down Flux on multi-tenant clusters,
+add the following patches to `clusters/my-cluster/flux-system/kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gotk-components.yaml
-- gotk-sync.yaml
+  - gotk-components.yaml
+  - gotk-sync.yaml
 patches:
-  - path: psp-patch.yaml
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/0
+        value: --no-cross-namespace-refs=true
     target:
       kind: Deployment
+      name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/0
+        value: --default-service-account=default
+    target:
+      kind: Deployment
+      name: "(kustomize-controller|helm-controller)"
+  - patch: |
+      - op: add
+        path: /spec/serviceAccountName
+        value: kustomize-controller
+    target:
+      kind: Kustomization
+      name: "flux-system"
 ```
 
-Push the changes to the main branch and run `flux bootstrap`.
+With the above configuration, Flux will:
+
+- Deny cross-namespace access to Flux custom resources, thus ensuring that a tenant can't use another tenant's sources or subscribe to their events.
+- All `Kustomizations` and `HelmReleases` which don't have `spec.serviceAccountName` specified, will use the `default` account from the tenant's namespace.
+  Tenants have to specify a service account in their Flux resources to be able to deploy workloads in their namespaces as the `default` account has no permissions.
+- The flux-system `Kustomization` is set to reconcile under a service account with cluster-admin role,
+  allowing platform admins to configure cluster-wide resources and provision the tenant's namespaces, service accounts and RBAC.
+
+To apply these patches, push the changes to the main branch and run `flux bootstrap`.
 
 ## Dev install
 

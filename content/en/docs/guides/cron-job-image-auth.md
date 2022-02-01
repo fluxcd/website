@@ -1,6 +1,6 @@
 ---
-title: "How to use cron jobs to sync image repository credentials"
-linkTitle: "cron jobs for image repository cretentions"
+title: "Configure image automation authentication"
+linkTitle: "Configure image automation authentication"
 description: "How to use cron jobs to sync image repository credentials."
 weight: 90
 ---
