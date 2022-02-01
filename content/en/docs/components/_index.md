@@ -5,7 +5,7 @@ description: "Documentation of the individual GitOps Toolkit components and thei
 weight: 60
 ---
 
-Flux is constructed with the [GitOps Toolkit components](components/), which is a set of
+Flux is constructed with the GitOps Toolkit components, which is a set of
 
 - specialized tools and Flux Controllers
 - composable APIs
@@ -20,7 +20,7 @@ which can be created and updated by a cluster user, or by other
 automation tooling.
 
 You can use the toolkit to extend Flux, and to build your own systems
-for continuous delivery. The [the source-watcher
+for continuous delivery. The [source-watcher
 guide](../gitops-toolkit/source-watcher/) is a good place to start.
 
 A reference for each component and API type is linked below.
