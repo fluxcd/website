@@ -53,6 +53,10 @@ previously the controllers ignored the service account.
 
 #### :rocket: New features and improvements
 
+{{< imgproc featured-image Resize 800x >}}
+New feature in action: flux diff kustomization
+{{< /imgproc >}}
+
 - Preview local changes against live clusters with the `flux diff
   kustomization` command.
 - Undo changes made directly on clusters (with `kubectl` server-side
@@ -93,7 +97,7 @@ Mesh](https://kuma.io/). For more details see the [Kuma
 Progressive Delivery
 tutorial](https://docs.flagger.app/tutorials/kuma-progressive-delivery).
 
-{{< imgproc featured-image Resize 600x >}}
+{{< imgproc flagger-kuma-canary Resize 600x >}}
 Kuma Progressive Delivery with Flagger
 {{< /imgproc >}}
 
