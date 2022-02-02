@@ -7,33 +7,55 @@ weight: 75
 
 Below we describe the life of a commit as it is seen from all angles by a Flux user.
 
-Assuming a standard Flux installation, with all optional features enabled, we then explain how Flux users can expect their changes to flow through the system as a commit, and interfaces as they pass through the system and the cluster, chronologically, at every step. We cover every supported opportunity that users have to inspect and interact with their changes through Flux, with a focus on the commit, and special attention to show the role of each component of the GitOps Toolkit.
+Assuming a standard Flux installation, with all optional features enabled, we then explain how Flux users can expect their changes to flow through the system as a commit, and interfaces as they pass through the system and the cluster, chronologically, at every step. We cover every supported opportunity that users have to inspect and interact with their changes through Flux, with a focus on the commit, and special attention to show the role of each component of the GitOps toolkit.
 
 It should be clear from reading this document when any Flux component interacts with the cluster resources or APIs, or any commit or registry data. This document narrates through those interactions so that there can be an end-to-end analysis of how Flux works that includes mention of any authentication or security hardening procedures that are in play for Flux at runtime.
 
-Security and hardening procedures that the Flux development team may be taking to guarantee Flux release-engineering standards for testing, runtime safety, and release quality are outside of the scope of this document. (See [Editor: Do we have such a document or PR with this focus?](https://no-link-ready) for more information.)
+Security and hardening procedures that the Flux development team may be taking to guarantee Flux release-engineering standards for testing, runtime safety, and release quality are considered outside of the scope of this document.
 
-While this document will also mention interfaces with sensitive data from time to time, an exhaustive description of the specific precautions and flow of information related to sensitive data is outside of the scope. (See [Documenting the use of sensitive data by Flux in the cluster](https://github.com/fluxcd/website/issues/595) for more on that.) (Editor: When this document has landed, replace this link with a reference to the permanent home.)
+See one of: [Security](https://fluxcd.io/docs/security/), [Contributing: Acceptance Policy](https://fluxcd.io/docs/contributing/flux/#acceptance-policy) for more information about those standards and practices. An exhaustive description of the precautions with regard to sensitive and/or secret data and flow of information related to sensitive access, is out of the scope of this document.
 
 ## Terminology
 
 Flux uses the following terms throughout the codebase and documentation:
 
-* **Cluster** - 
-* **Commit** - 
-* **Client** - 
-* **Resource** - 
-* **Field** - 
-* **Event** - 
-* **API** - 
-* **Custom Resource** - 
-* **Agent** - 
-* **Service** - 
+* **Cluster** - Any number of Kubernetes nodes, joined into a group to run containerized applications.
+* **Commit** - A snapshot of a Git repository's state (or any Version Control System) at any given time.
+* **Client** - Any application or resource manager which implements the "customer" side of any API or Service.
+* **Resource** - In Kubernetes, a YAML data structure represents cluster objects that drive workloads like: `Deployment`, `Pod`, `Service`, `Ingress`, `StatefulSet`, `Job`, and many others.
+* **Custom Resource** - Kubernetes provides a Custom Resource Definition (CRD) type for defining Custom Resources to be implemented by a controller. In Flux, examples include: `GitRepository`, `Bucket`, `HelmRepository`, `Kustomization`, `HelmRelease`, `Alert`, and others.
+* **Field** - YAML resources are collections of data fields, which can be nested to create complex structures like with Array and Map.
+* **Event** - A YAML resource emits events while undergoing state transitions, which themselves (`Event`) are also resources.
+* **API** - In Kubernetes, an API consists of (usually) a CRD, a control loop, and optionally one or more admission or mutation hooks. Flux's APIs are also known, collectively, as the GitOps Toolkit.
+* **Agent** - A process which runs in the cluster and does some work on behalf of users. Flux's controllers are "software agents" that implement a control loop.
+* **Service** - When Kubernetes `Deployments` spawn workloads, they are placed in ephemeral `Pods` which usually are not directly addressible. `Services` are used to connect these `Endpoints` to a stable address that can usually be discovered through a DNS lookup in the cluster.
 
 
 ## Microservice architecture
 
-Describe the architecture of Flux using terms above
+Flux is composed of four separable core components or controllers: [Source Controller][], [Kustomize Controller][], [Helm Controller][], and [Notification Controller][], with two extra components: [Image Automation Controller][Image reflector and automation controllers] and [Image Reflector Controller][Image reflector and automation controllers]. These controllers or Agents run on the Cluster, and they define APIs which are based on Custom Resources that altogether implement the GitOps Toolkit.
+
+**Source Controller** is the Agent responsible for pulling Commit data into the Cluster. Commits are made available as a read-only Service to Clients, which can connect with the Source Controller and fetch Artifacts, `.tar.gz` files containing Kubernetes Resource manifest data.
+
+Besides artifact acquisition from external sources, the responsibilities of the Source Controller also include: verification of source authenticity through cryptographic signatures, detection of source changes based on semantic version policies, outbound notification of Cluster subscribers when updates are available, and also reacting to inbound notifications that represent Git push and Helm chart upload events.
+
+**Kustomize Controller** is the Agent responsible for reconciling the cluster state with the desired state as defined by Commit manifests retrieved through Source controller. Kustomize controller delivers, or applies, resources into a cluster. The `Kustomization` is the Custom Resource or API through which a Flux user defines how Kustomize controller delivers workloads from sources.
+
+The Kustomize controller is responsible for validating manifests against the Kubernetes API, and managing access to permissions in a way that is safe for multi-tenant clusters through Kubernetes Service Account impersonation. The controller supports health assessment of deployed resources and dependency ordering, optionally enabled garbage collection or "pruning" of deleted resources from the cluster when they are removed from the source, and also notification of when cluster state changes – Kustomizations can also target and deliver resources onto a remote cluster, (which can, but does not necessarily also run its own local independent set of Flux controllers.)
+
+The Kustomization API is designed from the beginning with support for multi-tenancy as a primary concern.
+
+**Helm Controller** is the Agent responsible for managing Helm artifacts (with some parts of the work shared in the Source Controller). The Source Controller acquires Helm charts from Helm repositories or other sources. The desired state of a Helm release is described through a Custom Resource named `HelmRelease`. Based on the creation, mutation or removal of a `HelmRelease` resource in the cluster, Helm actions are performed by the controller.
+
+Helm Controller (and its predecessor, Helm Operator) stand alone in the GitOps world as Go client implementations of the Helm package library. While there are many projects in the GitOps space that can perform "Helm Chart Inflation" which can also be explained through the activities of merging `values` from different sources, rendering templates, applying the changes to the cluster, and then waiting to become healthy, other projects usually cannot claim strict compatibility with all Helm features. Helm Controller boasts full compatibility and reliably identical behavior in Flux with all released Helm features.
+
+Examples of some Helm Controller features that directly leverage upstream features of Helm today include [Helm Chart Hooks][], Helm Release Lifecycle events and the optional health checking that's performed by `helm --wait` to determine if a release is successful, Helm tests, rollbacks and uninstalls, and an implementation of Helm's [Post Rendering][] feature that allows safety and security while using the Kustomize post-renderer in Flux Continuous Delivery pipelines (that is, without requiring untrusted execution of any external scripts or binaries.)
+
+**Notification Controller**
+
+**Image Automation Controller**
+
+**Image Reflector Controller**
 
 ## Config repo and the Flux CLI
 
@@ -57,7 +79,7 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 
 ### 1. `flux create ...`
 
-Before the commit, Flux provides `create` generators with an `--export` option so that users have some guide for how to create valid Flux resources.
+Before the commit, the Flux CLI provides `create` generators with an `--export` option so that users have some guide for how to create valid Flux resources.
 
 `flux create source git --help`
 
@@ -123,3 +145,10 @@ When activated by an event from a `Receiver`, Flux's Notification controller act
 
 ### 15. ...
 
+[Source controller]: https://fluxcd.io/docs/components/source/
+[Kustomize controller]: https://fluxcd.io/docs/components/kustomize/
+[Helm controller]: https://fluxcd.io/docs/components/helm/
+[Notification controller]: https://fluxcd.io/docs/components/notification/
+[Image reflector and automation controllers]: https://fluxcd.io/docs/components/image/
+[Helm Chart Hooks]: https://helm.sh/docs/topics/charts_hooks/
+[Post Rendering]: https://helm.sh/docs/topics/advanced/#post-rendering
