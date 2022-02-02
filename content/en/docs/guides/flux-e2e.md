@@ -7,7 +7,7 @@ weight: 75
 
 Below we describe the life of a commit as it is seen from all angles by a Flux user.
 
-Assuming a standard Flux installation, with all optional features enabled, we then explain how Flux users can expect their changes to flow through the system as a commit, and interfaces as they pass through the system and the cluster, chronologically, at every step. We cover every supported opportunity that users have to inspect and interact with their changes through Flux, with a focus on the commit, and special attention to show the role of each component of the GitOps Toolkit.
+Assuming a standard Flux installation, with all optional features enabled, we then explain how Flux users can expect their changes to flow through the system as a commit, and interfaces as they pass through the system and the cluster, chronologically, at every step. We cover every supported opportunity that users have to inspect and interact with their changes through Flux, with a focus on the commit, and special attention to show the role of each component of the GitOps toolkit.
 
 It should be clear from reading this document when any Flux component interacts with the cluster resources or APIs, or any commit or registry data. This document narrates through those interactions so that there can be an end-to-end analysis of how Flux works that includes mention of any authentication or security hardening procedures that are in play for Flux at runtime.
 
@@ -27,13 +27,27 @@ Flux uses the following terms throughout the codebase and documentation:
 * **Field** - YAML resources are collections of data fields, which can be nested to create complex structures like with Array and Map.
 * **Event** - A YAML resource emits events while undergoing state transitions, which themselves (`Event`) are also resources.
 * **API** - In Kubernetes, an API consists of (usually) a CRD, a control loop, and optionally one or more admission or mutation hooks. Flux's APIs are also known, collectively, as the GitOps Toolkit.
-* **Agent** - A process which runs in the cluster and does some work on behalf of the users. Flux's controllers are "software agents."
+* **Agent** - A process which runs in the cluster and does some work on behalf of users. Flux's controllers are "software agents" that implement a control loop.
 * **Service** - When Kubernetes `Deployments` spawn workloads, they are placed in ephemeral `Pods` which usually are not directly addressible. `Services` are used to connect these `Endpoints` to a stable address that can usually be discovered through a DNS lookup in the cluster.
 
 
 ## Microservice architecture
 
-Describe the architecture of Flux using terms above
+Flux is composed of four separable core components or controllers: [Source Controller][], [Kustomize Controller][], [Helm Controller][], and [Notification Controller][], with two extra components: [Image Automation Controller][] and [Image Reflector Controller][]. These controllers or Agents run on the Cluster, and they define APIs which are based on Custom Resources that altogether implement the GitOps Toolkit.
+
+**Source Controller** is the Agent responsible for pulling Commit data into the Cluster. Commits are made available as a read-only Service to Clients, which can connect with the Source Controller and fetch Artifacts, `.tar.gz` files containing Kubernetes Resource manifest data.
+
+Besides artifact acquisition from external sources, the responsibilities of the Source Controller also include: verification of source authenticity through cryptographic signatures, detection of source changes based on semantic version policies, outbound notification of Cluster subscribers when updates are available, and also reacting to inbound notifications that represent Git push and Helm chart upload events.
+
+**Kustomize Controller**
+
+**Helm Controller**
+
+**Notification Controller**
+
+**Image Automation Controller**
+
+**Image Reflector Controller**
 
 ## Config repo and the Flux CLI
 
