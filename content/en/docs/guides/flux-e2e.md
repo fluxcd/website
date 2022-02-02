@@ -33,7 +33,7 @@ Flux uses the following terms throughout the codebase and documentation:
 
 ## Microservice architecture
 
-Flux is composed of four separable core components or controllers: [Source Controller][], [Kustomize Controller][], [Helm Controller][], and [Notification Controller][], with two extra components: [Image Automation Controller][] and [Image Reflector Controller][]. These controllers or Agents run on the Cluster, and they define APIs which are based on Custom Resources that altogether implement the GitOps Toolkit.
+Flux is composed of four separable core components or controllers: [Source Controller][], [Kustomize Controller][], [Helm Controller][], and [Notification Controller][], with two extra components: [Image Automation Controller][Image reflector and automation controllers] and [Image Reflector Controller][Image reflector and automation controllers]. These controllers or Agents run on the Cluster, and they define APIs which are based on Custom Resources that altogether implement the GitOps Toolkit.
 
 **Source Controller** is the Agent responsible for pulling Commit data into the Cluster. Commits are made available as a read-only Service to Clients, which can connect with the Source Controller and fetch Artifacts, `.tar.gz` files containing Kubernetes Resource manifest data.
 
@@ -137,9 +137,8 @@ When activated by an event from a `Receiver`, Flux's Notification controller act
 
 ### 15. ...
 
-[Source Controller]: https://github.com/fluxcd/source-controller
-[Kustomize Controller]: https://github.com/fluxcd/kustomize-controller
-[Helm Controller]: https://github.com/fluxcd/helm-controller
-[Notification Controller]: https://github.com/fluxcd/notification-controller
-[Image Automation Controller]: https://github.com/fluxcd/image-automation-controller
-[Image Reflector Controller]: https://github.com/fluxcd/image-reflector-controller
+[Source controller]: https://fluxcd.io/docs/components/source/
+[Kustomize controller]: https://fluxcd.io/docs/components/kustomize/
+[Helm controller]: https://fluxcd.io/docs/components/helm/
+[Notification controller]: https://fluxcd.io/docs/components/notification/
+[Image reflector and automation controllers]: https://fluxcd.io/docs/components/image/
