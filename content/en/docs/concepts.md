@@ -1,6 +1,6 @@
 ---
 title: Core Concepts
-description: Core Concepts of Flux and the GitOps Toolkit.
+description: Core Concepts of Flux.
 weight: 10
 ---
 
@@ -58,7 +58,7 @@ The reconciliation runs every one minute by default, but this can be changed wit
 If you make any changes to the cluster using `kubectl edit/patch/delete`,
 they will be promptly reverted. You either suspend the reconciliation or push your changes to a Git repository.
 
-For more information, take a look at the [Kustomize FAQ](faq/_index.md#kustomize-questions)
+For more information, take a look at the [Kustomize FAQ](faq.md#kustomize-questions)
 and the [Kustomization CRD](components/kustomize/kustomization.md).
 
 ## Bootstrap
@@ -70,4 +70,4 @@ are created for the Flux components, then the manifests are pushed to an existin
 The bootstrap is done using the `flux` CLI or
 using our [Terraform Provider](https://github.com/fluxcd/terraform-provider-flux).
 
-For more information, take a look at [the bootstrap documentation](installation/_index.md#bootstrap).
+For more information, take a look at [the bootstrap documentation](installation.md#bootstrap).

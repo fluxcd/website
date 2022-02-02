@@ -1,6 +1,6 @@
 ---
 title: "User Guides"
 linkTitle: "Guides"
-description: "Flux and the GitOps Toolkit user guides."
+description: "Flux user guides."
 weight: 40
 ---
