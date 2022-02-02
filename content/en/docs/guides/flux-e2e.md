@@ -11,24 +11,24 @@ Assuming a standard Flux installation, with all optional features enabled, we th
 
 It should be clear from reading this document when any Flux component interacts with the cluster resources or APIs, or any commit or registry data. This document narrates through those interactions so that there can be an end-to-end analysis of how Flux works that includes mention of any authentication or security hardening procedures that are in play for Flux at runtime.
 
-Security and hardening procedures that the Flux development team may be taking to guarantee Flux release-engineering standards for testing, runtime safety, and release quality are outside of the scope of this document. (See [Editor: Do we have such a document or PR with this focus?](https://no-link-ready) for more information.)
+Security and hardening procedures that the Flux development team may be taking to guarantee Flux release-engineering standards for testing, runtime safety, and release quality are considered outside of the scope of this document.
 
-While this document will also mention interfaces with sensitive data from time to time, an exhaustive description of the specific precautions and flow of information related to sensitive data is outside of the scope. (See [Documenting the use of sensitive data by Flux in the cluster](https://github.com/fluxcd/website/issues/595) for more on that.) (Editor: When this document has landed, replace this link with a reference to the permanent home.)
+See one of: [Security](https://fluxcd.io/docs/security/), [Contributing: Acceptance Policy](https://fluxcd.io/docs/contributing/flux/#acceptance-policy) for more information about those standards and practices. An exhaustive description of the precautions with regard to sensitive and/or secret data and flow of information related to sensitive access, is out of the scope of this document.
 
 ## Terminology
 
 Flux uses the following terms throughout the codebase and documentation:
 
-* **Cluster** - 
-* **Commit** - 
-* **Client** - 
-* **Resource** - 
-* **Field** - 
-* **Event** - 
-* **API** - 
-* **Custom Resource** - 
-* **Agent** - 
-* **Service** - 
+* **Cluster** - Any number of Kubernetes nodes, joined into a group to run containerized applications.
+* **Commit** - A snapshot of a Git repository's state (or any Version Control System) at any given time.
+* **Client** - Any application or resource manager which implements the "customer" side of any API or Service.
+* **Resource** - In Kubernetes, a YAML data structure represents cluster objects that drive workloads like: `Deployment`, `Pod`, `Service`, `Ingress`, `StatefulSet`, `Job`, and many others.
+* **Custom Resource** - Kubernetes provides a Custom Resource Definition (CRD) type for defining Custom Resources to be implemented by a controller. In Flux, examples include: `GitRepository`, `Bucket`, `HelmRepository`, `Kustomization`, `HelmRelease`, `Alert`, and others.
+* **Field** - YAML resources are collections of data fields, which can be nested to create complex structures like with Array and Map.
+* **Event** - A YAML resource emits events while undergoing state transitions, which themselves (`Event`) are also resources.
+* **API** - In Kubernetes, an API consists of (usually) a CRD, a control loop, and optionally one or more admission or mutation hooks. Flux's APIs are also known, collectively, as the GitOps Toolkit.
+* **Agent** - A process which runs in the cluster and does some work on behalf of the users. Flux's controllers are "software agents."
+* **Service** - When Kubernetes `Deployments` spawn workloads, they are placed in ephemeral `Pods` which usually are not directly addressible. `Services` are used to connect these `Endpoints` to a stable address that can usually be discovered through a DNS lookup in the cluster.
 
 
 ## Microservice architecture
@@ -57,7 +57,7 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 
 ### 1. `flux create ...`
 
-Before the commit, Flux provides `create` generators with an `--export` option so that users have some guide for how to create valid Flux resources.
+Before the commit, the Flux CLI provides `create` generators with an `--export` option so that users have some guide for how to create valid Flux resources.
 
 `flux create source git --help`
 
