@@ -26,13 +26,13 @@ jobs:
           done
       - run: |
           make gen-content
-      - name: lychee Link Checker
-        if: ${{ steps.getfile.outputs.ts != '' }}
-        id: lychee
-        uses: lycheeverse/lychee-action@v1.2.0
+      - name: "Build Site with Hugo and Audit"
+        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.1.0
         with:
-          args: --verbose --no-progress --exclude-all-private ${{ steps.getfile.outputs.ts }}
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Fail if there were link errors
-        run: exit ${{ steps.lychee.outputs.exit_code }}
+          source-directory: src
+          upload-site-as: unminified-site
+          use-lfs: false
+      - name: Run DFD Hugo Check Links
+        uses: danielfdickinson/link-check-action-hugo-dfd@v0.1.0
+        with:
+          canonical-root: https://www.fluxcd.io/
