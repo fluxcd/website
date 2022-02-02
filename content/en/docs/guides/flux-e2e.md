@@ -137,3 +137,9 @@ When activated by an event from a `Receiver`, Flux's Notification controller act
 
 ### 15. ...
 
+[Source Controller]: https://github.com/fluxcd/source-controller
+[Kustomize Controller]: https://github.com/fluxcd/kustomize-controller
+[Helm Controller]: https://github.com/fluxcd/helm-controller
+[Notification Controller]: https://github.com/fluxcd/notification-controller
+[Image Automation Controller]: https://github.com/fluxcd/image-automation-controller
+[Image Reflector Controller]: https://github.com/fluxcd/image-reflector-controller
