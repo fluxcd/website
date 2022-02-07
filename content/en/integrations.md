@@ -18,7 +18,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 
 ## Flux Extensions
 
-These projects extend Flux with new capabilities. 
+These projects extend Flux with new capabilities.
 
 | Source                                                                        | Description |
 | ----------------------------------------------------------------------------- | ----------- |
@@ -38,5 +38,13 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 | [telekom/das-schiff](https://github.com/telekom/das-schiff)                 | This is home of Das Schiff - Deutsche Telekom Technik's engine for Kubernetes Cluster as a Service (CaaS) in on-premise environment on top of bare-metal servers and VMs. |
 | [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                   | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
 | [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)       | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
-| [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook)       | A [pre-commit](http://pre-commit.com) that validates values of HelmRelease using helm lint |
 
+## Ancillary Tools
+
+The functionality of Flux can be easily extended with ancillary utility tools. Here is a list of tools we like. If yours is missing, feel free to send a PR to add it.
+
+| Source                                                                | Description |
+| --------------------------------------------------------------------- | ----------- |
+| [jgz/s3-auth-proxy](https://github.com/jgz/s3-auth-proxy)             | Creates a simple basic-auth proxy for an s3 bucket. |
+| [renovatebot/renovate](renovatebot/renovate)                          | Universal dependency update tool that fits into your workflows. |
+| [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook) | A [pre-commit](http://pre-commit.com) that validates values of HelmRelease using helm lint |
