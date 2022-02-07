@@ -24,6 +24,8 @@ what they enable for both Kubernetes cluster and external system security.
 See our [security processes document](/security) for vulnerability reporting, handling,
 and disclosure of information for the Flux project and community.
 
+Please also have a look at [our security-related blog posts](/tags/security/). We are writing there to inform you what we are doing to keep Flux and you safe!
+
 ## Signed container images
 
 The Flux CLI and the controllers' images are signed using [Sigstore](https://www.sigstore.dev/) Cosign and GitHub OIDC.
@@ -52,6 +54,8 @@ The `spdx.json` file is available for download on the GitHub release page e.g.:
 ```shell
 curl -sL https://github.com/fluxcd/flux2/releases/download/v0.25.3/flux_0.25.3_sbom.spdx.json | jq
 ```
+
+Please also refer to [the blog post](/blog/2022/02/security-the-value-of-sboms/) which discusses the idea and value of SBOMs.
 
 ## Pod security standard
 

@@ -2,6 +2,7 @@
 title: "Flux Documentation"
 linkTitle: "Docs"
 description: "Open and extensible continuous delivery solution for Kubernetes."
+taxonomyCloud: []
 ---
 
 Flux is a tool for keeping Kubernetes clusters in sync with sources of
