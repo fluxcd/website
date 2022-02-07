@@ -44,13 +44,16 @@ oc login -u kubeadmin -p <your password> https://api.crc.testing:6443
 
 ### Security Context Constraints
 
-Before installing Flux, you need to set the **privileged** security context constraint
-for the following controller in the `flux-system` namespace.
+Before installing Flux, you need to set the **anyuid** SCC for Kustomization and Helm controllers,
+and the **privileged** SCC for the other 4 controllers in the `flux-system` namespace, like this:
 
 ```sh
 NS="flux-system"
+oc adm policy add-scc-to-user anyuid system:serviceaccount:$NS:kustomize-controller
+oc adm policy add-scc-to-user anyuid system:serviceaccount:$NS:helm-controller
+
 oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:source-controller
-oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:kustomize-controller
+oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:notification-controller
 oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:image-automation-controller
 oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:image-reflector-controller
 ```
