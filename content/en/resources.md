@@ -15,7 +15,7 @@ These resources are sorted by date - new entries are added to the top.
 
 {{% blocks/resource
 youtube="1X3JgCnRNsw"
-title="Flux CD v2 - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak" %}}
+title="Flux - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 1-Dec-2021)
 
@@ -158,13 +158,13 @@ title="Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch
 
 {{% blocks/resource
 youtube="JR8rev98SH0"
-title="FluxCD Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal" %}}
+title="Flux Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 09-Sep-2021)
 
 {{% blocks/resource
 youtube="p5TOfD_MsWw"
-title="FluxCD Controllers in Kubernetes with Terraform by Philip Laine" %}}
+title="Flux Controllers in Kubernetes with Terraform by Philip Laine" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 27-Aug-2021)
 
@@ -258,7 +258,7 @@ title="Doing GitOps for multi-cloud resource management using Crossplane and Flu
 
 {{% blocks/resource
 youtube="pYcUukYGyZE"
-title="CNCF Cloud Native Live: Migrating from Flux v1 to Flux v2 with Leigh Capili" %}}
+title="CNCF Cloud Native Live: Migrating from Flux v1 to Flux with Leigh Capili" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -278,7 +278,7 @@ title="CNCF Webinar: Flux is Incubating + The Road Ahead" %}}
 
 {{% blocks/resource
 youtube="K6OQ93UNSB8"
-title="Flux v2 on Azure with Leigh Capili" %}}
+title="Flux on Azure with Leigh Capili" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -293,7 +293,7 @@ title="GitOps Hands-On Patterns for Helm Users with Scott Rigby" %}}
 
 {{% blocks/resource
 youtube="vwvTwLQhXVI"
-title="Migrating from Flux v1 to Flux v2 with Leigh Capili" %}}
+title="Migrating from Flux v1 to Flux with Leigh Capili" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -308,7 +308,7 @@ title="Manage Kubernetes Secrets with Mozilla SOPS & Flux" %}}
 
 {{% blocks/resource
 youtube="WnVTY9KQXE0"
-title="Flux v2 Image Update Automation Sneak Peak with Leigh Capili" %}}
+title="Flux Image Update Automation Sneak Peak with Leigh Capili" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -339,7 +339,7 @@ title="The Power of GitOps with Flux 2 - Part 3 with Leigh Capili" %}}
 
 {{% blocks/resource
 youtube="R6OeIgb7lUI"
-title="Flux CD v2 with GitOps Toolkit - Kubernetes Deployment and Sync Mechanism" %}}
+title="Flux with GitOps Toolkit - Kubernetes Deployment and Sync Mechanism" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -349,7 +349,7 @@ title="The evolution of Flux with Stefan Prodan at GitOps Days EMEA" %}}
 
 {{% blocks/resource
 youtube="7W27tAv7Tvs"
-title="The Power of GitOps with Flux v2: Managing Remote Clusters (CAPI demo) with Leigh Capili at GitOps Days EMEA" %}}
+title="The Power of GitOps with Flux: Managing Remote Clusters (CAPI demo) with Leigh Capili at GitOps Days EMEA" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource
@@ -379,7 +379,7 @@ title="Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan" %}}
 
 {{% blocks/resource
 youtube="8v94nUkXsxU"
-title="KubeCon/CloudNativeCon Europe: The road to Flux v2 and Progressive Delivery with Stefan Prodan & Hidde Beydals" %}}
+title="KubeCon/CloudNativeCon Europe: The road to Flux and Progressive Delivery with Stefan Prodan & Hidde Beydals" %}}
 {{% /blocks/resource %}}
 
 {{% blocks/resource

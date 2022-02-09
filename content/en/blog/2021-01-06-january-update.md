@@ -23,8 +23,8 @@ integration and where you can get involved. Read last month's update
 
 Let's recap what happened in December - there have been many changes.
 
-Flagger moves under Flux CD
----------------------------
+Flagger moves under the `fluxcd` organization
+---------------------------------------------
 
 ![Flagger](../../../../img/flagger-gitops.png)
 

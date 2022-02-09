@@ -89,7 +89,7 @@ endorsements:
           <a href="https://www.youtube.com/watch?v=dtGgOVYJTv8">GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris Sanders & Jonathan Innis</a>
         </div>
         <div class="details">
-          In this session we show how CNCF Flux is enabled in Azure Arc enabled Kubernetes and Azure Kubernetes Services and also give a sneak peek at implementation of Flux v2.
+          In this session we show how CNCF Flux is enabled in Azure Arc enabled Kubernetes and Azure Kubernetes Services and also give a sneak peek at implementation of Flux.
         </div>
       </div>
     subtitle: >

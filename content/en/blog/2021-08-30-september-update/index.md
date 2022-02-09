@@ -141,7 +141,7 @@ our engineers.
 
 Many Flux users and contributors have found the Bug Scrub a helpful
 meet-up, including some maintainers and repeat visitors. The Bug Scrub
-event is a weekly Zoom call where we discuss open issues from the FluxCD
+event is a weekly Zoom call where we discuss open issues from the Flux
 org on GitHub, with a narrow focus on what we can do to help advance
 each issue in the shortest amount of time. We aim to get more exposure
 to the greatest possible number of open issues and set some time aside
