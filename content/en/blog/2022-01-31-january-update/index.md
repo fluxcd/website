@@ -272,7 +272,7 @@ multi-cluster management offering that is based on Flux.
 
 If you've never joined a Flux Bug Scrub before, (or even if you have) we
 welcome you to join this weekly meeting with Flux developers which is an
-open "office hour" where we visit issues and discussions in the FluxCD
+open "office hour" where we visit issues and discussions in the Flux
 org, and have open discussion about it. We also try to make sure that
 nobody is left blocked on an important question, waiting for a response.
 
@@ -366,7 +366,7 @@ article](https://john-tucker.medium.com/flux-multi-cluster-multi-tenant-by-examp
 for using Flux to deliver applications in a multi-cluster multi-tenant
 Kubernetes environment.
 
-[Flux CD v2 - Kubernetes GitOps (CNCFMinutes
+[Flux - Kubernetes GitOps (CNCFMinutes
 20)](https://youtu.be/1X3JgCnRNsw) 📺
 
 Want to know what Flux is and does in \~8 minutes? CNCF Ambassador

@@ -166,7 +166,7 @@ usually scheduled opposite the CNCF Flux Project Meeting. You can
 [subscribe to the
 calendar](/community/#subscribing-to-the-flux-dev-calendar)
 to receive notifications about upcoming events and schedule changes. The
-Bug Scrub is an opportunity to meet with other FluxCD contributors in
+Bug Scrub is an opportunity to meet with other Flux contributors in
 another setting besides the Dev meeting, where we try to identify "Good
 First Issues" and spend an hour working on issue triage as a group.
 These meetings are open to the general public, so individuals of any
