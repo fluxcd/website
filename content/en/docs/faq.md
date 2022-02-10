@@ -156,6 +156,21 @@ The kustomize-controller creates `kustomization.yaml` files similar to:
 cd ./deploy/prod && kustomize create --autodetect --recursive
 ```
 
+### Why are kubectl edits rolled back by Flux?
+
+If you use kubectl to edit an object managed by Flux, all changes will be undone 
+when kustomize-controller reconciles a Flux Kustomization containing that object.
+
+In order for Flux to preserve fields added with kubectl, for example a label or annotation,
+you have to specify a field manager named `flux-client-side-apply` e.g.:
+
+```yaml
+kubectl annotate --field-manager=flux-client-side-apply 
+```
+
+Note that fields specified in Git will always be overridden, the above procedure works only for
+adding new fields that don't overlap with the desired state.
+
 ### What is the behavior of Kustomize used by Flux?
 
 We referred to the **Kustomize v4** CLI flags here,
