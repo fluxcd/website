@@ -9,6 +9,26 @@ We are very happy that our community has actively put resources together which y
 
 These resources are sorted by date - new entries are added to the top.
 
+## 2022
+
+{{% blocks/section color="white" %}}
+
+{{% blocks/resource
+url="https://youtu.be/6_dlU9WYBeY?t=439"
+thumbnail="6_dlU9WYBeY"
+title="Get Started with Flux - Priyanka Ravi" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 2-Feb-2022)
+
+{{% blocks/resource
+url="https://youtu.be/81EOeobifio?t=387"
+thumbnail="81EOeobifio"
+title="GitOps & Flux: A Refresher with Priyanka Ravi" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 28-Jan-2022)
+
+{{% /blocks/section %}}
+
 ## 2021
 
 {{% blocks/section color="white" %}}
