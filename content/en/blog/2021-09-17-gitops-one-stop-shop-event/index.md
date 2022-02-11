@@ -8,7 +8,6 @@ url: /blog/2021/09/gitops-one-stop-shop/
 resources:
 - src: "**.jpg"
   title: "Image #:counter"
-
 ---
 
 ![](featured-image.jpg)

@@ -4,6 +4,7 @@ date: 2021-11-10 12:30:00+00:00
 title: Flux Security Audit has concluded
 description: Flux just went through a CNCF-funded Security Audit. Here we publicly release and discuss the report. We also disclose our first CVE, which was fixed in Flux v0.18.0 - please upgrade as soon as you can!
 url: /blog/2021-11-10-flux-security-audit/
+tags: [security]
 resources:
 - src: "**.png"
   title: "Image #:counter"

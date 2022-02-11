@@ -6,6 +6,7 @@ description: This month's edition of updates on Flux v2 developments - feature p
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
+tags: [monthly-update]
 ---
 
 ## Before we get started, what is GitOps?

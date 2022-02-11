@@ -73,6 +73,9 @@ offlineSearch = false
 #  url = "/legacy"
 #
 
+[params.taxonomy]
+taxonomyCloud = ["blog"]
+
 
 [params.logos]
 navbar = "flux-horizontal-white.png"
