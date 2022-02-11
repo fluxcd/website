@@ -117,3 +117,6 @@ adopters:
     - name: Anova
       url: https://www.anova.com/
       logo: logos/anova.png
+    - name: FACEIT
+      url: https://www.faceit.com/
+      logo: logos/faceit.png
