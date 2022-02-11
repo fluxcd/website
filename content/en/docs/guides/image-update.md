@@ -671,8 +671,8 @@ patches:
 
 #### Using Native GCP GCR Auto-Login
 
-There is native support for the GCP Google Container Registry available since `image-reflector-controller` [vadd-version](link to changelog)
-which was released with Flux release v[add-flux-ver]. This feature is enabled by setting the `--gcp-autologin-for-gcr`
+There is native support for the GCP Google Container Registry available since `image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
+which was released with Flux release v0.26.0. This feature is enabled by setting the `--gcp-autologin-for-gcr`
 flag. This works with both clusters that have Workload Identity enabled, and those that use the default service account.
 This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
 similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
@@ -707,8 +707,8 @@ information about setting up GKE Workload Identity.
 #### Using Native Azure ACR Auto-Login
 
 There is native support for the Azure Container Registry] available since 
-`image-reflector-controller` [v<add-image-version>][<link-chnagelog-here>]
-which was released with Flux release v<add-image-version>. This feature is enabled by setting the `--azure-autologin-for-acr`
+`image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
+which was released with Flux release v0.26.0. This feature is enabled by setting the `--azure-autologin-for-acr`
 flag, This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
 similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
 
@@ -725,3 +725,5 @@ patches:
      path: /spec/template/spec/containers/0/args/-
      value: --azure-autologin-for-acr
 ```
+
+[v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
