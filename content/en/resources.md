@@ -27,6 +27,8 @@ title="GitOps & Flux: A Refresher with Priyanka Ravi" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 28-Jan-2022)
 
+{{% /blocks/section %}}
+
 ## 2021
 
 {{% blocks/section color="white" %}}
