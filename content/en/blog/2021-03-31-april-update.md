@@ -4,6 +4,7 @@ date: 2021-03-31 08:30:00+00:00
 title: April 2021 update
 description: The Cloud Native Computing Foundation promoted Flux to Incubation status. Flux2 reaches 0.11 milestone, new Flagger release, upcoming events and general community news!
 url: /blog/2021/03/april-2021-update/
+tags: [monthly-update]
 ---
 
 ## Before we get started, what is GitOps?

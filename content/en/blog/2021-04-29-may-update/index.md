@@ -7,6 +7,7 @@ url: /blog/2021/04/may-2021-update/
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
+tags: [monthly-update]
 ---
 
 ## Before we get started, what is GitOps?

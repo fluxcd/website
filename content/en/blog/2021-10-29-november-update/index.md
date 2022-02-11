@@ -7,6 +7,7 @@ url: /blog/2021/11/november-2021-update/
 resources:
 - src: "**.png"
   title: "Image #:counter"
+tags: [monthly-update]
 ---
 
 As the Flux family of projects and its communities are growing, we

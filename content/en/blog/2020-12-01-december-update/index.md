@@ -6,6 +6,7 @@ description: This month's edition of updates on Flux v2 developments - 0.4.0 rel
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
+tags: [monthly-update]
 ---
 
 ## Before we get started, what is GitOps?

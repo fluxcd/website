@@ -7,6 +7,7 @@ url: /blog/2022/01/january-update/
 resources:
 - src: "**.png"
   title: "Image #:counter"
+tags: [monthly-update]
 ---
 
 As the Flux family of projects and its communities are growing, we

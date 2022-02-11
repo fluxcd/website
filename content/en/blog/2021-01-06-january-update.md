@@ -3,6 +3,7 @@ author: dholbach
 date: 2021-01-06 12:30:00+00:00
 title: January 2021 Update
 description: This month's edition of updates on Flux v2 developments - 0.5.0 release, Flagger as a Flux project, first Alpha of Image Update functionality, new guides and more.
+tags: [monthly-update]
 ---
 
 **Before we get started, what is GitOps?**
