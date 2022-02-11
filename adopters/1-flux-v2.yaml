@@ -120,3 +120,6 @@ adopters:
     - name: FACEIT
       url: https://www.faceit.com/
       logo: logos/faceit.png
+    - name: Volvo Cars
+      url: https://www.volvocars.com/
+      logo: logos/volvo-cars.svg
