@@ -665,8 +665,8 @@ patches:
     namespace: flux-system
   patch: |-
     - op: add
-     path: /spec/template/spec/containers/0/args/-
-     value: --aws-autologin-for-ecr
+      path: /spec/template/spec/containers/0/args/-
+      value: --aws-autologin-for-ecr
 ```
 
 #### Using Native GCP GCR Auto-Login
@@ -722,6 +722,6 @@ patches:
     namespace: flux-system
   patch: |-
     - op: add
-     path: /spec/template/spec/containers/0/args/-
-     value: --azure-autologin-for-acr
+      path: /spec/template/spec/containers/0/args/-
+      value: --azure-autologin-for-acr
 ```
