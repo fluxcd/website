@@ -91,6 +91,16 @@ Cluster reconciliation dashboard [http://localhost:3000/d/flux-cluster](http://l
 If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
 [GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
 
+## Annotations
+
+![](/img/grafana-annotation.png)
+
+If you wish to overlap [flux notifications](https://fluxcd.io/docs/components/notification/provider/) on dashboards you can do it by enabling the grafana annotations alert provider, the desired alerts and the annotation on the dashboard like shown below:
+
+![](/img/grafana-annotations-config.png)
+
+
+
 ## Metrics
 
 For each `toolkit.fluxcd.io` kind,
