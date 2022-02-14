@@ -1,28 +1,28 @@
-name: lychee link Checker cronjob
-
-on:
-  repository_dispatch:
-  workflow_dispatch:
-  schedule:
-    - cron: "00 18 * * *"
-
-jobs:
-  linkChecker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2.3.2
-        with:
-          python-version: 3.8
-      - uses: BSFishy/pip-action@v1
-        with:
-          requirements: requirements.txt
-      - run: |
-          make gen-content
-      - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.3.0
-        with:
-          args: --verbose --no-progress --exclude-all-private **/*.md
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+# name: lychee link Checker cronjob
+# 
+# on:
+#   repository_dispatch:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: "00 18 * * *"
+# 
+# jobs:
+#   linkChecker:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Set up Python
+#         uses: actions/setup-python@v2.3.2
+#         with:
+#           python-version: 3.8
+#       - uses: BSFishy/pip-action@v1
+#         with:
+#           requirements: requirements.txt
+#       - run: |
+#           make gen-content
+#       - name: Link Checker
+#         uses: lycheeverse/lychee-action@v1.3.0
+#         with:
+#           args: --verbose --no-progress --exclude-all-private **/*.md
+#         env:
+#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

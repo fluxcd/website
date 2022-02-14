@@ -1,38 +1,38 @@
-on: pull_request
-name: lychee link Checker
-jobs:
-  linkChecker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v2.3.2
-        with:
-          python-version: 3.8
-      - uses: BSFishy/pip-action@v1
-        with:
-          requirements: requirements.txt
-      - name: get changed files
-        id: getfile
-        run: |
-          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT origin/main... |grep .md |xargs)"
-      - name: echo the changed files
-        run: |
-          for i in ${{ steps.getfile.outputs.ts }}
-          do
-              echo $i
-          done
-      - run: |
-          make gen-content
-      - name: lychee Link Checker
-        if: ${{ steps.getfile.outputs.ts != '' }}
-        id: lychee
-        uses: lycheeverse/lychee-action@v1.3.0
-        with:
-          args: --verbose --no-progress --exclude-all-private ${{ steps.getfile.outputs.ts }}
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Fail if there were link errors
-        run: exit ${{ steps.lychee.outputs.exit_code }}
+# on: pull_request
+# name: lychee link Checker
+# jobs:
+#   linkChecker:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#       - name: Set up Python
+#         uses: actions/setup-python@v2.3.2
+#         with:
+#           python-version: 3.8
+#       - uses: BSFishy/pip-action@v1
+#         with:
+#           requirements: requirements.txt
+#       - name: get changed files
+#         id: getfile
+#         run: |
+#           echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT origin/main... |grep .md |xargs)"
+#       - name: echo the changed files
+#         run: |
+#           for i in ${{ steps.getfile.outputs.ts }}
+#           do
+#               echo $i
+#           done
+#       - run: |
+#           make gen-content
+#       - name: lychee Link Checker
+#         if: ${{ steps.getfile.outputs.ts != '' }}
+#         id: lychee
+#         uses: lycheeverse/lychee-action@v1.3.0
+#         with:
+#           args: --verbose --no-progress --exclude-all-private ${{ steps.getfile.outputs.ts }}
+#         env:
+#           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#       - name: Fail if there were link errors
+#         run: exit ${{ steps.lychee.outputs.exit_code }}
