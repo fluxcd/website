@@ -724,6 +724,19 @@ patches:
     - op: add
       path: /spec/template/spec/containers/0/args/-
       value: --azure-autologin-for-acr
+      # Add this if you are using aad pod identity with managed identity
+    - op: add 
+      path: /spec/template/metadata/labels/aadpodidbinding
+      value: <name-of-identity>
 ```
+
+{{% alert color="info" title="AAD Pod Identity" %}}
+When using managed identity on an AKS cluster, AAD Pod Identity has to be used to give the image-automation-controller
+pod access to ACR. To do this, you have to install aad pod identity on your cluster, create a managed identity that has
+access to the container registry, create an azure identity and azure identity binding that describes the managed identity
+and then label the image-reflector-controller pods with the name of the azure identity.
+Please, take a look at this [guide](https://azure.github.io/aad-pod-identity/docs/) or 
+[this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS pod-managed identities add-on that is in preview.
+{{% /alert %}}
 
 [v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
