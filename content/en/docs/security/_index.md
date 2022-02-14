@@ -44,6 +44,8 @@ The following checks were performed on each of these signatures:
   - Any certificates were verified against the Fulcio roots.
 ```
 
+We also wrote [a blog post](/blog/2022/02/security-image-provenance/) which discusses the this in some more detail.
+
 ## Software Bill of Materials
 
 For the Flux project we publish a Software Bill of Materials (SBOM) with each release.
