@@ -45,7 +45,11 @@ The Kustomize controller is responsible for validating manifests against the Kub
 
 The Kustomization API is designed from the beginning with support for multi-tenancy as a primary concern.
 
-**Helm Controller**
+**Helm Controller** is the Agent responsible for managing Helm artifacts (with some parts of the work shared in the Source Controller). The Source Controller acquires Helm charts from Helm repositories or other sources. The desired state of a Helm release is described through a Custom Resource named `HelmRelease`. Based on the creation, mutation or removal of a `HelmRelease` resource in the cluster, Helm actions are performed by the controller.
+
+Helm Controller (and its predecessor, Helm Operator) stand alone in the GitOps world as Go client implementations of the Helm package library. While there are many projects in the GitOps space that can perform "Helm Chart Inflation" which can also be explained through the activities of merging `values` from different sources, rendering templates, applying the changes to the cluster, and then waiting to become healthy, other projects usually cannot claim strict compatibility with all Helm features. Helm Controller boasts full compatibility and reliably identical behavior in Flux with all released Helm features.
+
+Examples of some Helm Controller features that directly leverage upstream features of Helm today include [Helm Chart Hooks][], Helm Release Lifecycle events and the optional health checking that's performed by `helm --wait` to determine if a release is successful, Helm tests, rollbacks and uninstalls, and an implementation of Helm's [Post Rendering][] feature that allows safety and security while using the Kustomize post-renderer in Flux Continuous Delivery pipelines (that is, without requiring untrusted execution of any external scripts or binaries.)
 
 **Notification Controller**
 
@@ -146,3 +150,5 @@ When activated by an event from a `Receiver`, Flux's Notification controller act
 [Helm controller]: https://fluxcd.io/docs/components/helm/
 [Notification controller]: https://fluxcd.io/docs/components/notification/
 [Image reflector and automation controllers]: https://fluxcd.io/docs/components/image/
+[Helm Chart Hooks]: https://helm.sh/docs/topics/charts_hooks/
+[Post Rendering]: https://helm.sh/docs/topics/advanced/#post-rendering
