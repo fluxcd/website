@@ -227,11 +227,7 @@ Alert: https://fluxcd.io/docs/components/notification/alert/
 Event? https://fluxcd.io/docs/components/notification/event/
 
 ### 13. Notifications Part 2 - Git Commit Status Providers
-GCSP work like other notification providers except that they target a specific commit with their event. If you use the git commit status provider integration for GitHub, GitLab, Bitbucket (or any supported git providers), then you will see success or failure reported on each commit for any alerts that are configured.
-
-Links/resources:
-Setup Notifications: https://fluxcd.io/docs/guides/notifications/#git-commit-status
-
+Git Commit Status Providers work like other notification providers except that they target a specific commit with their event. If you [set up git commit status notications](https://fluxcd.io/docs/guides/notifications/#git-commit-status) through an integration for GitHub, GitLab, Bitbucket (or any supported git providers) Flux will display success or failure reported on each commit from any alerts targeting the provider.
 
 ### 14. Kustomize Controller (Health Checks and Wait)
 Kustomize Controller can be configured with or without spec.wait which decides whether the Kustomization will be considered ready as soon as the resources are applied, or if the Kustomization will not be considered ready until the resources it created are all marked as ready.
