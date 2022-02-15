@@ -168,8 +168,12 @@ The period of waiting for the reconciliation interval can be increased or reduce
 
 One of the measures generally considered important is how long it takes for developers to get feedback from CI/CD systems. It's commonly put forth that "the CI feedback loop should not take longer than 10 minutes." It should be clear from those relevant materials that for tasks we do many times every day, seconds add up to minutes quickly. For this reason it is recommended to use Receivers wherever possible, or at least whenever shortening the feedback loop is to be considered as an important goal.
 
-### 6. `GitRepository` Source (Artifacts and Revisions)
 
+### 6. `GitRepository` Source (Artifacts and Revisions)
+A `GitRepository` source is a Custom Resource Definition that defines a read-only view of the latest observed revision of a Git repository.
+The Git repository itself is usually considered an external entity with respect to the cluster, even if the repo is hosted inside of the cluster. 
+
+<<<<<<< HEAD
 When a `GitRepository` resource is created in Flux, that resource is reconciled on an interval.
 
 A GitRepository Custom Resource is a read-only view of the latest observed revision of a Source reference. All artifacts managed by Source Controller are stored as `.tar.gz` and for the majority of Flux, it doesn't matter what type of resource is behind the Source – it can be Git, S3, (or perhaps in the future OCI image.) Even Helm Charts that come from Helm Repositories are of course stored as tarballs.
@@ -177,20 +181,30 @@ A GitRepository Custom Resource is a read-only view of the latest observed revis
 (The one notable exception to this pattern is Image Update Automation, which does not read data from GitRepository source service, but reads the definition of the GitRepository and writes through its secretRef.)
 
 The Git repository itself is usually an external entity with respect to the cluster (even if it might be hosted inside of the cluster.) The source is authenticated through either an SSH host key or TLS certificate verification to ensure that the host is valid. The source may also optionally be checked for [TODO ???]
+=======
+Features include: 
+* Validate source definitions
+* Authenticate to sources (SSH, user/password, API token)
+* Validate source authenticity (PGP)
+* Detect source changes based on update policies (semver)
+* Fetch resources on-demand and on-a-schedule
+* Package the fetched resources into a well-known format (tar.gz, yaml)
+* Make the artifacts addressable by their source identifier (sha, version, ts)
+* Make the artifacts available in-cluster to interested 3rd parties
+* Notify interested 3rd parties of source changes and availability (status conditions, events, hooks)
+>>>>>>> 7dd3c43 (Updated section 6 & 7)
 
 ### 7. Kustomize Controller (Decryption via SOPS)
 
-The Kustomize Controller has the capability to decrypt secrets that have been encrypted and pushed to the repository. There are two easy ways to utilize decryption with Mozilla SOPS: Users can keep the decryption key inside the cluster or they can use an external key management system (Flux supports several options and you can find more information about them [here](https://fluxcd.io/docs/guides/mozilla-sops/). For more general information on the Kustomize Controller check out the documentation [here](https://fluxcd.io/docs/components/kustomize/)!
+The Kustomize Controller has the capability to consume encrypted secrets that are stored in a public or private Git repository using Mozilla's SOPS CLI. 
 
+Using SOPS the secrets can be encrypted with OpenPGP, AWS KMS, GCP KMS or Azure Key Vault.  Once encrypted the secret can be safely exported to git and additionally backed up in an external password manager.  In turn, team members can utilize the encrypted secret by cloning the repo. 
 
-Kustomize Controller has the capability to decrypt secrets that are encrypted in the repository. Generally 2 easy ways to go about it:
-Keep key inside cluster
-External key management system (flux has support for several)
+Additional implementation details can be found [here](Mozilla SOPS: https://fluxcd.io/docs/guides/mozilla-sops/)
 
-Links/Resources:
-Kustomize Controller: https://fluxcd.io/docs/components/kustomize/
-Mozilla SOPS: https://fluxcd.io/docs/guides/mozilla-sops/
+### 7.5 Kustomize Build
 
+...
 
 ### 8. Kustomize Controller (Server Side Apply) - Kingdon
 
