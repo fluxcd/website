@@ -137,7 +137,15 @@ The period of waiting for the reconciliation interval can be increased or reduce
 
 One of the measures generally considered important is how long it takes for developers to get feedback from CI/CD systems. It's commonly put forth that "the CI feedback loop should not take longer than 10 minutes." It should be clear from those relevant materials that for tasks we do many times every day, seconds add up to minutes quickly. For this reason it is recommended to use Receivers wherever possible, or at least whenever shortening the feedback loop is to be considered as an important goal.
 
-### 6. GitRepository Source (Artifacts and Revisions)
+### 6. `GitRepository` Source (Artifacts and Revisions)
+
+When a `GitRepository` resource is created in Flux, that resource is reconciled on an interval.
+
+A GitRepository Custom Resource is a read-only view of the latest observed revision of a Source reference. All artifacts managed by Source Controller are stored as `.tar.gz` and for the majority of Flux, it doesn't matter what type of resource is behind the Source – it can be Git, S3, (or perhaps in the future OCI image.) Even Helm Charts that come from Helm Repositories are of course stored as tarballs.
+
+(The one notable exception to this pattern is Image Update Automation, which does not read data from GitRepository source service, but reads the definition of the GitRepository and writes through its secretRef.)
+
+The Git repository itself is usually an external to the cluster (even if it might be hosted inside of the cluster.) The source is authenticated through either an SSH host key or TLS certificate verification to ensure that the host is valid. The source may also optionally be checked for 
 
 ### 7. Kustomize Controller (Decryption via SOPS)
 
