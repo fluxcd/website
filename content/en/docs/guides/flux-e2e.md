@@ -219,7 +219,7 @@ Links/resources:
 TODO: this all belongs in one of the Helm guides
 
 ### 12. Notifications Part 1 - Notification Providers
-Notification Provides are for outbound notifications (the likes of slack, ms teams, discord, etc.) they’re driven by alerts (which are another crd in Flux) alerts create notifications from events, and all of the flux reconcilers generate events.
+Notification Providers are used by Flux for outbound notifications to platforms like slack, ms teams, discord. They are driven by `Alerts`, another CRD in the Flux Notification Controller's API. `Alerts` create notifications from events, and all of the flux reconcilers generate events while they are undergoing status transitions.
 
 Links/resources:
 Setup Notifications: https://fluxcd.io/docs/guides/notifications/
@@ -227,10 +227,10 @@ Alert: https://fluxcd.io/docs/components/notification/alert/
 Event? https://fluxcd.io/docs/components/notification/event/
 
 ### 13. Notifications Part 2 - Git Commit Status Providers
-GCSP wok like other notification providers except that they target a specific commit with their event. If you use the git commit status provider integration for github, gitlab, bitbucket (or any supported git providers), then you will see success or failure reported on each commit for any alerts that are configured.
+GCSP work like other notification providers except that they target a specific commit with their event. If you use the git commit status provider integration for GitHub, GitLab, Bitbucket (or any supported git providers), then you will see success or failure reported on each commit for any alerts that are configured.
 
 Links/resources:
-Setup Notifcations: https://fluxcd.io/docs/guides/notifications/#git-commit-status
+Setup Notifications: https://fluxcd.io/docs/guides/notifications/#git-commit-status
 
 
 ### 14. Kustomize Controller (Health Checks and Wait)
