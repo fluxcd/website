@@ -11,9 +11,9 @@ configuration when there is new code to deploy.
 
 Flux is built from the ground up to use Kubernetes'
 API extension system, and to integrate with Prometheus and other core
-components of the Kubernetes ecosystem. In version 2, Flux supports
+components of the Kubernetes ecosystem. Flux supports
 multi-tenancy and support for syncing an arbitrary number of Git
-repositories, among other long-requested features.
+repositories.
 
 ## Who is Flux for?
 
