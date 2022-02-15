@@ -147,11 +147,7 @@ When activated by an event from a `Receiver`, Flux's Notification controller act
 
 If `Receivers` are not configured, the `GitRepository` will activate on an interval, or can be reconciled on-demand ahead of the interval through the `flux reconcile source git`. This is a difference between Flux controllers and the Kubernetes Controller Runtime at-large, which Flux's code is directly based upon, where reconciling is usually done immediately upon detecting a change, rather than at intervals, and this is able to be accomplished roughly instantaneously through a publisher-subscriber model.
 
-Resources lers
-
-When activated by an event from a `Receiver`, Flux's Notification controller activates `GitRepository` or other Flux "sources" ahead of schedule, without first waiting for a `spec.interval` to elapse.
-
-If `Receivers` are not configured, the `GitRepository` will activate on an interval, o" as the event contains no instructions, and only serves as an "early wake-up call" to notify Flux controllers. (It is not intended to be possible for Receivers to change anything else about the behavior of Flux, except for reconciling ahead of schedule.)
+Resources like GitRepository and Bucket (and other Source API kinds) can be also be activated by webhook receivers to provide a similar experience. Webhook receivers are used to make Flux's pull-based model as fast and responsive as push-based pipelines, but importantly they do not make Flux "push-based" as the event contains no instructions, and only serves as an "early wake-up call" to notify Flux controllers. (It is not intended to be possible for Receivers to change anything else about the behavior of Flux, except for reconciling ahead of schedule.)
 
 Any Flux resource that subscribes to any outside service (those that are external to the Kubernetes cluster) can be instrumented via webhooks that publish the events. These events can come from container image registries, Helm chart repositories, Git Repositories, or other arbitrary systems that are capable of sending a generic event through HTTP POST to notify when a new artifact is made available.
 
