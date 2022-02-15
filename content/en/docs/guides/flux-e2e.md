@@ -57,7 +57,7 @@ events coming from external systems (GitHub, GitLab, Bitbucket, Harbor, Jenkins,
 events emitted by the GitOps toolkit controllers (source, kustomize, helm) and dispatches them to external systems (Slack, Microsoft Teams, Discord, RocketChat) based on event severity and involved objects.
 
 
- Links/resources: 
+ Links/resources:
 Notification Controller: https://fluxcd.io/docs/components/notification/
 
 
@@ -94,7 +94,7 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 2. The user can preview any changes to the cluster before or after making a commit with `flux diff kustomization`
 3. Image Update Automation resources are a way for Flux to generate commits when there are updated images available
 4. A git commit is represented internally as an "Artifact" in Flux, and it makes a footprint on the cluster through Source Controller
-5. The "git push" event fires a webhook that Flux can receive 
+5. The "git push" event fires a webhook that Flux can receive
 6. 
 
 ### 1. `flux create ...`
@@ -165,7 +165,7 @@ A GitRepository Custom Resource is a read-only view of the latest observed revis
 
 (The one notable exception to this pattern is Image Update Automation, which does not read data from GitRepository source service, but reads the definition of the GitRepository and writes through its secretRef.)
 
-The Git repository itself is usually an external entity with respect to the cluster (even if it might be hosted inside of the cluster.) The source is authenticated through either an SSH host key or TLS certificate verification to ensure that the host is valid. The source may also optionally be checked for 
+The Git repository itself is usually an external entity with respect to the cluster (even if it might be hosted inside of the cluster.) The source is authenticated through either an SSH host key or TLS certificate verification to ensure that the host is valid. The source may also optionally be checked for [TODO ???]
 
 ### 7. Kustomize Controller (Decryption via SOPS)
 
@@ -185,7 +185,7 @@ Mozilla SOPS: https://fluxcd.io/docs/guides/mozilla-sops/
 
 Server-side reconciliation makes Flux more performant and improves overall observability among other things. The Kustomize Controller reads in the artifacts in the path and renders them through Kustomize build and then applies them. Server side apply allows Flux to transmit the Kubernetes resources to the cluster without shelling out to an external binary such as kubectl or passing stream data through a pipe. Server side apply improves the overall observability of the reconciliation process by reporting in real-time the garbage collection and health assessment actions. This whole operation is synchronous rather than asynchronous, so if the resources fail to become ready the transaction can be aborted after a timeout.
 
-After secrets have been decrypted the resources need to be applied to the cluster. Kustomize Controller takes resources, gathers them, selects a path from that source and applies all the resources in it through Kustomize. 
+After secrets have been decrypted the resources need to be applied to the cluster. Kustomize Controller takes resources, gathers them, selects a path from that source and applies all the resources in it through Kustomize.
 A server-side dry run is performed before the server-side apply to check for validity of the resources. The apply is then completed in two stages; if there are CRDs, namespaces, or other cluster-wide resources, they are applied first so they can be defined before any subordinate resources (custom resources, namespaced resources) that would depend on their creation.
 
 <insert sequence diagram>?
@@ -194,20 +194,20 @@ FAQ: https://fluxcd.io/docs/faq/#what-is-the-behavior-of-kustomize-used-by-flux
 
 
 ### 9. Helm Controller (`HelmRelease` Custom Resource)
-(Adjacent concept to Kustomize apply) 
+(Adjacent concept to Kustomize apply)
 
-A [HelmRelease](https://fluxcd.io/docs/components/helm/api/) is a composition of a chart, the chart values (parameters to the chart), and any inputs like secrets or config maps that are used to compose the values. Declaring a HelmRelease will cause the Helm Controller to perform an install using the Helm client libraries. Any changes made to the HelmRelease will trigger the Helm Controller to perform an upgrade to actuate those changes. You can find more information about HelmReleases [here](https://fluxcd.io/docs/guides/helmreleases/) and more general info about Helm for Flux users [here](https://fluxcd.io/docs/use-cases/helm/). 
+A [HelmRelease](https://fluxcd.io/docs/components/helm/api/) is a composition of a chart, the chart values (parameters to the chart), and any inputs like secrets or config maps that are used to compose the values. Declaring a HelmRelease will cause the Helm Controller to perform an install using the Helm client libraries. Any changes made to the HelmRelease will trigger the Helm Controller to perform an upgrade to actuate those changes. You can find more information about HelmReleases [here](https://fluxcd.io/docs/guides/helmreleases/) and more general info about Helm for Flux users [here](https://fluxcd.io/docs/use-cases/helm/).
 
 
 ### 10. HelmRepository and HelmChart (Sources for Helm)
 
 A Helm Repository is the native and preferred source for Helm. The Helm Controller works in tandem with the Source Controller to provide a [HelmRepository API](https://fluxcd.io/docs/components/source/helmrepositories/) that collects the correct release version from the helm repo and republishes its data as a [HelmChart](https://fluxcd.io/docs/components/source/helmcharts/) artifact (another .tar.gz).
 
-The helm repo itself is represented internally in the Source Controller as a YAML index of all releases, including any charts in the repository. 
+The helm repo itself is represented internally in the Source Controller as a YAML index of all releases, including any charts in the repository.
 
 
 ### 11. GitRepository and HelmChart (Alternative Sources for Helm)
-GR can be used as a source for Helm Release. The Git repo is not a native storage format for helm and there are some idiosyncrasies when you're using Helm Controller with a Git repository source. You can use a GitRepository as a source, but best practice is to limit it to 1:1 (don't do mono repo) - bad idea to create a repo with 400 helm charts. The problem is that git repo sources are tgz files end up with lots of artifacts pulled each time (overloading). Orange juice analogy here? 
+GR can be used as a source for Helm Release. The Git repo is not a native storage format for helm and there are some idiosyncrasies when you’re using Helm Controller with a Git repository source. You can use a GitRepository as a source, but best practice is to limit it to 1:1 (don’t do mono repo) - bad idea to create a repo with 400 helm charts. The problem is that git repo sources are tgz files end up with lots of artifacts pulled each time (overloading). Orange juice analogy here?
 
 So you have lots of tools at your disposal for making sources narrowly scoped, and if you will use them all, you can avoid any potential issues stemming from Helm Controller accidentally pulling in resources and causing source controller to repackage them again, when you did not need to include them in the chart.
 
@@ -219,22 +219,22 @@ Links/resources:
 TODO: this all belongs in one of the Helm guides
 
 ### 12. Notifications Part 1 - Notification Providers
-Notification Provides are for outbound notifications (the likes of slack, ms teams, discord, etc.) they're driven by alerts (which are another crd in Flux) alerts create notifications from events, and all of the flux reconcilers generate events.  
+Notification Provides are for outbound notifications (the likes of slack, ms teams, discord, etc.) they’re driven by alerts (which are another crd in Flux) alerts create notifications from events, and all of the flux reconcilers generate events.
 
 Links/resources:
 Setup Notifications: https://fluxcd.io/docs/guides/notifications/
 Alert: https://fluxcd.io/docs/components/notification/alert/
-Event? https://fluxcd.io/docs/components/notification/event/ 
+Event? https://fluxcd.io/docs/components/notification/event/
 
 ### 13. Notifications Part 2 - Git Commit Status Providers
-GCSP wok like other notification providers except that they target a specific commit with their event. If you use the git commit status provider integration for github, gitlab, bitbucket (or any supported git providers), then you will see success or failure reported on each commit for any alerts that are configured. 
+GCSP wok like other notification providers except that they target a specific commit with their event. If you use the git commit status provider integration for github, gitlab, bitbucket (or any supported git providers), then you will see success or failure reported on each commit for any alerts that are configured.
 
 Links/resources:
-Setup Notifcations: https://fluxcd.io/docs/guides/notifications/#git-commit-status 
+Setup Notifcations: https://fluxcd.io/docs/guides/notifications/#git-commit-status
 
 
 ### 14. Kustomize Controller (Health Checks and Wait)
-Kustomize Controller can be configured with or without spec.wait which decides whether the Kustomization will be considered ready as soon as the resources are applied, or if the Kustomization will not be considered ready until the resources it created are all marked as ready. 
+Kustomize Controller can be configured with or without spec.wait which decides whether the Kustomization will be considered ready as soon as the resources are applied, or if the Kustomization will not be considered ready until the resources it created are all marked as ready.
 
 Links/resources:
 Health Assessment: https://fluxcd.io/docs/components/kustomize/kustomization/#health-assessment
