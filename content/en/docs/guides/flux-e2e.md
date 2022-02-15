@@ -62,19 +62,10 @@ Notification Controller: https://fluxcd.io/docs/components/notification/
 
 
 **Image Automation Controller**
-The Image Automation Controller automates updates to YAML when new container images are available.
-
-Links/Resources:
-Image Automation Controllers: https://fluxcd.io/docs/components/image/
-Image update automation API reference: https://fluxcd.io/docs/components/image/automation-api/
+The Image Automation Controller automates updates to YAML files based on the latest images scanned by the Image Reflector Controller, and commits the changes to a given Git repository. The behavior of the automation process is defined by a Custom Resource named `ImageUpdateAutomation`. The updates are governed by marking fields to be updated in each YAML file. For each field marked, the automation process checks the image policy named, and updates the field value if there is a new image selected by the policy. The marker format is shown in the [image automation guide](https://fluxcd.io/docs/guides/image-update/#configure-image-update-for-custom-resources). With `ImageUpdateAutomation`, the Git commit branch and message can be customized. 
 
 **Image Reflector Controller**
-The Image Reflector Controller scans image repositories and reflects the image metadata in Kubernetes resources.
-
-Links/resources:
-Image reflector API reference: https://fluxcd.io/docs/components/image/reflector-api/
-
-The image-reflector-controller and image-automation-controller work together to update a Git repository when new container images are available.
+The Image Reflector Controller scans image repositories and reflects the image metadata in Kubernetes resources. Based on a defined `ImageRepository`, the controller follows `ImagePolicy` rules defined for selecting a "latest" image from the repository. This can be used to drive automation, as with the Image Automation Controller; or more generally, to inform other processes of the state of an image repository. With `ImageRepository`, the users can specify how to scan an OCI image repository, such as repository authentication, and TLS certificate to use. The `ImagePolicy` can be defined to use SemVer, alphabetically, or numerically to select the "latest" image. Image tags can also be filtered before they are considered by the policy rule.
 
 ## Config repo and the Flux CLI
 
