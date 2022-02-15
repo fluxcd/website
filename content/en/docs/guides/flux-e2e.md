@@ -90,12 +90,21 @@ Describe at an operational level, without connecting to specific Flux controller
 
 A brief outline of the life cycle of a change as it's processed through Flux, centered around a git commit:
 
-1. Flux resources are generated interactively through `flux create ...`
-2. The user can preview any changes to the cluster before or after making a commit with `flux diff kustomization`
-3. Image Update Automation resources are a way for Flux to generate commits when there are updated images available
-4. A git commit is represented internally as an "Artifact" in Flux, and it makes a footprint on the cluster through Source Controller
-5. The "git push" event fires a webhook that Flux can receive
-6. 
+1. Flux resources are generated interactively through `flux create ...`.
+2. The user can preview any changes to the cluster before or after making a commit with `flux diff kustomization`.
+3. Image Update Automation resources are a way for Flux to generate commits when there are updated images available.
+4. A git commit is represented internally as an "Artifact" in Flux, and it makes a footprint on the cluster through Source Controller.
+5. The "git push" event fires a webhook that Flux can receive, which triggers the `GitRepository` to reconcile (or the waiting period of the `GitRepository.spec.interval` passes, which similarly triggers the `GitRepository` to reconcile.
+6. The Source controller fetches the GitRepository data from the backing resource (Git, S3, ...).
+7. If an optional decryption configuration is provided with the Flux Kustomization, any encrypted secret manifests that are stored in the Kustomization's path are decrypted.
+7.5 The Kustomize Controller runs the go library equivalent of a `kustomize build` against the `Kustomization.spec.path` to recursively generate and render (or inflate) any Kustomize overlays. (All manifests are passed through Kustomize, even those that don't include a `kustomization.yaml`.)
+8. Kustomize build outputs are then validated against the cluster through a server-side dry-run, and if it succeeds the manifests are applied to the cluster with a server-side apply operation.
+9. `HelmRelease` resources applied to the cluster are picked up by Helm Controller, which reconciles them through the Helm client library.
+10. Before `HelmReleases` can be installed, Source controller fetches the release index via `HelmRepository` and generates a `HelmChart`.
+11. Alternatively, `GitRepository` sources can be used instead of `HelmRepository`. (Source controller still generates a `HelmChart`.)
+12. The resources being reconciled generates `Events` as they undergo successful or unsuccessful state transitions, and the Notification controller collects them through `Alerts` to forward them to `Providers`.
+13. Besides the "event stream" or channel-based providers, there are also `Providers` that map to Git hosting providers, so the success or failure of a `Kustomization` can be recorded on the commit through the "Checks API" or similar.
+14. An optional Health Assessment enabled through `Kustomization.spec.wait` can revert or prevent an update from being applied if some resources do not become ready before the `Kustomization.spec.timeout` expires.
 
 ### 1. `flux create ...`
 
