@@ -23,8 +23,8 @@ and need help, please refer to the [support page](https://fluxcd.io/support/).
 
 ## Prerequisites
 
-You will need a Kubernetes cluster version **1.16** or newer
-and kubectl version **1.18** or newer.
+You will need a Kubernetes cluster version **1.20** or newer
+and kubectl version **1.20** or newer.
 
 ### Install Flux v2 CLI
 
