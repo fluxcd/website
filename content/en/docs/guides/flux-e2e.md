@@ -88,7 +88,7 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 5. The "git push" event fires a webhook that Flux can receive, which triggers the `GitRepository` to reconcile (or the waiting period of the `GitRepository.spec.interval` passes, which similarly triggers the `GitRepository` to reconcile.
 6. The Source controller fetches the GitRepository data from the backing resource (Git, S3, ...).
 7. If an optional decryption configuration is provided with the Flux Kustomization, any encrypted secret manifests that are stored in the Kustomization's path are decrypted.
-7.5 The Kustomize Controller runs the go library equivalent of a `kustomize build` against the `Kustomization.spec.path` to recursively generate and render (or inflate) any Kustomize overlays. (All manifests are passed through Kustomize, even those that don't include a `kustomization.yaml`.)
+7.5. The Kustomize Controller runs the go library equivalent of a `kustomize build` against the `Kustomization.spec.path` to recursively generate and render (or inflate) any Kustomize overlays. (All manifests are passed through Kustomize, even those that don't include a `kustomization.yaml`.)
 8. Kustomize build outputs are then validated against the cluster through a server-side dry-run, and if it succeeds the manifests are applied to the cluster with a server-side apply operation.
 9. `HelmRelease` resources applied to the cluster are picked up by Helm Controller, which reconciles them through the Helm client library.
 10. Before `HelmReleases` can be installed, Source controller fetches the release index via `HelmRepository` and generates a `HelmChart`.
@@ -177,7 +177,7 @@ The Source Controller also supports:
 
 Note that it does not make any difference to the Source Controller whether a source is hosted within the cluster or on an external service or server. The Source Controller will still attempt to verify the host using the SSH or TLS keys supplied in the GitRepository Custom Resource and will store its contents as a read-only tarball.
 
-Features include: 
+Features include:
 * Validate source definitions
 * Authenticate to sources (SSH, user/password, API token)
 * Validate source authenticity (PGP)
@@ -188,29 +188,52 @@ Features include:
 * Make the artifacts available in-cluster to interested 3rd parties (such as the Kustomize Controller and Helm Controller)
 * Notify interested 3rd parties of source changes and availability (status conditions, events, hooks)
 
-### 7. Kustomize Controller (Decryption via SOPS)
+### 7. Kustomize Controller (Secret Decryption via SOPS)
 
-The Kustomize Controller has the capability to consume encrypted secrets that are stored in a public or private Git repository using Mozilla's SOPS CLI.
+The [Kustomize Controller will decrypt Secret values encrypted using Mozilla's SOPS CLI](https://fluxcd.io/docs/guides/mozilla-sops/)
+with OpenPGP, AWS KMS, GCP KMS or Azure Key Vault and stored in the source Git repository as Kubernetes Secret manifests.
+The encrypted secret can be safely stored in a public or private Git repository.
 
-Using SOPS the secrets can be encrypted with OpenPGP, AWS KMS, GCP KMS or Azure Key Vault.  Once encrypted the secret can be safely exported to git and additionally backed up in an external password manager.  In turn, team members can utilize the encrypted secret by cloning the repo.
+The Kustomize Controller will pull the Kubernetes Secret manifest with encrypted values from the Source, (the metadata
+is stored in plain-text), then Kustomize Controller decrypts its encrypted values using the supplied key.
 
-Additional implementation details can be found [here](Mozilla SOPS: https://fluxcd.io/docs/guides/mozilla-sops/)
+Note, it's a good idea to also back up your secret values in a password manager or other form of secure external storage.
 
-### 7.5 Kustomize Build
+The decrypted manifests are kept in memory and passed on to the next stage.
 
-...
+### 7.5 Kustomize Controller (Build)
 
-### 8. Kustomize Controller (Server Side Apply) - Kingdon
+Before it applies YAML or JSON resurce declarations to the Kubernetes API for its cluster, the Kustomize Controller
+reads the artifact files from its source path and builds them using the Kustomize Go library's `build` call. This call
+returns any custom resource definitions (CRDs), namespaces, or other cluster-wide resources it renders before
+subordinate custom resources or namespace-scoped resources so that they will be available in the API for the resources
+that refer to or use them.
 
-Server-side reconciliation makes Flux more performant and improves overall observability among other things. The Kustomize Controller reads in the artifacts in the path and renders them through Kustomize build and then applies them. Server side apply allows Flux to transmit the Kubernetes resources to the cluster without shelling out to an external binary such as kubectl or passing stream data through a pipe. Server side apply improves the overall observability of the reconciliation process by reporting in real-time the garbage collection and health assessment actions. This whole operation is synchronous rather than asynchronous, so if the resources fail to become ready the transaction can be aborted after a timeout.
+* FAQ: [How does Flux run `kustomize build` internally?](https://fluxcd.io/docs/faq/#what-is-the-behavior-of-kustomize-used-by-flux) (Replicate Kustomize behavior locally with the Kustomize CLI)
 
-After secrets have been decrypted the resources need to be applied to the cluster. Kustomize Controller takes resources, gathers them, selects a path from that source and applies all the resources in it through Kustomize.
-A server-side dry run is performed before the server-side apply to check for validity of the resources. The apply is then completed in two stages; if there are CRDs, namespaces, or other cluster-wide resources, they are applied first so they can be defined before any subordinate resources (custom resources, namespaced resources) that would depend on their creation.
+### 8. Kustomize Controller (Server Side Apply)
+
+**Needs a link to FluxCD documentation for Server-Side Apply process!** _The only current on-point reference is the [Server-side reconciliation is coming](https://fluxcd.io/blog/2021/09/server-side-reconciliation-is-coming/) blog post.  This would likely be considered a gap in FluxCD project docs._
+
+The Kustomize Controller communicates directly with the Kubernetes API using
+[server-side apply and update](https://kubernetes.io/docs/reference/using-api/server-side-apply/) API operations
+instead of running the `kubectl apply` command as a separate forked process and passing it manifest data through
+a system pipe. Applying resource manifests directly
+to the Kubernetes API is both more efficient and provides more control over the process, enabling the Kustomize
+Controller to give real-time feedback on validation errors, garbage-collection and resource health assessment.
+It also allows the Kubernetes API to track
+[field management](https://kubernetes.io/docs/reference/using-api/server-side-apply/#field-management),
+so different management tools or controllers can set field values within the same resource without interfering
+with each other.
+
+The server-side apply operation is synchronous rather than asynchronous. If any resources fail to become ready before a
+specified timeout, the controller can abort the entire transaction.
+
+The Kustomize Controller applies resource manifests to match the order in which they were rendered by the kustomize `build`
+call.  It therefore applies any custom resource definition (CRD), namespace, or cluster-scoped resources before their subordinate
+custom resource or namespace-scoped resources to that they will be available in the API for the resources that refer to or use them.
 
 <insert sequence diagram>?
-
-FAQ: https://fluxcd.io/docs/faq/#what-is-the-behavior-of-kustomize-used-by-flux
-
 
 ### 9. Helm Controller (`HelmRelease` Custom Resource)
 (Adjacent concept to Kustomize apply)
