@@ -49,14 +49,14 @@ this list is subject to change while we gather feedback:
     - [x] Replace `kubectl` usage in Flux CLI with server-side apply
     - [x] Rewrite the kustomize-controller reconciler using server-side apply
 
+- Multi-tenancy lockdown
+    - [x] [Allow setting a default service account for impersonation](https://github.com/fluxcd/flux2/issues/2340)
+    - [x] [Allow disabling cross-namespace references](https://github.com/fluxcd/flux2/issues/2337)
+    - [x] [Document multi-tenancy lockdown configuration](docs/installation.md#multi-tenancy-lockdown)
+
 - API consolidation ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
     - [ ] Standardize events and status conditions metadata
-
-- Reach consensus on multi-tenancy
-    - [ ] [RFC-0001](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
-    - [ ] [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) Access control for cross-namespace source references
-    - [ ] [RFC-0003](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
 
 - Documentation improvements
     - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
@@ -64,6 +64,15 @@ this list is subject to change while we gather feedback:
     - [ ] Incident management and troubleshooting guides
     - [ ] Developer guides for contributing to and extending Flux
     - [ ] Cloud specific guides (AWS, Azure, Google Cloud, more?)
+
+## Security enhancements
+
+Reach consensus on multi-tenancy enhancements and other security related proposals:
+
+- [x] [RFC-0001](https://github.com/fluxcd/flux2/pull/2212) Memorandum on the authorization model
+- [ ] [RFC-0002](https://github.com/fluxcd/flux2/pull/2092) Access control for cross-namespace source references
+- [ ] [RFC-0003](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
+- [ ] [RFC-0004](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
 
 ## The road to Flux v1 feature parity
 
