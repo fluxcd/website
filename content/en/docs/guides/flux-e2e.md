@@ -62,7 +62,7 @@ Notification Controller: https://fluxcd.io/docs/components/notification/
 
 
 **Image Automation Controller**
-The Image Automation Controller automates updates to YAML files based on the latest images scanned by the Image Reflector Controller, and commits the changes to a given Git repository. The behavior of the automation process is defined by a Custom Resource named `ImageUpdateAutomation`. The updates are governed by marking fields to be updated in each YAML file. For each field marked, the automation process checks the image policy named, and updates the field value if there is a new image selected by the policy. The marker format is shown in the [image automation guide](https://fluxcd.io/docs/guides/image-update/#configure-image-update-for-custom-resources). With `ImageUpdateAutomation`, the Git commit branch and message can be customized. 
+The Image Automation Controller automates updates to YAML files based on the latest images scanned by the Image Reflector Controller, and commits the changes to a given Git repository. The behavior of the automation process is defined by a Custom Resource named `ImageUpdateAutomation`. The updates are governed by marking fields to be updated in each YAML file. For each field marked, the automation process checks the image policy named, and updates the field value if there is a new image selected by the policy. The marker format is shown in the [image automation guide](https://fluxcd.io/docs/guides/image-update/#configure-image-update-for-custom-resources). With `ImageUpdateAutomation`, the Git commit branch and message can be customized.
 
 **Image Reflector Controller**
 The Image Reflector Controller scans image repositories and reflects the image metadata in Kubernetes resources. Based on a defined `ImageRepository`, the controller follows `ImagePolicy` rules defined for selecting a "latest" image from the repository. This can be used to drive automation, as with the Image Automation Controller; or more generally, to inform other processes of the state of an image repository. With `ImageRepository`, the users can specify how to scan an OCI image repository, such as repository authentication, and TLS certificate to use. The `ImagePolicy` can be defined to use SemVer, alphabetically, or numerically to select the "latest" image. Image tags can also be filtered before they are considered by the policy rule.
@@ -162,7 +162,7 @@ One of the measures generally considered important is how long it takes for deve
 
 ### 6. `GitRepository` Source (Artifacts and Revisions)
 A `GitRepository` source is a Custom Resource Definition that defines a read-only view of the latest observed revision of a Git repository.
-The Git repository itself is usually considered an external entity with respect to the cluster, even if the repo is hosted inside of the cluster. 
+The Git repository itself is usually considered an external entity with respect to the cluster, even if the repo is hosted inside of the cluster.
 
 <<<<<<< HEAD
 When a `GitRepository` resource is created in Flux, that resource is reconciled on an interval.
@@ -187,9 +187,9 @@ Features include:
 
 ### 7. Kustomize Controller (Decryption via SOPS)
 
-The Kustomize Controller has the capability to consume encrypted secrets that are stored in a public or private Git repository using Mozilla's SOPS CLI. 
+The Kustomize Controller has the capability to consume encrypted secrets that are stored in a public or private Git repository using Mozilla's SOPS CLI.
 
-Using SOPS the secrets can be encrypted with OpenPGP, AWS KMS, GCP KMS or Azure Key Vault.  Once encrypted the secret can be safely exported to git and additionally backed up in an external password manager.  In turn, team members can utilize the encrypted secret by cloning the repo. 
+Using SOPS the secrets can be encrypted with OpenPGP, AWS KMS, GCP KMS or Azure Key Vault.  Once encrypted the secret can be safely exported to git and additionally backed up in an external password manager.  In turn, team members can utilize the encrypted secret by cloning the repo.
 
 Additional implementation details can be found [here](Mozilla SOPS: https://fluxcd.io/docs/guides/mozilla-sops/)
 
@@ -235,8 +235,11 @@ Links/resources:
 TODO: this all belongs in one of the Helm guides
 
 ### 12. Notifications Part 1 - Notification Providers
-Notification Providers are used by Flux for outbound notifications to platforms like Slack, Microsoft Teams, Discord and others. The Notification Provider manifest must contain an identifier to connect to the receiver platforms, usually `spec.address`, and an authorization token which should be stored in a secret that we will reference in the notification Provider as `spec.secretRef.name`. 
-They are driven by `Alerts`, another CRD in the Flux Notification Controller's API. `Alerts` create notifications from events, and all of the flux reconcilers generate events while they are undergoing status transitions. The `Alerts` are used to filter the events generated by flux reconcilers using `spec.eventSources` and the `spec.eventSeverity` and then they are forward to a Provider specified on `spec.providerRef`. 
+
+Notification Providers are used by Flux for outbound notifications to platforms like Slack, Microsoft Teams, Discord and others. The Notification Provider manifest must contain an identifier to connect to the receiver platforms, usually `spec.address`, and an authorization token which should be stored in a secret that we will reference in the notification Provider as `spec.secretRef.name`.
+
+They are driven by `Alerts`, another CRD in the Flux Notification Controller's API. `Alerts` create notifications from events, and all of the flux reconcilers generate events while they are undergoing status transitions. The `Alerts` are used to filter the events generated by flux reconcilers using `spec.eventSources` and the `spec.eventSeverity` and then they are forward to a Provider specified on `spec.providerRef`.
+
 To avoid duplicated alerts `Events` are rate limited based on the `InvolvedObject.Name`, `InvolvedObject.Namespace`, `InvolvedObject.Kind`, `Message`, and `Metadata.revision`. The interval of the rate limit is set by default to 5m but it's configurable.
 
 Links/resources:
@@ -245,7 +248,9 @@ Alert: https://fluxcd.io/docs/components/notification/alert/
 Event? https://fluxcd.io/docs/components/notification/event/
 
 ### 13. Notifications Part 2 - Git Commit Status Providers
+
 Git Commit Status Providers work similarly to other notification providers however they target a specific commit with their event. If you [set up git commit status notications](https://fluxcd.io/docs/guides/notifications/#git-commit-status) through an integration for GitHub, GitLab, Bitbucket (or any supported git providers) Flux will display success or failure reported on each commit from any alerts targeting the provider. This feature is restricted to `Kustomization` as an event source since the Git Commit Status Providers require a commit hash present in the metadata.
+
 The provider will continuously receive events as they happen, and multiple events may be received for the same commit hash. The git providers are configured to update the status only if it has changed. This avoids repeatedly spamming the commit status history.
 
 ### 14. Kustomize Controller (Health Checks and Wait)
