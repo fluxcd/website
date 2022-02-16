@@ -161,29 +161,32 @@ One of the measures generally considered important is how long it takes for deve
 
 
 ### 6. `GitRepository` Source (Artifacts and Revisions)
-A `GitRepository` source is a Custom Resource Definition that defines a read-only view of the latest observed revision of a Git repository.
-The Git repository itself is usually considered an external entity with respect to the cluster, even if the repo is hosted inside of the cluster.
 
-<<<<<<< HEAD
-When a `GitRepository` resource is created in Flux, that resource is reconciled on an interval.
+A `GitRepository` is a Custom Resource that saves a read-only view of the latest revision of a Git repository and hosts it as a service in the cluster.
 
-A GitRepository Custom Resource is a read-only view of the latest observed revision of a Source reference. All artifacts managed by Source Controller are stored as `.tar.gz` and for the majority of Flux, it doesn't matter what type of resource is behind the Source – it can be Git, S3, (or perhaps in the future OCI image.) Even Helm Charts that come from Helm Repositories are of course stored as tarballs.
+The [GitRepository Custom Resource](https://fluxcd.io/docs/components/source/gitrepositories/) describes a (usually remote) Git repository, including the URL of the repository host, and the Git reference (such as a branch name or tag) to monitor for changes. Additionally you may find a secret reference with SSH or TLS keys to verify that host, a secret reference containing authentication credentials, a secret reference containing keys for verifying commit signatures, a configurable polling interval, and other meta information related to the source repository.
 
-(The one notable exception to this pattern is Image Update Automation, which does not read data from GitRepository source service, but reads the definition of the GitRepository and writes through its secretRef.)
+The Source Controller treats its connection to each Git repository as read-only, even if the authentication credentials supplied would enable writes to the repository. (Other components, such as the Image Update Automation Controller, may use the Git repository for its access and can write to the repository.)
 
-The Git repository itself is usually an external entity with respect to the cluster (even if it might be hosted inside of the cluster.) The source is authenticated through either an SSH host key or TLS certificate verification to ensure that the host is valid. The source may also optionally be checked for [TODO ???]
-=======
+The Source Controller connects to the repository host, pulls the latest commit for the specified reference, and stores the contents in a bundled and compressed format (currently a gzipped tarball file).
+
+The Source Controller also supports:
+* the [BucketSpec Custom Resource](https://fluxcd.io/docs/components/source/buckets/) for reading the contents of an Amazon S3, Google Cloud Storage and other similar block-storage services;
+* the [HelmRepository Custom Resource](https://fluxcd.io/docs/components/source/helmrepositories/) for reading the index of a Helm chart repository, and
+* the [HelmChart Custom Resource](https://fluxcd.io/docs/components/source/helmcharts/) for reading a Helm chart artifact from a HelmRepository source.
+
+Note that it does not make any difference to the Source Controller whether a source is hosted within the cluster or on an external service or server. The Source Controller will still attempt to verify the host using the SSH or TLS keys supplied in the GitRepository Custom Resource and will store its contents as a read-only tarball.
+
 Features include: 
 * Validate source definitions
 * Authenticate to sources (SSH, user/password, API token)
 * Validate source authenticity (PGP)
 * Detect source changes based on update policies (semver)
-* Fetch resources on-demand and on-a-schedule
+* Fetch resources both on-demand (via webhooks) and on-a-schedule (at a configured polling interval)
 * Package the fetched resources into a well-known format (tar.gz, yaml)
 * Make the artifacts addressable by their source identifier (sha, version, ts)
-* Make the artifacts available in-cluster to interested 3rd parties
+* Make the artifacts available in-cluster to interested 3rd parties (such as the Kustomize Controller and Helm Controller)
 * Notify interested 3rd parties of source changes and availability (status conditions, events, hooks)
->>>>>>> 7dd3c43 (Updated section 6 & 7)
 
 ### 7. Kustomize Controller (Decryption via SOPS)
 
