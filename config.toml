@@ -73,6 +73,9 @@ offlineSearch = false
 #  url = "/legacy"
 #
 
+[params.mermaid]
+enable = true
+
 [params.taxonomy]
 taxonomyCloud = ["blog"]
 
