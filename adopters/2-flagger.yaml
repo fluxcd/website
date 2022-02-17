@@ -45,3 +45,6 @@ adopters:
     - name: Anova
       url: https://www.anova.com/
       logo: logos/anova.png
+    - name: RingCentral
+      url: https://www.ringcentral.com/
+      logo: logos/ringcentral.png
