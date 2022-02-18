@@ -488,61 +488,34 @@ Create the file structure required by bootstrap with:
 ```sh
 mkdir -p clusters/my-cluster/flux-system
 touch clusters/my-cluster/flux-system/gotk-components.yaml \
-    clusters/my-cluster/flux-system/gotk-patches.yaml \
     clusters/my-cluster/flux-system/gotk-sync.yaml \
     clusters/my-cluster/flux-system/kustomization.yaml
 ```
 
-Assuming you want to add custom annotations and labels to the Flux controllers,
-edit `clusters/my-cluster/flux-system/gotk-patches.yaml` and set the metadata for source-controller and kustomize-controller pods:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: source-controller
-  namespace: flux-system
-spec:
-  template:
-    metadata:
-      annotations:
-        custom: annotation
-      labels:
-        custom: label
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kustomize-controller
-  namespace: flux-system
-spec:
-  template:
-    metadata:
-      annotations:
-        custom: annotation
-      labels:
-        custom: label
-```
-
-Edit `clusters/my-cluster/flux-system/kustomization.yaml` and set the resources and patches:
+Add patches to `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
+resources: # manifests generated during bootstrap
   - gotk-components.yaml
   - gotk-sync.yaml
-patchesStrategicMerge:
-  - gotk-patches.yaml
+
+patches: # customize the manifests during bootstrap
+  - target:
+      kind: Deployment
+      labelSelector: app.kubernetes.io/part-of=flux
+    patch: |
+      # strategic merge or JSON patch
 ```
 
 Push the changes to main branch:
 
 ```sh
-git add -A && git commit -m "add flux customisations" && git push
+git add -A && git commit -m "init flux" && git push
 ```
 
-Now run the bootstrap for `clusters/my-cluster`:
+And run the bootstrap for `clusters/my-cluster`:
 
 ```sh
 flux bootstrap git \
@@ -551,10 +524,11 @@ flux bootstrap git \
   --path=clusters/my-cluster
 ```
 
-When the controllers are deployed for the first time on your cluster, they will contain all
-the customisations from `gotk-patches.yaml`.
+To make further amendments, pull the changes locally,
+edit the `kustomization.yam`l file, push the changes upstream
+and rerun bootstrap or let Flux upgrade itself.
 
-You can make changes to the patches after bootstrap and Flux will apply them in-cluster on its own.
+Checkout the [bootstrap cheatsheet](cheatsheets/bootstrap.md) for various examples of how to customize Flux.
 
 ### Multi-tenancy lockdown
 
