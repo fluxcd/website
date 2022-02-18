@@ -730,13 +730,16 @@ patches:
       value: <name-of-identity>
 ```
 
-{{% alert color="info" title="AAD Pod Identity" %}}
-When using managed identity on an AKS cluster, AAD Pod Identity has to be used to give the image-automation-controller
-pod access to ACR. To do this, you have to install aad pod identity on your cluster, create a managed identity that has
-access to the container registry, create an azure identity and azure identity binding that describes the managed identity
-and then label the image-reflector-controller pods with the name of the azure identity.
-Please, take a look at this [guide](https://azure.github.io/aad-pod-identity/docs/) or 
-[this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS pod-managed identities add-on that is in preview.
+{{% alert color="info" title="AKS with Managed Identity" %}}
+When using managed identity on an AKS cluster, [AAD Pod Identity](https://azure.github.io/aad-pod-identity) has to
+be used to give the `image-reflector-controller` pod access to the ACR. To do this, you have to install
+`aad-pod-identity` on your cluster, create a managed identity that has access to the container registry (this can
+also be the Kubelet identity if it has `AcrPull` role assignment on the ACR), create an `AzureIdentity` and
+`AzureIdentityBinding` that describe the managed identity and then label the `image-reflector-controller` pods with
+the name of the `AzureIdentity` as shown in the patch above.
+Please take a look at [this guide](https://azure.github.io/aad-pod-identity/docs/)
+or [this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS
+pod-managed identities add-on that is in preview.
 {{% /alert %}}
 
 [v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
