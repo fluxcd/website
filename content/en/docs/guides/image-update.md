@@ -736,10 +736,10 @@ be used to give the `image-reflector-controller` pod access to the ACR. To do th
 `aad-pod-identity` on your cluster, create a managed identity that has access to the container registry (this can
 also be the Kubelet identity if it has `AcrPull` role assignment on the ACR), create an `AzureIdentity` and
 `AzureIdentityBinding` that describe the managed identity and then label the `image-reflector-controller` pods with
-the name of the `AzureIdentity` as shown in the patch above. Please take a look at this
-[guide](https://azure.github.io/aad-pod-identity/docs/) or
-[this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS pod-managed
-identities add-on that is in preview.
+the name of the `AzureIdentity` as shown in the patch above.
+Please take a look at [this guide](https://azure.github.io/aad-pod-identity/docs/)
+or [this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS
+pod-managed identities add-on that is in preview.
 {{% /alert %}}
 
 [v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
