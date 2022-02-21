@@ -212,7 +212,28 @@ images:
 
 ### OpenShift compatibility
 
-Delete the pod security context and the seccomp profile:
+Allow Flux controllers to run as non-root:
+
+```shell
+#!/usr/bin/env bash
+set -e
+
+FLUX_NAMESPACE="flux-system"
+FLUX_CONTROLLERS=(
+"source-controller"
+"kustomize-controller"
+"helm-controller"
+"notification-controller"
+"image-reflector-controller"
+"image-automation-controller"
+)
+
+for i in ${!FLUX_CONTROLLERS[@]}; do
+  oc adm policy add-scc-to-user nonroot system:serviceaccount:${FLUX_NAMESPACE}:${FLUX_CONTROLLERS[$i]}
+done
+```
+
+Set the user to nobody and delete the seccomp profile from the security context:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -229,11 +250,10 @@ patches:
       spec:
         template:
           spec:
-            securityContext:
-              $patch: delete
             containers:
               - name: manager
                 securityContext:
+                  runAsUser: 65534
                   seccompProfile:
                     $patch: delete
     target:
