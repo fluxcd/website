@@ -44,18 +44,44 @@ oc login -u kubeadmin -p <your password> https://api.crc.testing:6443
 
 ### Security Context Constraints
 
-Before installing Flux, you need to set the **anyuid** SCC for Kustomization and Helm controllers,
-and the **privileged** SCC for the other 4 controllers in the `flux-system` namespace, like this:
+Before installing Flux with CLI, you need to set the **nonroot** SCC for all controllers in the `flux-system` namespace, like this:
 
 ```sh
 NS="flux-system"
-oc adm policy add-scc-to-user anyuid system:serviceaccount:$NS:kustomize-controller
-oc adm policy add-scc-to-user anyuid system:serviceaccount:$NS:helm-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:kustomize-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:helm-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:source-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:notification-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-automation-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-reflector-controller
+```
 
-oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:source-controller
-oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:notification-controller
-oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:image-automation-controller
-oc adm policy add-scc-to-user privileged system:serviceaccount:$NS:image-reflector-controller
+Also, you have to patch your Kustomization to remove the SecComp Profile and enforce runUserAs to the same UID provided by the images to prevent OpenShift to alter the user expected by our controllers.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: all
+      spec:
+        template:
+          spec:
+            containers:
+              - name: manager
+                securityContext:
+                  runAsUser: 65534
+                  seccompProfile:
+                    $patch: delete
+    target:
+      kind: Deployment
+      labelSelector: app.kubernetes.io/part-of=flux
 ```
 
 ## Flux Installation with CLI
