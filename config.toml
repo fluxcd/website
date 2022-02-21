@@ -227,8 +227,8 @@ url = "/adopters"
 weight = 80
 
 [[menus.main]]
-name = "Integrations"
-url = "/integrations"
+name = "Ecosystem"
+url = "/ecosystem"
 weight = 90
 
 [[menus.main]]

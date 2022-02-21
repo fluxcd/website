@@ -1,17 +1,17 @@
 ---
-title: Flux Integrations
+title: Flux Ecosystem
 description: "Projects that extend and integrate with Flux."
 type: page
 ---
 
-## Flux Extensions and Integrations
+## Flux Ecosystem
 
 These tools and integrations with Flux are available today.
 
 To join this list, please
 
 - if you are an organisation: add yourself to [the adopters page](/adopters)
-- file a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/integrations.md)
+- file a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem.md)
 - (optional) find us on Slack and maybe let's do joint blog posts, etc?
 
 We are happy and proud to have you all as part of our community! :sparkling_heart:
