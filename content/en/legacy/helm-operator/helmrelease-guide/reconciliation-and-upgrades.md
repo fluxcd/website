@@ -23,7 +23,7 @@ instruct to return early, the Helm installation or upgrade is performed.
 ## What triggers an upgrade
 
 To prevent spurious upgrades from happening the Helm Operator performs several
-safe guard checks before performing the actual upgrade. Bellow you will find an
+safe guard checks before performing the actual upgrade. Below you will find an
 overview of the checks it performs, and what effect they have.
 
 If any of the following equals to `false`, the sync process will exit with an
