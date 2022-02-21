@@ -42,7 +42,10 @@ eval $(crc oc-env)
 oc login -u kubeadmin -p <your password> https://api.crc.testing:6443
 ```
 
-### Security Context Constraints
+## Flux Installation with CLI
+
+The best way to install Flux on OpenShift currently is to use the `flux bootstrap` command.
+This command works with GitHub, GitLab as well as generic Git provider.
 
 Before installing Flux with CLI, you need to set the **nonroot** SCC for all controllers in the `flux-system` namespace, like this:
 
@@ -56,7 +59,20 @@ oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-automation
 oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-reflector-controller
 ```
 
-Also, you have to patch your Kustomization to remove the SecComp Profile and enforce runUserAs to the same UID provided by the images to prevent OpenShift to alter the user expected by our controllers.
+Also, you have to patch your Kustomization to remove the SecComp Profile and enforce `runUserAs` to the same UID provided by the images to prevent OpenShift to alter the user expected by our controllers, before bootstrapping by.
+
+1. You’ll need to create a Git repository and clone it locally.
+
+2. Create the file structure required by bootstrap using the following command:
+
+```sh
+mkdir -p clusters/my-cluster/flux-system
+touch clusters/my-cluster/flux-system/gotk-components.yaml \
+    clusters/my-cluster/flux-system/gotk-sync.yaml \
+    clusters/my-cluster/flux-system/kustomization.yaml
+```
+
+3. Add the following YAML snippet and its patches section to kustomization.yaml
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -84,20 +100,20 @@ patches:
       labelSelector: app.kubernetes.io/part-of=flux
 ```
 
-## Flux Installation with CLI
+4. Commit and push the changes to main branch:
 
-The best way to install Flux on OpenShift currently is to use the `flux bootstrap` command.
-This command works with GitHub, GitLab as well as generic Git provider.
-Please refer to the command's documentations [here](../installation/_index.md#bootstrap) in details.
+```sh
+git add -A && git commit -m "init flux for openshift" && git push
+```
 
-Assuming that you are a GitHub user, you could start by preparing your GitHub credentials.
+Then you can continue with the Flux bootstrap process. Assuming that you are a GitHub user, you could start by preparing your GitHub credentials.
 
 ```sh
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
 
-Then simply bootstrap Flux.
+And run the Flux bootstrap command.
 
 ```sh
 flux bootstrap github \
@@ -108,7 +124,7 @@ flux bootstrap github \
   --personal
 ```
 
-and enjoy your GitOps on OpenShift.
+Please refer to the command's documentations [here](../installation/_index.md#bootstrap) in details.
 
 ## Flux Upgrade
 
@@ -142,3 +158,11 @@ flux bootstrap github \
 
 Please see also the [upgrade](../installation/_index.md#upgrade)
 and the [bootstrap upgrade](../installation/_index.md#bootstrap-upgrade) documentations for details.
+
+## Flux Installation via OperatorHub
+
+Flux is available on OperatorHub and Red Hat OpenShift Community Operators, which means that you can install Flux directly from the Red Hat OperatorHub user interface.
+
+On the OpenShift UI, you go to "Operators -> OperatorHub" menu, search for "Flux", click the Flux Operator, then click the "Install" button.
+
+Here's the link to [Flux on OperatorHub](https://operatorhub.io/operator/flux).
