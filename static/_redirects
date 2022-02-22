@@ -10,3 +10,4 @@
 /legacy/helm-operator/guides/upgrade-to-beta  /legacy/helm-operator/how-to/upgrade-to-beta  301!
 /docs/roadmap                                 /roadmap                                      301!
 /integrations                                 /ecosystem                                    301!
+/docs/contributing/docs/some-background       https://github.com/fluxcd/website#readme      301!
