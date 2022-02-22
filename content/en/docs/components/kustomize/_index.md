@@ -10,7 +10,7 @@ The kustomize-controller is a Kubernetes operator,
 specialized in running continuous delivery pipelines for infrastructure and
 workloads defined with Kubernetes manifests and assembled with Kustomize.
 
-![](/img/kustomize-controller.png)
+![Kustomize Controller Diagram](/img/kustomize-controller.png)
 
 Features:
 

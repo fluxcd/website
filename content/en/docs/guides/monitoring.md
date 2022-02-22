@@ -71,6 +71,7 @@ kubectl -n monitoring port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
 To log in to the Grafana dashboard, you can use the default credentials from the [kube-prometheus-stack chart](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml#L620):
+
 ```yaml
 username: admin
 password: prom-operator
@@ -80,26 +81,24 @@ password: prom-operator
 
 Control plane dashboard [http://localhost:3000/d/flux-control-plane](http://localhost:3000/d/flux-control-plane/flux-control-plane):
 
-![](/img/cp-dashboard-p1.png)
+![Control Plane Dashboard - Part 1](/img/cp-dashboard-p1.png)
 
-![](/img/cp-dashboard-p2.png)
+![Control Plane Dashboard - Part 2](/img/cp-dashboard-p2.png)
 
 Cluster reconciliation dashboard [http://localhost:3000/d/flux-cluster](http://localhost:3000/d/flux-cluster/flux-cluster-stats):
 
-![](/img/cluster-dashboard.png)
+![Cluster reconciliation dashboard](/img/cluster-dashboard.png)
 
 If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
 [GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
 
 ## Annotations
 
-![](/img/grafana-annotation.png)
+![Annotations Dashboard](/img/grafana-annotation.png)
 
 If you wish to overlap [flux notifications](https://fluxcd.io/docs/components/notification/provider/#grafana) on dashboards you can do it by enabling the grafana annotations alert provider, the desired alerts and the annotation on the dashboard like shown below:
 
-![](/img/grafana-annotations-config.png)
-
-
+![Annotations configuration](/img/grafana-annotations-config.png)
 
 ## Metrics
 

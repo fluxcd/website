@@ -13,7 +13,7 @@ repository when new container images are available.
 - The image-automation-controller updates YAML files based on the latest images scanned, and commits
   the changes to a given Git repository.
 
-![](/img/image-update-automation.png)
+![Image Automation Controller Diagrams](/img/image-update-automation.png)
 
 Links:
 
