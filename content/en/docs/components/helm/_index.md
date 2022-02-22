@@ -8,7 +8,7 @@ weight: 3
 The Helm Controller is a Kubernetes operator, allowing one to declaratively manage Helm chart
 releases with Kubernetes manifests.
 
-![](/img/helm-controller.png)
+![Helm Controller Diagram](/img/helm-controller.png)
 
 The desired state of a Helm release is described through a Kubernetes Custom Resource named `HelmRelease`.
 Based on the creation, mutation or removal of a `HelmRelease` resource in the cluster,

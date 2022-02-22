@@ -10,7 +10,7 @@ resources:
   title: "Image #:counter"
 ---
 
-![](featured-image.jpg)
+![GitOps One-Stop Shop Event](featured-image.jpg)
 
 Flux is going to be center stage at the [GitOps One Stop Shop Event](https://gitopsdays.com) on Oct 20th, 2021.
 
