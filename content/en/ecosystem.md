@@ -23,6 +23,8 @@ These projects extend Flux with new capabilities.
 | Source                                                                        | Description |
 | ----------------------------------------------------------------------------- | ----------- |
 | [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller) | A Flux controller for managing manifests declared in jsonnet. |
+| [weaveworks/tf-controller](https://github.com/weaveworks/tf-controller)       | A Flux controller for managing Terraform resources. |
+
 
 ## Integrations
 
