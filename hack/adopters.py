@@ -78,7 +78,7 @@ def write_adopter_logos_for_landing_page(data):
     for entry in data:
         if entry['logo'] not in html:
             html += """
-        <img src="{logo}" alt="{caption}">""".format(
+        <img src="{logo}" alt="{caption}" title="{caption}">""".format(
             logo=entry['logo'],
             caption=entry['name'])
 
