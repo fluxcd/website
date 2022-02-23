@@ -219,12 +219,10 @@ spec:
       range: 5.0.x
 ```
 
-{{% alert color="info" title="Semver Ranges" %}}
 A semver range that includes stable releases can be defined with
 `1.0.x` (patch versions only) or `>=1.0.0 <2.0.0` (minor and patch versions).
 If you want to include pre-release e.g. `1.0.0-rc.1`,
 you can define a range like: `^1.x-0` or `>1.0.0-rc <2.0.0-rc`.
-{{% /alert %}}
 
 {{% alert color="info" title="Other policy examples" %}}
 For policies that make use of CalVer, build IDs or alphabetical sorting,
@@ -630,23 +628,23 @@ flux create image policy podinfo \
 Two methods are available for authenticating container registers as
 `ImageRepository` resources in Flux:
 
-* Experimental authentication mechanisms (where the controller retrieves the credentials itself 
+* Automated authentication mechanisms (where the controller retrieves the credentials itself 
 and is only available for the three major cloud providers), or
 * a [`CronJob`](cron-job-image-auth.md) which does not rely on native platform support in Flux,
   (instead storing credentials as Kubernetes secrets which are periodically refreshed.)
 
 Native authentication mechanisms have been implemented in Flux for the three major
-cloud providers, but it needs to enabled with a flag. Please see individual sections 
+cloud providers, but it needs to enabled with a flag. Please see individual sections
 on how to do this.
 
 {{% alert color="info" title="Workarounds" color="warning" %}}
-Please note that the native authentication feature is still experimental and using 
+Please note that the native authentication feature is still experimental and using
 cron jobs to refresh credentials is still the recommended method especially for multi-tenancy
-where tenants on the same cluster don't trust each other. Check [cron job documentation](cron-job-image-auth.md) for  
+where tenants on the same cluster don't trust each other. Check [cron job documentation](cron-job-image-auth.md) for
 common examples for the most popular cloud provider docker registries.
 {{% /alert %}}
 
-#### Using Native AWS ECR Auto-Login
+### Using Native AWS ECR Auto-Login
 
 There is native support for the AWS Elastic Container Registry available since 
 `image-reflector-controller` [v0.13.0](https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0130)
@@ -669,7 +667,7 @@ patches:
       value: --aws-autologin-for-ecr
 ```
 
-#### Using Native GCP GCR Auto-Login
+### Using Native GCP GCR Auto-Login
 
 There is native support for the GCP Google Container Registry available since `image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
 which was released with Flux release v0.26.0. This feature is enabled by setting the `--gcp-autologin-for-gcr`
@@ -704,7 +702,7 @@ patchesStrategicMerge:
 Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) for more
 information about setting up GKE Workload Identity.
 
-#### Using Native Azure ACR Auto-Login
+### Using Native Azure ACR Auto-Login
 
 There is native support for the Azure Container Registry] available since 
 `image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]

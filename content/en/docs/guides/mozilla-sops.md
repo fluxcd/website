@@ -239,11 +239,19 @@ Bind the IAM role to the `kustomize-controller` service account:
 
 ```sh
 eksctl create iamserviceaccount \
---override-existing-serviceaccounts \
+--role-only \
 --name=kustomize-controller \
 --namespace=flux-system \
 --attach-policy-arn=<policyARN> \
 --cluster=<clusterName>
+```
+
+Annotate the kustomize-controller service account with the role ARN:
+
+```sh
+kubectl -n flux-system annotate serviceaccount kustomize-controller \
+--field-manager=flux-client-side-apply \
+eks.amazonaws.com/role-arn='arn:aws:iam::<ACCOUNT_ID>:role/<KMS-ROLE-NAME>'
 ```
 
 Restart kustomize-controller for the binding to take effect:
@@ -251,6 +259,11 @@ Restart kustomize-controller for the binding to take effect:
 ```sh
 kubectl -n flux-system rollout restart deployment/kustomize-controller
 ```
+
+{{% alert color="info" title="Bootstrap" %}}
+Note that when using `flux bootstrap` you can
+[set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
+{{% /alert %}}
 
 #### Azure
 
@@ -354,9 +367,15 @@ Please ensure that the GKE cluster has Workload Identity enabled.
 
 ```sh
 kubectl annotate serviceaccount kustomize-controller \
-  --namespace flux-system \
-  iam.gke.io/gcp-service-account=<name-of-serviceaccount>@project-id.iam.gserviceaccount.com
+--field-manager=flux-client-side-apply \
+--namespace flux-system \
+iam.gke.io/gcp-service-account=<name-of-serviceaccount>@project-id.iam.gserviceaccount.com
 ```
+
+{{% alert color="info" title="Bootstrap" %}}
+Note that when using `flux bootstrap` you can
+[set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
+{{% /alert %}}
 
 ## GitOps workflow
 
