@@ -742,4 +742,9 @@ or [this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identi
 pod-managed identities add-on that is in preview.
 {{% /alert %}}
 
+{{% alert title="Migrating from cron-based registry credentials sync" color="warning" %}}
+If you are migrating from the [Generating Tokens for Managed Identities [short-lived]](https://fluxcd.io/docs/guides/cron-job-image-auth/#generating-tokens-for-managed-identities-short-lived) approach, `spec.secretRef` must be removed from your `ImageRepository`!
+Failing to do so will, eventually, cause the `image-reflector-controller` to use stale credentials when it tries to get images from the ACR.
+{{% /alert %}}
+
 [v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
