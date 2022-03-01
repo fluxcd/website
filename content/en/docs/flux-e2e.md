@@ -1,6 +1,6 @@
 ---
 title: "Flux from End-to-End"
-linkTitle: "Flux from End-to-End"
+linkTitle: "Flux End-to-End"
 description: "A narrative of the life of a commit as it relates to Flux components."
 weight: 75
 ---
