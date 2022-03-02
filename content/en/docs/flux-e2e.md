@@ -336,7 +336,7 @@ Features include:
 * Make the artifacts available in-cluster to interested 3rd parties (such as the Kustomize Controller and Helm Controller)
 * Notify interested 3rd parties of source changes and availability (status conditions, events, hooks)
 
-##### Diagram: Cluster sync from Git
+#### Diagram: Cluster sync from Git
 
 ```mermaid
 sequenceDiagram
@@ -384,7 +384,7 @@ The decrypted manifests are kept in memory and passed on to the next stage.
 The Kustomize Controller runs the go library equivalent of a `kustomize build` against the `Kustomization.spec.path` to recursively generate and render (or
 inflate) any Kustomize overlays. (All manifests are passed through Kustomize, even those that don't include a `kustomization.yaml`.)
 
-Before it applies YAML or JSON resurce declarations to the Kubernetes API for its cluster, the Kustomize Controller
+Before it applies YAML or JSON resource declarations to the Kubernetes API for its cluster, the Kustomize Controller
 reads the artifact files from its source path and builds them using the Kustomize Go library's `build` call. This call
 returns any custom resource definitions (CRDs), namespaces, or other cluster-wide resources it renders before
 subordinate custom resources or namespace-scoped resources so that they will be available in the API for the resources
@@ -447,7 +447,7 @@ In the analogy, the fruits are the charts and the GitRepository is the bag – 
 
 Flux provides tools that you have at your disposal for making sources narrowly scoped, here's one example:
 
-```
+```yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
@@ -484,7 +484,7 @@ A `GitRepository` for every chart is a lot of boilerplate, but this is currently
 
 It is recommended that users who hit scaling issues publish the chart in a `HelmRepository` for a better overall experience.
 
-##### Diagram: Helm release upgrade from Git
+#### Diagram: Helm release upgrade from Git
 
 ```mermaid
 sequenceDiagram
@@ -530,7 +530,7 @@ To avoid duplicated alerts [`Events`][Event API] are rate limited based on the `
 ### Git Commit Status Provider Notifications
 
 Git Commit Status Providers work similarly to other notification providers however they target a specific commit with their event.
-If you [set up Git commit status notications][Setup Git Commit Status Notications] through an integration for GitHub, GitLab,
+If you [set up Git commit status notifications][Setup Git Commit Status Notifications] through an integration for GitHub, GitLab,
 Bitbucket (or any supported Git providers) Flux will display success or failure reported on each commit from any alerts targeting
 the provider. This feature is restricted to `Kustomization` as an event source since the Git Commit Status Providers require a
 commit hash to be present in the metadata.
