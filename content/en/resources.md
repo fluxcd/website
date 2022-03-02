@@ -14,6 +14,27 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/cR2eCMbiZg4?t=298"
+thumbnail="cR2eCMbiZg4"
+title="GitOps with GitHub Actions & Flux - Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 24-Feb-2022)
+
+{{% blocks/resource
+url="https://youtu.be/0KmqEp4VxSQ?t=292"
+thumbnail="0KmqEp4VxSQ"
+title="GitOps for Helm Users - Scott Rigby" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 18-Feb-2022)
+
+{{% blocks/resource
+url="https://youtu.be/U2n3oYuIIfc?t=289"
+thumbnail="U2n3oYuIIfc"
+title="GitOps with Amazon EKS Anywhere + Flux - Dan Budris" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-Feb-2022)
+
+{{% blocks/resource
 url="https://youtu.be/6_dlU9WYBeY?t=439"
 thumbnail="6_dlU9WYBeY"
 title="Get Started with Flux - Priyanka Ravi" %}}
