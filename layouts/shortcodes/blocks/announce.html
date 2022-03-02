@@ -2,8 +2,9 @@
 {{ $blockID := printf "td-cover-block-%d" .Ordinal }}
 {{ $emoji := .Get "emoji" | default "" }}
 {{ $url := .Get "url" | default "/" }}
+{{ $color := .Get "color" | default "yellow" }}
 
-<section id="{{ $blockID }}" class="td-cncf-block row -bg-yellow">
+<section id="{{ $blockID }}" class="td-cncf-block row -bg-{{ $color }}">
   <div class="container" style="padding: 20px;">
         <h1 class="display-4">
             {{ $emoji }}
