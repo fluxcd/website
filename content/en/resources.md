@@ -14,6 +14,13 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/V1AOVwzmIKE?t=287"
+thumbnail="V1AOVwzmIKE"
+title="Managing Thousand of Clusters and Their Workloads - Max Jonas Werner" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 2-Mar-2022)
+
+{{% blocks/resource
 url="https://youtu.be/cR2eCMbiZg4?t=298"
 thumbnail="cR2eCMbiZg4"
 title="GitOps with GitHub Actions & Flux - Kingdon Barrett" %}}
