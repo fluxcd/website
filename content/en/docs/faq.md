@@ -191,7 +191,7 @@ kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy . \
 To validate changes before committing and/or merging, [a validation
 utility script is available](https://github.com/fluxcd/flux2-kustomize-helm-example/blob/main/scripts/validate.sh),
 it runs `kustomize` locally or in CI with the same set of flags as
-the controller and validates the output using `kubeval`.
+the controller and validates the output using `kubeconform`.
 {{% /alert %}}
 
 ### How do I resolve `webhook does not support dry run` errors?
