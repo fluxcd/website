@@ -48,4 +48,5 @@ The functionality of Flux can be easily extended with ancillary utility tools. H
 | Source                                                                | Description | Documentation |
 | --------------------------------------------------------------------- | ----------- | ------------- |
 | [jgz/s3-auth-proxy](https://github.com/jgz/s3-auth-proxy)             | Creates a simple basic-auth proxy for an s3 bucket. | [README](https://github.com/jgz/s3-auth-proxy#readme) |
+| [renovatebot/renovate](renovatebot/renovate)                          | Universal dependency update tool that fits into your workflows. | [Automated Dependency Updates for Flux](https://docs.renovatebot.com/modules/manager/flux/) |
 | [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook) | A [pre-commit](http://pre-commit.com) that validates values of HelmRelease using helm lint | [README](https://github.com/tarioch/flux-check-hook#readme) |
