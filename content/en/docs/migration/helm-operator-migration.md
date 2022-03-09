@@ -8,7 +8,7 @@ card:
   weight: 20
 ---
 
-This guide will learn you everything you need to know to be able to migrate from the [Helm Operator](https://github.com/fluxcd/helm-operator) to the [Helm Controller](https://github.com/fluxcd/helm-controller).
+This guide will teach you everything you need to know to be able to migrate from the [Helm Operator](https://github.com/fluxcd/helm-operator) to the [Helm Controller](https://github.com/fluxcd/helm-controller).
 
 ## Overview of changes
 
