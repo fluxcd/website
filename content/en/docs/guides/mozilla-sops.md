@@ -186,14 +186,64 @@ Note that you shouldn't apply the encrypted secrets onto the cluster with kubect
 
 [age](https://github.com/FiloSottile/age) is a simple, modern alternative to OpenPGP. It's recommended to use age over OpenPGP, if possible.
 
-Encrypting with age follows the same workflow than PGP. See the [Kustomization-controller API doc](/docs/components/kustomize/kustomization/#age) for more details.
+Encrypting with age follows the same workflow than PGP.
 
+Generate an age key with [age](https://age-encryption.org) using `age-keygen`:
+
+```console
+$ age-keygen -o age.agekey
+Public key: age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg
+```
+
+Create a secret with the age private key,
+the key name must end with `.agekey` to be detected as an age key:
+
+```sh
+cat age.agekey |
+kubectl create secret generic sops-age \
+--namespace=flux-system \
+--from-file=age.agekey=/dev/stdin
+```
+
+Use `sops` and the age public key to encrypt a Kubernetes secret:
+
+```sh
+sops --age=age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg \
+--encrypt --encrypted-regex '^(data|stringData)$' --in-place basic-auth.yaml
+```
+
+And finally set the decryption secret in the Flux Kustomization to `sops-age`.
 
 ## Encrypting secrets using HashiCorp Vault
 
 [HashiCorp Vault](https://www.vaultproject.io/docs/what-is-vault) is an identity-based secrets and encryption management system.
 
-Encrypting with HashiCorp Vault follows the same workflow as PGP & Age. See the [kustomization-controller API doc](/docs/components/kustomize/kustomization/#hashicorp-vault) for more details.
+Encrypting with HashiCorp Vault follows the same workflow as PGP & Age.
+
+Export the `VAULT_ADDR`  and `VAULT_TOKEN` environment variables to your shell,
+then use `sops` to encrypt a Kubernetes Secret (see [HashiCorp Vault](https://www.vaultproject.io/docs/secrets/transit)
+for more details on enabling the transit backend and [sops](https://github.com/mozilla/sops#encrypting-using-hashicorp-vault)).
+
+Then use `sops` to encrypt a Kubernetes Secret:
+
+```sh
+export VAULT_ADDR=https://vault.example.com:8200
+export VAULT_TOKEN=my-token
+sops --hc-vault-transit $VAULT_ADDR/v1/sops/keys/my-encryption-key --encrypt \
+--encrypted-regex '^(data|stringData)$' --in-place basic-auth.yaml
+```
+
+Create a secret the vault token,
+the key name must be `sops.vault-token` to be detected as a vault token:
+
+```sh
+echo $VAULT_TOKEN |
+kubectl create secret generic sops-hcvault \
+--namespace=flux-system \
+--from-file=sops.vault-token=/dev/stdin
+```
+
+And finally set the decryption secret in the Flux Kustomization to `sops-hcvault`.
 
 ## Encrypting secrets using various cloud providers
 
@@ -261,8 +311,7 @@ kubectl -n flux-system rollout restart deployment/kustomize-controller
 ```
 
 {{% alert color="info" title="Bootstrap" %}}
-Note that when using `flux bootstrap` you can
-[set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
+Note that when using `flux bootstrap` you can [set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
 {{% /alert %}}
 
 #### Azure
@@ -373,8 +422,7 @@ iam.gke.io/gcp-service-account=<name-of-serviceaccount>@project-id.iam.gservicea
 ```
 
 {{% alert color="info" title="Bootstrap" %}}
-Note that when using `flux bootstrap` you can
-[set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
+Note that when using `flux bootstrap` you can [set the annotation](../cheatsheets/bootstrap.md#iam-roles-for-service-accounts) to take effect at install time.
 {{% /alert %}}
 
 ## GitOps workflow
