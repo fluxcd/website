@@ -110,8 +110,8 @@ new service and the other 90% requests go to the stable service. You can
 read more about traffic splitting in Gateway API
 [here](https://gateway-api.sigs.k8s.io/v1alpha2/guides/traffic-splitting/).
 
-Flagger creates a `HTTPRoute` with the appropriate header matches, path
-matches, etc and attaches the primary and canary service to the
+Flagger fully automates the creation of `HTTPRoutes` with the appropriate header matches,
+path matches, etc and attaches the primary and canary service to the
 `HTTPRoute`. During the canary analysis, the weights related to both the
 services are adjusted accordingly.
 
