@@ -144,3 +144,6 @@ adopters:
     - name: EmploymentHero
       url: https://employmenthero.com/
       logo: logos/employmenthero.svg
+    - name: Giant Swarm
+      url: https://giantswarm.io/
+      logo: logos/giantswarm.svg
