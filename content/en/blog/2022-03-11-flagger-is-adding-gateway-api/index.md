@@ -15,6 +15,21 @@ part of the [1.19.0 release](https://github.com/fluxcd/flagger/releases/tag/v1.1
 Read here about why this is a significant development in Flagger and how
 you can make use of it.
 
+## What is Flagger?
+
+Flagger is a progressive delivery tool that automates the release process for applications running on Kubernetes.
+It reduces the risk of introducing a new software version in production by gradually shifting traffic to the
+new version while measuring metrics and running conformance tests.
+
+![Flagger using Gateway API](featured-flagger-gatewayapi-canary.png)
+
+[Flagger](https://github.com/fluxcd/flagger) was designed to give developers confidence in automating production
+releases using delivery techniques such as:
+
+- Canary release (progressive traffic shifting)
+- A/B Testing (HTTP headers and cookies traffic routing)
+- Blue/Green (traffic switching and mirroring)
+
 ## What is the Gateway API?
 
 The [announcement blog
@@ -100,7 +115,7 @@ matches, etc and attaches the primary and canary service to the
 `HTTPRoute`. During the canary analysis, the weights related to both the
 services are adjusted accordingly.
 
-![Flagger using Gateway API](featured-flagger-gatewayapi-canary.png)
+![Flagger canary](flagger-canary-steps.png)
 
 If you want to get started right away, have a look at [our
 tutorial](https://docs.flagger.app/tutorials/gatewayapi-progressive-delivery),
