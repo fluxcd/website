@@ -21,6 +21,12 @@ title="Managing Thousand of Clusters and Their Workloads - Max Jonas Werner" %}}
 [//]: # (Date of video: 2-Mar-2022)
 
 {{% blocks/resource
+youtube="NwAgATWoEcM"
+title="CNCF On-demand Webinar: Getting Started with GitOps & Flux - Priyanka Ravi" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 24-Feb-2022)
+
+{{% blocks/resource
 url="https://youtu.be/cR2eCMbiZg4?t=298"
 thumbnail="cR2eCMbiZg4"
 title="GitOps with GitHub Actions & Flux - Kingdon Barrett" %}}
