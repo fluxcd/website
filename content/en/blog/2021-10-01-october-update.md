@@ -4,7 +4,7 @@ date: 2021-10-01 8:30:00+00:00
 title: October 2021 update
 description: Server-side reconciliation is coming, better transport and crypto support for libgit2, Flagger 1.14, KubeCon updates, GitOps One-Stop Shop Event to show-case Flux integrated being used in big GitOps offerings, community news!
 url: /blog/2021/10/october-2021-update/
-tags: [update]
+tags: [monthly-update]
 ---
 
 As the Flux family of projects and its communities are growing, we
