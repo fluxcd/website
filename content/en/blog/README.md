@@ -25,6 +25,7 @@ Often we draft posts in Google Docs. To transform them into Markdown, you might 
    - **Date:** Make sure `date` is not in the future, or it won't show up. :-D
    - **Optional:** Fields like `aliases` (if you mistyped a URL), `tags`, `resources` are optional.
    - **Tags:** Common `tags` we use are `monthly-update` and `security`.
+   - **Aging well:** Posts are automatically marked as 'outdated' and receive a warning at the top advising the reader to check if information hasn't changed in the meantime. If your post is special and will stay accurate over a long time, use `evergreen: true` in the Front Matter.
 
 ### Adding images
 
