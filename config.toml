@@ -76,10 +76,6 @@ offlineSearch = false
 [params.mermaid]
 enable = true
 
-[params.taxonomy]
-taxonomyCloud = ["blog"]
-
-
 [params.logos]
 navbar = "flux-horizontal-white.png"
 hero   = "flux-horizontal-color.png"

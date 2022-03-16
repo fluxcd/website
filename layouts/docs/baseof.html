@@ -17,7 +17,14 @@
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             {{ partial "page-meta-links.html" . }}
             {{ partial "toc.html" . }}
+<!--
+    Disabling because of https://github.com/google/docsy/issues/38
+
+    Essentially there is just one set of tags across /docs and /blog
+    So for now we disable showing the tag cloud, etc in our documentation.
+
             {{ partial "taxonomy_terms_clouds.html" . }}
+-->
           </aside>
           {{ end }}
           {{ if not .Params.hugeTable }}
