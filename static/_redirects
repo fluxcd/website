@@ -13,6 +13,9 @@
 /integrations                                   /ecosystem                                          301!
 /docs/contributing/docs/some-background         https://github.com/fluxcd/website#readme            301!
 /guides/repository-structure                    /installation/repository-structure                  301!
+/docs/use-cases/aws-codecommit                  /docs/installation/platforms/aws-codecommit         301!
+/docs/use-cases/azure                           /docs/installation/platforms/azure                  301!
+/docs/use-cases/openshift                       /docs/installation/platforms/openshift              301!
 
 
 /flagger/how-it-works                           /flagger/usage/how-it-works                         301!

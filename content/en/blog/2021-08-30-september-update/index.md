@@ -126,7 +126,7 @@ create a new GitRepository object as a source for other objects.
 
 ![Flux Operator](flux-operator-screenshot2.png)
 
-Please consult the [Flux OpenShift documentation](/docs/use-cases/openshift/)
+Please consult the [Flux OpenShift documentation](/docs/installation/platforms/openshift/)
 for the installation steps.
 
 If you have any questions or feedback, please reach out to Chanwit or

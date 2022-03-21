@@ -420,7 +420,7 @@ So since the last Flux update blog we got a lot done:
 - Also [instructions for auto-login
   (ACR/ECR/GCR)](/docs/guides/cron-job-image-auth/)
 - We explain [how to bootstrap Flux on AWS EKS with CodeCommit Git
-  repositories](/docs/use-cases/aws-codecommit/)
+  repositories](/docs/installation/platforms/aws-codecommit/)
 - Docs updates for Flux v0.26.0, including a \"Multi-tenancy
   lockdown\" section in the install docs
 - References in the Helm Operator (legacy) section were updated to
