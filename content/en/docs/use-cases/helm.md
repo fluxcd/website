@@ -66,7 +66,7 @@ Let's check out what the Custom Resource files look like:
 
 ```yaml
 # /flux/boot/traefik/helmrepo.yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: traefik

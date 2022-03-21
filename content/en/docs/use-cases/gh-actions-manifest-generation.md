@@ -228,7 +228,7 @@ spec:
       - kind: ConfigMap
         name: any-old-app-version
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: any-old-app-prod

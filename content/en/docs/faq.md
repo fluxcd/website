@@ -35,7 +35,7 @@ Define a source of type `gitrepository.source.toolkit.fluxcd.io`
 that pulls changes from the app repository every 5 minutes inside the cluster:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: my-app
@@ -110,7 +110,7 @@ Assuming an app repository with the following structure:
 Create a `GitRepository` definition and exclude all the files that are not Kubernetes manifests:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: my-app
@@ -327,7 +327,7 @@ Create a Helm release with `kubectl`:
 ```sh
 cat << EOF | kubectl apply -f -
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: bitnami
@@ -369,7 +369,7 @@ in [`helm/helm#8281`](https://github.com/helm/helm/issues/8281).
 
 If you are running into this, confirm first that your chart has all the required excludes in
 their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
-[`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta1.GitRepository) files.
+[`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepository) files.
 
 ## Raspberry Pi questions
 

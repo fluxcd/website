@@ -41,7 +41,7 @@ source-controller will fetch the Helm repository index for this
 resource on an interval and expose it as an artifact:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -77,7 +77,7 @@ later on in the guide).
 An example `GitRepository`:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: podinfo
@@ -135,7 +135,7 @@ in a S3 bucket. Please refer to [Chartmuseums how to run documentation](https://
 for details about how to use other storage backends.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: chartmuseum
@@ -181,7 +181,7 @@ After Chartmuseum is up and running it should be possible to use the accompanyin
 service as the url for the `HelmRepository`.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: helm-charts
