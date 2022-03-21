@@ -30,7 +30,7 @@ To install the CLI with Homebrew run:
 brew install fluxcd/tap/flux
 ```
 
-For other installation methods, see the [CLI install documentation](installation.md#install-the-flux-cli).
+For other installation methods, see the [CLI install documentation](installation/_index.md#install-the-flux-cli).
 
 ## Export your credentials
 
@@ -59,7 +59,7 @@ The output is similar to:
 
 ## Install Flux onto your cluster
 
-For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Installation](installation.md).
+For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Installation](installation/_index.md).
 
 Run the bootstrap command:
 

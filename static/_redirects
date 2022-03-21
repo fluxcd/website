@@ -12,6 +12,7 @@
 /docs/roadmap                                   /roadmap                                            301!
 /integrations                                   /ecosystem                                          301!
 /docs/contributing/docs/some-background         https://github.com/fluxcd/website#readme            301!
+/guides/repository-structure                    /installation/repository-structure                  301!
 
 
 /flagger/how-it-works                           /flagger/usage/how-it-works                         301!

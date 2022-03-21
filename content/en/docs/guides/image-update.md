@@ -87,7 +87,7 @@ synchronize with the specified path inside the repository.
 You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
 any other Git provider that support SSH or token-based authentication.
 When using SSH, make sure the deploy key is configured with write access `--read-write-key`.
-Please see the [installation guide](../installation.md) for more details.
+Please see the [installation guide](../installation/_index.md) for more details.
 {{% /alert %}}
 
 ## Deploy a demo app
@@ -651,7 +651,7 @@ There is native support for the AWS Elastic Container Registry available since
 which was released with Flux release v0.19. This depends on setting the `--aws-autologin-for-ecr`
 flag, which assumes any ECR repositories with IAM roles assigned to the cluster can
 be freely shared across any cluster tenants. This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
+similar to the process described in [customize Flux manifests](../installation/_index.md/#customize-flux-manifests):
                         
 ```yaml
 patches:
@@ -673,7 +673,7 @@ There is native support for the GCP Google Container Registry available since `i
 which was released with Flux release v0.26.0. This feature is enabled by setting the `--gcp-autologin-for-gcr`
 flag. This works with both clusters that have Workload Identity enabled, and those that use the default service account.
 This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
+similar to the process described in [customize Flux manifests](../installation/_index.md/#customize-flux-manifests):
                                              
 ```yaml
 patches:
@@ -713,7 +713,7 @@ There is native support for the Azure Container Registry] available since
 `image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
 which was released with Flux release v0.26.0. This feature is enabled by setting the `--azure-autologin-for-acr`
 flag, This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
+similar to the process described in [customize Flux manifests](../installation/_index.md/#customize-flux-manifests):
 
 ```yaml
 patches:

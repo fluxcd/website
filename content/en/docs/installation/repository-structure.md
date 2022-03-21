@@ -1,6 +1,5 @@
 ---
-title: "Ways of structuring your repositories"
-linkTitle: "Ways of structuring your repositories"
+title: "Structuring your Flux repositories"
 description: "How to structure your Git repositories for a smooth GitOps experience with Flux."
 weight: 10
 ---

@@ -25,9 +25,9 @@ For more details on how to create an EKS cluster with `eksctl` please see [eksct
 
 ## Flux Installation for AWS CodeCommit
 
-The following replicates the [Flux bootstrap procedure](../installation.md#bootstrap) and represents
+The following replicates the [Flux bootstrap procedure](../installation/_index.md#bootstrap) and represents
 the best practice for structuring the repository. For more information on the structure of the repository
-please see [Ways of structuring your repositories](../guides/repository-structure.md).
+please see [Ways of structuring your repositories](../installation/repository-structure.md).
 
 Ensure you can login to [console.aws.amazon.com](https://console.aws.amazon.com) for your proper organization,
 and create a new repository to hold your Flux install and other Kubernetes resources.
@@ -45,7 +45,7 @@ Create a directory inside the repository:
 mkdir -p ./clusters/my-cluster/flux-system
 ```
 
-Download the [Flux CLI](../installation.md#install-the-flux-cli) and generate the manifests with:
+Download the [Flux CLI](../installation/_index.md#install-the-flux-cli) and generate the manifests with:
 
 ```sh
 flux install \

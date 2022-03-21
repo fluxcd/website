@@ -16,7 +16,7 @@ every time a source changes. Using webhook receivers make
 To follow this guide you'll need a Kubernetes cluster with the GitOps 
 toolkit controllers installed on it.
 Please see the [get started guide](../get-started.md)
-or the [installation guide](../installation.md).
+or the [installation guide](../installation/_index.md).
 
 The [notification controller](../components/notification/_index.md)
 can handle events coming from external systems

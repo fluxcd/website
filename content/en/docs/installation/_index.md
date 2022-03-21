@@ -1,6 +1,7 @@
 ---
 title: "Installation"
-description: "Flux install, bootstrap, upgrade and uninstall documentation."
+description: >
+  Day 1 Operations: Flux install, bootstrap, upgrade and uninstall documentation.
 weight: 30
 ---
 
