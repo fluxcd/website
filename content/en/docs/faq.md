@@ -237,9 +237,9 @@ will help the controller detect drift correctly.
 
 ### How to patch CoreDNS and other pre-installed addons?
 
-To patch a pre-installed addon like CoreDNS with customized content.
-Simply add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/prune: disabled`
-annotation into your git repository.
+To patch a pre-installed addon like CoreDNS with customized content,
+add a shell manifest with only the changed values and `kustomize.toolkit.fluxcd.io/ssa: merge`
+annotation into your Git repository.
 
 Example CoreDNS with custom replicas, the `spec.containers[]` empty list is needed
 for the patch to work and will not override the existing containers:
@@ -253,6 +253,7 @@ metadata:
     k8s-app: kube-dns
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
+    kustomize.toolkit.fluxcd.io/ssa: merge
   name: coredns
   namespace: kube-system
 spec:
