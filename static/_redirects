@@ -16,6 +16,9 @@
 /docs/use-cases/aws-codecommit                  /docs/installation/platforms/aws-codecommit         301!
 /docs/use-cases/azure                           /docs/installation/platforms/azure                  301!
 /docs/use-cases/openshift                       /docs/installation/platforms/openshift              301!
+/docs/guides/notifications                      /docs/operations/notifications                      301!
+/docs/guides/monitoring                         /docs/operations/monitoring                         301!
+/docs/guides/webhook-receivers                  /docs/operations/webhook-receivers                  301!
 
 
 /flagger/how-it-works                           /flagger/usage/how-it-works                         301!

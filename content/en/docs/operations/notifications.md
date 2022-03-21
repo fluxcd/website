@@ -3,9 +3,6 @@ title: "Setup Notifications"
 linkTitle: "Setup Notifications"
 description: "Configure alerting for Slack, Teams, Discord and others using Flux notification controller."
 weight: 30
-card:
-  name: tasks
-  weight: 50
 ---
 
 When operating a cluster, different teams may wish to receive notifications about

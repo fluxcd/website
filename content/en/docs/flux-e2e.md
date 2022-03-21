@@ -591,8 +591,8 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [HelmRepository API]: /docs/components/source/helmrepositories/
 [HelmChart API]: /docs/components/source/helmcharts/
 [HelmChartTemplate.spec.reconcileStrategy]: /docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
-[Setup Notifications]: /docs/guides/notifications/
+[Setup Notifications]: /docs/operations/notifications/
 [Alert API]: /docs/components/notification/alert/
 [Event API]: /docs/components/notification/event/
-[Setup Git Commit Status Notications]: /docs/guides/notifications/#git-commit-status
+[Setup Git Commit Status Notications]: /docs/operations/notifications/#git-commit-status
 [Health Assessment]: /docs/components/kustomize/kustomization/#health-assessment

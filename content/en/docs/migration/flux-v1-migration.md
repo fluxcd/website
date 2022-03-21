@@ -292,8 +292,8 @@ flux create alert app \
 ```
 
 For more details, read the guides on how to configure
-[notifications]({{< relref "../guides/notifications.md" >}}) and
-[webhooks]({{< relref "../guides/webhook-receivers.md" >}}).
+[notifications]({{< relref "../operations/notifications.md" >}}) and
+[webhooks]({{< relref "../operations/webhook-receivers.md" >}}).
 
 ### Flux debugging
 

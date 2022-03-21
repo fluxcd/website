@@ -280,7 +280,7 @@ just a quick summary of everything that landed in the past month:
   - [Using Flux on
     OpenShift](/docs/installation/platforms/openshift/)
   - [Monitoring with
-    Prometheus](/docs/guides/monitoring/)
+    Prometheus](/docs/operations/monitoring/)
 
 Thanks a lot to these folks who contributed to docs and website: Adam
 Dickinson, akirillow, Chanwit Kaewkasi, Davi Garcia, Emanuele Massara,
