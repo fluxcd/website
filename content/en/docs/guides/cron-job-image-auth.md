@@ -115,14 +115,14 @@ spec:
             - mountPath: /token
               name: token
             command:
-            - /bin/bash
+            - /bin/sh
             - -ce
             - |-
               kubectl create secret docker-registry $SECRET_NAME \
                 --dry-run=client \
                 --docker-server="$ECR_REGISTRY" \
                 --docker-username=AWS \
-                --docker-password="$(</token/ecr-token)" \
+                --docker-password="$(cat /token/ecr-token)" \
                 -o yaml | kubectl apply -f -
 ```
 
