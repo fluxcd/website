@@ -587,7 +587,7 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [field management]: https://kubernetes.io/docs/reference/using-api/server-side-apply/#field-management
 [HelmRelease API]: /docs/components/helm/api/
 [HelmRelease Guide]: /docs/workflows/helmreleases/
-[Helm Use Case]: /docs/use-cases/helm/
+[Helm Use Case]: /docs/installation/helm/
 [HelmRepository API]: /docs/components/source/helmrepositories/
 [HelmChart API]: /docs/components/source/helmcharts/
 [HelmChartTemplate.spec.reconcileStrategy]: /docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
