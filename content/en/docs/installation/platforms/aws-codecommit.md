@@ -163,7 +163,7 @@ You will need to use AWS KMS and enable the IAM OIDC provider on the cluster.
 Patch kustomize-controller with the proper IAM credentials, so that it may access your AWS KMS, and then begin
 committing SOPS encrypted files to the Git repository with the proper AWS KMS configuration.
 
-See the [Mozilla SOPS AWS Guide](../guides/mozilla-sops.md#aws) for further detail.
+See the [Mozilla SOPS AWS Guide](../operations/secrets/mozilla-sops.md#aws) for further detail.
 
 ## Image Updates with Elastic Container Registry
 

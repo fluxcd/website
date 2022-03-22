@@ -416,7 +416,7 @@ Flux and explain it in our documentation is important to us.
 So since the last Flux update blog we got a lot done:
 
 - We added instructions on how to [encrypt secrets using HashiCorp
-  Vault](/docs/guides/mozilla-sops/#encrypting-secrets-using-hashicorp-vault)
+  Vault](/docs/operations/secrets/mozilla-sops/#encrypting-secrets-using-hashicorp-vault)
 - Also [instructions for auto-login
   (ACR/ECR/GCR)](/docs/guides/cron-job-image-auth/)
 - We explain [how to bootstrap Flux on AWS EKS with CodeCommit Git

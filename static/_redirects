@@ -19,6 +19,8 @@
 /docs/guides/notifications                      /docs/operations/notifications                      301!
 /docs/guides/monitoring                         /docs/operations/monitoring                         301!
 /docs/guides/webhook-receivers                  /docs/operations/webhook-receivers                  301!
+/docs/guides/mozilla-sops                       /docs/operations/secrets/mozilla-sops               301!
+/docs/guides/sealed-secrets                     /docs/operations/secrets/sealed-secrets             301!
 
 
 /flagger/how-it-works                           /flagger/usage/how-it-works                         301!

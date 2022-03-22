@@ -158,7 +158,7 @@ on any chart without additional templated annotations.
 You may also use Kustomize Controller
 built-in [Mozilla SOPS integration](../components/kustomize/kustomization.md#secrets-decryption)
 to securely manage your encrypted secrets stored in git.
-See the [Flux SOPS guide](../guides/mozilla-sops.md) for step-by-step instructions through various use cases.
+See the [Flux SOPS guide](../operations/secrets/mozilla-sops.md) for step-by-step instructions through various use cases.
 
 ## Automatic Release Upgrades
 

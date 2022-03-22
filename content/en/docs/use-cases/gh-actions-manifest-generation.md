@@ -1272,12 +1272,12 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [Manual Gating]: /flagger/usage/webhooks#manual-gating
 [flux create tenant]: /cmd/flux_create_tenant
 [Flux 2 Multi-Tenancy Guide]: https://github.com/fluxcd/flux2-multi-tenancy
-[Mozilla SOPS]: /guides/mozilla-sops/
+[Mozilla SOPS]: /docs/operations/secrets/mozilla-sops/
 [example 10.4 jsonnet]: https://github.com/kingdonb/any_old_app/blob/release/0.10.4/manifests/example.jsonnet
 [anguslees example jsonnet]: https://github.com/anguslees/kustomize-libsonnet/blob/master/example.jsonnet
 [Kubernetes docs on Using Service Accounts]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-multiple-service-accounts
 [sops/issues/315]: https://github.com/mozilla/sops/issues/315
-[using various cloud providers]: /guides/mozilla-sops/#using-various-cloud-providers
+[using various cloud providers]: /operations/secrets/mozilla-sops/#using-various-cloud-providers
 [Decrypt SOPS Secrets]: https://github.com/marketplace/actions/decrypt-sops-secrets
 [Sops Binary Installer]: https://github.com/marketplace/actions/sops-binary-installer
 [04-update-fleet-infra.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/04-update-fleet-infra.yaml
