@@ -574,7 +574,7 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [Image reflector and automation controllers]: /docs/components/image/
 [Helm Chart Hooks]: https://helm.sh/docs/topics/charts_hooks/
 [Post Rendering]: https://helm.sh/docs/topics/advanced/#post-rendering
-[image automation guide]: /docs/guides/image-update/#configure-image-update-for-custom-resources
+[image automation guide]: /docs/workflows/image-update/#configure-image-update-for-custom-resources
 [Core Concepts]: /docs/concepts/
 [Get Started with Flux]: /docs/get-started/
 [GitRepository Custom Resource]: /docs/components/source/gitrepositories/
@@ -586,7 +586,7 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [server-side apply and update]: https://kubernetes.io/docs/reference/using-api/server-side-apply/
 [field management]: https://kubernetes.io/docs/reference/using-api/server-side-apply/#field-management
 [HelmRelease API]: /docs/components/helm/api/
-[HelmRelease Guide]: /docs/guides/helmreleases/
+[HelmRelease Guide]: /docs/workflows/helmreleases/
 [Helm Use Case]: /docs/use-cases/helm/
 [HelmRepository API]: /docs/components/source/helmrepositories/
 [HelmChart API]: /docs/components/source/helmcharts/

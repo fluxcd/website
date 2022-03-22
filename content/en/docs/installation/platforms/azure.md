@@ -271,8 +271,8 @@ flux install \
   --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
 ```
 
-Follow the [Image Update Automation Guide](../guides/image-update.md) and see the
-[ACR specific section](../guides/image-update.md#azure-container-registry) for more details.
+Follow the [Image Update Automation Guide](../workflows/image-update.md) and see the
+[ACR specific section](../workflows/image-update.md#azure-container-registry) for more details.
 
 Your AKS cluster's configuration can also be updated to
 [allow the kubelets to pull images from ACR](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration)

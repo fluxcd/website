@@ -126,7 +126,7 @@ Tasks
 ### Flux image update feature parity
 
 Image automation is available as a prerelease. See [this
-guide](/docs/guides/image-update/) for how to
+guide](/docs/workflows/image-update/) for how to
 install and use it.
 
 Goals
@@ -147,14 +147,20 @@ Tasks
 - [x] <span style="color:grey">Design the automation component</span>
 - [x] <span style="color:grey">Implement the image scan/patch/push workflow</span>
 - [x] <span style="color:grey">Integrate the new components in the Flux CLI [fluxcd/flux2#538](https://github.com/fluxcd/flux2/pull/538)</span>
+<<<<<<< HEAD
 - [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/guides/image-update/))</span>
 - [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
 - [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/migration/flux-v1-automation-migration/))</span>
+=======
+- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/workflows/image-update/))</span>
+- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/workflows/image-update/#imagerepository-cloud-providers-authentication))</span>
+- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/installation/migration/flux-v1-automation-migration/))</span>
+>>>>>>> 8edc5de... .
 
 ### Helm v3 feature parity
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
-guide](/docs/guides/helmreleases/), and the [Helm
+guide](/docs/workflows/helmreleases/), and the [Helm
 controller migration
 guide](/docs/migration/helm-operator-migration/).
 

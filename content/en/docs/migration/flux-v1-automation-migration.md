@@ -741,17 +741,17 @@ $ kubectl logs -n flux-system deploy/image-automation-controller
 Once you are satisfied that it is working, you can migrate the rest of the manifests using the steps
 from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2) above.
 
-[image-update-tute]: /docs/guides/image-update/
+[image-update-tute]: /docs/workflows/image-update/
 [imagepolicy-ref]: /docs/components/image/imagepolicies/
 [helm-auto]: /legacy/flux/references/helm-operator-integration/#automated-image-detection
-[image-update-tute-custom]: /docs/guides/image-update/#configure-image-update-for-custom-resources
-[flux-v1-migration]: /docs/migration/flux-v1-migration/
+[image-update-tute-custom]: /docs/workflows/image-update/#configure-image-update-for-custom-resources
+[flux-v1-migration]: /docs/installation/migration/flux-v1-migration/
 [install-cli]: /docs/get-started/#install-the-flux-cli
 [flux-bootstrap]: /docs/installation/_index.md#bootstrap
 [github-pat]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
 [auto-object-ref]: /docs/components/image/imageupdateautomations/
-[image-update-tute-creds]: /docs/guides/image-update/#configure-image-scanning
-[image-update-tute-clouds]: /docs/guides/image-update/#imagerepository-cloud-providers-authentication
+[image-update-tute-creds]: /docs/workflows/image-update/#configure-image-scanning
+[image-update-tute-clouds]: /docs/workflows/image-update/#imagerepository-cloud-providers-authentication
 [image-tags-guide]: /docs/guides/sortable-image-tags/
 [auto-ref]: /docs/components/image/imageupdateautomations/
 [semver]: https://semver.org

@@ -68,7 +68,7 @@ This way you can automatically push changes to a `staging` branch and require re
 
 Experiment with these strategies to find the right automated workflow solution for your team!
 
-[Image Update Guide]: /docs/guides/image-update/
-[Push updates to a different branch]: /docs/guides/image-update/#push-updates-to-a-different-branch
+[Image Update Guide]: /docs/workflows/image-update/
+[Push updates to a different branch]: /docs/workflows/image-update/#push-updates-to-a-different-branch
 [GitHub Pull Request Action]: https://github.com/marketplace/actions/github-pull-request-action
 [Create Pull Request Action]: https://github.com/marketplace/actions/create-pull-request

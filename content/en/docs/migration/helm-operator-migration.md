@@ -839,7 +839,7 @@ kubectl delete crd helmreleases.helm.fluxcd.io
 
 ### Are automated image updates supported?
 
-Yes, image updates are supported for `HelmRelease` as well as any other Kubernetes custom resources stored in Git. See the [Image Update Guide](/docs/guides/image-update/#configure-image-update-for-custom-resources) for more information.
+Yes, image updates are supported for `HelmRelease` as well as any other Kubernetes custom resources stored in Git. See the [Image Update Guide](/docs/workflows/image-update/#configure-image-update-for-custom-resources) for more information.
 
 ### How do I automatically apply my `HelmRelease` resources to the cluster?
 

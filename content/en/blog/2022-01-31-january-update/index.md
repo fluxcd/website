@@ -67,7 +67,7 @@ New feature in action: flux diff kustomization
   token-based authentication when decrypting SOPS encrypted secrets.
 - Auto-login to AWS ECR, Azure ACR and Google Cloud GCR for [image
   update
-  automation](/docs/guides/image-update/#imagerepository-cloud-providers-authentication)
+  automation](/docs/workflows/image-update/#imagerepository-cloud-providers-authentication)
   on EKS, AKS or GKE.
 - On single-tenant clusters, image automation can now refer to Git
   repositories in other namespaces than the

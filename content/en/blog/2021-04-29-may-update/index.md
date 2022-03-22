@@ -97,7 +97,7 @@ automation](https://github.com/fluxcd/flux2/discussions/1333).
 Checkout the [new bootstrap customisation
 feature](/docs/installation/_index.md#customize-flux-manifests).
 
-The [Image automation guide](/docs/guides/image-update/) has been updated
+The [Image automation guide](/docs/workflows/image-update/) has been updated
 to the new APIs, and also includes a reference to a
 new [GitHub Actions use case guide](/docs/use-cases/gh-actions-auto-pr/),
 for automatic pull request creation with Flux and GitHub Actions. This
