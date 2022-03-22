@@ -27,7 +27,7 @@ To get you started with setting up Flux and managing multi-tenant environments, 
 
 ## Guides for Helm users
 
-If you have been using the Helm Operator in the past, you should be able to easily upgrade to the Helm Controller (Flux v2). Check out [this guide](/docs/migration/helm-operator-migration/) and please give us feedback - we’d love to hear from you:
+If you have been using the Helm Operator in the past, you should be able to easily upgrade to the Helm Controller (Flux v2). Check out [this guide](/docs/installation/migration/helm-operator-migration) and please give us feedback - we’d love to hear from you.
 
 If you are interested in an example which describes how you can keep e.g. two clusters updated with minimal duplication, check out this repository - it uses Flux v2, Helm and Kustomize:
 

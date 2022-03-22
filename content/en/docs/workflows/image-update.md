@@ -746,7 +746,7 @@ pod-managed identities add-on that is in preview.
 {{% /alert %}}
 
 {{% alert title="Migrating from cron-based registry credentials sync" color="warning" %}}
-If you are migrating from the [Generating Tokens for Managed Identities [short-lived]](/docs/guides/cron-job-image-auth/#generating-tokens-for-managed-identities-short-lived) approach, `spec.secretRef` must be removed from your `ImageRepository`!
+If you are migrating from the [Generating Tokens for Managed Identities [short-lived]](/docs/workflows/cron-job-image-auth/#generating-tokens-for-managed-identities-short-lived) approach, `spec.secretRef` must be removed from your `ImageRepository`!
 Failing to do so will, eventually, cause the `image-reflector-controller` to use stale credentials when it tries to get images from the ACR.
 {{% /alert %}}
 

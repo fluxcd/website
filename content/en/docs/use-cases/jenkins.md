@@ -303,7 +303,7 @@ Update deployments via Flux's [ImagePolicy] CRD, and the Image Update Automation
 [docker plugin]: https://plugins.jenkins.io/docker-plugin/
 [doesn't even have Docker underneath]: https://kubernetes.io/blog/2020/12/02/dockershim-faq/#why-is-dockershim-being-deprecated
 [Mirantis has taken over support of dockershim]: https://www.mirantis.com/blog/mirantis-to-take-over-support-of-kubernetes-dockershim-2/
-[Sortable image tags]: /docs/guides/sortable-image-tags/
+[Sortable image tags]: /docs/workflows/sortable-image-tags/
 [image update guide]: /docs/workflows/image-update/
 [credentials]: https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/simple-examples/credentialsUsernamePassword.groovy
 [populating environment variables]: https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/simple-examples/scriptVariableAssignment.groovy
@@ -315,8 +315,8 @@ Update deployments via Flux's [ImagePolicy] CRD, and the Image Update Automation
 [Dockerfile]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/Dockerfile
 [jenkins/docker-pod.yaml]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/jenkins/docker-pod.yaml
 [jenkins/run-tests.sh]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/jenkins/run-tests.sh
-[using an ImagePolicy object]: /docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
+[using an ImagePolicy object]: /docs/workflows/sortable-image-tags/#using-in-an-imagepolicy-object
 [Kubernetes examples for Buildkit]: https://github.com/moby/buildkit/tree/master/examples/kubernetes
 [Buildkit CLI for Kubectl]: https://github.com/vmware-tanzu/buildkit-cli-for-kubectl
 [KubeCon/CloudNativeCon EU 2021]: https://www.youtube.com/watch?v=vTh6jkW_xtI
-[ImagePolicy]: /docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
+[ImagePolicy]: /docs/workflows/sortable-image-tags/#using-in-an-imagepolicy-object

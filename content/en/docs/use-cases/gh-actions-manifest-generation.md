@@ -126,7 +126,7 @@ echo ::set-output name=VERSION::${VERSION}
 ```
 
 {{% alert title="When migrating to Flux v2" %}}
-Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "../guides/sortable-image-tags/" >}}), preferred by the `image-automation-controller`.
+Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "../workflows/sortable-image-tags/" >}}), preferred by the `image-automation-controller`.
 {{% /alert %}}
 
 Next we call out to a shell script `update-k8s.sh` taking one argument, the Git SHA value from GitHub:
@@ -1246,7 +1246,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [Commit Across Repositories Workflow]: #commit-across-repositories-workflow
 [01-manifest-generate.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/01-manifest-generate.yaml
 [some guidance has changed since Flux v1]: https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189
-[Sortable image tags]: /guides/sortable-image-tags/
+[Sortable image tags]: /workflows/sortable-image-tags/
 [Okteto's Getting Started Guides]: https://github.com/okteto/go-getting-started/blob/master/k8s.yml
 [Build and push Docker images]: https://github.com/marketplace/actions/build-and-push-docker-images
 [Prepare step]: https://github.com/fluxcd/kustomize-controller/blob/5da1fc043db4a1dc9fd3cf824adc8841b56c2fcd/.github/workflows/release.yml#L17-L25
@@ -1284,5 +1284,5 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [Push directory to another repository]: https://github.com/marketplace/actions/push-directory-to-another-repository
 [Flux v2 image automation]: /docs/workflows/image-update/
 [Image Automation Controllers]: /docs/components/image/
-[Example of a build process with timestamp tagging]: /docs/guides/sortable-image-tags/#example-of-a-build-process-with-timestamp-tagging
-[Sortable image tags to use with automation]: /docs/guides/sortable-image-tags/#formats-and-alternatives
+[Example of a build process with timestamp tagging]: /docs/workflows/sortable-image-tags/#example-of-a-build-process-with-timestamp-tagging
+[Sortable image tags to use with automation]: /docs/workflows/sortable-image-tags/#formats-and-alternatives

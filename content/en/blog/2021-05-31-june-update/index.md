@@ -39,7 +39,7 @@ Docs:
 - 📔 [GitRepository include
   documentation](/docs/components/source/gitrepositories/#including-gitrepository)
 - 🎁 Checkout the new [guide on ways of structuring your
-  repositories](/docs/guides/repository-structure/)
+  repositories](/docs/installation/repository-structure/)
 
 If you are entirely new to Flux, check out our [get started
 guide](/docs/get-started/). If you are on

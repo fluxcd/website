@@ -23,6 +23,8 @@
 /docs/guides/sealed-secrets                   /docs/operations/secrets/sealed-secrets                   301!
 /docs/guides/helmreleases                     /docs/workflows/helmreleases                              301!
 /docs/guides/image-update                     /docs/workflows/image-update                              301!
+/docs/guides/cron-job-image-auth              /docs/workflows/cron-job-image-auth                       301!
+/docs/guides/sortable-image-tags              /docs/workflows/sortable-image-tags                       301!
 /docs/flux-e2e                                /docs/concepts/flux-e2e                                   301!
 /docs/migration/helm-operator-migration       /docs/installation/migration/helm-operator-migration      301!
 /docs/migration/timetable                     /docs/installation/migration/timetable                    301!

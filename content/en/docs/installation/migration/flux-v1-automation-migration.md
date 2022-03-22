@@ -752,6 +752,6 @@ from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2)
 [auto-object-ref]: /docs/components/image/imageupdateautomations/
 [image-update-tute-creds]: /docs/workflows/image-update/#configure-image-scanning
 [image-update-tute-clouds]: /docs/workflows/image-update/#imagerepository-cloud-providers-authentication
-[image-tags-guide]: /docs/guides/sortable-image-tags/
+[image-tags-guide]: /docs/workflows/sortable-image-tags/
 [auto-ref]: /docs/components/image/imageupdateautomations/
 [semver]: https://semver.org
