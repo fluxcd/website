@@ -9,7 +9,7 @@ hugeTable: true
 {{% alert color="info" title="💖 Flux Migration Commitment" %}}
 This public timetable clarifies our commitment to end users.
 Its purpose is to help improve your experience in deciding how and when to plan infra decisions related to Flux versions.
-Please refer to the [Roadmap]({{< relref "../../roadmap.md" >}}) for additional details.
+Please refer to the [Roadmap]({{< relref "/roadmap.md" >}}) for additional details.
 {{% /alert %}}
 
 | Date | Flux 1 | Flux 2 CLI | GOTK[^1] |

@@ -241,4 +241,4 @@ spec:
 
 - [Guides > Manage Helm Releases](../workflows/helmreleases.md)
 - [Toolkit Components > Helm Controller](../components/helm/_index.md)
-- [Migration > Migrate to the Helm Controller](../migration/helm-operator-migration.md)
+- [Migration > Migrate to the Helm Controller](../installation/migration/helm-operator-migration.md)

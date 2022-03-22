@@ -44,7 +44,7 @@ Docs:
 If you are entirely new to Flux, check out our [get started
 guide](/docs/get-started/). If you are on
 an older version of Flux, check out our [migration
-documentation](/docs/migration/).
+documentation](/docs/installation/migration/).
 
 ## Flagger 1.11 is here
 

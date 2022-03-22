@@ -130,7 +130,11 @@ to Scott Rigby on Slack.
 In last month's update we discussed how Flux's APIs are now stable. To
 clarify what this means for the Flux project as a whole, we added the
 following section to [our migration
+<<<<<<< HEAD
 timetable](/docs/migration/timetable/):
+=======
+timetable](/docs/installation/migration/timetable/):
+>>>>>>> Move migration under installation
 
 - Flux 1: Superseded
   - All existing projects encouraged to migrate to Flux 2, and

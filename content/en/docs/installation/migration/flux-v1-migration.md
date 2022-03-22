@@ -66,7 +66,7 @@ repository. The Git repository created during bootstrap can be used
 to define the state of your fleet of Kubernetes clusters.
 
 For a detailed walk-through of the bootstrap procedure please see the [installation
-guide](../installation/_index.md).
+guide](../_index.md).
 
 {{% alert color="info" color="warning" title="'flux bootstrap' target" %}}
 `flux bootstrap` should not be run against a Git branch or path
@@ -292,8 +292,8 @@ flux create alert app \
 ```
 
 For more details, read the guides on how to configure
-[notifications]({{< relref "../operations/notifications.md" >}}) and
-[webhooks]({{< relref "../operations/webhook-receivers.md" >}}).
+[notifications]({{< relref "/docs/operations/notifications.md" >}}) and
+[webhooks]({{< relref "/docs/operations/webhook-receivers.md" >}}).
 
 ### Flux debugging
 

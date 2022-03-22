@@ -12,7 +12,7 @@ type: page
 The Flux custom resource definitions which are at `v1beta1`, `v1beta2` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
-Please see the [Migration and Support Timetable](docs/migration/timetable.md) for our commitment to end users.
+Please see the [Migration and Support Timetable](docs/installation/migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
 The following components are considered production ready:
@@ -91,7 +91,7 @@ In our planning discussions we identified three areas of work:
 Flux v2 read-only is ready to try. See the [Getting
 Started](/docs/get-started/) how-to, and the
 [Migration
-guide](/docs/migration/flux-v1-migration/).
+guide](/docs/installation/migration/flux-v1-migration/).
 
 This would be the first stepping stone: we want Flux v2 to be on-par with today's Flux in
 [read-only mode](https://github.com/fluxcd/flux/blob/master/docs/faq.md#can-i-run-flux-with-readonly-git-access)
@@ -147,22 +147,16 @@ Tasks
 - [x] <span style="color:grey">Design the automation component</span>
 - [x] <span style="color:grey">Implement the image scan/patch/push workflow</span>
 - [x] <span style="color:grey">Integrate the new components in the Flux CLI [fluxcd/flux2#538](https://github.com/fluxcd/flux2/pull/538)</span>
-<<<<<<< HEAD
-- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/guides/image-update/))</span>
-- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
-- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/migration/flux-v1-automation-migration/))</span>
-=======
 - [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/workflows/image-update/))</span>
 - [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/workflows/image-update/#imagerepository-cloud-providers-authentication))</span>
 - [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/installation/migration/flux-v1-automation-migration/))</span>
->>>>>>> 8edc5de... .
 
 ### Helm v3 feature parity
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
 guide](/docs/workflows/helmreleases/), and the [Helm
 controller migration
-guide](/docs/migration/helm-operator-migration/).
+guide](/docs/installation/migration/helm-operator-migration/).
 
 Goals
 
@@ -188,4 +182,4 @@ Tasks
 - [x]  <span style="color:grey">Implement support for Helm charts from Git</span>
 - [x]  <span style="color:grey">Implement support for referring to an alternative chart values file</span>
 - [x]  <span style="color:grey">Stabilize API</span>
-- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](docs/migration/helm-operator-migration.md)</span>
+- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](docs/installation/migration/helm-operator-migration.md)</span>
