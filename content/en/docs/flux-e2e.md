@@ -448,7 +448,7 @@ In the analogy, the fruits are the charts and the GitRepository is the bag – 
 Flux provides tools that you have at your disposal for making sources narrowly scoped, here's one example:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: my-chart-git-repo

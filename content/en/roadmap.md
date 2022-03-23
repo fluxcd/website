@@ -26,7 +26,7 @@ The following components are considered production ready:
 
 The following GitOps Toolkit APIs are considered production ready:
 
-- `source.toolkit.fluxcd.io/v1beta1`
+- `source.toolkit.fluxcd.io/v1beta2`
 - `kustomize.toolkit.fluxcd.io/v1beta2`
 - `notification.toolkit.fluxcd.io/v1beta1`
 - `helm.toolkit.fluxcd.io/v2beta1`

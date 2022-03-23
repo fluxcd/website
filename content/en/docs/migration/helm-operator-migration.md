@@ -115,7 +115,7 @@ $ flux create source helm podinfo \
     --interval=10m \
     --export
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -175,11 +175,11 @@ spec:
     version: 1.2.3
 ```
 
-With the Helm Controller, you now create a `HelmRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta1.HelmRepository)):
+With the Helm Controller, you now create a `HelmRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta2.HelmRepository)):
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: my-repository
@@ -209,7 +209,7 @@ data:
   keyFile: <base64 encoded key>
   caFile: <base64 encoded CA certificate>
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: my-repository
@@ -271,11 +271,11 @@ spec:
     path: ./charts/my-chart
 ```
 
-With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta1.GitRepository):
+With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta2.GitRepository):
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: my-repository
@@ -288,7 +288,7 @@ spec:
   # The Git reference to checkout and monitor for changes
   # (defaults to master)
   # For all available options, see:
-  # https://toolkit.fluxcd.io/components/source/api/#source.toolkit.fluxcd.io/v1beta1.GitRepositoryRef
+  # https://toolkit.fluxcd.io/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepositoryRef
   ref:
     branch: master
 ```
@@ -311,7 +311,7 @@ data:
   identity.pub: <base64 public key>
   known_hosts: <base64 encoded known_hosts>
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: my-repository
@@ -717,7 +717,7 @@ The custom resources for the Helm Controller would be:
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: podinfo
