@@ -105,10 +105,11 @@ gen_crd_doc() {
   # source-controller CRDs
   SOURCE_VER="$(controller_version source-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/source.md" "$COMPONENTS_DIR/source/api.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/gitrepositories.md" "$COMPONENTS_DIR/source/gitrepositories.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/helmrepositories.md" "$COMPONENTS_DIR/source/helmrepositories.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/helmcharts.md" "$COMPONENTS_DIR/source/helmcharts.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/v1beta1/buckets.md" "$COMPONENTS_DIR/source/buckets.md"
+  SOURCE_CRD_VER="v1beta2"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/gitrepositories.md" "$COMPONENTS_DIR/source/gitrepositories.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/helmrepositories.md" "$COMPONENTS_DIR/source/helmrepositories.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/helmcharts.md" "$COMPONENTS_DIR/source/helmcharts.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/buckets.md" "$COMPONENTS_DIR/source/buckets.md"
 }
 
 {
