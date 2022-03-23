@@ -25,11 +25,14 @@
 /docs/guides/image-update                       /docs/workflows/image-update                                301!
 /docs/guides/cron-job-image-auth                /docs/workflows/cron-job-image-auth                         301!
 /docs/guides/sortable-image-tags                /docs/workflows/sortable-image-tags                         301!
+/docs/guides                                    /docs                                                       301!
 /docs/use-cases/jenkins                         /docs/workflows/jenkins                                     301!
 /docs/use-cases/gh-actions-auto-pr              /docs/workflows/gh-actions-auto-pr                          301!
 /docs/use-cases/gh-actions-manifest-generation  /docs/workflows/gh-actions-manifest-generation              301!
 /docs/use-cases/helm                            /docs/installation/helm                                     301!
+/docs/use-cases                                 /docs                                                       301!
 /docs/flux-e2e                                  /docs/concepts/flux-e2e                                     301!
+/docs/migration                                 /docs/installation/migration                                301!
 /docs/migration/helm-operator-migration         /docs/installation/migration/helm-operator-migration        301!
 /docs/migration/timetable                       /docs/installation/migration/timetable                      301!
 /docs/migration/faq-migration                   /docs/installation/migration/faq-migration                  301!

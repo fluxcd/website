@@ -109,9 +109,8 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 > Flux v2.
 >
 > In this session, Leigh Capili, DX Engineer at Weaveworks, will demo
-> including bootstrapping a cluster with Flux 1 and how to move it over
 > the [Flux guide on how to Migrate from Flux v1](/docs/installation/migration/flux-v1-migration),
-> including boostrapping a cluster with Flux 1 and how to move it over
+> including bootstrapping a cluster with Flux 1 and how to move it over
 > to Flux v2.
 >
 > If we don\'t get to everything in this session, we will have
@@ -170,8 +169,7 @@ good ways to do that:
 - Talk to us in the `#flux` channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our
-  [Get Started guide](/docs/get-started/) and
-  give us feedback
+  [Get Started guide](/docs/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

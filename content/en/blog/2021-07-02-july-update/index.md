@@ -265,8 +265,7 @@ pieces of infrastructure and came from different repositories. They were
 hard to update and some of our users got confused about which docs they
 were looking at. If you have any feedback about this, let us know.
 
-🔋 We also just added a [Flux Integrations
-page](/integrations/). If your extension
+🔋 We also just added a [Flux Ecosystem page](/ecosystem/). If your extension
 or integration is not listed yet, please add yourself. We will make this
 page shine more in the future - we are also happy to work on joint blog
 posts, etc. Just come and talk to us!

@@ -22,8 +22,8 @@ written by folks at Weaveworks.
 The Flux community has set itself very ambitious goals for version 2 and
 as it's a multi-month project, we strive to inform you each month about
 what has already landed, new possibilities which are available for
-integration and where you can get involved. Read last month's update
-[here](/blog/2021/03/april-2021-update/).
+integration and where you can get involved. Read [last month's update
+here](/blog/2021/03/april-2021-update).
 
 Let's recap what happened in April - there has been so much happening!
 

@@ -355,7 +355,7 @@ internal Kubernetes platform with minimal staff needed to do hands-on
 administration." Deutsche Telekom uses Flux in its [Das
 Schiff](https://github.com/telekom/das-schiff) project, you
 can also find this listed as an
-[Integration](/integrations/) on our
+[Integration](/ecosystem/) on our
 website.
 
 [Flux Multi-Cluster Multi-Tenant by Example

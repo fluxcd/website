@@ -130,7 +130,7 @@ Upcoming events
 The Flux community is growing and we are in the middle of a quite a few
 big discussions:
 
-- We have [a new guide which explains core concepts](/docs/concepts/) in the Flux world - please give feedback - and thanks Somtochi!
+- We have a [new guide which explains core concepts](/docs/concepts) in the Flux world - please give feedback - and thanks Somtochi!
 - Flux applies to upgrade to CNCF Incubation status: [https://github.com/cncf/toc/pull/567](https://github.com/cncf/toc/pull/567)
 
 If you like what you read and would like to get involved, here are a few

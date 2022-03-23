@@ -265,7 +265,7 @@ growing. Many small improvements to make the content more readable and
 correct. Go team!
 
 Apart from that we were able to add more [adopters](/adopters) and
-[integrations](/integrations). Please add yourself if you haven't already.
+[integrations](/ecosystem). Please add yourself if you haven't already.
 
 What to watch out next for: Alison Dowdney is working on restructuring the
 documentation to make it even easier to find things. Reach out to her, if you

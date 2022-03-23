@@ -101,8 +101,8 @@ Goals
 
 State | Item
 ----- | ----
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](/docs/migration/flux-v1-migration/)
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](/docs/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](/docs/installation/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](/docs/installation/migration/flux-v1-migration/)
 :heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](/docs/operations/notifications/)
 
 Non-Goals
