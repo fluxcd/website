@@ -300,7 +300,7 @@ The deployment will go into a rolling upgrade and Flux will revert it back to th
 Misconfiguring the `HelmRelease.spec.chart`, like a typo in the chart name, version or chart source URL
 would result in a "HelmChart is not ready" error displayed by:
 
-```sh
+```console
 $ flux get helmreleases --all-namespaces
 NAMESPACE	NAME   	READY	MESSAGE
 default  	podinfo	False 	HelmChart 'default/default-podinfo' is not ready
@@ -309,7 +309,7 @@ default  	podinfo	False 	HelmChart 'default/default-podinfo' is not ready
 In order to get to the root cause, first make sure the source e.g. the `HelmRepository`
 is configured properly and has access to the remote `index.yaml`:
 
-```sh
+```console
 $ flux get sources helm --all-namespaces
 NAMESPACE  	NAME   	READY	MESSAGE
 default   	podinfo	False	failed to fetch https://stefanprodan.github.io/podinfo2/index.yaml : 404 Not Found
@@ -318,11 +318,57 @@ default   	podinfo	False	failed to fetch https://stefanprodan.github.io/podinfo2
 If the source is `Ready`, then the error must be caused by the chart,
 for example due to an invalid chart name or non-existing version:
 
-```sh
+```console
 $ flux get sources chart --all-namespaces
 NAMESPACE  	NAME           	READY	MESSAGE
 default  	default-podinfo	False	no chart version found for podinfo-9.0.0
 ```
+
+### How to debug "install retries exhausted" errors?
+
+By default, Flux performs a health check of all the Kubernetes resources created at install time.
+If any resource fails to become ready after five minutes, the `HelmRelease` will be marked as not ready:
+
+```console
+$ flux get helmreleases --all-namespaces
+NAMESPACE	NAME   	READY	MESSAGE
+default  	podinfo	False 	install retries exhausted
+```
+
+To find the resource that caused the installation failure, you can print the events of the Helm release with:
+
+````console
+$ kubectl describe helmrelease podinfo -n default
+Events:
+  Type    Reason  Age    From             Message
+  ----    ------  ----   ----             -------
+  Normal  info    2m23s  helm-controller  Helm install has started
+  Normal  error   82s    helm-controller  Helm install failed: timed out waiting for the condition
+
+Last Helm logs:
+
+creating 4 resource(s)
+beginning wait for 4 resources with timeout of 5m0s
+Deployment is not ready: default/podinfo. 0 out of 1 expected pods are ready
+````
+
+To inspect the failing resources, you can disable the health checks with:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+ name: podinfo
+ namespace: default
+spec:
+ install:
+   disableWait: true
+ upgrade:
+   disableWait: true
+```
+
+With `disableWait: true`, Flux will no longer wait for the resources to become ready, so you can 
+inspect the deployment and find the underlying issue e.g. `kubectl describe deployment podinfo`.
 
 ### Can I use Flux HelmReleases without GitOps?
 
