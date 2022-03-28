@@ -185,7 +185,8 @@ patches:
 Support for sha256 hashes: Git CLI supports it since 2.29, however all major Git
 service providers, such as GitLab and GitHub, are yet to make some progress on 
 this front.
-Upstream, libgit2 is starting to pave the way for that support on [v1.4.0]https://github.com/libgit2/libgit2/releases/tag/v1.4.0),
+Upstream, libgit2 is starting to pave the way for that support on
+[v1.4.0](https://github.com/libgit2/libgit2/releases/tag/v1.4.0),
 we will continue to watch this space so we can support Flux users as the industry
 moves on from SHA1.
 
