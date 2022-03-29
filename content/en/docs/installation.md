@@ -38,15 +38,6 @@ brew install fluxcd/tap/flux
 ```
 
 {{% /tab %}}
-{{% tab "GoFish" %}}
-
-With [GoFish](https://gofi.sh) for Windows, macOS and Linux:
-
-```sh
-gofish install flux
-```
-
-{{% /tab %}}
 {{% tab "bash" %}}
 
 With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
