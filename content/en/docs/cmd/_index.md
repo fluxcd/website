@@ -19,12 +19,6 @@ With [Homebrew](https://brew.sh):
 brew install fluxcd/tap/flux
 ```
 
-With [GoFish](https://gofi.sh):
-
-```sh
-gofish install flux
-```
-
 {{% /tab %}}
 {{% tab "Linux" %}}
 
@@ -46,12 +40,6 @@ With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html):
 nix-env -i fluxcd
 ```
 
-With [GoFish](https://gofi.sh):
-
-```sh
-gofish install flux
-```
-
 {{% /tab %}}
 {{% tab "Windows" %}}
 
@@ -59,12 +47,6 @@ With [Chocolatey](https://chocolatey.org/):
 
 ```powershell
 choco install flux
-```
-
-With [GoFish](https://gofi.sh):
-
-```sh
-gofish install flux
 ```
 
 {{% /tab %}}
