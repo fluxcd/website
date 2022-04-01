@@ -162,14 +162,14 @@ and [links to recordings](/resources) of past talks.
 ### Reviewing Flux Governance
 
 More than half a year ago we established our [Flux Governance
-document](https://fluxcd.io/governance/). The idea behind
+document](/governance/). The idea behind
 it was to formalise our values around community, the roles and
 responsibilities and processes; many of which had been transparent and
 with our full integrity, but still quite ad-hoc up until that point.
 
 For us it's time to review this together with our
-[Community](https://fluxcd.io/community/) and
-[Contributors docs](https://fluxcd.io/docs/contributing/).
+[Community](/community/) and
+[Contributors docs](/docs/contributing/).
 So we are turning to you for feedback: [please let us know what you
 think](https://github.com/fluxcd/flux2/discussions/1457).
 What was your experience up until now? Do you feel things are clear

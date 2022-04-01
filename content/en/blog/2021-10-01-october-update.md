@@ -218,8 +218,7 @@ work! There will always be plenty of bugs to scrub for the foreseeable
 future.
 
 This week, and every other week, find Bug Scrub with a link to the Zoom
-invite beneath the fold at
-[https://fluxcd.io/\#calendar](/#calendar)
+invite [beneath the fold](/#calendar)
 alongside other scheduled Flux developer team events.
 
 ### One more thing
@@ -234,12 +233,12 @@ teams moving to GitOps.
 > you manage Kubernetes applications --- Helm Charts helps you define,
 > install, and upgrade even the most complex Kubernetes application.
 >
-> 🔹The GitOps Toolkit - <https://fluxcd.io/docs/components>
+> 🔹[The GitOps Toolkit](/docs/components)
 > is the set of APIs and controllers that make up the runtime for Flux.
 > The APIs comprise Kubernetes custom resources, which can be created
 > and updated by a cluster user, or by other automation tooling.
 >
-> 🔹The Helm Controller - <https://fluxcd.io/docs/components/helm/>
+> 🔹[The Helm Controller](/docs/components/helm/)
 > built on Kubernetes controller runtime and is part of the GitOps
 > Toolkit -- allows one to declaratively manage Helm chart releases with
 > Kubernetes manifests.

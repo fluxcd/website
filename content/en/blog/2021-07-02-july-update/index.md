@@ -14,7 +14,7 @@ As the Flux family of projects and its communities are growing, we
 strive to inform you each month about what has already landed, new
 possibilities which are available for integration and where you can get
 involved. Read [last month's update
-here](https://fluxcd.io/blog/2021/05/june-2021-update/).
+here](/blog/2021/05/june-2021-update/).
 
 Let's recap what happened in June - there has been so much happening!
 
@@ -188,7 +188,7 @@ and chat with our engineers.
 ### The Bug Scrub
 
 Kingdon Barrett organised our first ever [Bug
-Scrub](https://fluxcd.io/blog/2021/06/flux-bug-scrub-announce/).
+Scrub](/blog/2021/06/flux-bug-scrub-announce/).
 To quote from the announcement:
 
 > For us, a great way to get started, is to learn more about Flux
@@ -254,7 +254,7 @@ of development, providing a unique developer experience with Flux.
 Our web and docs team has been busy as well.
 
 🤹 First of all we would like to congratulate everyone who added
-themselves to the [Flux Adopters page](https://fluxcd.io/adopters/). It's
+themselves to the [Flux Adopters page](/adopters/). It's
 beautiful for all of us who work on the Flux to see how our projects are
 used in the wild.
 
@@ -266,7 +266,7 @@ hard to update and some of our users got confused about which docs they
 were looking at. If you have any feedback about this, let us know.
 
 🔋 We also just added a [Flux Integrations
-page](https://fluxcd.io/integrations/). If your extension
+page](/integrations/). If your extension
 or integration is not listed yet, please add yourself. We will make this
 page shine more in the future - we are also happy to work on joint blog
 posts, etc. Just come and talk to us!
@@ -287,14 +287,14 @@ If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
 - Join our [upcoming dev
-   meetings](https://fluxcd.io/community/#meetings) on
+   meetings](/community/#meetings) on
    2021-07-01 15:00 UTC, or 2021-07-07, 12:00 UTC.
 - Talk to us in the \#flux channel on [CNCF
    Slack](https://slack.cncf.io/)
 - Join the [planning
    discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our [Get
-   Started guide](https://fluxcd.io/docs/get-started/)
+   Started guide](/docs/get-started/)
    and give us feedback
 - Social media: Follow [Flux on
    Twitter](https://twitter.com/fluxcd), join the

@@ -67,8 +67,7 @@ Hot on the heels of this was `0.11.0` and v0.1.1 of the Terraform module.
 - SOPS in the `kustomize-controller` has been updated to v3.7.0, support for the newly added age encryption format is planned. :hourglass_flowing_sand:
 - All controllers do now record the suspend status of resources in a gotk_suspend_status Prometheus gauge metric.
 
-🚀 Check out the guide on how to automate image updates to Git
-[https://toolkit.fluxcd.io/guides/image-update/](https://toolkit.fluxcd.io/guides/image-update/).
+🚀 Check out [the guide on how to automate image updates to Git](/docs/guides/image-update/).
 
 Next up we will triage `image-*` issues and mark upcoming changes for
 v1alpha2. The proposal for v1alpha2 is under discussion at [https://github.com/fluxcd/flux2/discussions/1124](https://github.com/fluxcd/flux2/discussions/1124).
@@ -98,8 +97,7 @@ who use Flux in production.
 Here is a bit of a press round-up if you want to read more about the
 history, the move itself and what it means:
 
-- Our own announcement:
-  [https://fluxcd.io/blog/2021/03/flux-is-a-cncf-incubation-project/](https://fluxcd.io/blog/2021/03/flux-is-a-cncf-incubation-project/)
+- **[Our own announcement](/blog/2021/03/flux-is-a-cncf-incubation-project/)**
 - CNCF:
   [https://www.cncf.io/blog/2021/03/11/cncf-toc-votes-to-move-flux-from-sandbox-to-incubation/](https://www.cncf.io/blog/2021/03/11/cncf-toc-votes-to-move-flux-from-sandbox-to-incubation/)
 - CNCF On-Demand Webinar: Flux is Incubating + The Road Ahead:
@@ -221,8 +219,7 @@ cohesive and inviting, please talk to \@dholbach or \@alisondy on Slack.
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev
-  meetings](https://fluxcd.io/community/#meetings) on
+- Join our [upcoming dev meetings](/community/#meetings) on
   2012-04-08 15:00 UTC, or 2021-04-14, 12:00 UTC
 
 - Talk to us in the \#flux channel on [CNCF
@@ -232,9 +229,7 @@ good ways to do that:
   discussions](https://github.com/fluxcd/flux2/discussions)
 
 - And if you are completely new to Flux v2, take a look at our [Get
-  Started
-  guide](https://toolkit.fluxcd.io/get-started/) and
-  give us feedback
+  Started guide](/docs/get-started/) and give us feedback
 
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

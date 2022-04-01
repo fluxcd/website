@@ -18,7 +18,7 @@ accounting for the fact that it's a system with a substantially different
 design.
 This may at times mean that you have to make adjustments to the way your
 current cluster configuration is structured. If you are in this situation
-and need help, please refer to the [support page](https://fluxcd.io/support/).
+and need help, please refer to the [support page](/support/).
 {{% /alert %}}
 
 ## Prerequisites

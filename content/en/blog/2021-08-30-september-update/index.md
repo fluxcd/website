@@ -161,7 +161,7 @@ commitment is minimal!
 
 Find our calendar on the Flux website where, thanks to some updates,
 finding the [date and time of the next Bug Scrub
-meeting](https://fluxcd.io/#calendar) is now more
+meeting](/#calendar) is now more
 accessible than ever before.
 
 The Zoom link is broadcast via Slack a few minutes before the
