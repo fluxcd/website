@@ -699,6 +699,11 @@ patchesStrategicMerge:
       iam.gke.io/gcp-service-account: <gcp-service-account-name>@<PROJECT_ID>.iam.gserviceaccount.com
 ```
 
+The Artifact Registry service uses the permission `artifactregistry.repositories.downloadArtifacts` that is
+located under the Artifact Registry Reader role. If you are using Google Container Registry service, the needed
+permission is instead `storage.objects.list` which can be bound as part of the Container Registry Service Agent
+role, (or it can be bound separately in your own created role for the least required permission.)
+
 Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) for more
 information about setting up GKE Workload Identity.
 
