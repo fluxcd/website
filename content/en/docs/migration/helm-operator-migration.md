@@ -288,7 +288,7 @@ spec:
   # The Git reference to checkout and monitor for changes
   # (defaults to master)
   # For all available options, see:
-  # https://toolkit.fluxcd.io/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepositoryRef
+  # https://fluxcd.io/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepositoryRef
   ref:
     branch: master
 ```

@@ -109,8 +109,7 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 > Flux v2.
 >
 > In this session, Leigh Capili, DX Engineer at Weaveworks, will demo
-> the Flux guide on how to Migrate from Flux v1
-> (<https://toolkit.fluxcd.io/guides/flux-v1-migration/>),
+> the [Flux guide on how to Migrate from Flux v1](/docs/migration/flux-v1-migration/),
 > including boostrapping a cluster with Flux 1 and how to move it over
 > to Flux v2.
 >
@@ -120,10 +119,9 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 >
 > Resources:
 >
-> 📍 Flux v2 Documentation: <https://toolkit.fluxcd.io/>
+> 📍 [Flux v2 Documentation](/docs/)
 >
-> 📍 Flux v2 Guide Migrate from Flux v1:
-> <https://toolkit.fluxcd.io/guides/flux-v1-migration/>
+> 📍 [Flux v2 Guide Migrate from Flux v1](/docs/migration/flux-v1-migration/)
 >
 > 📍 [Flux v2 roadmap](/roadmap/).
 
@@ -172,7 +170,7 @@ good ways to do that:
 - Talk to us in the `#flux` channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our
-  [Get Started guide](https://toolkit.fluxcd.io/get-started/) and
+  [Get Started guide](/docs/get-started/) and
   give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn

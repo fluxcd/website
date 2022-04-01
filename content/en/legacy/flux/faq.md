@@ -6,7 +6,7 @@ weight: 80
 
 ## Migrate to Flux v2
 
-[Flux v1 is in maintenance](https://github.com/fluxcd/flux/issues/3320) on the road to becoming formally superseded by Flux v2. Flux users are all encouraged to [migrate to Flux v2](https://toolkit.fluxcd.io/guides/flux-v1-migration/) as early as possible.
+[Flux v1 is in maintenance](https://github.com/fluxcd/flux/issues/3320) on the road to becoming formally superseded by Flux v2. Flux users are all encouraged to [migrate to Flux v2](/docs/migration/flux-v1-migration/) as early as possible.
 
 ### Why should I upgrade
 

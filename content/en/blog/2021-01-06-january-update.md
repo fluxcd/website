@@ -76,7 +76,7 @@ improvements, it comes with many new features. The highlights are:
 Automated Image Updates
 -----------------------
 
-[Automated Image Updates Guide](https://toolkit.fluxcd.io/guides/image-update/) (alpha release)
+[Automated Image Updates Guide](/docs/guides/image-update/) (alpha release)
 
 Flux v2 now includes two controllers for automating image updates \--
 one of the controllers is for scanning container image repositories, and
@@ -130,7 +130,7 @@ Upcoming events
 The Flux community is growing and we are in the middle of a quite a few
 big discussions:
 
-- We have a new guide which explains core concepts in the Flux world: [https://toolkit.fluxcd.io/core-concepts/](https://toolkit.fluxcd.io/core-concepts/) - please give feedback - and thanks Somtochi!
+- We have [a new guide which explains core concepts](/docs/concepts/) in the Flux world - please give feedback - and thanks Somtochi!
 - Flux applies to upgrade to CNCF Incubation status: [https://github.com/cncf/toc/pull/567](https://github.com/cncf/toc/pull/567)
 
 If you like what you read and would like to get involved, here are a few
@@ -139,7 +139,7 @@ good ways to do that:
 - Join our [upcoming dev meeting](https://fluxcd.io/community/#meetings) on Jan 14
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
-- And if you are completely new to Flux v2, take a look at our [Get Started guide](https://toolkit.fluxcd.io/get-started/) and give us feedback
+- And if you are completely new to Flux v2, take a look at our [Get Started guide](/docs/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd), join the discussion in the [Flux LinkedIn group](https://www.linkedin.com/groups/8985374/)
 
 We are looking forward to working with you.
