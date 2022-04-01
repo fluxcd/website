@@ -96,7 +96,7 @@ If you wish to use your own Prometheus and Grafana instances, then you can impor
 
 ![Annotations Dashboard](/img/grafana-annotation.png)
 
-If you wish to overlap [flux notifications](https://fluxcd.io/docs/components/notification/provider/#grafana) on dashboards you can do it by enabling the grafana annotations alert provider, the desired alerts and the annotation on the dashboard like shown below:
+If you wish to overlap [flux notifications](/docs/components/notification/provider/#grafana) on dashboards you can do it by enabling the grafana annotations alert provider, the desired alerts and the annotation on the dashboard like shown below:
 
 ![Annotations configuration](/img/grafana-annotations-config.png)
 

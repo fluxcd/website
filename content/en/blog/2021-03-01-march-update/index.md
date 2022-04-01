@@ -23,7 +23,7 @@ The Flux community has set itself very ambitious goals for version 2 and
 as it's a multi-month project, we strive to inform you each month about
 what has already landed, new possibilities which are available for
 integration and where you can get involved. Read last month's update
-here: [February 2021 Update](https://fluxcd.io/blog/2021/02/february-2021-update/).
+here: [February 2021 Update](/blog/2021/02/february-2021-update/).
 
 Let's recap what happened in February - there have been many changes.
 
@@ -159,13 +159,12 @@ this schedule:
 - \"early\" meeting: Uneven weeks: Wed, 10:00 UTC
 - \"late\" meeting: Even weeks: Thu, 15:00 UTC
 
-Find all the information about meetings here:
-<https://fluxcd.io/community/#meetings>
+Find all [the information about meetings here](/community/#meetings).
 
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings)
+- Join our [upcoming dev meetings](/community/#meetings)
   on March, 3rd 12:00 UTC, or March 11th, 15:00 UTC
 - Talk to us in the `#flux` channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)

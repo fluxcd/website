@@ -23,7 +23,7 @@ The Flux community has set itself very ambitious goals for version 2 and
 as it's a multi-month project, we strive to inform you each month about
 what has already landed, new possibilities which are available for
 integration and where you can get involved. Read last month's update
-here: <https://fluxcd.io/blog/2021/03/april-2021-update/>.
+[here](/blog/2021/03/april-2021-update/).
 
 Let's recap what happened in April - there has been so much happening!
 
@@ -232,7 +232,7 @@ We feel very fortunate to have Alison on board!
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings) on
+- Join our [upcoming dev meetings](/community/#meetings) on
   2021-05-12 12:00 UTC, or 2021-05-20 15:00 UTC
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)

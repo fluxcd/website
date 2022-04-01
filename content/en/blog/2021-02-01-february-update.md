@@ -64,14 +64,14 @@ aware of what's coming next.
 ## fluxcd.io website updates
 
 In the last months' summaries we talked about our plans of revamping our
-[fluxcd.io website](https://fluxcd.io/). Originally it was mostly just
+[fluxcd.io website](/). Originally it was mostly just
 spiffy placeholder page which pointed to more Flux resources. Since then
 we landed a new design, made its focus Flux2, now we have added two pages
 which should hopefully help new users and aspiring contributors learn
 about their options getting help and joining the team
 
-- [Community \| Flux](https://fluxcd.io/community/) and
-- [SUPPORT \| Flux](https://fluxcd.io/support/)
+- [Community \| Flux](/community/) and
+- [SUPPORT \| Flux](/support/)
 
 Please let us know if there's anything missing or you'd like to help
 with the site or docs.

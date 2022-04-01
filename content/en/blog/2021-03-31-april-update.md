@@ -97,8 +97,7 @@ who use Flux in production.
 Here is a bit of a press round-up if you want to read more about the
 history, the move itself and what it means:
 
-- Our own announcement:
-  [https://fluxcd.io/blog/2021/03/flux-is-a-cncf-incubation-project/](https://fluxcd.io/blog/2021/03/flux-is-a-cncf-incubation-project/)
+- **[Our own announcement](/blog/2021/03/flux-is-a-cncf-incubation-project/)**
 - CNCF:
   [https://www.cncf.io/blog/2021/03/11/cncf-toc-votes-to-move-flux-from-sandbox-to-incubation/](https://www.cncf.io/blog/2021/03/11/cncf-toc-votes-to-move-flux-from-sandbox-to-incubation/)
 - CNCF On-Demand Webinar: Flux is Incubating + The Road Ahead:
@@ -220,8 +219,7 @@ cohesive and inviting, please talk to \@dholbach or \@alisondy on Slack.
 If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
-- Join our [upcoming dev
-  meetings](https://fluxcd.io/community/#meetings) on
+- Join our [upcoming dev meetings](/community/#meetings) on
   2012-04-08 15:00 UTC, or 2021-04-14, 12:00 UTC
 
 - Talk to us in the \#flux channel on [CNCF

@@ -319,4 +319,4 @@ Update deployments via Flux's [ImagePolicy] CRD, and the Image Update Automation
 [Kubernetes examples for Buildkit]: https://github.com/moby/buildkit/tree/master/examples/kubernetes
 [Buildkit CLI for Kubectl]: https://github.com/vmware-tanzu/buildkit-cli-for-kubectl
 [KubeCon/CloudNativeCon EU 2021]: https://www.youtube.com/watch?v=vTh6jkW_xtI
-[ImagePolicy]: https://fluxcd.io/docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
+[ImagePolicy]: /docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
