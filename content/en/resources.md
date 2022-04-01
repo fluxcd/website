@@ -14,6 +14,34 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/73kOXNTrNVU?t=430"
+thumbnail="73kOXNTrNVU"
+title="From Zero to GitOps Heroes" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 30-Mar-2022)
+
+{{% blocks/resource
+url="https://youtu.be/-3K74I7t7CQ?t=447"
+thumbnail="-3K74I7t7CQ"
+title="Security: The Value of SBOMs" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 24-Mar-2022)
+
+{{% blocks/resource
+url="https://youtu.be/etbvuV9EjLc"
+thumbnail="etbvuV9EjLc"
+title="Securing GitOps Debug Access - Leigh Capili" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 16-Mar-2022)
+
+{{% blocks/resource
+url="https://youtu.be/XG2uuAMTJg8"
+thumbnail="XG2uuAMTJg8"
+title="Tanzu Tuesdays 89: GitOps with Flux on Kubernetes - Stefan Prodan" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 15-Mar-2022)
+
+{{% blocks/resource
 url="https://youtu.be/V1AOVwzmIKE?t=287"
 thumbnail="V1AOVwzmIKE"
 title="Managing Thousand of Clusters and Their Workloads - Max Jonas Werner" %}}
