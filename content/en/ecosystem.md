@@ -34,6 +34,7 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 | --------------------------------------------------------------------------- | ----------- |
 | [aws/eks-anywhere](https://github.com/aws/eks-anywhere)                     | Amazon EKS Anywhere is an open-source deployment option for Amazon EKS that allows customers to create and operate Kubernetes clusters on-premises. |
 | [fidelity/kraan](https://github.com/fidelity/kraan)                         | Kraan is a Kubernetes Controller that manages the deployment of HelmReleases to a cluster. |
+| [flux-subsystem-argo/flamingo](https://github.com/flux-subsystem-argo/flamingo) | 🚧 Technology preview: FSA (aka Flamingo) is Flux Subsystem for Argo. FSA's container image can be used as a drop-in replacement for the equivalent ArgoCD version to visualize, and manage Flux workloads, along side ArgoCD. |
 | [microsoft/bedrock](https://github.com/microsoft/bedrock)                   | Automation for Production Kubernetes Clusters with a GitOps Workflow. |
 | [microsoft/fabrikate](https://github.com/microsoft/fabrikate)               | Making GitOps with Kubernetes easier one component at a time. |
 | [microsoft/gitops-connector](https://github.com/microsoft/gitops-connector) | A GitOps Connector integrates a GitOps operator with CI/CD orchestrator. |
