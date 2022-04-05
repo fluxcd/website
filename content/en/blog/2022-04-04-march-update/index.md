@@ -195,7 +195,7 @@ resources in the GitOps way. We received a short report from the team
 regarding their achievements of the first quarter of the year:
 
 - TF-controller
-  [v0.9.3](https://docs.google.com/document/u/0/d/1Z6yPN9-bWeVGpMrBxXJ3NBTBYZowJ3R93wKHEVmBJ1A/edit)
+  [v0.9.3](https://github.com/weaveworks/tf-controller/releases/tag/v0.9.3)
   is considered the most stable release to date.
 - We reached 200 stars on GitHub, now at 211.
 - It\'s been 45 releases so far.
