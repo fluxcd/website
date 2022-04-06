@@ -157,7 +157,7 @@ gen_crd_doc() {
   TMP_METADATA="$TMP/flux.json"
   TMP_BIN="$TMP/flux.tar.gz"
 
-  curl -o "${TMP_METADATA}" -sfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
+  curl -o "${TMP_METADATA}" --retry 3 -sSfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
   VERSION_FLUX=$(grep '"tag_name":' "${TMP_METADATA}" | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
 
   curl -o "${TMP_BIN}" -sfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
