@@ -164,7 +164,7 @@ different Kustomization, first you need to disable garbage collection then move 
 Assuming you have two Flux Kustomization named `app1` and `app2`, and you want to move a
 deployment manifests named `deploy.yaml` from `app1` to `app2`:
 
-1. Disable garbage collection by setting `prune: false` in the `app1` Flux Kustomization. Commit, push and reconcile the changes e.g. `flux reconcile ks flux-system --with-source`.
+1. Disable garbage collection by setting `prune: false` in the `app1` Flux Kustomization. Commit, push and reconcile the changes e.g. `flux reconcile ks app1 --with-source`.
 2. Verify that pruning is disabled in-cluster with `flux export ks app1`.
 3. Move the `deploy.yaml` manifest to the `app2` dir, then commit, push and reconcile e.g. `flux reconcile ks app2 --with-source`.
 4. Verify that the deployment is now managed by the `app2` Kustomization with `flux tree ks apps2`.
