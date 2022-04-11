@@ -54,8 +54,12 @@
 
   h1 {
     color: rgba($flux-white, 0.95);
-    font-size: 3.8em;
+    font-size: 2.8em;
     padding-left: 14px;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 3.8em;
+    }
   }
 
   h2 {
