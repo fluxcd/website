@@ -1,9 +1,13 @@
 {{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
-<nav class="js-navbar-scroll navbar navbar-expand navbar-dark {{ if $cover}} td-navbar-cover {{ end }}flex-column flex-md-row td-navbar">
+<nav class="js-navbar-scroll navbar-expand-lg navbar navbar-dark {{ if $cover}} td-navbar-cover {{ end }}flex-row td-navbar">
         <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
 		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="font-weight-bold">{{ .Site.Title }}</span>
 	</a>
-		<ul class="navbar-nav mt-2 mt-lg-0">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+		<ul class="navbar-nav mt-2 p-3 p-lg-0 mt-lg-0">
 			{{ $p := . }}
 			{{ range .Site.Menus.main }}
 				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
@@ -46,4 +50,5 @@
 			{{ end }}
 			<li class="nav-item nav-search-item">{{ partial "search-input.html" . }}</li>
 		</ul>
+  </div>
 </nav>

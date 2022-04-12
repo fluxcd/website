@@ -13,8 +13,11 @@ nav.navbar {
 
     svg {
       display: inline-block;
-      margin: 0 10px;
+      margin: 0 10px 0 -6px;
       height: 30px;
+      @include media-breakpoint-up(lg) {
+        margin: 0 10px;
+      }
     }
   }
 

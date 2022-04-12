@@ -343,3 +343,11 @@ main.td-main {
 .cncf-footer {
   @include white-background-a;
 }
+
+.td-navbar {
+  min-height: auto !important;
+  @include media-breakpoint-up(lg) {
+    min-height: 4rem !important;
+  }
+}
+
