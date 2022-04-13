@@ -14,6 +14,13 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/watch?v=dunU2ABitMA"
+thumbnail="dunU2ABitMA"
+title="How To Apply GitOps To Everything Using Crossplane And Flux" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 13-Apr-2022)
+
+{{% blocks/resource
 url="https://youtu.be/73kOXNTrNVU?t=430"
 thumbnail="73kOXNTrNVU"
 title="From Zero to GitOps Heroes" %}}
