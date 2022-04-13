@@ -150,3 +150,6 @@ adopters:
     - name: Anchore
       url: https://anchore.com/
       logo: logos/anchore.png
+    - name: Stackspin
+      url: https://stackspin.net/
+      logo: logos/stackspin.svg
