@@ -14,6 +14,13 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://youtu.be/watch?v=5u45lXmhgxA"
+thumbnail="5u45lXmhgxA"
+title="Full GitOps Tutorial: Getting started with Flux CD" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 14-Apr-2022)
+
+{{% blocks/resource
 url="https://youtu.be/watch?v=dunU2ABitMA"
 thumbnail="dunU2ABitMA"
 title="How To Apply GitOps To Everything Using Crossplane And Flux" %}}
