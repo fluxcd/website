@@ -91,6 +91,10 @@
         height: 900px;
       }
 
+      @media (max-width: 390px) {
+        height: auto;
+      }
+
       width: 100vw;
       padding: 0 15px;
 
@@ -103,6 +107,11 @@
 
         @media (max-width: 460px) {
           height: 900px;
+        }
+
+        @media (max-width: 390px) {
+          height: auto;
+          margin-top: 50px;
         }
 
         max-width: 600px;
