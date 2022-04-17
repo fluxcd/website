@@ -360,6 +360,7 @@ flux bootstrap bitbucket-server \
   --username=my-bitbucket-username \
   --repository=my-repository \
   --path=clusters/my-cluster \
+  --hostname=my-bitbucket-server.com \
   --group=group-name 
 ```
 
