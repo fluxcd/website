@@ -247,6 +247,11 @@
 /* /adopters page */
 .adopters {
   .card-deck {
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     @include media-breakpoint-only(lg) {
       column-count: 4;
     }
@@ -255,8 +260,12 @@
     }
 
     .card {
-      min-width: 150px;
-      max-width: 150px;
+      min-width: 48%;
+      max-width: 48%;
+      @include media-breakpoint-up(sm) {
+        min-width: 150px;
+        max-width: 150px;
+      }
     }
 
     .card-header {
