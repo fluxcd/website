@@ -3,6 +3,12 @@
   @include media-breakpoint-down(sm) {
     margin-top: 2rem;
   }
+
+  a {
+    @include media-breakpoint-down(sm) {
+      word-break: break-word;
+    }
+  }
 }
 
 .td-404 .td-main {
