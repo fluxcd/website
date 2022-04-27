@@ -208,7 +208,7 @@ based on top of the most recent versions of Flux.
 The Flux Bug Scrub in the last week of November (25th) coincided with
 the US Thanksgiving holiday, so it was not held. Each weekly Bug Scrub
 can be found (and linked Zoom details) on the
-[fluxcd.io/\#calendar](http://fluxcd.io/#calendar)
+[fluxcd.io/\#calendar](https://fluxcd.io/#calendar)
 calendar widget, which has now been adjusted for the end of Daylight
 Savings Time. Please check in on
 [\#flux](https://cloud-native.slack.com/channels/flux) or
@@ -234,7 +234,7 @@ January 6) -- note: there will be no meeting on December 23rd due to a
 company-wide holiday shutdown. Find the Zoom link on the [CNCF Flux Dev
 calendar](https://lists.cncf.io/g/cncf-flux-dev/calendar),
 (subscribe), or locate the link directly on the [Flux main
-page](http://fluxcd.io/#calendar).
+page](https://fluxcd.io/#calendar).
 
 ## In other news
 

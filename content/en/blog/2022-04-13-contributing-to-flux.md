@@ -27,7 +27,7 @@ section](/community/#communication) on our
 website lists all the ways, but let's drill into them in more detail.
 
 1. A good way to reach us and talk to us in real-time is on CNCF Slack.
-   Get an [invite](http://slack.cncf.io/) here, then
+   Get an [invite](https://slack.cncf.io/) here, then
    proceed to the \#flux channel.
 1. We have public meetings on a weekly basis to talk about upcoming
    work and direction of the project. They are open to anyone and we

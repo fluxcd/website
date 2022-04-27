@@ -49,7 +49,7 @@ here's a quick list of our highlights:
   providing explicit status conditions which conform to the
   Kubernetes `kstatus` conventions.
 - A new annotation
-  ([kustomize.toolkit.fluxcd.io/ssa](http://kustomize.toolkit.fluxcd.io/ssa):
+  ([kustomize.toolkit.fluxcd.io/ssa](https://kustomize.toolkit.fluxcd.io/ssa):
   merge) is available for allowing Flux to [patch cluster
   addons](/docs/faq/#how-to-patch-coredns-and-other-pre-installed-addons)
   such as CoreDNS.
