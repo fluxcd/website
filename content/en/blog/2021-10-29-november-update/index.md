@@ -263,7 +263,7 @@ styling, beautification and bringing in a nicer 404 page! 🤩
 On top of that: more frequently asked questions and many more updates to
 the docs, particularly around the new world order involving Server-Side
 Apply! We updated [our Contributor
-docs](https://fluxcd.io/contributing/) as well! Hope to see
+docs](/contributing/) as well! Hope to see
 you on the other side!
 
 ## Over and out
