@@ -230,7 +230,7 @@ New joiners in the past month have been
 - [jgz/s3-auth-proxy](https://github.com/jgz/s3-auth-proxy) -
   which creates a simple basic-auth proxy for an s3 bucket
 - [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook) -
-  a [pre-commit](http://pre-commit.com) that validates
+  a [pre-commit](https://pre-commit.com) that validates
   values of HelmRelease using helm lint
 
 If you are part of the Flux Ecosystem, we want you on that page as well!
