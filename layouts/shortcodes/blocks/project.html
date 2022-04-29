@@ -25,9 +25,7 @@
         </div>
         <div class="row">
             <a class="btn btn-lg btn-{{ $b1_color }}" href="{{ $b1_url }}" role="button">{{ $b1_caption }}</a>
-            {{ if $b2_url }}
-            <a class="btn btn-lg btn-{{ $b2_color }}" href="{{ $b2_url }}" role="button">{{ $b2_caption }}</a>
-            {{ end }}
+            {{ if $b2_url }}<a class="btn btn-lg btn-{{ $b2_color }}" href="{{ $b2_url }}" role="button">{{ $b2_caption }}</a>{{ end }}
         </div>
     </div>
 </section>
