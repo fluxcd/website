@@ -121,7 +121,7 @@ We are very happy to announce the v1.6 release of Flagger. This release
 includes:
 
 - Support for A/B testing using [Gloo
-  Edge](https://docs.flagger.app/tutorials/gloo-progressive-delivery)
+  Edge](/flagger/tutorials/gloo-progressive-delivery)
   HTTP headers based routing.
 - Extended support for Istio\'s `HTTPMatchRequest` and `VirtualService`
   delegation.

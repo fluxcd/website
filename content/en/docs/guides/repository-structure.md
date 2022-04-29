@@ -52,7 +52,7 @@ New app release can be automatically delivered to staging using Flux's [image up
 For production, you may choose to manually approve app version bumps by configuring Flux
 to push the changes to a new branch from which you can create a pull request.
 You can limit the impact of an issue that escaped staging testing by using Flagger's 
-[canary releases](https://docs.flagger.app/).
+[canary releases](/flagger/).
 
 Changes to infrastructure can be disruptive and could cause cluster-wide outages.
 These config changes can be made in steps, first you merge a change to staging,

@@ -77,7 +77,7 @@ project within Kubernetes. Be sure to check out the blog post to find
 out how to integrate this into your setups.
 
 The Flux community is happy and proud that
-[Flagger](https://docs.flagger.app/) is part of our effort
+[Flagger](/flagger/) is part of our effort
 to bring GitOps solutions to the world.
 
 ### Flux "Maintainers' Focus" Project Board

@@ -255,21 +255,21 @@ What we achieved up until today is only possible because of <a href="/community"
 
   {{% blocks/section color="white" %}}
 
+  <p id="flagger"></p>
+  {{% blocks/project title="Flagger"
+    image="/img/flagger-gitops.png" image-align="right" bg-color="green"
+    button1-url="/flagger" %}}
+  Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
+
+  The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
+  {{% /blocks/project %}}
+
   <p id="gitops-toolkit"></p>
   {{% blocks/project title="GitOps Toolkit"
     image="/img/building-blocks.svg" image-align="left" bg-color="blue"
     button1-url="/docs/gitops-toolkit/source-watcher/"
     button2-url="/docs/components/" %}}
   The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
-  {{% /blocks/project %}}
-
-  {{% blocks/project title="Flagger"
-    image="/img/flagger-gitops.png" image-align="right" bg-color="green"
-    button1-url="https://docs.flagger.app/"
-    button2-url="https://flagger.app/" %}}
-  Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
-
-  The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
   {{% /blocks/project %}}
 
   {{% blocks/project title="Flux v1 and Helm Operator"

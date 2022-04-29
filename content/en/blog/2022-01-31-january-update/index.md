@@ -96,7 +96,7 @@ Kubernetes 1.19 is supported.
 This release comes with support for [Kuma Service
 Mesh](https://kuma.io/). For more details see the [Kuma
 Progressive Delivery
-tutorial](https://docs.flagger.app/tutorials/kuma-progressive-delivery).
+tutorial](/flagger/tutorials/kuma-progressive-delivery).
 
 {{< imgproc flagger-kuma-canary Resize 600x >}}
 Kuma Progressive Delivery with Flagger

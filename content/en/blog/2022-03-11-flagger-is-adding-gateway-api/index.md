@@ -118,7 +118,7 @@ services are adjusted accordingly.
 ![Flagger canary](flagger-canary-steps.png)
 
 If you want to get started right away, have a look at [our
-tutorial](https://docs.flagger.app/tutorials/gatewayapi-progressive-delivery),
+tutorial](/flagger/tutorials/gatewayapi-progressive-delivery),
 which shows you how to use Contour's Gateway API implementation and Flagger to automate canary
 deployments. It won't take long to follow, but will convey how powerful
 this integration is.

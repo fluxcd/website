@@ -153,14 +153,6 @@ enable = true
 	icon = "fab fa-youtube"
 	desc = "Recordings of past Flux dev meetings"
 
-
-
-[[menus.main]]
-url = "/docs"
-name = "Docs"
-weight = 1
-
-
 [[menus.main]]
 identifier = "Project"
 name = "Project"
