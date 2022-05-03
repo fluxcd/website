@@ -15,6 +15,9 @@ involved. Read our [last update here](/blog/2022/03/february-update/).
 It's the beginning of May 2022 - let's recap together what happened in
 April - it has been a lot!
 
+**Update:** Earlier versions of this post referred to the pre-KubeCon
+Bug Bash. Unfortunately we had to cancel our participation.
+
 ## News in the Flux family
 
 ### Latest Flux release series is 0.29
@@ -250,12 +253,12 @@ can plan accordingly or collaborate with us!
 
 #### The Bug Bash
 
-Leading up to KubeCon, the Bug Bash will run online during the time
-between May 7 and May 15 before KubeCon to maximise developer
-engagement. At KubeCon there will be awards for top contributors live at
-the conference!
+Unfortunately we will not be participating in the Bug Bash this KubeCon!
 
-There will be a separate announcement once we know all the details.
+Despite earlier announcements claiming we would do this, we felt we
+could not do this well enough. If you were looking forward to this,
+we are sorry - but you know what: we still have the weekly Bug Scrub! Your
+weekly one-on-one mentoring to learn the ropes of working on Flux!
 
 #### Monday, 16 May
 

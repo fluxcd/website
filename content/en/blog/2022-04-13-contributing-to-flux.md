@@ -20,6 +20,9 @@ every month.
 As many asked in the past months how to get involved in the Flux
 community, let's walk you through some steps to join Team Flux!
 
+**Update:** Earlier versions of this post referred to the pre-KubeCon
+Bug Bash. Unfortunately we had to cancel our participation.
+
 ## First things first
 
 The first thing to do is get in touch with us! The [communication
@@ -75,12 +78,12 @@ calendar](/#calendar) and turn up.
 
 ### The Bug Bash
 
-Leading up to KubeCon / CloudNativeCon Europe 2022, the Bug Bash will
-run online for the two week period (Monday May 2 - Friday May 13) before
-KubeCon to maximise developer engagement. At KubeCon there will be
-awards for top contributors live at the conference!
+Unfortunately we will not be participating in the Bug Bash this KubeCon!
 
-There will be a separate announcement very soon.
+Despite earlier announcements claiming we would do this, we felt we
+could not do this well enough. If you were looking forward to this,
+we are sorry - but you know what: we still have the weekly Bug Scrub! Your
+weekly one-on-one mentoring to learn the ropes of working on Flux!
 
 ## Participating in Flux Development
 
