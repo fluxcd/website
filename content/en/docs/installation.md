@@ -615,6 +615,24 @@ flux create helmrelease nginx \
   --chart-version="5.x.x"
 ```
 
+## Deploy key rotation
+
+To rotate the SSH key generated at bootstrap, first delete the secret from the cluster with:
+
+```sh
+kubectl -n flux-system delete secret flux-system
+```
+
+Then generate a new secret with:
+
+```sh
+flux create secret git flux-system \
+  --url=ssh://git@<host>/<org>/<repository>
+```
+
+The above command will print the SSH public key, once you set it as the deploy key,
+Flux will resume all operations.
+
 ## Upgrade
 
 {{% alert color="info" title="Patch versions" %}}
