@@ -193,6 +193,38 @@ patches:
       name: "(kustomize-controller|helm-controller|source-controller)"
 ```
 
+### Enable Helm repositories caching
+
+For large Helm repository index files, you can enable
+caching to reduce the memory footprint of source-controller:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --helm-cache-max-size=10
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --helm-cache-ttl=60m
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --helm-cache-purge-interval=5m
+    target:
+      kind: Deployment
+      name: source-controller
+```
+
+
+When `helm-cache-max-size` is reached, an error is logged and the index is instead
+read from file. Cache hits are exposed via the `gotk_cache_events_total` Prometheus
+metrics. Use this data to fine-tune the configuration flags.
+
 ### Using HTTP/S proxy for egress traffic
 
 If your cluster must use an HTTP proxy to reach GitHub or other external services,
@@ -330,8 +362,8 @@ patches:
 
 ### Multi-tenancy lockdown
 
-Lock down Flux on a multi-tenant cluster by disabling cross-namespace references
-and setting a default service account:
+Lock down Flux on a multi-tenant cluster by disabling cross-namespace references and Kustomize remote bases, and
+by setting a default service account:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -347,6 +379,13 @@ patches:
     target:
       kind: Deployment
       name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --no-remote-bases=true
+    target:
+      kind: Deployment
+      name: "kustomize-controller"
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args/-
