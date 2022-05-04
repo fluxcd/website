@@ -220,6 +220,11 @@ patches:
       name: source-controller
 ```
 
+
+When `helm-cache-max-size` is reached, an error is logged and the index is instead
+read from file. Cache hits are exposed via the `gotk_cache_events_total` Prometheus
+metrics. Use this data to fine-tune the configuration flags.
+
 ### Using HTTP/S proxy for egress traffic
 
 If your cluster must use an HTTP proxy to reach GitHub or other external services,
