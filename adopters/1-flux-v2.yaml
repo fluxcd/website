@@ -159,3 +159,6 @@ adopters:
     - name: Rungway
       url: https://rungway.com
       logo: logos/rungway.png
+    - name: Grafana Labs
+      url: https://grafana.com/
+      logo: logos/grafana-labs.svg
