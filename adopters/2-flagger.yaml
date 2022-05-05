@@ -48,3 +48,6 @@ adopters:
     - name: RingCentral
       url: https://www.ringcentral.com/
       logo: logos/ringcentral.png
+    - name: Grafana Labs
+      url: https://grafana.com/
+      logo: logos/grafana-labs.svg
