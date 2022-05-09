@@ -162,3 +162,6 @@ adopters:
     - name: Grafana Labs
       url: https://grafana.com/
       logo: logos/grafana-labs.svg
+    - name: Aily Labs
+      url: https://ailylabs.com/
+      logo: logos/aily-labs.png
