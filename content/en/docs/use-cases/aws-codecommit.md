@@ -35,7 +35,7 @@ and create a new repository to hold your Flux install and other Kubernetes resou
 Clone the Git repository locally:
 
 ```sh
-git clone ssh://git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository>
+git clone ssh://Your-SSH-Key-ID@git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository>
 cd my-repository
 ```
 
@@ -75,7 +75,7 @@ Create a `GitRepository` object on your cluster by specifying the SSH address of
 ```sh
 flux create source git flux-system \
   --git-implementation=libgit2 \
-  --url=ssh://git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository> \
+  --url=ssh://Your-SSH-Key-ID@git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository> \
   --branch=<branch> \
   --ssh-key-algorithm=rsa \
   --ssh-rsa-bits=4096 \
