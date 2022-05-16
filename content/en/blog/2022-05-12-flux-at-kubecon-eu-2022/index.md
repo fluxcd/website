@@ -17,6 +17,8 @@ is happening 16-20 May 2022 in Valencia, Spain. Team Flux is going to be
 there and we are looking forward to meeting you in-person or in our
 virtual sessions, meetings and co-located events. 🎉
 
+**Update:** 2022-05-16: We updated the details of the project meeting.
+
 ## If you can't make it to KubeCon
 
 Many of us won't be able to attend in-person this time around. Don't
@@ -109,21 +111,22 @@ Everyone is looking forward to meeting you! 💖
 kick off the Flux get-togethers and festivities with an in-person
 meeting for all Flux users, contributors, maintainers and generally
 interested folks. This will be an opportunity to get to know each other,
-have a chat, see what people's interests are and to potentially start
-contributing. ([Sign up
+have a chat and see what people's interests are. ([Sign up
 here](https://linuxfoundation.surveymonkey.com/r/WYGBGPZ).)
 Contact people on the ground are: Scott Rigby, Priyanka Ravi and Stefan
 Prodan.
 
-> Join the Flux Maintainers for this Flux Project Meeting in-person at
-> KubeCon EU on Monday, May 16 from 1pm - 5pm CEST
->
+Schedule:
+
+- 13:00 Meet and greet
+- 13:30 **Intro to GitOps and Flux** lightning talk + Q&A with Pinky
+- 14:00 **Flux's Top 10 Features** with Stefan Prodan + Q&A/office hours
+- 15:00 **Open topics.** We can do office hours or mix and match with lightning talks on **Flux + Helm, Flux + Terraform, Flux + HashiCorp Vault, Flux + Visual Studio Code**, etc. Whatever people want.
+
 > Click here to register
 > ([here](https://linuxfoundation.surveymonkey.com/r/WYGBGPZ))
-> for the Flux Project Meeting. Please note that you must be a KubeCon +
-> CloudNativeCon Europe
-> ([here](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/))
-> registrant in order to attend this meeting.
+> for the Flux Project Meeting.
+> (Free, in-person, no special ticket required)
 >
 > Details Flux Project Meeting
 >
