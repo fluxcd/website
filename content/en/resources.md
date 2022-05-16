@@ -14,6 +14,12 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+youtube="PFLimPh5-wo"
+title="The FASTEST way to deploy apps to Kubernetes" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 13-May-2022)
+
+{{% blocks/resource
 url="https://youtu.be/watch?v=5u45lXmhgxA"
 thumbnail="5u45lXmhgxA"
 title="Full GitOps Tutorial: Getting started with Flux CD" %}}
