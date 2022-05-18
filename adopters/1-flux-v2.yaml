@@ -167,4 +167,7 @@ adopters:
       logo: logos/aily-labs.png
     - name: SisID
       url: https://sis-id.com/
-      logo: logos/sis-id.png      
+      logo: logos/sis-id.png
+    - name: FHE3
+      url: https://www.fhe3.com/
+      logo: logos/fhe3.png         
