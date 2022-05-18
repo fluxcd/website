@@ -272,7 +272,7 @@ If `Receivers` are not configured, the `GitRepository` will activate on an inter
 upon, where reconciling is usually done immediately upon detecting a change, rather than at intervals. That behavior is able to be accomplished roughly
 instantaneously through a publisher-subscriber model.
 
-Resources like `GitRepository` and `Bucket` (and other Source API kinds) can be also be activated by webhook receivers to provide a similar experience.
+Resources like `GitRepository` and `Bucket` (and other Source API kinds) can also be activated by webhook receivers to provide a similar experience.
 Webhook receivers are used to make Flux's pull-based model as fast and responsive as push-based pipelines, but importantly they do not make Flux
 "push-based" as the event contains no instructions, and only serves as an "early wake-up call" to notify Flux controllers. (It is not intended to be
 possible for Receivers to change anything else about the behavior of Flux, except for reconciling ahead of schedule.)
