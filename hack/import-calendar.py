@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import (date, timedelta)
+from datetime import (date, datetime, timedelta)
 import glob
 import os
 import sys
@@ -79,11 +79,20 @@ def read_calendar(cal):
     next_month = today+timedelta(days=30)
     for event in recurring_ical_events.of(gcal).between(today, next_month):
         description = replace_url_to_link(fix_double_url(event['description']))
+        if type(event['dtstart'].dt) == date:
+            event_time = datetime.combine(
+                event['dtstart'].dt, datetime.min.time()).astimezone(pytz.utc)
+        else:
+            event_time = event['dtstart'].dt.astimezone(pytz.utc)
+        if 'location' not in event:
+            event_location = ''
+        else:
+            event_location = event['location'].title().lower()
         events += [
             {
-                "time": event['dtstart'].dt.astimezone(pytz.utc),
+                "time": event_time,
                 "title": event['summary'],
-                "location": event['location'].title().lower(),
+                "location": event_location,
                 "organizer": read_organizer(event),
                 "description": description
             }
