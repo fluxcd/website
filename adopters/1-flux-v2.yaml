@@ -170,4 +170,7 @@ adopters:
       logo: logos/sis-id.png
     - name: FHE3
       url: https://www.fhe3.com/
-      logo: logos/fhe3.png         
+      logo: logos/fhe3.png
+    - name: Cookpad
+      url: https://www.cookpadteam.com/
+      logo: logos/cookpad.png
