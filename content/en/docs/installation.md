@@ -1,6 +1,5 @@
 ---
 title: "Installation"
-linkTitle: "Installation"
 description: "Flux install, bootstrap, upgrade and uninstall documentation."
 weight: 30
 ---
@@ -28,8 +27,8 @@ The Flux CLI is available as a binary executable for all major platforms,
 the binaries can be downloaded form GitHub
 [releases page](https://github.com/fluxcd/flux2/releases).
 
-{{% tabs %}}
-{{% tab "Homebrew" %}}
+{{< tabpane code=false >}}
+{{% tab header="Homebrew" %}}
 
 With [Homebrew](https://brew.sh) for macOS and Linux:
 
@@ -38,7 +37,7 @@ brew install fluxcd/tap/flux
 ```
 
 {{% /tab %}}
-{{% tab "bash" %}}
+{{% tab header="bash" %}}
 
 With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
 
@@ -47,7 +46,7 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 ```
 
 {{% /tab %}}
-{{% tab "yay" %}}
+{{% tab header="yay" %}}
 
 With [yay](https://github.com/Jguer/yay) (or another [AUR helper](https://wiki.archlinux.org/title/AUR_helpers)) for Arch Linux:
 
@@ -56,7 +55,7 @@ yay -S flux-bin
 ```
 
 {{% /tab %}}
-{{% tab "nix" %}}
+{{% tab header="nix" %}}
 
 With [nix-env](https://nixos.org/manual/nix/unstable/command-ref/nix-env.html) for NixOS:
 
@@ -65,7 +64,7 @@ nix-env -i fluxcd
 ```
 
 {{% /tab %}}
-{{%  tab "Chocolatey" %}}
+{{% tab header="Chocolatey" %}}
 
 With [Chocolatey](https://chocolatey.org/) for Windows:
 
@@ -74,7 +73,7 @@ choco install flux
 ```
 
 {{% /tab %}}
-{{% /tabs %}}
+{{< /tabpane >}}
 
 To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
 

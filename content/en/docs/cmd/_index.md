@@ -10,8 +10,8 @@ the binaries can be downloaded form GitHub
 
 ## Install using package management
 
-{{% tabs %}}
-{{% tab "macOS" %}}
+{{< tabpane code=false >}}
+{{% tab header="macOS" %}}
 
 With [Homebrew](https://brew.sh):
 
@@ -20,7 +20,7 @@ brew install fluxcd/tap/flux
 ```
 
 {{% /tab %}}
-{{% tab "Linux" %}}
+{{% tab header="Linux" %}}
 
 With [Homebrew](https://brew.sh):
 
@@ -41,7 +41,7 @@ nix-env -i fluxcd
 ```
 
 {{% /tab %}}
-{{% tab "Windows" %}}
+{{% tab header="Windows" %}}
 
 With [Chocolatey](https://chocolatey.org/):
 
@@ -50,7 +50,7 @@ choco install flux
 ```
 
 {{% /tab %}}
-{{% /tabs %}}
+{{< /tabpane >}}
 
 ## Install using Bash
 

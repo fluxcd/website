@@ -248,7 +248,7 @@ Alison also improved the ways tabs look as you can see
 Alison also put quite a bit of work into [writing
 up](/docs/contributing/docs/style-guide/)
 how we want our documents to look and which [short-codes are most
-useful](/docs/contributing/docs/hugo-shortcodes/).
+useful](/docs/contributing/docs/writing-docs/).
 This should make it much easier if you want to start contributing
 documentation for Flux.
 

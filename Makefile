@@ -3,7 +3,7 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT               ?= f4d2ff87b17dfeb4c0282c49d35451d1ae362028
+DOCSY_COMMIT               ?= 1731334ab7c402133eed28920336c35af04febbd
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
 GALLERY_COMMIT             ?= 3789bdf54e053fccd98f27e1bbdd522b319d4b98
