@@ -74,17 +74,9 @@ If you want to illustrate the documentation and make things easier to read, ther
 
 ## Code snippets
 
-You can embed code snippets from a file.
-
-``language`` is any [language supported by GitHub flavored markdown](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
-
-``file`` is the path to the file you want to use in the code block.
-
-```go-html-template
-{{%/* codeblock file="/static/snippet/example.yaml" language="yaml" */%}}
-```
-
-{{% codeblock file="/static/snippet/example.yaml" language="yaml" %}}
+You can embed code snippets from a file. Please refer to
+<https://www.docsy.dev/docs/adding-content/shortcodes/#include-code-files> for
+hot to use the `readfile` shortcode.
 
 ## Tabbed sections
 
