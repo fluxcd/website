@@ -3,9 +3,12 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT 			   ?= f4d2ff87b17dfeb4c0282c49d35451d1ae362028
+DOCSY_COMMIT               ?= f4d2ff87b17dfeb4c0282c49d35451d1ae362028
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
+GALLERY_COMMIT             ?= 3789bdf54e053fccd98f27e1bbdd522b319d4b98
+GALLERY_COMMIT_FOLDER      := hugo-shortcode-gallery-$(GALLERY_COMMIT)
+GALLERY_TARGET             := themes/$(GALLERY_COMMIT_FOLDER)
 BOOTSTRAP_SEMVER           ?= 4.6.1
 BOOTSTRAP_SEMVER_FOLDER    := bootstrap-$(BOOTSTRAP_SEMVER)
 BOOTSTRAP_TARGET           := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(BOOTSTRAP_SEMVER_FOLDER)
@@ -28,7 +31,7 @@ help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 .PHONY: help
 
-theme: $(DOCSY_TARGET) $(BOOTSTRAP_TARGET) $(FONT_AWESOME_TARGET) ## Downloads the Docsy theme and dependencies.
+theme: $(DOCSY_TARGET) $(GALLERY_TARGET) $(BOOTSTRAP_TARGET) $(FONT_AWESOME_TARGET) ## Downloads the Docsy theme and dependencies.
 
 $(DOCSY_TARGET): ## Downloads the Docsy theme.
 	mkdir -p themes/
@@ -37,6 +40,14 @@ $(DOCSY_TARGET): ## Downloads the Docsy theme.
 	tar -zxf "/tmp/${DOCSY_COMMIT_FOLDER}.tar.gz" --directory themes/
 	mv themes/${DOCSY_COMMIT_FOLDER} themes/docsy
 	ln -sf docsy themes/${DOCSY_COMMIT_FOLDER}
+
+$(GALLERY_TARGET): ## Downloads the hugo-shortcode-gallery theme.
+	mkdir -p themes/
+	rm -rf themes/hugo-shortcode-gallery
+	curl -Lfs "https://github.com/mfg92/hugo-shortcode-gallery/archive/${GALLERY_COMMIT}.tar.gz" -o "/tmp/${GALLERY_COMMIT_FOLDER}.tar.gz"
+	tar -zxf "/tmp/${GALLERY_COMMIT_FOLDER}.tar.gz" --directory themes/
+	mv themes/${GALLERY_COMMIT_FOLDER} themes/hugo-shortcode-gallery
+	ln -sf hugo-shortcode-gallery themes/${GALLERY_COMMIT_FOLDER}
 
 $(BOOTSTRAP_TARGET): ## Downloads the Docsy bootstrap dependency.
 	mkdir -p themes/docsy/assets/vendor
