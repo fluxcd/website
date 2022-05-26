@@ -6,6 +6,7 @@
 /docs/guides/installation                       /docs/installation                                  301!
 /contributing                                   /docs/contributing                                  301!
 /docs/contributing/flux2                        /docs/contributing/flux                             301!
+/docs/contributing/docs/hugo-shortcodes         /docs/contributing/docs/writing-docs                301!
 /legacy/helm-operator/guides/upgrade-to-ga      /legacy/helm-operator/how-to/upgrade-to-ga          301!
 /legacy/helm-operator/guides/upgrade-to-beta    /legacy/helm-operator/how-to/upgrade-to-beta        301!
 /docs/roadmap                                   /roadmap                                            301!

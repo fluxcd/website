@@ -9,7 +9,7 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
 
-theme = ["docsy"]
+theme = ["docsy", "hugo-shortcode-gallery"]
 
 # Markup settings
 # Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
