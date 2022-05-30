@@ -1,6 +1,6 @@
 ---
 title: Using Flux on GCP With Source Repository
-linkTitle: Cloud Source Repositories
+linkTitle: Google Cloud Source Repositories
 description: "How to boostrap Flux on GCP GKE with Cloud Source repositories."
 weight: 10
 ---
