@@ -408,12 +408,26 @@ to get started committing encrypted files to your Git Repository or other Source
 
 #### Google Cloud
 
-Please ensure that the GKE cluster has Workload Identity enabled.
+Please ensure that the GKE cluster has [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#migrate_applications_to) enabled.
 
 1. Create a service account with the role `Cloud KMS CryptoKey Encrypter/Decrypter`.
 2. Create an IAM policy binding between the GCP service account to the `kustomize-controller` service account of the `flux-system`.
-3. Annotate the `kustomize-controller` service account in the `flux-system` with the GCP service account.
+3. [Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials. Patch the kustomize-controller service account so that its has the proper annotation.
 
+```yaml
+ ### add this patch to annotate service account if you are using Workload identity
+patchesStrategicMerge:
+- |-
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: kustomize-controller
+    namespace: flux-system
+    annotations:
+      iam.gke.io/gcp-service-account: <iam-service-account>@<PROJECT_ID>.iam.gserviceaccount.com
+```
+
+If you didn't bootstap Flux, you can use this instead
 ```sh
 kubectl annotate serviceaccount kustomize-controller \
 --field-manager=flux-client-side-apply \
