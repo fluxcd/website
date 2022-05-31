@@ -36,8 +36,11 @@ from, as they are lightweight in processing and make it possible to
 configure a semantic version selector for the chart version that should
 be released.
 
-They can be declared by creating a `HelmRepository` resource, the
-source-controller will fetch the Helm repository index for this
+They can be declared by creating a `HelmRepository` resource.
+
+#### Helm HTTP/S repository
+
+The source-controller will fetch the Helm repository index for this
 resource on an interval and expose it as an artifact:
 
 ```yaml
@@ -45,7 +48,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: podinfo
-  namespace: flux-system
+  namespace: default
 spec:
   interval: 1m
   url: https://stefanprodan.github.io/podinfo
@@ -63,6 +66,82 @@ HTTP/S basic and TLS authentication can be configured for private
 Helm repositories. See the [`HelmRepository` CRD docs](../components/source/helmrepositories.md)
 for more details.
 {{% /alert %}}
+
+#### Helm OCI repository
+
+The source-controller performs the Helm repository url validation i.e. the url is
+a valid OCI registry url.
+
+The URL is expected to point to a registry repository and to start with `oci://`.
+
+```yaml
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  type: oci
+  interval: 5m0s
+  url: oci://ghcr.io/stefanprodan/charts
+```
+
+#### Helm repository authentication with credentials
+
+In order to use a private Helm repository, you may need to provide the credentials.
+
+For HTTP/S repositories, the credentials can be provided as a secret reference with
+basic authentication.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  interval: 1m
+  url: https://stefanprodan.github.io/podinfo
+  secretRef:
+    name: example-user
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example-user
+  namespace: default
+stringData:
+  username: example
+  password: 123456
+```
+
+For OCI repositories, the credentials can be provided alternatively as a secret reference
+with dockerconfig authentication.
+
+```yaml
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  interval: 5m0s
+  url: oci://ghcr.io/stefanprodan/charts
+  type: "oci"
+  secretRef:
+    name: regcred
+```
+
+The Docker registry Secret `regcred` can be created with `kubectl`:
+
+```shell
+kubectl create secret docker-registry regcred \
+ --docker-server=ghcr.io \
+ --docker-username=gh-user \
+ --docker-password=gh-token
+```
 
 ### Git repository
 
