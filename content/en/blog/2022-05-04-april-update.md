@@ -183,7 +183,7 @@ We feel blessed to have such a big community of users, contributors and
 integrators and so many are happy to talk about their experiences. In
 April here are a couple of talks we would like to highlight:
 
-[Managing Thousands of Clusters and Their Workloads with Max Joans Werner](https://youtu.be/V1AOVwzmIKE?t=272)
+[Managing Thousands of Clusters and Their Workloads with Max Jonas Werner](https://youtu.be/V1AOVwzmIKE?t=272)
 D2iQ uses Flux to automatically enable this experience in its products. Join Max for this hands-on session on multi-cluster management using GitOps.
 
 [CNCF on-demand webinar: Flux for Helm Users with Scott Rigby](https://youtu.be/r_vKf5l1D1M)
