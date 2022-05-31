@@ -22,7 +22,8 @@ Create a Cloud Source Repository that will hold your Flux installation manifests
 ### Flux Installation
 
 Download the [Flux CLI](../installation.md#install-the-flux-cli) and bootstrap Flux with:
-```
+
+```sh
 flux bootstrap git \
 --url=ssh://<user>s@source.developers.google.com:2022/p/<project-name>/r/<repo-name> \
 --branch=master \
@@ -42,7 +43,8 @@ You can also use an ssh key that was already added to Cloud Source Repository by
 ### Flux Upgrade
 
 Flux compnents can be upgraded by running the `bootstrap` command again with the same arguments as before.
-```
+
+```sh
 flux bootstrap git \
 --url=ssh://<user>s@source.developers.google.com:2022/p/<project-name>/r/<repo-name> \
 --branch=master \
@@ -53,7 +55,8 @@ flux bootstrap git \
 
 You would need to create GCP KMS key and have [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) enabled on the GKE cluster. 
 Create an IAM service account that has `Cloud KMS CryptoKey Decrypter` role and allow the kustomize-cotroller service account to impersonate this service account by adding an IAM policy binding between it and the IAM service account.
-```
+
+```sh
 gcloud iam service-accounts add-iam-policy-binding <iam-service-account>@<project-name>.iam.gserviceaccount.com \
     --role roles/iam.workloadIdentityUser \
     --member "serviceAccount:<project-name>.svc.id.goog[flux-system/kustomize-controller]"
@@ -68,6 +71,7 @@ See the [Mozilla SOPS AWS Guide](../guides/mozilla-sops.md#google-cloud) for fur
 You will need to create an GCR registry and an IAM service account that has access to GCR.
 
 You may need to update your Flux install to include additional components:
+
 ```sh
 flux bootstrap git \
 --url=ssh://<user>s@source.developers.google.com:2022/p/<project-name>/r/<repo-name> \
