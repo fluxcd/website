@@ -6,14 +6,15 @@ weight: 10
 ---
 
 ### Cluster Creation
- To create a cluster with Google Cloud you can use the `gcloud` cli or the Google Cloud Console.
- 
- The following command creates a cluster with the default configuration.
- ```
-gcloud containers create sample-cluster
- ```
+To create a cluster with Google Cloud you can use the `gcloud` cli or the Google Cloud Console.
 
- For more details on how to create a GKE cluster with `gcloud`, please see [the Cloud SDK Documentation](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create)
+The following command creates a cluster with the default configuration.
+
+```sh
+gcloud containers create sample-cluster
+```
+
+For more details on how to create a GKE cluster with `gcloud`, please see [the Cloud SDK Documentation](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create)
 
 ### Source Repository Creation
 
@@ -37,8 +38,7 @@ also revoke Flux's access. The better alternative is to create a machine-user wh
 to store credentials for automation. Using a machine-user also has the benefit of being able to be read-only or
 restricted to specific repositories if this is needed.
 
-You can also use an ssh key that was already added to Cloud Source Repository by adding the `--private-key-file` and
-`--password` flags.
+You can also use an ssh key that was already added to Cloud Source Repository by adding the `--private-key-file` and `--password` flags.
 
 ### Flux Upgrade
 
