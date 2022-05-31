@@ -68,7 +68,7 @@ See the [Mozilla SOPS AWS Guide](../guides/mozilla-sops.md#google-cloud) for fur
 
 ### Image Updates with Google Container Registry
 
-You will need to create an GCR registry and an IAM service account that has access to GCR.
+You will need to create an GCR registry. Most new GKE cluster by default have access to Google Container Registry in the same project. But if you have enabled Workload Identity on your cluster, you would need to create an IAM service account that has access to GCR.
 
 You may need to update your Flux install to include additional components:
 
