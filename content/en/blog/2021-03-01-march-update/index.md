@@ -110,7 +110,7 @@ Capili](https://www.meetup.com/GitOps-Community/events/276539791/)
 >
 > In this session, Leigh Capili, DX Engineer at Weaveworks, will demo
 > the [Flux guide on how to Migrate from Flux v1](/docs/migration/flux-v1-migration/),
-> including boostrapping a cluster with Flux 1 and how to move it over
+> including bootstrapping a cluster with Flux 1 and how to move it over
 > to Flux v2.
 >
 > If we don\'t get to everything in this session, we will have

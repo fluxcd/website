@@ -747,6 +747,6 @@ flux uninstall --namespace=infra --keep-namespace
 {{% alert color="info" title="Reinstall" %}}
 Note that the `uninstall` command will not remove any Kubernetes objects
 or Helm releases that were reconciled on the cluster by Flux.
-It is safe to uninstall Flux and rerun the boostrap, any existing workloads
+It is safe to uninstall Flux and rerun the bootstrap, any existing workloads
 will not be affected.
 {{% /alert %}}

@@ -1,7 +1,7 @@
 ---
 title: Using Flux on Azure
 linkTitle: Azure
-description: "How to boostrap Flux on Azure AKS with DevOps Git repositories."
+description: "How to bootstrap Flux on Azure AKS with DevOps Git repositories."
 weight: 10
 ---
 
