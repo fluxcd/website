@@ -46,7 +46,7 @@ metadata:
   name: flux
   namespace: flux
   annotations:
-    iam.gke.io/gcp-service-account=flux-gcp@total-mayhem-123456.iam.gserviceaccount.com
+    iam.gke.io/gcp-service-account: flux-gcp@total-mayhem-123456.iam.gserviceaccount.com
 ```
 
 Alternatively, if you use the Helm chart to install Flux, you can set the annotations during installation:
