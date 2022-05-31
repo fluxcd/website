@@ -1,7 +1,7 @@
 ---
 title: Using Flux on AWS With CodeCommit
 linkTitle: AWS CodeCommit
-description: "How to boostrap Flux on AWS EKS with CodeCommit Git repositories."
+description: "How to bootstrap Flux on AWS EKS with CodeCommit Git repositories."
 weight: 10
 ---
 
