@@ -117,9 +117,13 @@ also included many bug fixes.
 
 #### Weave GitOps
 
-The [Weave GitOps](https://github.com/weaveworks/weave-gitops) team is
-getting ready to release v0.8.1. This release is an iteration on top of
-our prior release.
+The [Weave GitOps](https://github.com/weaveworks/weave-gitops) released
+v0.8.1 for Weave GitOps. This release is an iteration on top of our prior
+release.  We have fixed a lot of bugs and made UI enhancements based on
+feedback from the community. For example, you are able to reconcile Flux
+objects directly from the UI. We have a lot of great features planned
+over the next couple months. Please do not hesitate to drop in some
+feature requests.
 
 #### New additions to the Flux Ecosystem
 
