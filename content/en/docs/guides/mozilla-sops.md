@@ -324,10 +324,11 @@ Create the Azure Key-Vault:
 ```sh
 export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
 export KEY_NAME="sops-cluster0"
+export RESOURCE_GROUP=<AKS-RESOURCE-GROUP>
 
-az keyvault create --name "${VAULT_NAME}"
+az keyvault create --name "${VAULT_NAME}" -g ${RESOURCE_GROUP}
 az keyvault key create --name "${KEY_NAME}" \
-  --vault-name "${VAULT_NAME}"
+  --vault-name "${VAULT_NAME}" \
   --protection software \
   --ops encrypt decrypt
 az keyvault key show --name "${KEY_NAME}" \
@@ -335,15 +336,28 @@ az keyvault key show --name "${KEY_NAME}" \
   --query key.kid
 ```
 
-If using AAD Pod-Identity, create an identity within Azure to bind against, then create an `AzureIdentity` object to match:
+If using [AAD Pod-Identity](https://azure.github.io/aad-pod-identity/docs), Create an identity within Azure that has permission to access Key Vault:
 
-```yaml
+```sh
+export IDENTITY_NAME="sops-akv-decryptor"
 # Create an identity in Azure and assign it a role to access Key Vault  (note: the identity's resourceGroup should match the desired Key Vault):
-#     az identity create -n sops-akv-decryptor
-#     az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n sops-akv-decryptor -o tsv --query principalId)"
+az identity create -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP}
+az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n sops-akv-decryptor -o tsv --query principalId  -g $RESOURCE_GROUP)"
 # Fetch the clientID and resourceID to configure the AzureIdentity spec below:
-#     az identity show -n sops-akv-decryptor -otsv --query clientId
-#     az identity show -n sops-akv-decryptor -otsv --query resourceId
+export IDENTITY_CLIENT_ID="$(az identity show -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP} -otsv --query clientId)"
+export IDENTITY_RESOURCE_ID="$(az identity show -n ${IDENTITY_NAME} -otsv --query id)"
+```
+
+Create a Keyvault access policy so that the identity can perform operations on Key Vault keys/
+
+```sh
+export IDENTITY_ID="$(az identity show -g aks-somto -n ${IDENTITY_NAME} -otsv --query principalId)"
+
+az keyvault set-policy --name $VAULT_NAME --object-id ${IDENTITY_NAME} --key-permissions decrypt
+```
+
+Create an `AzureIdentity` object that references the identity created above:
+```yaml
 ---
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
@@ -351,13 +365,24 @@ metadata:
   name: sops-akv-decryptor  # kustomize-controller label will match this name
   namespace: flux-system
 spec:
-  clientID: 58027844-6b86-424b-9888-b5ae2dc28b4f
-  resourceID: /subscriptions/8c69185e-55f9-4d00-8e71-a1b1bb1386a1/resourcegroups/stealthybox/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sops-akv-decryptor
+  clientID: <IDENTITY_CLIENT_ID>
+  resourceID: <IDENTITY_RESOURCE_ID>
   type: 0  # user-managed identity
 ```
 
+Create an `AzureIdentityBinding` object that binds pods with a specific selector with the `AzureIdentity` created above.
+```yaml
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentityBinding
+metadata:
+  name: ${IDENTITY_NAME}-binding
+spec:
+  azureIdentity: ${IDENTITY_NAME}
+  selector: ${IDENTITY_NAME}
+```
+
 [Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
-Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` name.
+Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` selector.
 Additionally, the SOPS specific environment variable `AZURE_AUTH_METHOD=msi` to activate the proper auth method within kustomize-controller.
 
 ```yaml
@@ -370,7 +395,7 @@ spec:
   template:
     metadata:
       labels:
-        aadpodidbinding: sops-akv-decryptor  # match the AzureIdentity name
+        aadpodidbinding: ${IDENTITY_NAME}  # match the AzureIdentity name
     spec:
       containers:
       - name: manager
