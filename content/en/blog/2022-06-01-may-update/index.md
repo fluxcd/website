@@ -117,7 +117,7 @@ also included many bug fixes.
 
 #### Weave GitOps
 
-The [Weave GitOps](https://github.com/weaveworks/weave-gitops) released
+The [Weave GitOps](https://github.com/weaveworks/weave-gitops) team released
 v0.8.1 for Weave GitOps. This release is an iteration on top of our prior
 release.  We have fixed a lot of bugs and made UI enhancements based on
 feedback from the community. For example, you are able to reconcile Flux
