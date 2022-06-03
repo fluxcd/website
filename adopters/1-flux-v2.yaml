@@ -180,3 +180,6 @@ adopters:
     - name: Cookpad
       url: https://www.cookpadteam.com/
       logo: logos/cookpad.png
+    - name: Autops
+      url: https://www.autops.eu/
+      logo: logos/autops.png
