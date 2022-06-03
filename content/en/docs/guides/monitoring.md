@@ -15,12 +15,12 @@ to provide a monitoring stack made out of:
 * **Grafana** dashboards - displays the Flux control plane resource usage and reconciliation stats
 * **kube-state-metrics** - generates metrics about the state of the Kubernetes objects
 
-## Install the kube-prometheus-stack
+## Install the Prometheus stack
 
-To install the monitoring stack with `flux`, first register the toolkit Git repository on your cluster:
+To install the monitoring stack with `flux`, first register the Git repository on your cluster:
 
 ```sh
-flux create source git monitoring \
+flux create source git flux-monitoring \
   --interval=30m \
   --url=https://github.com/fluxcd/flux2 \
   --branch=main
@@ -30,16 +30,16 @@ Then apply the [manifests/monitoring/kube-prometheus-stack](https://github.com/f
 kustomization:
 
 ```sh
-flux create kustomization monitoring-stack \
+flux create kustomization kube-prometheus-stack \
   --interval=1h \
-  --prune=true \
-  --source=monitoring \
+  --prune \
+  --source=flux-monitoring \
   --path="./manifests/monitoring/kube-prometheus-stack" \
-  --health-check="Deployment/kube-prometheus-stack-operator.monitoring" \
-  --health-check="Deployment/kube-prometheus-stack-grafana.monitoring"
+  --health-check-timeout=5m \
+  --wait
 ```
 
-The above Kustomization will install the kube-prometheus-stack in the `monitoring` namespace.
+The above Kustomization will install the kube-prometheus-stack Helm release in the `monitoring` namespace.
 
 {{% alert color="warning" title="Prometheus Configuration" %}}
 Note that the above configuration is not suitable for production.
@@ -47,6 +47,23 @@ In order to configure long term storage for metrics
 and highly availability for Prometheus consult the Helm
 chart [documentation](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack).
 {{% /alert %}}
+
+## Install the Loki stack (optional)
+
+To install Grafana Loki and Promtail in the `monitoring` namespace, apply the
+[manifests/monitoring/loki-stack](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/loki-stack)
+kustomization:
+
+```sh
+flux create kustomization loki-stack \
+  --depends-on=kube-prometheus-stack \
+  --interval=1h \
+  --prune \
+  --source=flux-monitoring \
+  --path="./manifests/monitoring/loki-stack" \
+  --health-check-timeout=5m \
+  --wait
+```
 
 ## Install Flux Grafana dashboards
 
@@ -58,10 +75,13 @@ containing the `PodMonitor` and the `ConfigMap` with Flux's Grafana dashboards:
 
 ```sh
 flux create kustomization monitoring-config \
+  --depends-on=kube-prometheus-stack \
   --interval=1h \
   --prune=true \
-  --source=monitoring \
-  --path="./manifests/monitoring/monitoring-config"
+  --source=flux-monitoring \
+  --path="./manifests/monitoring/monitoring-config" \
+  --health-check-timeout=1m \
+  --wait
 ```
 
 You can access Grafana using port forwarding:
@@ -70,7 +90,8 @@ You can access Grafana using port forwarding:
 kubectl -n monitoring port-forward svc/kube-prometheus-stack-grafana 3000:80
 ```
 
-To log in to the Grafana dashboard, you can use the default credentials from the [kube-prometheus-stack chart](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml#L620):
+To log in to the Grafana dashboard, you can use the default credentials from the
+[kube-prometheus-stack chart](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml):
 
 ```yaml
 username: admin
@@ -89,16 +110,49 @@ Cluster reconciliation dashboard [http://localhost:3000/d/flux-cluster](http://l
 
 ![Cluster reconciliation dashboard](/img/cluster-dashboard.png)
 
-If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
-[GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/grafana/dashboards).
+Control plane logs [http://localhost:3000/d/flux-logs](http://localhost:3000/d/flux-logs/flux-logs):
 
-## Annotations
+![Control plane logs dashboard](/img/logs-dashboard.png)
+
+If you wish to use your own Prometheus and Grafana instances, then you can import the dashboards from
+[GitHub](https://github.com/fluxcd/flux2/tree/main/manifests/monitoring/monitoring-config/dashboards).
+
+## Grafana annotations
 
 ![Annotations Dashboard](/img/grafana-annotation.png)
 
-If you wish to overlap [flux notifications](/docs/components/notification/provider/#grafana) on dashboards you can do it by enabling the grafana annotations alert provider, the desired alerts and the annotation on the dashboard like shown below:
+To display the Flux notifications on Grafana dashboards
+you can configure Flux to push events to Grafana annotations API:
 
-![Annotations configuration](/img/grafana-annotations-config.png)
+```yaml
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  providerRef:
+    name: grafana
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      name: '*'
+      namespace: flux-system
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  type: grafana
+  address: "http://kube-prometheus-stack-grafana.monitoring/api/annotations"
+  secretRef:
+    name: grafana-auth
+```
+
+For more details on how to integrate Flux with Grafana API please see the
+[Grafana provider dcumentation](/docs/components/notification/provider/#grafana).
 
 ## Metrics
 
@@ -133,7 +187,7 @@ Alert manager example:
 
 ```yaml
 groups:
-  - name: GitOpsToolkit
+  - name: Flux
     rules:
       - alert: ReconciliationFailure
         expr: max(gotk_reconcile_condition{status="False",type="Ready"}) by (exported_namespace, name, kind) + on(exported_namespace, name, kind) (max(gotk_reconcile_condition{status="Deleted"}) by (exported_namespace, name, kind)) * 2 == 1
@@ -142,4 +196,52 @@ groups:
           severity: page
         annotations:
           summary: '{{ $labels.kind }} {{ $labels.exported_namespace }}/{{ $labels.name }} reconciliation has been failing for more than ten minutes.'
+```
+
+## Logs
+
+The Flux controllers follow the Kubernetes structured logging conventions.
+The logs are written to `stderr` in JSON format, with the following common tags:
+
+- `logger` controller reconciler name
+- `ts` timestamp in the ISO 8601 format
+- `level` can be `debug`, `info` or `error`
+- `msg` info or error description
+- `error` error details
+
+Example of a `info` log:
+
+```json
+{
+  "level": "info",
+  "ts": "2022-06-03T11:42:49.159Z",
+  "logger": "controller.kustomization",
+  "msg": "server-side apply completed",
+  "name": "demo-frontend",
+  "namespace": "msdemo",
+  "revision": "main/30081ad7170fb8168536768fe399493dd43160d7",
+  "output": {
+    "ConfigMap/msdemo/demo-frontend-redis": "created",
+    "Deployment/msdemo/demo-frontend-app": "configured",
+    "Deployment/msdemo/demo-frontend-redis": "created",
+    "HorizontalPodAutoscaler/msdemo/demo-frontend-app": "deleted",
+    "Service/msdemo/demo-frontend-app": "unchanged",
+    "Service/msdemo/demo-frontend-redis": "created"
+  }
+}
+```
+
+Example of an `error` log:
+
+```json
+{
+  "level": "error",
+  "ts": "2022-06-03T12:42:05.849Z",
+  "logger": "controller.kustomization",
+  "msg": "Reconciliation failed after 1.864823186s, next try in 5m0s",
+  "name": "demo-frontend",
+  "namespace": "msdemo",
+  "revision": "main/f68c334e0f5fae791d1e47dbcabed256f4f89e68",
+  "error": "Service/msdemo/frontend dry-run failed, reason: Invalid, error: Service frontend is invalid: spec.type: Unsupported value: Ingress"
+}
 ```
