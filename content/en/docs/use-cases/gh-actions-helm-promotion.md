@@ -137,7 +137,7 @@ jobs:
           branch: demo-promotion
           delete-branch: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update demo to v${{ steps.check.staging.version }}
+          commit-message: Update demo to v${{ steps.staging.outputs.version }}
           title: Promote demo release to v${{ steps.staging.outputs.version }}
           body: |
             Promote demo release on production to v${{ steps.staging.outputs.version }}
