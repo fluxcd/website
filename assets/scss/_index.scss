@@ -232,11 +232,15 @@ main.td-main {
 
     @include media-breakpoint-down(sm) {
       .row .btn-secondary {
-        margin: 12px 0 0 12px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        margin-left: 12px;
       }
 
       .btn {
         text-align:left;
+        margin-top: 12px;
+        margin-bottom: 12px;
       }
     }
   }
