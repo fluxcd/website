@@ -29,24 +29,10 @@ If you are a maintainer of the repo, the edit page button will not let you work 
 1. Below the editor, fill in the **Propose file change** form.
 
    In the first field, give your commit message a title.
-   In the second field
-   - provide a description
+   In the second field provide a description
    {{% alert title="Warning" color="warning" %}}
    Do not use any [GitHub Keywords](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)
    in your commit message. You can add those to the pull request description later.
-   {{% /alert %}}
-   - add commit signoff
-
-     Add a new line after the description
-     Copy the below snippet and fill in with your details
-
-     ```markdown
-     Signed-off-by: Your Name <youremail@emailprovider.com>
-     ```
-
-   {{% alert title="Prefilling Signoff Information" color="info" %}}
-   You can use the [dco-gh-ui](https://github.com/scottrigby/dco-gh-ui) browser extension to prefill signoff information in your commit message.
-   Find out how to install and use the extension [here](https://github.com/scottrigby/dco-gh-ui).
    {{% /alert %}}
 
 1. Select **Propose file change**.
