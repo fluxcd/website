@@ -190,6 +190,7 @@ spec:
   exclusionList:
     - ".*upgrade.*has.*started"
     - ".*is.*not.*ready"
+    - "^Dependencies.*"
 ```
 
 **Note** that you should adapt the above definitions to match your GitHub repository address.
