@@ -8,21 +8,21 @@ weight: 10
 Additional considerations have to be made when managing Kubernetes Jobs with Flux.
 By default, if you were to have Flux reconcile a Job resource,
 it would apply it once to the cluster, the Job would create a Pod that can either error or run to completion.
-Attempting to update the Job manifest after it has been applied to the cluster is not be allowed, as changes to the
-Jobs `spec.Completions`, `spec.Selector` and `spec.Template` are not permitted by the Kubernetes API.
+Attempting to update the Job manifest after it has been applied to the cluster will not be allowed, as changes to the
+Job `spec.Completions`, `spec.Selector` and `spec.Template` are not permitted by the Kubernetes API.
 To be able to update a Kubernetes Job, the Job has to be recreated by first being
-removed and the reapplied to the cluster.
+removed and then reapplied to the cluster.
 
 ## Repository structure
 
 A typical use case for running Kubernetes Jobs with Flux is to implement pre-deployment tasks
-for e.g. database scheme migration and post-deployment jobs e.g. cache refresh.
+for e.g. database scheme migration and post-deployment jobs (like cache refresh).
 
 This requires separate [Flux Kustomization](../components/kustomize/kustomization.md) resources
 that depend on each other: one for running the pre-deployment Jobs,
 one to deploy the application, and a 3rd one for running the post-deployment Jobs.
 
-Example of an application config repository:
+Example of an application configuration repository:
 
 ```text
 ├── pre-deploy
@@ -109,7 +109,7 @@ spec:
 ```
 
 This means that the `app-deploy` Kustomization will wait until all the Jobs in `app-pre-deploy` run to completion.
-If the Jobs fail, the app changes will not be applied by the `app-deploy` Kustomization.
+If the Job fails, the app changes will not be applied by the `app-deploy` Kustomization.
 
 And finally we can define a Flux Kustomization that depends on `app-deploy` to run Kubernetes Jobs after the 
 application was upgraded.
