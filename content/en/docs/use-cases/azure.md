@@ -208,9 +208,45 @@ for working with ACR-Hosted Chart Repositories, but it is deprecated.
 If you are using these deprecated Azure Chart Repositories,
 you can use Flux `HelmRepository` objects with them.
 
-[Newer ACR Helm documentation](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-helm-repos)
-suggests using ACR as an experimental [Helm OCI Registry](https://helm.sh/docs/topics/registries/).
-This will not work with Flux, because using Charts from OCI Registries is not yet supported.
+### Using Helm OCI with Azure Container Registry
+
+You can use Helm OCI Charts in Azure Container Registry with Flux.
+
+You have to declare a `HelmRepository` object on your cluster:
+
+```sh
+flux create source helm podinfo \
+  --url=oci://my-user.azurecr.io/charts/my-chart
+  --username=username \
+  --password=password
+```
+
+or if you are using a private registry:
+
+```sh
+flux create source helm my-helm-repo \
+  --url=oci://my-user.azurecr.io/charts/my-chart
+  --secret-ref=regcred
+```
+
+You can create the secret by running:
+
+```sh
+kubectl create secret docker-registry regcred \
+ --docker-server=my-user.azurecr.io \
+ --docker-username=az-user \
+ --docker-password=az-token
+```
+
+Then, you can use the `HelmRepository` object in your `HelmRelease`:
+
+```sh
+flux create hr my-helm-release \
+  --interval=10m \
+  --source=HelmRepository/my-helm-repo \
+  --chart=my-chart \
+  --chart-version=">6.0.0"
+```
 
 ## Secrets Management with SOPS and Azure Key Vault
 
