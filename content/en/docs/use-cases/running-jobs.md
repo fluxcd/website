@@ -1,73 +1,142 @@
 ---
-title: Running Jobs With Flux
-linkTitle: Running Jobs
-description: "How to run Jobs with Flux."
+title: Running pre and post-deployment jobs with Flux
+linkTitle: Running Kubernetes Jobs with Flux
+description: "How to run Kubernetes Jobs before and after an application deployment with Flux."
 weight: 10
 ---
 
-Additional considerations have to be made when managing Kubernetes Jobs with Flux. By default if you were to have Flux manage a single Job resource, it would apply it once to the cluster. The Job would trigger a run which would create a Pod that can either error or run to completion. Attempting to update the Job after it has been applied to the cluster will not be allowed as changed to the Jobs `spec.Completions`, `spec.Selector` or `spec.Template` is not permitted by the Kubernetes API. To be able to update a Job the Job has to be recreated by first beeing removed and the reapplied to the cluster.
+Additional considerations have to be made when managing Kubernetes Jobs with Flux.
+By default, if you were to have Flux reconcile a Job resource,
+it would apply it once to the cluster, the Job would create a Pod that can either error or run to completion.
+Attempting to update the Job manifest after it has been applied to the cluster is not be allowed, as changes to the
+Jobs `spec.Completions`, `spec.Selector` and `spec.Template` are not permitted by the Kubernetes API.
+To be able to update a Kubernetes Job, the Job has to be recreated by first being
+removed and the reapplied to the cluster.
 
-A typical use case for running Jobs with Flux is to implement post deployment tasks such as database scheme migration. This requires two seperate Kustomization resources to implement. One to create or recreate the Job and another to deploy the application.
+## Repository structure
 
-Given a simple Job in the path `./pre/job.yaml`.
+A typical use case for running Kubernetes Jobs with Flux is to implement pre-deployment tasks
+for e.g. database scheme migration and post-deployment jobs e.g. cache refresh.
+
+This requires separate [Flux Kustomization](../components/kustomize/kustomization.md) resources
+that depend on each other: one for running the pre-deployment Jobs,
+one to deploy the application, and a 3rd one for running the post-deployment Jobs.
+
+Example of an application config repository:
+
+```text
+├── pre-deploy
+│   └── migration.job.yaml
+├── deploy
+│   ├── deployment.yaml
+│   ├── ingress.yaml
+│   └── service.yaml
+├── post-deploy
+│   └── cache.job.yaml
+└── flux
+    ├── pre-deploy.yaml
+    ├── deploy.yaml
+    └── post-deploy.yaml
+```
+
+## Configure the deployment pipeline
+
+Given a Job in the path `./pre-deploy/migration.job.yaml`:
 
 ```yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pre
+  name: db-migration
 spec:
   template:
     spec:
       restartPolicy: Never
       containers:
-      - name: pre
-        image: alpine
+      - name: migration
+        image: ghcr.io/org/my-app:v1.0.0
         command:
           - sh
           - -c
-          - |
-            echo "starting"
-            sleep 10
-            echo "complete"
+          - echo "starting db migration"
 ```
 
-The following Kustomization will deploy the Job. Setting `` to true will make Flux recreate the Job when any immutable field is changed. Forcing the Job to run once again. Setting `` to true will make the Kustomization resource wait for the Job to complete before it is considered ready.
+And a Flux Kustomization that reconciles it at `./flux/pre-deploy.yaml`:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: pre
+  name: app-pre-deploy
 spec:
-  interval: 1m
-  path: ./pre/
+  sourceRef:
+    kind: GitRepository
+    name: my-app
+  path: "./pre-deploy/"
+  interval: 60m
+  timeout: 5m
   prune: true
   wait: true
   force: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
 ```
 
-With this configuration another Kustomization can depend on the `pre` Kustomization. This means that the depending Kustomization will wait until the Job completes. If the Job fails the changes will not be applied to the depending Kustomization.
+Setting `spec.force` to `true` will make Flux recreate the Job when any immutable field is changed,
+forcing the Job to run every time the container image tag changes.
+Setting `spec.wait` to `true` makes Flux wait for the Job to complete
+before it is considered ready.
+
+To deploy the application after the migration job,
+we define a Flux Kustomization that depends on the migration one.
+
+Example of `./flux/deploy.yaml`:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: application
+  name: app-deploy
 spec:
-  interval: 1m
-  path: ./application/
-  prune: true
+  dependsOn:
+    - name: app-pre-deploy
   sourceRef:
     kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  dependsOn:
-    - name: pre
+    name: my-app
+  path: "./deploy/"
+  interval: 60m
+  timeout: 5m
+  prune: true
+  wait: true
 ```
 
-This configuration works best when the Job uses the same image and tag as the application beeing deployed. When a new version of the application is deployed both iamge tags are updated. The updating of the image tag will force a recreation of the Job. The application will in this case not be deployed before the Job has finished running.
+This means that the `app-deploy` Kustomization will wait until all the Jobs in `app-pre-deploy` run to completion.
+If the Jobs fail, the app changes will not be applied by the `app-deploy` Kustomization.
+
+And finally we can define a Flux Kustomization that depends on `app-deploy` to run Kubernetes Jobs after the 
+application was upgraded.
+
+Example of `./flux/post-deploy.yaml`:
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: app-post-deploy
+spec:
+  dependsOn:
+    - name: app-deploy
+  sourceRef:
+    kind: GitRepository
+    name: my-app
+  path: "./post-deploy/"
+  interval: 60m
+  timeout: 5m
+  prune: true
+  wait: true
+  force: true
+```
+
+This configuration works best when the Jobs are using the same image and tag as the application being deployed.
+When a new version of the application is deployed, the image tags are updated.
+The update of the image tag will force a recreation of the Jobs.
+The application will be updated after the pre-deployment Jobs have run successfully, and
+the post-deployment Jobs will execute only if the app rolling update has completed.
