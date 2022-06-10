@@ -44,6 +44,7 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 | [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                                                       | The official CLI for creating and managing Kubernetes clusters on Amazon EKS. |
 | [weaveworks/vscode-gitops-tools](https://github.com/weaveworks/vscode-gitops-tools)                             | 🚧 Technology preview: GitOps Tools for Visual Studio Code: provides an intuitive way to manage, troubleshoot and operate your Kubernetes environment following the GitOps operating model|
 | [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)                                           | Weave GitOps enables an effective GitOps workflow for continuous delivery of applications into Kubernetes clusters. |
+| [kubevela/kubevela](https://github.com/kubevela/kubevela)                                           | KubeVela integrates fluxcd well for [Helm Chart delivery](https://kubevela.io/docs/tutorials/helm) and [GitOps](https://kubevela.io/docs/case-studies/gitops), and provide [multi-cluster capabilities](https://kubevela.io/docs/tutorials/helm-multi-cluster). |
 
 ## Ancillary Tools
 
