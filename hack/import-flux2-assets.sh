@@ -3,6 +3,10 @@
 COMPONENTS_DIR="content/en/docs/components"
 FLUX_DIR="content/en/docs/cmd"
 
+if [ -z "${GITHUB_USER}" ]; then
+    GITHUB_USER=fluxcdbot
+fi
+
 if [ ! "$(command -v jq)" ]; then
   echo "Please install 'jq'."
   exit 1
@@ -55,7 +59,7 @@ setup_verify_arch() {
 
 
 controller_version() {
-  curl -s "https://api.github.com/repos/fluxcd/$1/releases" | jq -r '.[] | .tag_name' | sort -V | tail -n 1
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -s "https://api.github.com/repos/fluxcd/$1/releases" | jq -r '.[] | .tag_name' | sort -V | tail -n 1
 }
 
 gen_crd_doc() {
@@ -64,7 +68,7 @@ gen_crd_doc() {
   HUGETABLE="$3"
 
   TMP="$(mktemp)"
-  curl -# -Lf "$URL" > "$TMP"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -# -Lf "$URL" > "$TMP"
 
   # Ok, so this section is not pretty, but we have a number of issues we need to look at here:
   #
@@ -157,10 +161,10 @@ gen_crd_doc() {
   TMP_METADATA="$TMP/flux.json"
   TMP_BIN="$TMP/flux.tar.gz"
 
-  curl -o "${TMP_METADATA}" --retry 3 -sSfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -o "${TMP_METADATA}" --retry 3 -sSfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
   VERSION_FLUX=$(grep '"tag_name":' "${TMP_METADATA}" | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
 
-  curl -o "${TMP_BIN}" --retry 3 -sSfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -o "${TMP_BIN}" --retry 3 -sSfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
   tar xfz "${TMP_BIN}" -C "${TMP}"
 
   rm -rf "${FLUX_DIR:?}/*"
@@ -174,6 +178,6 @@ gen_crd_doc() {
   if [ ! -d static ]; then
     mkdir static
   fi
-  curl -s -# -Lf https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh -o static/install.sh
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -s -# -Lf https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh -o static/install.sh
 }
 
