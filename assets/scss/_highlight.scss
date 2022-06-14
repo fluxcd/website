@@ -1,0 +1,5 @@
+.td-content .highlight {
+  @include media-breakpoint-down(md) {
+    max-width: 100%;
+  }
+}
