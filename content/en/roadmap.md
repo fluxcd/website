@@ -1,12 +1,16 @@
 ---
 title: "Flux Roadmap"
 linkTitle: "Roadmap"
-description: "Flux and the GitOps Toolkit roadmap."
+description: "Flux, Flagger and the GitOps Toolkit roadmap."
 weight: 90
 type: page
 ---
 
-# Flux Roadmap
+# Flux Project Roadmap
+
+Here we are tracking the roadmaps of the Flux projects as a whole.
+
+## Flux
 
 {{% alert color="info" title="Production readiness" %}}
 The Flux custom resource definitions which are at `v1beta1`, `v1beta2` and `v2beta1`
@@ -32,7 +36,7 @@ The following GitOps Toolkit APIs are considered production ready:
 - `helm.toolkit.fluxcd.io/v2beta1`
 - `image.toolkit.fluxcd.io/v1beta1`
 
-## The road to Flux v2 GA
+### The road to Flux v2 GA
 
 In our planning discussions we have identified these possible areas of work,
 this list is subject to change while we gather feedback:
@@ -76,7 +80,7 @@ this list is subject to change while we gather feedback:
     - [x] Incident management and troubleshooting guides
     - [ ] [Developer guides](https://github.com/fluxcd/flux2/issues/1602#issuecomment-1131951114) for contributing to and extending Flux
 
-## Security enhancements
+### Security enhancements
 
 Reach consensus on multi-tenancy enhancements and other security related proposals:
 
@@ -85,7 +89,7 @@ Reach consensus on multi-tenancy enhancements and other security related proposa
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
 
-## The road to Flux v1 feature parity
+### The road to Flux v1 feature parity
 
 In our planning discussions we identified three areas of work:
 
@@ -93,7 +97,7 @@ In our planning discussions we identified three areas of work:
 - [x] Feature parity with the image-update functionality in Flux v1
 - [x] Feature parity with Helm Operator v1
 
-### Flux read-only feature parity
+#### Flux read-only feature parity
 
 Flux v2 read-only is ready to try. See the [Getting
 Started](/flux/get-started/) how-to, and the
@@ -130,7 +134,7 @@ Tasks
 - [x]  <span style="color:grey">Create a migration guide for `flux.yaml` kustomize users</span>
 - [x]  <span style="color:grey">Include support for SOPS</span>
 
-### Flux image update feature parity
+#### Flux image update feature parity
 
 Image automation is available as a prerelease. See [this
 guide](/flux/guides/image-update/) for how to
@@ -158,7 +162,7 @@ Tasks
 - [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/flux/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
 - [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/flux/migration/flux-v1-automation-migration/))</span>
 
-### Helm v3 feature parity
+#### Helm v3 feature parity
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
 guide](/flux/guides/helmreleases/), and the [Helm
@@ -190,3 +194,16 @@ Tasks
 - [x]  <span style="color:grey">Implement support for referring to an alternative chart values file</span>
 - [x]  <span style="color:grey">Stabilize API</span>
 - [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](flux/migration/helm-operator-migration.md)</span>
+
+## Flagger
+
+### [GitOps Toolkit](https://github.com/fluxcd/flux2) compatibility
+
+- [ ] Migrate Flagger to Kubernetes controller-runtime and [kubebuilder](https://github.com/kubernetes-sigs/kubebuilder)
+- [ ] Make the Canary status compatible with [kstatus](https://github.com/kubernetes-sigs/cli-utils)
+- [ ] Make Flagger emit Kubernetes events compatible with Flux v2 notification API
+- [ ] Integrate Flagger into Flux v2 as the progressive delivery component
+
+### Integrations
+
+- [ ] Add support for ingress controllers like HAProxy, ALB and Apache APISIX
