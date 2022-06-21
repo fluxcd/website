@@ -39,10 +39,12 @@ def get_contributions_from_gh():
     repos = [
         '.github',
         'community',
+        'flagger',
         'flux2',
         'flux2-kustomize-helm-example',
         'flux2-multi-tenancy',
         'go-git-providers',
+        'golang-with-libgit2',
         'helm-controller',
         'image-automation-controller',
         'image-reflector-controller',
