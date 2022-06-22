@@ -36,7 +36,6 @@ Once those tools are installed, fetch the assets necessary to run the site:
 
 ```cli
 npm install
-make theme
 python3 -m pip install -r requirements.txt
 ```
 

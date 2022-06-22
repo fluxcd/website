@@ -5,10 +5,6 @@ node_modules/
 .hugo_build.lock
 public/
 resources/
-themes/docsy
-themes/docsy-*
-themes/hugo-shortcode-gallery
-themes/hugo-shortcode-gallery-*
 
 # clone of gohugoio/hugo for docker-support
 hugo/
