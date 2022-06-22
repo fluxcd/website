@@ -189,3 +189,6 @@ adopters:
     - name: QuickTable
       url: https://www.quicktable.io/
       logo: logos/quicktable.png
+    - name: TraefikLabs
+      url: https://traefik.io/
+      logo: logos/traefiklabs.svg
