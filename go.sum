@@ -1,0 +1,9 @@
+github.com/FortAwesome/Font-Awesome v0.0.0-20220725174816-701d64a89432 h1:l59QNdk7uTnIv1kTUDhvsTIyHaK5pykXbk4Ya0mSJPg=
+github.com/FortAwesome/Font-Awesome v0.0.0-20220725174816-701d64a89432/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
+github.com/google/docsy v0.4.1-0.20220905171817-ae8b8117ed16 h1:9wnTz7gi5LL7uHLNBZRup6qjGFnXiH3PADvmMnE3g6U=
+github.com/google/docsy v0.4.1-0.20220905171817-ae8b8117ed16/go.mod h1:vJjGkHNaw9bO42gpFTWwAUzHZWZEVlK46Kx7ikY5c7Y=
+github.com/google/docsy/dependencies v0.4.1-0.20220905171817-ae8b8117ed16 h1:6Ju+wn/ReUk9qmvKU68JlYhnWe48Tq+2HZ4vyeSpNMk=
+github.com/google/docsy/dependencies v0.4.1-0.20220905171817-ae8b8117ed16/go.mod h1:2zZxHF+2qvkyXhLZtsbnqMotxMukJXLaf8fAZER48oo=
+github.com/mfg92/hugo-shortcode-gallery v0.0.0-20220613201828-bc703a10e526 h1:Jp7L+R7cMwg+cs0/v9U/IlXFKg9JM3kcPBIhZCKpTW4=
+github.com/mfg92/hugo-shortcode-gallery v0.0.0-20220613201828-bc703a10e526/go.mod h1:uP48acoDrLxll/agXBGFRWEv5F237K3XKWyAeVZ+Mm8=
+github.com/twbs/bootstrap v4.6.1+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=

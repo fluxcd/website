@@ -862,7 +862,8 @@ Probably, but with some side notes:
 
 Helm Controller depends on [Source Controller](../components/source/_index.md), you can install both controllers
 and manager Helm releases in a declarative way without GitOps.
-For more details please see this [answer]({{< ref "flux/faq/_index.md#can-i-use-flux-helmreleases-without-gitops" >}}).
+
+For more details please see this [answer]({{< relref "../faq.md#can-i-use-flux-helmreleases-without-gitops" >}}).
 
 ### I have another question
 
