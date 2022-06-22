@@ -1,3 +1,21 @@
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.73.0"
+
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false
+
+  [[module.imports]]
+    path = "github.com/google/docsy/dependencies"
+    disable = false
+
+  [[module.imports]]
+    path = "github.com/mfg92/hugo-shortcode-gallery"
+    disable = false
+
+
 baseURL = "/"
 title = "Flux"
 enableRobotsTXT = true
@@ -8,8 +26,6 @@ contentDir = "content/en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 enableMissingTranslationPlaceholders = true
-
-theme = ["docsy", "hugo-shortcode-gallery"]
 
 # Markup settings
 # Ref: https://gohugo.io/getting-started/configuration-markup#goldmark

@@ -3,19 +3,6 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT               ?= 6c8a3afebde99306b61ff6cf9dca47aad04a1074
-DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
-DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
-GALLERY_COMMIT             ?= bc703a10e52614c96ba3f6e367a7564a2e1eb85e
-GALLERY_COMMIT_FOLDER      := hugo-shortcode-gallery-$(GALLERY_COMMIT)
-GALLERY_TARGET             := themes/$(GALLERY_COMMIT_FOLDER)
-BOOTSTRAP_SEMVER           ?= 4.6.1
-BOOTSTRAP_SEMVER_FOLDER    := bootstrap-$(BOOTSTRAP_SEMVER)
-BOOTSTRAP_TARGET           := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(BOOTSTRAP_SEMVER_FOLDER)
-FONT_AWESOME_SEMVER        ?= 5.15.4
-FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
-FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
-
 DEV_IMAGE_REGISTRY_NAME    ?= fluxcd
 HUGO_VERSION               ?= $(shell grep HUGO_VERSION netlify.toml | cut -d'"' -f2)
 HUGO_IMAGE_BASE_NAME       := website:hugo-$(HUGO_VERSION)-extended
@@ -31,61 +18,27 @@ help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 .PHONY: help
 
-theme: $(DOCSY_TARGET) $(GALLERY_TARGET) $(BOOTSTRAP_TARGET) $(FONT_AWESOME_TARGET) ## Downloads the Docsy theme and dependencies.
-
-$(DOCSY_TARGET): ## Downloads the Docsy theme.
-	mkdir -p themes/
-	rm -rf themes/docsy
-	curl -Lfs "https://github.com/google/docsy/archive/${DOCSY_COMMIT}.tar.gz" -o "/tmp/${DOCSY_COMMIT_FOLDER}.tar.gz"
-	tar -zxf "/tmp/${DOCSY_COMMIT_FOLDER}.tar.gz" --directory themes/
-	mv themes/${DOCSY_COMMIT_FOLDER} themes/docsy
-	ln -sf docsy themes/${DOCSY_COMMIT_FOLDER}
-
-$(GALLERY_TARGET): ## Downloads the hugo-shortcode-gallery theme.
-	mkdir -p themes/
-	rm -rf themes/hugo-shortcode-gallery
-	curl -Lfs "https://github.com/mfg92/hugo-shortcode-gallery/archive/${GALLERY_COMMIT}.tar.gz" -o "/tmp/${GALLERY_COMMIT_FOLDER}.tar.gz"
-	tar -zxf "/tmp/${GALLERY_COMMIT_FOLDER}.tar.gz" --directory themes/
-	mv themes/${GALLERY_COMMIT_FOLDER} themes/hugo-shortcode-gallery
-	ln -sf hugo-shortcode-gallery themes/${GALLERY_COMMIT_FOLDER}
-
-$(BOOTSTRAP_TARGET): ## Downloads the Docsy bootstrap dependency.
-	mkdir -p themes/docsy/assets/vendor
-	rm -rf themes/docsy/assets/vendor/bootstrap
-	curl -Lfs "https://github.com/twbs/bootstrap/archive/v${BOOTSTRAP_SEMVER}.tar.gz" -o "/tmp/bootstrap-${BOOTSTRAP_SEMVER}.tar.gz"
-	tar -zxf /tmp/bootstrap-${BOOTSTRAP_SEMVER}.tar.gz --directory /tmp
-	mv /tmp/bootstrap-${BOOTSTRAP_SEMVER} themes/docsy/assets/vendor/bootstrap
-	ln -sf bootstrap themes/docsy/assets/vendor/bootstrap-${BOOTSTRAP_SEMVER}
-
-$(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
-	mkdir -p themes/docsy/assets/vendor
-	rm -rf themes/docsy/assets/vendor/Font-Awesome
-	curl -Lfs "https://github.com/FortAwesome/Font-Awesome/archive/${FONT_AWESOME_SEMVER}.tar.gz" -o "/tmp/Font-Awesome-${FONT_AWESOME_SEMVER}.tar.gz"
-	tar -zxf /tmp/Font-Awesome-${FONT_AWESOME_SEMVER}.tar.gz --directory /tmp
-	mv /tmp/Font-Awesome-${FONT_AWESOME_SEMVER} themes/docsy/assets/vendor/Font-Awesome
-	ln -sf Font-Awesome themes/docsy/assets/vendor/Font-Awesome-${FONT_AWESOME_SEMVER}
-
 gen-content: ## Generates content from external sources.
 	hack/adopters.py
 	hack/gen-content.py
 	hack/import-calendar.py
 	hack/import-flux2-assets.sh
 
-serve: gen-content theme ## Spawns a development server.
+serve: gen-content ## Spawns a development server.
 	hugo server \
 		--bind ${HUGO_BIND_ADDRESS} \
 		--buildDrafts \
 		--buildFuture \
 		--disableFastRender
 
-production-build: gen-content theme ## Builds production build.
+production-build: gen-content ## Builds production build.
 	hugo \
 		--baseURL $(URL) \
 		--gc \
 		--minify \
 		--enableGitInfo
 
-preview-build: gen-content theme ## Builds a preview build (for e.g. a pull requests).
+preview-build: gen-content ## Builds a preview build (for e.g. a pull requests).
 	hugo \
 		--baseURL $(DEPLOY_PRIME_URL) \
 		--buildFuture \
@@ -93,7 +46,7 @@ preview-build: gen-content theme ## Builds a preview build (for e.g. a pull requ
 		--minify \
 		--enableGitInfo
 
-branch-build: gen-content theme ## Builds a Git branch (for e.g. development branches).
+branch-build: gen-content ## Builds a Git branch (for e.g. development branches).
 	hugo \
 		--baseURL $(DEPLOY_PRIME_URL) \
 		--buildDrafts \
@@ -103,12 +56,7 @@ branch-build: gen-content theme ## Builds a Git branch (for e.g. development bra
 		--enableGitInfo
 
 .PHONY: docker-preview
-docker-preview: docker-theme docker-serve
-
-.PHONY: docker-theme
-docker-theme:
-	docker run -v $(shell pwd):/site -it $(SUPPORT_IMAGE_NAME) \
-		make \"MAKEFLAGS=$(MAKEFLAGS)\" theme
+docker-preview: docker-serve
 
 .PHONY: docker-serve
 docker-serve:

@@ -10,8 +10,6 @@ _tmp
 
 # These are generated or imported by hack/*
 public/
-# Output of "make theme"
-themes/
 !content/en/docs/components/*/_index.md
 content/en/docs/components/*/*.md
 
