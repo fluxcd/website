@@ -341,6 +341,10 @@ main.td-main {
   padding-top: 1rem;
   a img {
     vertical-align: initial;
+    @include media-breakpoint-down(md) {
+      width: 40px !important;
+      height: 40px !important;
+    }
   }
 }
 
