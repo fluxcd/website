@@ -192,3 +192,6 @@ adopters:
     - name: TraefikLabs
       url: https://traefik.io/
       logo: logos/traefiklabs.svg
+    - name: SenseLabs
+      url: https://senselabs.de/
+      logo: logos/senselabs.svg
