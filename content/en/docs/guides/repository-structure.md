@@ -42,13 +42,11 @@ then the applications.
 A complete example of this approach can be found at
 [flux2-kustomize-helm-example](https://github.com/fluxcd/flux2-kustomize-helm-example).
 
-### Delivery management
-
 In trunk-based development, the changes are made in small batches and
 are merged into the `main` branch often. Besides `main`, branches are short-lived,
 once a pull request is merged, the branch gets deleted.
 
-New app release can be automatically delivered to staging using Flux's [image updates to Git](image-update.md).
+New app releases can be automatically delivered to staging using Flux's [image updates to Git](image-update.md).
 For production, you may choose to manually approve app version bumps by configuring Flux
 to push the changes to a new branch from which you can create a pull request.
 You can limit the impact of an issue that escaped staging testing by using Flagger's 
@@ -80,13 +78,13 @@ Assuming your organization has a dedicated platform admin team that provides Kub
 The platform admin team is responsible for:
 
 * Setting up the staging and production environments.
-* Maintains the cluster addon-ons and other cluster-wide resources (CRDs, controllers, admission webhooks, etc).
-* Onboards the dev teams repositories using Flux's `GitRepository` custom resources.
+* Maintains the cluster add-ons and other cluster-wide resources (CRDs, controllers, admission webhooks, etc).
+* Onboards the dev teams' repositories using Flux's `GitRepository` custom resources.
 * Configures how the dev teams repositories are reconciled on each cluster using Flux's `Kustomization` custom resources.
 
 The dev teams are responsible for:
 
-* Setting up the apps definitions (Kubernetes deployments, Helm releases).
+* Setting up the app's definitions (Kubernetes deployments, Helm releases).
 * Configures how the apps are reconciled on each environment (Kustomize overlays, Helm values).
 * Manages the apps promotion between environments using Flux's automated image updates to Git.
 
