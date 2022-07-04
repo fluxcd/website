@@ -411,7 +411,7 @@ If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
 - Join our [upcoming dev meetings](/community/#meetings) on
-  2021-06-02 or 2021-06-08.
+  2022-06-02 or 2022-06-08.
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get

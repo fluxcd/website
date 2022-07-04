@@ -345,7 +345,7 @@ good ways to do that:
 
 - Join our [upcoming dev
   meetings](/community/#meetings) on
-  2021-03-02 or 2021-03-10.
+  2022-03-02 or 2022-03-10.
 - Talk to us in the \#flux channel on [CNCF
   Slack](https://slack.cncf.io/)
 - Join the [planning
