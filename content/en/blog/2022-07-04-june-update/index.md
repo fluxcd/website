@@ -4,6 +4,7 @@ date: 2022-07-04 13:30:00+00:00
 title: June 2022 Update
 description: "Flux v0.31 brings support for Helm charts from OCI container registries and lots more! Updates from Flux Ecosystem, Website, Docs and Events space. Big shout-out to everyone who contributed to Flux this month!"
 url: /blog/2022/07/june-2022-update/
+tags: [monthly-update]
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"

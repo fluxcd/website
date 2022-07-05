@@ -4,6 +4,7 @@ date: 2022-05-25 10:00:00+00:00
 title: 'KubeCon EU 2022 Wrap-Up'
 description: "KubeCon EU 2022 is over and we lots of fun being there and meeting you! If you couldn't make it, read the blog post and catch up with everything that happened. We have links to all the currently available talks and lots of pics from the event!"
 url: /blog/2022/05/kubecon-eu-2022-wrap-up/
+tags: [event]
 resources:
 - src: "**.{jpg,png}"
   title: "Image #:counter"

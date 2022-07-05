@@ -3,6 +3,7 @@ author: kingdonb
 date: 2021-06-28 08:30:00+00:00
 title: Flux Bug Scrub Announce
 description: We are starting the Flux Bug Scrub initiative. A great way to help out in the community and get started by learning more about Flux and interacting with user issues!
+tags: [event]
 url: /blog/2021/06/flux-bug-scrub-announce/
 ---
 
