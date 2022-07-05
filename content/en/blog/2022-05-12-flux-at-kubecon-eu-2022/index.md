@@ -3,6 +3,7 @@ author: dholbach
 date: 2022-05-12 7:30:00+00:00
 title: Flux at KubeCon EU 2022
 description: 'Team Flux is going to have a big presence at KubeCon EU 2022. We very much look forward to meeting you in-person in Valencia and online. Find all the relevant information in here: who to meet there, all the relevant talks and events, prizes and more. The Flux community is coming together again!' 
+tags: [event]
 resources:
 - src: "**.png"
   title: "Image #:counter"

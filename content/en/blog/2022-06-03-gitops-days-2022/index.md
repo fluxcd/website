@@ -4,6 +4,7 @@ date: 2022-06-03 14:30:00+00:00
 title: GitOps Days 2022
 description: Ahhhhhhhh yeah! It is time for GitOps Days again. This is where we celebrate where we as a community have taken Flux today, how it's being used, where the ecosystem is moving, what's next and it is where we have a great time together!
 url: /blog/2022/06/gitops-days-2022/
+tags: [event]
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
