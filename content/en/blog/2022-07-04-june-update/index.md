@@ -119,17 +119,6 @@ were only able to show a subset of kubernetes objects that were created
 by Kustomizations and Helm Releases. You can now get a full view of all
 of the objects that were created.
 
-#### Weave GitOps Enterprise
-
-The team around Weave GitOps Enterprise now provide a GitOps friendly cluster
-inventory, enabling to onboard any cluster to Weave GitOps Platform.
-Providing capabilities to bootstrap flux and manage the cluster loadout
-of components via Profiles. You can further enrich your cluster inventory
-with relevant metadata like dashboards, so that you have a single pane of glass.
-
-They provide GitOps policy as code capabilities with Enterprise. Providing
-a single pane of glass for policies across your fleet of clusters.
-
 #### New additions to the Flux Ecosystem
 
 We are very pleased to recognise
