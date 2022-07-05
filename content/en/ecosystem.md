@@ -14,9 +14,19 @@ If you represent an organisation, please add yourself to [the adopters page](/ad
 We are happy and proud to have you all as part of our community! :sparkling_heart:
 {{% /alert %}}
 
+## Products and Services built on top of Flux
+
+| Vendor      | Product / Service       | Link                                                               |
+|-------------|-------------------------|--------------------------------------------------------------------|
+| Azure       | Azure Arc               | [Documentation](https://docs.microsoft.com/azure/azure-arc/)       |
+| D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                |
+| Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)       |
+| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/gitops-enterprise/) |
+| VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                     |
+
 ## Flux UIs
 
-These open source  projects offer a dedicated UI for Flux.
+These open source projects offer a dedicated UI for Flux.
 
 | Source                                                                | Description                                                                                                                                                                                                                                                                                                             |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
