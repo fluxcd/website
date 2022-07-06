@@ -16,14 +16,15 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 
 ## Products and Services built on top of Flux
 
-| Vendor      | Product / Service       | Link                                                               |
-|-------------|-------------------------|--------------------------------------------------------------------|
+| Vendor      | Product / Service       | Link                                                                                          |
+|-------------|-------------------------|-----------------------------------------------------------------------------------------------|
 | AWS         | EKS Anywhere            | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/)          |
-| Azure       | Azure Arc               | [Documentation](https://docs.microsoft.com/azure/azure-arc/)       |
-| D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                |
-| Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)       |
-| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/gitops-enterprise/) |
-| VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                     |
+| Azure       | Azure Arc               | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                                  |
+| D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                                           |
+| Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                                  |
+| Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                                       |
+| VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                                |
+| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/gitops-enterprise/)                            |
 
 ## Flux UIs
 
