@@ -119,6 +119,20 @@ were only able to show a subset of kubernetes objects that were created
 by Kustomizations and Helm Releases. You can now get a full view of all
 of the objects that were created.
 
+The team is turning their attention to a new feature at the moment and are
+looking for people willing to participate as early beta users. They are
+building a new feature in Weave GitOps that will change the way you can
+interact with Kubernetes as you build out your system.  The idea is to
+reduce friction as much as possible and get live feedback.  Once you are
+done then you will be able to easily transition the workload management
+over to GitOps via Flux.
+
+They are excited about this feature and would appreciate people that are
+willing to test early versions so they build the best possible solution that
+solves problems.  If you are interested please sign up
+[here](https://forms.gle/NaVBKVLjvErxgpyEA) and they will
+reach out to you via email when they are ready to start the beta test.
+
 #### New additions to the Flux Ecosystem
 
 We are very pleased to recognise
