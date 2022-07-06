@@ -18,6 +18,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 
 | Vendor      | Product / Service       | Link                                                               |
 |-------------|-------------------------|--------------------------------------------------------------------|
+| AWS         | EKS Anywhere            | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/)          |
 | Azure       | Azure Arc               | [Documentation](https://docs.microsoft.com/azure/azure-arc/)       |
 | D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                |
 | Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)       |
