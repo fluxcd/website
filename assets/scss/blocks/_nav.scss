@@ -39,12 +39,12 @@ nav.navbar {
   .nav-search-item {
     height: 40px;
 
-    .td-search-input {
+    #docsearch {
       height: 28px;
       border: none;
       max-width: 11rem;
       padding-left: 9px;
-      margin-top: 8px;
+      margin-top: 4px;
       @include media-breakpoint-down(md) {
         padding-top: 10px;
       }
