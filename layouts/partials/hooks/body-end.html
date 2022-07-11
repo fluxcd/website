@@ -4,22 +4,20 @@
 {{ $calendar := resources.Get "js/calendar.js" | js.Build "calendar.js" }}
 <script type="text/javascript" src="{{ $calendar.RelPermalink }}" defer></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 <script type="text/javascript">
 
-function docsearchInit(inputSelector) {
-    return docsearch({
-        apiKey: '45f9f14d53600b0a2cafa46a26ee10f4',
+docsearch({
+        container: '#docsearch',
+        apiKey: 'd466984187cbf406354da362d45b8e3f',
+        appId: 'Z41T3FAXIU',
         indexName: 'fluxcd',
-        inputSelector: inputSelector,
         {{ if in .Permalink "/legacy" }}
-        algoliaOptions: { 'facetFilters': ["tags:legacy"] },
+        searchParameters: { 'facetFilters': ['tags:legacy'], },
         {{ else }}
-        algoliaOptions: { 'facetFilters': ["tags:current"] },
+        searchParameters: { 'facetFilters': ['tags:current'], },
         {{ end }}
-        debug: false // Set debug to true if you want to inspect the dropdown
-    });
-}
+});
 
-docsearchInit('.td-search-input');
 </script>
 {{ end }}
