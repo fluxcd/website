@@ -203,7 +203,7 @@ func main() {
     Spec: helmv2.HelmReleaseSpec{
       ReleaseName: "nginx",
       Interval: metav1.Duration{
-        Duration: 5 + time.Minute,
+        Duration: 5 * time.Minute,
       },
       Chart: helmv2.HelmChartTemplate{
         Spec: helmv2.HelmChartTemplateSpec{
