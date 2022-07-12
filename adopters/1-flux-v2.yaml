@@ -195,3 +195,6 @@ adopters:
     - name: SenseLabs
       url: https://senselabs.de/
       logo: logos/senselabs.svg
+    - name: Mintmesh
+      url: https://www.mintmesh.ai/
+      logo: logos/mintmesh.png
