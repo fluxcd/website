@@ -10,18 +10,18 @@ resources:
   title: "Image #:counter"
 ---
 
-Helping to close out GitOps Days 2022, Kingdon Barrett maintainer of the
-Weaveworks [GitOps Tools extension for
-VSCode](https://github.com/weaveworks/vscode-gitops-tools) presents the
-new Flux extension. Kingdon, OSS Engineer at Weaveworks and Flux Maintainer,
-shows the new extension and how it helps minimize context switching,
-keeping you in your editor where you can be most productive!
+Helping to close out GitOps Days 2022, Kingdon Barrett, OSS Engineer
+at Weaveworks, Flux Maintainer, and maintainer of the Weaveworks 
+[GitOps Tools extension for VSCode](https://github.com/weaveworks/vscode-gitops-tools) 
+presented the new Flux extension. Kingdon showed the new extension and 
+how it helps minimize context switching, keeping you in your editor 
+where you can be most productive!
 
 {{< imgproc vscode-gitops-commands Resize 800x >}}
 {{< /imgproc >}}
 
-This presentation starts down in the trenches as Kingdon presents after
-just having launched the new VSCode [Extension
+The presentation starts down in the trenches after
+Kingdon launched the new VSCode [Extension
 Marketplace](https://marketplace.visualstudio.com/items?itemName=Weaveworks.vscode-gitops-tools)
 page and soft-launched the extension's availability to install from the
 store the night before, and fully launching the marketplace entry during
@@ -49,7 +49,7 @@ that are having issues.
 This quick demonstration gives an overview of the GitOps extension for
 Flux, and also what it's like to use the extension to help recover when
 things have gone wrong. What kind of live demo is it if nothing went
-wrong? (I'll tell you, an unrealistic one, as something always goes
+wrong? (Hint...an unrealistic one, as something always goes
 wrong!) These tools make recovery fast and ensure you can do it without
 a heavy context switch out of the editor and into monitoring dashboards
 or terminal CLI debugging land.
