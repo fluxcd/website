@@ -6,20 +6,41 @@ type: page
 
 ## Flux Ecosystem
 
-These tools and integrations with Flux are available today.
+All entries on this page were added by people who worked on these and thus self-identified as being part of the Flux Ecosystem.
 
 {{% alert color="info" title="Join us" %}}
-To join this list, please open a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem.md).
+To join this list, please open a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem/index.md).
 If you represent an organisation, please add yourself to [the adopters page](/adopters).
 We are happy and proud to have you all as part of our community! :sparkling_heart:
 {{% /alert %}}
 
 ## Products and Services built on top of Flux
 
+### Featured entries
+
+<div class="ecosystem">
+{{< cardpane >}}
+{{% card header="[Azure](https://docs.microsoft.com/azure/azure-arc/)" %}}
+![Azure](./img/azure.png)
+{{% /card %}}
+{{% card header="[D2iQ Kommander](https://d2iq.com/products/kommander)" %}}
+![D2iQ](/img/logos/d2iq.png)
+{{% /card %}}
+{{% card header="[Giant Swarm](https://docs.giantswarm.io/advanced/gitops/)" %}}
+![Giant Swarm](/img/logos/giantswarm.svg)
+{{% /card %}}
+{{% card header="[Weave GitOps](https://www.weave.works/product/gitops-enterprise/)" %}}
+![Weaveworks](/img/logos/weaveworks.png)
+{{% /card %}}
+{{< /cardpane >}}
+</div>
+
+### Complete list
+
 | Vendor      | Product / Service       | Link                                                                                          |
 |-------------|-------------------------|-----------------------------------------------------------------------------------------------|
 | AWS         | EKS Anywhere            | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/)          |
-| Azure       | Azure Arc               | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                                  |
+| Azure       | AKS + Azure Arc         | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                                  |
 | D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                                           |
 | Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                                  |
 | Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                                       |
@@ -33,6 +54,12 @@ These open source projects offer a dedicated UI for Flux.
 | Source                                                                | Description                                                                                                                                                                                                                                                                                                             |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops) | Weaveworks offers a free and open source GUI for Flux under the [weave-gitops](https://docs.gitops.weave.works/docs/intro) project. You can install the Weave GitOps UI using a Flux `HelmRelease`, please see the [get started documentation](https://docs.gitops.weave.works/docs/getting-started/) for more details. |
+
+### Weave GitOps
+
+{{< gallery match="img/weave-gitops*.png" sortOrder="desc" rowHeight="150" margins="5"
+            thumbnailResizeOptions="600x600 q90 Lanczos" previewType="color" embedPreview="true" >}}
+
 
 ## Flux Extensions
 
