@@ -10,7 +10,7 @@ the binaries can be downloaded form GitHub
 
 ## Install using package management
 
-{{< tabpane code=false >}}
+{{< tabpane text=true >}}
 {{% tab header="macOS" %}}
 
 With [Homebrew](https://brew.sh):

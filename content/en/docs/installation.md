@@ -27,7 +27,7 @@ The Flux CLI is available as a binary executable for all major platforms,
 the binaries can be downloaded form GitHub
 [releases page](https://github.com/fluxcd/flux2/releases).
 
-{{< tabpane code=false >}}
+{{< tabpane text=true >}}
 {{% tab header="Homebrew" %}}
 
 With [Homebrew](https://brew.sh) for macOS and Linux:

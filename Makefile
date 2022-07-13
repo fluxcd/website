@@ -3,10 +3,10 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT               ?= 436ae8700eeb7ea63278b9d1a410ea03d32bf156
+DOCSY_COMMIT               ?= 6c8a3afebde99306b61ff6cf9dca47aad04a1074
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
-GALLERY_COMMIT             ?= 3789bdf54e053fccd98f27e1bbdd522b319d4b98
+GALLERY_COMMIT             ?= bc703a10e52614c96ba3f6e367a7564a2e1eb85e
 GALLERY_COMMIT_FOLDER      := hugo-shortcode-gallery-$(GALLERY_COMMIT)
 GALLERY_TARGET             := themes/$(GALLERY_COMMIT_FOLDER)
 BOOTSTRAP_SEMVER           ?= 4.6.1
