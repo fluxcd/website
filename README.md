@@ -56,7 +56,7 @@ The Flux website is published automatically by [Netlify](https://netlify.com) wh
 
 When you submit a pull request to this repository, Netlify builds a "deploy preview" of your changes. You can see that preview by clicking on the **deploy/netlify** link in the pull request window.
 
-### Local Development (docker)
+## Local Development (docker)
 
 Run `make docker-preview` and wait until the following output appears:
 
