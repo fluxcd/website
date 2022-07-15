@@ -52,6 +52,12 @@ kubectl get helmreleases.helm.toolkit.fluxcd.io -A
 kubectl get helmcharts.source.toolkit.fluxcd.io -A
 ```
 
+{{% alert color="warning" title="HelmCharts and HelmReleases CRDs conflict with other Helm controllers" %}}
+When a `HelmRelease` exhibits the issue `HelmChart 'podinfo/podinfo-podinfo' is not ready`, a common issue on k3s clusters or other environments that bundle a different Helm controller is caused by a conflict between these CRDs when they are used without fully qualifying.
+
+For example: `kubectl get helmcharts` can access the wrong CRD and users may be fooled into thinking that a `HelmChart` resource was not created successfully. To avoid this issue, use the alternative `flux get source chart` or fully qualify when using `kubectl get` as shown above.
+{{% /alert %}}
+
 Looking for controller errors:
 
 ```cli
