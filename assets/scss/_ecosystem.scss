@@ -2,6 +2,7 @@
 .ecosystem {
   margin-right: -15px;
   .card-deck {
+    max-width: 83%;
     @include media-breakpoint-down(sm) {
       display: flex;
       flex-wrap: wrap;
