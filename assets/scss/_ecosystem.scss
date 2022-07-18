@@ -1,24 +1,19 @@
 /* ecosystem page */
 .ecosystem {
+  margin-right: -15px;
   .card-deck {
     @include media-breakpoint-down(sm) {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
-    @include media-breakpoint-only(lg) {
-      column-count: 3;
-    }
-    @include media-breakpoint-only(xl) {
-      column-count: 4;
-    }
 
     .card {
       min-width: 48%;
       max-width: 48%;
-      @include media-breakpoint-up(sm) {
-        min-width: 200px;
-        max-width: 200px;
+      @include media-breakpoint-up(lg) {
+        min-width: auto;
+        max-width: initial;
       }
     }
 
@@ -35,8 +30,66 @@
 
     .card-text {
       width: 100%;
-      vertical-align: middle
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
+  img {
+    @include media-breakpoint-up(lg) {
+      max-width: 158px;
     }
   }
   
+}
+
+.ecosystem-page {
+  table {
+    margin-bottom: 1rem;
+    color: #222;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    @include media-breakpoint-up(lg) {
+      display: table;
+    }
+  }
+
+  .card-deck {
+    max-width: 100%;
+  }
+
+  th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+  }
+
+  td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+
+  tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    &:not(:first-child) {
+      margin-top: 3rem;
+    }
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-wrapper {
+    max-width: 100%;
+  }
 }
