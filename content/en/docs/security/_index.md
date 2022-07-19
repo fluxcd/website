@@ -9,11 +9,6 @@ weight: 140
 To fulfil our promise to end users, we should briefly outline the context here,
 and link to the more detailed instruction pages from each relevant part of this outline. -->
 
-{{% alert color="info" title="✍️⏳ Work in progress" %}}
-This document is a work in progress.
-Please follow [this GitHub issue](https://github.com/fluxcd/website/issues/598) to stay updated on goals and progress as we complete this page.
-{{% /alert %}}
-
 ## Introduction
 
 Flux has a multi-component design, and integrates with many other systems.
