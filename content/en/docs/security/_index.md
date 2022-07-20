@@ -102,6 +102,12 @@ If the binding is not defined for the correct service account and namespace, it 
 The roles and permissions for this multi-tenancy approach
 are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
 
+## Further securing Flux Deployments
+
+Beyond the security features that Flux has backed into it, there are further best
+practices that can be implemented to ensure your Flux deployment is as secure
+as it can be. For more information, checkout the [Flux Security Best Practices]({{< relref "./best-practices" >}}).
+
 [^1]: However, by design cross-namespace references are an exception to RBAC.
 Platform admins have to option to turnoff cross-namespace references as described in the
 [installation documentation](../installation/_index.md#multi-tenancy-lockdown).
