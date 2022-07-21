@@ -121,7 +121,7 @@ The recommendations below are based on Flux's latest version.
 - Ensure Secret Decryption is enabled and secrets are not being held in Flux Sources in plaintext.
   <details>
     <summary>Rationale</summary>
-    Helm and Kustomize Controllers have auto decryption mechanisms that can decrypt cipher texts on-demand at reconciliation time. This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
+    The Kustomize Controller have an auto decryption mechanism that can decrypt cipher texts on-demand at reconciliation time using an embedded implementation of [SOPS](https://github.com/mozilla/sops). This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
   </details>
   <details>
     <summary>Audit Procedure</summary>
