@@ -31,6 +31,7 @@ The recommendations below are based on Flux's latest version.
 - Ensure controller was not started with `--insecure-kubeconfig-exec=true`.
   <details>
     <summary>Rationale</summary>
+
     KubeConfigs support the execution of a binary command to return the token required to authenticate against a Kubernetes cluster.
 
     This is very handy for acquiring contextual tokens that are time-bound (e.g. aws-iam-authenticator).  
@@ -38,6 +39,7 @@ The recommendations below are based on Flux's latest version.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check Helm Controller's pod YAML for the arguments used at start-up:
     
     ```sh
@@ -48,12 +50,14 @@ The recommendations below are based on Flux's latest version.
 - Ensure controller was not started with `--insecure-kubeconfig-tls=true`.
   <details>
     <summary>Rationale</summary>
+
     Disables the enforcement of TLS when accessing the API Server of remote clusters.
     
     This flag was created to enable scenarios in which non-production clusters need to be accessed via HTTP. Do not disable TLS in production.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check Helm Controller's pod YAML for the arguments used at start-up:
     
     ```sh
@@ -68,13 +72,16 @@ The recommendations below are based on Flux's latest version.
 - Ensure controller was not started with `--insecure-kubeconfig-exec=true`.
   <details>
     <summary>Rationale</summary>
+
     KubeConfigs support the execution of a binary command to return the token required to authenticate against a Kubernetes cluster.
 
-  This is very handy for acquiring contextual tokens that are time-bound (e.g. aws-iam-authenticator).  
-   However, this may be open for abuse in multi-tenancy environments and therefore is disabled by default.
+    This is very handy for acquiring contextual tokens that are time-bound (e.g. aws-iam-authenticator).
+
+    However, this may be open for abuse in multi-tenancy environments and therefore is disabled by default.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check Kustomize Controller's pod YAML for the arguments used at start-up:
     
     ```sh
@@ -85,12 +92,14 @@ The recommendations below are based on Flux's latest version.
 - Ensure controller was not started with `--insecure-kubeconfig-tls=true`.
   <details>
     <summary>Rationale</summary>
+
     Disables the enforcement of TLS when accessing the API Server of remote clusters.
     
     This flag was created to enable scenarios in which non-production clusters need to be accessed via HTTP. Do not disable TLS in production.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check Kustomize Controller's pod YAML for the arguments used at start-up:
     
     ```sh
@@ -101,6 +110,7 @@ The recommendations below are based on Flux's latest version.
 - Ensure controller was started with `--no-remote-bases=true`.
   <details>
     <summary>Rationale</summary>
+
     By default the Kustomize controller allows for kustomize overlays to refer to external bases. 
     This has a performance penalty, as the bases will have to be downloaded on demand during each reconciliation.<br>
     When using external bases, there can't be any assurances that the externally declared state won't change.
@@ -108,12 +118,12 @@ The recommendations below are based on Flux's latest version.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check Kustomize Controller's pod YAML for the arguments used at start-up:
 
     ```sh
     kubectl describe pod -n flux-system -l app=kustomize-controller | grep -B 5 -A 10 Args
     ```
-
   </details>
 
 #### Secret Decryption
@@ -121,7 +131,8 @@ The recommendations below are based on Flux's latest version.
 - Ensure Secret Decryption is enabled and secrets are not being held in Flux Sources in plaintext.
   <details>
     <summary>Rationale</summary>
-    Helm and Kustomize Controllers have auto decryption mechanisms that can decrypt cipher texts on-demand at reconciliation time. This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
+
+    The Kustomize Controller have an auto decryption mechanism that can decrypt cipher texts on-demand at reconciliation time using an embedded implementation of [SOPS](https://github.com/mozilla/sops). This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
   </details>
   <details>
     <summary>Audit Procedure</summary>
@@ -138,10 +149,12 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     Blocks references to Flux objects across namespaces. This assumes that tenants would own one or multiple namespaces, and should not be allowed to consume other tenant's objects, as this could enable them to gain access to sources they do not (or should not) have access to.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check the Controller's YAML for the arguments used at start-up:
     
     ```sh
@@ -157,11 +170,14 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     Enforces all reconciliations to impersonate a given Service Account, effectively disabling the use of the privileged service account that would otherwise be used by the controller.
+
     Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](https://fluxcd.io/docs/components/helm/helmreleases/#enforce-impersonation) and [Kustomization](https://fluxcd.io/docs/components/helm/helmreleases/#enforce-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check the Controller's YAML for the arguments used at start-up:
     
     ```sh
@@ -175,6 +191,7 @@ The recommendations below are based on Flux's latest version.
 - Ensure Secret Decryption is configured correctly, such that each tenant have the correct level of isolation.
   <details>
     <summary>Rationale</summary>
+
     The secret decryption configuration must be aligned with the level of isolation required across tenants.
     - For higher isolation, each tenant must have their own Key Encryption Key (KEK) configured. Note that the access controls to the aforementioned keys must also be aligned for better isolation.
     - For lower isolation requirements, or for secrets that are shared across multiple tenants, cluster-level keys could be used.
@@ -192,11 +209,14 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     Sharing the same instances of Flux Components across all tenants including the Platform Admin, will lead to all reconciliations competing for the same resources. In addition, all Flux objects will be placed on the same queue for reconciliation which is limited by the number of workers set by each controller (i.e. `--concurrent=20`), which could cause reconciliation intervals not to be accurately honored.
+
     For improved reliability, additional instances of Flux Components could be deployed in specific namespaces, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.  
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     Check for the existence of additional Flux controllers instances and their respective scopes. Each "non-global" controller must be started with `--watch-all-namespaces=false` and have the namespace scope set via environment variable `RUNTIME_NAMESPACE`:
     
     ```sh
@@ -212,12 +232,16 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     Pods sharing the same worker node may enable threat vectors which might enable a malicious tenant to have a negative impact on the Confidentiality, Integrity or Availability of the co-located pods.
+
     The Flux components may have Control Plane privileges while some tenants may not. A co-located pod could leverage its privileges in the shared worker node to bypass its own Control Plane access limitations by compromising one of the co-located Flux components. For cases in which cross-tenant isolation requirements must be enforced, the same risks apply.
+
     Employ techniques to enforce that untrusted workloads are sandboxed. And, ensure that worker nodes are only shared when within the acceptable risks by your security requirements.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     - Check whether you adhere to [Kubernetes Node Isolation Guidelines](https://kubernetes.io/docs/concepts/security/multi-tenancy/#node-isolation)
     - Check whether there are Admission Controllers/OPA blocking tenants from creating privileged containers.
     - Check whether [RuntimeClass](https://kubernetes.io/docs/concepts/containers/runtime-class/) is being employed to sandbox workloads that may be scheduled in shared worker nodes.
@@ -230,10 +254,12 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     Flux relies on Network Policies to ensure that only Flux components have direct access to the source artifacts kept in the Source Controller.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     - Check whether you adhere to [Kubernetes Network Isolation Guidelines](https://kubernetes.io/docs/concepts/security/multi-tenancy/#network-isolation)
     - Create a [Network Policy](https://fluxcd.io/docs/flux-e2e/#fluxs-default-configuration-for-networkpolicy) and confirm it is being enforced by the CNI.
   </details>
@@ -244,11 +270,14 @@ The recommendations below are based on Flux's latest version.
 
   <details>
     <summary>Rationale</summary>
+
     In environments in which a management cluster is used to bootstrap and manage other clusters, it is important to ensure that a tenant is not allowed to revoke access from the Platform Admin, effectively denying the Management Cluster the ability to further reconcile changes into the tenant's Cluster.
+
     The Platform Admin should make sure that at the tenant’s cluster bootstrap process, this is taken into the account and a breakglass procedure is in place to recover access without the need to rebuild the cluster.
   </details>
   <details>
     <summary>Audit Procedure</summary>
+
     - Check whether alerts are in place in case the Remote Apply operations fails.
     - Check the permission set given to the tenant's users and applications is not overly privileged.
     - Check whether there are Admission Controllers/OPA rules blocking changes in Platform Admin's permissions and overall resources.
