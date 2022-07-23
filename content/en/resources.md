@@ -14,6 +14,13 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+url="https://www.youtube.com/playlist?list=PLj6h78yzYM2PTHsP7RhbRYBT_TDJz5x3M"
+thumbnail="LQgsxT3SlN8"
+title="GitOpsCon EU 2022" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 19-May-2022)
+
+{{% blocks/resource
 youtube="2rJur5VE6yA"
 title="Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets - Somtochi Onyekwere" %}}
 {{% /blocks/resource %}}
