@@ -15,6 +15,40 @@ components of the Kubernetes ecosystem. Flux supports
 multi-tenancy and support for syncing an arbitrary number of Git
 repositories.
 
+## Flux Works Well With
+
+Flux very naturally integrates with these pieces of best-practice Open Source software (from the [CNCF Landscape](https://landscape.cncf.io/) and elsewhere). Click on the docs link to see how to set it up with Flux.
+
+<div class="works-well-with">
+{{< cardpane >}}
+{{% card header="[Grafana](https://grafana.com/oss/grafana/)" %}}
+[![Grafana](./img/grafana.svg)](/docs/guides/monitoring/)
+{{% /card %}}
+{{% card header="[Helm](https://helm.sh/)" %}}
+[![Helm](./img/helm.svg)](/docs/use-cases/helm/)
+{{% /card %}}
+{{% card header="[Istio](https://istio.io/)" %}}
+[![Istio](./img/istio.svg)](/flagger/tutorials/istio-progressive-delivery/)
+{{% /card %}}
+{{% card header="[Kubernetes](https://kubernetes.io/)" %}}
+[![Kubernetes](./img/kubernetes.svg)](/docs/get-started/)
+{{% /card %}}
+{{% card header="[Kyverno](https://kyverno.io/)" %}}
+[![Kyverno](./img/kyverno.png)](/blog/2022/02/security-image-provenance/)
+{{% /card %}}
+{{% card header="[Linkerd](https://linkerd.io/)" %}}
+[![Linkerd](./img/linkerd.png)](/flagger/tutorials/linkerd-progressive-delivery/)
+{{% /card %}}
+{{% card header="[Prometheus](https://prometheus.io/)" %}}
+[![Prometheus](./img/prometheus.svg)](/docs/guides/monitoring/)
+{{% /card %}}
+{{% card header="[SOPS](https://github.com/mozilla/sops)" %}}
+[![Prometheus](./img/mozilla.jpg)](/docs/guides/mozilla-sops/)
+{{% /card %}}
+
+{{< /cardpane >}}
+</div>
+
 ## Flux in Short
 
 <!-- borrowed from ./content/en/_index.html -->

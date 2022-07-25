@@ -1,3 +1,7 @@
+.works-well-with {
+  @extend .adopters;
+}
+
 .page {
   margin-top: 6rem;
   @include media-breakpoint-down(sm) {

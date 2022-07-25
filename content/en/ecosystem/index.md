@@ -6,7 +6,7 @@ type: page
 
 <div class="ecosystem-page">
 
-## Flux Ecosystem
+# Flux Ecosystem
 
 All entries on this page were added by people who worked on these and thus self-identified as being part of the Flux Ecosystem.
 
