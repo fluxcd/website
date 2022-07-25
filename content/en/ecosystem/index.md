@@ -6,7 +6,7 @@ type: page
 
 <div class="ecosystem-page">
 
-## Flux Ecosystem
+# Flux Ecosystem
 
 All entries on this page were added by people who worked on these and thus self-identified as being part of the Flux Ecosystem.
 
@@ -15,6 +15,45 @@ To join this list, please open a PR on [this file](https://github.com/fluxcd/web
 If you represent an organisation, please add yourself to [the adopters page](/adopters).
 We are happy and proud to have you all as part of our community! :sparkling_heart:
 {{% /alert %}}
+
+## Flux Works Well With
+
+Flux very naturally integrates with these pieces of best-practice Open Source software (from the [CNCF Landscape](https://landscape.cncf.io/) and elsewhere). Click on the docs link to see how to set it up with Flux.
+
+<div class="works-well-with">
+{{< cardpane >}}
+{{% card header="[Grafana](https://grafana.com/oss/grafana/)"
+         footer="[Docs](/docs/guides/monitoring/)" %}}
+![Grafana](./img/grafana.svg)
+{{% /card %}}
+{{% card header="[Helm](https://helm.sh/)"
+         footer="[Docs](/docs/use-cases/helm/)" %}}
+![Helm](./img/helm.svg)
+{{% /card %}}
+{{% card header="[Istio](https://istio.io/)"
+         footer="[Docs](/flagger/tutorials/istio-progressive-delivery/)" %}}
+![Istio](./img/istio.svg)
+{{% /card %}}
+{{% card header="[Kubernetes](https://kubernetes.io/)"
+         footer="[Docs](/docs/get-started/)" %}}
+![Kubernetes](./img/kubernetes.svg)
+{{% /card %}}
+{{% card header="[Kyverno](https://kyverno.io/)"
+         footer="[Docs](/blog/2022/02/security-image-provenance/)" %}}
+![Kyverno](./img/kyverno.png)
+{{% /card %}}
+{{% card header="[Prometheus](https://prometheus.io/)"
+         footer="[Docs](/docs/guides/monitoring/)" %}}
+![Prometheus](./img/prometheus.svg)
+{{% /card %}}
+{{% card header="[SOPS](https://github.com/mozilla/sops)"
+         footer="[Docs](/docs/guides/mozilla-sops/)" %}}
+![Prometheus](./img/mozilla.jpg)
+{{% /card %}}
+
+{{< /cardpane >}}
+</div>
+
 
 ## Products and Services built on top of Flux
 

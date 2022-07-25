@@ -44,6 +44,11 @@
   
 }
 
+.works-well-with {
+  @extend .ecosystem;
+  /* more here... help please! */
+}
+
 .ecosystem-page {
   table {
     margin-bottom: 1rem;
