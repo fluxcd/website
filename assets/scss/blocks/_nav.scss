@@ -46,7 +46,20 @@ nav.navbar {
       padding-left: 9px;
       margin-top: 4px;
       @include media-breakpoint-down(md) {
-        padding-top: 10px;
+        max-width: 100%;
+        margin-right: 0;
+        padding-left: 0;
+        .DocSearch-Button {
+          margin-left: 0;
+          width: 100%;
+          .DocSearch-Button-Keys,
+          .DocSearch-Button-Placeholder {
+            display: block;
+            .DocSearch-Button-Key {
+              display: none;
+            }
+          }
+        }
       }
 
       margin-right: 1rem;
