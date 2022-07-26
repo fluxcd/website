@@ -1,4 +1,8 @@
-# Canary analysis with KEDA ScaledObjects
+---
+weight: 14
+title: Canary analysis with KEDA ScaledObjects
+type: docs
+---
 
 This guide shows you how to use Flagger with KEDA ScaledObjects to autoscale workloads during a Canary analysis run.
 We will be using a Blue/Green deployment strategy with the Kubernetes provider for the sake of this tutorial, but

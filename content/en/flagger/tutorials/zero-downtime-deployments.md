@@ -1,5 +1,5 @@
 ---
-weight: 14
+weight: 15
 title: Zero downtime deployments
 type: docs
 ---
