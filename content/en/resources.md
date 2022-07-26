@@ -14,9 +14,9 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
-url="https://www.youtube.com/playlist?list=PLj6h78yzYM2PTHsP7RhbRYBT_TDJz5x3M"
-thumbnail="LQgsxT3SlN8"
-title="GitOpsCon EU 2022" %}}
+url="https://www.youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
+thumbnail="es5ngkzJDEc"
+title="Flux at GitOps Con, KubeCon, CloudNativeCon EU 2022" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 19-May-2022)
 
