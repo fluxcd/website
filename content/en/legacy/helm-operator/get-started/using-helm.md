@@ -22,7 +22,7 @@ CRD it will be possible to define `HelmRelease` resources on the
 cluster:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.2/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.3/deploy/crds.yaml
 ```
 
 Using `helm`, add the Flux Helm repository:
