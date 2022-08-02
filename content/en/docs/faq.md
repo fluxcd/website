@@ -9,6 +9,12 @@ weight: 100
 Troubleshooting advice can be found on our [Troubleshooting Cheatsheet](/docs/cheatsheets/troubleshooting/).
 {{% /alert %}}
 
+## General questions
+
+### Does Flux have a UI?
+
+The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis). 
+
 ## Kustomize questions
 
 ### Are there two Kustomization types?
