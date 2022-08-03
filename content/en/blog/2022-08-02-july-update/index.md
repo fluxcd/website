@@ -88,20 +88,20 @@ changelog entries.
 
 #### Flux Subsystem for Argo
 
-We released Flux Subsystem for Argo by rebasing it to Argo CD v2.2.11,
-which contains many serious security fixes. We verified that this
+The team released Flux Subsystem for Argo by rebasing it to Argo CD v2.2.11,
+which contains many serious security fixes. They verified that this
 version of FSA worked with recent versions of Flux, including Flux v2
 0.31.4.
 
 #### Terraform-controller
 
-We had been identifying performance bottlenecks in the TF controller.
-Now with the bottlenecks identified, we have been able to start
+The authors had been identifying performance bottlenecks in the TF controller.
+Now with the bottlenecks identified, they have been able to start
 rewriting the certification rotation component to improve the
 performance of the controller. The performance improvement is expected
 to land by the mid of August.
 
-Our [most recent release
+Their [most recent release
 0.10.0](https://github.com/weaveworks/tf-controller/releases/tag/v0.10.0)
 contains the following improvements:
 
@@ -127,18 +127,18 @@ Days](/blog/2022/07/gitopsdays-vscode-extension-demo/).
 
 #### Weave GitOps
 
-We are working towards a new release of Weave GitOps OSS. We've made
+The team is working towards a new release of Weave GitOps OSS. They've made
 some quality of life improvements in our latest release
 [v0.9.1](https://github.com/weaveworks/weave-gitops/releases/tag/v0.9.1).
 I\'m so glad you asked. This is a CLI command in Weave GitOps OSS that
 will make it simpler to get started with Flux and GitOps. In addition,
-it enables live feedback while configuring your cluster. We are aiming
-for simplicity for those that are new to Kubernetes and GitOps. We are
+it enables live feedback while configuring your cluster. They are aiming
+for simplicity for those that are new to Kubernetes and GitOps. They are
 looking for beta testers so if you know anyone that might be interested
 then please have them sign up
 [here](https://forms.gle/dkHhoZfwaLv52RM17).
 
-On the Enterprise side we are getting close to enhance and extend the
+On the Enterprise side they are getting close to enhance and extend the
 flux tenant model, providing the user with capabilities to create
 tenants from a declarative yaml that can be versioned. Enabling platform
 teams to create isolated tenants with boundaries. Define allowed
@@ -160,7 +160,7 @@ the partnership.
 
 #### New additions to the Flux Ecosystem
 
-We redesigned our Ecosystem page! Up until recently we simply listed
+We redesigned [our Ecosystem page](/ecosystem)! Up until recently we simply listed
 tools, extensions and integrations that either simplified using Flux in
 various contexts or extended its functionality.
 
