@@ -1,7 +1,7 @@
 ---
 title: "OCI cheatsheet"
 linkTitle: "OCI Artifacts"
-description: "How to to build, publish and consume OCI Artifacts with Flux."
+description: "How to build, publish and consume OCI Artifacts with Flux."
 weight: 31
 ---
 
@@ -59,18 +59,18 @@ Unlike Helm, the Flux OCI artifacts don't have a custom media type and they can 
 any container registry. The artifacts created by Flux can contain any type of configuration
 besides Kubernetes manifests.
 
-The two artifacts types can be used together, for example you could bundle a `Namespace`,
+The two artifact types can be used together, for example you could bundle a `Namespace`,
 a `HelmRepository` and a `HelmRelease` into a Flux OCI artifact where the `HelmRepository`
 points to a container registry where the chart is.
 
 ## Workflow examples
 
-What follows are examples for deploy a demo application to Kubernetes using manifests stored in Git.
+Following are examples for deploying a demo application to Kubernetes using manifests stored in Git.
 
 ```mermaid
 flowchart LR
 
-A((me)) --> B(Git Repository)
+A((User)) --> B(Git Repository)
 B --> C((CI Job))
 C --> D[Container Registry]
 D --> E((Flux))
@@ -83,7 +83,7 @@ When pushing changes to the main branch, a CI job generates the Kubernetes manif
 pushes them to a container registry using the FLux CLI. Flux running on the staging cluster
 detects the new artifact digest, pulls the manifests and applies them.
 
-When cutting a release from them main branch by Git tagging a commit with a semver version, the CI job
+When cutting a release from the main branch by tagging a commit with a semver version, the CI job
 generates the manifests for production and pushes them using the Git tag as the OCI artifact tag.
 The Flux controllers running on the production cluster
 detects the new semver tag, pulls the manifests and applies them.
@@ -283,7 +283,7 @@ flux push artifact oci://<repo url> --path=<manifests dir> \
 ```
 
 The Git source and the revision are stored in the container registry as annotations in the OCI artifact manifest,
-and they are reflected in-cluster under the `status.artifact.metadata`.
+and they are reflected in-cluster under the `status.artifact.metadata` of the `OCIRepository` object.
 
 You can determine the Git origin of an artifact pulled by an `OCIRepository` by looking up its status:
 
