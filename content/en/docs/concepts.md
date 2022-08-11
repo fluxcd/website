@@ -30,7 +30,7 @@ there is a newer version available that matches the criteria, a new artifact
 is produced.
 
 All sources are specified as Custom Resources in a Kubernetes cluster, examples
-of sources are `GitRepository`, `HelmRepository` and `Bucket` resources. 
+of sources are `GitRepository`, `OCIRepository`, `HelmRepository` and `Bucket` resources. 
 
 For more information, take a look at
 [the source controller documentation](components/source/_index.md).
@@ -48,13 +48,13 @@ There are various examples of these in Flux:
   interval and stores this as an artifact, records the observed revision of the artifact
   and the artifact itself in the status of resource.
 - `Kustomization` reconciliation: ensures the state of the application
-  deployed on a cluster matches the resources defined in a Git repository or S3 bucket.
+  deployed on a cluster matches the resources defined in a Git or OCI repository or S3 bucket.
 
 ## Kustomization
 
 The `Kustomization` custom resource represents a local set of Kubernetes resources
 (e.g. kustomize overlay) that Flux is supposed to reconcile in the cluster.
-The reconciliation runs every one minute by default, but this can be changed with `.spec.interval`.
+The reconciliation runs every five minutes by default, but this can be changed with `.spec.interval`.
 If you make any changes to the cluster using `kubectl edit/patch/delete`,
 they will be promptly reverted. You either suspend the reconciliation or push your changes to a Git repository.
 

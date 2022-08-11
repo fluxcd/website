@@ -70,6 +70,7 @@ metadata:
   name: on-call-webapp
   namespace: flux-system
 spec:
+  summary: "production cluster"
   providerRef:
     name: slack
   eventSeverity: info
@@ -254,8 +255,8 @@ your forked podinfo repository.
 If everything is setup correctly there should now be a green check-mark next to the latest commit.
 Clicking the check-mark should show a detailed view.
 
-| GitHub  | GitLab |
-| ------------- | ------------- |
+| GitHub                                                                    | GitLab                                                                    |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | ![commit status GitHub successful](/img/commit-status-github-success.png) | ![commit status GitLab successful](/img/commit-status-gitlab-success.png) |
 
 Generate error
@@ -279,8 +280,8 @@ A failed commit status will not be sent until the health check timeout. Setting
 a lower timeout will give feedback faster, but may sometimes not allow enough time
 for a new application to deploy.
 
-| GitHub  | GitLab |
-| ------------- | ------------- |
+| GitHub                                                                 | GitLab                                                                 |
+|------------------------------------------------------------------------|------------------------------------------------------------------------|
 | ![commit status GitHub failure](/img/commit-status-github-failure.png) | ![commit status GitLab failure](/img/commit-status-gitlab-failure.png) |
 
 
