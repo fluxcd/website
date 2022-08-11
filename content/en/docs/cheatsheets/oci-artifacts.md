@@ -140,13 +140,18 @@ E --> G[Production]
 
 We'll use the main branch to deploy to staging and Git tags for deploying on production.
 When pushing changes to the main branch, a CI job generates the Kubernetes manifests for staging and
-pushes them to a container registry using the FLux CLI. Flux running on the staging cluster
+pushes them to a container registry using the Flux CLI. Flux running on the staging cluster
 detects the new artifact digest, pulls the manifests and applies them.
 
 When cutting a release from the main branch by tagging a commit with a semver version, the CI job
 generates the manifests for production and pushes them using the Git tag as the OCI artifact tag.
 The Flux controllers running on the production cluster
 detects the new semver tag, pulls the manifests and applies them.
+
+{{% alert color="info" title="GitHub Actions" %}}
+If your are using GitHub for CI, please see the [these examples](https://github.com/fluxcd/flux2/tree/main/action) on
+how to automate the publishing of OCI Artifacts in your workflows with the Flux GitHub Action.
+{{% /alert %}}
 
 ### Deploy latest on staging 
 
@@ -303,6 +308,26 @@ flux create secret oci ghcr-auth \
   --password=${GITHUB_PAT}
 ```
 
+Then reference the secret in the `OCIRepository` with:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  provider: generic
+  secretRef:
+    name: ghcr-auth
+```
+
+When running Flux on managed Kubernetes clusters like EKS, AKS or GKE, you
+can set the `provider` field to `azure`, `aws` or `gcp` and Flux will use
+the Kubernetes node credentials to pull artifacts without needing an image pull secret.
+
 For more details on how to setup authentication for Azure, AWS and Google Cloud please
 see the [documentation](/docs/components/source/ocirepositories/#provider).
 
@@ -402,3 +427,136 @@ Origin Source:   https://github.com/stefanprodan/podinfo.git
 Status:          Last reconciled at 2022-08-10 14:40:22 +0200 CEST
 Message:         stored artifact for digest 'dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3'
 ```
+
+## Automated updates to Git
+
+If you wish to track the OCI artifacts revisions in Git, you can use
+Flux [image automation](/docs/guides/image-update/) to patch the artifacts
+tags in the YAML manifests stored in the Git repository used at bootstrap.
+
+First we'll configure Flux to clone the bootstrap repository and push commits to the `main` branch:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    push:
+      branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+  update:
+    path: ./clusters/my-cluster
+    strategy: Setters
+```
+
+You can also configure Flux to push the change to a new branch and open a Pull Request,
+for more details please see the [image automation guide](/docs/guides/image-update/)
+and [GitHub Actions Auto Pull Request](/docs/use-cases/gh-actions-auto-pr/).
+
+### Flux OCI automation
+
+Define an image repository and a semver policy for the OCI artifact:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: podinfo-oci
+  namespace: flux-system
+spec:
+  image: ghcr.io/stefanprodan/manifests/podinfo
+  interval: 5m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: podinfo-oci
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: podinfo-oci
+  policy:
+    semver:
+      range: 6.1.x
+```
+
+Then add the policy marker to the `OCIRepository` manifest in Git:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    tag: 6.1.0 # {"$imagepolicy": "flux-system:podinfo-oci:tag"}
+```
+
+Based on the above configuration, Flux will scan the container registry every five minutes, and
+when it finds a newer version, it will update the `OCIRepository.spec.ref.tag` and will push the
+change to Git.
+
+### Helm OCI automation
+
+Define an image repository and a semver policy for the Helm chart:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: podinfo-chart
+  namespace: flux-system
+spec:
+  image: ghcr.io/stefanprodan/charts/podinfo
+  interval: 5m
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: podinfo-chart
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: podinfo-chart
+  policy:
+    semver:
+      range: 6.1.x
+```
+
+Then add the policy marker to the `HelmRelease` manifest in Git:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  chart:
+    spec:
+      chart: podinfo
+      version: 6.1.0 # {"$imagepolicy": "flux-system:podinfo-chart:tag"}
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+```
+
+Based on the above configuration, Flux will scan the container registry every five minutes,
+and when it finds a newer Helm chart version, it will update the
+`HelmRelease.spec.chart.spec.chart.version` and will push the change to Git.
