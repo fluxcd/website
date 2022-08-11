@@ -7,15 +7,18 @@ weight: 31
 
 ## How Flux OCI works?
 
-With Flux, you can distribute and reconcile Kubernetes configuration packaged as OCI artifacts.
+With Flux, you can distribute and reconcile Kubernetes configuration packaged as
+[OCI artifacts](https://github.com/opencontainers/artifacts/blob/main/artifact-authors.md).
 Instead of connecting Flux to a Git repository where the application desired state is defined,
 you can connect Flux to a container registry where you'll push the application deploy manifests,
 right next to the application container images.
 
+{{% alert color="info" title="OCI vs Git" %}}
 Using OCI instead of Git is particularity useful when the Git repository doesn't contain the 
-final Kubernetes manifests. If you are using cuelang, jsonnet or any other tool that generates
-Kubernetes resources in YAML format, you can run the generators in CI
+final Kubernetes manifests. If you are using [cuelang](https://cuelang.org/), [jsonnet](https://jsonnet.org/)
+or any other tool that generates Kubernetes resources in YAML format, you can run the generators in CI
 and publish the resulting manifests as OCI artifacts for Flux to consume.
+{{% /alert %}}
 
 ### Authoring artifacts
 
@@ -50,10 +53,67 @@ You can be notified when new artifacts are pulled (Flux `Alert`),
 you can trigger a pull with webhooks (Flux `Receiver`),
 and you can apply the OCI artifact content on the cluster (Flux `Kustomization`).
 
+Example:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    tag: latest
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  sourceRef:
+    kind: OCIRepository
+    name: podinfo
+  path: ./
+```
+
 ### Helm OCI
 
 For Helm users, Flux comes with [support](/docs/guides/helmreleases/#helm-oci-repository) for
 defining Helm releases with charts stored in container registries.
+
+Example:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  type: oci
+  url: oci://ghcr.io/stefanprodan/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+```
 
 Unlike Helm, the Flux OCI artifacts don't have a custom media type and they can be stored in
 any container registry. The artifacts created by Flux can contain any type of configuration
@@ -92,24 +152,32 @@ detects the new semver tag, pulls the manifests and applies them.
 
 Push the latest changes from Git to the container registry:
 
-```console
-$ git clone https://github.com/stefanaprodan/podinfo.git && cd podinfo
+```shell
+git clone https://github.com/stefanaprodan/podinfo.git && cd podinfo
 
-$ flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git rev-parse --short HEAD) \
+flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git rev-parse --short HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
 	--revision="$(git branch --show-current)/$(git rev-parse HEAD)"
+```
 
+The output is similar to:
+
+```
 ► pushing artifact to ghcr.io/stefanprodan/manifests/podinfo:b3b00fe
 ✔ artifact successfully pushed to ghcr.io/stefanprodan/manifests/podinfo@sha256:4f90664660b3a567287e6957fa0481f347541b5908f6f797ec665255a399aed6
 ```
 
 Tag the current commit SHA as latest:
 
-```console
+```shell
 $ flux tag artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git rev-parse --short HEAD) \
   --tag latest
+```
 
+The output is similar to:
+
+```
 ► tagging artifact
 ✔ artifact tagged as ghcr.io/stefanprodan/manifests/podinfo:latest
 ```
