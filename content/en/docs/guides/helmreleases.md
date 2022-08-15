@@ -373,7 +373,7 @@ and require you to escape the full JSON string (including `=`, `[`, `,`, `.`).
 
 ## Refer to values in `ConfigMaps` generated with Kustomize
 
-It is possible to use Kustomize [ConfigMap generator](https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/)
+It is possible to use Kustomize [ConfigMap generator](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/configmapgenerator/)
 to trigger a Helm release upgrade every time the encoded values change.
 
 First create a `kustomizeconfig.yaml` for Kustomize to be able to patch
