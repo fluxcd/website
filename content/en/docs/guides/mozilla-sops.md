@@ -292,7 +292,7 @@ eksctl create iamserviceaccount \
 --role-only \
 --name=kustomize-controller \
 --namespace=flux-system \
---attach-policy-arn=<policyARN> \
+--attach-role-arn=<roleARN> \
 --cluster=<clusterName>
 ```
 
