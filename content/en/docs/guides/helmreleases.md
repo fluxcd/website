@@ -286,7 +286,7 @@ spec:
   chart:
     spec:
       chart: <name|path>
-      version: '4.0.x'
+      version: '4.0.x'  # only when using HelmRepository
       sourceRef:
         kind: <HelmRepository|GitRepository|Bucket>
         name: podinfo
