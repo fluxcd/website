@@ -367,6 +367,8 @@ These markers are placed inline in the target YAML, as a comment.  The "Setter" 
 which Flux can find and replace during reconciliation, when directed to do so by an `ImageUpdateAutomation` 
 like the one [above](#configure-image-updates).
 
+**Note:** Image policy specifications specified in the above format must be configured with the same namespace that the ImageUpdateAutomation controller is defined in, otherwise they will not be detected by the image automation controller.
+
 Here are some examples of using this marker in a variety of Kubernetes resources.
 
 `HelmRelease` example:
