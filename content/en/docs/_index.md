@@ -17,7 +17,7 @@ repositories.
 
 ## Flux Works Well With
 
-Flux very naturally integrates with these pieces of best-practice Open Source software (from the [CNCF Landscape](https://landscape.cncf.io/) and elsewhere). Click on the docs link to see how to set it up with Flux.
+Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Open Source software (from the [CNCF Landscape](https://landscape.cncf.io/) and elsewhere). Click on the logo to see how to set it up with Flux.
 
 <div class="works-well-with">
 {{< cardpane >}}
@@ -48,6 +48,8 @@ Flux very naturally integrates with these pieces of best-practice Open Source so
 
 {{< /cardpane >}}
 </div>
+
+<sup>*</sup> This list is of course only a small selection of tools we integrate with. If you want to add more, please send a PR with the link to docs which explain how to set things up.
 
 ## Flux in Short
 
