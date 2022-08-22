@@ -51,7 +51,7 @@ github_branch        = "main"
 github_project_repo  = "https://github.com/fluxcd/flux2"
 slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
-font_awesome_version = "6.1.1"
+font_awesome_version = "5.9.0"
 images               = ["img/flux-social.png"]
 
 # Enable Algolia DocSearch
@@ -112,22 +112,22 @@ enable = true
 [[params.links.user]]
 	name ="Twitter"
 	url = "https://twitter.com/fluxcd"
-	icon = "fa-brands fa-twitter"
+	icon = "fab fa-twitter"
 	desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
 	name ="LinkedIn"
 	url = "https://linkedin.com/groups/8985374"
-	icon = "fa-brands fa-linkedin"
+	icon = "fab fa-linkedin"
 	desc = "Join the Flux Community group on LinkedIn!"
 [[params.links.user]]
 	name = "RSS Feed"
 	url = "/blog/index.xml"
-	icon = "fa-solid fa-rss"
+	icon = "fa fa-rss"
 	desc = "Subscribe to the RSS feed of our blog!"
 [[params.links.user]]
 	name = "Support"
 	url = "/support"
-	icon = "fa-solid fa-comments"
+	icon = "fas fa-comments"
 	desc = "Subscribe to the RSS feed of our blog!"
 
 
@@ -135,22 +135,22 @@ enable = true
 [[params.links.developer]]
 	name = "Flux project on GitHub"
 	url = "https://github.com/fluxcd"
-	icon = "fa-brands fa-github"
+	icon = "fab fa-github"
 	desc = "Development takes place here!"
 [[params.links.developer]]
 	name = "Slack"
 	url = "https://cloud-native.slack.com/messages/flux"
-	icon = "fa-brands fa-slack"
+	icon = "fab fa-slack"
 	desc = "Chat with other project developers"
 [[params.links.developer]]
 	name = "Developer mailing list"
 	url = "https://lists.cncf.io/g/cncf-flux-dev"
-	icon = "fa-solid fa-envelope"
+	icon = "fa fa-envelope"
 	desc = "Discuss development issues around the project"
 [[params.links.developer]]
 	name="Flux YouTube channel"
 	url = "https://www.youtube.com/channel/UCoZxt-YMhGHb20ZkvcCc5KA"
-	icon = "fa-brands fa-youtube"
+	icon = "fab fa-youtube"
 	desc = "Recordings of past Flux dev meetings"
 
 [[menus.main]]
@@ -225,7 +225,7 @@ weight = 90
 [[menus.main]]
 url = "https://github.com/fluxcd/flux2"
 name = "Github"
-pre = "<i class='fa-brands fa-github'></i> "
+pre = "<i class='fab fa-github'></i> "
 weight = 100
 
 
