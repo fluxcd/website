@@ -116,6 +116,8 @@ cd fleet-infra
 This example uses a public repository [github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo),
 podinfo is a tiny web application made with Go.
 
+### Using a GitRepository
+
 1. Create a [GitRepository](../components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
 
     ```sh
@@ -148,6 +150,43 @@ podinfo is a tiny web application made with Go.
     git push
     ```
 
+### Using an OCIRepository
+
+1. Create an [OCIRepository](../components/source/ocirepositories/) manifest pointing to podinfo repository's master branch:
+    ```sh
+    flux create source oci podinfo \
+      --url=oci://ghcr.io/stefanprodan/manifests/podinfo \
+      --tag=6.1.6 \
+      --interval=30s \
+      --export > ./clusters/my-cluster/podinfo-source.yaml
+    ```
+
+    The output is similar to:
+
+    ```yaml
+    apiVersion: source.toolkit.fluxcd.io/v1beta2
+    kind: OCIRepository
+    metadata:
+      name: podinfo
+      namespace: flux-system
+    spec:
+      interval: 30s
+      provider: generic
+      ref:
+        tag: 6.1.6
+      url: oci://ghcr.io/stefanprodan/manifests/podinfo
+    ```
+
+Commit and push the `podinfo-source.yaml` file to the `fleet-infra` repository:
+
+    ```sh
+    git add -A && git commit -m "Add podinfo OCIRepository"
+    git push
+    ```
+
+{{% alert color="info" title="Note" %}}
+See the [oci-artifacts](./cheatsheets/oci-artifacts.md) cheatsheet for more information on how to use push your own artifacts to an OCI repository.
+
 ## Deploy podinfo application
 
 Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
@@ -158,12 +197,14 @@ directory located in the podinfo repository.
     ```sh
     flux create kustomization podinfo \
       --target-namespace=default \
-      --source=podinfo \
+      --source=OCIRepository/podinfo \
       --path="./kustomize" \
       --prune=true \
       --interval=5m \
       --export > ./clusters/my-cluster/podinfo-kustomization.yaml
     ```
+
+    The `source` parameter has the following format: `<source-type>/<source-name>`, e.g. `GitRepository/podinfo` or `OCIRepository/podinfo`.
 
     The output is similar to:
 
@@ -178,7 +219,7 @@ directory located in the podinfo repository.
       path: ./kustomize
       prune: true
       sourceRef:
-        kind: GitRepository
+        kind: OCIRepository
         name: podinfo
       targetNamespace: default
     ```
