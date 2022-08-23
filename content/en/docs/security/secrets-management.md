@@ -5,7 +5,7 @@ description: "Managing Secrets in a GitOps way using Flux."
 weight: 140
 ---
 
-# Introduction
+## Introduction
 
 Flux improves the application deployment process by continuously reconciling a
 desired state, defined at a source, against a target cluster. One of the challenges
@@ -19,8 +19,7 @@ needs to be done right because of its broad security implications.
 We will cover the mechanisms supported by Flux, as well as the security principles,
 concerns and techniques to consider when managing secrets with Flux.
 
-
-## What's inside the toolbox?
+### What's inside the toolbox?
 
 First of all, let's go through the different options supported by Flux and Kubernetes.
 
@@ -28,7 +27,7 @@ Nowadays there are a multitude of secret management options. Some are available 
 directly in the comfort of of your Kubernetes cluster, and others that are provided from
 out-of-cluster, for example a Cloud based KMS.
 
-### Kubernetes Secrets
+#### Kubernetes Secrets
 
 Kubernetes has a [built-in mechanism][kubernetes secrets] to store and manage secrets. The secrets
 are stored in etcd either in plain-text or [encrypted][etcd encryption].
@@ -41,7 +40,7 @@ Storing plain-text secrets in your desired state is not recommended, so apart fr
 used to authenticate against your initial source, Flux users should not manage these. Instead,
 they should rely mostly on other mechanisms covered below.
 
-### Secrets Decryption Operators
+#### Secrets Decryption Operators
 
 Sometimes referred to as Encrypted Secrets, Secrets Decryption Operators enable secrets to be stored
 in cipher-text as Kubernetes resources within a Flux source. They are deployed into the cluster by
@@ -49,7 +48,7 @@ Flux in their original CustomResourceDefinition (CRD) form, which is later used 
 Decryption Operator to decrypt those secrets and generate a Kubernetes Secret.
 
 This is transparent to the consuming applications, making it a quite suitable approach to retrofit
-into an existing setup. An example of a Secret Decryption Operator is [Sealed Secrets]. 
+into an existing setup. An example of a Secret Decryption Operator is [Sealed Secrets].
 
 Storing encrypted secrets in Git repositories enables configuration versioning to leverage the
 same practices used for managing, versioning and releasing application and/or infrastructure
@@ -65,9 +64,10 @@ Notice that secrets can be stored in any Source type supported by Flux, such as 
 [OCI repositories].
 
 Flux specific guides on using Secrets Decryption Operators:
+
 - [Bitnami Sealed Secrets](https://fluxcd.io/docs/guides/sealed-secrets/)
 
-### Using Flux to decrypt Secrets on-demand
+#### Using Flux to decrypt Secrets on-demand
 
 Flux has the ability to decrypt secrets stored in Flux sources by itself, without the need of
 additional controllers installed in the cluster. The approach relies on keeping in Flux sources
@@ -85,10 +85,11 @@ a single point of failure, if they are deleted by mistake (or unavailable by ext
 could impact your solution.
 
 Flux supports the two main names in Encrypted Secrets and has specific how-to guides for them:
+
 - [Mozilla SOPS Guide](https://fluxcd.io/docs/guides/mozilla-sops/)
 - [Secrets decryption](https://fluxcd.io/docs/components/kustomize/kustomization/#secrets-decryption)
 
-### Secrets Synchronized by Operators
+#### Secrets Synchronized by Operators
 
 The source of truth for your secrets can reside outside of the cluster, and then be synchronised
 into the cluster as Kubernetes Secrets by operators. Much like encrypted secrets, this process
@@ -106,11 +107,11 @@ whether they are using the latest version of a given secret. On such cases, immu
 where the name also contains the version of the secret, may help.
 
 Take into account the loading times when provisioning a new cluster, as that can become a
-bottleneck slowing down the provisioning time as the number of secrets increase. 
+bottleneck slowing down the provisioning time as the number of secrets increase.
 
 Flux supports all operators that provide this functionality.
 
-### Secrets mounted via CSI Drivers
+#### Secrets mounted via CSI Drivers
 
 Another way to bring external secrets into Kubernetes, is the use of CSI Drivers,
 which mounts secrets as files directly into a Pod filesystem, instead of generating
@@ -131,7 +132,7 @@ Here are a few CSI providers:
 - [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_csi_driver.html)
 - [GCP CSI Driver](https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp)
 
-### Direct access to out-of-cluster Secrets
+#### Direct access to out-of-cluster Secrets
 
 Direct access to a secret management solution that resides outside of a Kubernetes
 cluster is also an option. Which could be a useful alternative when lifting and
@@ -148,13 +149,13 @@ same way that most Kubernetes native tools don't, therefore this approach may ne
 be combined with things such as Secrets Synchronized by Operators. However, this will
 not block the ability of your applications to do so.
 
-
-## Big Picture - Things to consider
+### Big Picture - Things to consider
 
 Once you are aware of the different tools in the toolbox, it is important to align them
 with your actual requirements, taking into account some key points:
 
-### Expiration and Rotation
+#### Expiration and Rotation
+
 Secrets should have an expiration time, and ideally such expiration should be enforced,
 so that the potential of leakage has a well-defined risk window.
 
@@ -167,7 +168,7 @@ Both secrets can remain active during a time window, but once the new version is
 validated after deployment, the previous secrets can be safely decommissioned.
 Cloud KMS solutions tend to provide secret versioning built-in.
 
-### Access Management and Auditing
+#### Access Management and Auditing
 
 Access to secrets should be restricted to the servers and applications within the environment
 they need to be accessed. The same goes to users and service accounts.
@@ -180,7 +181,7 @@ stored and handled. Maybe having secrets stored (even if in encrypted form) in a
 accessible Flux source that has a loosely set of RBAC and no auditing in place may not meet
 such requirements.
 
-### Least Privileged and Segregation of duties
+#### Least Privileged and Segregation of duties
 
 The scope of each secret must be carefully considered to decrease the blast radius in
 case of breach. A trade-off must be reached to attain a balance between the two extremes:
@@ -188,9 +189,9 @@ having a single secrets that has all the access, versus having too many secrets 
 always used in combination.
 
 Sharing the same secret across different scopes, just because they have the same permissions
-may lead to disruption if such secret needs to be quickly rotated. 
+may lead to disruption if such secret needs to be quickly rotated.
 
-### Disaster Recovery
+#### Disaster Recovery
 
 The entire provisioning of your infrastructure and application must take into account
 break the glass procedures that are secure, provide relevant security controls (e.g. auditing)
@@ -199,7 +200,7 @@ and cannot be misused to bypass other processes (e.g. Access Management).
 Around disaster recovery scenarios, consider how they align with your Availability and
 Confidentiality requirements.
 
-### Don't co-locate cipher-text with encryption keys
+#### Don't co-locate cipher-text with encryption keys
 
 It should go without saying, but never place secrets together that can provide privilege
 escalation routes. For example, if you store the decryption key for your secrets in GitHub secrets,
@@ -209,7 +210,7 @@ and all your encrypted secrets are stored in the same repository, a single GitHu
 Instead, segregate encryption keys from cypher-text and understand what needs to be compromised
 for the data to be at risk.
 
-### Single Points of Failure
+#### Single Points of Failure
 
 Identify all potential single points of failure and ensure that there is a way around them.
 If all your secrets are encrypted using an encryption key stored in Vault, and due to a major
@@ -221,7 +222,7 @@ The same goes for temporary single points of failure. If you rely on a Key Hiera
 based on a cloud KMS to provision an on-premises cluster/application, consider the impact
 they would have in case of a failure pre, mid or post deploy (of either cluster or applications).
 
-### Ephemeral or Single-use Secrets
+#### Ephemeral or Single-use Secrets
 
 The easiest type of secrets to manage are the ones that ephemeral, context- and time-bound.
 They are not supported by all use-cases, however, whenever they are, prioritise them over
@@ -229,25 +230,24 @@ static or long-lived secrets.
 
 An example of Ephemeral secret that is time-bound is tokens provided by cloud providers to
 any application running withing a given Cloud Machine. Those tokens are generated automatically,
-and have a short expiration time. In some cases you can even tie them to a network boundary, 
+and have a short expiration time. In some cases you can even tie them to a network boundary,
 meaning that even if they get breached, they won't be able to be used outside the current
-context. 
+context.
 
 Flux supports [contextual authorization] for the major Cloud Providers, be aware of the supported
 features and use them whenever possible.
 
-### Detect "chicken and egg" scenarios
+#### Detect "chicken and egg" scenarios
 
 Flux won't protect yourself from yourself. On a running cluster, it is quite easy to incrementally
 fall into the trap of building a non-provisionable cluster. For example, if your first Kustomization
-depends on a CustomResourceType (CRD) that is only deployed as part of another Kustomization, Flux 
+depends on a CustomResourceType (CRD) that is only deployed as part of another Kustomization, Flux
 may just not be able to redeploy your sources from scratch on a new cluster.
 
 Make sure that your pipeline identify and test such scenarios. Automate the provisioning of clusters
 that can test the entire E2E of your deployment process, and ensure that is executed regularly.
 
-
-## Summary
+### Summary
 
 Flux supports a wide range of Secret Management solutions. And it is up to its users
 to define what works best for their use case. This subject isn't easy, and due diligence
@@ -256,13 +256,12 @@ is important to ensure the appropriate level of security controls are in place.
 Overall, none of the approaches covered above are inherently secure or insecure, but they
 are rather part of a big picture in which what matters the most is the weakest link
 and how it all hangs together. As with all things around security, a layered approach is
-recommended. 
+recommended.
 
 Take into account your threat model, availability and resilience requirements
 when deciding what works best for you, and rest assured that a combination of some of
 the above will make more sense, specially when disaster recovery and break the glass
 scenarios are considered.
- 
 
 [kubernetes secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
 [etcd encryption]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
