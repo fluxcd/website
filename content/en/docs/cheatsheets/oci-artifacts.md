@@ -75,6 +75,7 @@ metadata:
 spec:
   interval: 10m
   targetNamespace: default
+  prune: true
   sourceRef:
     kind: OCIRepository
     name: podinfo
