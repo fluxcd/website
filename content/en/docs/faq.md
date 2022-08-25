@@ -184,18 +184,27 @@ deployment manifests named `deploy.yaml` from `app1` to `app2`:
 
 ### Why are kubectl edits rolled back by Flux?
 
-If you use kubectl to edit an object managed by Flux, all changes will be undone 
+If you use kubectl to edit an object managed by Flux, all changes will be undone
 when kustomize-controller reconciles a Flux Kustomization containing that object.
 
 In order for Flux to preserve fields added with kubectl, for example a label or annotation,
-you have to specify a field manager named `flux-client-side-apply` e.g.:
+you have to specify a field manager named `flux-client-side-apply`.
+For example, to manually add a label to a resource, do:
 
 ```yaml
-kubectl annotate --field-manager=flux-client-side-apply 
+kubectl --field-manager=flux-client-side-apply label ...
 ```
 
 Note that fields specified in Git will always be overridden, the above procedure works only for
 adding new fields that don't overlap with the desired state.
+
+Rollout restarts add a "restartedAt" annotation, which flux will remove, re-deploying the pods.
+To complete a rollout restart successfully, use the `flux-client-side-apply` field manager e.g.:
+
+```yaml
+kubectl --field-manager=flux-client-side-apply rollout restart ...
+```
+
 
 ### What is the behavior of Kustomize used by Flux?
 
