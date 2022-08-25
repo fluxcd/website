@@ -78,6 +78,11 @@ This approach is more flexible than using [Sealed Secrets], as [SOPS] supports c
 Management Services of the major cloud providers (Azure KeyVault, GCP KMS and AWS KMS), HashiCorp
 Vault, as well as "off-line" decryption using Age and PGP.
 
+This mechanism supports [kustomize-secretgenerator] which ensures that dependend workloads will
+reload automatically and start using the latest version of the secret. Notice that most approaches
+that are based on Kubernetes Secrets would require something like [stakater/Reloader] to achieve
+the same result. The [Kubernetes blog][kustomization-secretgenerator] explains quite well how this works.
+
 The security concerns of this approach are similar to the Secrets Decryption Operators, but with
 the added benefit that no additional controllers are required, therefore reducing resources consumption
 and the attack surface. When using external providers (e.g. KMS, Vault), remember that they can become
@@ -178,7 +183,7 @@ and what the gaps are. If you have a strong requirement for access and auditing 
 having a well-defined api-server auditing in place, together with tight RBAC policies in your
 cluster is only part of the problem. Also take into account how those secrets are sourced,
 stored and handled. Maybe having secrets stored (even if in encrypted form) in an easily
-accessible Flux source that has a loosely set of RBAC and no auditing in place may not meet
+accessible Flux source that has a loosely defined RBAC and no auditing in place may not meet
 such requirements.
 
 #### Least Privileged and Segregation of duties
@@ -239,13 +244,13 @@ features and use them whenever possible.
 
 #### Detect "chicken and egg" scenarios
 
-Flux won't protect yourself from yourself. On a running cluster, it is quite easy to incrementally
-fall into the trap of building a non-provisionable cluster. For example, if your first Kustomization
-depends on a CustomResourceType (CRD) that is only deployed as part of another Kustomization, Flux
-may just not be able to redeploy your sources from scratch on a new cluster.
+Flux won't protect you from yourself. On a running cluster, it is quite easy to incrementally fall
+into the trap of building a non-provisionable cluster. For example, if your first Kustomization
+depends on a CustomResourceType (CRD) to deploy a secret, which is only deployed as part of another
+Kustomization, Flux may not be able to redeploy your sources from scratch on a new cluster.
 
 Make sure that your pipeline identify and test such scenarios. Automate the provisioning of clusters
-that can test the entire E2E of your deployment process, and ensure that is executed regularly.
+that can test the entire E2E of your deployment process, and ensure that it is executed regularly.
 
 ### Summary
 
@@ -273,3 +278,6 @@ scenarios are considered.
 [contextual authorization]: /docs/security/contextual-authorization/
 [Buckets]: /docs/components/source/buckets/
 [OCI Repositories]: /docs/components/source/ocirepositories/
+[stakater/Reloader]: https://github.com/stakater/Reloader
+[kustomize-secretgenerator]: https://fluxcd.io/docs/components/kustomize/kustomization/#kustomize-secretgenerator
+[kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#secretgenerator
