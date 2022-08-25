@@ -37,37 +37,44 @@ The following GitOps Toolkit APIs are considered production ready:
 In our planning discussions we have identified these possible areas of work,
 this list is subject to change while we gather feedback:
 
-- Stabilize the image automation APIs
+- **Stabilize the image automation APIs**
     - [x] Review the spec of `ImageRepository`, `ImagePolicy` and `ImageUpdateAutomation`
     - [x] Promote the image automation APIs to `v1beta1`
 
-- Conformance testing
+- **Conformance testing**
     - [x] End-to-end testing for Flux bootstrap on AMD64 and ARM64 clusters
     - [x] End-to-end testing for Flux image automation
 
-- Adopt Kubernetes server-side apply ([fluxcd/flux2#1889](https://github.com/fluxcd/flux2/issues/1889))
+- **Adopt Kubernetes server-side apply** ([fluxcd/flux2#1889](https://github.com/fluxcd/flux2/issues/1889))
     - [x] Replace `kubectl` usage in Flux CLI with server-side apply
     - [x] Rewrite the kustomize-controller reconciler using server-side apply
 
-- Multi-tenancy lockdown
+- **Multi-tenancy lockdown**
     - [x] [Allow setting a default service account for impersonation](https://github.com/fluxcd/flux2/issues/2340)
     - [x] [Allow disabling cross-namespace references](https://github.com/fluxcd/flux2/issues/2337)
     - [x] [Document multi-tenancy lockdown configuration](docs/installation.md#multi-tenancy-lockdown)
 
-- OCI Artifacts
-  - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
-  - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2601) Flux OCI support for Kubernetes manifests
+- **OCI Artifacts**
+    - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
+    - [x] [RFC-0003](https://github.com/fluxcd/flux2/tree/main/rfcs/0003-kubernetes-oci) Flux OCI support for Kubernetes manifests
+    - [x] [End-to-end testing for OIDC auth with AWS, Azure and Google Cloud container registries](hhttps://github.com/fluxcd/pkg/tree/main/oci/tests/integration)
+    - [ ] [Verify OCI artifacts with cosign](https://github.com/fluxcd/source-controller/issues/863)
 
-- API consolidation ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
+- **API consolidation** ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
     - [ ] Standardize events and status conditions metadata
+    - [ ] [Standardize the OpenAPI validation](https://github.com/fluxcd/flux2/issues/2993) for the `toolkit.fluxcd.io` CRDs
 
-- Documentation improvements
+- **Git improvements** ([fluxcd/flux2#3039](https://github.com/fluxcd/flux2/issues/3039))
+    - [ ] [Consolidate Git implementations](https://github.com/fluxcd/pkg/issues/245)
+    - [ ] [End-to-end testing for Git protocols](https://github.com/fluxcd/pkg/issues/334)
+
+- **Documentation improvements**
     - [x] Consolidate the docs under [fluxcd.io](https://fluxcd.io) website
     - [x] Gather feedback on the [migration guides](https://github.com/fluxcd/flux2/discussions/413) and address more use-cases
     - [x] Cloud specific guides (AWS, Azure, Google Cloud)
-    - [ ] Incident management and troubleshooting guides
-    - [ ] Developer guides for contributing to and extending Flux
+    - [x] Incident management and troubleshooting guides
+    - [ ] [Developer guides](https://github.com/fluxcd/flux2/issues/1602#issuecomment-1131951114) for contributing to and extending Flux
 
 ## Security enhancements
 
