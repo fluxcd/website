@@ -14,16 +14,134 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+    url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
+    thumbnail="es5ngkzJDEc"
+    title="Flux at GitOps Con, KubeCon CloudNativeCon EU 2022 — From Student to SRE That Loves CNCF in No Time - Jacob Valdemar Andreasen, Lunar" %}}
+  {{% /blocks/resource %}}
+
+
+{{% blocks/resource
+youtube="1rJYsdLgJGA"
+title="Simplifying Service Mesh Operations with Flux and Flagger - Mitch Connors & Stefan Prodan" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 20-May-2022)
+
+{{% blocks/resource
+youtube="eYZO7n_o0OQ"
+title="Observing Fastly’s Network at Scale Thanks to K8s and the Stri... Fernando Crespo & Daniel Caballero" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 20-May-2022)
+
+{{% blocks/resource
+youtube="BrYgx4cB7p4"
+title="Flux Virtual Office Hours KubeCon EU 2022 with Flux Maintainers" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 19-May-2022)
+
+{{% blocks/resource
+youtube="rra7TkYOnko"
+title="GitOps to Automate the Setup, Management and Extension a K8s Cluster - Kim Schlesinger, DigitalOcean" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 19-May-2022)
+
+{{% blocks/resource
 youtube="2rJur5VE6yA"
 title="Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets - Somtochi Onyekwere" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 19-May-2022)
 
 {{% blocks/resource
-youtube="PFLimPh5-wo"
-title="The FASTEST way to deploy apps to Kubernetes" %}}
+youtube="MjxZcY6THdc"
+title="Flux Security Deep Dive - Stefan Prodan, Weaveworks" %}}
 {{% /blocks/resource %}}
-[//]: # (Date of video: 13-May-2022)
+[//]: # (Date of video: 18-May-2022)
+
+
+{{% blocks/resource
+youtube="WKvogzTg2iM"
+title="Intro to Kubernetes, GitOps, and Observability Hands-On Tutorial - Joaquin Rodriguez & Tiffany Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 18-May-2022)
+
+{{% blocks/resource
+youtube="BKegE2VQhnU"
+title="Lightning Talk: Scaling Container Builds with Software Supply Chains - Duane DeCapite, VMware" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="pN41tIKn3eE"
+title="Progressive Delivery with Flagger and Gateway API by Sanskar Jaiswal" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="6gwgG6yhN04"
+title="Secure Your Secrets in GitOps with Rosemary Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="qGQyGuoS5Ds"
+title="GitOps Everything!? We Sure Can!, Ayelet de-Roos, AppsFlyer" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="0jNtDnWT3yo"
+title="Crossing the Divide: How GitOps Brought AppDev & Platform Teams Together! - Priyanka 'Pinky' Ravi" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="Xei2ZcEg5B0"
+title="Managing Thousands of Clusters and Their Workloads with Flux - Max Jonas Werner, D2iQ" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="gqs4mVppn1Q"
+title="Solving Environment Promotion with Flux - Sam Tavakoli & Adelina Simion, Form3" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+
+{{% blocks/resource
+youtube="uU-zbTgbHPI"
+title="Lightning Talk: GitOps, A Slightly Realistic Situation on Kuberne... Laurent Grangeau & Ludovic Piot" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="agsnktpIxzU"
+title="Creating A Landlord for Multi-tenant K8s Using Flux, Gatekeeper, Helm, and Friends - Michael Irwin" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="AKVfqn85ZJ4"
+title="Lightning Talk: GitOps and Progressive Delivery with Flagger, Istio and Flux - Marco Amador, Anova" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="20f6yYK-RWM"
+title="Lightning Talk: Taming the Thundering Gitops Herd with Update... Joaquim Rocha & Iago López Galeiras" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+{{% blocks/resource
+youtube="2rJur5VE6yA"
+title="Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets - Somtochi Onyekwere, Weaveworks" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
+
+
+{{% blocks/resource
+youtube="es5ngkzJDEc"
+title="We Have Always Done It This Way! Now Let’s Try Something Completely Different -Eliran Bivas" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-May-2022)
 
 {{% blocks/resource
 url="https://youtu.be/watch?v=5u45lXmhgxA"
@@ -31,6 +149,14 @@ thumbnail="5u45lXmhgxA"
 title="Full GitOps Tutorial: Getting started with Flux CD" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 14-Apr-2022)
+
+
+{{% blocks/resource
+youtube="PFLimPh5-wo"
+title="The FASTEST way to deploy apps to Kubernetes" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 13-May-2022)
+
 
 {{% blocks/resource
 url="https://youtu.be/watch?v=dunU2ABitMA"
