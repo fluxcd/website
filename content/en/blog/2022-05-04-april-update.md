@@ -491,7 +491,7 @@ couple of small things we landed recently.
   Flux](/blog/2022/04/contributing-to-flux/)
   and say Hi on Slack!
 - Many mobile UI fixes!
-- Add [flux-subsystem-argo/flamingo](http://github.com/flux-subsystem-argo/flamingo)
+- Add [flux-subsystem-argo/flamingo](https://github.com/flux-subsystem-argo/flamingo)
   and [weaveworks/vscode-gitops-tools](https://github.com/weaveworks/vscode-gitops-tools)
   to the Flux Ecosystem page.
 - New videos under [Flux Resources](/resources/)! 😍
