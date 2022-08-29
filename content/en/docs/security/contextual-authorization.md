@@ -27,20 +27,23 @@ are context- and time-bound.
 
 Below is a list of Flux features that support this functionality and their documentation:
 
-| Status | Component | Feature | Provider | Ref |
-| ------ | ----------------- | ------- | -------- | ------ |
-| Supported | Source Controller | Bucket Repository Authentication | AWS | [Guide][AWS Buckets] |
-| Supported | Source Controller | Bucket Repository Authentication | Azure | [Guide][Azure Buckets] |
-| Supported | Source Controller | Bucket Repository Authentication | GCP | [Guide][GCP Buckets] |
-| Supported | Source Controller | OCI Repository Authentication | AWS | [Guide][AWS OCI Repository]  |
-| Supported | Source Controller | OCI Repository Authentication | Azure | [Guide][Azure OCI Repository]  |
-| Supported | Source Controller | OCI Repository Authentication | GCP | [Guide][GCP OCI Repository]  |
-| Supported | Image Reflector Controller | Container Registry Authentication | AWS | [Guide][AWS Container Registry] |
-| Supported | Image Reflector Controller | Container Registry Authentication | Azure | [Guide][Azure Container Registry] |
-| Supported | Image Reflector Controller | Container Registry Authentication | GCP | [Guide][GCP Container Registry] |
-| Supported | Kustomize Controller | SOPS Integration with Cloud KMS | AWS | [Guide][AWS KMS] |
-| Supported | Kustomize Controller | SOPS Integration with Cloud KMS | Azure | [Guide][Azure KMS] |
-| Supported | Kustomize Controller | SOPS Integration with Cloud KMS | GCP | [Guide][GCP KMS] |
+| Status    | Component                  | Feature                           | Provider | Ref                               |
+|-----------|----------------------------|-----------------------------------|----------|-----------------------------------|
+| Supported | Source Controller          | Bucket Repository Authentication  | AWS      | [Guide][AWS Buckets]              |
+| Supported | Source Controller          | Bucket Repository Authentication  | Azure    | [Guide][Azure Buckets]            |
+| Supported | Source Controller          | Bucket Repository Authentication  | GCP      | [Guide][GCP Buckets]              |
+| Supported | Source Controller          | OCI Repository Authentication     | AWS      | [Guide][AWS OCI Repository]       |
+| Supported | Source Controller          | OCI Repository Authentication     | Azure    | [Guide][Azure OCI Repository]     |
+| Supported | Source Controller          | OCI Repository Authentication     | GCP      | [Guide][GCP OCI Repository]       |
+| Supported | Source Controller          | Helm Repository Authentication    | AWS      | [Guide][AWS Helm Repository]      |
+| Supported | Source Controller          | Helm Repository Authentication    | Azure    | [Guide][Azure Helm Repository]    |
+| Supported | Source Controller          | Helm Repository Authentication    | GCP      | [Guide][GCP Helm Repository]      |
+| Supported | Image Reflector Controller | Container Registry Authentication | AWS      | [Guide][AWS Container Registry]   |
+| Supported | Image Reflector Controller | Container Registry Authentication | Azure    | [Guide][Azure Container Registry] |
+| Supported | Image Reflector Controller | Container Registry Authentication | GCP      | [Guide][GCP Container Registry]   |
+| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | AWS      | [Guide][AWS KMS]                  |
+| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | Azure    | [Guide][Azure KMS]                |
+| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | GCP      | [Guide][GCP KMS]                  |
 
 ## Roadmap
 
@@ -55,6 +58,9 @@ For more information, please visit the tracking issue: https://github.com/fluxcd
 [AWS OCI Repository]: ../components/source/ocirepositories/#aws
 [Azure OCI Repository]: ../components/source/ocirepositories/#azure
 [GCP OCI Repository]: ../components/source/ocirepositories/#gcp
+[AWS Helm Repository]: ../components/source/helmrepositories/#aws
+[Azure Helm Repository]: ../components/source/helmrepositories/#azure
+[GCP Helm Repository]: ../components/source/helmrepositories/#gcp
 [AWS Container Registry]: ../guides/image-update/#using-native-aws-ecr-auto-login
 [Azure Container Registry]: ../guides/image-update/#using-native-azure-acr-auto-login
 [GCP Container Registry]: ../guides/image-update/#using-native-gcp-gcr-auto-login
