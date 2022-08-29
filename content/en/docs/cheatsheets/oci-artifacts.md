@@ -325,12 +325,17 @@ spec:
     name: ghcr-auth
 ```
 
+### Contextual Authorization
+
 When running Flux on managed Kubernetes clusters like EKS, AKS or GKE, you
 can set the `provider` field to `azure`, `aws` or `gcp` and Flux will use
-the Kubernetes node credentials to pull artifacts without needing an image pull secret.
+the Kubernetes node credentials or an IAM Role binding to pull artifacts
+without needing an image pull secret.
 
-For more details on how to setup authentication for Azure, AWS and Google Cloud please
-see the [documentation](/docs/components/source/ocirepositories/#provider).
+For more details on how to setup contextual authorization for Azure, AWS and Google Cloud please see:
+
+- [OCIRepository documentation](/docs/components/source/ocirepositories/#provider)
+- [HelmRepository documentation](/docs/components/source/helmrepositories/#provider)
 
 ## Monitoring
 
