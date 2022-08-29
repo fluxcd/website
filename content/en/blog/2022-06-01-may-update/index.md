@@ -77,7 +77,7 @@ The next Flux release is just a few days out. Here is in a nutshell what you can
 - `GitRepository` reconciliation will be more efficient when checking out repositories using branches or tags by added support for no-op clones.
 - The `libgit2` managed transport will be moved out of experimental mode, and is the new default.
 
-Make sure you watch our Slack and Twitter to get the update. [Give us a star](http://github.com/fluxcd/flux2) and watch for releases maybe as well.
+Make sure you watch our Slack and Twitter to get the update. [Give us a star](https://github.com/fluxcd/flux2) and watch for releases maybe as well.
 
 ### Flagger 1.21.0 brings lots of improvements
 
