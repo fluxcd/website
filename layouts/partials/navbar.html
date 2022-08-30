@@ -12,17 +12,9 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
 		<ul class="navbar-nav mt-2 p-3 p-lg-0 mt-lg-0">
-			{{ if in .Permalink "/flagger" }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				<a class="nav-link active" href="/flagger"><span class="active">Docs</span></a>
-			</li>
-			{{ else if in .Permalink "/legacy" }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				<a class="nav-link active" href="/legacy"><span class="active">Docs</span></a>
-			</li>
-			{{ else }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				<a class="nav-link active" href="/flux"><span class="active">Docs</span></a>
+			{{ if  .Site.Params.versions }}
+			<li class="nav-item dropdown mr-4 d-none d-lg-block">
+				{{ partial "navbar-version-selector.html" . }}
 			</li>
 			{{ end }}
 			{{ $p := . }}
@@ -54,11 +46,6 @@
 				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}>{{ with .Pre}}{{ $pre }}{{ end }}<span{{if $active }} class="active"{{end}}>{{ .Name }}</span>{{ with .Post}}{{ $post }}{{ end }}</a>
 			</li>
 			{{ end }}
-			{{ end }}
-			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown mr-4 d-none d-lg-block">
-				{{ partial "navbar-version-selector.html" . }}
-			</li>
 			{{ end }}
 			{{ if  (gt (len .Site.Home.Translations) 0) }}
 			<li class="nav-item dropdown mr-4 d-none d-lg-block">

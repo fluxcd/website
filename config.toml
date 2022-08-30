@@ -59,19 +59,19 @@ algolia_docsearch = true
 offlineSearch = false
 
 
-#version_menu         = "Docs"
-#version              = "current"
-#url_latest_version   = "/docs/"
-#
-## Add your release versions here
-#[[params.versions]]
-#  version = "current"
-#  url = "/docs"
-#
-#[[params.versions]]
-#  version = "legacy"
-#  url = "/legacy"
-#
+version_menu         = "Docs"
+version              = "Flux"
+url_latest_version   = "/flux/"
+
+# Add your release versions here
+[[params.versions]]
+  version = "Flux"
+  url = "/flux"
+
+[[params.versions]]
+  version = "Flagger"
+  url = "/flagger"
+
 
 [params.mermaid]
 enable = true
