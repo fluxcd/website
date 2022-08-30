@@ -92,7 +92,7 @@ to the load tester Helm chart.
 If you have been watching the OpenShift GitOps space, you will have seen
 quite a bit of movement lately. We talked about this in some of our last
 posts, we got [OpenShift docs up for
-Flux](/docs/use-cases/openshift/), the
+Flux](/flux/use-cases/openshift/), the
 Flux Operator has landed in the OperatorHub and RedHat were key
 presenters at the the last GitOps One-Stop Shop Event (see below).
 
@@ -278,7 +278,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

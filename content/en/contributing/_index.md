@@ -1,6 +1,8 @@
 ---
 title: Contributing
 weight: 120
+cascade:
+  type: docs
 ---
 
 Flux welcomes improvements from all contributors, new and experienced!

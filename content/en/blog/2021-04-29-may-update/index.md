@@ -67,7 +67,7 @@ The Flux v2 CLI and the GitOps Toolkit controllers are now CII Best
 Practices certified.
 
 Checkout the [new bootstrap
-procedure](/docs/installation/_index.md#generic-git-server).
+procedure](/flux/installation/_index.md#generic-git-server).
 
 0.13 comes with **breaking changes to image automation** and has the
 following highlights:
@@ -95,11 +95,11 @@ Please follow the [upgrade procedure for image
 automation](https://github.com/fluxcd/flux2/discussions/1333).
 
 Checkout the [new bootstrap customisation
-feature](/docs/installation/_index.md#customize-flux-manifests).
+feature](/flux/installation/_index.md#customize-flux-manifests).
 
-The [Image automation guide](/docs/guides/image-update/) has been updated
+The [Image automation guide](/flux/guides/image-update/) has been updated
 to the new APIs, and also includes a reference to a
-new [GitHub Actions use case guide](/docs/use-cases/gh-actions-auto-pr/),
+new [GitHub Actions use case guide](/flux/use-cases/gh-actions-auto-pr/),
 for automatic pull request creation with Flux and GitHub Actions. This
 guide is for you, if you want Flux updates to go to a staging branch,
 where they can be reviewed and approved before going to production.
@@ -237,7 +237,7 @@ good ways to do that:
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd), join the
   discussion in the [Flux LinkedIn group](https://www.linkedin.com/groups/8985374/)
 

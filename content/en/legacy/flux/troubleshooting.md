@@ -1,6 +1,5 @@
 ---
 title: Troubleshooting
-type: docs
 weight: 90
 ---
 

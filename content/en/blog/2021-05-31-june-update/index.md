@@ -37,14 +37,14 @@ The highlights are:
 Docs:
 
 - 📔 [GitRepository include
-  documentation](/docs/components/source/gitrepositories/#including-gitrepository)
+  documentation](/flux/components/source/gitrepositories/#including-gitrepository)
 - 🎁 Checkout the new [guide on ways of structuring your
-  repositories](/docs/guides/repository-structure/)
+  repositories](/flux/guides/repository-structure/)
 
 If you are entirely new to Flux, check out our [get started
-guide](/docs/get-started/). If you are on
+guide](/flux/get-started/). If you are on
 an older version of Flux, check out our [migration
-documentation](/docs/migration/).
+documentation](/flux/migration/).
 
 ## Flagger 1.11 is here
 
@@ -169,7 +169,7 @@ with our full integrity, but still quite ad-hoc up until that point.
 
 For us it's time to review this together with our
 [Community](/community/) and
-[Contributors docs](/docs/contributing/).
+[Contributors docs](/contributing/).
 So we are turning to you for feedback: [please let us know what you
 think](https://github.com/fluxcd/flux2/discussions/1457).
 What was your experience up until now? Do you feel things are clear
@@ -202,7 +202,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our
-  [Get Started guide](/docs/get-started/) and give us feedback
+  [Get Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the
   discussion in the [Flux LinkedIn

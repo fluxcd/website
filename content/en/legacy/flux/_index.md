@@ -1,6 +1,5 @@
 ---
 title: Flux
-type: docs
 weight: 10
 ---
 

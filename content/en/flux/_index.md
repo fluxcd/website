@@ -3,6 +3,8 @@ title: "Flux Documentation"
 linkTitle: "Docs"
 description: "Open and extensible continuous delivery solution for Kubernetes."
 taxonomyCloud: []
+cascade:
+  type: docs
 ---
 
 Flux is a tool for keeping Kubernetes clusters in sync with sources of
@@ -22,16 +24,16 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 <div class="works-well-with">
 {{< cardpane >}}
 {{% card header="[Grafana](https://grafana.com/oss/grafana/)" %}}
-[![Grafana](./img/grafana.svg)](/docs/guides/monitoring/)
+[![Grafana](./img/grafana.svg)](/flux/guides/monitoring/)
 {{% /card %}}
 {{% card header="[Helm](https://helm.sh/)" %}}
-[![Helm](./img/helm.svg)](/docs/use-cases/helm/)
+[![Helm](./img/helm.svg)](/flux/use-cases/helm/)
 {{% /card %}}
 {{% card header="[Istio](https://istio.io/)" %}}
 [![Istio](./img/istio.svg)](/flagger/tutorials/istio-progressive-delivery/)
 {{% /card %}}
 {{% card header="[Kubernetes](https://kubernetes.io/)" %}}
-[![Kubernetes](./img/kubernetes.svg)](/docs/get-started/)
+[![Kubernetes](./img/kubernetes.svg)](/flux/get-started/)
 {{% /card %}}
 {{% card header="[Kyverno](https://kyverno.io/)" %}}
 [![Kyverno](./img/kyverno.png)](/blog/2022/02/security-image-provenance/)
@@ -40,10 +42,10 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 [![Linkerd](./img/linkerd.png)](/flagger/tutorials/linkerd-progressive-delivery/)
 {{% /card %}}
 {{% card header="[Prometheus](https://prometheus.io/)" %}}
-[![Prometheus](./img/prometheus.svg)](/docs/guides/monitoring/)
+[![Prometheus](./img/prometheus.svg)](/flux/guides/monitoring/)
 {{% /card %}}
 {{% card header="[SOPS](https://github.com/mozilla/sops)" %}}
-[![Prometheus](./img/mozilla.jpg)](/docs/guides/mozilla-sops/)
+[![Prometheus](./img/mozilla.jpg)](/flux/guides/mozilla-sops/)
 {{% /card %}}
 
 {{< /cardpane >}}
@@ -60,10 +62,10 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 | 🤝 Flux provides GitOps for both apps and infrastructure | Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in. |
 | 🤖 Just push to Git and Flux does the rest | Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching). |
 | 🔩 Flux works with your existing tools | Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets as a source), all major container registries, and all CI workflow providers. |
-| 🔒 Flux is designed with security in mind | Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about [our security considerations](/docs/security). |
+| 🔒 Flux is designed with security in mind | Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about [our security considerations](/flux/security). |
 | ☸️ Flux works with any Kubernetes and all common Kubernetes tooling |  Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place. |
 | 🤹 Flux does Multi-Tenancy (and “Multi-everything”) | Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories. Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use one Kubernetes cluster to manage apps in either the same or other clusters, spin up additional clusters themselves, and manage clusters including lifecycle and fleets. |
-| 📞 Flux alerts and notifies | Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and [other chat systems](/docs/components/notification/provider/). |
+| 📞 Flux alerts and notifies | Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and [other chat systems](/flux/components/notification/provider/). |
 | 👍 Users trust Flux | Flux is a CNCF Incubating project and was categorised as "Adopt" on the [CNCF CI/CD Tech Radar](https://radar.cncf.io/2020-06-continuous-delivery) (alongside Helm). |
 | 💖 Flux has a lovely community that is very easy to work with! | We welcome contributors of any kind. The components of Flux are on Kubernetes core `controller-runtime`, so anyone can contribute and its functionality can be extended very easily. |
 

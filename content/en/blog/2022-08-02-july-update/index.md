@@ -48,7 +48,7 @@ than simply upgrading.
 When we started writing about [Security in Flux](/tags/security/), folks
 started asking us more questions about how to ensure their Flux
 deployments were secure. We are happy to announce that we documented
-[Flux's Security Best Practices](/docs/security/best-practices/)
+[Flux's Security Best Practices](/flux/security/best-practices/)
 on our website. It comes with a simple checklist that you can follow to
 ensure you implemented it. You can also go deeper and expand the text
 blocks to understand the rationale and backgrounds better.
@@ -279,7 +279,7 @@ morale to know where in the world Flux is used everywhere.
 #### More docs and website news
 
 We added a [Troubleshooting
-cheatsheet](/docs/cheatsheets/troubleshooting/)!
+cheatsheet](/flux/cheatsheets/troubleshooting/)!
 This has been a request from our community for a long time and we would
 love to hear your feedback! What do you and your team use for incidents?
 Is it playbooks? What would you expect in Flux docs for managing
@@ -289,7 +289,7 @@ We are constantly improving our documentation and website - here are a
 couple of small things we landed recently:
 
 - New use-case: [GitHub Actions Basic App
-  Builder](/docs/use-cases/gh-actions-app-builder/):\
+  Builder](/flux/use-cases/gh-actions-app-builder/):\
   This guide shows how to configure GitHub Actions to build an image
   for each new commit pushed on a branch, for PRs, or for tags in
   the most basic way that Flux's automation can work with and making
@@ -300,7 +300,7 @@ couple of small things we landed recently:
   this document shows how to do just that.
 - We expanded our documentation on Azure to include [Using Helm OCI
   with Azure Container
-  Registry](/docs/use-cases/azure/#using-helm-oci-with-azure-container-registry).
+  Registry](/flux/use-cases/azure/#using-helm-oci-with-azure-container-registry).
 - Flagger news! We updated the docs on our website to match the newest
   version of Flagger (1.22). This adds a tutorial for how to do
   [Canary analysis with KEDA
@@ -347,7 +347,7 @@ to the following alternatives for UIs for Flux instead.
    ![flux-grafana](/img/cluster-dashboard.png)
    \
    See [the monitoring section of the Flux
-   documentation](/docs/guides/monitoring/)
+   documentation](/flux/guides/monitoring/)
    for how to install Flux\'s Grafana dashboards.
 
 ### New Flux Project Member: Ihor Sychevskyi
@@ -426,7 +426,7 @@ good ways to do that:
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd), join the
   discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

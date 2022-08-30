@@ -1,7 +1,6 @@
 ---
 weight: 13
 title: Canary analysis with Prometheus Operator
-type: docs
 ---
 
 This guide show you how to use

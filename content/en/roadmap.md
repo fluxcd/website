@@ -12,17 +12,17 @@ type: page
 The Flux custom resource definitions which are at `v1beta1`, `v1beta2` and `v2beta1`
 and their controllers are considered stable and production ready.
 Going forward, breaking changes to the beta CRDs will be accompanied by a conversion mechanism.
-Please see the [Migration and Support Timetable](docs/migration/timetable.md) for our commitment to end users.
+Please see the [Migration and Support Timetable](flux/migration/timetable.md) for our commitment to end users.
 {{% /alert %}}
 
 The following components are considered production ready:
 
-- [source-controller](docs/components/source)
-- [kustomize-controller](docs/components/kustomize)
-- [notification-controller](docs/components/notification)
-- [helm-controller](docs/components/helm)
-- [image-reflector-controller](docs/components/image)
-- [image-automation-controller](docs/components/image)
+- [source-controller](/flux/components/source)
+- [kustomize-controller](/flux/components/kustomize)
+- [notification-controller](/flux/components/notification)
+- [helm-controller](/flux/components/helm)
+- [image-reflector-controller](/flux/components/image)
+- [image-automation-controller](/flux/components/image)
 
 The following GitOps Toolkit APIs are considered production ready:
 
@@ -52,7 +52,7 @@ this list is subject to change while we gather feedback:
 - **Multi-tenancy lockdown**
     - [x] [Allow setting a default service account for impersonation](https://github.com/fluxcd/flux2/issues/2340)
     - [x] [Allow disabling cross-namespace references](https://github.com/fluxcd/flux2/issues/2337)
-    - [x] [Document multi-tenancy lockdown configuration](docs/installation.md#multi-tenancy-lockdown)
+    - [x] [Document multi-tenancy lockdown configuration](flux/installation.md#multi-tenancy-lockdown)
 
 - **OCI Artifacts**
     - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
@@ -96,21 +96,21 @@ In our planning discussions we identified three areas of work:
 ### Flux read-only feature parity
 
 Flux v2 read-only is ready to try. See the [Getting
-Started](/docs/get-started/) how-to, and the
+Started](/flux/get-started/) how-to, and the
 [Migration
-guide](/docs/migration/flux-v1-migration/).
+guide](/flux/migration/flux-v1-migration/).
 
 This would be the first stepping stone: we want Flux v2 to be on-par with today's Flux in
-[read-only mode](https://github.com/fluxcd/flux/blob/master/docs/faq.md#can-i-run-flux-with-readonly-git-access)
+[read-only mode](https://github.com/fluxcd/flux/blob/master/flux/faq.md#can-i-run-flux-with-readonly-git-access)
 and [FluxCloud](https://github.com/justinbarrick/fluxcloud) notifications.
 
 Goals
 
 State | Item
 ----- | ----
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](/docs/migration/flux-v1-migration/)
-:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](/docs/migration/flux-v1-migration/)
-:heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](/docs/guides/notifications/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize plain manifests](/flux/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a migration guide for those that are using Flux in read-only mode to synchronize Kustomize overlays](/flux/migration/flux-v1-migration/)
+:heavy_check_mark: | [Offer a dedicated component for forwarding events to external messaging platforms](/flux/guides/notifications/)
 
 Non-Goals
 
@@ -126,14 +126,14 @@ Tasks
 - [x]  <span style="color:grey">Implement a notification controller for Slack, MS Teams, Discord, Rocket</span>
 - [x]  <span style="color:grey">Implement Prometheus metrics in source and kustomize controllers</span>
 - [x]  <span style="color:grey">Review the git source and kustomize APIs</span>
-- [x]  <span style="color:grey">Support [bash-style variable substitution](/docs/components/kustomize/kustomization/#variable-substitution) as an alternative to `flux.yaml` envsubst/sed usage</span>
+- [x]  <span style="color:grey">Support [bash-style variable substitution](/flux/components/kustomize/kustomization/#variable-substitution) as an alternative to `flux.yaml` envsubst/sed usage</span>
 - [x]  <span style="color:grey">Create a migration guide for `flux.yaml` kustomize users</span>
 - [x]  <span style="color:grey">Include support for SOPS</span>
 
 ### Flux image update feature parity
 
 Image automation is available as a prerelease. See [this
-guide](/docs/guides/image-update/) for how to
+guide](/flux/guides/image-update/) for how to
 install and use it.
 
 Goals
@@ -154,16 +154,16 @@ Tasks
 - [x] <span style="color:grey">Design the automation component</span>
 - [x] <span style="color:grey">Implement the image scan/patch/push workflow</span>
 - [x] <span style="color:grey">Integrate the new components in the Flux CLI [fluxcd/flux2#538](https://github.com/fluxcd/flux2/pull/538)</span>
-- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/docs/guides/image-update/))</span>
-- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/docs/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
-- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/docs/migration/flux-v1-automation-migration/))</span>
+- [x] <span style="color:grey">Write a guide for how to use image automation ([guide here](/flux/guides/image-update/))</span>
+- [x] <span style="color:grey">ACR/ECR/GCR integration ([guide here](/flux/guides/image-update/#imagerepository-cloud-providers-authentication))</span>
+- [x] <span style="color:grey">Write a migration guide from Flux v1 annotations ([guide here](/flux/migration/flux-v1-automation-migration/))</span>
 
 ### Helm v3 feature parity
 
 Helm support in Flux v2 is ready to try. See the [Helm controller
-guide](/docs/guides/helmreleases/), and the [Helm
+guide](/flux/guides/helmreleases/), and the [Helm
 controller migration
-guide](/docs/migration/helm-operator-migration/).
+guide](/flux/migration/helm-operator-migration/).
 
 Goals
 
@@ -189,4 +189,4 @@ Tasks
 - [x]  <span style="color:grey">Implement support for Helm charts from Git</span>
 - [x]  <span style="color:grey">Implement support for referring to an alternative chart values file</span>
 - [x]  <span style="color:grey">Stabilize API</span>
-- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](docs/migration/helm-operator-migration.md)</span>
+- [x]  <span style="color:grey">[Create a migration guide for Helm Operator users](flux/migration/helm-operator-migration.md)</span>

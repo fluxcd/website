@@ -76,7 +76,7 @@ Some of the highlights in this release are:
   Prometheus Operator and others.
 - The Notification controller can now send alerts to Telegram, Lark
   and Matrix in addition to [many
-  others](/docs/components/notification/provider/#specification).
+  others](/flux/components/notification/provider/#specification).
 - Kustomize controller has been updated to on a par with the latest
   Kustomize release v4.3.0.
 
@@ -126,7 +126,7 @@ create a new GitRepository object as a source for other objects.
 
 ![Flux Operator](flux-operator-screenshot2.png)
 
-Please consult the [Flux OpenShift documentation](/docs/use-cases/openshift/)
+Please consult the [Flux OpenShift documentation](/flux/use-cases/openshift/)
 for the installation steps.
 
 If you have any questions or feedback, please reach out to Chanwit or
@@ -248,7 +248,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

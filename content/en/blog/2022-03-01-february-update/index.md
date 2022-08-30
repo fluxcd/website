@@ -44,13 +44,13 @@ and improvements
 
 - Add support to notification-controller for sending events to
   [Grafana annotations
-  API](/docs/components/notification/provider/#grafana).
+  API](/flux/components/notification/provider/#grafana).
 - Allow selecting event sources [based on
-  labels](/docs/components/notification/alert/#example)
+  labels](/flux/components/notification/alert/#example)
   using the Alert API `spec.eventSources[].matchLabels` field.
 - Add support to `kustomize-controller` for making the Kubernetes
   `Secrets` and `ConfigMaps` referenced in `postBuild.substituteFrom`
-  [optional](/docs/components/kustomize/kustomization/#variable-substitution).
+  [optional](/flux/components/kustomize/kustomization/#variable-substitution).
 - Allow dot-prefixed paths to be used for bootstrap e.g. `flux
   bootstrap --path=".flux/clusters/my-cluster"`.
 - All Flux controllers and libraries are now tested by Google's
@@ -262,7 +262,7 @@ Because we talked about writing regarding Flux a lot already, here is
 just a quick summary of everything that landed in the past month:
 
 - We are introducing [Flux
-  Cheatsheets](/docs/cheatsheets/)!
+  Cheatsheets](/flux/cheatsheets/)!
   The first one is all about Flux Bootstrap. If you have more to
   add, ideas or requests, hit us up on Slack or GitHub!
 - We started addressing the first bits of feedback we received during
@@ -278,9 +278,9 @@ just a quick summary of everything that landed in the past month:
 - Some docs which received particular attention this time around were
   - [Flux Resources](/resources/)
   - [Using Flux on
-    OpenShift](/docs/use-cases/openshift/)
+    OpenShift](/flux/use-cases/openshift/)
   - [Monitoring with
-    Prometheus](/docs/guides/monitoring/)
+    Prometheus](/flux/guides/monitoring/)
 
 Thanks a lot to these folks who contributed to docs and website: Adam
 Dickinson, akirillow, Chanwit Kaewkasi, Davi Garcia, Emanuele Massara,
@@ -351,7 +351,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

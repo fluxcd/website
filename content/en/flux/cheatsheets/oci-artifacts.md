@@ -43,12 +43,12 @@ For example the [tf-controller](https://github.com/weaveworks/tf-controller)
 On the server-side, Flux pulls OCI artifacts from container registries, extracts the Kubernetes manifests
 and reconciles them on the cluster.
 
-With [OCIRepository](/docs/components/source/ocirepositories/) you tell Flux which artifacts to pull
+With [OCIRepository](/flux/components/source/ocirepositories/) you tell Flux which artifacts to pull
 from a container registry and how to authenticate in order to download and make available
 the artifacts' content inside the cluster.
 
-The [OCIRepository](/docs/components/source/ocirepositories/) source can be used
-in the same way as a [GitRepository](/docs/components/source/gitrepositories/).
+The [OCIRepository](/flux/components/source/ocirepositories/) source can be used
+in the same way as a [GitRepository](/flux/components/source/gitrepositories/).
 You can be notified when new artifacts are pulled (Flux `Alert`),
 you can trigger a pull with webhooks (Flux `Receiver`),
 and you can apply the OCI artifact content on the cluster (Flux `Kustomization`).
@@ -84,7 +84,7 @@ spec:
 
 ### Helm OCI
 
-For Helm users, Flux comes with [support](/docs/guides/helmreleases/#helm-oci-repository) for
+For Helm users, Flux comes with [support](/flux/guides/helmreleases/#helm-oci-repository) for
 defining Helm releases with charts stored in container registries.
 
 Example:
@@ -334,8 +334,8 @@ without needing an image pull secret.
 
 For more details on how to setup contextual authorization for Azure, AWS and Google Cloud please see:
 
-- [OCIRepository documentation](/docs/components/source/ocirepositories/#provider)
-- [HelmRepository documentation](/docs/components/source/helmrepositories/#provider)
+- [OCIRepository documentation](/flux/components/source/ocirepositories/#provider)
+- [HelmRepository documentation](/flux/components/source/helmrepositories/#provider)
 
 ## Monitoring
 
@@ -437,7 +437,7 @@ Message:         stored artifact for digest 'dbdb109711ffb3be77504d2670dbe13c24d
 ## Automated updates to Git
 
 If you wish to track the OCI artifacts revisions in Git, you can use
-Flux [image automation](/docs/guides/image-update/) to patch the artifacts
+Flux [image automation](/flux/guides/image-update/) to patch the artifacts
 tags in the YAML manifests stored in the Git repository used at bootstrap.
 
 First we'll configure Flux to clone the bootstrap repository and push commits to the `main` branch:
@@ -467,8 +467,8 @@ spec:
 ```
 
 You can also configure Flux to push the change to a new branch and open a Pull Request,
-for more details please see the [image automation guide](/docs/guides/image-update/)
-and [GitHub Actions Auto Pull Request](/docs/use-cases/gh-actions-auto-pr/).
+for more details please see the [image automation guide](/flux/guides/image-update/)
+and [GitHub Actions Auto Pull Request](/flux/use-cases/gh-actions-auto-pr/).
 
 ### Flux OCI automation
 

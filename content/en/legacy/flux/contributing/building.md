@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Building
 linkTitle: Building Flux
 weight: 20

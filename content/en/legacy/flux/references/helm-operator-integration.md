@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Integration with the Helm Operator
 weight: 90
 ---

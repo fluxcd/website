@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Upgrading to Flux v1
 weight: 40
 ---

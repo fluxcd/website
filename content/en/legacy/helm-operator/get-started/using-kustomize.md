@@ -1,7 +1,6 @@
 ---
 title: Get started using Kustomize
 linkTitle: Using Kustomize
-type: docs
 weight: 40
 ---
 

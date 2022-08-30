@@ -233,12 +233,12 @@ teams moving to GitOps.
 > you manage Kubernetes applications --- Helm Charts helps you define,
 > install, and upgrade even the most complex Kubernetes application.
 >
-> 🔹[The GitOps Toolkit](/docs/components)
+> 🔹[The GitOps Toolkit](/flux/components)
 > is the set of APIs and controllers that make up the runtime for Flux.
 > The APIs comprise Kubernetes custom resources, which can be created
 > and updated by a cluster user, or by other automation tooling.
 >
-> 🔹[The Helm Controller](/docs/components/helm/)
+> 🔹[The Helm Controller](/flux/components/helm/)
 > built on Kubernetes controller runtime and is part of the GitOps
 > Toolkit -- allows one to declaratively manage Helm chart releases with
 > Kubernetes manifests.
@@ -308,7 +308,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

@@ -1,6 +1,5 @@
 ---
 title: Quickstart
-type: docs
 weight: 20
 ---
 

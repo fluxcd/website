@@ -1,7 +1,6 @@
 ---
 weight: 9
 title: Open Service Mesh Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use Open Service Mesh (OSM) and Flagger to automate canary deployments.

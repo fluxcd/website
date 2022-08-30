@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Using Git over HTTPS
 weight: 20
 ---

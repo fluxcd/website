@@ -99,7 +99,7 @@ and we [continuously tag issues as "good first
 issues"](https://github.com/search?q=org%3Afluxcd+label%3A%22good+first+issue%22+state%3Aopen&state=open&type=Issues)
 if you are looking for suggestions.
 
-Our [contributor docs](/docs/contributing/flux/) will
+Our [contributor docs](/contributing/flux/) will
 likely be helpful as well!
 
 If you are interested in Security, you might have seen how much we have

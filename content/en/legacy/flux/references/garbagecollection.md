@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Garbage collection
 weight: 50
 ---

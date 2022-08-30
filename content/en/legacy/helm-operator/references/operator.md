@@ -1,6 +1,5 @@
 ---
 title: Operator reference
-type: docs
 weight: 10
 ---
 

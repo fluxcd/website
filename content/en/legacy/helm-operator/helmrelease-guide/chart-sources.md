@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Chart sources
 weight: 20
 ---

@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 2
 title: Istio A/B Testing
 ---

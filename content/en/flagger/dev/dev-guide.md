@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Development Guide
 weight: 1
 ---

@@ -549,7 +549,7 @@ some Flux facts - they are sort of our mission statement with Flux.
 1. 📞 Flux alerts and notifies: Flux provides health
   assessments, alerting to external systems and external events
   handling. Just "git push", and get notified on Slack and [other
-  chat systems](/docs/components/notification/provider/).
+  chat systems](/flux/components/notification/provider/).
 1. 👍 Users trust Flux: Flux is a CNCF Incubating project
   and was categorised as \"Adopt\" on the [CNCF CI/CD Tech
   Radar](https://radar.cncf.io/2020-06-continuous-delivery)
@@ -572,7 +572,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

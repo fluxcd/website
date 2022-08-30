@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 30
 title: Get started developing
 ---

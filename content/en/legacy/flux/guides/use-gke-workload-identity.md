@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Using GKE Workload Identity with Flux
 linkTitle: Using GKE Workload Identity
 weight: 50

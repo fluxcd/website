@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 70
 title: Frequently asked questions
 linkTitle: FAQ

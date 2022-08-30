@@ -1,7 +1,7 @@
 #!/bin/sh
 
-COMPONENTS_DIR="content/en/docs/components"
-FLUX_DIR="content/en/docs/cmd"
+COMPONENTS_DIR="content/en/flux/components"
+FLUX_DIR="content/en/flux/cmd"
 
 if [ -z "${GITHUB_USER}" ]; then
     GITHUB_USER=fluxcdbot

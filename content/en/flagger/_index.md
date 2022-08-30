@@ -1,8 +1,9 @@
 ---
 description: Flagger is a progressive delivery Kubernetes operator
-type: docs
 weight: 1
 title: Flagger
+cascade:
+  type: docs
 ---
 
 [Flagger](https://github.com/fluxcd/flagger) is a progressive delivery tool that automates the release

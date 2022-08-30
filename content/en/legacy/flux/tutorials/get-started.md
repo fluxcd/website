@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Get started with Flux
 linkTitle: Get started
 weight: 10

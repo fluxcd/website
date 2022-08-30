@@ -1,5 +1,4 @@
 ---
-type: docs
 title: fluxctl
 weight: 30
 ---

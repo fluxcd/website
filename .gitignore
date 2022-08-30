@@ -14,7 +14,7 @@ themes/hugo-shortcode-gallery-*
 hugo/
 
 # Imported Flux CLI assets
-content/en/docs/cmd/flux*
+content/en/flux/cmd/flux*
 static/install.sh
 
 # Adopters logos

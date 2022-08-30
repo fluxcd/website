@@ -1,5 +1,4 @@
 ---
-type: docs
 title: How to bootstrap Flux using Kustomize
 weight: 30
 ---

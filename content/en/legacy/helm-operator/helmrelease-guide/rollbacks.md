@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 60
 title: Rollbacks
 ---

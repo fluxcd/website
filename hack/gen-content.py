@@ -40,8 +40,6 @@ def rewrite_header(out_file, title=None, docs=False, weight=None):
         'title: {}\n'.format(title),
         'importedDoc: true\n'
     ]
-    if docs:
-        header_lines += ['type: docs\n']
     if weight:
         header_lines += ['weight: {}\n'.format(weight)]
     header_lines += [
@@ -133,7 +131,7 @@ class Repo():
             shutil.copyfile(
                 os.path.join(self.dest, entry[0]),
                 out_file)
-            docs = entry[1].startswith('docs/') or entry[1].startswith('legacy/') or \
+            docs = entry[1].startswith('flux/') or entry[1].startswith('legacy/') or \
                    entry[1].startswith('flagger/')
             title = None
             weight = None

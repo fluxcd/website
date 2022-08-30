@@ -1,7 +1,6 @@
 ---
 weight: 6
 title: NGINX Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use the NGINX ingress controller and Flagger to automate canary deployments and A/B testing.

@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Values
 weight: 30
 ---

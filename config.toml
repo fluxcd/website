@@ -185,7 +185,7 @@ weight = 20
 [[menus.main]]
 name = "Contributing"
 parent = "Project"
-url = "/docs/contributing"
+url = "/contributing"
 weight = 30
 
 [[menus.main]]

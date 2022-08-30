@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 80
 title: Automation
 ---

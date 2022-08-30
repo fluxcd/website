@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Release configuration
 weight: 40
 ---

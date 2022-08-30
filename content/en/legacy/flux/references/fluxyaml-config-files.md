@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Manifest generation through .flux.yaml configuration files
 weight: 40
 ---

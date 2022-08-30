@@ -19,9 +19,9 @@ Here is a simple example:
 `external-sources/fluxcd/flux2` contains:
 
 ```csv
-"/CONTRIBUTING.md","/docs/contributing/flux.md","Contributing to Flux"
+"/CONTRIBUTING.md","/contributing/flux.md","Contributing to Flux"
 ```
 
-This means that the script will do a shallow clone of `github.com/fluxcd/flux2` and copy the top-level `CONTRIBUTING.md` file into `/docs/contributing/flux.md` (under `content/en`). It will also change the title to "Contributing to Flux".
+This means that the script will do a shallow clone of `github.com/fluxcd/flux2` and copy the top-level `CONTRIBUTING.md` file into `/contributing/flux.md` (under `content/en`). It will also change the title to "Contributing to Flux".
 
 Behind the scenes the script does quite a few other changes as well to make the front-matter look good.

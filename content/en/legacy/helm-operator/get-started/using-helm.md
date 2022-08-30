@@ -1,7 +1,6 @@
 ---
 title: Get started using Helm
 linkTitle: Using Helm
-type: docs
 weight: 30
 ---
 

@@ -52,7 +52,7 @@ some Flux facts - they are sort of our mission statement with Flux.
 1. **📞 Flux alerts and notifies:** Flux provides health assessments,
    alerting to external systems and external events handling. Just
    "git push", and get notified on Slack and [other chat
-    systems](/docs/components/notification/provider/).
+    systems](/flux/components/notification/provider/).
 1. **💖 Flux has a lovely community that is very easy to work with!**
    We welcome contributors of any kind. The components of Flux are on
    Kubernetes core `controller-runtime`, so anyone can contribute and
@@ -130,7 +130,7 @@ to Scott Rigby on Slack.
 In last month's update we discussed how Flux's APIs are now stable. To
 clarify what this means for the Flux project as a whole, we added the
 following section to [our migration
-timetable](/docs/migration/timetable/):
+timetable](/flux/migration/timetable/):
 
 - Flux 1: Superseded
   - All existing projects encouraged to migrate to Flux 2, and
@@ -140,7 +140,7 @@ timetable](/docs/migration/timetable/):
 
 - Flux 2 CLI: Needs further testing, may get breaking changes
   - CLI needs further user testing during this migration period
-- [GitOps Toolkit](/docs/components/)
+- [GitOps Toolkit](/flux/components/)
   APIs and Controllers
   - All Beta, Production Ready\
     The GOTK Custom Resource Definitions which are at `v1beta1` and
@@ -241,20 +241,20 @@ We updated to a new version of the [docsy
 theme](https://github.com/google/docsy), which gives us
 more short-codes we can use to express ourselves in our documentation.
 Alison also improved the ways tabs look as you can see
-[here](/docs/installation/):
+[here](/flux/installation/):
 
 ![Tabs in our docs](tabs-screenshot.png)
 
 Alison also put quite a bit of work into [writing
-up](/docs/contributing/docs/style-guide/)
+up](/contributing/docs/style-guide/)
 how we want our documents to look and which [short-codes are most
-useful](/docs/contributing/docs/writing-docs/).
+useful](/contributing/docs/writing-docs/).
 This should make it much easier if you want to start contributing
 documentation for Flux.
 
 In the FAQ section, Hendrik Ferber explained [how to patch CoreDNS and
 other pre-installed
-addons](/docs/faq/#how-to-patch-coredns-and-other-pre-installed-addons).
+addons](/flux/faq/#how-to-patch-coredns-and-other-pre-installed-addons).
 
 Additionally, to give some of the success stories Flux users have shared
 more room, we added this section to the landing page of
@@ -277,7 +277,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the
   discussion in the [Flux LinkedIn

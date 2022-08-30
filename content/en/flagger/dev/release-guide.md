@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Release Guide
 weight: 1
 ---
