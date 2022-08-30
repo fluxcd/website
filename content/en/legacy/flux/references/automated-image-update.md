@@ -1,6 +1,5 @@
 ---
 title: Automated deployment of new container images
-type: docs
 weight: 70
 ---
 

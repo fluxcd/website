@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 50
 title: Reconciliation and upgrades
 ---

@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Monitoring Flux
 weight: 80
 ---

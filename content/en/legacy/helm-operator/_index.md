@@ -1,6 +1,5 @@
 ---
 title: Helm Operator
-type: docs
 weight: 20
 ---
 

@@ -67,7 +67,7 @@ Hot on the heels of this was `0.11.0` and v0.1.1 of the Terraform module.
 - SOPS in the `kustomize-controller` has been updated to v3.7.0, support for the newly added age encryption format is planned. :hourglass_flowing_sand:
 - All controllers do now record the suspend status of resources in a gotk_suspend_status Prometheus gauge metric.
 
-🚀 Check out [the guide on how to automate image updates to Git](/docs/guides/image-update/).
+🚀 Check out [the guide on how to automate image updates to Git](/flux/guides/image-update/).
 
 Next up we will triage `image-*` issues and mark upcoming changes for
 v1alpha2. The proposal for v1alpha2 is under discussion at [https://github.com/fluxcd/flux2/discussions/1124](https://github.com/fluxcd/flux2/discussions/1124).
@@ -229,7 +229,7 @@ good ways to do that:
   discussions](https://github.com/fluxcd/flux2/discussions)
 
 - And if you are completely new to Flux v2, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

@@ -133,7 +133,7 @@ When you are ready to submit a pull request, commit your changes.
    (use "git add <file>..." to update what will be committed)
    (use "git checkout -- <file>..." to discard changes in working directory)
 
-   modified:   content/en/docs/contribute/new-content/run-locally.md
+   modified:   content/en/contribute/new-content/run-locally.md
 
    no changes added to commit (use "git add" and/or "git commit -a")
    ```

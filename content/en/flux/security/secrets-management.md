@@ -65,7 +65,7 @@ Notice that secrets can be stored in any Source type supported by Flux, such as 
 
 Flux specific guides on using Secrets Decryption Operators:
 
-- [Bitnami Sealed Secrets](/docs/guides/sealed-secrets/)
+- [Bitnami Sealed Secrets](/flux/guides/sealed-secrets/)
 
 #### Using Flux to decrypt Secrets on-demand
 
@@ -91,8 +91,8 @@ could impact your solution.
 
 Flux supports the two main names in Encrypted Secrets and has specific how-to guides for them:
 
-- [Mozilla SOPS Guide](/docs/guides/mozilla-sops/)
-- [Secrets decryption](/docs/components/kustomize/kustomization/#secrets-decryption)
+- [Mozilla SOPS Guide](/flux/guides/mozilla-sops/)
+- [Secrets decryption](/flux/components/kustomize/kustomization/#secrets-decryption)
 
 #### Secrets Synchronized by Operators
 
@@ -275,9 +275,9 @@ scenarios are considered.
 [1Password Operator]: https://github.com/1Password/onepassword-operator
 [External Secrets Operator]: https://github.com/external-secrets/external-secrets
 [AWS Key Hierarchy]: https://aws.amazon.com/blogs/security/benefits-of-a-key-hierarchy-with-a-master-key-part-two-of-the-aws-cloudhsm-series/
-[contextual authorization]: /docs/security/contextual-authorization/
-[Buckets]: /docs/components/source/buckets/
-[OCI Repositories]: /docs/components/source/ocirepositories/
+[contextual authorization]: /flux/security/contextual-authorization/
+[Buckets]: /flux/components/source/buckets/
+[OCI Repositories]: /flux/components/source/ocirepositories/
 [stakater/Reloader]: https://github.com/stakater/Reloader
-[kustomize-secretgenerator]: https://fluxcd.io/docs/components/kustomize/kustomization/#kustomize-secretgenerator
+[kustomize-secretgenerator]: /flux/components/kustomize/kustomization/#kustomize-secretgenerator
 [kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#secretgenerator

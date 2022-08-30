@@ -37,7 +37,7 @@ individual sub-projects and make testing and debugging a lot easier.
 Re-usability as well.
 
 All of this said, we believe that a blog series about Flux and its
-[security](/docs/security/)
+[security](/flux/security/)
 considerations and features is in order and we will kick it off talking
 about SBOMs.
 

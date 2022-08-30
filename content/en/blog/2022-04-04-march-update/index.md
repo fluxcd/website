@@ -54,12 +54,12 @@ here's a quick list of our highlights:
 - A new annotation
   ([kustomize.toolkit.fluxcd.io/ssa](http://kustomize.toolkit.fluxcd.io/ssa):
   merge) is available for allowing Flux to [patch cluster
-  addons](/docs/faq/#how-to-patch-coredns-and-other-pre-installed-addons)
+  addons](/flux/faq/#how-to-patch-coredns-and-other-pre-installed-addons)
   such as CoreDNS.
-- Add [Azure Blob Storage](/docs/components/source/buckets/#azure)
+- Add [Azure Blob Storage](/flux/components/source/buckets/#azure)
   native support to Flux Bucket sources.
 - Add support for decrypting secrets with SOPS and [Azure Key
-  Vault](/docs/components/kustomize/kustomization/#azure-key-vault-secret-entry)
+  Vault](/flux/components/kustomize/kustomization/#azure-key-vault-secret-entry)
   on multi-tenant clusters.
 - Retry the Git operations on conflict errors to allow running
   bootstrap in-parallel for multiple clusters that target the same
@@ -575,17 +575,17 @@ Documentation:
 
 - This was a big effort: The Source API documentation has been
   refactored to be more user-friendly. See the v1beta2 specification
-  for: [Git Repositories](/docs/components/source/gitrepositories/),
-  [Buckets](/docs/components/source/buckets/) and
-  [Helm Repositories](/docs/components/source/helmrepositories/).
+  for: [Git Repositories](/flux/components/source/gitrepositories/),
+  [Buckets](/flux/components/source/buckets/) and
+  [Helm Repositories](/flux/components/source/helmrepositories/).
 - [Flux from
-  End-to-End](/docs/flux-e2e/): This was a big part of work as well.
+  End-to-End](/flux/flux-e2e/): This was a big part of work as well.
   It describes the flow of data through Flux, from End to End.
-- [Cheatsheets](/docs/cheatsheets/bootstrap/):
+- [Cheatsheets](/flux/cheatsheets/bootstrap/):
   Various configurations of Flux controllers at install time are now
   available as a [bootstrap
-  cheatsheet](/docs/cheatsheets/bootstrap/).
-- We added new [FAQ entries](/docs/faq/).
+  cheatsheet](/flux/cheatsheets/bootstrap/).
+- We added new [FAQ entries](/flux/faq/).
 - We added new [resources](/resources/) to the site.
 
 In terms of documentation, we are working on a [bigger piece of
@@ -669,7 +669,7 @@ good ways to do that:
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

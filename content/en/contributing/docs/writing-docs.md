@@ -58,10 +58,10 @@ You can easily link to other places using either
 - Absolute URLs, for linking off to external sites like `https://github.com` or `https://k8s.io` - you can use any of the Markdown notations for this, so
   - `<https://k8s.io>` or
   - `[Kubernetes](https://k8s.io)` will work.
-- Link to markdown files in other you can link to the `.md` file, or the resulting path. So if you are editing e.g. `article1.md` in `content/en/docs/section-a` and want to link to `article2.md` in the same directory you can use the following:
+- Link to markdown files in other you can link to the `.md` file, or the resulting path. So if you are editing e.g. `article1.md` in `content/en/flux/section-a` and want to link to `article2.md` in the same directory you can use the following:
   - `[link](article2.md)`
   - `[link](../article2/)`
-  - `[link](/docs/section-a/article2/)`
+  - `[link](/flux/section-a/article2/)`
 
 ## Media, illustrations and more
 

@@ -35,20 +35,20 @@ This release comes with new features and improvements.
 - Pull Helm charts from container registries by configuring Helm
   repositories with `type: oci`.\
   For more information please see the [Helm OCI
-  documentation](/docs/guides/helmreleases/#helm-oci-repository)
+  documentation](/flux/guides/helmreleases/#helm-oci-repository)
 - Trigger GitHub Actions workflows from Flux by configuring alerting
   providers with `type: githubdispatch`.\
   For more information please see the [GitHub dispatch provider
-  documentation](/docs/components/notification/provider/#setting-up-the-github-dispatch-provider).
+  documentation](/flux/components/notification/provider/#setting-up-the-github-dispatch-provider).
 
 **📔 New guides**
 
 - [Promote Flux Helm Releases with GitHub
-  Actions](/docs/use-cases/gh-actions-helm-promotion/).
+  Actions](/flux/use-cases/gh-actions-helm-promotion/).
 - [Using Flux on GKE with Google Cloud Source
-  Repositories](/docs/use-cases/gcp-source-repository/).
+  Repositories](/flux/use-cases/gcp-source-repository/).
 - [Monitoring Flux logs with Loki and
-  Grafana](/docs/guides/monitoring/).
+  Grafana](/flux/guides/monitoring/).
 
 **🤖 New improvements and fixes**
 
@@ -362,7 +362,7 @@ good ways to do that:
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

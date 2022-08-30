@@ -13,7 +13,7 @@ Server-Side Apply has landed in Flux!
 
 <div class="hero-gitops">
   {{% blocks/hero title="Flux - the GitOps family of projects" color="primary"
-                  height="full" link_title="Get started" link_url="/docs/get-started/" %}}
+                  height="full" link_title="Get started" link_url="/flux/get-started/" %}}
   Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.
 
   The latest version of Flux brings many new features, making it more flexible and versatile.
@@ -30,7 +30,7 @@ Server-Side Apply has landed in Flux!
   </div>
 </div>
 
-<!-- used in ./content/en/docs/_index.md as well -->
+<!-- used in ./content/en/flux/_index.md as well -->
 
 <div id="feature-list">
 {{% blocks/section color="white" %}}
@@ -49,7 +49,7 @@ Server-Side Apply has landed in Flux!
   {{< /blocks/featureitem >}}
 
   {{< blocks/featureitem emoji="🔒" caption="Flux is designed with security in mind" >}}
-    Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about <a href="/docs/security">our security considerations</a>.
+    Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about <a href="/flux/security">our security considerations</a>.
   {{< /blocks/featureitem >}}
 
   {{< blocks/featureitem emoji="☸️" caption="Flux works with any Kubernetes and all common Kubernetes tooling" >}}
@@ -61,7 +61,7 @@ Server-Side Apply has landed in Flux!
   {{< /blocks/featureitem >}}
 
   {{< blocks/featureitem emoji="📞" caption="Flux alerts and notifies" >}}
-  Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and <a href="/docs/components/notification/provider/">other chat systems</a>.
+  Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and <a href="/flux/components/notification/provider/">other chat systems</a>.
   {{< /blocks/featureitem >}}
 
   {{< blocks/featureitem emoji="👍" caption="Users trust Flux" >}}
@@ -267,8 +267,8 @@ The canary analysis can be extended with webhooks for running system integration
   <p id="gitops-toolkit"></p>
 {{% blocks/project title="GitOps Toolkit"
     image="/img/building-blocks.svg" image-align="left" bg-color="blue"
-    button1-url="/docs/gitops-toolkit/source-watcher/"
-    button2-url="/docs/components/" %}}
+    button1-url="/flux/gitops-toolkit/source-watcher/"
+    button2-url="/flux/components/" %}}
 The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
 {{% /blocks/project %}}
 
@@ -278,7 +278,7 @@ The set of APIs and controllers that make up the runtime for Flux. You can use t
     button2-url="/legacy/helm-operator/" button2-caption="Helm Operator Documentation" button2-color="blue" %}}
 We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
 
-We **strongly advise** everyone to familiarise themselves with the latest version of Flux and [start the process of migrating](/docs/migration/).
+We **strongly advise** everyone to familiarise themselves with the latest version of Flux and [start the process of migrating](/flux/migration/).
 {{% /blocks/project %}}
 
 {{% /blocks/section %}}

@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Automations, locks and annotations
 weight: 40
 ---

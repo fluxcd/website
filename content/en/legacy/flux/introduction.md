@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Introducing Flux
 weight: 10
 ---

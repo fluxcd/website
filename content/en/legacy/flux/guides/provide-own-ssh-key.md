@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Providing your own SSH key
 weight: 10
 ---

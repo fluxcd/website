@@ -1,6 +1,5 @@
 ---
 title: Monitoring
-type: docs
 weight: 40
 ---
 

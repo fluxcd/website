@@ -1,7 +1,6 @@
 ---
 weight: 5
 title: Gloo Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use the [Gloo Edge](https://gloo.solo.io/) ingress controller

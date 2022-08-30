@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Introduction
 weight: 10
 ---

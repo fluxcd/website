@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 1
 title: Flagger Install on Kubernetes
 ---

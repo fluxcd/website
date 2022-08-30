@@ -1,7 +1,6 @@
 ---
 weight: 8
 title: Traefik Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use the [Traefik](https://doc.traefik.io/traefik/) and Flagger to automate canary deployments.

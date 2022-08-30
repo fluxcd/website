@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 70
 title: Tests
 ---

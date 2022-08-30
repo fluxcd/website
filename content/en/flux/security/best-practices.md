@@ -173,7 +173,7 @@ The recommendations below are based on Flux's latest version.
 
     Enforces all reconciliations to impersonate a given Service Account, effectively disabling the use of the privileged service account that would otherwise be used by the controller.
 
-    Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](https://fluxcd.io/docs/components/helm/helmreleases/#enforce-impersonation) and [Kustomization](https://fluxcd.io/docs/components/helm/helmreleases/#enforce-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
+    Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](/flux/components/helm/helmreleases/#enforce-impersonation) and [Kustomization](/flux/components/helm/helmreleases/#enforce-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
   </details>
   <details>
     <summary>Audit Procedure</summary>
@@ -261,7 +261,7 @@ The recommendations below are based on Flux's latest version.
     <summary>Audit Procedure</summary>
 
     - Check whether you adhere to [Kubernetes Network Isolation Guidelines](https://kubernetes.io/docs/concepts/security/multi-tenancy/#network-isolation)
-    - Confirm that the [Network Policy](https://fluxcd.io/docs/flux-e2e/#fluxs-default-configuration-for-networkpolicy) objects created by Flux are being enforced by the CNI. Alternatively, run a tool such as [Cyclonus](https://github.com/mattfenwick/cyclonus) or [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) to validate NetworkPolicy enforcement by the CNI plugin on your cluster.
+    - Confirm that the [Network Policy](/flux-e2e/#fluxs-default-configuration-for-networkpolicy) objects created by Flux are being enforced by the CNI. Alternatively, run a tool such as [Cyclonus](https://github.com/mattfenwick/cyclonus) or [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) to validate NetworkPolicy enforcement by the CNI plugin on your cluster.
   </details>
 
 ## Additional Best Practices for Tenant Dedicated Cluster Multi-tenancy

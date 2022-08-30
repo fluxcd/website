@@ -1,7 +1,6 @@
 ---
 weight: 12
 title: Blue/Green Deployments
-type: docs
 ---
 
 This guide shows you how to automate Blue/Green deployments with Flagger and Kubernetes.

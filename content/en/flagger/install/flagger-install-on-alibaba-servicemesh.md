@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 4
 title: Flagger Install on Alibaba ServiceMesh
 ---

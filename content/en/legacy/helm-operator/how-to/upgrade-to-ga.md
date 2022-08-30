@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 10
 title: Upgrade from beta (>=0.5.0) to stable (>=1.0.0)
 linkTitle: Upgrade to GA

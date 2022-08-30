@@ -1,7 +1,6 @@
 ---
 weight: 11
 title: Gateway API Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use [Gateway API](https://gateway-api.sigs.k8s.io/) and Flagger to automate canary deployments and A/B testing.

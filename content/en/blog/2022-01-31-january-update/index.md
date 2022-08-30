@@ -39,7 +39,7 @@ previously the controllers ignored the service account.
 #### :lock: Security enhancements
 
 - Platform admins have the option to [lock down Flux on multi-tenant
-  clusters](/docs/installation/#multi-tenancy-lockdown)
+  clusters](/flux/installation/#multi-tenancy-lockdown)
   and enforce tenant isolation at namespace level without having to
   use a 3rd party admission controller.
 - The Flux installation conforms to the Kubernetes [restricted pod
@@ -47,9 +47,9 @@ previously the controllers ignored the service account.
   and the Seccomp runtime default security profile was enabled for
   all controllers.
 - The container images of all Flux's components are signed with
-  [Cosign and GitHub OIDC](/docs/security/#signed-container-images).
+  [Cosign and GitHub OIDC](/flux/security/#signed-container-images).
 - Flux releases include a [Software Bill of Materials
-  (SBOM)](/docs/security/#software-bill-of-materials)
+  (SBOM)](/flux/security/#software-bill-of-materials)
   that is available for download on the GitHub release page.
 
 #### :rocket: New features and improvements
@@ -63,11 +63,11 @@ New feature in action: flux diff kustomization
 - Undo changes made directly on clusters (with `kubectl` server-side
   apply) to Flux managed objects.
 - Native support for [Hashicorp
-  Vault](/docs/components/kustomize/kustomization/#hashicorp-vault)
+  Vault](/flux/components/kustomize/kustomization/#hashicorp-vault)
   token-based authentication when decrypting SOPS encrypted secrets.
 - Auto-login to AWS ECR, Azure ACR and Google Cloud GCR for [image
   update
-  automation](/docs/guides/image-update/#imagerepository-cloud-providers-authentication)
+  automation](/flux/guides/image-update/#imagerepository-cloud-providers-authentication)
   on EKS, AKS or GKE.
 - On single-tenant clusters, image automation can now refer to Git
   repositories in other namespaces than the
@@ -416,11 +416,11 @@ Flux and explain it in our documentation is important to us.
 So since the last Flux update blog we got a lot done:
 
 - We added instructions on how to [encrypt secrets using HashiCorp
-  Vault](/docs/guides/mozilla-sops/#encrypting-secrets-using-hashicorp-vault)
+  Vault](/flux/guides/mozilla-sops/#encrypting-secrets-using-hashicorp-vault)
 - Also [instructions for auto-login
-  (ACR/ECR/GCR)](/docs/guides/cron-job-image-auth/)
+  (ACR/ECR/GCR)](/flux/guides/cron-job-image-auth/)
 - We explain [how to bootstrap Flux on AWS EKS with CodeCommit Git
-  repositories](/docs/use-cases/aws-codecommit/)
+  repositories](/flux/use-cases/aws-codecommit/)
 - Docs updates for Flux v0.26.0, including a \"Multi-tenancy
   lockdown\" section in the install docs
 - References in the Helm Operator (legacy) section were updated to
@@ -464,7 +464,7 @@ board](https://github.com/orgs/fluxcd/projects/3) we set up
 to track this effort.
 
 If you would like to [work with
-us](/docs/contributing/docs/) on the
+us](/contributing/docs/) on the
 website and documentation, please reach out to us on Slack. 💖
 
 Thanks again CNCF and TechDocs team - we very much appreciate being part
@@ -528,7 +528,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

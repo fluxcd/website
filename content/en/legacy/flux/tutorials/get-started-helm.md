@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Get started with Flux using Helm
 linkTitle: Get started using Helm
 weight: 20

@@ -74,14 +74,14 @@ And finally **0.24** comes with security updates for Alpine CVEs. We are
 also happy to bring you
 
 - New bootstrap command for [Bitbucket Server and Data
-  Center](/docs/installation/#bitbucket-server-and-data-center)
+  Center](/flux/installation/#bitbucket-server-and-data-center)
   repositories (CLI).
 - Add support for self-signed certificates when bootstrapping Flux
   with on-prem GitHub, GitLab and BitBucket servers (CLI).
 - Improved performance when building Helm charts and introduced limits
   for Helm index and chart files. (source-controller).
 - Add support for [Slack Apps
-  bot](/docs/components/notification/provider/#slack-app)
+  bot](/flux/components/notification/provider/#slack-app)
   alerting provider (notification-controller).
 
 Please note that this version comes with breaking changes to Helm users.
@@ -98,7 +98,7 @@ Big shout-out to Soulé Ba for adding Bitbucket support to Flux. This
 will make lots of Flux users happy. Thank you very much!
 
 To find out how to bootstrap Flux on Bitbucket Server, please review
-[our documentation](/docs/installation/#bitbucket-server-and-data-center).
+[our documentation](/flux/installation/#bitbucket-server-and-data-center).
 We love feedback, so please reach out if you have any questions or are
 missing anything. We are also working on support for BitBucket Cloud,
 for which we might need some help testing, documentation or wherever
@@ -129,7 +129,7 @@ features, assumptions and considerations users should take into account.
 
 After talking to many people, we [filed a number of
 issues](https://github.com/fluxcd/website/labels/area%2Fsecurity)
-to track this work and Scott Rigby created the [landing page](/docs/security)
+to track this work and Scott Rigby created the [landing page](/flux/security)
 for Security Documentation. We already brought together quite a few notes
 to populate these pages more. If you want to help, please talk to Scott
 and the rest of us - we look forward to your questions, ideas, input
@@ -365,7 +365,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn

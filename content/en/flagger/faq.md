@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 10
 title: FAQ
 ---

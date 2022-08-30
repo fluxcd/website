@@ -1,7 +1,6 @@
 ---
 weight: 10
 title: Kuma Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use Kuma and Flagger to automate canary deployments.

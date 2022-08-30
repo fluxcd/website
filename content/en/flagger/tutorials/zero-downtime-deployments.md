@@ -1,7 +1,6 @@
 ---
 weight: 15
 title: Zero downtime deployments
-type: docs
 ---
 
 This is a list of things you should consider when dealing with a high traffic production environment if you want to minimise the impact of rolling updates and downscaling.

@@ -1,7 +1,6 @@
 ---
 weight: 7
 title: Skipper Canary Deployments
-type: docs
 ---
 
 This guide shows you how to use the [Skipper ingress controller](https://opensource.zalando.com/skipper/kubernetes/ingress-controller/) and Flagger to automate canary deployments.

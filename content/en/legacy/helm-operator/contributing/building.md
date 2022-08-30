@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Building
 weight: 20
 ---

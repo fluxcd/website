@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 5
 title: Contour Canary Deployments
 ---

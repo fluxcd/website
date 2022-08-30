@@ -1,5 +1,4 @@
 ---
-type: docs
 weight: 1
 title: How it works
 ---

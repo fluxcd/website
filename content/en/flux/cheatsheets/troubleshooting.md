@@ -25,7 +25,7 @@ Flux CLI (check for `Ready=True` and `Suspend=False`)
 flux get sources all -A
 ```
 
-See the CLI reference for [`get_sources_all`](/docs/cmd/flux_get_sources_all/).
+See the CLI reference for [`get_sources_all`](/flux/cmd/flux_get_sources_all/).
 
 `kubectl` (check for `Ready=True`)
 
@@ -41,7 +41,7 @@ flux get kustomizations -A
 flux get helmreleases -A
 ```
 
-CLI reference for [`get_kustomizations`](/docs/cmd/flux_get_kustomizations/) and [`get_helmreleases`](/docs/cmd/flux_get_helmreleases/).
+CLI reference for [`get_kustomizations`](/flux/cmd/flux_get_kustomizations/) and [`get_helmreleases`](/flux/cmd/flux_get_helmreleases/).
 
 
 `kubectl` (check for `Ready=True`)
@@ -70,7 +70,7 @@ Check controllers readiness and versions:
 flux check
 ```
 
-CLI reference for [`check`](/docs/cmd/flux_check/).
+CLI reference for [`check`](/flux/cmd/flux_check/).
 
 ### Changes not being applied
 
@@ -82,7 +82,7 @@ CLI reference for [`check`](/docs/cmd/flux_check/).
       ```cli
       flux get sources all -A
       ```
-      See the CLI reference for [`get_sources_all`](/docs/cmd/flux_get_sources_all/).
+      See the CLI reference for [`get_sources_all`](/flux/cmd/flux_get_sources_all/).
    1. `kubectl` (check for `Ready=True`)
       ```cli
       kubectl get gitrepositories.source.toolkit.fluxcd.io -A
@@ -96,7 +96,7 @@ CLI reference for [`check`](/docs/cmd/flux_check/).
       flux get kustomizations -A
       flux get helmreleases -A
       ```
-      CLI reference for [`get_kustomizations`](/docs/cmd/flux_get_kustomizations/) and [`get_helmreleases`](/docs/cmd/flux_get_helmreleases/).
+      CLI reference for [`get_kustomizations`](/flux/cmd/flux_get_kustomizations/) and [`get_helmreleases`](/flux/cmd/flux_get_helmreleases/).
    1. `kubectl` (check for `Ready=True`)
       ```cli
       kubectl get kustomizations.kustomize.toolkit.fluxcd.io -A
@@ -157,7 +157,7 @@ in [`helm/helm#8281`](https://github.com/helm/helm/issues/8281).
 
 If you are running into this, confirm first that your chart has all the required excludes in
 their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
-[`.sourceignore`](/docs/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepository) files.
+[`.sourceignore`](/flux/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepository) files.
 
 ### How to debug "not ready" errors?
 

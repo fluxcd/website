@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Git commit signing and verification
 weight: 60
 ---

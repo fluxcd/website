@@ -106,5 +106,5 @@ Check out the following upcoming events
 > 19 Apr 2021 - [Setting up Notifications, Alerts, & Webhook with Flux
 > v2 by Alison Dowdney](https://www.meetup.com/GitOps-Community/events/276582835/)
 
-Or dive straight into our [Get Started guide](/docs/get-started/)
+Or dive straight into our [Get Started guide](/flux/get-started/)
 to get started with the next generation of Flux today.

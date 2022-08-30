@@ -152,7 +152,7 @@ spec:
 ```
 
 For more details on how to integrate Flux with Grafana API please see the
-[Grafana provider documentation](/docs/components/notification/provider/#grafana).
+[Grafana provider documentation](/flux/components/notification/provider/#grafana).
 
 ## Metrics
 

@@ -1237,9 +1237,9 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 
 [flux2/discussions/802]: https://github.com/fluxcd/flux2/discussions/802
 [flux2/issues/543]: https://github.com/fluxcd/flux2/issues/543
-[image update guide]: /docs/guides/image-update/
+[image update guide]: /flux/guides/image-update/
 [any old app]: https://github.com/kingdonb/any_old_app
-[Flux bootstrap guide]: /docs/get-started/
+[Flux bootstrap guide]: /flux/get-started/
 [String Substitution with sed -i]: #string-substitution-with-sed-i
 [Docker Build and Tag with Version]: #docker-build-and-tag-with-version
 [Jsonnet for YAML Document Rehydration]: #jsonnet-for-yaml-document-rehydration
@@ -1282,7 +1282,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [Sops Binary Installer]: https://github.com/marketplace/actions/sops-binary-installer
 [04-update-fleet-infra.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/04-update-fleet-infra.yaml
 [Push directory to another repository]: https://github.com/marketplace/actions/push-directory-to-another-repository
-[Flux v2 image automation]: /docs/guides/image-update/
-[Image Automation Controllers]: /docs/components/image/
-[Example of a build process with timestamp tagging]: /docs/guides/sortable-image-tags/#example-of-a-build-process-with-timestamp-tagging
-[Sortable image tags to use with automation]: /docs/guides/sortable-image-tags/#formats-and-alternatives
+[Flux v2 image automation]: /flux/guides/image-update/
+[Image Automation Controllers]: /flux/components/image/
+[Example of a build process with timestamp tagging]: /flux/guides/sortable-image-tags/#example-of-a-build-process-with-timestamp-tagging
+[Sortable image tags to use with automation]: /flux/guides/sortable-image-tags/#formats-and-alternatives

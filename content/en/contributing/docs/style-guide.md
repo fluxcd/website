@@ -291,7 +291,7 @@ Use three hyphens (`---`) to create a horizontal rule. Use horizontal rules for 
 Do | Don't
 :--| :-----
 Write hyperlinks that give you context for the content they link to. For example: Certain ports are open on your machines. See <a href="#check-required-ports">Check required ports</a> for more details. | Use ambiguous terms such as "click here". For example: Certain ports are open on your machines. See <a href="#check-required-ports">here</a> for more details.
-Write Markdown-style links: `[link text](URL)`. For example: `[Docs from the ground up](/docs/contributing/docs/writing-docs.md)` and the output is [Docs from the ground up](/docs/contributing/docs/writing-docs). | Write HTML-style links: `<a href="/docs/contributing/docs/writing-docs" target="_blank">Docs from the ground up</a>`, or create links that open in new tabs or windows. For example: `[Docs from the ground up](/docs/contributing/docs/writing-docs){target="_blank"}`
+Write Markdown-style links: `[link text](URL)`. For example: `[Docs from the ground up](/contributing/docs/writing-docs.md)` and the output is [Docs from the ground up](/contributing/docs/writing-docs). | Write HTML-style links: `<a href="/contributing/docs/writing-docs" target="_blank">Docs from the ground up</a>`, or create links that open in new tabs or windows. For example: `[Docs from the ground up](/contributing/docs/writing-docs){target="_blank"}`
 
 ### Lists
 

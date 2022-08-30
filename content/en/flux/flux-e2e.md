@@ -114,7 +114,7 @@ changes to a given Git repository. The behavior of the automation process is def
 
 That resource defines the way that automated commits are created and pushed.  The `ImagePolicy` is another custom resource that determines what image tags go
 where. `ImagePolicy` can be defined to select the latest image from images within a SemVer range, or more flexible RegEx filters with alphabetical or
-numerical sorting to select the "latest" image. Image tags can also be [filtered with FilterTags](/docs/components/image/imagepolicies/#filtertags)
+numerical sorting to select the "latest" image. Image tags can also be [filtered with FilterTags](/flux/components/image/imagepolicies/#filtertags)
 before they are considered as candidate images by the policy rule.
 
 The updates are governed by marking fields to be updated in each YAML file. For each field marked, the automation process checks the image policy named, and
@@ -181,7 +181,7 @@ Truth, according to GitOps principles.
 Some resource options are not available through generators and can only be accessed through fields in YAML; users are generally expected to write
 resources in YAML and commit them, and should do so when they require access to those features.
 
-For more information, see: [`flux create`](/docs/cmd/flux_create/).
+For more information, see: [`flux create`](/flux/cmd/flux_create/).
 
 Flux's OpenAPI specification can also be integrated with editors to assist Flux users in producing valid YAML for Flux APIs; for a popular example see
 the [Kubernetes Tools](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools) for VS Code. This method
@@ -564,35 +564,35 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [Git Commit Status Provider Notifications]: #git-commit-status-provider-notifications
 [Waiting and Health Assessment for Flux Kustomization]: #waiting-and-health-assessment-for-flux-kustomization
 
-[GitOps toolkit]: /docs/components/
-[Security]: /docs/security/
-[Contributing: Acceptance Policy]: /docs/contributing/flux/#acceptance-policy
-[Source controller]: /docs/components/source/
-[Kustomize controller]: /docs/components/kustomize/
-[Helm controller]: /docs/components/helm/
-[Notification controller]: /docs/components/notification/
-[Image reflector and automation controllers]: /docs/components/image/
+[GitOps toolkit]: /flux/components/
+[Security]: /flux/security/
+[Contributing: Acceptance Policy]: /contributing/flux/#acceptance-policy
+[Source controller]: /flux/components/source/
+[Kustomize controller]: /flux/components/kustomize/
+[Helm controller]: /flux/components/helm/
+[Notification controller]: /flux/components/notification/
+[Image reflector and automation controllers]: /flux/components/image/
 [Helm Chart Hooks]: https://helm.sh/docs/topics/charts_hooks/
 [Post Rendering]: https://helm.sh/docs/topics/advanced/#post-rendering
-[image automation guide]: /docs/guides/image-update/#configure-image-update-for-custom-resources
-[Core Concepts]: /docs/concepts/
-[Get Started with Flux]: /docs/get-started/
-[GitRepository Custom Resource]: /docs/components/source/gitrepositories/
-[BucketSpec Custom Resource]: /docs/components/source/buckets/
-[HelmRepository Custom Resource]: /docs/components/source/helmrepositories/
-[HelmChart Custom Resource]: /docs/components/source/helmcharts/
-[Mozilla SOPS Guide]: /docs/guides/mozilla-sops/
-[Kustomize Build Flags]: /docs/faq/#what-is-the-behavior-of-kustomize-used-by-flux
+[image automation guide]: /flux/guides/image-update/#configure-image-update-for-custom-resources
+[Core Concepts]: /flux/concepts/
+[Get Started with Flux]: /flux/get-started/
+[GitRepository Custom Resource]: /flux/components/source/gitrepositories/
+[BucketSpec Custom Resource]: /flux/components/source/buckets/
+[HelmRepository Custom Resource]: /flux/components/source/helmrepositories/
+[HelmChart Custom Resource]: /flux/components/source/helmcharts/
+[Mozilla SOPS Guide]: /flux/guides/mozilla-sops/
+[Kustomize Build Flags]: /flux/faq/#what-is-the-behavior-of-kustomize-used-by-flux
 [server-side apply and update]: https://kubernetes.io/docs/reference/using-api/server-side-apply/
 [field management]: https://kubernetes.io/docs/reference/using-api/server-side-apply/#field-management
-[HelmRelease API]: /docs/components/helm/api/
-[HelmRelease Guide]: /docs/guides/helmreleases/
-[Helm Use Case]: /docs/use-cases/helm/
-[HelmRepository API]: /docs/components/source/helmrepositories/
-[HelmChart API]: /docs/components/source/helmcharts/
-[HelmChartTemplate.spec.reconcileStrategy]: /docs/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
-[Setup Notifications]: /docs/guides/notifications/
-[Alert API]: /docs/components/notification/alert/
-[Event API]: /docs/components/notification/event/
-[Setup Git Commit Status Notications]: /docs/guides/notifications/#git-commit-status
-[Health Assessment]: /docs/components/kustomize/kustomization/#health-assessment
+[HelmRelease API]: /flux/components/helm/api/
+[HelmRelease Guide]: /flux/guides/helmreleases/
+[Helm Use Case]: /flux/use-cases/helm/
+[HelmRepository API]: /flux/components/source/helmrepositories/
+[HelmChart API]: /flux/components/source/helmcharts/
+[HelmChartTemplate.spec.reconcileStrategy]: /flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
+[Setup Notifications]: /flux/guides/notifications/
+[Alert API]: /flux/components/notification/alert/
+[Event API]: /flux/components/notification/event/
+[Setup Git Commit Status Notications]: /flux/guides/notifications/#git-commit-status
+[Health Assessment]: /flux/components/kustomize/kustomization/#health-assessment

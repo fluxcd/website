@@ -14,7 +14,7 @@ Next up in our blog series about Flux Security is how and why we use
 signatures for the Flux CLI and all its controller images and what you
 can do to verify image provenance in your workflow.
 
-Since Flux 0.26 our [Security Docs](/docs/security/#signed-container-images)
+Since Flux 0.26 our [Security Docs](/flux/security/#signed-container-images)
 had this addition:
 
 > The Flux CLI and the controllers\' images are signed using

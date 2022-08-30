@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Using a private Git host
 weight: 30
 ---

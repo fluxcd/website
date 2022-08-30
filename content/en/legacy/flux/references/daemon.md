@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Daemon (fluxd)
 weight: 20
 ---

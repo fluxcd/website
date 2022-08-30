@@ -1,7 +1,6 @@
 ---
 title: Get started using YAMLs
 linkTitle: Using YAMLs
-type: docs
 weight: 50
 ---
 

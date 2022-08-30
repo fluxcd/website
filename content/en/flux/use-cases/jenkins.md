@@ -17,13 +17,13 @@ Jenkins (or any CI system generally speaking) can be cumbersome, and CI builds a
 
 Flux requires YAML manifests to be kept in a git repository or similar artifact hosting, (such as bucket storage which can also be configured to maintain a revision history.) Each revision represents a new "desired state" for the cluster workloads.
 
-Flux represents this as a [`GitRepository` custom resource](/docs/components/source/gitrepositories/).
+Flux represents this as a [`GitRepository` custom resource](/flux/components/source/gitrepositories/).
 
 Flux's Source Controller periodically reconciles the config repository where the cluster's YAML manifests are maintained, pulling the latest version of the named ref. To invoke the continuous deployment functionality we use a `ref` which may be updated, such as a branch or tag. Flux deploys updates from whatever commit is at the ref, every `spec.interval`.
 
 A revision can be any commit at the head of the branch or tag, or a specific commit hash described in the field `spec.ref` in the `GitRepository`. We could also specify a semver expression here, so that Flux infers the latest tag within a range specified. There are many possible configurations.
 
-A specific commit hash can also be listed in the `GitRepositoryRef`, though this is less common than pointing to a branch, as in this case Flux is no longer performing continuous delivery of changes, but instead reconciles with some specific fixed revision as listed and curated by hand. This behavior, though not particularly ergonomic, could be useful during an [incident response](/docs/guides/image-update/#incident-management).
+A specific commit hash can also be listed in the `GitRepositoryRef`, though this is less common than pointing to a branch, as in this case Flux is no longer performing continuous delivery of changes, but instead reconciles with some specific fixed revision as listed and curated by hand. This behavior, though not particularly ergonomic, could be useful during an [incident response](/flux/guides/image-update/#incident-management).
 
 Pinning to a particular revision allows an operator to handle updates explicitly and manually but still via GitOps. While this effectively disables some automated features of Flux, it is also a capable way to operate. Jenkins jobs could also write commit hashes into manifests, and while cats can live with dogs, this is not important for this example.
 
@@ -267,7 +267,7 @@ when {
 }
 ```
 
-This is important since git tags can be used for [Automating image updates to Git](/docs/guides/image-update/) in production.
+This is important since git tags can be used for [Automating image updates to Git](/flux/guides/image-update/) in production.
 
 Using SemVer tags, you can automatically promote new tags to production via policy.
 
@@ -303,8 +303,8 @@ Update deployments via Flux's [ImagePolicy] CRD, and the Image Update Automation
 [docker plugin]: https://plugins.jenkins.io/docker-plugin/
 [doesn't even have Docker underneath]: https://kubernetes.io/blog/2020/12/02/dockershim-faq/#why-is-dockershim-being-deprecated
 [Mirantis has taken over support of dockershim]: https://www.mirantis.com/blog/mirantis-to-take-over-support-of-kubernetes-dockershim-2/
-[Sortable image tags]: /docs/guides/sortable-image-tags/
-[image update guide]: /docs/guides/image-update/
+[Sortable image tags]: /flux/guides/sortable-image-tags/
+[image update guide]: /flux/guides/image-update/
 [credentials]: https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/simple-examples/credentialsUsernamePassword.groovy
 [populating environment variables]: https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/simple-examples/scriptVariableAssignment.groovy
 [only against a particular branch]: https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/simple-examples/whenBranchMaster.groovy
@@ -315,8 +315,8 @@ Update deployments via Flux's [ImagePolicy] CRD, and the Image Update Automation
 [Dockerfile]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/Dockerfile
 [jenkins/docker-pod.yaml]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/jenkins/docker-pod.yaml
 [jenkins/run-tests.sh]: https://github.com/kingdonb/jenkins-example-workflow/blob/main/jenkins/run-tests.sh
-[using an ImagePolicy object]: /docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
+[using an ImagePolicy object]: /flux/guides/sortable-image-tags/#using-in-an-imagepolicy-object
 [Kubernetes examples for Buildkit]: https://github.com/moby/buildkit/tree/master/examples/kubernetes
 [Buildkit CLI for Kubectl]: https://github.com/vmware-tanzu/buildkit-cli-for-kubectl
 [KubeCon/CloudNativeCon EU 2021]: https://www.youtube.com/watch?v=vTh6jkW_xtI
-[ImagePolicy]: /docs/guides/sortable-image-tags/#using-in-an-imagepolicy-object
+[ImagePolicy]: /flux/guides/sortable-image-tags/#using-in-an-imagepolicy-object

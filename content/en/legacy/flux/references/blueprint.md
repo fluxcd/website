@@ -1,5 +1,4 @@
 ---
-type: docs
 title: Blueprint
 weight: 10
 ---

@@ -8,7 +8,7 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 >
 > Project          | Docs Site                                 | Github Source
 > ---------------- | ------------------------------------------| -------------
-> Flux             | <https://fluxcd.io/docs>                  | <https://github.com/fluxcd/website>
+> Flux             | <https://fluxcd.io/flux>                  | <https://github.com/fluxcd/website>
 > Flagger          | <https://fluxcd.io/flagger>               | <https://github.com/fluxcd/website>
 > Flux (legacy)    | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
 > Helm Operator    | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
@@ -17,11 +17,11 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 
 The main landing page of this website can be modified in `config.toml`.
 
-Almost all of the content lives in the `content/en/docs` directory. Here are some special cases.
+Almost all of the content lives in the `content/en/<project>` directories. Here are some special cases.
 
 - `./content/en/blog` contains all blog posts - make sure you update the front-matter for posts to show up correctly.
 - `./external-sources/` defines how files from other repositories are pulled in. We currently do this for Markdown files from the `/fluxcd/community` and `/fluxcd/.github` repositories. (`make gen-content` pulls these in.)
-- Flux CLI docs (`cmd`) and `components` docs: under `./content/en/docs` but pulled in through in `make gen-content` as well.
+- Flux CLI docs (`cmd`) and `components` docs: under `./content/en/flux` but pulled in through in `make gen-content` as well.
 - `/static/_redirects` defines redirects on <https://fluxcd.io>. Check out <https://docs.netlify.com/routing/redirects/> for the syntax definition and how to test if things work.
 
 ## Running the site locally

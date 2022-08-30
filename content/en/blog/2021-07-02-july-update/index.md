@@ -294,7 +294,7 @@ good ways to do that:
 - Join the [planning
    discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux v2, take a look at our [Get
-   Started guide](/docs/get-started/)
+   Started guide](/flux/get-started/)
    and give us feedback
 - Social media: Follow [Flux on
    Twitter](https://twitter.com/fluxcd), join the
