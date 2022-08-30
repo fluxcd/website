@@ -15,12 +15,10 @@ events and reacts to revision changes by downloading the artifact produced by
 
 On your dev machine install the following tools:
 
-* go >= 1.16
+* go >= 1.18
 * kubebuilder >= 3.0
 * kind >= 0.8
-* kubectl >= 1.18
-* kustomize >= 4.0
-* docker >= 19.03
+* kubectl >= 1.21
 
 ## Install Flux
 
@@ -199,7 +197,7 @@ import (
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 
-	sourcev1 "github.com/fluxcd/source-controller/api/v1beta1"
+	sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
 )
 
 func init() {
@@ -231,9 +229,9 @@ Your `go.mod` should require controller-runtime v0.9 or newer:
 
 ```go
 require (
-    k8s.io/apimachinery v0.21.1
-    k8s.io/client-go v0.21.1
-    sigs.k8s.io/controller-runtime v0.9.0
+    k8s.io/apimachinery v0.25.0
+    k8s.io/client-go v0.25.0
+    sigs.k8s.io/controller-runtime v0.12.0
 )
 ```
 
