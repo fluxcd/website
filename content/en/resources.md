@@ -21,6 +21,12 @@ These resources are sorted by date - new entries are added to the top.
 [//]: # (Date of video: 17-20-May-2022)
 
 {{% blocks/resource
+youtube="60jhYD2wLkY"
+title="GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
     url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
     thumbnail="es5ngkzJDEc"
     title="Flux at GitOps Con, KubeCon CloudNativeCon EU 2022 — From Student to SRE That Loves CNCF in No Time - Jacob Valdemar Andreasen, Lunar" %}}
