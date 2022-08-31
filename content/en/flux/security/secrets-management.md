@@ -43,7 +43,7 @@ they should rely mostly on other mechanisms covered below.
 #### Secrets Decryption Operators
 
 Sometimes referred to as Encrypted Secrets, Secrets Decryption Operators enable secrets to be stored
-in cipher-text as Kubernetes resources within a Flux source. They are deployed into the cluster by
+in ciphertext as Kubernetes resources within a Flux source. They are deployed into the cluster by
 Flux in their original CustomResourceDefinition (CRD) form, which is later used by its Secret
 Decryption Operator to decrypt those secrets and generate a Kubernetes Secret.
 
@@ -78,7 +78,7 @@ This approach is more flexible than using [Sealed Secrets], as [SOPS] supports c
 Management Services of the major cloud providers (Azure KeyVault, GCP KMS and AWS KMS), HashiCorp
 Vault, as well as "off-line" decryption using Age and PGP.
 
-This mechanism supports [kustomize-secretgenerator] which ensures that dependend workloads will
+This mechanism supports [kustomize-secretgenerator] which ensures that dependent workloads will
 reload automatically and start using the latest version of the secret. Notice that most approaches
 that are based on Kubernetes Secrets would require something like [stakater/Reloader] to achieve
 the same result. The [Kubernetes blog][kustomization-secretgenerator] explains quite well how this works.
@@ -205,14 +205,14 @@ and cannot be misused to bypass other processes (e.g. Access Management).
 Around disaster recovery scenarios, consider how they align with your Availability and
 Confidentiality requirements.
 
-#### Don't co-locate cipher-text with encryption keys
+#### Don't co-locate ciphertext with encryption keys
 
-It should go without saying, but never place secrets together that can provide privilege
+It should go without saying, but never place secrets together with keys that can provide privilege
 escalation routes. For example, if you store the decryption key for your secrets in GitHub secrets,
 and all your encrypted secrets are stored in the same repository, a single GitHub account
 (with enough access) compromised is enough for all your secrets to be decrypted.
 
-Instead, segregate encryption keys from cypher-text and understand what needs to be compromised
+Instead, segregate encryption keys from ciphertext and understand what needs to be compromised
 for the data to be at risk.
 
 #### Single Points of Failure
@@ -229,12 +229,12 @@ they would have in case of a failure pre, mid or post deploy (of either cluster 
 
 #### Ephemeral or Single-use Secrets
 
-The easiest type of secrets to manage are the ones that ephemeral, context- and time-bound.
-They are not supported by all use-cases, however, whenever they are, prioritise them over
+The easiest type of secrets to manage are the ones that ephemeral; context-bound and time-bound.
+However, they are not supported by all use-cases. Whenever they are, prioritise their use over
 static or long-lived secrets.
 
-An example of Ephemeral secret that is time-bound is tokens provided by cloud providers to
-any application running withing a given Cloud Machine. Those tokens are generated automatically,
+An example of an ephemeral secret that is time-bound, is a token provided by cloud providers to
+any application running within a given Cloud Machine. Those tokens are generated automatically,
 and have a short expiration time. In some cases you can even tie them to a network boundary,
 meaning that even if they get breached, they won't be able to be used outside the current
 context.
