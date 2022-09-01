@@ -9,8 +9,7 @@ resources:
   title: "Image #:counter"
 ---
 
-{{< imgproc twitter-ss Resize 400x >}}
-{{< /imgproc >}}
+{{< tweet user="stefanprodan" id="1557754198648913921" >}}
 
 The Flux team has released a new version of Flux [v0.32](https://github.com/fluxcd/flux2/releases/tag/v0.32.0) that includes fantastic features. One of them is OCI Repositories feature that allows us to store and distribute a wide variety of sources such as Kubernetes manifests, Kustomize overlays, and Terraform modules as [OCI (Open Container Initiative) artifacts](https://github.com/opencontainers/artifacts#project-introduction-and-scope). Furthermore, the Flux team got us even more excited because they are planning to verify the authenticity of the OCI artifacts before they get applied into Kubernetes by integrating Cosign, which is one of the most significant projects from the @projectsigstore community that help us to sign and verify OCI images, blobs, etc. please see the [issue](https://github.com/fluxcd/source-controller/issues/863) to get more details about the plan.
 
@@ -25,7 +24,7 @@ The Flux CLI generates a single layer OCI image for storing things. As you can u
 {{< imgproc twitter-ss Resize 400x >}}
 {{< /imgproc >}}
 
-{{< imgproc meme Resize 400x >}}
+{{< imgproc meme-featured Resize 400x >}}
 {{< /imgproc >}}
 
 Today, we’ll leverage the OCI Repositories feature to apply Kyverno policies stored in an OCI registry into the Kubernetes cluster.
