@@ -42,6 +42,6 @@ for `foo-chart`, you would define the following in the `dependencies` of your
 ```yaml
 dependencies:
 - name: 
-  version: ~1.4.3
+  version: ~1.4.4
   repository: https://charts.example.com
 ```

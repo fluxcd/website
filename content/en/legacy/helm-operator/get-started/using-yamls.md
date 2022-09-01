@@ -5,7 +5,7 @@ weight: 50
 ---
 
 This guide walks you through setting up the Helm Operator using
-[deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/1.4.3/deploy).
+[deployment YAMLs](https://github.com/fluxcd/helm-operator/tree/1.4.4/deploy).
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ First, install the `HelmRelease` Custom Resource Definition. By adding this CRD
 it will be possible to define `HelmRelease` resources on the cluster:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.3/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.4/deploy/crds.yaml
 ```
 
 Proceed to create the `flux` namespace, this is the namespace the Helm Operator
@@ -34,13 +34,13 @@ Apply the `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding` so that the
 Helm Operator can access cluster resources:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.3/deploy/rbac.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.4/deploy/rbac.yaml
 ```
 
 Apply the Helm Operator deployment itself:
 
 ```sh
-kubectl deploy -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.3/deploy/deployment.yaml
+kubectl deploy -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.4/deploy/deployment.yaml
 ```
 
 ### Helm 3
@@ -50,7 +50,7 @@ enabled. To disable support for Helm 2 (and recover from the Tiller connection
 failure), patch the resource to set `--enabled-helm-versions=v3`:
 
 ```
-kubectl deploy -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.3/deploy/deployment.yaml \
+kubectl deploy -f https://raw.githubusercontent.com/fluxcd/helm-operator/1.4.4/deploy/deployment.yaml \
     --type='json' \
     -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value":"--enabled-helm-versions=v3"}]'
 ```
@@ -62,7 +62,7 @@ does not take any custom configurations like Tiller TLS settings into account.
 If your Tiller is e.g. in a different namespace than `kube-system` or
 [securely setup](https://v2.helm.sh/docs/securing_installation/), take a look
 at the available [Tiller configuration flags](../references/operator.md#tiller-configuration)
-and [commented out sections](https://github.com/fluxcd/helm-operator/blob/1.4.3/deploy/deployment.yaml)
+and [commented out sections](https://github.com/fluxcd/helm-operator/blob/1.4.4/deploy/deployment.yaml)
 in the example deployment to further tweak your Helm Operator installation.
 
 ## Next
