@@ -403,9 +403,9 @@ garbage-collection and resource health assessment.  It also allows the Kubernete
 controllers can set field values within the same resource without interfering with each other.
 
 The server-side apply operation is synchronous rather than asynchronous. If any resources fail to become ready before a specified timeout, the controller can
-abort the entire transaction. The timeout value is used in three separate functions, such that any or all of them can take up to `spec.timeout` seconds
-before being cancelled or timing out. So the theoretical maximum time for Kustomize to reconcile is 3x `spec.timeout` but this will only be the case when
-all of Dry Run, Apply, and Health Checking each take fully up to the maximum allowed time.
+abort the entire transaction. The timeout value is used in two separate contexts, such that either or both of them can take up to `spec.timeout` seconds
+before being cancelled or timing out. So the theoretical maximum time for Kustomize to reconcile is 2x `spec.timeout` but this will only be the case when
+each of Apply, and Health Checking both take fully up to the maximum allowed time.
 
 The Kustomize Controller applies resource manifests to match the order in which they were rendered by the kustomize `build` call.  It therefore applies any
 custom resource definition (CRD), namespace, or cluster-scoped resources before their subordinate custom resource or namespace-scoped resources so that they
