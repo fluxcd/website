@@ -9,20 +9,17 @@ resources:
   title: "Image #:counter"
 ---
 
-{{< tweet user="stefanprodan" id="1557754198648913921" >}}
-
 The Flux team has released a new version of Flux [v0.32](https://github.com/fluxcd/flux2/releases/tag/v0.32.0) that includes fantastic features. One of them is OCI Repositories feature that allows us to store and distribute a wide variety of sources such as Kubernetes manifests, Kustomize overlays, and Terraform modules as [OCI (Open Container Initiative) artifacts](https://github.com/opencontainers/artifacts#project-introduction-and-scope). Furthermore, the Flux team got us even more excited because they are planning to verify the authenticity of the OCI artifacts before they get applied into Kubernetes by integrating Cosign, which is one of the most significant projects from the @projectsigstore community that help us to sign and verify OCI images, blobs, etc. please see the [issue](https://github.com/fluxcd/source-controller/issues/863) to get more details about the plan.
 
 > ⚠️ **Note:** You can read the RFC of this feature [here](https://github.com/fluxcd/flux2/tree/main/rfcs/0003-kubernetes-oci).
+
+{{< tweet user="stefanprodan" id="1557754198648913921" >}}
 
 Today’s blog post is all about a quick tour of this feature and will give you a real-world example of it to show you how you can leverage this feature to manage Kyverno policies as OCI Artifacts. It is worth saying that this topic has been discussed for a while in the Kyverno community, too. There is an ongoing [issue](https://github.com/kyverno/KDP/pull/19) about packaging and distributing Kyverno policies as OCI Artifacts through its CLI. Also, there is a chance to move that logic into Kyverno’s core.
 
 But for those who might not be familiar enough with OCI artifacts (including me), it’s worth explaining what the OCI Artifacts are before jumping into the details. OCI Artifacts gives you the power of storing and distributing other types of data (nearly anything), such as Kubernetes deployment files, [Helm Charts](https://helm.sh/), [and CNAB](https://cnab.io/), in addition to container images via OCI registries. And today, we’ll be using this feature for Kyverno policies. To be more precise, OCI Artifacts are not a new specification, format, or API. It just utilizes the existent [OCI manifest](https://github.com/opencontainers/image-spec/blob/master/manifest.md) and [OCI index](https://github.com/opencontainers/image-spec/blob/master/image-index.md) definitions. Hence, we can quickly start using the same client tooling, such as a crane, skopeo, etc., and distribute them using OCI registries, thanks to the [OCI distribution-spec](https://github.com/opencontainers/distribution-spec/). Because OCI Artifacts does not change anything related to the specs, it only expands them to give people (artifact authors) power to define their content types. It is more like a generic definition for determining what can be stored in an OCI registry and consumed by clients.
 
 The Flux CLI generates a single layer OCI image for storing things. As you can use some other tools to generate an OCI image with multiple layers in it, you can use the [Layer Selection](https://github.com/fluxcd/flux2/tree/main/rfcs/0003-kubernetes-oci#layer-selection) feature that Flux provides to select the layers you want to use in the OCI image. If the layer selector matches more than one layer, the first layer matching the specified media type will be used. Note that Flux requires that the OCI layer is compressed in the tar+gzip format.
-
-{{< imgproc twitter-ss Resize 400x >}}
-{{< /imgproc >}}
 
 {{< imgproc meme-featured Resize 400x >}}
 {{< /imgproc >}}
