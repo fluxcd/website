@@ -120,6 +120,10 @@ The `bootstrap git` command takes an existing Git repository, clones it and
 commits the Flux components manifests to the specified branch. Then it
 configures the target cluster to synchronize with that repository.
 
+{{% alert color="warning" %}}
+:warning: Note that if set, your SSH hostname and port could be overwritten by your [ssh_config](https://linux.die.net/man/5/ssh_config).
+{{% /alert %}}
+
 Run bootstrap for a Git repository and authenticate with your SSH agent:
 
 ```sh
