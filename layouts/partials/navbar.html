@@ -13,7 +13,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
 		<ul class="navbar-nav mt-2 p-3 p-lg-0 mt-lg-0">
 			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown mr-4 d-none d-lg-block">
+			<li class="nav-item dropdown mr-4">
 				{{ partial "navbar-version-selector.html" . }}
 			</li>
 			{{ end }}
@@ -48,7 +48,7 @@
 			{{ end }}
 			{{ end }}
 			{{ if  (gt (len .Site.Home.Translations) 0) }}
-			<li class="nav-item dropdown mr-4 d-none d-lg-block">
+			<li class="nav-item dropdown mr-4">
 				{{ partial "navbar-lang-selector.html" . }}
 			</li>
 			{{ end }}
