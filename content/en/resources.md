@@ -14,6 +14,43 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+    url="https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
+    thumbnail="PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
+    title="Playlist: GitOps Days 2022" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-09-June-2022)
+
+{{% blocks/resource
+youtube="60jhYD2wLkY"
+title="GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="Lqeg94xuJkw"
+title="How D2iQ Operates Flux by Deepak Goel and Max Jonas Werner" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="2zGTn3S9uhw"
+title="GitOps with Flux + OpenShift by Andrew Block" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="AwpOK525imo"
+title="Happier Helming with Flux by Scott Rigby & Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="QRZTc6hlCjI"
+title= "Introducing Flux Visual Studio Code Extension in Public Beta by Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
     url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
     thumbnail="es5ngkzJDEc"
     title="Playlist: Flux at GitOps Con, KubeCon CloudNativeCon EU 2022" %}}
