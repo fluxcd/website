@@ -16,9 +16,15 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/resource
     url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
     thumbnail="es5ngkzJDEc"
+    title="Playlist: Flux at GitOps Con, KubeCon CloudNativeCon EU 2022" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 17-20-May-2022)
+
+{{% blocks/resource
+    url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
+    thumbnail="es5ngkzJDEc"
     title="Flux at GitOps Con, KubeCon CloudNativeCon EU 2022 — From Student to SRE That Loves CNCF in No Time - Jacob Valdemar Andreasen, Lunar" %}}
   {{% /blocks/resource %}}
-
 
 {{% blocks/resource
 youtube="1rJYsdLgJGA"
