@@ -3,18 +3,12 @@
 BLOCK_STDOUT_CMD           := python -c "import os,sys,fcntl; \
                                            flags = fcntl.fcntl(sys.stdout, fcntl.F_GETFL); \
                                            fcntl.fcntl(sys.stdout, fcntl.F_SETFL, flags&~os.O_NONBLOCK);"
-DOCSY_COMMIT               ?= 4e9b463da93a53419be9865a3ec1e9256591622f
+DOCSY_COMMIT               ?= 40e82e877455cd236c7b91c4fd9fcd542550f796
 DOCSY_COMMIT_FOLDER        := docsy-$(DOCSY_COMMIT)
 DOCSY_TARGET               := themes/$(DOCSY_COMMIT_FOLDER)
 GALLERY_COMMIT             ?= bc703a10e52614c96ba3f6e367a7564a2e1eb85e
 GALLERY_COMMIT_FOLDER      := hugo-shortcode-gallery-$(GALLERY_COMMIT)
 GALLERY_TARGET             := themes/$(GALLERY_COMMIT_FOLDER)
-BOOTSTRAP_SEMVER           ?= 4.6.1
-BOOTSTRAP_SEMVER_FOLDER    := bootstrap-$(BOOTSTRAP_SEMVER)
-BOOTSTRAP_TARGET           := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(BOOTSTRAP_SEMVER_FOLDER)
-FONT_AWESOME_SEMVER        ?= 5.15.4
-FONT_AWESOME_SEMVER_FOLDER := Font-Awesome-$(FONT_AWESOME_SEMVER)
-FONT_AWESOME_TARGET        := themes/$(DOCSY_COMMIT_FOLDER)/assets/vendor/$(FONT_AWESOME_SEMVER_FOLDER)
 
 DEV_IMAGE_REGISTRY_NAME    ?= fluxcd
 HUGO_VERSION               ?= $(shell grep HUGO_VERSION netlify.toml | cut -d'"' -f2)
@@ -31,7 +25,7 @@ help:  ## Display this help menu.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 .PHONY: help
 
-theme: $(DOCSY_TARGET) $(GALLERY_TARGET) $(BOOTSTRAP_TARGET) $(FONT_AWESOME_TARGET) ## Downloads the Docsy theme and dependencies.
+theme: $(DOCSY_TARGET) $(GALLERY_TARGET) ## Downloads the themes.
 
 $(DOCSY_TARGET): ## Downloads the Docsy theme.
 	mkdir -p themes/
@@ -40,6 +34,11 @@ $(DOCSY_TARGET): ## Downloads the Docsy theme.
 	tar -zxf "/tmp/${DOCSY_COMMIT_FOLDER}.tar.gz" --directory themes/
 	mv themes/${DOCSY_COMMIT_FOLDER} themes/docsy
 	ln -sf docsy themes/${DOCSY_COMMIT_FOLDER}
+	cd themes/docsy && npm install
+	cd themes/docsy/assets && ln -s ../node_modules vendor
+	cd themes/docsy/assets/vendor && \
+		ln -s ../node_modules vendor && \
+		ln -s @fortawesome/fontawesome-free/ Font-Awesome
 
 $(GALLERY_TARGET): ## Downloads the hugo-shortcode-gallery theme.
 	mkdir -p themes/
@@ -48,22 +47,6 @@ $(GALLERY_TARGET): ## Downloads the hugo-shortcode-gallery theme.
 	tar -zxf "/tmp/${GALLERY_COMMIT_FOLDER}.tar.gz" --directory themes/
 	mv themes/${GALLERY_COMMIT_FOLDER} themes/hugo-shortcode-gallery
 	ln -sf hugo-shortcode-gallery themes/${GALLERY_COMMIT_FOLDER}
-
-$(BOOTSTRAP_TARGET): ## Downloads the Docsy bootstrap dependency.
-	mkdir -p themes/docsy/assets/vendor
-	rm -rf themes/docsy/assets/vendor/bootstrap
-	curl -Lfs "https://github.com/twbs/bootstrap/archive/v${BOOTSTRAP_SEMVER}.tar.gz" -o "/tmp/bootstrap-${BOOTSTRAP_SEMVER}.tar.gz"
-	tar -zxf /tmp/bootstrap-${BOOTSTRAP_SEMVER}.tar.gz --directory /tmp
-	mv /tmp/bootstrap-${BOOTSTRAP_SEMVER} themes/docsy/assets/vendor/bootstrap
-	ln -sf bootstrap themes/docsy/assets/vendor/bootstrap-${BOOTSTRAP_SEMVER}
-
-$(FONT_AWESOME_TARGET): ## Downloads the Docsy Font Awesome dependency.
-	mkdir -p themes/docsy/assets/vendor
-	rm -rf themes/docsy/assets/vendor/Font-Awesome
-	curl -Lfs "https://github.com/FortAwesome/Font-Awesome/archive/${FONT_AWESOME_SEMVER}.tar.gz" -o "/tmp/Font-Awesome-${FONT_AWESOME_SEMVER}.tar.gz"
-	tar -zxf /tmp/Font-Awesome-${FONT_AWESOME_SEMVER}.tar.gz --directory /tmp
-	mv /tmp/Font-Awesome-${FONT_AWESOME_SEMVER} themes/docsy/assets/vendor/Font-Awesome
-	ln -sf Font-Awesome themes/docsy/assets/vendor/Font-Awesome-${FONT_AWESOME_SEMVER}
 
 gen-content: ## Generates content from external sources.
 	hack/adopters.py

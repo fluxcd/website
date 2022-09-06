@@ -4,6 +4,7 @@
 
 [build.environment]
   HUGO_VERSION = "0.102.3"
+  NODE_VERSION = "16"
 
 [context.production.environment]
   HUGO_ENV = "production"

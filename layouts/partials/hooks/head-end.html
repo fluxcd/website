@@ -1,7 +1,9 @@
+<!-- Asciinema: https://github.com/fluxcd/website/pull/130 -->
 {{ if .IsHome }}
 {{ partial "asciinema-head.html" . }}
 {{ end }}
 
+<!-- Algolia changes: https://github.com/fluxcd/website/pull/936 -->
 {{ with .Site.Params.algolia_docsearch }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
 {{ end }}
