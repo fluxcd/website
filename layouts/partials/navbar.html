@@ -1,58 +1,92 @@
-{{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
-<nav class="js-navbar-scroll navbar-expand-lg navbar navbar-dark {{ if $cover}} td-navbar-cover {{ end }}flex-row td-navbar">
-        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
-		{{ if in .Permalink "/flagger" }}
-		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/flagger.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="font-weight-bold">Flagger</span>
-		{{ else }}
-		<span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span><span class="font-weight-bold">{{ .Site.Title }}</span>
-		{{ end }}
-	</a>
+<!-- Switch between Flux / Flagger logo and title -->
+{{ $logo := "icons/logo.svg" }}
+{{ $title := .Site.Title }}
+
+{{ if in .Permalink "/flagger" }}
+{{ $logo = "icons/flagger.svg" }}
+{{ $title = "Flagger" }}
+{{ end }}
+
+{{ $cover := and
+    (.HasShortcode "blocks/cover")
+    (not .Site.Params.ui.navbar_translucent_over_cover_disable)
+-}}
+
+<nav
+  class="js-navbar-scroll navbar-expand-lg navbar navbar-dark {{ if $cover }}td-navbar-cover{{ end }} flex-row td-navbar">
+  <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+    {{- /**/ -}}
+    <span class="navbar-logo">
+      {{- if .Site.Params.ui.navbar_logo -}}
+        {{ with resources.Get $logo -}}
+          {{ ( . | minify).Content | safeHTML -}}
+        {{ end -}}
+      {{ end -}}
+    </span>
+    {{- /**/ -}}
+    <span class="font-weight-bold">
+      {{- $title -}}
+    </span>
+    {{- /**/ -}}
+  </a>
+  <!-- toggle navbar on mobile: https://github.com/fluxcd/website/pull/879 -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-		<ul class="navbar-nav mt-2 p-3 p-lg-0 mt-lg-0">
-			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown mr-4">
-				{{ partial "navbar-version-selector.html" . }}
-			</li>
-			{{ end }}
-			{{ $p := . }}
-			{{ range .Site.Menus.main }}
-				{{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
-				{{ with .Page }}
-				{{ $active = or $active ( $.IsDescendant .)  }}
-				{{ end }}
-				{{ $pre := .Pre }}
-				{{ $post := .Post }}
-				{{ $url := urls.Parse .URL }}
-				{{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
+    <ul class="navbar-nav mt-2 mt-lg-0">
+      <!-- Move docs selector forward -->
+      {{ if .Site.Params.versions -}}
+      <li class="nav-item dropdown mr-4">
+        {{ partial "navbar-version-selector.html" . -}}
+      </li>
+      {{ end -}}
+      {{ $p := . -}}
+      {{ range .Site.Menus.main -}}
+        {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+        {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
+        {{ $pre := .Pre -}}
+        {{ $post := .Post -}}
+        {{ $url := urls.Parse .URL -}}
+        {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}
 
-			{{ if .HasChildren }}
-
-			<li class="nav-item dropdown">
-				<a class="nav-link {{if $active }} active{{end}} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					{{ .Name }}
-				</a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-				{{ range .Children  }}
-					{{ $childrenurl := urls.Parse .URL }}
-					<a class="dropdown-item" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $childrenurl.Host $baseurl.Host }}target="_blank" {{ end }}>{{ .Name }}</a>
-				{{ end }}
-				</div>
-			</li>
-			{{ else }}
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}>{{ with .Pre}}{{ $pre }}{{ end }}<span{{if $active }} class="active"{{end}}>{{ .Name }}</span>{{ with .Post}}{{ $post }}{{ end }}</a>
-			</li>
-			{{ end }}
-			{{ end }}
-			{{ if  (gt (len .Site.Home.Translations) 0) }}
-			<li class="nav-item dropdown mr-4">
-				{{ partial "navbar-lang-selector.html" . }}
-			</li>
-			{{ end }}
-			<li class="nav-item nav-search-item">{{ partial "search-input.html" . }}</li>
-		</ul>
+        <!-- navbar with nested dropdown: https://github.com/fluxcd/website/commit/32c6b2f61886c3ede54483b399566ea40bea18a7 -->
+        {{ if .HasChildren }}
+        <li class="nav-item dropdown">
+          <a class="nav-link {{if $active }} active{{end}} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ .Name }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          {{ range .Children  }}
+            {{ $childrenurl := urls.Parse .URL }}
+            <a class="dropdown-item" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $childrenurl.Host $baseurl.Host }}target="_blank" {{ end }}>{{ .Name }}</a>
+          {{ end }}
+         </div>
+        </li>
+        {{ else }}
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a {{/**/ -}}
+          class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
+          href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
+          {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}
+        >
+            {{- with .Pre }}{{ $pre }}{{ end -}}
+            <span {{- if $active }} class="active" {{- end }}>
+              {{- .Name -}}
+            </span>
+            {{- with .Post }}{{ $post }}{{ end -}}
+        </a>
+      </li>
+      {{ end -}}
+	  {{ end -}}
+      {{ if (gt (len .Site.Home.Translations) 0) -}}
+      <li class="nav-item dropdown mr-4 d-none d-lg-block">
+        {{ partial "navbar-lang-selector.html" . -}}
+      </li>
+      {{ end -}}
+      <li class="nav-item nav-search-item">
+        {{ partial "search-input.html" . }}
+      </li>
+    </ul>
   </div>
 </nav>

@@ -1,6 +1,8 @@
+<!-- Algolia changes: https://github.com/fluxcd/website/pull/936 -->
 {{ if isset .Site.Params "algolia_docsearch" }}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
+<!-- Calendar changes: https://github.com/fluxcd/website/pull/487 -->
 {{ $calendar := resources.Get "js/calendar.js" | js.Build "calendar.js" }}
 <script type="text/javascript" src="{{ $calendar.RelPermalink }}" defer></script>
 

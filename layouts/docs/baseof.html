@@ -13,6 +13,7 @@
           <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             {{ partial "sidebar.html" . }}
           </aside>
+          <!-- hugeTable pages disable right sidebar: https://github.com/fluxcd/website/pull/281 -->
           {{ if not .Params.hugeTable }}
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             {{ partial "page-meta-links.html" . }}
@@ -34,6 +35,7 @@
           {{ end }}
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+            <!-- Flux Legacy warning: https://github.com/fluxcd/website/pull/310 -->
             {{ if in .Permalink "/legacy" }}{{ partial "docs/legacy-warning.html" }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>

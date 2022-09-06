@@ -51,7 +51,6 @@ github_branch        = "main"
 github_project_repo  = "https://github.com/fluxcd/flux2"
 slack                = "https://cloud-native.slack.com/messages/flux"
 support              = "/support"
-font_awesome_version = "5.9.0"
 images               = ["img/flux-social.png"]
 
 # Enable Algolia DocSearch
