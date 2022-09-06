@@ -228,7 +228,7 @@ Barrett](https://community.cncf.io/events/details/cncf-cncf-online-programs-pres
 > Extension which provides a convenient interface to Flux that can help
 > reduce friction moving between editor and terminal, alleviating the
 > headache of context switching overloading developer focus.
-> 
+>
 > Flux maintainer Kingdon Barrett will demonstrate the pre-release of
 > Flux\'s new OCI features and a convenient way to access them while they
 > remain in pre-release so you can provide the feedback that is needed by
@@ -414,7 +414,6 @@ some Flux facts - they are sort of our mission statement with Flux.
   components of Flux are on Kubernetes core controller-runtime, so
   anyone can contribute and its functionality can be extended very
   easily.
-
 
 ## Over and out
 
