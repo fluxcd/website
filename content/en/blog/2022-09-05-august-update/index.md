@@ -94,7 +94,8 @@ A number of CVEs originating from its dependencies were fixed as well.
 #### Flux Subsystem for Argo
 
 Flux added `OCIRepository` as a new kind of Source in its recent release.
-The new version of Flux Subsystem for Argo (FSA) brings these good bits
+The new version of [Flux Subsystem for Argo
+(FSA)](https://github.com/flux-subsystem-argo/flamingo) brings these good bits
 of Flux to Argo CD. The team has also recently upgraded FSA to Argo CD
 v2.2.12 to contain recent security bug fixes again. This version of Flux
 Subsystem for Argo requires Flux v0.32.0 to install.
@@ -123,12 +124,31 @@ recently tested the controller with 1,500 Terraform modules.
 
 #### Weave GitOps
 
-The team behind Weave GitOps has been busy and got three releases out
-in August. For the best experience, make sure you upgrade and consult
-the changelog entries to see how much goodness landed for yourself:
-[v0.9.2](https://github.com/weaveworks/weave-gitops/releases/tag/v0.9.2),
-[v0.9.3](https://github.com/weaveworks/weave-gitops/releases/tag/v0.9.3),
+The team at Weaveworks is continuing to invest in Applications first! They’ve
+focused this quarter on building and improving the primitives that make up
+Weave GitOps. Their aim is to make it easy for platform operators to simplify
+adoption of Kubernetes and Cloud Native in general across their engineering
+organization. An easy to use platform that is extensible and safe for
+organizations to meet their needs.
+
+The OSS team released
 [v0.9.4](https://github.com/weaveworks/weave-gitops/releases/tag/v0.9.4).
+There are a lot of iterative improvements in the app such as the ability to
+pause and resume multiple sources or automation objects from the UI. In
+addition, there are a bunch of tiny UI and visual improvements. Getting
+started is now simpler due to a new `gitops create dashboard` command for
+producing the `HelmRelease` and `HelmRepository` objects. Plus, some
+foundational improvements for `gitops run`.
+
+On the enterprise side they are wrapping up workspaces including the GUI, that
+gives you a single pane of glass what applications and policies belong to which
+tenant! That makes governance for Platform teams easy and enables Application
+teams to operate efficiently in safe boundaries. In addition, they have a new
+add application experience that makes it easy to use Kustomizations and Helm
+Charts via their UI. Now you have a single simple flow to add your
+workloads/applications independently if it’s k8s manifest in a Git Repository
+or Helm Charts. Look for an upcoming release (v0.9.4) in the next week for
+these two items.
 
 #### VS Code GitOps Extension
 
