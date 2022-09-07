@@ -21,10 +21,46 @@ These resources are sorted by date - new entries are added to the top.
 [//]: # (Date of video: 08-09-June-2022)
 
 {{% blocks/resource
+youtube="lKI7juzYgMo"
+title="Overcoming the Scaling Wall - An Enterprise Perspective Philippe Ensarguet" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="QoVShNwMJiQ"
+title="GitOps Wealth of Opportunity by Mae Large" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="swfLyou3Ggo"
+title="GitOps Business Benefits at State Farm by Rayce Brossette" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="5b91fhbLcE0"
+title="Weave GitOps & Scaling Teams by James Wilson" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
 youtube="60jhYD2wLkY"
 title="GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="99nVJbILhLY"
+title=" GitOps with Amazon EKS Anywhere by Chandler Hoisington & Joey Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-Jun-2022)
+
+{{% blocks/resource
+youtube="ChIdJXkK_CI"
+title="GitOps with VMware Tanzu Application Platform by Leigh Capili" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
 
 {{% blocks/resource
 youtube="Lqeg94xuJkw"
@@ -37,6 +73,18 @@ youtube="2zGTn3S9uhw"
 title="GitOps with Flux + OpenShift by Andrew Block" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="xim0Yj0SNms"
+title="Reconcile Terraform Resources the GitOps Way by Pinky Ravi & Roberth Strand" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="gGaOYHTlIiQ"
+title=" Securing Kubernetes Secrets for GitOps with HashiCorp Vault by Rosemary Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022
 
 {{% blocks/resource
 youtube="AwpOK525imo"
