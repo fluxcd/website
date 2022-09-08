@@ -1,7 +1,7 @@
 ---
 title: "Frequently asked questions"
 linkTitle: "FAQ"
-description: "Flux and the GitOps Toolkit frequently asked questions."
+description: "Flux and the GitOps Toolkit frequently asked questions (FAQ)."
 weight: 100
 ---
 
