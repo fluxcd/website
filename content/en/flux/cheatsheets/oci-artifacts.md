@@ -14,7 +14,7 @@ you can connect Flux to a container registry where you'll push the application d
 right next to the application container images.
 
 {{% alert color="info" title="OCI vs Git" %}}
-Using OCI instead of Git is particularity useful when the Git repository doesn't contain the 
+Using OCI instead of Git is particularly useful when the Git repository doesn't contain the
 final Kubernetes manifests. If you are using [cuelang](https://cuelang.org/), [jsonnet](https://jsonnet.org/)
 or any other tool that generates Kubernetes resources in YAML format, you can run the generators in CI
 and publish the resulting manifests as OCI artifacts for Flux to consume.
