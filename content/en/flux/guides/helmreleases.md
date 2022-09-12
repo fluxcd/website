@@ -204,71 +204,7 @@ as the whole storage bucket will be downloaded by source controller at each sync
 bucket can easily become very large if there are frequent releases of multiple charts
 that are stored in the same bucket.
 
-A better option is to use [Chartmuseum](https://github.com/helm/chartmuseum) and run a cluster
-local Helm repository that can be used by source controller. Chartmuseum has support
-for multiple different cloud storage solutions such as S3, GCS, and Azure Blob Storage,
-meaning that you are not limited to only using storage providers that support the S3 protocol.
-
-You can deploy a Chartmuseum instance with a `HelmRelease` that exposes a Helm repository stored
-in a S3 bucket. Please refer to [Chartmuseums how to run documentation](https://chartmuseum.com/docs/#how-to-run)
-for details about how to use other storage backends.
-
-```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: chartmuseum
-  namespace: flux-system
-spec:
-  url: https://chartmuseum.github.io/charts
-  interval: 10m
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: chartmuseum
-  namespace: flux-system
-spec:
-  interval: 5m
-  chart:
-    spec:
-      chart: chartmuseum
-      version: "2.14.2"
-      sourceRef:
-        kind: HelmRepository
-        name: chartmuseum
-        namespace: flux-system
-      interval: 1m
-  values:
-    env:
-      open:
-        AWS_SDK_LOAD_CONFIG: true
-        STORAGE: amazon
-        STORAGE_AMAZON_BUCKET: "bucket-name"
-        STORAGE_AMAZON_PREFIX: ""
-        STORAGE_AMAZON_REGION: "region-name"
-    serviceAccount:
-      create: true
-      annotations:
-        eks.amazonaws.com/role-arn: "role-arn"
-    securityContext:
-      enabled: true
-      fsGroup: 65534
-```
-
-After Chartmuseum is up and running it should be possible to use the accompanying
-service as the url for the `HelmRepository`.
-
-```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: helm-charts
-  namespace: flux-system
-spec:
-  interval: 1m
-  url: http://chartmuseum-chartmuseum:8080
-```
+A better option is to use an [OCI registry for chart storage](#helm-oci-repository).
 
 ## Define a Helm release
 
