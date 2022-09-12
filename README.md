@@ -1,3 +1,5 @@
+TEST DCO
+DO NOT MERGE LOL
 # fluxcd.io
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fe297324-1b1d-4d66-96f7-0f8cb1abbe84/deploy-status)](https://app.netlify.com/sites/fluxcd/deploys)
