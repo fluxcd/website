@@ -4,6 +4,7 @@ date: 2022-09-01 11:30:00+00:00
 title: Managing Kyverno Policies as OCI Artifacts with OCIRepository Sources
 description: "We will give you a real-world example of the newest feature in Flux v0.32 called OCIRepository sources to show you how you can leverage this feature to manage Kyverno policies as OCI Artifacts."
 url: /blog/2022/08/manage-kyverno-policies-as-ocirepositories
+tags: [oci]
 resources:
 - src: "**.{png}"
   title: "Image #:counter"
