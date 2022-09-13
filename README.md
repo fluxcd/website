@@ -15,7 +15,7 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 
 ## How to modify this website
 
-The main landing page of this website can be modified in `config.toml`.
+The main landing page of this website can be modified in `config.yaml`.
 
 Almost all of the content lives in the `content/en/<project>` directories. Here are some special cases.
 
