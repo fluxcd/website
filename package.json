@@ -2,6 +2,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.9",
     "postcss": "^8.4.16",
-    "postcss-cli": "^8.3.1"
+    "postcss-cli": "^10.0.0"
   }
 }
