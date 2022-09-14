@@ -14,10 +14,6 @@ theme: [docsy, hugo-shortcode-gallery]
 # Provide .LastMod values
 enableGitInfo: true
 
-# Enable Algolia DocSearch
-algolia_docsearch: true
-offlineSearch: false
-
 # Markup settings
 # Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
 markup:
@@ -55,6 +51,9 @@ params:
   slack: https://cloud-native.slack.com/messages/flux
   support: /support
   images: [img/flux-social.png]
+  # Enable Algolia DocSearch
+  algolia_docsearch: true
+  offlineSearch: false
   version_menu: "Docs"
   version: "Flux"
   url_latest_version: /flux/
