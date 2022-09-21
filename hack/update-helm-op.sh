@@ -27,9 +27,11 @@ NEW_HELM_OP_RELEASE="$1"
 
 HELM_OP_DOCS="content/en/legacy/helm-operator"
 
+REGEX="$(echo $HELM_OP_RELEASE | sed 's/\./\\./g')"
+
 find ${HELM_OP_DOCS} \
     -iname '*.md' \
     -type f \
-    -exec sed -i "s/$HELM_OP_RELEASE/$NEW_HELM_OP_RELEASE/g" {} \;
+    -exec sed -i "s/$REGEX/$NEW_HELM_OP_RELEASE/g" {} \;
 
 echo "$NEW_HELM_OP_RELEASE" > $HELM_OP_RELEASE_FILE
