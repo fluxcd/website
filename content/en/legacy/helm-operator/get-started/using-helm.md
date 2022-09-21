@@ -96,7 +96,7 @@ helm-operator-7cc7c798cc-kn26w   1/1     Running   0          18s
 ```console
 $ kubectl logs -f deploy/helm-operator
 ...
-ts=2020-01-01T12:00:00.55671.4.4Z caller=helm.go:71 component=helm version=v2 info="connected to Tiller" version="sem_ver:\"v2.16.3\" git_commit:\"1ee0254c86d4ed6887327dabed7aa7da29d7eb0d\" git_tree_state:\"clean\" " host=tiller-deploy.kube-system:44134 options="{Host: Port: Namespace:kube-system TLSVerify:false TLSEnable:true TLSKey:/etc/fluxd/helm/tls.key TLSCert:/etc/fluxd/helm/tls.crt TLSCACert: TLSHostname:}"
+ts=2020-01-01T12:00:00.556712443Z caller=helm.go:71 component=helm version=v2 info="connected to Tiller" version="sem_ver:\"v2.16.3\" git_commit:\"1ee0254c86d4ed6887327dabed7aa7da29d7eb0d\" git_tree_state:\"clean\" " host=tiller-deploy.kube-system:44134 options="{Host: Port: Namespace:kube-system TLSVerify:false TLSEnable:true TLSKey:/etc/fluxd/helm/tls.key TLSCert:/etc/fluxd/helm/tls.crt TLSCACert: TLSHostname:}"
 ```
 
 {{% alert color="info" title="Tip" %}}
