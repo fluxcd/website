@@ -123,7 +123,7 @@ podinfo is a tiny web application made with Go.
       --url=https://github.com/stefanprodan/podinfo \
       --branch=master \
       --interval=30s \
-      --export > ./clusters/my-cluster/podinfo-source.yaml
+      --export > ./cluster/my-cluster/podinfo-source.yaml
     ```
 
     The output is similar to:
