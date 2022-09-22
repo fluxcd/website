@@ -15,7 +15,7 @@ These resources are sorted by date - new entries are added to the top.
 
 {{% blocks/resource
     url="https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
-    thumbnail="PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
+    thumbnail="qCDWsIcFU-A"
     title="Playlist: GitOps Days 2022" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 08-09-June-2022)
@@ -120,7 +120,7 @@ title="Happier Helming with Flux by Scott Rigby & Kingdon Barrett" %}}
 youtube="gGaOYHTlIiQ"
 title="Securing Kubernetes Secrets for GitOps with HashiCorp Vault by Rosemary Wang" %}}
 {{% /blocks/resource %}}
-[//]: # (Date of video: 08-June-2022
+[//]: # (Date of video: 08-June-2022)
 
 {{% blocks/resource
 youtube="xim0Yj0SNms"
