@@ -87,7 +87,7 @@ title= "GitOps with Flux at Safaricom by Winnie Gakuru" %}}
 [//]: # (Date of video: 09-June-2022)
 
 {{% blocks/resource
-youtube="Y8pNhbCxLtNc"
+youtube="8pNhbCxLtNc"
 title= "GitOps & Progressive Delivery with Flux, Flagger, and Istio by Marco Amador" %}}
 {{% /blocks/resource %}}
 [//]: # (Date of video: 09-June-2022)
