@@ -14,6 +14,181 @@ These resources are sorted by date - new entries are added to the top.
 {{% blocks/section color="white" %}}
 
 {{% blocks/resource
+    url="https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
+    thumbnail="qCDWsIcFU-A"
+    title="Playlist: GitOps Days 2022" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-09-June-2022)
+
+{{% blocks/resource
+youtube="irvrjmlnUgg"
+title= "Policy Management & GItOps by Tony Chong & Mohamed Ahmed" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="56zWQpDXdB0"
+title= "GitOps and Flux Scaled to Hundreds of Developers by Bryan Oliver & Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="t1UNordcChk"
+title= "Flagger & Linkerd revisited How I Learned to Stop Worrying and use A/B Testing" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="n2DjCYRIzIA"
+title= "GitOps at RingCentral with Flux & Flagger by Ivan Anisimov" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="vIU3qH5EAF8"
+title= "Multi-tenancy Best Practices Using Cloud Native: ZScaler’s GitOps Journey" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="cR5SpyDsSYA"
+title= "GitOps and Flux at State Farm Technical Deep Dive by Rayce Brossette & Perry Wu" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="TKYSAp2T2Qg"
+title= "Applying GitOps to Everything with Crossplane + Flux by Viktor Farcic" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="a1FOFA5GV8Q"
+title= "Security First by Anais Urlichs" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="H3KjJRI5QHY"
+title= "GitOps, A Slightly Realistic Situation on Kubernetes with Flux" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="UDNXuXNM3po"
+title= "Key Learnings from Migrating from Flux1 to Flux2 by Josh Callis" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="Op6EQAfo7J8"
+title= "GitOps with Flux at Safaricom by Winnie Gakuru" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="8pNhbCxLtNc"
+title= "GitOps & Progressive Delivery with Flux, Flagger, and Istio by Marco Amador" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="YBfwtMj4LpY"
+title= "Crayon’s Cloud Native Journey by Roberth Strand" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="9SVmaOSWZZE"
+title= "Flux Flagger Deep Dive by Stefan Prodan & Philip Laine" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 09-June-2022)
+
+{{% blocks/resource
+youtube="QRZTc6hlCjI"
+title= "Introducing Flux Visual Studio Code Extension in Public Beta by Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="AwpOK525imo"
+title="Happier Helming with Flux by Scott Rigby & Kingdon Barrett" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="gGaOYHTlIiQ"
+title="Securing Kubernetes Secrets for GitOps with HashiCorp Vault by Rosemary Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="xim0Yj0SNms"
+title="Reconcile Terraform Resources the GitOps Way by Pinky Ravi & Roberth Strand" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="2zGTn3S9uhw"
+title="GitOps with Flux + OpenShift by Andrew Block" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="Lqeg94xuJkw"
+title="How D2iQ Operates Flux by Deepak Goel and Max Jonas Werner" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="ChIdJXkK_CI"
+title="GitOps with VMware Tanzu Application Platform by Leigh Capili" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="99nVJbILhLY"
+title="GitOps with Amazon EKS Anywhere by Chandler Hoisington & Joey Wang" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="60jhYD2wLkY"
+title="GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="5b91fhbLcE0"
+title="Weave GitOps & Scaling Teams by James Wilson" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="swfLyou3Ggo"
+title="GitOps Business Benefits at State Farm by Rayce Brossette" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="QoVShNwMJiQ"
+title="GitOps Wealth of Opportunity by Mae Large" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="lKI7juzYgMo"
+title="Overcoming the Scaling Wall - An Enterprise Perspective Philippe Ensarguet" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
+youtube="ETwX5oiRG3Q"
+title="Pre-show Workshop: Intro to Kubernetes, GitOps, & Observability" %}}
+{{% /blocks/resource %}}
+[//]: # (Date of video: 08-June-2022)
+
+{{% blocks/resource
     url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
     thumbnail="es5ngkzJDEc"
     title="Playlist: Flux at GitOps Con, KubeCon CloudNativeCon EU 2022" %}}
