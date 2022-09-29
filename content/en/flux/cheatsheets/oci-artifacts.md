@@ -150,7 +150,7 @@ The Flux controllers running on the production cluster
 detects the new semver tag, pulls the manifests and applies them.
 
 {{% alert color="info" title="GitHub Actions" %}}
-If your are using GitHub for CI, please see the [these examples](https://github.com/fluxcd/flux2/tree/main/action) on
+If you are using GitHub for CI, please see [these examples](https://github.com/fluxcd/flux2/tree/main/action) on
 how to automate the publishing of OCI Artifacts in your workflows with the Flux GitHub Action.
 {{% /alert %}}
 
@@ -336,6 +336,93 @@ For more details on how to setup contextual authorization for Azure, AWS and Goo
 
 - [OCIRepository documentation](/flux/components/source/ocirepositories/#provider)
 - [HelmRepository documentation](/flux/components/source/helmrepositories/#provider)
+
+## Signing and verification
+
+Starting with v0.35, Flux comes with support for verifying OCI artifacts
+signed with [Sigstore Cosign](https://github.com/sigstore/cosign).
+
+To secure your delivery pipeline, you can sign the artifacts and configure Flux
+to verify the artifacts' signatures before they are downloaded and reconciled in production.
+
+### Workflow example
+
+Generate a Cosign key-pair and create a Kubernetes secret with the public key:
+
+```shell
+cosign generate-key-pair
+
+kubectl -n flux-system create secret generic cosign-pub \
+  --from-file=cosign.pub=cosign.pub
+```
+
+Push and sign the artifact using the Cosign private key:
+
+```shell
+flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) \
+	--path="./kustomize" \
+	--source="$(git config --get remote.origin.url)" \
+	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
+
+cosign sign --key=cosign.key ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD)
+```
+
+Configure Flux to verify the artifacts using the Cosign public key from the Kubernetes secret:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    semver: "*"
+  verify:
+    provider: cosign
+    secretRef:
+      name: cosign-pub
+```
+
+{{% alert color="info" title="Cosign Keyless" %}}
+For publicly available OCI artifacts, which are signed using
+the [Cosign Keyless](https://github.com/sigstore/cosign/blob/main/KEYLESS.md)
+method, you can enable the verification by omitting the `.verify.secretRef` field.
+
+Note that keyless verification is an **experimental feature**, using
+custom root CAs or self-hosted Rekor instances are not currently supported.
+{{% /alert %}}
+
+### Verification status
+
+If the verification succeeds, Flux adds a condition with the
+following attributes to the OCIRepository's `.status.conditions`:
+
+- `type: SourceVerified`
+- `status: "True"`
+- `reason: Succeeded`
+
+If the verification fails, Flux will set the `SourceVerified` status to `False`
+and will not fetch the artifact contents from the registry. The verification
+failure will trigger an [alert](/flux/guides/notifications.md) and the
+OCIRepository ready status message will contain the verification error message.
+
+```console
+$ kubectl -n flux-system describe ocirepository podinfo
+
+Status:                        
+  Conditions:
+    Last Transition Time:     2022-09-29T18:29:12Z
+    Message:                  failed to verify the signature using provider 'cosign': no matching signatures were found
+    Observed Generation:      1
+    Reason:                   VerificationError
+    Status:                   False
+    Type:                     Ready
+```
+
+Verification failures are also visible when running `flux get sources oci` and in Kubernetes events.
 
 ## Monitoring
 
