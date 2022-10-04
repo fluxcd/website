@@ -9,3 +9,5 @@ resources:
 - src: "**.{png}"
   title: "Image #:counter"
 ---
+
+Software supply chain attacks are one of the most critical risks threatening today's software, and it has collapsed like a dark cloud on the software industry. The Flux community is one of those communities that always takes precautions against these threats. While providing the measures I mentioned primarily for their own products, they also provided users with awareness-raising articles on these issues. You can find all of Flux's articles on safety here. I strongly recommend you to read these articles. And they did not stop here, they also introduced features in their products that could protect users against these threats, and today we will talk about one of these features.  
