@@ -13,7 +13,7 @@ resources:
 As the Flux family of projects and its communities are growing, we
 strive to inform you each month about what has already landed, new
 possibilities which are available for integration, and where you can get
-involved. Read our [last update here](/blog/2022/03/february-update/).
+involved. Read our [last update here](/blog/2022/09/august-2022-update/).
 
 It's the beginning of October 2022 - let's recap together what happened
 in September - it has been a lot!
@@ -314,17 +314,17 @@ with GitOps](https://sched.co/1AR8Y)
 
 > Niki Manoledaki (Weaveworks)
 
-13:40 - 14:10 GitOpsCon: [GitOps with Flux and OCI
-Registries](https://sched.co/1AR8z)
-
-> Soulé Ba & Scott Rigby (Weaveworks)
-
 13:40 - 14:10 GitOpsCon: [Complete DR of Workloads, PVs and CSI
 Snapshots via Flux and Vault OSS](https://sched.co/1AR9B)
 
 > Kingdon Barrett (Weaveworks)
 
-13:40 - 14:10 GitOpsCon: [Pixie + Flux, VSCode, GitOps Observability
+14:15 - 14:45 GitOpsCon: [GitOps with Flux and OCI
+Registries](https://sched.co/1AR8z)
+
+> Soulé Ba & Scott Rigby (Weaveworks)
+
+14:15 - 14:45 GitOpsCon: [Pixie + Flux, VSCode, GitOps Observability
 from Top to Bottom](https://sched.co/1AR8z)
 
 > Somtochi Onyekwere (Weaveworks)

@@ -13,7 +13,7 @@ tags: [monthly-update]
 As the Flux family of projects and its communities are growing, we
 strive to inform you each month about what has already landed, new
 possibilities which are available for integration, and where you can get
-involved. Read our [last update here](/blog/2022/03/february-update/).
+involved. Read our [last update here](/blog/2022/05/april-2022-update/).
 
 It's the beginning of June 2022 - let's recap together what happened in
 May - it has been a lot!
