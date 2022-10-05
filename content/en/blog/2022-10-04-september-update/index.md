@@ -314,17 +314,17 @@ with GitOps](https://sched.co/1AR8Y)
 
 > Niki Manoledaki (Weaveworks)
 
-13:40 - 14:10 GitOpsCon: [GitOps with Flux and OCI
-Registries](https://sched.co/1AR8z)
-
-> Soulé Ba & Scott Rigby (Weaveworks)
-
 13:40 - 14:10 GitOpsCon: [Complete DR of Workloads, PVs and CSI
 Snapshots via Flux and Vault OSS](https://sched.co/1AR9B)
 
 > Kingdon Barrett (Weaveworks)
 
-13:40 - 14:10 GitOpsCon: [Pixie + Flux, VSCode, GitOps Observability
+14:15 - 14:45 GitOpsCon: [GitOps with Flux and OCI
+Registries](https://sched.co/1AR8z)
+
+> Soulé Ba & Scott Rigby (Weaveworks)
+
+14:15 - 14:45 GitOpsCon: [Pixie + Flux, VSCode, GitOps Observability
 from Top to Bottom](https://sched.co/1AR8z)
 
 > Somtochi Onyekwere (Weaveworks)
