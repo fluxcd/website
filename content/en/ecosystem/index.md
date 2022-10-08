@@ -96,7 +96,7 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 | [telekom/das-schiff](https://github.com/telekom/das-schiff)                                                     | This is home of Das Schiff - Deutsche Telekom Technik's engine for Kubernetes Cluster as a Service (CaaS) in on-premise environment on top of bare-metal servers and VMs.                                                                                       |
 | [weaveworks/eksctl](https://github.com/weaveworks/eksctl)                                                       | The official CLI for creating and managing Kubernetes clusters on Amazon EKS.                                                                                                                                                                                   |
 | [kubevela/kubevela](https://github.com/kubevela/kubevela)                                                       | KubeVela integrates fluxcd well for [Helm Chart delivery](https://kubevela.io/docs/tutorials/helm) and [GitOps](https://kubevela.io/docs/case-studies/gitops), and provide [multi-cluster capabilities](https://kubevela.io/docs/tutorials/helm-multi-cluster). |
-
+| [DataDog/integrations-extra](https://github.com/DataDog/integrations-extras/tree/master/fluxcd/)                                                       | The Datadog Agent is software that runs on your hosts. It collects events and metrics from hosts and sends them to Datadog, where you can analyze your monitoring and performance data. |
 ## Ancillary Tools
 
 The functionality of Flux can be easily extended with ancillary utility tools. Here is a list of tools we like. If yours is missing, feel free to send a PR to add it.
