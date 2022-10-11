@@ -15,23 +15,23 @@ events and reacts to revision changes by downloading the artifact produced by
 
 On your dev machine install the following tools:
 
-* go >= 1.18
+* go >= 1.19
 * kubebuilder >= 3.0
 * kind >= 0.8
 * kubectl >= 1.21
 
 ## Install Flux
 
+Install the Flux CLI with Homebrew on macOS or Linux:
+
+```sh
+brew install fluxcd/tap/flux
+```
+
 Create a cluster for testing:
 
 ```sh
 kind create cluster --name dev
-```
-
-Install the Flux CLI:
-
-```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
 ```
 
 Verify that your dev machine satisfies the prerequisites with:
@@ -75,10 +75,10 @@ Port forward to source-controller artifacts server:
 kubectl -n flux-system port-forward svc/source-controller 8181:80
 ```
 
-Export the local address as `SOURCE_HOST`:
+Export the local address as `SOURCE_CONTROLLER_LOCALHOST`:
 
 ```sh
-export SOURCE_HOST=localhost:8181
+export SOURCE_CONTROLLER_LOCALHOST=localhost:8181
 ```
 
 Run source-watcher locally:
@@ -91,30 +91,31 @@ Create a Git source:
 
 ```sh
 flux create source git test \
---url=https://github.com/stefanprodan/podinfo \
---tag=4.0.0
+--url=https://github.com/fluxcd/flux2 \
+--ignore-paths='/*,!/manifests' \
+--tag=v0.34.0
 ```
 
-The source-watcher should log the revision:
+The source-watcher will log the revision:
 
 ```sh
-New revision detected   {"gitrepository": "flux-system/test", "revision": "4.0.0/ab953493ee14c3c9800bda0251e0c507f9741408"}
-Extracted tarball into /var/folders/77/3y6x_p2j2g9fspdkzjbm5_s40000gn/T/test292235827: 123 files, 29 dirs (32.603415ms)
-Processing files...
+New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.34.0/90f0d81532f6ea76c30974267956c7eaee5c1dea"}
+Processing manifests...
 ```
 
 Change the Git tag:
 
 ```sh
 flux create source git test \
---url=https://github.com/stefanprodan/podinfo \
---tag=4.0.1
+--url=https://github.com/fluxcd/flux2 \
+--ignore-paths='/*,!/manifests' \
+--tag=v0.35.0
 ```
 
-The source-watcher should log the new revision:
+And source-watcher will log the new revision:
 
 ```sh
-New revision detected   {"gitrepository": "flux-system/test", "revision": "4.0.1/113360052b3153e439a0cf8de76b8e3d2a7bdf27"}
+New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.35.0/1bf63a94c22d1b9b7ccf92f66a1a34a74bd72fca"}
 ```
 
 The source-controller reports the revision under `GitRepository.Status.Artifact.Revision` in the format: `<branch|tag>/<commit>`.
@@ -127,13 +128,25 @@ controller does the following:
 * subscribes to `GitRepository` events
 * detects when the Git revision changes
 * downloads and extracts the source artifact
-* write to stdout the extracted file names
+* writes the extracted dir names to stdout
 
 ```go
-// GitRepositoryWatcher watches GitRepository objects for revision changes
 type GitRepositoryWatcher struct {
 	client.Client
-	Scheme *runtime.Scheme
+	HttpRetry       int
+	artifactFetcher *fetch.ArchiveFetcher
+}
+
+func (r *GitRepositoryWatcher) SetupWithManager(mgr ctrl.Manager) error {
+	r.artifactFetcher = fetch.NewArchiveFetcher(
+		r.HttpRetry,
+		tar.UnlimitedUntarSize,
+		os.Getenv("SOURCE_CONTROLLER_LOCALHOST"),
+	)
+
+	return ctrl.NewControllerManagedBy(mgr).
+		For(&sourcev1.GitRepository{}, builder.WithPredicates(GitRepositoryRevisionChangePredicate{})).
+		Complete(r)
 }
 
 // +kubebuilder:rbac:groups=source.toolkit.fluxcd.io,resources=gitrepositories,verbs=get;list;watch
@@ -148,7 +161,8 @@ func (r *GitRepositoryWatcher) Reconcile(ctx context.Context, req ctrl.Request) 
 		return ctrl.Result{}, client.IgnoreNotFound(err)
 	}
 
-	log.Info("New revision detected", "revision", repository.Status.Artifact.Revision)
+	artifact := repository.Status.Artifact
+	log.Info("New revision detected", "revision", artifact.Revision)
 
 	// create tmp dir
 	tmpDir, err := os.MkdirTemp("", repository.Name)
@@ -158,12 +172,10 @@ func (r *GitRepositoryWatcher) Reconcile(ctx context.Context, req ctrl.Request) 
 	defer os.RemoveAll(tmpDir)
 
 	// download and extract artifact
-	summary, err := r.fetchArtifact(ctx, repository, tmpDir)
-	if err != nil {
+	if err := r.artifactFetcher.Fetch(artifact.URL, artifact.Checksum, tmpDir); err != nil {
 		log.Error(err, "unable to fetch artifact")
 		return ctrl.Result{}, err
 	}
-	log.Info(summary)
 
 	// list artifact content
 	files, err := os.ReadDir(tmpDir)
@@ -177,12 +189,6 @@ func (r *GitRepositoryWatcher) Reconcile(ctx context.Context, req ctrl.Request) 
 	}
 
 	return ctrl.Result{}, nil
-}
-
-func (r *GitRepositoryWatcher) SetupWithManager(mgr ctrl.Manager) error {
-	return ctrl.NewControllerManagedBy(mgr).
-		For(&sourcev1.GitRepository{}, builder.WithPredicates(GitRepositoryRevisionChangePredicate{})).
-		Complete(r)
 }
 ```
 
@@ -215,8 +221,8 @@ Start the controller in the main function:
 func main()  {
 
 	if err = (&controllers.GitRepositoryWatcher{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Client:    mgr.GetClient(),
+		HttpRetry: httpRetry,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "GitRepositoryWatcher")
 		os.Exit(1)
@@ -225,14 +231,13 @@ func main()  {
 }
 ```
 
-Note that the watcher controller depends on Kubernetes client-go >= 1.21.
-Your `go.mod` should require controller-runtime v0.9 or newer:
+Note that the watcher depends on Flux [runtime](https://pkg.go.dev/github.com/fluxcd/pkg/runtime)
+and Kubernetes [controller-runtime](https://pkg.go.dev/sigs.k8s.io/controller-runtime):
 
 ```go
 require (
-    k8s.io/apimachinery v0.25.0
-    k8s.io/client-go v0.25.0
-    sigs.k8s.io/controller-runtime v0.12.0
+    github.com/fluxcd/pkg/runtime v0.20.0
+    sigs.k8s.io/controller-runtime v0.13.0
 )
 ```
 
