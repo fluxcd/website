@@ -5,7 +5,7 @@ description: "How to build, publish and consume OCI Artifacts with Flux."
 weight: 31
 ---
 
-## How Flux OCI works?
+## How does Flux OCI work?
 
 With Flux, you can distribute and reconcile Kubernetes configuration packaged as
 [OCI artifacts](https://github.com/opencontainers/artifacts/blob/main/artifact-authors.md).
