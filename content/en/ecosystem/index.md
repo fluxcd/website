@@ -62,13 +62,13 @@ These open source projects offer a dedicated UI for Flux.
 ### VS Code GitOps Tools
 
 {{< gallery match="img/vscode-gitops*.png" sortOrder="desc" rowHeight="150" margins="5"
-            thumbnailResizeOptions="600x600 q90 Lanczos" previewType="color" embedPreview="true" >}}
+            thumbnailResizeOptions="600x600 q90 Lanczos" previewType="color" embedPreview=true >}}
 
 
 ### Weave GitOps
 
 {{< gallery match="img/weave-gitops*.png" sortOrder="desc" rowHeight="150" margins="5"
-            thumbnailResizeOptions="600x600 q90 Lanczos" previewType="color" embedPreview="true" >}}
+            thumbnailResizeOptions="600x600 q90 Lanczos" previewType="color" embedPreview=true >}}
 
 
 ## Flux Extensions
