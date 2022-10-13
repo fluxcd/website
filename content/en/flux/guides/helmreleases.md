@@ -474,7 +474,7 @@ entry telling the `sops` CLI how to handle encrypting all YAML secrets, like:
 ```yaml
 # ./apps/sensitive/.sops.yaml
 creation_rules:
-  - path_regex: ".*\.yaml"
+  - path_regex: ".*\\.yaml"
     encrypted_regex: ^(data|stringData)$
     pgp: KEY_ID_ASDF1234
 ```
@@ -492,7 +492,7 @@ first, so that our values.yaml file does not get captured by the `*.yaml` rule.
 creation_rules:
   - path_regex: .*values.yaml$
     pgp: KEY_ID_ASDF1234
-  - path_regex: ".*\.yaml"
+  - path_regex: ".*\\.yaml"
     encrypted_regex: ^(data|stringData)$
     pgp: KEY_ID_ASDF1234
 ```
