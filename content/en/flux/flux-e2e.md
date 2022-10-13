@@ -408,8 +408,9 @@ before being cancelled or timing out. So the theoretical maximum time for Kustom
 each of Apply, and Health Checking both take fully up to the maximum allowed time.
 
 The Kustomize Controller applies resource manifests to match the order in which they were rendered by the kustomize `build` call.  It therefore applies any
-custom resource definition (CRD), namespace, or cluster-scoped resources before their subordinate custom resource or namespace-scoped resources so that they
-will be available in the API for the resources that refer to or use them.
+custom resource definition (CRD), namespace, or cluster-scoped resources before their subordinate custom resource or namespace-scoped resources so that they will be available in the API for the resources that refer to or use them.
+
+Kustomize controller applies resource manifests that are present in `.yaml` or `.yml`, all other extensions are ignored by the kustomize controller.
 
 ### Helm Controller reconciles HelmRelease resources
 
