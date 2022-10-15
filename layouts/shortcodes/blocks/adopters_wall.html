@@ -1,7 +1,68 @@
-<h2 class="adopters-label">Adopted by</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      div.scrollmenu {
+        height:100%;
+        overflow: auto;
+        white-space: nowrap;
+      }
+      
+      div.scrollmenu img {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        height:100%;
+        padding-right:30px;
+        text-decoration: none;
+      }
+      div.carousel-inner{
+        
+        height:100%;
+      }
+      div.carousel-item active{
+        
+        height:100%;
+      }
+      div.scrollmenu img {
+        transition: 0.5s all ease-in-out;
+      }
+      div.scrollmenu img:hover {
+       transform: scale(1.5);
+      }
+      
+      </style>
+    <title>Adopters_wall</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+    
 
-<div id="logos">
-  <div class="col">
-    {{ readFile "/content/en/adopters_wall_include.html" | safeHTML }}
-  </div>
-</div>
+
+    <h2 class="adopters-label">Adopted by</h2>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <div id="logos">
+            <div class="col">
+              <div class="scrollmenu">
+                {{ readFile "/content/en/adopters_wall_include.html" | safeHTML }}
+              </div>
+
+            </div>
+          </div>
+        </div>
+     </div>
+      
+    </div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
+
