@@ -1,9 +1,10 @@
 ---
 author: developer-guy
-date: 2022-10-11 12:30:00+00:00
-title: Prove the Authenticity of the OCI Artifacts
+date: 2022-10-17 12:30:00+00:00
+title: Prove the Authenticity of OCI Artifacts
 description: "We'll talk about integration of the cosign tool, which is a tool for signing and verifying the given container images, blobs, etc, that we used to prove the authenticity of the OCI Artifacts we manage through the OCIRepository resources."
-url: /blog/2022/10/prove-the-authenticity-of-the-oci-artifacts
+url: /blog/2022/10/prove-the-authenticity-of-oci-artifacts
+aliases: [/blog/2022/10/prove-the-authenticity-of-the-oci-artifacts]
 tags: [oci, security]
 resources:
 - src: "**.{png}"
