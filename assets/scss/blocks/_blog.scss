@@ -3,14 +3,17 @@
     margin: clamp(10px, 1vh, 20px) 0;
     background-color: #faf5b6;
     color: #000;
-    @include media-breakpoint-up(lg) {
-        max-width: 80%;
-    }
 }
 
 .deprecation-warning.outdated-blog, .pageinfo.deprecation-warning.outdated-blog {
     background-color: $blue;
     color: $white;
+}
+
+.pageinfo {
+    @include media-breakpoint-up(lg) {
+        max-width: 80%;
+    }
 }
 
 body.td-home .deprecation-warning, body.td-blog .deprecation-warning, body.td-documentation .deprecation-warning {
