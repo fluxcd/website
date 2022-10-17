@@ -12,7 +12,7 @@ resources:
 
 Software supply chain attacks are one of the most critical risks threatening today's software and have begun to collapse like a dark cloud over the software industry. For the Flux family of projects we are taking precautions against these threats. Apart from implementing security features and best practices, it is important to us to educate our users. You can find all Flux's security articles [here](/tags/security/). Today we will talk about a new security feature.
 
-{{< imgproc flux-protects-you-against-ssca-featured Resize 800x >}}
+{{< imgproc flux-protects-you-against-ssca-featured Resize x700 >}}
 {{< /imgproc >}}
 
 Let's start with a brief historical explanation of how we got to this point. It all started with the following sentence:
