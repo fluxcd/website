@@ -2,6 +2,7 @@ resources:
   - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
     thumbnail: qCDWsIcFU-A
     title: "Playlist: GitOps Days 2022"
+    description: "Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux integrators, end-users/adopters, and maintainers."
     date: 2022-06-09
   - youtube: irvrjmlnUgg
     title: "Policy Management & GItOps by Tony Chong & Mohamed Ahmed"
@@ -93,6 +94,7 @@ resources:
   - url: https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do
     thumbnail: es5ngkzJDEc
     title: "Playlist: Flux at GitOps Con, KubeCon CloudNativeCon EU 2022"
+    description: "A playlist with a compilation of all talks featuring Flux during GitOpsCon & KubeCon / CloudNativeCon EU 2022 (May 17 – 20)."
     date: 2022-05-17
   - youtube: 1rJYsdLgJGA
     title: "Simplifying Service Mesh Operations with Flux and Flagger - Mitch Connors & Stefan Prodan"
@@ -156,9 +158,11 @@ resources:
     date: 2022-05-17
   - youtube: 5u45lXmhgxA
     title: "Full GitOps Tutorial: Getting started with Flux CD"
+    description: "Anaïs Urlichs walks you through getting started with Flux, installing the Starboard Helm Chart through GitOps best practices, managing your app, and setting up notifications and monitoring using Flux."
     date: 2022-04-14
   - youtube: PFLimPh5-wo
     title: "The FASTEST way to deploy apps to Kubernetes"
+    description: "Techno Tim shows how Flux can be leveraged to monitor git repositories, source control, image container repositories, helm repositories, and more."
     date: 2022-05-13
   - youtube: dunU2ABitMA
     title: "How To Apply GitOps To Everything Using Crossplane And Flux"
@@ -186,6 +190,7 @@ resources:
   - url: https://youtu.be/cR2eCMbiZg4?t=298
     thumbnail: cR2eCMbiZg4
     title: "GitOps with GitHub Actions & Flux - Kingdon Barrett"
+    description: "Kingdon Barret demos of GitHub Actions and three different methods for doing Flux deployment automation using SemVer with GitRepository Source, HelmRelease, and Image Update Automation."
     date: 2022-02-24
   - url: https://youtu.be/0KmqEp4VxSQ?t=292
     thumbnail: 0KmqEp4VxSQ
@@ -205,6 +210,7 @@ resources:
     date: 2022-01-28
   - youtube: 1X3JgCnRNsw
     title: "Flux - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak"
+    description: "Saiyam provides an excellent introduction to Flux's architecture and its powerful features with a quick demo of Bootstraping using FluxCLI."
     date: 2021-12-01
   - youtube: jD0fi5vKCV0
     title: "Technically Speaking (S1E09): Get into GitOps with Stefan Prodan and Chris Wright"
