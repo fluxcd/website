@@ -261,6 +261,66 @@ spec:
       name: staging-cluster
 ```
 
+### Should I be using Kustomize Helm chart plugin?
+
+Due to security and performance reasons, Flux does not allow the execution of
+Kustomize plugins which shell-out to arbitrary binaries insides the kustomize-controller container.
+
+Instead of using Kustomize to deploy charts, e.g.:
+
+```yaml
+# infra/kyverno/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kyverno
+resources:
+  - kyverno-namespace.yaml
+helmCharts:
+- name: kyverno
+  valuesInline:
+    networkPolicy:
+      enabled: true
+  releaseName: kyverno
+  version: 1.8.0
+  repo: https://kyverno.github.io/kyverno/
+```
+
+You can take advantage of Flux's OCI and native Helm features,
+by replacing the `kustomization.yaml` with a Flux Helm definition:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: kyverno
+  namespace: kyverno
+spec:
+  interval: 60m
+  url: oci://ghcr.io/kyverno/charts/kyverno
+  type: oci
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: kyverno
+spec:
+  releaseName: kyverno
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: kyverno
+      version: 1.8.0
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+  interval: 1h
+  values:
+    networkPolicy:
+      enabled: true
+```
+
 ### What is the behavior of Kustomize used by Flux?
 
 We referred to the **Kustomize v4** CLI flags here,
