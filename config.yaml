@@ -4,15 +4,57 @@ enableRobotsTXT: true
 enableEmoji: true
 
 # Language configuration
-contentDir: content/en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 
-theme: [docsy, hugo-shortcode-gallery]
-
 # Provide .LastMod values
 enableGitInfo: true
+
+module:
+  proxy: direct
+  hugoVersion:
+    extended: true
+  imports:
+    - path: github.com/google/docsy
+      disable: false
+      mounts:
+      # The following entry is the one we actually need, to be able to
+      # refer to it in our own assets/scss files.
+      - source: assets/scss
+        target: assets/scss/docsy
+      # Unfortunately that means we need to redefine all of Docsy's
+      # module mounts here...
+      # https://github.com/google/docsy/commit/215f68033bbc7bddf8dbec2bbabf8749d1998a17 (lines 24f)
+      #
+      # I hope this use-case will be simplified one day.
+      - source: content
+        target: content
+      - source: static
+        target: static
+      - source: layouts
+        target: layouts
+      - source: data
+        target: data
+      - source: assets
+        target: assets
+      - source: i18n
+        target: i18n
+      - source: archetypes
+        target: archetypes
+      - source: node_modules/bootstrap
+        target: assets/vendor/bootstrap
+      - source: node_modules/@fortawesome/fontawesome-free
+        target: assets/vendor/Font-Awesome
+      - source: node_modules/@fortawesome/fontawesome-free/webfonts
+        target: static/webfonts
+    - path: github.com/google/docsy/dependencies
+      disable: false
+    - path: github.com/mfg92/hugo-shortcode-gallery
+      disable: false
+  mounts:
+    - source: content/en
+      target: content
 
 # Markup settings
 # Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
@@ -33,7 +75,6 @@ languages:
     languageCode: en
     time_format_default: 2006-01-02
     time_format_blog: 2006-01-02
-    contentDir: content/en
 
 permalinks:
   blog: /:section/:year/:month/:slug/
