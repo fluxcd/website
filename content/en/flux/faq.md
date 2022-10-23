@@ -281,7 +281,7 @@ helmCharts:
     networkPolicy:
       enabled: true
   releaseName: kyverno
-  version: 1.8.0
+  version: 2.6.0
   repo: https://kyverno.github.io/kyverno/
 ```
 
@@ -293,29 +293,31 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: kyverno
-  namespace: kyverno
+  namespace: flux-system
 spec:
-  interval: 60m
-  url: oci://ghcr.io/kyverno/charts/kyverno
+  interval: 6h
+  url: oci://ghcr.io/kyverno/charts
   type: oci
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kyverno
-  namespace: kyverno
+  namespace: flux-system
 spec:
+  interval: 6h
   releaseName: kyverno
+  targetNamespace: kyverno
   install:
     createNamespace: true
   chart:
     spec:
       chart: kyverno
-      version: 1.8.0
+      version: 2.6.0
+      interval: 6h
       sourceRef:
         kind: HelmRepository
         name: kyverno
-  interval: 1h
   values:
     networkPolicy:
       enabled: true
