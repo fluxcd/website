@@ -90,11 +90,14 @@ metadata:
   namespace: flagger
 data:
   address: <encoded-url>
+  token: <encoded-slack-bot-token>
 ```
 
 The alert provider **type** can be: `slack`, `msteams`, `rocket` or `discord`. When set to `discord`,
 Flagger will use [Slack formatting](https://birdie0.github.io/discord-webhooks-guide/other/slack_formatting.html)
 and will append `/slack` to the Discord address.
+
+For using a **Slack bot token**, you have to add the `token` to the Kubernetes secret referred in `secretRef`.
 
 When not specified, **channel** defaults to `general` and **username** defaults to `flagger`.
 

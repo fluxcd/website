@@ -1,5 +1,5 @@
 ---
-weight: 3
+weight: 4
 title: Flagger Install on EKS App Mesh
 ---
 
