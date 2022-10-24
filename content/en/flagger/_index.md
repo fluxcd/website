@@ -23,13 +23,10 @@ Flagger can be configured with Kubernetes custom resources and is compatible wit
 any CI/CD solutions made for Kubernetes. Since Flagger is declarative and reacts to Kubernetes events,
 it can be used in **GitOps** pipelines together with tools like Flux, JenkinsX, Carvel, Argo, etc.
 
-Flagger is a [Cloud Native Computing Foundation](https://cncf.io/) project
-and part of [Flux](/) family of GitOps tools.
-
 ## Getting started
 
 To get started with Flagger, choose one of the supported routing providers and
-[install](install/flagger-install-on-kubernetes.md) Flagger with Helm or Kustomize.
+[install](install/flagger-install-with-flux.md) Flagger with Flux.
 
 After installing Flagger, you can follow one of these tutorials to get started:
 
@@ -54,3 +51,11 @@ After installing Flagger, you can follow one of these tutorials to get started:
 * [Istio](https://github.com/stefanprodan/gitops-istio)
 * [Linkerd](https://helm.workshop.flagger.dev)
 * [AWS App Mesh](https://eks.handson.flagger.dev)
+
+## CNCF
+
+Flagger is a [Cloud Native Computing Foundation](https://cncf.io/) project
+and part of [Flux](/) family of GitOps tools.
+
+_The Linux Foundation® (TLF) has registered trademarks and uses trademarks.
+For a list of TLF trademarks, see [Trademark Usage](https://www.linuxfoundation.org/trademark-usage)._
