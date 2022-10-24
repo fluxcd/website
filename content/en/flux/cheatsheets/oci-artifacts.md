@@ -29,6 +29,7 @@ The Flux CLI commands for managing OCI artifacts are:
 - `flux push artifact`
 - `flux pull artifact`
 - `flux tag artifact`
+- `flux diff artifact`
 - `flux list artifacts`
 
 {{% alert color="info" title="OCI Artifact content" %}}
@@ -423,6 +424,55 @@ Status:
 ```
 
 Verification failures are also visible when running `flux get sources oci` and in Kubernetes events.
+
+## Verify Helm charts
+
+Starting with v0.36, Flux comes with support for verifying Helm charts stored as OCI artifacts
+and signed with [Sigstore Cosign](https://github.com/sigstore/cosign).
+
+The verification works the same as for `OCIRepository`, the main difference is that for Helm,
+the verification must be enabled with `HelmRelease.spec.chart.spec.verify`.
+
+Assuming you've pushed and signed a Helm chart with:
+
+```shell
+helm push <app-name>-<app-version>.tgz oci://<registry-host>/<org>/charts
+cosign sign --key cosign.key <registry-host>/<org>/charts/<app-name>:<app-version>
+```
+
+You can configure Flux to verify the chart signature before installing and upgrading a Helm release:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: helm-charts
+spec:
+  interval: 1h
+  url: oci://<registry-host>/<org>/charts
+  type: oci
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: <app-name>
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: <app-name>
+      version: <app-version>
+      sourceRef:
+        kind: HelmRepository
+        name: helm-charts
+      verify:
+        provider: cosign
+        secretRef:
+          name: cosign-pub
+```
+
+For more details on how Helm chart versification works,
+please see the [HelmChart documentation](/flux/components/source/helmcharts/#verification).
 
 ## Monitoring
 
