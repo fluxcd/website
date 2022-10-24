@@ -35,8 +35,6 @@
           {{ end }}
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
-            <!-- Flux Legacy warning: https://github.com/fluxcd/website/pull/310 -->
-            {{ if in .Permalink "/legacy" }}{{ partial "docs/legacy-warning.html" }}{{ end }}
             {{ block "main" . }}{{ end }}
           </main>
         </div>

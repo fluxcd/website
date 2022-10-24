@@ -6,8 +6,6 @@
 /docs/guides/installation                       /flux/installation                                  301!
 /docs/contributing/flux2                        /flux/contributing/flux                             301!
 /docs/contributing/docs/hugo-shortcodes         /flux/contributing/docs/writing-docs                301!
-/legacy/helm-operator/guides/upgrade-to-ga      /legacy/helm-operator/how-to/upgrade-to-ga          301!
-/legacy/helm-operator/guides/upgrade-to-beta    /legacy/helm-operator/how-to/upgrade-to-beta        301!
 /docs/roadmap                                   /roadmap                                            301!
 /integrations                                   /ecosystem                                          301!
 /docs/contributing/docs/some-background         https://github.com/fluxcd/website#readme            301!
@@ -30,3 +28,5 @@
 
 /docs/contributing/*                            /contributing/:splat                                301!
 /docs/*                                         /flux/:splat                                        301!
+
+/legacy/*                                       /flux/migration                                     301!
