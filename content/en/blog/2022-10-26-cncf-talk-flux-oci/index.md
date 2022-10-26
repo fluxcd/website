@@ -2,7 +2,7 @@
 author: dholbach
 date: 2022-10-26 13:20:00+00:00
 title: "CNCF Talk: Increased security and scalability with OCI"
-description: ""
+description: "Watch Flux Core Maintainer Max Jonas Werner's talk about OCI support in Flux. Intro to GitOps, Flux and OCI and a great demo of what's all possible."
 url: /blog/2022/10/cncf-talk-flux-oci/
 tags: [event, oci]
 resources:
