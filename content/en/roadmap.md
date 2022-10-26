@@ -58,7 +58,8 @@ this list is subject to change while we gather feedback:
     - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
     - [x] [RFC-0003](https://github.com/fluxcd/flux2/tree/main/rfcs/0003-kubernetes-oci) Flux OCI support for Kubernetes manifests
     - [x] [End-to-end testing for OIDC auth with AWS, Azure and Google Cloud container registries](hhttps://github.com/fluxcd/pkg/tree/main/oci/tests/integration)
-    - [ ] [Verify OCI artifacts with cosign](https://github.com/fluxcd/source-controller/issues/863)
+    - [x] [Verify OCI artifacts with cosign](https://github.com/fluxcd/source-controller/issues/863)
+    - [x] [Verify Helm charts with cosign](https://github.com/fluxcd/source-controller/issues/914)
 
 - **API consolidation** ([fluxcd/flux2#1601](https://github.com/fluxcd/flux2/issues/1601))
     - [ ] Adopt Kubernetes [kstatus](https://github.com/kubernetes-sigs/cli-utils/tree/v0.25.0/pkg/kstatus#conditions) standard conditions
@@ -81,6 +82,8 @@ this list is subject to change while we gather feedback:
 Reach consensus on multi-tenancy enhancements and other security related proposals:
 
 - [x] [RFC-0001](https://github.com/fluxcd/flux2/tree/main/rfcs/0001-authorization) Memorandum on the authorization model
+- [x] [RFC-0004](https://github.com/fluxcd/flux2/tree/main/rfcs/0004-insecure-http) Block insecure HTTP connections across Flux
+- [ ] [RFC-0005](https://github.com/fluxcd/flux2/pull/3233) Artifact `Revision` format and introduction of `Digest`
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2092) Access control for cross-namespace source references
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
