@@ -31,7 +31,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 {{% card header="[Giant Swarm](https://docs.giantswarm.io/advanced/gitops/)" %}}
 ![Giant Swarm](/img/logos/giantswarm.svg)
 {{% /card %}}
-{{% card header="[Weave GitOps]((https://www.weave.works/enterprise-flux/)" %}}
+{{% card header="[Weave GitOps](https://www.weave.works/enterprise-flux/)" %}}
 ![Weaveworks](/img/logos/weaveworks.png)
 {{% /card %}}
 {{< /cardpane >}}
