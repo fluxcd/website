@@ -31,7 +31,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 {{% card header="[Giant Swarm](https://docs.giantswarm.io/advanced/gitops/)" %}}
 ![Giant Swarm](/img/logos/giantswarm.svg)
 {{% /card %}}
-{{% card header="[Weave GitOps](https://www.weave.works/product/gitops-enterprise/)" %}}
+{{% card header="[Weave GitOps](https://www.weave.works/enterprise-flux/)" %}}
 ![Weaveworks](/img/logos/weaveworks.png)
 {{% /card %}}
 {{< /cardpane >}}
@@ -47,7 +47,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 | Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                                  |
 | Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                                       |
 | VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                                |
-| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/gitops-enterprise/)                            |
+| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/enterprise-flux/)                            |
 
 ## Flux UIs
 
