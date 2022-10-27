@@ -47,7 +47,7 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 | Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                                  |
 | Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                                       |
 | VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                                |
-| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/product/enterprise-flux/)                            |
+| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/enterprise-flux/)                            |
 
 ## Flux UIs
 
