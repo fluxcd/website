@@ -20,6 +20,8 @@ Some recommendations may overlap with Kubernetes security recommendations, to ke
 this short and more easily maintainable, please refer to [Kubernetes CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes) for non
 Flux-specific guidance.
 
+For help implementing these recommendations, seek [enterprise support](https://fluxcd.io/support/#my-employer-needs-additional-help).
+
 ## Security Best Practices
 
 The recommendations below are based on Flux's latest version.
@@ -212,7 +214,11 @@ The recommendations below are based on Flux's latest version.
 
     Sharing the same instances of Flux Components across all tenants including the Platform Admin, will lead to all reconciliations competing for the same resources. In addition, all Flux objects will be placed on the same queue for reconciliation which is limited by the number of workers set by each controller (i.e. `--concurrent=20`), which could cause reconciliation intervals not to be accurately honored.
 
-    For improved reliability, additional instances of Flux Components could be deployed in specific namespaces, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.  
+    For improved reliability, additional instances of Flux Components could be deployed in specific namespaces, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.
+
+    Multiple Flux instances within the same cluster is not supported by the Flux tooling, and therefore users won't be able to rely on the Flux CLI or the community maintained Helm chart. Users pursuing this setup will need to build their own deployment method for it. Whilst ensuring that their `NetworkPolicy`and `RBAC` settings still align with their security posture. Whilst updating Flux controllers, they will also need to ensure that CRD versions are aligned with all the controllers within the cluster.
+
+    In order for controllers not to compete with each other when trying to reconcile Custom Resources, controller types (e.g. `image-automation-controller`) must have their `--watch-all-namespaces` setting aligned across the cluster. If one instance has that flag set to `false`, all other instances must be set to the same value. When it is set to true (e.g. `--watch-all-namespaces=true`), there must be a single instance of that controller type within the cluster.
   </details>
   <details>
     <summary>Audit Procedure</summary>
