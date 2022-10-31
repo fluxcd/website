@@ -162,9 +162,9 @@ params:
         icon: fa fa-envelope
         desc: Discuss development issues around the project
       - name: Flux YouTube channel
-        url: https://www.youtube.com/channel/UCoZxt-YMhGHb20ZkvcCc5KA
+        url: https://youtube.com/@fluxcd
         icon: fab fa-youtube
-        desc: Recordings of past Flux dev meetings
+        desc: Watch videos about Using Flux and Flux Development
 
 menus:
   main:
