@@ -11,16 +11,6 @@ card:
 This guide walks you through migrating from Flux v1 to v2.
 Read the [FAQ]({{< relref "/faq-migration" >}}) to find out what differences are between v1 and v2.
 
-{{% alert color="info" title="Feature parity" %}}
-"Feature parity" does not mean Flux v2 works exactly the same as v1 (or is
-backward-compatible); it means you can accomplish the same results, while
-accounting for the fact that it's a system with a substantially different
-design.
-This may at times mean that you have to make adjustments to the way your
-current cluster configuration is structured. If you are in this situation
-and need help, please refer to the [support page](/support/).
-{{% /alert %}}
-
 ## Prerequisites
 
 You will need a Kubernetes cluster version **1.20** or newer

@@ -1,3 +1,10 @@
+# Flux Legacy and Helm Operator have been archived
+# https://fluxcd.io/blog/2022/10/september-2022-update/#flux-legacy-v1-retirement-plan
+#
+# We strongly recommend you familiarise yourself with the newest Flux and
+# migrate as soon as possible: https://fluxcd.io/flux/migration/
+#
+
 adopters:
   project: Flux (legacy)
   description: >

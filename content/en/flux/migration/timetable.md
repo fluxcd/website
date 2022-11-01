@@ -2,14 +2,15 @@
 title: "Timetable"
 linkTitle: "Migration and Support Timetable"
 description: "Flux v1 to v2 migration and support timetable."
-weight: 5
+weight: 150
 hugeTable: true
 ---
 
-{{% alert color="info" title="💖 Flux Migration Commitment" %}}
-This public timetable clarifies our commitment to end users.
-Its purpose is to help improve your experience in deciding how and when to plan infra decisions related to Flux versions.
-Please refer to the [Roadmap]({{< relref "../../roadmap.md" >}}) for additional details.
+{{% alert color="warning" title="Flux Legacy has reached end of life." %}}
+Flux Legacy and Helm Operator have [been
+archived](/blog/2022/10/september-2022-update/#flux-legacy-v1-retirement-plan).
+
+We strongly recommend you familiarise yourself with the newest Flux and [migrate as soon as possible](/flux/migration/).
 {{% /alert %}}
 
 | Date | Flux 1 | Flux 2 CLI | GOTK[^1] |
