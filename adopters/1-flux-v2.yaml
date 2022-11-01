@@ -216,3 +216,6 @@ adopters:
     - name: Syneki
       url: https://syneki.com/
       logo: logos/syneki.svg
+    - name: DKB Deutsche Kreditbank AG
+      url: https://dkb.de
+      logo: logos/dkb.svg
