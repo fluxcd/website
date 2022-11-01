@@ -10,8 +10,6 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 > ---------------- | ------------------------------------------| -------------
 > Flux             | <https://fluxcd.io/flux>                  | <https://github.com/fluxcd/website>
 > Flagger          | <https://fluxcd.io/flagger>               | <https://github.com/fluxcd/website>
-> Flux (legacy)    | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
-> Helm Operator    | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
 
 ## How to modify this website
 

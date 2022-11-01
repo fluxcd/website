@@ -666,7 +666,7 @@ spec:
 ```
 
 This works straight-forwardly for Deployment manifests, but when it comes to `HelmRelease`
-manifests, it [gets complicated][helm-auto], and it doesn't work at all for many kinds of resources.
+manifests, doesn't work at all for many kinds of resources.
 
 For Flux v2, you mark the field you want to be updated directly, with the namespaced name of the
 image policy to apply. This is the example Deployment, marked up for Flux v2:
@@ -743,13 +743,11 @@ from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2)
 
 [image-update-tute]: /flux/guides/image-update/
 [imagepolicy-ref]: /flux/components/image/imagepolicies/
-[helm-auto]: /legacy/flux/references/helm-operator-integration/#automated-image-detection
 [image-update-tute-custom]: /flux/guides/image-update/#configure-image-update-for-custom-resources
 [flux-v1-migration]: /flux/migration/flux-v1-migration/
 [install-cli]: /flux/get-started/#install-the-flux-cli
 [flux-bootstrap]: /flux/installation/_index.md#bootstrap
 [github-pat]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
-[auto-object-ref]: /flux/components/image/imageupdateautomations/
 [image-update-tute-creds]: /flux/guides/image-update/#configure-image-scanning
 [image-update-tute-clouds]: /flux/guides/image-update/#imagerepository-cloud-providers-authentication
 [image-tags-guide]: /flux/guides/sortable-image-tags/
