@@ -213,6 +213,8 @@ released v0.10.1. First, you can now view terraform resources from the
 UI, plus sync and suspend resources like Kustomizations, HelmReleases,
 and Sources.
 
+![Weave GitOps Enterprise](weave-gitops-enterprise.png)
+
 The team has also launched their pipeline feature which will enable you
 to set up environments for helm charts and track the chart versions
 across dev, staging, and production (or however you decide to define
