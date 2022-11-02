@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 COMPONENTS_DIR="content/en/flux/components"
 FLUX_DIR="content/en/flux/cmd"
