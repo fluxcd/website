@@ -607,7 +607,8 @@ flux create kustomization podinfo-default \
   --validation=client \
   --interval=10m \
   --health-check="Deployment/podinfo.default" \
-  --health-check-timeout=2m
+  --health-check-timeout=2m \
+  --target-namespace=default
 ```
 
 You can register Helm repositories and create Helm releases:
