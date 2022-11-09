@@ -1,23 +1,23 @@
 resources:
-     - youtube: G1Mt4KE4Dao
+  - youtube: G1Mt4KE4Dao
     title: "Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi Onyekwere, Weaveworks"
     date: 2022-10-25
-    - youtube: Ums3Q9kMPd8
+  - youtube: Ums3Q9kMPd8
     title: "GitOps with Flux and OCI Registries - Soulé Ba & Scott Rigby, Weaveworks"
     date: 2022-10-25
-    - youtube: jRil9H1NhZI
+  - youtube: jRil9H1NhZI
     title: "Complete DR of Stateful Workloads, PVs and CSI Snapshots via Flux and Vault OSS - Kingdon Barrett"
     date: 2022-10-25
-     - youtube: Wgp04xTNqq4
+  - youtube: Wgp04xTNqq4
     title: "Automate Your SLO Validation with Prometheus & Flagger - Sanskar Jaiswal & Kingdon Patrick Barrett"
     date: 2022-10-25
-    - youtube: cYcmXCJ2tLU
+  - youtube: cYcmXCJ2tLU
     title: "Simplifying Edge Deployments Using EMCO and GitOps - Igor DC & Adarsh Vincent Chittilappilly, Intel"
     date: 2022-10-25
-   - youtube: h8G3LM9uIHk
+  - youtube: h8G3LM9uIHk
     title: "Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan Anisimov & Tamao Nakahara"
     date: 2022-10-25
-       - youtube: 7dOKxIYEtvY
+  - youtube: 7dOKxIYEtvY
     title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
     date: 2022-10-25 
   - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
