@@ -219,7 +219,7 @@ helm package nginx
 Now, let's login to the OCI-compliant registry that you want to use to store your Helm chart. In this example, we'll be using the GitHub Container Registry (ghcr.io):
 
 ```shell
-echo $GHCR_PAT | docker login ghcr.io -u $USER --password-stdin
+echo $GHCR_PAT | helm registry login ghcr.io -u $USER --password-stdin
 ```
 
 {{% note %}}
