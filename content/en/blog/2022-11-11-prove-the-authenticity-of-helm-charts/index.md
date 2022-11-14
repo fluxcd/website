@@ -1,6 +1,6 @@
 ---
 author: developer-guy
-date: 2022-11-15 12:30:00+00:00
+date: 2022-11-14 10:30:00+00:00
 title: Verify the integrity of the Helm Charts stored in OCI-compliant registries as OCI artifacts
 description: "We'll talk about one of the newest support in Flux v0.36 that enables you to prove the authenticity of the Helm charts we manage through the HelmChart resources with the help of the cosign integration."
 url: /blog/2022/11/verify-the-integrity-of-the-helm-charts-stored-as-oci-artifacts-before-reconciling-them-with-flux
