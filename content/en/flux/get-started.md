@@ -215,9 +215,9 @@ directory located in the podinfo repository.
     The output is similar to:
 
     ```
-    NAME            READY   MESSAGE
-    flux-system     True    Applied revision: main/fc07af652d3168be329539b30a4c3943a7d12dd8
-    podinfo         True    Applied revision: master/855f7724be13f6146f61a893851522837ad5b634
+    NAME          REVISION       SUSPENDED  READY   MESSAGE
+    flux-system   main/4e9c917   False      True    Applied revision: main/4e9c917
+    podinfo       master/44157ec False      True    Applied revision: master/44157ec
     ```
 
 2. Check podinfo has been deployed on your cluster:

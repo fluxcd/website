@@ -14,11 +14,6 @@ docsearch({
         apiKey: 'd466984187cbf406354da362d45b8e3f',
         appId: 'Z41T3FAXIU',
         indexName: 'fluxcd',
-        {{ if in .Permalink "/legacy" }}
-        searchParameters: { 'facetFilters': ['tags:legacy'], },
-        {{ else }}
-        searchParameters: { 'facetFilters': ['tags:current'], },
-        {{ end }}
 });
 
 </script>

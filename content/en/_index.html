@@ -4,11 +4,10 @@ description: >
   Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible. 
   
   The APIs of Flux are stable now.
-  Now is the best time to start using Flux, or start your migration if you are a legacy user.
 ---
 
-{{% blocks/announce emoji="📢" url="/blog/2021/09/server-side-reconciliation-is-coming/" %}}
-Server-Side Apply has landed in Flux!
+{{% blocks/announce emoji="📢" url="/flux/cheatsheets/oci-artifacts/" %}}
+Support for OCI artifacts has landed in Flux!
 {{% /blocks/announce %}}
 
 <div class="hero-gitops">
@@ -23,6 +22,8 @@ Server-Side Apply has landed in Flux!
 
   <div class="lead-flux">
   {{< blocks/lead >}}
+
+  {{< blocks/next_event >}}
 
   <h2 id="flux-facts">Flux in short</h2>
 
@@ -74,6 +75,52 @@ Server-Side Apply has landed in Flux!
   </div>
 {{% /blocks/section %}}
 </div>
+
+
+<!-- Community -->
+<div class="section-community">
+  {{< blocks/section color="dark" type="calendar-row">}}
+  {{< blocks/calendar >}}
+  {{< /blocks/section >}}
+
+  {{< blocks/lead color="dark" >}}
+  <h2 class="section-label">
+    Community
+  </h2>
+
+  <p>The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
+  What we achieved up until today is only possible because of <a href="/community">our community</a>.</p>
+
+  {{< /blocks/lead >}}
+
+  <div class="subsection-community-row">
+    {{< blocks/section color="dark" type="community-row">}}
+
+    {{< blocks/community icon="fab fa-github" title="GitHub Discussions" >}}
+    <a href="https://github.com/fluxcd/flux2/discussions">Join the conversation in GitHub Discussions</a>. Everything Flux related ranging from specifications and feature planning to Show & Tell happens here.
+
+    {{< /blocks/community >}}
+
+
+    {{< blocks/community icon="fab fa-slack" title="Slack" >}}
+    If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
+
+    Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="https://cloud-native.slack.com/messages/flux"><code>#flux</code> channel</a>.
+
+
+    {{< /blocks/community >}}
+
+
+    {{< blocks/community icon="fa fa-paper-plane" title="Mailing list" >}}
+    <a href="https://lists.cncf.io/g/cncf-flux-dev">Join our (low-traffic) mailing list</a> to stay up to day on announcements and sporadic discussions.
+
+    {{< /blocks/community >}}
+
+    {{< /blocks/section >}}
+  </div>
+
+</div>
+
 
 
 <div id="adopters-wall">
@@ -142,52 +189,6 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
 {{< blocks/carousel >}}
 
 
-
-<!-- Community -->
-<div class="section-community">
-{{< blocks/lead color="dark" >}}
-
-<h2 class="section-label">
-  Community
-</h2>
-
-<p>The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
-What we achieved up until today is only possible because of <a href="/community">our community</a>.</p>
-
-{{< /blocks/lead >}}
-
-<div class="subsection-community-row">
-  {{< blocks/section color="dark" type="community-row">}}
-
-  {{< blocks/community icon="fab fa-github" title="GitHub Discussions" >}}
-  <a href="https://github.com/fluxcd/flux2/discussions">Join the conversation in GitHub Discussions</a>. Everything Flux related ranging from specifications and feature planning to Show & Tell happens here.
-
-  {{< /blocks/community >}}
-
-
-  {{< blocks/community icon="fab fa-slack" title="Slack" >}}
-  If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
-
-  Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="https://cloud-native.slack.com/messages/flux"><code>#flux</code> channel</a>.
-
-
-  {{< /blocks/community >}}
-
-
-  {{< blocks/community icon="fa fa-paper-plane" title="Mailing list" >}}
-  <a href="https://lists.cncf.io/g/cncf-flux-dev">Join our (low-traffic) mailing list</a> to stay up to day on announcements and sporadic discussions.
-
-  {{< /blocks/community >}}
-
-  {{< /blocks/section >}}
-</div>
-
-{{< blocks/section color="dark" type="calendar-row">}}
-{{< blocks/calendar >}}
-{{< /blocks/section >}}
-
-</div>
-
 <!-- RESOURCES HERE -->
 
 <div class="section-resources">
@@ -202,45 +203,7 @@ What we achieved up until today is only possible because of <a href="/community"
 
   <div class="subsection-resources">
   {{% blocks/section color="primary" type="resources" %}}
-
-  {{% blocks/resource
-    youtube="1X3JgCnRNsw"
-    title="Flux CD v2 - Kubernetes GitOps (CNCFMinutes 20)" %}}
-  Saiyam provides an excellent introduction to Flux's architecture and its powerful features with a quick demo of Bootstraping using FluxCLI.
-  {{% /blocks/resource %}}
-
-  {{% blocks/resource
-    youtube="5u45lXmhgxA"
-    title="Full GitOps Tutorial: Getting started with Flux CD" %}}
-  Anaïs Urlichs walks you through getting started with Flux, installing the Starboard Helm Chart through GitOps best practices, managing your app, and setting up notifications and monitoring using Flux.
-  {{% /blocks/resource %}}
-
-  {{% blocks/resource
-    youtube="PFLimPh5-wo"
-    title="The FASTEST way to deploy apps to Kubernetes" %}}
-  Techno Tim shows how Flux can be leveraged to monitor git repositories, source control, image container repositories, helm repositories, and more.
-  {{% /blocks/resource %}}
-
-  {{% blocks/resource
-    youtube="cR2eCMbiZg4"
-    title="GitOps with GitHub Actions & Flux with Kingdon Barrett" %}}
-  Kingdon Barret demos of GitHub Actions and three different methods for doing Flux deployment automation using SemVer with GitRepository Source, HelmRelease, and Image Update Automation.
-  {{% /blocks/resource %}}
-
-  {{% blocks/resource
-    url="https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
-    thumbnail="BrYgx4cB7p4"
-    title="Flux at GitOps Con, KubeCon, CloudNativeCon EU 2022" %}}
-  A playlist with a compilation of all talks featuring Flux during GitOpsCon & KubeCon / CloudNativeCon EU 2022 (May 17 – 20).
-  {{% /blocks/resource %}}
-
-  {{% blocks/resource
-    url="https://www.youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
-    thumbnail="qCDWsIcFU-A"
-    title="GitOps Days 2022" %}}
-  Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux integrators, end-users/adopters, and maintainers.
-  {{% /blocks/resource %}}
-
+  {{< blocks/resources_section >}}
   {{% /blocks/section %}}
   </div>
   </div>
@@ -270,15 +233,6 @@ The canary analysis can be extended with webhooks for running system integration
     button1-url="/flux/gitops-toolkit/source-watcher/"
     button2-url="/flux/components/" %}}
 The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
-{{% /blocks/project %}}
-
-{{% blocks/project title="Flux v1 and Helm Operator"
-    image="/img/logos/flux-horizontal-color.png" image-align="right" bg-color="white"
-    button1-url="/legacy/flux" button1-caption="Flux v1 Documentation" button1-color="blue"
-    button2-url="/legacy/helm-operator/" button2-caption="Helm Operator Documentation" button2-color="blue" %}}
-We owe our success and good reputation as GitOps project to Flux and Helm Operator. They are the v1 iteration of our project and currently in [maintenance mode](https://github.com/fluxcd/flux/issues/3320).
-
-We **strongly advise** everyone to familiarise themselves with the latest version of Flux and [start the process of migrating](/flux/migration/).
 {{% /blocks/project %}}
 
 {{% /blocks/section %}}

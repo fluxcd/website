@@ -1,0 +1,6 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $blockID := printf "td-cover-block-%d" .Ordinal }}
+
+<p class="next-event">
+{{- readFile "/content/en/next_event_include.html" | safeHTML -}}
+</p>

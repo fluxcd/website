@@ -10,12 +10,10 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 > ---------------- | ------------------------------------------| -------------
 > Flux             | <https://fluxcd.io/flux>                  | <https://github.com/fluxcd/website>
 > Flagger          | <https://fluxcd.io/flagger>               | <https://github.com/fluxcd/website>
-> Flux (legacy)    | <https://fluxcd.io/legacy/flux>           | <https://github.com/fluxcd/website>
-> Helm Operator    | <https://fluxcd.io/legacy/helm-operator/> | <https://github.com/fluxcd/website>
 
 ## How to modify this website
 
-The main landing page of this website can be modified in `config.toml`.
+The main landing page of this website can be modified in `config.yaml`.
 
 Almost all of the content lives in the `content/en/<project>` directories. Here are some special cases.
 
@@ -36,7 +34,6 @@ Once those tools are installed, fetch the assets necessary to run the site:
 
 ```cli
 npm install
-make theme
 python3 -m pip install -r requirements.txt
 ```
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 COMPONENTS_DIR="content/en/flux/components"
 FLUX_DIR="content/en/flux/cmd"
@@ -59,7 +59,14 @@ setup_verify_arch() {
 
 
 controller_version() {
-  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -s "https://api.github.com/repos/fluxcd/$1/releases" | jq -r '.[] | .tag_name' | sort -V | tail -n 1
+  url=https://api.github.com/repos/fluxcd/$1/releases
+  out=$(curl -w "%{http_code}" -o /tmp/releases -u "$GITHUB_USER:$GITHUB_TOKEN" -s "$url")
+  if [ "${out}" -ne "200" ] ; then
+      echo "error fetching releases from $url: $out"
+      cat /tmp/releases
+      exit 1
+  fi
+  jq -r '.[] | .tag_name' < /tmp/releases | sort -V | tail -n 1
 }
 
 gen_crd_doc() {

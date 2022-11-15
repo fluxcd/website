@@ -1,0 +1,219 @@
+baseURL: /
+title: Flux
+enableRobotsTXT: true
+enableEmoji: true
+
+# Language configuration
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableMissingTranslationPlaceholders: true
+
+# Provide .LastMod values
+enableGitInfo: true
+
+module:
+  proxy: direct
+  hugoVersion:
+    extended: true
+  imports:
+    - path: github.com/google/docsy
+      disable: false
+      mounts:
+      # The following entry is the one we actually need, to be able to
+      # refer to it in our own assets/scss files.
+      - source: assets/scss
+        target: assets/scss/docsy
+      # Unfortunately that means we need to redefine all of Docsy's
+      # module mounts here...
+      # https://github.com/google/docsy/commit/215f68033bbc7bddf8dbec2bbabf8749d1998a17 (lines 24f)
+      #
+      # I hope this use-case will be simplified one day.
+      - source: content
+        target: content
+      - source: static
+        target: static
+      - source: layouts
+        target: layouts
+      - source: data
+        target: data
+      - source: assets
+        target: assets
+      - source: i18n
+        target: i18n
+      - source: archetypes
+        target: archetypes
+      - source: node_modules/bootstrap
+        target: assets/vendor/bootstrap
+      - source: node_modules/@fortawesome/fontawesome-free
+        target: assets/vendor/Font-Awesome
+      - source: node_modules/@fortawesome/fontawesome-free/webfonts
+        target: static/webfonts
+    - path: github.com/google/docsy/dependencies
+      disable: false
+    - path: github.com/mfg92/hugo-shortcode-gallery
+      disable: false
+  mounts:
+    - source: content/en
+      target: content
+
+# Markup settings
+# Ref: https://gohugo.io/getting-started/configuration-markup#goldmark
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+    style: friendly
+  parser:
+    autoHeadingID: true
+    autoHeadingIDType: github
+
+languages:
+  en:
+    languageName: English
+    languageCode: en
+    time_format_default: 2006-01-02
+    time_format_blog: 2006-01-02
+
+permalinks:
+  blog: /:section/:year/:month/:slug/
+
+outputs:
+  home: [HTML]
+  page: [HTML]
+
+params:
+  description: Open and extensible continuous delivery solution for Kubernetes.
+  copyright: The Flux authors
+  github_repo: https://github.com/fluxcd/website
+  github_branch: main
+  github_project_repo: https://github.com/fluxcd/flux2
+  slack: https://cloud-native.slack.com/messages/flux
+  support: /support
+  images: [img/flux-social.png]
+  # Enable Algolia DocSearch
+  algolia_docsearch: true
+  offlineSearch: false
+  version_menu: "Docs"
+  version: "Flux"
+  url_latest_version: /flux/
+  versions:
+    # Add your release versions here
+    - version: Flux
+      url: /flux
+    - version: Flagger
+      url: /flagger
+  mermaid:
+    enable: true
+  logos:
+    navbar: flux-horizontal-white.png
+    hero: flux-horizontal-color.png
+    footer: flux-stacked-white.png
+    cncf: cncf-color.png
+  ui:
+    # Enable to show the side bar menu in its compact state.
+    sidebar_menu_compact: true
+    sidebar_menu_foldable: true
+    sidebar_menu_truncate: 1000
+    # Set to true to disable breadcrumb navigation.
+    breadcrumb_disable: false
+    # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+    sidebar_search_disable: true
+    # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+    navbar_logo: true
+    # Set to true to disable the About link in the site footer
+    footer_about_disable: false
+    readingtime:
+      enable: false
+  markmap:
+    enable: true
+  links:
+    # End user relevant links. These will show up on left side of footer and in the community page if you have one.
+    user:
+      - name: Twitter
+        url: https://twitter.com/fluxcd
+        icon: fab fa-twitter
+        desc: Follow us on Twitter to get the latest news!
+      - name: LinkedIn
+        url: https://linkedin.com/groups/8985374
+        icon: fab fa-linkedin
+        desc: Join the Flux Community group on LinkedIn!
+      - name: RSS Feed
+        url: /blog/index.xml
+        icon: fa fa-rss
+        desc: Subscribe to the RSS feed of our blog!
+      - name: Support
+        url: /support
+        icon: fas fa-comments
+        desc: Subscribe to the RSS feed of our blog!
+    # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+    developer:
+      - name: Flux project on GitHub
+        url: https://github.com/fluxcd
+        icon: fab fa-github
+        desc: Development takes place here!
+      - name: Slack
+        url: https://cloud-native.slack.com/messages/flux
+        icon: fab fa-slack
+        desc: Chat with other project developers
+      - name: Developer mailing list
+        url: https://lists.cncf.io/g/cncf-flux-dev
+        icon: fa fa-envelope
+        desc: Discuss development issues around the project
+      - name: Flux YouTube channel
+        url: https://youtube.com/@fluxcd
+        icon: fab fa-youtube
+        desc: Watch videos about Using Flux and Flux Development
+
+menus:
+  main:
+  - identifier: Project
+    name: Project
+    weight: 20
+  - name: Code of Conduct
+    parent: Project
+    url: https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md
+    weight: 1
+  - name: Resources
+    parent: Project
+    url: /resources
+    weight: 5
+  - name: Support
+    parent: Project
+    url: /support
+    weight: 10
+  - name: Community
+    parent: Project
+    url: /community
+    weight: 20
+  - name: Contributing
+    parent: Project
+    url: /contributing
+    weight: 30
+  - name: Governance
+    parent: Project
+    url: /governance
+    weight: 40
+  - name: Roadmap
+    parent: Project
+    url: /roadmap
+    weight: 50
+  - name: Security
+    parent: Project
+    url: /security
+    weight: 60
+  - name: Branding
+    parent: Project
+    url: https://github.com/cncf/artwork/blob/master/examples/incubating.md#flux-logos
+    weight: 9999
+  - name: Adopters
+    url: /adopters
+    weight: 80
+  - name: Ecosystem
+    url: /ecosystem
+    weight: 90
+  - url: https://github.com/fluxcd/flux2
+    name: Github
+    pre: "<i class='fab fa-github'></i> "
+    weight: 100

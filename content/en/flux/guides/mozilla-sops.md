@@ -433,13 +433,48 @@ to get started committing encrypted files to your Git Repository or other Source
 
 #### Google Cloud
 
-Please ensure that the GKE cluster has [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#migrate_applications_to) enabled.
+[Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#before_you_begin) has to be enabled on the cluster and on the node pools.
 
-1. Create a service account with the role `Cloud KMS CryptoKey Encrypter/Decrypter`.
-2. Create an IAM policy binding between the GCP service account to the `kustomize-controller` service account of the `flux-system`.
-3. [Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials. Patch the kustomize-controller service account so that its has the proper annotation.
+{{% alert color="info" title="Terraform" %}} If you like to use terraform instead of gcloud, you will need the following resources from the `hashicorp/google` provider:
+* create GCP service account: "google_service_account"
+* add role KMS encrypter/decrypter: "google_project_iam_member"
+* bind GCP SA to Flux kustomize-controller SA: "google_service_account_iam_binding" {{% /alert %}}
 
-```yaml
+1. Create a [GCP service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#before-you-begin) with the role Cloud KMS CryptoKey Encrypter/Decrypter.
+
+``` sh
+gcloud iam service-accounts create <SERVICE_ACCOUNT_ID> \
+    --description="DESCRIPTION" \
+    --display-name="DISPLAY_NAME"
+```
+
+``` sh
+gcloud projects add-iam-policy-binding <PROJECT_ID> \
+    --member="serviceAccount:<SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com" \
+    --role="roles/cloudkms.cryptoKeyEncrypterDecrypter"
+```
+
+2. Create an IAM policy binding between the GCP service account and the kustomize-controller Kubernetes service account of the flux-system.
+
+``` sh
+gcloud iam service-accounts add-iam-policy-binding \
+  --role roles/iam.workloadIdentityUser \
+  --member "serviceAccount:<PROJECT_ID>.svc.id.goog[<K8S_NAMESPACE>/<KSA_NAME>]" \
+  SERVICE_ACCOUNT_ID@PROJECT_ID.iam.gserviceaccount.com
+```
+
+For a GCP project named `total-mayhem-123456` with a configured GCP service account `flux-gcp` and assuming that Flux runs in the (default) namespace `flux-system`, this would translate to the following:
+
+``` sh
+gcloud iam service-accounts add-iam-policy-binding \
+  --role roles/iam.workloadIdentityUser \
+  --member "serviceAccount:total-mayhem-123456.svc.id.goog[flux-system/kustomize-controller]" \
+  flux-gcp@total-mayhem-123456.iam.gserviceaccount.com
+```
+
+3. [Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) and patch the kustomize-controller service account with the proper annotation so that Workload Identity knows the relationship between the gcp service account and the k8s service account.
+
+``` yaml
  ### add this patch to annotate service account if you are using Workload identity
 patchesStrategicMerge:
 - |-
@@ -449,15 +484,16 @@ patchesStrategicMerge:
     name: kustomize-controller
     namespace: flux-system
     annotations:
-      iam.gke.io/gcp-service-account: <iam-service-account>@<PROJECT_ID>.iam.gserviceaccount.com
+      iam.gke.io/gcp-service-account: <SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
 ```
 
 If you didn't bootstap Flux, you can use this instead
-```sh
+
+``` sh
 kubectl annotate serviceaccount kustomize-controller \
 --field-manager=flux-client-side-apply \
 --namespace flux-system \
-iam.gke.io/gcp-service-account=<name-of-serviceaccount>@project-id.iam.gserviceaccount.com
+iam.gke.io/gcp-service-account=<SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
 ```
 
 {{% alert color="info" title="Bootstrap" %}}

@@ -32,6 +32,7 @@ TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
 CONTENT_DIR = os.path.join(TOP_LEVEL_DIR, 'content/en')
 CALENDAR_INCLUDE_HTML = os.path.join(CONTENT_DIR, 'calendar_include.html')
+NEXT_EVENT_INCLUDE_HTML = os.path.join(CONTENT_DIR, 'next_event_include.html')
 
 URL_RE = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", re.MULTILINE|re.UNICODE)
 
@@ -153,6 +154,17 @@ def write_events_html(events):
     f = open(CALENDAR_INCLUDE_HTML, 'w')
     f.write(html)
     f.close()
+
+    with open(NEXT_EVENT_INCLUDE_HTML, 'w') as f:
+        event = events[0]
+        if not event['location'].startswith('http'):
+            event['location'] = '/#calendar'
+        f.write('📆 Next event: <a href="{where}">{date} {time} UTC: {title}</a>'.format(
+            where=event['location'],
+            date=event['time'].strftime('%F'),
+            time=event['time'].strftime('%H:%M'),
+            title=event['title']))
+        f.close()
 
 def main():
     cal = download_calendar()

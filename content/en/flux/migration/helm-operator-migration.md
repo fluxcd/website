@@ -849,7 +849,7 @@ If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomiz
 
 ### I am still running Helm v2, what is the right upgrade path for me?
 
-Migrate your Helm v2 releases to v3 using [the Helm Operator's migration feature](/legacy/helm-operator/helmrelease-guide/release-configuration/#migrating-from-helm-v2-to-v3), or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
+Migrate your Helm v2 releases to v3 using the Helm Operator's migration feature, or make use of the [`helm-2to3`](https://github.com/helm/helm-2to3) plugin directly, before continuing following the [migration steps](#steps).
 
 ### Is the Helm Controller ready for production?
 
@@ -862,7 +862,8 @@ Probably, but with some side notes:
 
 Helm Controller depends on [Source Controller](../components/source/_index.md), you can install both controllers
 and manager Helm releases in a declarative way without GitOps.
-For more details please see this [answer]({{< ref "flux/faq/_index.md#can-i-use-flux-helmreleases-without-gitops" >}}).
+
+For more details please see this [answer]({{< relref "../faq.md#can-i-use-flux-helmreleases-without-gitops" >}}).
 
 ### I have another question
 

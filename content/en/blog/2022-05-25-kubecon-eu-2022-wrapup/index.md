@@ -250,4 +250,4 @@ And in closing out, here is a short selection of [official KubeCon
 photos](https://www.flickr.com/photos/143247548@N03/), all around Flux and GitOps:
 
 {{< gallery match="flickr/*" sortOrder="desc" rowHeight="150" margins="5"
-            previewType="blur" embedPreview="true" >}}
+            previewType="blur" embedPreview=true >}}

@@ -15,12 +15,13 @@ functionalities into specialized controllers, collectively called the GitOps Too
 You can install and operate Flux v2 simply using the `flux` command.
 You can easily pick and choose the functionality you need and extend it to serve your own purposes.
 
-The timeline we are looking at right now is:
+We went through the following steps for our community:
 
 1. Put Flux v1 into maintenance mode (no new features being added; bugfixes and CVEs patched only).
-1. Continue work on the [Flux v2 roadmap](/roadmap/).
-1. We will provide transition guides for specific user groups, e.g. users of Flux v1 in read-only mode, or of Helm Operator v1, etc. once the functionality is integrated into Flux v2 and it's deemed "ready".
-1. Once the use-cases of Flux v1 are covered, we will continue supporting Flux v1 for 6 months. This will be the transition period before it's considered unsupported.
+1. Continued work on the [Flux v2 roadmap](/roadmap/).
+1. We provided transition guides for specific user groups, e.g. users of Flux v1 in read-only mode, or of Helm Operator v1, etc. once the functionality was integrated into Flux v2 and it's deemed "ready".
+1. Once the use-cases of Flux v1 were covered, we promised to continue supporting Flux v1 for 6 months.
+1. We [finally archived](/blog/2022/10/september-2022-update/#flux-legacy-v1-retirement-plan) Flux Legacy and Helm Operator.
 
 ### Why did you rewrite Flux?
 
@@ -50,7 +51,7 @@ Declarative config via arguments in the Flux deployment | `GitRepository` custom
 Follow `HEAD` of Git branches | Supports Git branches, pinning on commits and tags, follow SemVer tag ranges
 Suspending of reconciliation by downscaling Flux deployment | Reconciliation can be paused per resource by suspending the `GitRepository`
 Credentials config via Arguments and/or Secret volume mounts in the Flux pod | Credentials config per `GitRepository` resource: SSH private key, HTTP/S username/password/token, OpenPGP public keys
-Ignoring resources with `fluxcd.io/ignore: "true"` annotation | Ignoring resources with `kustomize.toolkit.fluxcd.io/reconcile: disabled` annotation 
+Ignoring resources with `fluxcd.io/ignore: "true"` annotation | Ignoring resources with `kustomize.toolkit.fluxcd.io/reconcile: disabled` annotation
 
 #### `kustomize` support
 

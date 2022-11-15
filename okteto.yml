@@ -5,7 +5,7 @@ workdir: /site
 command:
   - sh
   - -c
-  - make theme; make serve
+  - make serve
 autocreate: true
 forward:
   - 1313:1313

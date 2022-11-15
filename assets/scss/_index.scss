@@ -57,6 +57,15 @@ main.td-main {
       font-size: 1.1rem;
       margin-bottom: 0.75rem;
     }
+
+    p.next-event {
+      padding-bottom: 45px;
+      padding-top: 20px;
+      font-size: 32px;
+    }
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -297,7 +306,7 @@ main.td-main {
 
   .subsection-community-row {
     section.row.td-box {
-      padding-top: 0.5rem;
+      padding-bottom: 1rem;
     }
 
     .community-row {

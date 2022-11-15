@@ -205,6 +205,123 @@ To complete a rollout restart successfully, use the `flux-client-side-apply` fie
 kubectl --field-manager=flux-client-side-apply rollout restart ...
 ```
 
+### Should I be using Kustomize remote bases?
+
+For security and performance reasons, it is advised to disallow the usage of
+[remote bases](https://github.com/kubernetes-sigs/kustomize/blob/a7f4db7fb41e17b2c826a524f545e6174b4dc6ac/examples/remoteBuild.md)
+in Kustomize overlays. To enforce this setting, platform admins can set the `--no-remote-bases=true` flag for kustomize-controller.
+
+When using remote bases, the manifests are fetched over HTTPS from their remote source on every reconciliation e.g.:
+
+```yaml
+# infra/kyverno/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - https://github.com/kyverno/kyverno/releases/download/v1.8.0/install.yaml
+```
+
+To take advantage of Flux's verification and caching features,
+you can replace the `kustomization.yaml` with a Flux source definition:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 60m
+  url: oci://ghcr.io/kyverno/manifests/kyverno
+  ref: # pull the latest patch release evey hour
+    semver: 1.8.x
+  verify: # enable Cosign keyless verification
+    provider: cosign
+```
+
+Then to reconcile the manifests on a cluster, you'll use the ones from the verified source:
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 360m
+  prune: true
+  wait: true
+  timeout: 5m
+  sourceRef:
+    kind: OCIRepository
+    name: kyverno
+  path: ./
+  kubeConfig:
+    secretRef:
+      name: staging-cluster
+```
+
+### Should I be using Kustomize Helm chart plugin?
+
+Due to security and performance reasons, Flux does not allow the execution of
+Kustomize plugins which shell-out to arbitrary binaries insides the kustomize-controller container.
+
+Instead of using Kustomize to deploy charts, e.g.:
+
+```yaml
+# infra/kyverno/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kyverno
+resources:
+  - kyverno-namespace.yaml
+helmCharts:
+- name: kyverno
+  valuesInline:
+    networkPolicy:
+      enabled: true
+  releaseName: kyverno
+  version: 2.6.0
+  repo: https://kyverno.github.io/kyverno/
+```
+
+You can take advantage of Flux's OCI and native Helm features,
+by replacing the `kustomization.yaml` with a Flux Helm definition:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 6h
+  url: oci://ghcr.io/kyverno/charts
+  type: oci
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kyverno
+  namespace: flux-system
+spec:
+  interval: 6h
+  releaseName: kyverno
+  targetNamespace: kyverno
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: kyverno
+      version: 2.6.0
+      interval: 6h
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+  values:
+    networkPolicy:
+      enabled: true
+```
 
 ### What is the behavior of Kustomize used by Flux?
 
