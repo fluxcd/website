@@ -24,7 +24,7 @@
     display: none;
   }
 
-  div.scrollmenu img {
+ img {
     display: inline-block;
     color: white;
     text-align: center;
@@ -33,23 +33,23 @@
     text-decoration: none;
    
   }
-  div.carousel-inner{
+  .carousel-inner{
     
     height:100%;
     margin-left: px;
   }
-  div.carousel-item active{
+  .carousel-item active{
     
     height:100%;
   }
-  div.scrollmenu img {
+  .scrollmenu img {
     transition: 0.5s all ease-in-out;
   }
-  div.scrollmenu img:hover {
+  .scrollmenu img:hover {
    transform: scale(1.5);
   }
 
-  div.scrollmenu {
+  .scrollmenu {
     height:100%;
     overflow: hidden;
     white-space: nowrap;
@@ -72,13 +72,13 @@
         margin-left: 800px;
       }
     }
-    div.scrollmenu {
+    .scrollmenu {
      -webkit-animation-duration: 240s;
     }
   }
 
   
-  div.scrollmenu:hover {
+  .scrollmenu:hover {
     -webkit-animation-play-state: paused;
   }
 
