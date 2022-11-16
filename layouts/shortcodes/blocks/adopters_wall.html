@@ -1,7 +1,20 @@
-<h2 class="adopters-label">Adopted by</h2>
 
-<div id="logos">
-  <div class="col">
-    {{ readFile "/content/en/adopters_wall_include.html" | safeHTML }}
-  </div>
-</div>
+    <h2 class="adopters-label">Adopted by</h2>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <div id="logos">
+            <div class="col">
+              <div class="scrollmenu">
+                {{ readFile "/content/en/adopters_wall_include.html" | safeHTML }}
+              </div>
+
+            </div>
+          </div>
+        </div>
+     </div>
+   </div>
+
+
