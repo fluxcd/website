@@ -1,35 +1,13 @@
-@media screen and (min-device-width: 200px){
-    /* some CSS here */
-    @-webkit-keyframes move {
-      0% {
-        margin-left: -8000px;
-      }
-      100% {
-        margin-left: 800px;
-      }
-    }
-    div.scrollmenu {
-     -webkit-animation-duration: 240s;
-    }
-  }
 
-  
-  div.scrollmenu:hover {
-    -webkit-animation-play-state: paused;
-  }
 
-  div.scrollmenu {
-    height:100%;
-    overflow: hidden;
-    white-space: nowrap;
-    scroll-margin-left:4000;
-    -webkit-animation-name: move;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: right;
-    -webkit-animation-timing-function:linear;
-  }
-  
-  
+
+
+
+
+#adopters_wall{
+
+
+
   div.scrollmenu img {
     display: inline-block;
     color: white;
@@ -54,3 +32,40 @@
   div.scrollmenu img:hover {
    transform: scale(1.5);
   }
+
+  div.scrollmenu {
+    height:100%;
+    overflow: hidden;
+    white-space: nowrap;
+    scroll-margin-left:4000;
+    -webkit-animation-name: move;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: right;
+    -webkit-animation-timing-function:linear;
+  }
+  
+
+
+@media screen and (min-device-width: 200px){
+    /* some CSS here */
+    @-webkit-keyframes move {
+      0% {
+        margin-left: -8000px;
+      }
+      100% {
+        margin-left: 800px;
+      }
+    }
+    div.scrollmenu {
+     -webkit-animation-duration: 240s;
+    }
+  }
+
+  
+  div.scrollmenu:hover {
+    -webkit-animation-play-state: paused;
+  }
+
+  
+  
+}
