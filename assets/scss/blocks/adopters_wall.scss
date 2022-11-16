@@ -1,7 +1,7 @@
 
-  @media screen and (min-width: 600px){
-    @-webkit-keyframes move {
-      0% {
+   @media screen and (min-width: 600px){
+     @-webkit-keyframes move {
+       0% {
         margin-left: -10000px;
       }
       100% {
@@ -10,8 +10,8 @@
     }
     div.scrollmenu {
       -webkit-animation-duration: 240s;
-    }
-  }
+     }
+   }
 
   @media screen and (min-device-width: 200px){
     /* some CSS here */
@@ -37,7 +37,7 @@
     height:100%;
     overflow: hidden;
     white-space: nowrap;
-    -webkit-animation-name: move;
+      -webkit-animation-name: move;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: right;
     -webkit-animation-timing-function:linear;
@@ -56,6 +56,7 @@
   div.carousel-inner{
     
     height:100%;
+    margin-left: 0px;
   }
   div.carousel-item active{
     
