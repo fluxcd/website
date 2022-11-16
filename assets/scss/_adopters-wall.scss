@@ -22,6 +22,7 @@ div.scrollmenu img {
   transition: 0.5s all ease-in-out;
 }
 div.scrollmenu img:hover {
+ -webkit-animation-play-state: paused;
  transform: scale(1.5);
 }
 
@@ -32,14 +33,11 @@ div.scrollmenu {
   scroll-margin-left:4000;
   -webkit-animation-name: move;
   -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 240s;
   -webkit-animation-direction: right;
   -webkit-animation-timing-function:linear;
 }
 
-
-
-@media screen and (min-device-width: 200px){
-  /* some CSS here */
   @-webkit-keyframes move {
     0% {
       margin-left: -8000px;
@@ -48,12 +46,6 @@ div.scrollmenu {
       margin-left: 800px;
     }
   }
-  div.scrollmenu {
-   -webkit-animation-duration: 240s;
-  }
-}
+  
 
 
-div.scrollmenu:hover {
-  -webkit-animation-play-state: paused;
-}
