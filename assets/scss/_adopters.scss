@@ -24,64 +24,7 @@
     display: none;
   }
 
- img {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    height:100%;
-    padding-right:30px;
-    text-decoration: none;
-   
-  }
-  .carousel-inner{
-    
-    height:100%;
-    margin-left: px;
-  }
-  .carousel-item active{
-    
-    height:100%;
-  }
-  .scrollmenu img {
-    transition: 0.5s all ease-in-out;
-  }
-  .scrollmenu img:hover {
-   transform: scale(1.5);
-  }
-
-  .scrollmenu {
-    height:100%;
-    overflow: hidden;
-    white-space: nowrap;
-    scroll-margin-left:4000;
-    -webkit-animation-name: move;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: right;
-    -webkit-animation-timing-function:linear;
-  }
   
-
-
-@media screen and (min-device-width: 200px){
-    /* some CSS here */
-    @-webkit-keyframes move {
-      0% {
-        margin-left: -8000px;
-      }
-      100% {
-        margin-left: 800px;
-      }
-    }
-    .scrollmenu {
-     -webkit-animation-duration: 240s;
-    }
-  }
-
-  
-  .scrollmenu:hover {
-    -webkit-animation-play-state: paused;
-  }
-
   
   
 
