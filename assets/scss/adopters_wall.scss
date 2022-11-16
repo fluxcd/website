@@ -1,6 +1,6 @@
 
-  @media screen and (min-width: 600px){
-    @-webkit-keyframes move {
+ 
+    @keyframes move {
       0% {
         margin-left: -10000px;
       }
@@ -8,39 +8,24 @@
         margin-left: 800px;
       }
     }
-    div.scrollmenu {
-      -webkit-animation-duration: 240s;
-    }
-  }
+    
 
-  @media screen and (min-device-width: 200px){
-    /* some CSS here */
-    @-webkit-keyframes move {
-      0% {
-        margin-left: -8000px;
-      }
-      100% {
-        margin-left: 800px;
-      }
-    }
-    div.scrollmenu {
-     -webkit-animation-duration: 240s;
-    }
-  }
+
 
   
   div.scrollmenu:hover {
-    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
   }
 
   div.scrollmenu {
     height:100%;
     overflow: hidden;
     white-space: nowrap;
-    -webkit-animation-name: move;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: right;
-    -webkit-animation-timing-function:linear;
+    animation-name: move;
+    animation-iteration-count: infinite;
+    animation-duration: 450s;
+    animation-direction: right;
+    animation-timing-function:linear;
   }
   
   
