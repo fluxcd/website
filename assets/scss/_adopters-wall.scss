@@ -33,7 +33,7 @@ div.scrollmenu {
   scroll-margin-left:4000;
   animation-name: move;
   animation-iteration-count: infinite;
-  animation-duration: 240s;
+  animation-duration: 375s;
   animation-direction: right;
   animation-timing-function:linear;
 }
@@ -46,5 +46,9 @@ div.scrollmenu {
       margin-left: 800px;
     }
   }
+  div.scrollmenu:hover {
+    animation-play-state: paused;
+  }
+
   
 
