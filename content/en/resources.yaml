@@ -17,10 +17,10 @@ resources:
   - youtube: h8G3LM9uIHk
     title: "Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan Anisimov & Tamao Nakahara"
     date: 2022-10-25
-  - youtube: 7dOKxIYEtvY
+  - youtube: EXp2xAbII_k
     title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
     date: 2022-10-25 
-  - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
+  - url:https://youtu.be/EXp2xAbII_k 
     thumbnail: qCDWsIcFU-A
     title: "Playlist: GitOps Days 2022"
     description: "Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux integrators, end-users/adopters, and maintainers."
