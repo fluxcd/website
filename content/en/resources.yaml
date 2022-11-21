@@ -1,8 +1,14 @@
 resources:
-  - youtube: G1Mt4KE4Dao
+- youtube: PhV5dJtTaDw
+    title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
+    date: 2022-10-27
+ - youtube: 9Ag45POgnKw
+    title: "Flagger, Linkerd, And Gateway API: Oh My! - Jason Morgan, Buoyant & Sanskar Jaiswal, Weaveworks"
+    date: 2022-10-26
+ - youtube: G1Mt4KE4Dao
     title: "Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi Onyekwere, Weaveworks"
     date: 2022-10-25
-  - youtube: Ums3Q9kMPd8
+ - youtube: Ums3Q9kMPd8
     title: "GitOps with Flux and OCI Registries - Soulé Ba & Scott Rigby, Weaveworks"
     date: 2022-10-25
   - youtube: jRil9H1NhZI
@@ -20,7 +26,6 @@ resources:
   - youtube: EXp2xAbII_k
     title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
     date: 2022-10-25 
-  - url:https://youtu.be/EXp2xAbII_k 
     thumbnail: qCDWsIcFU-A
     title: "Playlist: GitOps Days 2022"
     description: "Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux integrators, end-users/adopters, and maintainers."
