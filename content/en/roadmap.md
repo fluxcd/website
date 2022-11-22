@@ -9,7 +9,7 @@ type: page
 # Flux Roadmap
 
 {{% alert color="info" title="Production readiness" %}}
-The Flux latest [beta and stable APIs](https://fluxcd.io/flux/components/)
+The Flux latest [beta and stable APIs](/flux/components/)
 (including their reconcilers) are well tested and safe to use in production environments.
 
 The beta APIs will be replaced in time with stable versions. After an API reaches GA,

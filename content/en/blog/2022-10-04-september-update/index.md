@@ -105,7 +105,7 @@ We will archive Flux Legacy in November this year. If you still need
 migration help, there are still [free migration
 workshops](https://bit.ly/FluxMigrationSurvey), or reach out for paid
 support to one of the companies [listed
-here](https://fluxcd.io/support/#my-employer-needs-additional-help).
+here](/support/#my-employer-needs-additional-help).
 
 Some recent prompts for this include:
 
