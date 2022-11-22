@@ -1,18 +1,12 @@
-
- 
-    @keyframes move {
+  @keyframes move {
       0% {
         margin-left: -10000px;
       }
       100% {
         margin-left: 800px;
       }
-    }
-    
+  }
 
-
-
-  
   div.scrollmenu:hover {
     animation-play-state: paused;
   }
@@ -38,17 +32,19 @@
     text-decoration: none;
    
   }
+
   div.carousel-inner{
-    
     height:100%;
   }
+
   div.carousel-item active{
-    
     height:100%;
   }
+
   div.scrollmenu img {
     transition: 0.3s all ease-in-out;
   }
+  
   div.scrollmenu img:hover {
    transform: scale(1.5);
   }
