@@ -5,11 +5,11 @@ description: "Migration guides for Flux v1 and Helm Operator users."
 weight: 60
 ---
 
-{{% alert color="warning" title="Flux Legacy has reached end of life." %}}
+{{% alert color="danger" title="Flux Legacy has reached end of life." %}}
 Flux Legacy and Helm Operator have [been
-archived](/blog/2022/10/september-2022-update/#flux-legacy-v1-retirement-plan).
+archived](/blog/2022/10/september-2022-update/#flux-legacy-v1-retirement-plan). This means that development and support by the Flux Community has been stopped indefinitely.
 
-We strongly recommend you familiarise yourself with the newest Flux and [migrate as soon as possible](/flux/migration/).
+We strongly recommend you familiarise yourself with the newest Flux and migrate as soon as possible.
 {{% /alert %}}
 
 If you still need migration help, there are still [free migration

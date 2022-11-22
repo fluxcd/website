@@ -10,7 +10,7 @@ resources:
   title: "Image #:counter"
 ---
 
-Cosign integration was one of the most important features we shipped in the Flux [v0.35 release](https://github.com/fluxcd/flux2/releases/tag/v0.35.0). After that, we wrote a [blog post](/blog/2022/10/prove-the-authenticity-of-oci-artifacts/) which explains how to use the feature with [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources which enables fetching OCI artifacts from container registries. If you haven't read it yet, we highly encourage you to go and check it out first.
+Cosign integration was one of the most important features we shipped in the Flux [v0.35 release](https://github.com/fluxcd/flux2/releases/tag/v0.35.0). After that, we wrote a [blog post](/blog/2022/10/prove-the-authenticity-of-oci-artifacts/) which explains how to use the feature with [OCIRepository](/flux/components/source/ocirepositories/) resources which enables fetching OCI artifacts from container registries. If you haven't read it yet, we highly encourage you to go and check it out first.
 
 {{< imgproc verify-the-integrity-of-the-helm-charts-stored-as-oci-artifacts-before-reconciling-them-with-flux-featured Resize x700 >}}
 {{< /imgproc >}}
@@ -50,7 +50,7 @@ Let's jump right into the details of how we can actually use it.
 
 We will deploy [Prometheus](https://prometheus.io/) by using its community [Helm charts](https://github.com/prometheus-community/helm-charts) stored as OCI artifacts in OCI registry. Recently, Prometheus' community started to publish their Helm charts to OCI registries and sign them with cosign using the [keyless](https://github.com/sigstore/cosign/blob/main/KEYLESS.md) approach, you can learn more the process [here](https://github.com/prometheus-community/helm-charts/pull/2631). Then we are going to verify it with _cosign_ and configure Flux to verify the Helm chart's signatures before they are downloaded and reconciled. As the Prometheus community signed their Helm Charts without providing a key pair, we do not need to specify any key in the HelmChart resource' `provider.cosign` spec to enable keyless verification for Flux.
 
-> For the sake of simplicity, we've deployed Prometheus alone but if you want to learn more about installing the Prometheus stack including Grafana, Alertmanager, etc., please refer to the official Flux [page](https://fluxcd.io/flux/guides/monitoring) that can help you to do that.
+> For the sake of simplicity, we've deployed Prometheus alone but if you want to learn more about installing the Prometheus stack including Grafana, Alertmanager, etc., please refer to the official Flux [page](/flux/guides/monitoring) that can help you to do that.
 
 You need three things to complete this demo;
 
