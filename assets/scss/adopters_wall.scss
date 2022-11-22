@@ -1,50 +1,48 @@
-  @keyframes move {
-      0% {
-        margin-left: -10000px;
-      }
-      100% {
-        margin-left: 800px;
-      }
+@keyframes move {
+  0% {
+    margin-left: -10000px;
   }
+  100% {
+    margin-left: 800px;
+  }
+}
 
-  div.scrollmenu:hover {
-    animation-play-state: paused;
-  }
+div.scrollmenu:hover {
+  animation-play-state: paused;
+}
 
-  div.scrollmenu {
-    height:100%;
-    overflow: hidden;
-    white-space: nowrap;
-    animation-name: move;
-    animation-iteration-count: infinite;
-    animation-duration: 450s;
-    animation-direction: right;
-    animation-timing-function:linear;
-  }
+div.scrollmenu {
+  height:100%;
+  overflow: hidden;
+  white-space: nowrap;
+  animation-name: move;
+  animation-iteration-count: infinite;
+  animation-duration: 450s;
+  animation-direction: right;
+  animation-timing-function:linear;
+}
   
+div.scrollmenu img {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  height:100%;
+  padding-right:30px;
+  text-decoration: none;
+}
+
+div.carousel-inner{
+  height:100%;
+}
+
+div.carousel-item active{
+  height:100%;
+}
+
+div.scrollmenu img {
+  transition: 0.3s all ease-in-out;
+}
   
-  div.scrollmenu img {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    height:100%;
-    padding-right:30px;
-    text-decoration: none;
-   
-  }
-
-  div.carousel-inner{
-    height:100%;
-  }
-
-  div.carousel-item active{
-    height:100%;
-  }
-
-  div.scrollmenu img {
-    transition: 0.3s all ease-in-out;
-  }
-  
-  div.scrollmenu img:hover {
-   transform: scale(1.5);
-  }
+div.scrollmenu img:hover {
+  transform: scale(1.5);
+}
