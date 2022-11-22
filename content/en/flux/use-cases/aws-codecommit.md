@@ -25,69 +25,60 @@ For more details on how to create an EKS cluster with `eksctl` please see [eksct
 
 ## Flux Installation for AWS CodeCommit
 
-The following replicates the [Flux bootstrap procedure](../installation.md#bootstrap) and represents
-the best practice for structuring the repository. For more information on the structure of the repository
-please see [Ways of structuring your repositories](../guides/repository-structure.md).
+You can install Flux using a AWS CodeCommit repository using the [`flux bootstrap git`](../installation.md#bootstrap)
+command.
+Ensure you can login to console.aws.amazon.com for your proper organization, and create a new repository to hold your Flux
+install and other Kubernetes resources.
 
-Ensure you can login to [console.aws.amazon.com](https://console.aws.amazon.com) for your proper organization,
-and create a new repository to hold your Flux install and other Kubernetes resources.
-
-Clone the Git repository locally:
-
+To bootstrap using HTTPS, run the following command:
 ```sh
-git clone ssh://Your-SSH-Key-ID@git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository>
-cd my-repository
+flux bootstrap git \
+  --url=https://git-codecommit.<region>.amazonaws.com/v1/repos/<repository> \
+  --branch=main \
+  --username=<my-username> \
+  --password=<my-password> \
+  --token-auth=true
 ```
 
-Create a directory inside the repository:
-
+To bootstrap using SSH, you first need to generate a SSH keypair to be used as a deploy key.
+AWS CodeCommit does not support repository or org-specific SSH/deploy keys. You may add the deploy
+key to a user's personal SSH keys, but take note that revoking the user's access to the repository
+will also revoke Flux's access. The better alternative is to create a machine-user whose sole
+purpose is to store credentials for automation. Using a machine-user also has the benefit of being
+able to be read-only or restricted to specific repositories if this is needed.
 ```sh
-mkdir -p ./clusters/my-cluster/flux-system
+aws iam upload-ssh-public-key --user-name codecommit-user --ssh-public-key-body file://sshkey.pub
 ```
 
-Download the [Flux CLI](../installation.md#install-the-flux-cli) and generate the manifests with:
-
-```sh
-flux install \
-  --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
+The output shall contain a field `SSHPublicKeyID`, which acts as the SSH username.
+```json
+{
+    "SSHPublicKey": {
+        "UserName": "codecommit-user",
+        "SSHPublicKeyId": "<SSH-Key-ID>",
+        "Fingerprint": "<fingerprint>",
+        "SSHPublicKeyBody": "<public-key>",
+        "Status": "Active",
+        "UploadDate": "2022-11-14T15:15:12+00:00"
+    }
+}
 ```
 
-Commit and push the manifest to the master branch:
-
+Now we can run the bootstrap command:
 ```sh
-git add -A && git commit -m "add components" && git push
+flux bootstrap git \
+  --url=ssh://<SSH-Key-ID>@git-codecommit.<region>.amazonaws.com/v1/repos/<repository>
+  --branch=main
+  --private-key-file=</path/to/private.key>
+  --password=<my-ssh-passphrase>
+  --silent
 ```
 
-Apply the manifests on your cluster:
-
-```sh
-kubectl apply -f ./clusters/my-cluster/flux-system/gotk-components.yaml
-```
-
-Verify that the controllers have started:
-
-```sh
-flux check
-```
-
-Create a `GitRepository` object on your cluster by specifying the SSH address of your repo:
-
-```sh
-flux create source git flux-system \
-  --git-implementation=libgit2 \
-  --url=ssh://Your-SSH-Key-ID@git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository> \
-  --branch=<branch> \
-  --ssh-key-algorithm=rsa \
-  --ssh-rsa-bits=4096 \
-  --interval=1m
-```
-
-The above command will prompt you to add a deploy key to your repository, but AWS CodeCommit
-does not support repository or org-specific deploy keys. You may add the deploy key to a user's
-personal SSH keys, but take note that revoking the user's access to the repository will
-also revoke Flux's access. The better alternative is to create a machine-user whose sole purpose is
-to store credentials for automation. Using a machine-user also has the benefit of being able to be read-only or
-restricted to specific repositories if this is needed.
+{{% alert color="info" %}}
+Unlike other Git providers, in the case of AWS CodeCommit, you can not use HTTPS for bootstraping
+and SSH for driving the reconciliation forward, i.e. you can not provide a HTTPS url without
+passing `--token-auth=true` as well.
+{{% /alert %}}
 
 {{% alert color="info" %}}
 Unlike `git`, Flux does not support the ["shorter" scp-like syntax for the SSH
@@ -95,66 +86,6 @@ protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_ss
 (e.g. `git-codecommit.<region>.amazonaws.com:v1`).
 Use the [RFC 3986 compatible syntax](https://tools.ietf.org/html/rfc3986#section-3) instead: `git-codecommit.<region>.amazonaws.com/v1`.
 {{% /alert %}}
-
-If you wish to use Git over HTTPS, then generate [git credentials for HTTPS connections
-to CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html#setting-up-gc-iam)
-and use these details as the username and password:
-
-```sh
-flux create source git flux-system \
-  --git-implementation=libgit2 \
-  --url=https://git-codecommit.<region>.amazonaws.com/v1/repos/<my-repository> \
-  --branch=main \
-  --username=${AWS_IAM_GC_USER} \
-  --password=${AWS_IAM_GC_PASS} \
-  --interval=1m
-```
-
-Create a `Kustomization` object on your cluster:
-
-```sh
-flux create kustomization flux-system \
-  --source=flux-system \
-  --path="./clusters/my-cluster" \
-  --prune=true \
-  --interval=10m
-```
-
-Export both objects, generate a `kustomization.yaml`, commit and push the manifests to Git:
-
-```sh
-flux export source git flux-system \
-  > ./clusters/my-cluster/flux-system/gotk-sync.yaml
-
-flux export kustomization flux-system \
-  >> ./clusters/my-cluster/flux-system/gotk-sync.yaml
-
-cd ./clusters/my-cluster/flux-system && kustomize create --autodetect
-
-git add -A && git commit -m "add sync manifests" && git push
-```
-
-Wait for Flux to reconcile your previous commit with:
-
-```sh
-flux get kustomizations --watch
-```
-
-### Flux Upgrade
-
-To upgrade the Flux components to a newer version, download the latest `flux` binary,
-run the install command in your repository root, commit and push the changes:
-
-```sh
-flux install \
-  --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
-
-git add -A && git commit -m "Upgrade to $(flux -v)" && git push
-```
-
-The [source-controller](../components/source/_index.md) will pull the changes on the cluster,
-then [kustomize-controller](../components/source/_index.md) will perform a rolling update of
-all Flux components including itself.
 
 ## Secrets Management with SOPS and AWS KMS
 
