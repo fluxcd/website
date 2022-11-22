@@ -34,6 +34,13 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)             |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                             |
 
+### Feature Gates
+
+| Name                              | Default Value | Description                                                                                                                           |
+|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `GitForcePushBranch`              | `true`        | Enables the use of "force push" when pushing changes to a separate branch. This fixes issues with stale push branches.                |
+| `ForceGoGitImplementation`        | `true`        | Soft-deprecates `libgit2` by ignoring the value set for `spec.gitImplementation`, and using `go-git` for all reconciliations instead. |
+
 ## Image reflector flags
 
 | Name                                  | Type     | Description                                                                                                                             |
