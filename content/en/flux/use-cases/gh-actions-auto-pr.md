@@ -26,13 +26,13 @@ spec:
 
 We can show that the automation generates a change in the `staging` branch which, once the change is approved and merged, gets deployed into production. The image automation is meant to be gated behind a pull request approval workflow, according to policy you may have in place for your repository.
 
-To create the pull request whenever automation pushes a change, in your manifest repository, add a GitHub Action workflow as below. This workflow watches for commits on the `staging` branch and opens a pull request with any desired labels, title text, or pull request body content that you configure.
+To create the pull request whenever automation creates a new branch, in your manifest repository, add a GitHub Action workflow as below. This workflow watches for the creation of the `staging` branch and opens a pull request with any desired labels, title text, or pull request body content that you configure.
 
 ```yaml
 # ./.github/workflows/staging-auto-pr.yaml
 name: Staging Auto-PR
 on:
-  push:
+  create:
     branches: ['staging']
 
 jobs:
@@ -54,7 +54,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-You can use the [GitHub Pull Request Action] workflow to automatically open a pull request against a destination branch. When `staging` is merged into the `main` branch, changes are deployed in production.
+You can use the [GitHub Pull Request Action] workflow to automatically open a pull request against a destination branch. When `staging` is merged into the `main` branch, changes are deployed in production. Be sure to delete the branch after merging so that the workflow runs the next time that the image automation finds something to change.
 
 {{% alert title="Additional options" %}}
 The "GitHub Pull Request Action" reference linked above documents more options, like `pr_reviewer` and `pr_assignee`, that setting will help make this workflow more usable. You can assign reviewers, labels, (use markdown emojis in the `pr_body`, make variable substitutions in the title, etc.)
