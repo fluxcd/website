@@ -14,7 +14,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 |---------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------|
 | `--artifact-retention-records`        | int           | The maximum number of artifacts to be kept in storage after a garbage collection. (default 2)                                   |
 | `--artifact-retention-ttl`            | duration      | The duration of time that artifacts will be kept in storage before being garbage collected. (default 1m0s)                      |
-| `--concurrent`                        | int           | The number of concurrent reconciles per controller. (default 2)                                                                      |
+| `--concurrent`                        | int           | The number of concurrent reconciles per controller. (default 2)                                                                 |
 | `--default-service-account`           | string        | Default service account used for impersonation.                                                                                 |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.           |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                             |
@@ -44,3 +44,10 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--storage-path`                      | string        | The local storage path.                                                                                                         |
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)          |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                          |
+
+### Feature Gates
+
+| Name                              | Default Value | Description                                                                                                                           |
+|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `OptimizedGitClones`              | `true`        | Optimises Git resource usage by only cloning repositories when the HEAD commit changed since last reconciliation.                     |
+| `ForceGoGitImplementation`        | `true`        | Soft-deprecates `libgit2` by ignoring the value set for `spec.gitImplementation`, and using `go-git` for all reconciliations instead. |
