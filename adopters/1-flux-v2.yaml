@@ -231,3 +231,6 @@ adopters:
     - name: DataGalaxy
       url: https://www.datagalaxy.com/
       logo: logos/datagalaxy.svg
+    - name: synyx
+      url: https://synyx.de/
+      logo: logos/synyx.png
