@@ -70,6 +70,8 @@ After you've installed Flux v2 on your cluster using bootstrap,
 you can delete the Flux v1 from your clusters and move the manifests from the
 Flux v1 repository to the bootstrap one.  Typically deleting Flux v1 can be done by deleting these helm installations: [flux](https://github.com/fluxcd/flux/blob/master/chart/flux/README.md#uninstalling-the-chart) and [helm-operator](https://github.com/fluxcd/helm-operator/blob/master/chart/helm-operator/README.md#uninstall)
 
+One key change in Flux v2 is "server-side apply" that enforces strict validation of the manifests. It is important to note that manifests are applied atomically to the cluster only if server side validation of the apply passes.  If one Kustomization has multiple resources, an error in any one of the resources will also prevent other resources in that group from getting applied. This is a breaking change from Flux v1.
+
 ## In-place migration
 
 {{% alert color="info" color="warning" %}}
