@@ -66,7 +66,7 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 | ☸️ Flux works with any Kubernetes and all common Kubernetes tooling |  Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place. |
 | 🤹 Flux does Multi-Tenancy (and “Multi-everything”) | Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories. Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use one Kubernetes cluster to manage apps in either the same or other clusters, spin up additional clusters themselves, and manage clusters including lifecycle and fleets. |
 | 📞 Flux alerts and notifies | Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and [other chat systems](/flux/components/notification/provider/). |
-| 👍 Users trust Flux | Flux is a CNCF Incubating project and was categorised as "Adopt" on the [CNCF CI/CD Tech Radar](https://radar.cncf.io/2020-06-continuous-delivery) (alongside Helm). |
+| 👍 Users trust Flux | Flux is a CNCF Graduated project and was categorised as "Adopt" on the [CNCF CI/CD Tech Radar](https://radar.cncf.io/2020-06-continuous-delivery) (alongside Helm). |
 | 💖 Flux has a lovely community that is very easy to work with! | We welcome contributors of any kind. The components of Flux are on Kubernetes core `controller-runtime`, so anyone can contribute and its functionality can be extended very easily. |
 
 ## Who is Flux for?

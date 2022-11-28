@@ -184,7 +184,7 @@ some Flux facts - they are sort of our mission statement with Flux.
   handling. Just "git push", and get notified on Slack and [other
   chat
   systems](https://github.com/fluxcd/notification-controller/blob/main/docs/spec/v1beta1/provider.md).
-1. 👍 Users trust Flux: Flux is a CNCF Incubating project
+1. 👍 Users trust Flux: Flux is a CNCF Graduated project
   and was categorised as "Adopt" on the [CNCF CI/CD Tech
   Radar](https://radar.cncf.io/2020-06-continuous-delivery)
   (alongside Helm).

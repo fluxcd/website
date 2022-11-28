@@ -35,7 +35,7 @@
           {{ with .Get "subtitle" }}<p>{{ . | html }}</p>{{ end }}
       </div>
       <div class="row hero-details">
-        <div class="col-md">
+        <div class="col-md-5">
             {{ if eq .Page.File.Ext "md" }}
               {{ .Inner | markdownify }}
             {{ else }}
@@ -47,13 +47,11 @@
             {{ end }}
         </div>
 
-        <div class="col-md is-half is-hidden-touch col-terminal">
+        <div class="col d-none d-md-block">
           <div class="terminal">
-            <div class="icons"><span></span></div>
-            <div class="terminal-title">Terminal</div>
-            <pre class="terminal-content">
-              <asciinema-player loop autoplay font-size="14px" rows=14 src="flux.cast"></asciinema-player>
-            </pre>
+            <div class="bg-white rounded">
+              <img class="img-fluid" src="/img/cncf-graduated.png" />
+            </div>
           </div>
         </div>
 
