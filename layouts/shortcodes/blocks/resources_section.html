@@ -1,3 +1,5 @@
-{{- with .Site.GetPage "/content/en/resources_selection.html" -}}
-    {{- .Content | markdownify -}}
-{{- end -}}
+{{ $resources := $.Site.Data.resources.resources }}
+
+{{ range first 6 (where $resources "description" "!=" nil) }}
+    {{ partial "resource.html" . }}
+{{ end }}
