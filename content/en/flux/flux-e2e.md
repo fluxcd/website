@@ -394,7 +394,7 @@ that refer to or use them.
 
 ### Kustomize Controller applies changes with Server-Side Apply
 
-**Needs a link to FluxCD documentation for Server-Side Apply process!** _The only current on-point reference is the [Server-side reconciliation is coming](/blog/2021/09/server-side-reconciliation-is-coming/) blog post._
+**Needs a link to Flux documentation for Server-Side Apply process!** _The only current on-point reference is the [Server-side reconciliation is coming](/blog/2021/09/server-side-reconciliation-is-coming/) blog post._
 
 The Kustomize Controller communicates directly with the Kubernetes API using [server-side apply and update][] API operations instead of running the `kubectl
 apply` command as a separate forked process and passing it manifest data through a system pipe. Applying resource manifests directly to the Kubernetes

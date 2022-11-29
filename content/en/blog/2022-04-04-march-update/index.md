@@ -498,7 +498,7 @@ Non-Clustered
 Resources](https://www.infoq.com/podcasts/flux-flagger-operator-pattern/)
 
 > In this podcast, Wesley Reisz talks to Stefan Prodan about Flux and
-> Flagger--two tools built on top of Flux CD's GitOps Toolkit. After
+> Flagger--two tools built on top of Flux's GitOps Toolkit. After
 > discussing some of the architectural differences between Flux v1 and
 > v2 and discussing some of the GitOps toolkit use cases, the two
 > discuss the operator pattern on Kubernetes. They specifically spend

@@ -184,7 +184,7 @@ resources:
     title: "We Have Always Done It This Way! Now Let's Try Something Completely Different -Eliran Bivas"
     date: 2022-05-17
   - youtube: 5u45lXmhgxA
-    title: "Full GitOps Tutorial: Getting started with Flux CD"
+    title: "Full GitOps Tutorial: Getting started with Flux"
     description: "Anaïs Urlichs walks you through getting started with Flux, installing the Starboard Helm Chart through GitOps best practices, managing your app, and setting up notifications and monitoring using Flux."
     date: 2022-04-14
   - youtube: PFLimPh5-wo

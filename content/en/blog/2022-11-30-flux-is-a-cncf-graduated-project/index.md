@@ -34,7 +34,7 @@ grew a community and an ecosystem. In 2018, Flagger was born, a Flux
 companion that made progressive delivery a natural extension of GitOps.
 
 When Weaveworks donated Flux and Flagger to the CNCF, we already saw
-large-scale adoption growing and cloud vendors making the Flux CD suite
+large-scale adoption growing and cloud vendors making the Flux suite
 core of their offerings to provide GitOps functionality.
 
 This was also the point where we decided to rewrite Flux from scratch,

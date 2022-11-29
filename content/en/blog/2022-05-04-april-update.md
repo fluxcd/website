@@ -416,7 +416,7 @@ inject secrets into Flux or other GitOps tools on Kubernetes.
 
 We are looking forward to more collaboration together!
 
-#### Full GitOps Tutorial: Getting started with Flux CD
+#### Full GitOps Tutorial: Getting started with Flux
 
 {{< youtube 5u45lXmhgxA >}}
 
