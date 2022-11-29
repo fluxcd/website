@@ -1,4 +1,10 @@
 resources:
+  - youtube: PhV5dJtTaDw
+    title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
+    date: 2022-10-27
+  - youtube: 9Ag45POgnKw
+    title: "Flagger, Linkerd, And Gateway API: Oh My! - Jason Morgan, Buoyant & Sanskar Jaiswal, Weaveworks"
+    date: 2022-10-26
   - youtube: G1Mt4KE4Dao
     title: "Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi Onyekwere, Weaveworks"
     date: 2022-10-25
@@ -17,7 +23,7 @@ resources:
   - youtube: h8G3LM9uIHk
     title: "Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan Anisimov & Tamao Nakahara"
     date: 2022-10-25
-  - youtube: 7dOKxIYEtvY
+  - youtube: EXp2xAbII_k
     title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
     date: 2022-10-25 
   - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
