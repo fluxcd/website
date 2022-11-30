@@ -1,4 +1,7 @@
 resources:
+  - youtube: uRiCRTSkPOQ
+    title: "WOUG: OCI - Flux ease with helm charts and Flux (Part 2)"
+    date: 2022-11-29
   - youtube: PhV5dJtTaDw
     title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
     date: 2022-10-27
