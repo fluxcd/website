@@ -72,6 +72,7 @@
     color: $flux-light-blue !important;
     font-weight: 400;
     font-style: italic;
+    text-decoration: underline;
 
     &:hover {
       color: $flux-darkest-blue !important;
@@ -82,8 +83,9 @@
   a.btn {
     @include flat-white-button;
     border: none;
+    text-decoration: none;
 
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     
     font-style: normal;
     font-weight: 600;

@@ -5,6 +5,7 @@ title: Server-side reconciliation is coming
 description: >
   The next Flux release will bring you a new reconciler based on Kubernetes "Server-Side Apply". It will make Flux more performant, observable, less error-prone and provide a generally more delightful experience. This post informs you of the changes you need to take to be able to upgrade.
 url: /blog/2021/09/server-side-reconciliation-is-coming/
+tags: [announcement]
 ---
 
 

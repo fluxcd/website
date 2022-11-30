@@ -30,3 +30,7 @@ body.td-home .deprecation-warning, body.td-blog .deprecation-warning, body.td-do
     text-decoration: underline;
 }
 
+#announce {
+    @extend .deprecation-warning;
+    background-color: #fffbd9;
+}
