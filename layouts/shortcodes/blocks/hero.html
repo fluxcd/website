@@ -35,7 +35,7 @@
           {{ with .Get "subtitle" }}<p>{{ . | html }}</p>{{ end }}
       </div>
       <div class="row hero-details">
-        <div class="col-md-5">
+        <div class="col-lg-5">
             {{ if eq .Page.File.Ext "md" }}
               {{ .Inner | markdownify }}
             {{ else }}

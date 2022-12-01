@@ -30,6 +30,10 @@ $terminal-border-radius: 10px;
   position: relative;
   width: 100%;
 
+  @include media-breakpoint-down(md) {
+    margin-top: 40px;
+  }
+
   .terminal-title {
     flex: 1;
     text-align: center;
