@@ -50,6 +50,8 @@ community. Better to write:]
 
 #### Azure GitOps
 
+#### VS Code GitOps Extension
+
 #### New additions to the Flux Ecosystem
 
 ## Recent & Upcoming Events
