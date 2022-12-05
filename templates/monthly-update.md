@@ -3,7 +3,7 @@ author: dholbach
 date: YEAR-XX-01 15:30:00+00:00
 title: LAST_MONTH YEAR Update
 description: "XX"
-url: /blog/YEAR/XX/october-YEAR-update/
+url: /blog/YEAR/XX/LAST_MONTH-YEAR-update/
 tags: [monthly-update]
 resources:
 - src: "**.{png,jpg}"

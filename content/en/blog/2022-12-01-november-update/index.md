@@ -3,7 +3,8 @@ author: dholbach
 date: 2022-12-05 12:30:00+00:00
 title: November 2022 Update
 description: "Flux graduates within the CNCF. Flux consolidates Git implementation. Flux GA Roadmap updates. New Flagger releases. Ecosystem updates. KubeCon Review and lots more community news."
-url: /blog/2022/12/october-2022-update/
+url: /blog/2022/12/november-2022-update/
+aliases: [/blog/2022/12/october-2022-update/]
 tags: [monthly-update]
 resources:
 - src: "**.{png,jpg}"
