@@ -190,8 +190,13 @@ We feel blessed to have such a big community of users, contributors and
 integrators and so many are happy to talk about their experiences. In
 November here are a couple of talks we would like to highlight.
 
-[Nov 16: Flux Security & Scalability using VS Code GitOps
+- [Nov 16: Flux Security & Scalability using VS Code GitOps
 Extension](https://youtu.be/Bmh7kKYLIhY)
+- [Nov 29: WOUG: OCI - Flux ease with helm charts and Flux (Part
+2)](https://youtu.be/uRiCRTSkPOQ)
+- [Nov 30: HashiCorp User Group (Luxembourg): GitOps Your Terraform
+Configurations with
+Flux](https://youtu.be/JHmQlSvL0II)
 
 [Playlist: Flux at Prometheus Day, GitOpsCon, & KubeCon North America 2022](https://youtube.com/playlist?list=PLwjBY07V76p4qczDNgH08GQVdzgcwXpdY)
 
@@ -249,11 +254,6 @@ We are happy to announce that we have a number of events coming up in
 December- tune in to learn more about Flux and GitOps best practices,
 get to know the team and join our community.
 
-- [Nov 29: WOUG: OCI - Flux ease with helm charts and Flux (Part
-2)](https://www.meetup.com/weave-user-group/events/289767478)
-- [Nov 30: HashiCorp User Group (Luxembourg): GitOps Your Terraform
-Configurations with
-Flux](https://www.meetup.com/luxembourg-hashicorp-user-group/events/288797616)
 - [Dec 13: Implementing Flux for Scale with Soft
 Multi-tenancy](https://www.meetup.com/weave-user-group/events/289768509)
 
