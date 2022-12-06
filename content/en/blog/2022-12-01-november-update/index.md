@@ -337,7 +337,7 @@ Fortytwo](https://amestofortytwo.com),
 [Divistant](https://divistant.com/), [DKB Deutsche
 Kreditbank AG](https://dkb.de), [Housing
 Anywhere](https://housinganywhere.com),
-[snynyx](https://synyx.de/).
+[synyx](https://synyx.de/).
 
 If you have not already done so, [use the instructions
 here](/adopters/) or give us a ping and we

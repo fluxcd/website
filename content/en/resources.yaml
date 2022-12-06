@@ -1,7 +1,13 @@
 resources:
+  - youtube: JHmQlSvL0II
+    title: "HashiCorp User Group (Luxembourg): GitOps Your Terraform Configurations with Flux"
+    date: 2022-11-30
   - youtube: uRiCRTSkPOQ
     title: "WOUG: OCI - Flux ease with helm charts and Flux (Part 2)"
     date: 2022-11-29
+  - youtube: Bmh7kKYLIhY
+    title: "Flux Security & Scalability using VS Code GitOps Extension"
+    date: 2022-11-16
   - youtube: PhV5dJtTaDw
     title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
     date: 2022-10-27
