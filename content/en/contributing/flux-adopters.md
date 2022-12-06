@@ -1,4 +1,7 @@
-# Flux Adopters
+---
+title: Flux Adopters
+weight: 5
+---
 
 So you and your organisation are using Flux? That's great. We would love to hear from you! 💖
 
@@ -16,8 +19,8 @@ To add your organisation follow these steps:
 
 1. Fork the [fluxcd/website](https://github.com/fluxcd/website) repository.
 1. Clone it locally with `git clone https://github.com/<YOUR-GH-USERNAME>/website.git`.
-1. (Optional) Add the logo of your organisation to `adopters/logos`. Good practice is for the logo to be called e.g. `<company>.png`.
-1. Find the right `adopters/<project>.yaml` file as indicated above.
+1. (Optional) Add the logo of your organisation to `static/img/logos`. Good practice is for the logo to be called e.g. `<company>.png`.
+1. Find the right `data/adopters/<project>.yaml` file as indicated above.
 1. Add an entry to the YAML file with the `name` of your organisation, `url` that links to its website, and the path to the `logo`. Example:
 
    ```yaml
@@ -35,4 +38,4 @@ Thanks a lot for being part of our community - we very much appreciate it!
 
 ### Addendum
 
-`/adopters/logo/logo-generic.png` is a slightly modified Flux logo, it is used when no organisation logo is provided.
+`/static/img/logos/logo-generic.png` is a slightly modified Flux logo, it is used when no organisation logo is provided.
