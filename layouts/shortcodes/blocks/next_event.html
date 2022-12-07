@@ -2,5 +2,7 @@
 {{ $blockID := printf "td-cover-block-%d" .Ordinal }}
 
 <p class="next-event">
-{{- readFile "/content/en/next_event_include.html" | safeHTML -}}
+{{ range first 1 $.Site.Data.calendar }}
+📆 Next event: <a href="{{ .where }}">{{ .date }} {{ .time }} UTC: {{ .label }}</a>
+{{ end }}
 </p>

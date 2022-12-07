@@ -1,10 +1,35 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 <div class="team-calendar">
     <h3 id="calendar">Our Team Calendar</h3>
-    {{ if (fileExists "/content/en/calendar_include.html") -}}
     <p class="caption">The upcoming meetings, talks and community events in the next month are listed below. (All times are UTC.)</p>
-    {{ readFile "/content/en/calendar_include.html" | safeHTML }}
-    {{ end }}
+
+    <ul class="calendar-list">
+        {{ range $.Site.Data.calendar }}
+        <li>
+            <div class="calendar-row">
+                <div class="date">{{ .date }}</div>
+                <div class="time">{{ .time }}</div>
+                <div class="label">{{ .label }}</div>
+            </div>
+            <div class="calendar-card">
+                <ul class="details-list">
+                    <li>
+                        <dt>Where</dt>
+                        <dd>{{ .where }}</dd>
+                    </li>
+
+                    <li>
+                        <dt>Organizer</dt>
+                        <dd><a href="mailto:{{ .org_email }}">{{ .org_name }}</a></dd>
+                    </li>
+                </ul>
+
+               <span class="description">{{ .description | safeHTML }}</span>
+            </div>
+        </li>
+        {{ end }}
+    </ul>
+
     <p class="details">See <a href="/community/#meetings">this page</a>
         for more detail and subscription options.</p>
 </div>
