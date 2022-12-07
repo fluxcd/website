@@ -15,14 +15,14 @@
             {{ range sort .adopters.companies "name" }}
             <div class="td-card card mb-4">
                 <div class=card-header>
-                    <a href={{.url | safeURL }} target=_blank>{{ .name }}</a>
+                    <a href={{.url | safeURL }} target=_blank>{{ .name | safeHTML }}</a>
                 </div>
                 <div class=card-body>
                     <p class=card-text>
                         {{ if .logo }}
-                        <img src="/img/{{ .logo }}" alt="{{ .name }}">
+                        <img src="/img/{{ .logo }}" alt="{{ .name | safeHTML }}">
                         {{ else }}
-                        <img src="/img/logos/logo-generic.png" alt="{{ .name }}">
+                        <img src="/img/logos/logo-generic.png" alt="{{ .name | safeHTML }}">
                         {{ end }}
                     </p>
                 </div>
