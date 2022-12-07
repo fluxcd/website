@@ -132,7 +132,7 @@ quite a few use Flagger.
 
 If you use any of the Flux projects in your organisation, please
 consider adding yourself as well: instructions can be found
-[here](https://github.com/fluxcd/website/tree/main/adopters#readme).
+[here](/contributing/flux-adopters/).
 
 Thanks a lot everyone who already added themselves - your support means
 a lot to us! 💖
