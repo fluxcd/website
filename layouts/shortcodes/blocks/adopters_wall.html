@@ -5,7 +5,22 @@
       <div id="logos">
         <div class="col">
           <div class="scrollmenu">
-            {{ readFile "/content/en/adopters_wall_include.html" | safeHTML }}
+            {{ $companies := slice }}
+            {{ $projects := $.Site.Data.adopters }}
+            {{ range $projects }}
+              {{ range .adopters.companies }}
+                {{ $company := . }}
+                  {{ if not (in $companies $company) }}
+                    {{ $companies = $companies | append $company }}
+                  {{ end }}
+              {{ end }}
+            {{ end }}
+
+            {{ range $companies }}
+              {{ if .logo }}
+              <img src="/img/{{ .logo }}" alt="{{ .name }}" title="{{ .name }}">
+              {{ end }}
+            {{ end }}
           </div>
         </div>
       </div>
