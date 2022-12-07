@@ -25,14 +25,13 @@ from icalendar import Calendar
 import pytz
 import recurring_ical_events
 import urllib3
+import yaml
 
 CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/4130481/1290943905/feed.ics'
 
 TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
-CONTENT_DIR = os.path.join(TOP_LEVEL_DIR, 'content/en')
-CALENDAR_INCLUDE_HTML = os.path.join(CONTENT_DIR, 'calendar_include.html')
-NEXT_EVENT_INCLUDE_HTML = os.path.join(CONTENT_DIR, 'next_event_include.html')
+CALENDAR_YAML = os.path.join(TOP_LEVEL_DIR, 'data/calendar.yaml')
 
 URL_RE = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", re.MULTILINE|re.UNICODE)
 
@@ -54,7 +53,6 @@ def fix_double_url(text):
     return DOUBLE_URL_RE.sub(r"\1", text)
 
 
-
 def download_calendar():
     http = urllib3.PoolManager()
     r = http.request('GET', CAL_URL)
@@ -72,6 +70,7 @@ def read_organizer(event):
         name = organizer.params['cn']
 
     return {"name": name, "email": email}
+
 
 def read_calendar(cal):
     events = []
@@ -112,66 +111,36 @@ def format_location_html(event):
     return html
 
 
-def write_events_html(events):
-    if os.path.exists(CALENDAR_INCLUDE_HTML):
-        os.remove(CALENDAR_INCLUDE_HTML)
+def write_events_yaml(ical):
+    if os.path.exists(CALENDAR_YAML):
+        os.remove(CALENDAR_YAML)
 
-    if not events:
+    if not ical:
         return
 
-    html = """
-    <ul class="calendar-list">"""
+    events = []
+    for entry in ical:
+        events += [{
+            'date': entry['time'].strftime('%F'),
+            'time': entry['time'].strftime('%H:%M'),
+            'label': str(entry['title']),
+            'where': format_location_html(entry),
+            'org_email': entry['organizer']['email'],
+            'org_name': entry['organizer']['name'],
+            'description': entry['description']
+        }]
 
-    for event in events:
-        html += f"""
-        <li>
-            <div class="calendar-row">
-                <div class="date">{event['time'].strftime('%F')}</div>
-                <div class="time">{event['time'].strftime('%H:%M')}</div>
-                <div class="label">{event['title']}</div>
-            </div>
-            <div class="calendar-card">
-                <ul class="details-list">
-                    <li>
-                        <dt>Where</dt>
-                        <dd>{format_location_html(event)}</dd>
-                    </li>
-                    
-                    <li>
-                        <dt>Organizer</dt>
-                        <dd><a href="mailto:{event['organizer']['email']}">{event['organizer']['name']}</a></dd>
-                    </li>
-                </ul>
+    with open(CALENDAR_YAML, 'w') as stream:
+        yaml.dump(events, stream)
+        stream.close()
 
-                <span class="description">{event['description']}</span>
-            </div>
-        </li>
-
-"""
-    html += """
-    </ul>"""
-
-    f = open(CALENDAR_INCLUDE_HTML, 'w')
-    f.write(html)
-    f.close()
-
-    with open(NEXT_EVENT_INCLUDE_HTML, 'w') as f:
-        event = events[0]
-        if not event['location'].startswith('http'):
-            event['location'] = '/#calendar'
-        f.write('📆 Next event: <a href="{where}">{date} {time} UTC: {title}</a>'.format(
-            where=event['location'],
-            date=event['time'].strftime('%F'),
-            time=event['time'].strftime('%H:%M'),
-            title=event['title']))
-        f.close()
 
 def main():
     cal = download_calendar()
     if not cal:
         sys.exit(1)
     events = read_calendar(cal)
-    write_events_html(events)
+    write_events_yaml(events)
 
 if __name__ == '__main__':
     try:
