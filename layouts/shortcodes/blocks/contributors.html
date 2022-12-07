@@ -1,4 +1,6 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 <div class="container contributors">
-    {{ readFile "/content/en/contributors_include.html" | safeHTML }}
+    {{ range $.Site.Data.contributors }}
+    <a href="https://github.com/{{ .name }}"><img src="{{ .avatar_url }}" title="{{ .name }}" width="80" height="80"></a>
+    {{ end }}
 </div>
