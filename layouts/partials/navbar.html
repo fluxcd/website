@@ -57,7 +57,7 @@
             {{ .Name }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          {{ range .Children  }}
+            {{ range .Children  }}
             {{ $childrenurl := urls.Parse .URL }}
             <a class="dropdown-item" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $childrenurl.Host $baseurl.Host }}target="_blank" {{ end }}>{{ .Name }}</a>
           {{ end }}

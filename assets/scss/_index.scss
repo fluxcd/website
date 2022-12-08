@@ -1,3 +1,9 @@
+@media screen and (min-width: 100px) {
+  #adopters-wall{
+    display: block;
+  }
+}
+
 @mixin white-background-a {
   a {
     color: $flux-lighter-blue !important;
