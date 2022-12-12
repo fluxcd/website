@@ -3,7 +3,7 @@ title: Support
 type: page
 ---
 
-# Looking for help
+# Getting Flux Support
 
 The success and happiness of our users is essential to the Flux community. We are working very hard to make all of our tools obvious and self-explanatory, to make them composable with other tools and make our documentation easy to follow.
 
@@ -16,10 +16,27 @@ Implementing GitOps or any \*Ops is a process which involves many layers and tec
 To be mindful of everybody's time, please make sure you checked and followed the documentation before filing issues.
 Here are some good entry points to get started with our documentation including Getting Started Guides:
 
-Project   | Links
---------- | ----------------------------------------
-Flux | [Entry point](https://fluxcd.io/flux/), [Core Concepts](https://fluxcd.io/flux/concepts/), [Getting Started Guide](https://fluxcd.io/flux/get-started/), [FAQ](https://fluxcd.io/flux/faq/)
-Flagger | [Entry point](https://docs.flagger.app/), [Getting Started Guide](https://docs.flagger.app/install/flagger-install-on-kubernetes), [FAQ](https://docs.flagger.app/faq)
+<div class="support">
+
+{{< cardpane >}}
+{{% card header="**Flux**" %}}
+![Flux](/img/logos/flux-stacked-color.png)
+
+- [Entry point](/flux/)
+- [Core Concepts](/flux/concepts/)
+- [Getting Started Guide](/flux/get-started/)
+- [FAQ](/flux/faq/)
+{{% /card %}}
+{{% card header="**Flagger**" %}}
+![Flagger](/img/logos/flagger-stacked-color.png)
+
+- [Entry point](/flagger),
+- [Getting Started Guide](/flagger/install/flagger-install-on-kubernetes)
+- [FAQ](/flagger/faq)
+{{% /card %}}
+{{< /cardpane >}}
+
+</div>
 
 ## I am stuck
 
