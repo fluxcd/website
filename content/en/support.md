@@ -1,3 +1,8 @@
+---
+title: Support
+type: page
+---
+
 # Looking for help
 
 The success and happiness of our users is essential to the Flux community. We are working very hard to make all of our tools obvious and self-explanatory, to make them composable with other tools and make our documentation easy to follow.
@@ -15,8 +20,6 @@ Project   | Links
 --------- | ----------------------------------------
 Flux | [Entry point](https://fluxcd.io/flux/), [Core Concepts](https://fluxcd.io/flux/concepts/), [Getting Started Guide](https://fluxcd.io/flux/get-started/), [FAQ](https://fluxcd.io/flux/faq/)
 Flagger | [Entry point](https://docs.flagger.app/), [Getting Started Guide](https://docs.flagger.app/install/flagger-install-on-kubernetes), [FAQ](https://docs.flagger.app/faq)
-Helm Operator (legacy - v1) | [Entry point](https://fluxcd.io/legacy/helm-operator/), [Getting Started Guide](https://fluxcd.io/legacy/helm-operator/get-started/quickstart/), [FAQ](https://fluxcd.io/legacy/helm-operator/faq/), [Troubleshooting](https://fluxcd.io/legacy/helm-operator/troubleshooting/)
-Flux (legacy - v1) | [Entry point](https://fluxcd.io/legacy/flux/), [Getting Started Guide](https://fluxcd.io/legacy/flux/get-started/), [FAQ](https://fluxcd.io/legacy/flux/faq/), [Troubleshooting](https://fluxcd.io/legacy/flux/troubleshooting/)
 
 ## I am stuck
 
@@ -24,9 +27,9 @@ We as a community are both very thankful and proud to have attracted many incred
 
 As we have been overwhelmed with general questions, troubleshooting requests, feature requests, etc. in the past months, we would like to ask you to:
 
-- Read the [documentation](https://fluxcd.io/flux/get-started/) carefully, check the individual troubleshooting sections for advice on how to interpret logs, use relevant tools, etc.
-- For Flux 2 questions, see if there are answers on the [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
-- Please don't direct-message project maintainers or relevant others with specific support questions. The few Flux maintainers cannot answer all questions. If you post on [GH Discussions page](https://github.com/fluxcd/flux2/discussions) for Flux 2 questions or message in the appropriate Slack channel, you'll have a better chance at getting an answer from a community member willing to help.
+- Read the [documentation](/flux/get-started/) carefully, check the individual troubleshooting sections for advice on how to interpret logs, use relevant tools, etc.
+- For Flux questions, see if there are answers on the [GH Discussions page](https://github.com/fluxcd/flux2/discussions)
+- Please don't direct-message project maintainers or relevant others with specific support questions. The few Flux maintainers cannot answer all questions. If you post on [GH Discussions page](https://github.com/fluxcd/flux2/discussions) for Flux questions or message in the appropriate Slack channel, you'll have a better chance at getting an answer from a community member willing to help.
 - Make sure you don't share private information.
 - Help out if you can, e.g. if somebody just answered your question and it was missing in the FAQ or other docs, please consider adding it, it might help somebody in the future.
 
@@ -62,7 +65,7 @@ If your needs are more urgent, more broadly demanding, or more persistent than t
 
 ## Community Help Resources
 
-For questions around Flux v2, please visit our [Flux2 Discussions](https://github.com/fluxcd/flux2/discussions) section on Github.
+For questions around Flux, please visit our [Flux Discussions](https://github.com/fluxcd/flux2/discussions) section on Github.
 
 ## I found a bug
 
@@ -76,7 +79,7 @@ Many Flux projects and project facets are maintained by different code owners un
 
 ### Flux core projects (in active development
 
-- [flux2](https://github.com/fluxcd/flux2) - the main Flux project repository (current version)
+- [flux2](https://github.com/fluxcd/flux2) - the main Flux project repository
 - [source-controller](https://github.com/fluxcd/source-controller) - handles artifacts acquisition from external sources such as Git, Helm repositories and S3 buckets.
 - [kustomize-controller](https://github.com/fluxcd/kustomize-controller) - runs continuous delivery pipelines defined with Kubernetes manifests and assembled with Kustomize.
 - [helm-controller](https://github.com/fluxcd/helm-controller) - declaratively manages Helm chart releases (the successor to Helm Operator from Flux v1).
@@ -89,11 +92,6 @@ Many Flux projects and project facets are maintained by different code owners un
 
 - [website](https://github.com/fluxcd/website) - the project's landing page at <https://fluxcd.io> and docs
 - [community](https://github.com/fluxcd/community) - this page!
-
-### Stable Flux repositories (in maintenance mode)
-
-- [flux (v1)](https://github.com/fluxcd/flux)
-- [helm-operator](https://github.com/fluxcd/helm-operator)
 
 Now check the issue template and include any requested information
 
