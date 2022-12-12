@@ -13,8 +13,5 @@ hugo/
 content/en/flux/cmd/flux*
 static/install.sh
 
-# Adopters logos
-static/img/logos
-
 # local GH token, used for some scripts
 .gh-token

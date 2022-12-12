@@ -105,13 +105,13 @@ We will archive Flux Legacy in November this year. If you still need
 migration help, there are still [free migration
 workshops](https://bit.ly/FluxMigrationSurvey), or reach out for paid
 support to one of the companies [listed
-here](/support/#my-employer-needs-additional-help).
+here](/support/#commercial-support).
 
 Some recent prompts for this include:
 
 - Some of the Flux v1 dependencies are pinned to EOL versions, which
   cannot be upgraded without causing regressions or a cascading
-  amount of changes to the codebase. .
+  amount of changes to the codebase.
 - All Kubernetes dependencies are pinned within version v1.21. That
   version already reached end-of-life support upstream.
 

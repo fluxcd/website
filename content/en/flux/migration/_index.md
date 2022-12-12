@@ -14,7 +14,7 @@ We strongly recommend you familiarise yourself with the newest Flux and migrate 
 
 If you still need migration help, there are still [free migration
 workshops](https://bit.ly/FluxMigrationSurvey), or reach out for paid
-support to one of the companies [listed here](/support/#my-employer-needs-additional-help).
+support to one of the companies [listed here](/support/#commercial-support).
 
 ## Resources
 
