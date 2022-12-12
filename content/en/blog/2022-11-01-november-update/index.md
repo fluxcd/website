@@ -114,7 +114,7 @@ Please look into [migrating to Flux v2](/flux/migration/) as soon as possible.
 If you still need migration help, there are still [free migration
 workshops](https://bit.ly/FluxMigrationSurvey), or reach
 out for paid support to one of the companies [listed
-here](/support/#my-employer-needs-additional-help).
+here](/support/#commercial-support).
 
 ### Flux Ecosystem
 

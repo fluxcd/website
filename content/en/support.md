@@ -104,7 +104,7 @@ Here are some guidelines about which venue makes the most sense:
 
 Bearing in mind that Issues and [Discussions](https://github.com/fluxcd/flux2/discussions) are more permanent and searchable than Slack conversations, we can avoid unduly expending finite community resources by searching before asking. If you are not exactly sure how to ask your question or otherwise daunted by the idea of permanence, visitors are always welcome in [#flux][] on the [CNCF Slack][].
 
-If your needs are more urgent, more broadly demanding, or more persistent than the best-effort community support resources can provide, you may also consider [a paid support option](#my-employer-needs-additional-help).
+If your needs are more urgent, more broadly demanding, or more persistent than the best-effort community support resources can provide, you may also consider [a paid support option](#commercial-support).
 
 ## Community Help Resources
 
