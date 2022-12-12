@@ -9,6 +9,32 @@ The success and happiness of our users is essential to the Flux community. We ar
 
 You might still run into issues. This page is meant to be a guide to help you figure out how and where to look for help.
 
+## Commercial Support
+
+Luckily some of the companies who employ Flux developers offer paid support, so if you need an architecture review, training or help implementing certain features, you might want to reach out to the following companies:
+
+<div class="support">
+
+{{< cardpane >}}
+{{% card header="[DoneOps](https://www.doneops.com/#contactus)" %}}
+![DoneOps](/img/logos/logo-generic.png)
+{{% /card %}}
+{{% card header="[Weaveworks](https://www.weave.works/contact/)" %}}
+![Weaveworks](/img/logos/weaveworks.png)
+{{% /card %}}
+{{% card header="[Xenit](https://xenit.se/contact/)" %}}
+![Xenit](/img/logos/xenit.png)
+{{% /card %}}
+{{< /cardpane >}}
+
+</div>
+
+---
+
+*Flux is a CNCF project, so this "paid support" section is not tied to any single company in particular. If you want to add your company to the list, please file a PR against [this file](https://github.com/fluxcd/website/blob/main/content/en/_index.html) and tag the [Core Maintainers](https://github.com/fluxcd/community/blob/main/GOVERNANCE.md#core-maintainers).*
+
+*If your company has a track record of Flux engineering and/or support we will get you added.*
+
 ## Documentation for individual Flux projects
 
 Implementing GitOps or any \*Ops is a process which involves many layers and technologies. We therefore place a lot of importance on encoding shared knowledge and best practices in our documentation.
@@ -38,7 +64,7 @@ Here are some good entry points to get started with our documentation including 
 
 </div>
 
-## I am stuck
+## Getting help from the Flux Community
 
 We as a community are both very thankful and proud to have attracted many incredibly kind and clever individuals who are all interested in the same thing and who are helping each other out.
 
@@ -115,20 +141,6 @@ Now check the issue template and include any requested information
 For example, the [flux2 repo issue template](https://github.com/fluxcd/flux2/issues/new) requests the output of `flux check` and `flux --version`. If you are using an older version of the project, review the release notes from later versions to be sure your issue has not already been resolved. Also check for other issue reports, as if your issue was already reported, this can help avoid duplicate reports.
 
 Any relevant information depending on your specific issue should also be included, like your Kubernetes cluster version and/or cloud provider; or for example if you are reporting an issue related to image automation, tell what type of image hosting is used, or what container registry provider hosts your cluster's images.
-
-## My employer needs additional help
-
-Luckily some of the companies who employ Flux developers offer paid support, so if you need an architecture review, training or help implementing certain features, you might want to reach out to the following companies:
-
-- DoneOps: <https://www.doneops.com/#contactus>
-- Weaveworks: <https://www.weave.works/contact/>
-- Xenit: <https://xenit.se/contact/>
-
----
-
-*Flux is a CNCF project, so this "paid support" section is not tied to any single company in particular. If you want to add your company to the list, please file a PR and tag the [Core Maintainers](https://github.com/fluxcd/community/blob/main/GOVERNANCE.md#core-maintainers).*
-
-*If your company has a track record of Flux engineering and/or support we will get you added.*
 
 [#flux]: https://cloud-native.slack.com/archives/CLAJ40HV3
 [CNCF Slack]: https://slack.cncf.io/
