@@ -17,7 +17,7 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 
 {{< cardpane >}}
 {{% card header="[DoneOps](https://www.doneops.com/#contactus)" %}}
-![DoneOps](/img/logos/logo-generic.png)
+![DoneOps](/img/logos/doneops.svg)
 {{% /card %}}
 {{% card header="[Weaveworks](https://www.weave.works/contact/)" %}}
 ![Weaveworks](/img/logos/weaveworks.png)
