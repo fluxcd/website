@@ -27,11 +27,22 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 {{% /card %}}
 {{< /cardpane >}}
 
+| Involvement / Service                                 | DoneOps | Weaveworks | Xenit |
+| ----------------------------------------------------- | ------- | ---------- | ----- |
+| Involved in Flux Community                            | ✅      | ✅         | ✅    |
+| Employs [Flux Core Maintainers][core-maintainers]     |         | ✅         | ✅    |
+| Offers GitOps infrastructure review and support       | ✅      | ✅         | ✅    |
+| Offers Custom Engineering                             |         | ✅         | ✅    |
+| Offers [Enterprise product based on Flux][enterprise] |         | ✅         |       |
+
+[core-maintainers]: https://github.com/fluxcd/community/blob/main/CORE-MAINTAINERS
+[enterprise]: /ecosystem/#products-and-services-built-on-top-of-flux
+
 </div>
 
 ---
 
-*Flux is a CNCF project, so this "paid support" section is not tied to any single company in particular. If you want to add your company to the list, please file a PR against [this file](https://github.com/fluxcd/website/blob/main/content/en/_index.html) and tag the [Core Maintainers](https://github.com/fluxcd/community/blob/main/GOVERNANCE.md#core-maintainers).*
+*Flux is a CNCF project, so this "paid support" section is not tied to any single company in particular. If you want to add your company to the list, please make sure you are listed on our [adopters page](/adopters) and file a PR against [this file](https://github.com/fluxcd/website/blob/main/content/en/_index.html) and tag the [Core Maintainers](https://github.com/fluxcd/community/blob/main/GOVERNANCE.md#core-maintainers).*
 
 *If your company has a track record of Flux engineering and/or support we will get you added.*
 
@@ -134,7 +145,7 @@ Many Flux projects and project facets are maintained by different code owners un
 ### Project documentation
 
 - [website](https://github.com/fluxcd/website) - the project's landing page at <https://fluxcd.io> and docs
-- [community](https://github.com/fluxcd/community) - this page!
+- [community](https://github.com/fluxcd/community) - our community repository
 
 Now check the issue template and include any requested information
 
