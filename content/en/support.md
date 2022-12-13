@@ -27,6 +27,17 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 {{% /card %}}
 {{< /cardpane >}}
 
+| Involvement / Service                                 | DoneOps | Weaveworks | Xenit |
+| ----------------------------------------------------- | ------- | ---------- | ----- |
+| Involved in Flux Community                            | ✅      | ✅         | ✅    |
+| Employs [Flux Core Maintainers][core-maintainers]     |         | ✅         | ✅    |
+| Offers GitOps infrastructure review and support       | ✅      | ✅         | ✅    |
+| Offers Custom Engineering                             |         | ✅         | ✅    |
+| Offers [Enterprise product based on Flux][enterprise] |         | ✅         |       |
+
+[core-maintainers]: https://github.com/fluxcd/community/blob/main/CORE-MAINTAINERS
+[enterprise]: /ecosystem/#products-and-services-built-on-top-of-flux
+
 </div>
 
 ---
@@ -134,7 +145,7 @@ Many Flux projects and project facets are maintained by different code owners un
 ### Project documentation
 
 - [website](https://github.com/fluxcd/website) - the project's landing page at <https://fluxcd.io> and docs
-- [community](https://github.com/fluxcd/community) - this page!
+- [community](https://github.com/fluxcd/community) - our community repository
 
 Now check the issue template and include any requested information
 
