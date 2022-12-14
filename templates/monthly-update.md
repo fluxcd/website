@@ -76,22 +76,6 @@ We are happy to announce that we have a number of events coming up in
 MONTH- tune in to learn more about Flux and GitOps best practices,
 get to know the team and join our community.
 
-[CNCF Livestream (Aug 17) with Kingdon
-Barrett](https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cloud-native-live-vscode-and-flux-testing-the-new-unreleased-oci-repository-feature/)
-
-The Flux project continues in active development with the addition of
-OCI configuration planned in the GA roadmap.
-
-Another Flux advancement has been the creation of the new VSCode
-Extension which provides a convenient interface to Flux that can help
-reduce friction moving between editor and terminal, alleviating the
-headache of context switching overloading developer focus.
-
-Flux maintainer Kingdon Barrett will demonstrate the pre-release of
-Flux's new OCI features and a convenient way to access them while they
-remain in pre-release so you can provide the feedback that is needed by
-Flux maintainers to make this feature a success!
-
 ### Flux Bug Scrub
 
 Our Flux Bug Scrubs still are happening on a weekly basis and remain one
@@ -153,12 +137,13 @@ We are very proud of what we have put together. We want to reiterate
 some Flux facts - they are sort of our mission statement with Flux.
 
 1. 🤝 Flux provides GitOps for both apps or
-  infrastructure. Flux and Flagger deploy apps with
-  canaries, feature flags, and A/B rollouts. Flux can also manage
-  any Kubernetes resource. Infrastructure and workload dependency
-  management is built-in.
+  infrastructure. Flux and [Flagger](https://github.com/fluxcd/flagger)
+  deploy apps with canaries, feature flags, and A/B rollouts. Flux
+  can also manage any Kubernetes resource. Infrastructure and workload
+  dependency management is built-in.
 1. 🤖 Just push to Git and Flux does the rest. Flux
-  enables application deployment (CD) and (with the help of Flagger)
+  enables application deployment (CD) and (with the help of
+  [Flagger](https://github.com/fluxcd/flagger))
   progressive delivery (PD) through automatic reconciliation. Flux
   can even push back to Git for you with automated container image
   updates to Git (image scanning and patching).
@@ -184,8 +169,7 @@ some Flux facts - they are sort of our mission statement with Flux.
 1. 📞 Flux alerts and notifies: Flux provides health
   assessments, alerting to external systems and external events
   handling. Just "git push", and get notified on Slack and [other
-  chat
-  systems](https://github.com/fluxcd/notification-controller/blob/main/docs/spec/v1beta1/provider.md).
+  chat systems](/flux/components/notification/provider/).
 1. 👍 Users trust Flux: Flux is a CNCF Graduated project
   and was categorised as "Adopt" on the [CNCF CI/CD Tech
   Radar](https://radar.cncf.io/2020-06-continuous-delivery)
