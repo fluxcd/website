@@ -11,9 +11,9 @@ Troubleshooting advice can be found on our [Troubleshooting Cheatsheet](/flux/ch
 
 ## General questions
 
-### Does Flux have a UI?
+### Does Flux have a UI / GUI?
 
-The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis). 
+The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis).
 
 ## Kustomize questions
 
@@ -181,6 +181,16 @@ deployment manifests named `deploy.yaml` from `app1` to `app2`:
 5. Reconcile the `app1` Kustomization and verify that the deployment is no longer managed by it `flux reconcile ks app1 && flux tree ks app1`.
 6. Finally, enable garbage collection by setting `prune: true` in `app1` Kustomization, then commit and push the changes upstream.
 
+### How can I safely rename a Flux Kustomization?
+
+If a Flux Kustomization has `spec.prune` set to `true` and you rename the object, then all reconciled
+workloads will be deleted and recreated.
+
+To safely rename a Flux Kustomization, first set `spec.prune` to `false` and sync the change on the cluster.
+To make sure that the change has been acknowledged by Flux, run `flux export kustomization <name>`
+and check that pruning is disabled. Finally, rename the Kustomization and re-enabled pruning. Flux will 
+delete the old Kustomization and transfer ownership of the reconciled resources to the new Kustomization.
+You can run `flux tree kustomization <new-name>` to see which resources are managed by Flux.
 
 ### Why are kubectl edits rolled back by Flux?
 

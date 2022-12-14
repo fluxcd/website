@@ -65,6 +65,9 @@ adopters:
     - name: Cybrary
       url: https://www.cybrary.it
       logo: logos/cybrary.svg
+    - name: DoneOps
+      url: https://www.doneops.com/
+      logo: logos/doneops.svg
     - name: Duedil
       url: https://www.duedil.com/
     - name: Enliven Systems

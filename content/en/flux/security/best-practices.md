@@ -20,7 +20,7 @@ Some recommendations may overlap with Kubernetes security recommendations, to ke
 this short and more easily maintainable, please refer to [Kubernetes CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes) for non
 Flux-specific guidance.
 
-For help implementing these recommendations, seek [enterprise support](/support/#my-employer-needs-additional-help).
+For help implementing these recommendations, seek [enterprise support](/support/#commercial-support).
 
 ## Security Best Practices
 

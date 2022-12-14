@@ -49,9 +49,9 @@ We are happy and proud to have you all as part of our community! :sparkling_hear
 | VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                                |
 | Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/enterprise-flux/)                            |
 
-## Flux UIs
+## Flux UIs / GUIs
 
-These open source projects offer a dedicated UI for Flux.
+These open source projects offer a dedicated graphical user interface for Flux.
 
 | Source                                                                | Description                                                                                                                                                                                                                                                                                                             |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

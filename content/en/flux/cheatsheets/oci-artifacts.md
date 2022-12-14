@@ -160,7 +160,7 @@ how to automate the publishing of OCI Artifacts in your workflows with the Flux 
 Push the latest changes from Git to the container registry:
 
 ```shell
-git clone https://github.com/stefanaprodan/podinfo.git && cd podinfo
+git clone https://github.com/stefanprodan/podinfo.git && cd podinfo
 
 flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git rev-parse --short HEAD) \
 	--path="./kustomize" \

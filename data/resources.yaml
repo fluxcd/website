@@ -1,4 +1,19 @@
 resources:
+  - youtube: JHmQlSvL0II
+    title: "HashiCorp User Group (Luxembourg): GitOps Your Terraform Configurations with Flux"
+    date: 2022-11-30
+  - youtube: uRiCRTSkPOQ
+    title: "WOUG: OCI - Flux ease with helm charts and Flux (Part 2)"
+    date: 2022-11-29
+  - youtube: Bmh7kKYLIhY
+    title: "Flux Security & Scalability using VS Code GitOps Extension"
+    date: 2022-11-16
+  - youtube: PhV5dJtTaDw
+    title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
+    date: 2022-10-27
+  - youtube: 9Ag45POgnKw
+    title: "Flagger, Linkerd, And Gateway API: Oh My! - Jason Morgan, Buoyant & Sanskar Jaiswal, Weaveworks"
+    date: 2022-10-26
   - youtube: G1Mt4KE4Dao
     title: "Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi Onyekwere, Weaveworks"
     date: 2022-10-25
@@ -17,7 +32,7 @@ resources:
   - youtube: h8G3LM9uIHk
     title: "Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan Anisimov & Tamao Nakahara"
     date: 2022-10-25
-  - youtube: 7dOKxIYEtvY
+  - youtube: EXp2xAbII_k
     title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
     date: 2022-10-25 
   - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
@@ -178,7 +193,7 @@ resources:
     title: "We Have Always Done It This Way! Now Let's Try Something Completely Different -Eliran Bivas"
     date: 2022-05-17
   - youtube: 5u45lXmhgxA
-    title: "Full GitOps Tutorial: Getting started with Flux CD"
+    title: "Full GitOps Tutorial: Getting started with Flux"
     description: "Anaïs Urlichs walks you through getting started with Flux, installing the Starboard Helm Chart through GitOps best practices, managing your app, and setting up notifications and monitoring using Flux."
     date: 2022-04-14
   - youtube: PFLimPh5-wo

@@ -7,7 +7,7 @@ url: /blog/2022/03/flagger-adds-gateway-api-support/
 resources:
 - src: "**.png"
   title: "Image #:counter"
-tags: [flagger]
+tags: [flagger, announcement]
 ---
 
 The Flagger team is proud to bring you Kubernetes Gateway API support as

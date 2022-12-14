@@ -1,0 +1,18 @@
+{{ $youtube := .youtube }}
+{{ $youtube_url := print "https://www.youtube.com/watch?v=" $youtube }}
+{{ $thumbnail := printf "https://i3.ytimg.com/vi/%s/0.jpg" $youtube }}
+
+{{ if .thumbnail }}
+{{ $thumbnail = printf "https://i3.ytimg.com/vi/%s/0.jpg" (.thumbnail) }}
+{{ end }}
+
+{{ $url := .url | default $youtube_url }}
+{{ $title := .title | default "Video title" }}
+
+<div class="col-lg-4 mb-3 mb-lg-0 text-center ">
+  <a href="{{ $url }}"><img class="img-fluid img-thumbnail" alt="{{ $title | markdownify }}" src="{{ $thumbnail }}"></a>
+  <a href="{{ $url }}"><h4>{{ $title | markdownify }}</h4></a>
+
+  {{ if .description }}<p>{{ .description }}</p>{{ end }}
+
+</div>

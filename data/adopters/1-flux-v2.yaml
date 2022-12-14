@@ -234,3 +234,6 @@ adopters:
     - name: synyx
       url: https://synyx.de/
       logo: logos/synyx.png
+    - name: DoneOps
+      url: https://www.doneops.com/
+      logo: logos/doneops.svg

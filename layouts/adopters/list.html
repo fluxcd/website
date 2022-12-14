@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<a class="td-offset-anchor"></a>
+<div class="page td-content container">
+
+    {{ .Content | markdownify }}
+
+    {{ $projects := $.Site.Data.adopters }}
+    {{ range $projects }}
+    <h2 id={{ .adopters.project | urlize}}>{{ .adopters.project }}</h2>
+    <p>{{ .adopters.description | markdownify}}</p>
+
+    <div class=adopters>
+        <div class="td-card-deck card-deck mb-4">
+            {{ range sort .adopters.companies "name" }}
+            <div class="td-card card mb-4">
+                <div class=card-header>
+                    <a href={{.url | safeURL }} target=_blank>{{ .name | safeHTML }}</a>
+                </div>
+                <div class=card-body>
+                    <p class=card-text>
+                        {{ if .logo }}
+                        <img src="/img/{{ .logo }}" alt="{{ .name | safeHTML }}">
+                        {{ else }}
+                        <img src="/img/logos/logo-generic.png" alt="{{ .name | safeHTML }}">
+                        {{ end }}
+                    </p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+{{ end }}

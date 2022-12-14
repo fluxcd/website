@@ -22,8 +22,6 @@ prereqs:
 	npm install
 
 gen-content: ## Generates content from external sources.
-	hack/adopters.py
-	hack/resources.py
 	hack/gen-content.py
 	hack/import-calendar.py
 	hack/import-flux2-assets.sh

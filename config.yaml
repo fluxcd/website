@@ -104,8 +104,6 @@ params:
       url: /flux
     - version: Flagger
       url: /flagger
-  mermaid:
-    enable: true
   logos:
     navbar: flux-horizontal-white.png
     hero: flux-horizontal-color.png

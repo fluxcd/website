@@ -15,6 +15,7 @@ if os.path.exists('/opt/hostedtoolcache/Python'):
         sys.path.append(LOCAL_PY_PATHS[0])
 
 from github import (Github, GithubException)
+import yaml
 
 MAIN_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -54,8 +55,7 @@ def get_contributions_from_gh():
         'source-controller',
         'source-watcher',
         'terraform-provider-flux',
-        'website',
-        'webui'
+        'website'
     ]
     bots = [
         'fluxcdbot',
@@ -82,32 +82,26 @@ def get_contributions_from_gh():
     return contributors
 
 def sort_contributions(contributors):
-    contribs = []
-    for who in contributors:
-        contribs += [
-            (who,
-             contributors[who]['contributions'],
-             contributors[who]['avatar_url'])
-        ]
-    return sorted(contribs, key=lambda a: a[1], reverse=True)
+    contribs = [{'name': x,
+                 'contributions': contributors[x]['contributions'],
+                 'avatar_url': contributors[x]['avatar_url']} for x in contributors.keys()]
+    contribs = sorted(contribs, key=lambda a: a['contributions'], reverse=True)
+    for x in contribs:
+        x.pop('contributions')
+    return contribs
 
-def write_html(contributors):
-    html = ""
-    for contrib in contributors:
-        html += \
-            """<a href="https://github.com/{}"><img src="{}" title="{}" width="80" height="80"></a>
-""".format(contrib[0], contrib[2], contrib[0])
 
-    out_file = os.path.join(MAIN_PATH, 'content/en/contributors_include.html')
+def write_yaml(contributors):
+    out_file = os.path.join(MAIN_PATH, 'data/contributors.yaml')
     if os.path.exists(out_file):
         os.remove(out_file)
-    file_desc = open(out_file, 'w')
-    file_desc.write(html)
-    file_desc.close()
+    with open(out_file, 'w') as stream:
+        yaml.dump(contributors, stream)
+        stream.close()
 
 def main():
     contributors = get_contributions_from_gh()
-    write_html(sort_contributions(contributors))
+    write_yaml(sort_contributions(contributors))
 
 if __name__ == '__main__':
     try:
