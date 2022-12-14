@@ -38,11 +38,11 @@ Flux is a CNCF Graduated project!
   <div class="feature-items">
 
   {{< blocks/featureitem emoji="🤝" caption="Flux provides GitOps for both apps and infrastructure" >}}
-    Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in.
+    Flux and <a href="https://github.com/fluxcd/flagger">Flagger</a> deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in.
   {{< /blocks/featureitem >}}
   
   {{< blocks/featureitem emoji="🤖" caption="Just push to Git and Flux does the rest" >}}
-    Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching).
+    Flux enables application deployment (CD) and (with the help of <a href="https://github.com/fluxcd/flagger">Flagger</a>) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching).
   {{< /blocks/featureitem >}}
 
   {{< blocks/featureitem emoji="🔩" caption="Flux works with your existing tools" >}}
@@ -170,7 +170,7 @@ webhooks; notifications to most team communication platforms; and many more.
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fas fa-cube fa-3x" title="Extensible" height="auto" color="blue" %}}
-Easily create a continuous delivery solution with only the components you need, or use the [GitOps Toolkit](#gitops-toolkit)
+Easily create a continuous delivery solution with only the components you need, or use the [GitOps Toolkit](/flux/components)
 to extend Flux.
 {{% /blocks/feature %}}
 
@@ -210,8 +210,6 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
   <h2 class="section-label">Resources</h2>
 
   <p>If you are new to Flux, you might want to check out some of the following resources to get started.</p>
-
-  <p>Find more on our dedicated <a href="/resources">resources page</a>.</p>
   {{< /blocks/lead >}}
 
   <div class="subsection-resources">
@@ -219,37 +217,13 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
   {{< blocks/resources_section >}}
   {{< /blocks/section >}}
   </div>
-  </div>
 
-  <!-- OTHER FLUX PROJECTS -->
-  <div class="section-other-flux-projects">
-  {{< blocks/lead color="blue">}}
-
-  <h2 class="section-label">Other Flux projects</h2>
-
+  {{< blocks/lead color="primary" >}}
+  <p class="text-center">Find more on our dedicated <a href="/resources">resources page</a>.</p>
   {{< /blocks/lead >}}
 
-  {{% blocks/section color="white" %}}
 
-  <p id="flagger"></p>
-{{% blocks/project title="Flagger"
-    image="/img/flagger-gitops.png" image-align="right" bg-color="green"
-    button1-url="/flagger" %}}
-Kubernetes Operator for the automation of promoting canary deployments using Istio, Linkerd, App Mesh, NGINX, Skipper, Contour, Gloo or Traefik routing for traffic shifting, and Prometheus metrics for canary analysis.
-
-The canary analysis can be extended with webhooks for running system integration/acceptance tests, load tests, or any other custom validation.
-{{% /blocks/project %}}
-
-  <p id="gitops-toolkit"></p>
-{{% blocks/project title="GitOps Toolkit"
-    image="/img/building-blocks.svg" image-align="left" bg-color="blue"
-    button1-url="/flux/gitops-toolkit/source-watcher/"
-    button2-url="/flux/components/" %}}
-The set of APIs and controllers that make up the runtime for Flux. You can use the GitOps Toolkit to extend Flux, and to build your own systems for continuous delivery.
-{{% /blocks/project %}}
-
-{{% /blocks/section %}}
-  </div>
+</div>
 
 {{< blocks/lead color="dark" >}}
 <h2 class="section-label">Made possible by our contributors</h2>

@@ -1,6 +1,6 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 <div class="container contributors">
     {{ range $.Site.Data.contributors }}
-    <a href="https://github.com/{{ .name }}"><img src="{{ .avatar_url }}" title="{{ .name }}" width="80" height="80"></a>
+    <a href="https://github.com/{{ .name }}"><img src="{{ .avatar_url }}" title="{{ .name }}" width="50" height="50"></a>
     {{ end }}
 </div>

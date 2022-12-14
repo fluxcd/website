@@ -214,65 +214,6 @@ main.td-main {
   
 }
 
-.section-other-flux-projects {
-  & > section {
-    padding-top: 2rem !important;
-  }
-
-  section.row.td-box > .col > .row {
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-  }
-
-  .container.rounded {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-    margin: 0 !important;
-
-    .col > img.img-fluid {
-      margin: 1rem 0 0 1rem;
-    }
-
-    .row .btn-primary {
-      margin-left: 12px;
-    }
-
-    @include media-breakpoint-down(sm) {
-      .row .btn-secondary {
-        margin-top: 12px;
-        margin-bottom: 12px;
-        margin-left: 12px;
-      }
-
-      .btn {
-        text-align:left;
-        margin-top: 12px;
-        margin-bottom: 12px;
-      }
-    }
-  }
-
-  .td-arrow-down::before {
-    border-top-color: $flux-dark-blue;
-  }
-
-  .-bg-blue {
-    @include projects-btn-primary;
-    @include projects-btn-secondary;
-  }
-
-  .-bg-green {
-    background-color: $flux-green;
-    
-    @include projects-btn-primary;
-    @include projects-btn-secondary;
-  }
-
-  .-bg-white {
-    @include white-background-a;
-  }
-}
 
 .section-community {
   @include gray-background-a;
