@@ -108,9 +108,9 @@ Here are some guidelines about which venue makes the most sense:
 | Form of inquiry                                             | Venue                 |
 | ------------------------------------------------------------| --------------------- |
 | Something is not working as intended / I found a bug        | [Issue](https://github.com/fluxcd/flux2/issues) |
-| A feature is too limited for my `<use-case>`                | Discussion ([General](https://github.com/fluxcd/flux2/discussions/categories/general)) |
-| I want Flux to be able to do `<x>`                          | Discussion ([Proposal](https://github.com/fluxcd/flux2/discussions/categories/proposals)) |
-| Something is not working, (but I am not sure if I am doing it right) | Discussion ([Q&A](https://github.com/fluxcd/flux2/discussions/categories/q-a)) |
+| A feature is too limited for my `<use-case>`                | Discussion: [General](https://github.com/fluxcd/flux2/discussions/categories/general) |
+| I want Flux to be able to do `<x>`                          | Discussion: [Proposal](https://github.com/fluxcd/flux2/discussions/categories/proposals) |
+| Something is not working, (but I am not sure if I am doing it right) | Discussion: [Q&A](https://github.com/fluxcd/flux2/discussions/categories/q-a) |
 | Quick question                                              | [#flux][] on [CNCF Slack][] |
 
 Bearing in mind that Issues and [Discussions](https://github.com/fluxcd/flux2/discussions) are more permanent and searchable than Slack conversations, we can avoid unduly expending finite community resources by searching before asking. If you are not exactly sure how to ask your question or otherwise daunted by the idea of permanence, visitors are always welcome in [#flux][] on the [CNCF Slack][].
@@ -127,11 +127,11 @@ If you made sure you encountered an actual issue, we definitely want to hear abo
 
 Here's how to proceed:
 
-Check [Github](https://github.com/fluxcd) to locate the correct project
+Check [Github](https://github.com/fluxcd) to locate the correct project.
 
 Many Flux projects and project facets are maintained by different code owners under separate repositories, and filing your issue under the correct repository can better ensure that relevant maintainers are notified.
 
-### Flux core projects (in active development
+### Flux core projects (in active development)
 
 - [flux2](https://github.com/fluxcd/flux2) - the main Flux project repository
 - [source-controller](https://github.com/fluxcd/source-controller) - handles artifacts acquisition from external sources such as Git, Helm repositories and S3 buckets.
