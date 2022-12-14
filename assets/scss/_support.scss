@@ -1,13 +1,19 @@
 /* support page */
 
-.support .td-card-deck {
+.support {
+    .td-card-deck {
+        .card-body {
+            align-items: center;
+            display: flex;
+        }
 
-    .card-body {
-        align-items: center;
-        display: flex;
-     }
+        img {
+            max-height: 250px;
+        }
+    }
 
-    img {
-        max-height: 250px;
+    table td:nth-child(n+2) {
+        text-align: center;
     }
 }
+
