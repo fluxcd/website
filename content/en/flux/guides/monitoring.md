@@ -125,7 +125,7 @@ To display the Flux notifications on Grafana dashboards
 you can configure Flux to push events to Grafana annotations API:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Alert
 metadata:
   name: grafana
@@ -139,7 +139,7 @@ spec:
       name: '*'
       namespace: flux-system
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
 metadata:
   name: grafana

@@ -508,7 +508,7 @@ kubectl -n flux-system create secret generic webhook-token \
 Define a receiver for DockerHub:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Receiver
 metadata:
   name: podinfo

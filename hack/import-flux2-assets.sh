@@ -142,10 +142,10 @@ gen_crd_doc() {
   # notification-controller CRDs
   NOTIFICATION_VER="$(controller_version notification-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/api/notification.md" "$COMPONENTS_DIR/notification/api.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/event.md" "$COMPONENTS_DIR/notification/event.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/alert.md" "$COMPONENTS_DIR/notification/alert.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/provider.md" "$COMPONENTS_DIR/notification/provider.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/receiver.md" "$COMPONENTS_DIR/notification/receiver.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/notification/event.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/alerts.md" "$COMPONENTS_DIR/notification/alert.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/providers.md" "$COMPONENTS_DIR/notification/provider.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/receivers.md" "$COMPONENTS_DIR/notification/receiver.md"
 }
 
 {
