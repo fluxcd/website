@@ -1,11 +1,25 @@
-@keyframes move {
-  0% {
-    margin-left: -10000px;
-  }
-  100% {
-    margin-left: 800px;
+@media screen and (max-width: 900px) {
+  @keyframes move {
+    0% {
+      margin-left: -9200px;
+    }
+    100% {
+      margin-left: 800px;
+    }
   }
 }
+
+@media screen and (min-width: 900px) {
+  @keyframes move {
+    0% {
+      margin-left: -9100px;
+    }
+    100% {
+      margin-left: 800px;
+    }
+  }
+}
+
 
 div.scrollmenu:hover {
   animation-play-state: paused;
