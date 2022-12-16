@@ -93,6 +93,7 @@ For ingress controllers, the install instructions are:
 * [NGINX](/flagger/tutorials/nginx-progressive-delivery)
 * [Skipper](/flagger/tutorials/skipper-progressive-delivery)
 * [Traefik](/flagger/tutorials/traefik-progressive-delivery)
+* [APISIX](https://docs.flagger.app/tutorials/apisix-progressive-delivery)
 
 You can use the helm template command and apply the generated yaml with kubectl:
 
@@ -202,7 +203,7 @@ kustomize build https://github.com/fluxcd/flagger/kustomize/linkerd?ref=v1.0.0 |
 
 **Generic installer**
 
-Install Flagger and Prometheus for Contour, Gloo, NGINX, Skipper, or Traefik ingress:
+Install Flagger and Prometheus for Contour, Gloo, NGINX, Skipper, APISIX or Traefik ingress:
 
 ```bash
 kustomize build https://github.com/fluxcd/flagger/kustomize/kubernetes?ref=main | kubectl apply -f -
@@ -223,7 +224,7 @@ metadata:
   name: app
   namespace: test
 spec:
-  # can be: kubernetes, istio, linkerd, appmesh, nginx, skipper, gloo, traefik, osm
+  # can be: kubernetes, istio, linkerd, appmesh, nginx, skipper, gloo, traefik, osm, apisix
   # use the kubernetes provider for Blue/Green style deployments
   provider: nginx
 ```
