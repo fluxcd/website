@@ -35,3 +35,9 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--no-cross-namespace-refs`           | boolean  | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace.                     |
 | `--requeue-dependency`                | duration | The interval at which failing dependencies are reevaluated. (default 30s)                                                                              |
 | `--watch-all-namespaces`              | boolean  | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)                                 |
+
+### Feature Gates
+
+| Name                              | Default Value | Description                                                                                                                                                                                                               |
+|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps`       | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
