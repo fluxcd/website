@@ -12,7 +12,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 
 | Name                                  | Type     | Description                                                                                                                        |
 |---------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------|
-| `--concurrent`                        | int      | The number of concurrent notification reconciles. (default 4)                                                                         |
+| `--concurrent`                        | int      | The number of concurrent notification reconciles. (default 4)                                                                      |
 | `--default-service-account`           | string   | Default service account used for impersonation.                                                                                    |
 | `--enable-leader-election`            | boolean  | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.              |
 | `--events-addr`                       | string   | The address of the events receiver.                                                                                                |

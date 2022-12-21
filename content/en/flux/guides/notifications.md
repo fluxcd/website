@@ -40,7 +40,7 @@ it can be a Slack, Microsoft Teams, Discord or Rocket webhook URL.
 Create a notification provider for Slack by referencing the above secret:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
 metadata:
   name: slack
@@ -64,7 +64,7 @@ Elasticsearch, CloudWatch, Stackdriver, etc.
 Create an alert definition for all repositories and kustomizations:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Alert
 metadata:
   name: on-call-webapp
@@ -204,7 +204,7 @@ Creating a git provider is very similar to creating other types of providers.
 The only caveat being that the provider address needs to point to the same
 git repository as the event source originates from.
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
 metadata:
   name: flux-system
@@ -215,7 +215,7 @@ spec:
   secretRef:
     name: github
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Alert
 metadata:
   name: podinfo

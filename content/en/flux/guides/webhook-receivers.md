@@ -119,7 +119,7 @@ kubectl -n flux-system create secret generic webhook-token \
 Create a receiver for GitHub and specify the `GitRepository` object:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Receiver
 metadata:
   name: webapp
