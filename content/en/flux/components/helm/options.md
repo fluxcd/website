@@ -16,6 +16,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--default-service-account`           | string   | Default service account used for impersonation.                                                                                                        |
 | `--enable-leader-election`            | boolean  | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                                  |
 | `--events-addr`                       | string   | The address of the events receiver.                                                                                                                    |
+| `--graceful-shutdown-timeout`         | int      | The duration given to the reconciler to finish before forcibly stopping. (default -1)                                                                  |
 | `--health-addr`                       | string   | The address the health endpoint binds to. (default ":9440")                                                                                            |
 | `--http-retry`                        | int      | The maximum number of retries when failing to fetch artifacts over HTTP. (default 9)                                                                   |
 | `--insecure-kubeconfig-exec`          | boolean  | Allow use of the user.exec section in kubeconfigs provided for remote apply.                                                                           |
@@ -34,3 +35,9 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--no-cross-namespace-refs`           | boolean  | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace.                     |
 | `--requeue-dependency`                | duration | The interval at which failing dependencies are reevaluated. (default 30s)                                                                              |
 | `--watch-all-namespaces`              | boolean  | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)                                 |
+
+### Feature Gates
+
+| Name                              | Default Value | Description                                                                                                                                                                                                               |
+|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps`       | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
