@@ -40,6 +40,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 |-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `GitForcePushBranch`              | `true`        | Enables the use of "force push" when pushing changes to a separate branch. This fixes issues with stale push branches.                |
 | `ForceGoGitImplementation`        | `true`        | Soft-deprecates `libgit2` by ignoring the value set for `spec.gitImplementation`, and using `go-git` for all reconciliations instead. |
+| `GitAllBranchReferences`          | `true`        | Enables the download of all branch head references when push branches are configured. |
 
 ## Image reflector flags
 
