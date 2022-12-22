@@ -16,7 +16,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--default-service-account`           | string   | Default service account used for impersonation.                                                                                                        |
 | `--enable-leader-election`            | boolean  | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                                  |
 | `--events-addr`                       | string   | The address of the events receiver.                                                                                                                    |
-| `--graceful-shutdown-timeout`         | int      | The duration given to the reconciler to finish before forcibly stopping. (default -1)                                                                  |
+| `--graceful-shutdown-timeout`         | int      | The duration given to the reconciler to finish before forcibly stopping. (default 600s)                                                                |
 | `--health-addr`                       | string   | The address the health endpoint binds to. (default ":9440")                                                                                            |
 | `--http-retry`                        | int      | The maximum number of retries when failing to fetch artifacts over HTTP. (default 9)                                                                   |
 | `--insecure-kubeconfig-exec`          | boolean  | Allow use of the user.exec section in kubeconfigs provided for remote apply.                                                                           |
