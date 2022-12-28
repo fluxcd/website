@@ -8,6 +8,8 @@ keywords: ["canary release", "Flagger", "APISIX Ingress Controller", "how to aut
 author_name: Hengliang Tan
 evergreen: true
 resources:
+- src: "**.{png}"
+  title: "Image #:counter"
 ---
 
 In the process of project development, service updates are often a challenge. To provide the best user experience, we need to avoid the risk of service unavailability as much as possible. Thus, continuous delivery was born, accepted as an enterprise software practice, and a natural evolution of well-established continuous integration principles. However, continuous deployment is still very rare due to the complexity of management and the fear that deployment failures will affect system availability. Canary release is probably the most classic scenario in the continuous delivery system. Based on this, we can quickly discover unhealthy and problematic services and roll back to the previous version effortlessly.
@@ -30,7 +32,7 @@ Flagger is a CNCF (Cloud Native Computing Foundation) project and part of the Fl
 
 After continuous efforts of the Apache APISIX and Flux communities, Flagger recently released v1.27.0, which supports automated canary releases using Apache APISIX Ingress and Flagger.
 
-![featured-Flagger and Apache APISIX Ingress.jpg](https://static.apiseven.com/2022/12/26/63a9a47945eda.png)
+![featured-Flagger and Apache APISIX Ingress.jpg](./featured-Flagger-and-Apache-APISIX-Ingress.webp)
 
 Let's experience this smooth canary release process together.
 
@@ -201,7 +203,7 @@ service/podinfo-canary
 service/podinfo-primary
 apisixroute/podinfo-podinfo-canary`
 
-![featured-<version 1>.jpg](https://static.apiseven.com/2022/12/26/63a9a4798e616.png)
+![featured-version1.jpg](./featured-version1.webp)
 
 At this point, you can access the application through the domain name [app.example.com](app.example.com) (Replace `app.example.com` in the example with your actual domain name), and you will see the current version of the application.
 
@@ -209,7 +211,7 @@ At this point, you can access the application through the domain name [app.examp
 
 Flagger implements a control loop that gradually shifts traffic to canary nodes while measuring key performance metrics such as HTTP request success rate, average request duration, and pod health. According to the analysis of relevant indicators, release or stop the canary deployment and publish the analysis results to relevant platforms such as Slack, MS Teams or Prometheus Alert Manager, etc.
 
-![Flagger Control Loop](https://static.apiseven.com/2022/12/26/63a9a47bb7a3d.png)
+![featured-Flagger-Control-Loop.jpg](./featured-Flagger-and-Apache-APISIX-Ingress.webp)
 
 Trigger a canary release by updating the container image version
 
@@ -254,7 +256,7 @@ Events:
 
 During the canary release process, you will receive different responses when you access the application through the domain name [app.example.com](app.example.com) (Replace `app.example.com` with your actual domain name).
 
-![featured-<version 2>.jpg](https://static.apiseven.com/2022/12/26/63a9a47b281b0.png)
+![featured-version2.jpg](./featured-version2.webp)
 
 By viewing the `ApisixRoute` resource `podinfo-podinfo-canary` of Apache APISIX created automatically by Flagger, you will find that the weights of service `podinfo-primary` and service `podinfo-canary` change along with the publishing process.
 
@@ -274,7 +276,7 @@ spec:
 
 You will see the latest stable version when the final release is complete.
 
-![featured-<version 3>.jpg](https://static.apiseven.com/2022/12/26/63a9a479d5bbe.png)
+![featured-version3.jpg](https://static.apiseven.com/2022/12/26/63a9a479d5bbe.png)
 
 Note: Flagger will re-run the canary analysis if you change the deployment again during the canary release.
 
