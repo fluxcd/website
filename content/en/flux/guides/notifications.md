@@ -27,15 +27,17 @@ The notification controller is part of the default Flux installation.
 
 ## Define a provider
 
-First create a secret with your Slack incoming webhook:
+First create a secret with your Slack Bot token:
 
 ```sh
 kubectl -n flux-system create secret generic slack-url \
---from-literal=address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+--from-literal=token=YOUR-SLACK-BOT-APP-TOKEN
 ```
 
-Note that the secret must contain an `address` field,
-it can be a Slack, Microsoft Teams, Discord or Rocket webhook URL.
+{{% alert color="info" title="Alert Provider Configuration" %}}
+Note that for token based providers (Slack, Telegram) the secret must contain a `token` field, for address based providers (Teams, Discord) the secret must contain an `address` field. See [Notification>Provider](https://fluxcd.io/flux/components/notification/provider/) section for more details.
+{{% /alert %}}
+
 
 Create a notification provider for Slack by referencing the above secret:
 
