@@ -27,7 +27,7 @@ The notification controller is part of the default Flux installation.
 
 ## Define a provider
 
-First create a secret with your Slack incoming webhook:
+First create a secret with your Slack Bot token:
 
 ```sh
 kubectl -n flux-system create secret generic slack-url \
