@@ -47,7 +47,7 @@ and you don't rewrite the branch in question:
 
 ```bash
 $ # commits in branch
-$ git --rev-list --count HEAD
+$ git rev-list --count HEAD
 1504
 ```
 
