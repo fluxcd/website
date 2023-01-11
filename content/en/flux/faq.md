@@ -454,6 +454,103 @@ EOF
 Based on the above definition, Flux will upgrade the release automatically
 when Bitnami publishes a new version of the metrics-server chart.
 
+### How do I set local overrides to a Helm chart?
+
+Lets assume we have a common `HelmRelease` definition we use as a base and we
+we need to further customize it e.g per cluster, tenant, environment and so on:
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  releaseName: podinfo
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+```
+and we want to override the chart version per cluster for example to gradually
+roll out a new version. We have couple options:
+
+#### Using Kustomize patches:
+```yaml
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./apps/production
+  prune: true
+  wait: true
+  timeout: 5m0s
+  patches:
+    - patch: |-
+        - op: replace
+          path: /spec/chart/spec/version
+          value: 4.0.1
+      target:
+        kind: HelmRelease
+        name: podinfo
+        namespace: podinfo
+```
+
+#### Using Kustomize variable substitution
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  releaseName: podinfo
+  chart:
+    spec:
+      chart: podinfo
+      version: ${PODINFO_CHART_VERSION:=6.2.0}
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+```
+
+To enable the replacement of the `PODINFO_CHART_VERSION` variable with a different version than the `6.2.0` default, specify `postBuild` in the `Kustomization`:
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./apps/production
+  prune: true
+  wait: true
+  timeout: 5m0s
+  postBuild:
+    substitute:
+      PODINFO_CHART_VERSION: 6.3.0
+```
+
 ## Flux v1 vs v2 questions
 
 ### What are the differences between v1 and v2?
