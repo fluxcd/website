@@ -2,8 +2,8 @@
 title: Smooth Canary Release by Combining Apache APISIX Ingress Controller with Flagger
 description: Combining Apache APISIX Ingress Controller with Flagger can realize smooth canary release, improve release efficiency, and reduce release risks.
 slug: /blog/apisix-ingress-and-flagger-smooth-canary-release
-date: 2022-12-28T00:00:00Z
-tags: ["monthly-update"]
+date: 2023-01-17T00:00:00Z
+tags: ["flagger"]
 keywords: ["canary release", "Flagger", "APISIX Ingress Controller", "how to automate canary release"]
 author_name: Hengliang Tan
 evergreen: true
