@@ -13,9 +13,8 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | Name                                  | Type          | Description                                                                                                                     |
 |---------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------|
 | `--artifact-retention-records`        | int           | The maximum number of artifacts to be kept in storage after a garbage collection. (default 2)                                   |
-| `--artifact-retention-ttl`            | duration      | The duration of time that artifacts from previous reconcilations will be kept in storage before being garbage collected. (default 1m0s)                      |
+| `--artifact-retention-ttl`            | duration      | The duration of time that artifacts from previous reconciliations will be kept in storage before being garbage collected. (default 1m0s)                      |
 | `--concurrent`                        | int           | The number of concurrent reconciles per controller. (default 2)                                                                 |
-| `--default-service-account`           | string        | Default service account used for impersonation.                                                                                 |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.           |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                             |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                     |
