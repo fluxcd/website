@@ -53,6 +53,12 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 
 <sup>*</sup> This list is of course only a small selection of tools we integrate with. If you want to add more, please send a PR with the link to docs which explain how to set things up.
 
+## Flux UIs
+
+If you want to find out more about Flux UIs, check out our [dedicated section](/ecosystem/#flux-uis--guis).
+
+{{< blocks/flux_ui_galleries >}}
+
 ## Flux in Short
 
 <!-- borrowed from ./content/en/_index.html -->

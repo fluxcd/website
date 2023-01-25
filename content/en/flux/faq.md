@@ -13,7 +13,9 @@ Troubleshooting advice can be found on our [Troubleshooting Cheatsheet](/flux/ch
 
 ### Does Flux have a UI / GUI?
 
-The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis).
+The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis--guis).
+
+{{< blocks/flux_ui_galleries >}}
 
 ## Kustomize questions
 
