@@ -1,27 +1,35 @@
-<h3 id="weave-gitops">Weave GitOps</h3>
+{{ $one := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
+{{ $two := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
+{{ $data := slice $one $two }}
+
+{{ range $data }}
+    {{ $title := index . 0 }}
+    {{ $glob := index . 1 }}
+    {{ $id := index . 2 }}
+<h3 id="{{ $title | urlize }}">{{ $title }}</h3>
 <div class="card-group">
-    {{ $wego := resources.Match "/img/uis/wego-*.png" }}
-    {{ range $wego }}
+    {{ $match := resources.Match $glob }}
+    {{ range $match }}
     <div class="card">
         <div class="card-body" style="padding: 0rem;">
-            <img src="{{ .RelPermalink }}" class="img-thumbnail" data-toggle="modal" data-target="#wego">
+            <img src="{{ .RelPermalink }}" class="img-thumbnail" data-toggle="modal" data-target="#{{ $id }}">
         </div>
     </div>
     {{ end }}
 </div>
 
-<div class="modal fade" id="wego" tabindex="-1"aria-hidden="true">
+<div class="modal fade" id="{{ $id }}" tabindex="-1"aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div id="wego-carousel" class="carousel slide" data-ride="carousel">
+            <div id="{{ $id }}-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    {{ $wego := resources.Match "/img/uis/wego-*.png" }}
-                    {{ range first 1 $wego }}
+                    {{ $match := resources.Match $glob }}
+                    {{ range first 1 $match }}
                     <div class="carousel-item active" data-interval="2500">
                         <img src="{{ .RelPermalink }}" class="d-block w-100">
                     </div>
                     {{ end }}
-                    {{ range after 1 $wego }}
+                    {{ range after 1 $match }}
                     <div class="carousel-item" data-interval="2500">
                         <img src="{{ .RelPermalink }}" class="d-block w-100">
                     </div>
@@ -31,41 +39,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-<h3 id="vs-code-gitops-tools">VS Code GitOps Tools</h3>
-<div class="card-group">
-    {{ $vscode := resources.Match "/img/uis/vscode-*.png" }}
-    {{ range $vscode }}
-    <div class="card">
-        <div class="card-body" style="padding: 0rem;">
-            <img src="{{ .RelPermalink }}" class="img-thumbnail" data-toggle="modal" data-target="#vscode">
-        </div>
-    </div>
-    {{ end }}
-</div>
-
-<div class="modal fade" id="vscode" tabindex="-1"aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div id="vscode-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    {{ $vscode := resources.Match "/img/uis/vscode-*.png" }}
-                    {{ range first 1 $vscode }}
-                    <div class="carousel-item active" data-interval="2500">
-                        <img src="{{ .RelPermalink }}" class="d-block w-100">
-                    </div>
-                    {{ end }}
-                    {{ range after 1 $vscode }}
-                    <div class="carousel-item" data-interval="2500">
-                        <img src="{{ .RelPermalink }}" class="d-block w-100">
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{{ end }}
