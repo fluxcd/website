@@ -17,10 +17,11 @@ def generate_blog_post_draft():
     today = date.today()
     month_name = today.strftime('%B')
     year = today.year
-    next_month = date(year, today.month+1, 1).strftime('%m')
     if today.month == 12:
         year += 1
         next_month = '01'
+    else:
+        next_month = date(year, today.month+1, 1).strftime('%m')
     directory = os.path.join(
         BLOG_DIR, '{}-{}-{}-{}-update'.format(
             year, next_month, '01', month_name.lower()))

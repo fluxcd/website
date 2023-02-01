@@ -65,8 +65,8 @@ If you want to find out more about Flux UIs, check out our [dedicated section](/
 
 |     |     |
 | --- | --- |
-| 🤝 Flux provides GitOps for both apps and infrastructure | Flux and Flagger deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in. |
-| 🤖 Just push to Git and Flux does the rest | Flux enables application deployment (CD) and (with the help of Flagger) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching). |
+| 🤝 Flux provides GitOps for both apps and infrastructure | Flux and [Flagger](https://github.com/fluxcd/flagger) deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in. |
+| 🤖 Just push to Git and Flux does the rest | Flux enables application deployment (CD) and (with the help of [Flagger](https://github.com/fluxcd/flagger)) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching). |
 | 🔩 Flux works with your existing tools | Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets as a source), all major container registries, and all CI workflow providers. |
 | 🔒 Flux is designed with security in mind | Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about [our security considerations](/flux/security). |
 | ☸️ Flux works with any Kubernetes and all common Kubernetes tooling |  Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place. |
