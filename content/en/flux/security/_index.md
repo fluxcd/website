@@ -31,16 +31,16 @@ To verify the authenticity of Flux's container images,
 install [cosign](https://docs.sigstore.dev/cosign/installation/) and run:
 
 ```console
-$ COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/fluxcd/source-controller:v0.21.1
+$ COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/fluxcd/source-controller:v0.34.0
 
-Verification for ghcr.io/fluxcd/source-controller:v0.21.1 --
+Verification for ghcr.io/fluxcd/source-controller:v0.34.0 --
 The following checks were performed on each of these signatures:
   - The cosign claims were validated
   - Existence of the claims in the transparency log was verified offline
   - Any certificates were verified against the Fulcio roots.
 ```
 
-We also wrote [a blog post](/blog/2022/02/security-image-provenance/) which discusses the this in some more detail.
+We also wrote [a blog post](/blog/2022/02/security-image-provenance/) which discusses this in some more detail.
 
 ## Software Bill of Materials
 
@@ -53,7 +53,86 @@ The `spdx.json` file is available for download on the GitHub release page e.g.:
 curl -sL https://github.com/fluxcd/flux2/releases/download/v0.25.3/flux_0.25.3_sbom.spdx.json | jq
 ```
 
-Please also refer to [the blog post](/blog/2022/02/security-the-value-of-sboms/) which discusses the idea and value of SBOMs.
+The Flux controllers' images come with SBOMs for each CPU architecture,
+you can extract the SPDX JSON using Docker's inspect command:
+
+```shell
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v0.34.0 \
+    --format "{{ json (index .SBOM \"linux/amd64\").SPDX}}"
+```
+
+Or by using Docker's [sbom command](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/):
+
+```shell
+docker sbom fluxcd/source-controller:v0.34.0
+```
+
+Please also refer to [this blog post](/blog/2022/02/security-the-value-of-sboms/) which discusses the idea and value of SBOMs.
+
+## SLSA Provenance Attestations
+
+The Flux controllers' images come with provenance attestations which follow
+the [SLSA provenance schema version 0.2](https://slsa.dev/provenance/v0.2#schema).
+
+The provenance attestations are generated at build time with
+[Docker Buildkit](https://docs.docker.com/build/attestations/slsa-provenance/) and
+include facts about the build process such as:
+
+- Build timestamps
+- Build parameters and environment
+- Version control metadata
+- Source code details
+- Materials (files, scripts) consumed during the build
+
+To extract the SLSA provenance JSON for a specific CPU architecture,
+you can use Docker's inspect command:
+
+```shell
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v0.34.0 \
+    --format "{{ json (index .Provenance \"linux/amd64\").SLSA}}"
+```
+
+Note that the `linux/amd64` can be replaced with another architecture variation of the image,
+for example `linux/arm64` or `linux/arm/v7`.
+
+## Scanning for CVEs
+
+The Flux controllers' images are based on Alpine, they contain very few OS packages
+and the controller's binary which is statically built using Go.
+
+To properly scan Flux container images, the scanner must be able to detect the
+Alpine apk packages and the Go modules included in the controller's Go binary.
+The Go modules and apk packages are also available for inspection
+in the attached [SBOM](#software-bill-of-materials).
+
+The Flux team recommends users to scan the container images for CVEs using
+[Trivy](https://github.com/aquasecurity/trivy),
+which is an OSS scanner made by [Aqua Security](https://www.aquasec.com/).
+
+To scan a controller image with Trivy:
+
+```shell
+trivy image ghcr.io/fluxcd/source-controller:v0.34.0
+```
+
+We ask users to keep Flux up-to-date on their clusters,
+this is the only way to ensure a Flux deployment is free of CVEs.
+New Flux versions are published periodically (at least once per month),
+and the container images are based on the latest Alpine and Go releases.
+We offer a fully automated solution for keeping Flux up-to-date,
+please see the Flux GitHub Actions
+[documentation](https://github.com/fluxcd/flux2/tree/main/action#automate-flux-updates)
+for more details.
+
+{{% alert color="warning" title="Reporting CVEs in Flux images" %}}
+The Flux controllers are constantly being monitored for new CVEs, and the attack
+surface for any vulnerability is assessed by maintainers. If a controller is considered
+to be vulnerable, a new patch release will be issued immediately.
+
+Given this, and while we do appreciate the effort, reporting CVEs found by a security
+scanner through issues and/or the security mailing list is not necessary.
+{{% /alert %}}
+
 
 ## Pod security standard
 
