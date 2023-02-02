@@ -50,3 +50,4 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 |-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `OptimizedGitClones`              | `true`        | Optimises Git resource usage by only cloning repositories when the HEAD commit changed since last reconciliation.                     |
 | `ForceGoGitImplementation`        | `true`        | Soft-deprecates `libgit2` by ignoring the value set for `spec.gitImplementation`, and using `go-git` for all reconciliations instead. |
+| `CacheSecretsAndConfigMaps`       | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |

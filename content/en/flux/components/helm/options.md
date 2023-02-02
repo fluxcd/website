@@ -35,6 +35,8 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--no-cross-namespace-refs`           | boolean  | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace.                     |
 | `--requeue-dependency`                | duration | The interval at which failing dependencies are reevaluated. (default 30s)                                                                              |
 | `--watch-all-namespaces`              | boolean  | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)                                 |
+| `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                             |
+
 
 ### Feature Gates
 
