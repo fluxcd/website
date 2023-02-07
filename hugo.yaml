@@ -203,7 +203,7 @@ menus:
     weight: 60
   - name: Branding
     parent: Project
-    url: https://github.com/cncf/artwork/blob/master/examples/incubating.md#flux-logos
+    url: https://github.com/cncf/artwork/blob/master/examples/graduated.md#flux-logos
     weight: 9999
   - name: Adopters
     url: /adopters

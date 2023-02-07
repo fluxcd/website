@@ -1,5 +1,6 @@
 ---
 title: Flux Adopters
+description: Add yourself to the list of adopters of Flux.
 weight: 5
 ---
 
@@ -7,11 +8,12 @@ So you and your organisation are using Flux? That's great. We would love to hear
 
 ## Adding yourself
 
-Each YAML file in this directory lists the organisations who adopted the specific project in production. So if you use
+Each YAML file in [this directory](https://github.com/fluxcd/website/tree/main/data/adopters) lists the organisations who adopted the specific project in production. So if you use
 
 - Flux or the GitOps Toolkit controllers, you are looking for `1-flux-v2.yaml`
 - Flagger, it's `2-flagger.yaml`
-- Flux (legacy) or Helm Operator, take a look at `3-flux-v1.yaml`
+- Flux (legacy) or Helm Operator, take a look at `3-flux-v1.yaml`  
+  *Note:* Flux Legacy and Helm Operator have reached their EOL and have been archived.
 
 You just need to add an entry for your company and upon merging it will automatically be added to our website.
 

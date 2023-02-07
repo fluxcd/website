@@ -557,7 +557,7 @@ spec:
 
 ### What are the differences between v1 and v2?
 
-Flux v1 is a monolithic do-it-all operator;
+Flux v1 is a monolithic do-it-all operator; it has reached its EOL and has been archived.
 Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
 You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration/).
