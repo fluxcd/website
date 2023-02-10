@@ -40,7 +40,7 @@ $ date +%s
 Alternatively, you can use a serial number as part of the tag.  Some CI platforms will provide a
 build number in an environment variable, but that may not be reliable to use as a serial number --
 check the platform documentation.
-For example, Github makes availabe the variable `github.run_number` which can be used as a reliable ever increasing serial number.
+For example, GitHub makes availabe the variable `github.run_number` which can be used as a reliable ever increasing serial number.
 
 A commit count can be a reasonable stand-in for a serial number, if you build an image per commit
 and you don't rewrite the branch in question:
@@ -112,7 +112,7 @@ jobs:
 
 ### Alternative example utilizing github.run_number
 
-Here is another example example of a [GitHub Actions job][gha-syntax] which tags images using Github action's built in `run_number`
+Here is another example example of a [GitHub Actions job][gha-syntax] which tags images using GitHub action's built in `run_number`
 and the git SHA1:
 
 ```yaml

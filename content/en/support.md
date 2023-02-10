@@ -119,7 +119,7 @@ If your needs are more urgent, more broadly demanding, or more persistent than t
 
 ## Community Help Resources
 
-For questions around Flux, please visit our [Flux Discussions](https://github.com/fluxcd/flux2/discussions) section on Github.
+For questions around Flux, please visit our [Flux Discussions](https://github.com/fluxcd/flux2/discussions) section on GitHub.
 
 ## I found a bug
 
@@ -127,7 +127,7 @@ If you made sure you encountered an actual issue, we definitely want to hear abo
 
 Here's how to proceed:
 
-Check [Github](https://github.com/fluxcd) to locate the correct project.
+Check [GitHub](https://github.com/fluxcd) to locate the correct project.
 
 Many Flux projects and project facets are maintained by different code owners under separate repositories, and filing your issue under the correct repository can better ensure that relevant maintainers are notified.
 

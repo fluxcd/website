@@ -212,6 +212,6 @@ menus:
     url: /ecosystem
     weight: 90
   - url: https://github.com/fluxcd/flux2
-    name: Github
+    name: GitHub
     pre: "<i class='fab fa-github'></i> "
     weight: 100

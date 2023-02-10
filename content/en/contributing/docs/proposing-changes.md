@@ -2,7 +2,7 @@
 title: Proposing changes
 weight: 5
 description: >
-   How to propose pull requests using either the Github UI or `git` locally.
+   How to propose pull requests using either the GitHub UI or `git` locally.
 ---
 
 ## Getting started

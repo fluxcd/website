@@ -44,7 +44,7 @@ For realtime communications we use Slack: To join the conversation, simply
 join the [CNCF](https://slack.cncf.io/) Slack workspace and use the
 [#flux-dev](https://cloud-native.slack.com/messages/flux-dev/) channel.
 
-To discuss ideas and specifications we use [Github
+To discuss ideas and specifications we use [GitHub
 Discussions](https://github.com/fluxcd/flux2/discussions).
 
 For announcements we use a mailing list as well. Simply subscribe to
