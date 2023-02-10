@@ -6,7 +6,7 @@ This repo houses the assets used to build the Flux project's landing page at <ht
 
 > **Note**: The sources for some of Flux's documentation are housed in other repositories within <https://github.com/fluxcd>. Documentation issues and pull requests should be made against those repos.
 >
-> Project          | Docs Site                                 | Github Source
+> Project          | Docs Site                                 | GitHub Source
 > ---------------- | ------------------------------------------| -------------
 > Flux             | <https://fluxcd.io/flux>                  | <https://github.com/fluxcd/website>
 > Flagger          | <https://fluxcd.io/flagger>               | <https://github.com/fluxcd/website>
