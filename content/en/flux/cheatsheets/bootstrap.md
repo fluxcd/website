@@ -313,7 +313,7 @@ patches:
 ### Git repository access via SOCKS5 ssh proxy
 
 If your cluster has Internet restrictions, requiring egress traffic to go
-through a proxy, you must use a SOCKS5 ssh proxy to be able to reach Github
+through a proxy, you must use a SOCKS5 ssh proxy to be able to reach GitHub
 (or other external Git servers) via SSH.
 
 To configure a SOCKS5 proxy set the environment variable `ALL_PROXY` to allow
