@@ -48,7 +48,7 @@ patches:
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --aws-autologin-for-ecr=true
+        value: --concurrent=5
     target:
       kind: Deployment
       name: "image-reflector-controller"
