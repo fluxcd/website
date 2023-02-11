@@ -166,7 +166,7 @@ flux create image repository podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: podinfo
@@ -206,7 +206,7 @@ flux create image policy podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: podinfo
@@ -226,7 +226,7 @@ you can define a range like: `^1.x-0` or `>1.0.0-rc <2.0.0-rc`.
 
 {{% alert color="info" title="Other policy examples" %}}
 For policies that make use of CalVer, build IDs or alphabetical sorting,
-have a look at [the examples](../components/image/imagepolicies.md#examples).
+have a look at [the examples](#imagepolicy-examples).
 {{% /alert %}}
 
 Commit and push changes to main branch:
@@ -247,16 +247,45 @@ Wait for Flux to fetch the image tag list from GitHub container registry:
 
 ```sh
 $ flux get image repository podinfo
-NAME   	READY	MESSAGE                       	LAST SCAN
-podinfo	True 	successful scan, found 13 tags	2020-12-13T17:51:48+02:00
+NAME    LAST SCAN                       SUSPENDED       READY   MESSAGE
+podinfo 2020-12-13T17:51:48+02:00       False           True    successful scan: found 13 tags
+```
+
+For debugging purposes, to see a sample of the tags scanned by the
+`ImageRepository`, a list of ten latest tags scanned by the `ImageRepository`
+resource can be seen in the status of the resource:
+
+```sh
+$ kubectl -n flux-system describe imagerepositories podinfo
+...
+Status:
+  Canonical Image Name:  ghcr.io/stefanprodan/podinfo
+  Last Scan Result:
+    Latest Tags:
+      latest
+      6.3.3
+      6.3.2
+      6.3.1
+      6.3.0
+      6.2.3
+      6.2.2
+      6.2.1
+      6.2.0
+      6.1.8
+    Scan Time:  2020-12-13T17:51:48Z
+    Tag Count:  13
+  Observed Exclusion List:
+    ^.*\.sig$
+  Observed Generation:  2
+...
 ```
 
 Find which image tag matches the policy semver range with:
 
 ```sh
 $ flux get image policy podinfo
-NAME   	READY	MESSAGE                   
-podinfo	True 	Latest image tag for 'ghcr.io/stefanprodan/podinfo' resolved to: 5.0.3
+NAME    LATEST IMAGE                            READY   MESSAGE
+podinfo ghcr.io/stefanprodan/podinfo:5.0.3      True    Latest image tag for 'ghcr.io/stefanprodan/podinfo' resolved to 5.0.3
 ```
 
 ## Configure image updates
@@ -628,126 +657,88 @@ flux create image policy podinfo \
 Two methods are available for authenticating container registers as
 `ImageRepository` resources in Flux:
 
-* Automated authentication mechanisms (where the controller retrieves the credentials itself 
-and is only available for the three major cloud providers), or
+* [Automated authentication](../components/image/imagerepositories.md#provider)
+mechanisms (where the controller retrieves the credentials itself and is only
+available for the three major cloud providers), or
 * a [`CronJob`](cron-job-image-auth.md) which does not rely on native platform support in Flux,
   (instead storing credentials as Kubernetes secrets which are periodically refreshed.)
 
 Native authentication mechanisms have been implemented in Flux for the three major
-cloud providers, but it needs to enabled with a flag. Please see individual sections
-on how to do this.
+cloud providers, but they have to be set in the individual `ImageRepository`
+resources. Please see individual sections on how to do this.
 
-{{% alert color="info" title="Workarounds" color="warning" %}}
-Please note that the native authentication feature is still experimental and using
-cron jobs to refresh credentials is still the recommended method especially for multi-tenancy
-where tenants on the same cluster don't trust each other. Check [cron job documentation](cron-job-image-auth.md) for
-common examples for the most popular cloud provider docker registries.
-{{% /alert %}}
+## ImagePolicy Examples
 
-### Using Native AWS ECR Auto-Login
-
-There is native support for the AWS Elastic Container Registry available since 
-`image-reflector-controller` [v0.13.0](https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0130)
-which was released with Flux release v0.19. This depends on setting the `--aws-autologin-for-ecr`
-flag, which assumes any ECR repositories with IAM roles assigned to the cluster can
-be freely shared across any cluster tenants. This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
-                        
-```yaml
-patches:
-- target:
-    version: v1
-    group: apps
-    kind: Deployment
-    name: image-reflector-controller
-    namespace: flux-system
-  patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/args/-
-      value: --aws-autologin-for-ecr
-```
-
-### Using Native GCP GCR Auto-Login
-
-There is native support for the GCP Google Container Registry available since `image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
-which was released with Flux release v0.26.0. This feature is enabled by setting the `--gcp-autologin-for-gcr`
-flag. This works with both clusters that have Workload Identity enabled, and those that use the default service account.
-This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
-                                             
-```yaml
-patches:
-- target:
-    version: v1
-    group: apps
-    kind: Deployment
-    name: image-reflector-controller
-    namespace: flux-system
-  patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/args/-
-      value: --gcp-autologin-for-gcr
- ### add this patch to annotate service account if you are using Workload identity
-patchesStrategicMerge:
-- |-
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: image-reflector-controller
-    namespace: flux-system
-    annotations:
-      iam.gke.io/gcp-service-account: <gcp-service-account-name>@<PROJECT_ID>.iam.gserviceaccount.com
-```
-
-The Artifact Registry service uses the permission `artifactregistry.repositories.downloadArtifacts` that is
-located under the Artifact Registry Reader role. If you are using Google Container Registry service, the needed
-permission is instead `storage.objects.list` which can be bound as part of the Container Registry Service Agent
-role, (or it can be bound separately in your own created role for the least required permission.)
-
-Take a look at [this guide](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) for more
-information about setting up GKE Workload Identity.
-
-### Using Native Azure ACR Auto-Login
-
-There is native support for the Azure Container Registry] available since 
-`image-reflector-controller` [v0.16.0][v0.16.0 image reflector changelog]
-which was released with Flux release v0.26.0. This feature is enabled by setting the `--azure-autologin-for-acr`
-flag, This flag can be added by including a patch in the `kustomization.yaml` overlay file in your `flux-system`,
-similar to the process described in [customize Flux manifests](../installation.md/#customize-flux-manifests):
+Select the latest `main` branch build tagged as `${GIT_BRANCH}-${GIT_SHA:0:7}-$(date +%s)` (numerical):
 
 ```yaml
-patches:
-- target:
-    version: v1
-    group: apps
-    kind: Deployment
-    name: image-reflector-controller
-    namespace: flux-system
-  patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/args/-
-      value: --azure-autologin-for-acr
-      # Add this if you are using aad pod identity with managed identity
-    - op: add 
-      path: /spec/template/metadata/labels/aadpodidbinding
-      value: <name-of-identity>
+kind: ImagePolicy
+spec:
+  filterTags:
+    pattern: '^main-[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
 ```
 
-{{% alert color="info" title="AKS with Managed Identity" %}}
-When using managed identity on an AKS cluster, [AAD Pod Identity](https://azure.github.io/aad-pod-identity) has to
-be used to give the `image-reflector-controller` pod access to the ACR. To do this, you have to install
-`aad-pod-identity` on your cluster, create a managed identity that has access to the container registry (this can
-also be the Kubelet identity if it has `AcrPull` role assignment on the ACR), create an `AzureIdentity` and
-`AzureIdentityBinding` that describe the managed identity and then label the `image-reflector-controller` pods with
-the name of the `AzureIdentity` as shown in the patch above.
-Please take a look at [this guide](https://azure.github.io/aad-pod-identity/docs/)
-or [this one](https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) if you want to use AKS
-pod-managed identities add-on that is in preview.
-{{% /alert %}}
+A more strict filter would be `^main-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)`.
+Before applying policies in-cluster, you can validate your filters using
+a [Go regular expression tester](https://regoio.herokuapp.com)
+or [regex101.com](https://regex101.com/).
 
-{{% alert title="Migrating from cron-based registry credentials sync" color="warning" %}}
-If you are migrating from the [Generating Tokens for Managed Identities [short-lived]](/flux/guides/cron-job-image-auth/#generating-tokens-for-managed-identities-short-lived) approach, `spec.secretRef` must be removed from your `ImageRepository`!
-Failing to do so will, eventually, cause the `image-reflector-controller` to use stale credentials when it tries to get images from the ACR.
-{{% /alert %}}
+Select the latest stable version (semver):
 
-[v0.16.0 image reflector changelog]: https://github.com/fluxcd/image-reflector-controller/blob/main/CHANGELOG.md#0160
+```yaml
+kind: ImagePolicy
+spec:
+  policy:
+    semver:
+      range: '>=1.0.0'
+```
+
+Select the latest stable patch version in the 1.x range (semver):
+
+```yaml
+kind: ImagePolicy
+spec:
+  policy:
+    semver:
+      range: '>=1.0.0 <2.0.0'
+```
+
+Select the latest version including pre-releases (semver):
+
+```yaml
+kind: ImagePolicy
+spec:
+  policy:
+    semver:
+      range: '>=1.0.0-0'
+```
+
+Select the latest release candidate (semver):
+
+```yaml
+kind: ImagePolicy
+spec:
+  filterTags:
+    pattern: '.*-rc.*'
+  policy:
+    semver:
+      range: '^1.x-0'
+```
+
+Select the latest release tagged as `RELEASE.<RFC3339-TIMESTAMP>`
+e.g. [Minio](https://hub.docker.com/r/minio/minio) (alphabetical):
+
+```yaml
+kind: ImagePolicy
+spec:
+  filterTags:
+    pattern: '^RELEASE\.(?P<timestamp>.*)Z$'
+    extract: '$timestamp'
+  policy:
+    alphabetical:
+      order: asc
+```
