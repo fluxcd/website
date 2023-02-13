@@ -48,21 +48,21 @@ helm install my-traefik traefik/traefik \
 Flux client:
 
 ```sh
-flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik
+flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik --export > /flux/boot/traefik/helmrepo.yaml
 flux create helmrelease my-traefik --chart traefik \
   --source HelmRepository/traefik \
   --chart-version 9.18.2 \
-  --namespace traefik
+  --namespace traefik \
+  --export > /flux/boot/traefik/helmrepo.yaml
 ```
 
-The main difference is that the Flux client will not imperatively create resources in the cluster.
-Instead, these commands create Custom Resource *files*, which are committed to version control
-as instructions only (note: you may use the `--export` flag to manage any file edits with
-finer grained control before pushing to version control).
-Separately, the Flux Helm Controller automatically reconciles these instructions
-with the running state of your cluster based on your configured rules.
+These commands save the YAML for the Flux helm custom resources to a file which can be edited and pushed to git.
+When these resources are pushed to a repository that Flux watches, Flux applies them on the cluster and the Flux
+Helm Controller automatically reconciles these instructions with the running state of your cluster based on your
+configured rules. Alternatively, you can run the commands without the  `--export` command and this will apply the
+resources directly on your cluster.
 
-Let's check out what the Custom Resource files look like:
+Let’s check out what the Custom Resource files look like:
 
 ```yaml
 # /flux/boot/traefik/helmrepo.yaml
@@ -87,6 +87,7 @@ spec:
   chart:
     spec:
       chart: traefik
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: traefik
