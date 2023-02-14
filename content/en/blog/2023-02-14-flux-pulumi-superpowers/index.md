@@ -1,6 +1,6 @@
 ---
 author: Michael Bridgen
-date: 2023-02-08 8:30:00+00:00
+date: 2023-02-14 8:30:00+00:00
 title: How Flux and Pulumi give each other superpowers
 description: The Pulumi Kubernetes operator extends Flux to all your infrastructure, and Flux makes the Pulumi operator secure and super easy to work with.
 url: /blog/2023/02/flux-pulumi-superpowers/
@@ -13,7 +13,7 @@ infrastructure as programs written in JavaScript, Python, Java, Go, .NET languag
 from Kubernetes, so you can maintain your infrastructure by pushing commits to git and letting
 automation take it from there.
 
-<img alt="Pulumi mascot with sparkling cape" src="flying-sparkles-purple-cape.png" style="float:left" />
+<img class="img-fluid float-left m-3" alt="Pulumi mascot with sparkling cape" src="flying-sparkles-purple-cape-featured.png" />
 
 Recently, we added support to the operator for [using Flux
 sources](https://www.pulumi.com/docs/guides/continuous-delivery/pulumi-kubernetes-operator/#using-a-flux-source). This
@@ -35,14 +35,14 @@ and so on.
 But I think an even better reason for using Flux is that it can verify your sources. If you use a
 Flux source in a Pulumi stack, you can better secure your supply chain. When you're using an OCI
 repository source for example, [Flux will check Cosign
-signatures](https://fluxcd.io/flux/components/source/ocirepositories/#verification) on each image
+signatures](/flux/components/source/ocirepositories/#verification) on each image
 for you, and refuse to update a source that does not have a valid signature.
 
 <!-- ASCII art here? Or a YAML example. -->
 
 A more subtle security benefit of Flux sources is context-based authorization. For example, in AWS
 the Flux controller can take advantage of [workload
-identity](https://fluxcd.io/flux/cheatsheets/oci-artifacts/#contextual-authorization) to gain access
+identity](/flux/cheatsheets/oci-artifacts/#contextual-authorization) to gain access
 to an ECR container registry containing your sources, so that you don't have to explicitly manage
 credentials.
 
@@ -61,7 +61,7 @@ tooling, including Flux.
 For example, here's Kubernetes YAMLs for creating an AWS EC2 instance, and a security group, with
 Pulumi:
 
-```yaml=
+```yaml
 ---
 # This is a program for creating the EC2 instance and security group
 apiVersion: pulumi.com/v1
@@ -120,7 +120,7 @@ For example, you might find it useful to write all your Pulumi Program and Stack
 directory for Flux to sync, rather than trying to create them in Pulumi code (or -- horror --
 applying them by hand).
 
-# Getting started with Flux and the Pulumi operator
+## Getting started with Flux and the Pulumi operator
 
 If you are already invested in Pulumi, it would make sense to bootstrap **Flux, using Pulumi**. You
 can use the [Flux provider for Pulumi](https://www.pulumi.com/registry/packages/flux/) from your
@@ -130,7 +130,7 @@ And, vice versa -- if you are starting with Flux and want to expand its reach wi
 bootstrap the **Pulumi operator, using Flux**, by syncing the deployment manifests in the operator's
 GitHub repo:
 
-```yaml=
+```yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
