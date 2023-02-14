@@ -4,6 +4,7 @@ date: 2023-02-08 8:30:00+00:00
 title: How Flux and Pulumi give each other superpowers
 description: The Pulumi Kubernetes operator extends Flux to all your infrastructure, and Flux makes the Pulumi operator secure and super easy to work with.
 url: /blog/2023/02/flux-pulumi-superpowers/
+tags: [ecosystem]
 ---
 
 # How Flux and Pulumi work together
