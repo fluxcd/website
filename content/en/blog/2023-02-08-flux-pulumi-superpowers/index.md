@@ -7,8 +7,6 @@ url: /blog/2023/02/flux-pulumi-superpowers/
 tags: [ecosystem]
 ---
 
-# How Flux and Pulumi work together
-
 [Pulumi](https://pulumi.com/) is an "Infrastructure as Code" tool that lets you specify your
 infrastructure as programs written in JavaScript, Python, Java, Go, .NET languages, or YAML. The
 [Pulumi Kubernetes operator](https://github.com/pulumi/pulumi-kubernetes-operator) drives Pulumi
