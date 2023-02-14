@@ -22,7 +22,7 @@ is a great addition to the operator, but it's not the only way Flux and Pulumi c
 Below I'm going to talk about how Flux and Pulumi can be combined, and the superpowers each grants
 to the other.
 
-## Adding OCI support and supply chain security to Pulumi
+<h2 style="clear:left;">Adding OCI support and supply chain security to Pulumi</h2>
 
 The support for Flux sources in the Pulumi operator gives you more ways to make your Pulumi programs
 available to the operator. Notably, you can now package your program as an OCI image and push it to
