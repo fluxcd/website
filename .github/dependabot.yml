@@ -18,5 +18,5 @@ updates:
     schedule:
       interval: "daily"
     ignore:
-      dependency-name: "github.com/google/docsy"
-      dependency-name: "github.com/google/docsy/dependencies"
+      - dependency-name: "github.com/google/docsy"
+      - dependency-name: "github.com/google/docsy/dependencies"
