@@ -17,3 +17,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    ignore:
+      dependency-name: "github.com/google/docsy"
+      dependency-name: "github.com/google/docsy/dependencies"
