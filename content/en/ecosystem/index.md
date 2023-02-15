@@ -10,12 +10,6 @@ type: page
 
 All entries on this page were added by people who worked on these and thus self-identified as being part of the Flux Ecosystem.
 
-{{% alert color="info" title="Join us" %}}
-To join this list, please open a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem/index.md).
-If you represent an organisation, please add yourself to [the adopters page](/adopters).
-We are happy and proud to have you all as part of our community! :sparkling_heart:
-{{% /alert %}}
-
 ## Products and Services built on top of Flux
 
 ### Featured entries
@@ -99,3 +93,16 @@ The functionality of Flux can be easily extended with ancillary utility tools. H
 | [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook) | A [pre-commit](https://pre-commit.com) that validates values of HelmRelease using helm lint | [README](https://github.com/tarioch/flux-check-hook#readme)                                 |
 
 </div>
+
+## Join us
+
+{{% alert color="info" %}}
+To join this list, please open a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem/index.md).
+If you represent an organisation, please add yourself to [the adopters page](/adopters).
+We are happy and proud to have you all as part of our community! :sparkling_heart:
+
+In addition to that, we love guest blog posts, e.g. in the [ecosystem section
+of our blog](/tags/ecosystem/). This is a great opportunity to introduce your
+project to the Flux community. Please give us a ping on Slack or send a PR
+against our website and we are happy to help you get it online!
+{{% /alert %}}
