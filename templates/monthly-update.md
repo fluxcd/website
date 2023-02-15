@@ -147,10 +147,11 @@ some Flux facts - they are sort of our mission statement with Flux.
   progressive delivery (PD) through automatic reconciliation. Flux
   can even push back to Git for you with automated container image
   updates to Git (image scanning and patching).
-1. 🔩 Flux works with your existing tools: Flux works with
-  your Git providers (GitHub, GitLab, Bitbucket, can even use
-  s3-compatible buckets as a source), all major container
-  registries, and all CI workflow providers.
+1. 🔩 Flux works with your existing tools: Flux works with your Git
+   providers (GitHub, GitLab, Bitbucket, can even use s3-compatible
+   buckets as a source), all major container registries, fully
+   integrates [with OCI](/flux/cheatsheets/oci-artifacts) and all CI
+   workflow providers.
 1. 🔒 Flux is designed with security in mind: Pull vs. Push,
   least amount of privileges, adherence to Kubernetes security
   policies and tight integration with security tools and
@@ -166,6 +167,11 @@ some Flux facts - they are sort of our mission statement with Flux.
   cluster to manage apps in either the same or other clusters, spin
   up additional clusters themselves, and manage clusters including
   lifecycle and fleets.
+1. ✨ Dashboards love Flux: No matter if you use one of
+   [the Flux UIs](/ecosystem/#flux-uis--guis) or a hosted cloud
+   offering from your cloud vendor, Flux has a thriving ecosystem
+   of integrations and products built on top of it and all have
+   great dashboards for you.
 1. 📞 Flux alerts and notifies: Flux provides health
   assessments, alerting to external systems and external events
   handling. Just "git push", and get notified on Slack and [other
