@@ -31,6 +31,13 @@ Additional benefits Flux adds to Helm include:
 - Automated drift detection between the desired and actual state of your operations
 - Automated responses to that drift, including reconciliation, notifications, and unified logging
 
+## Prerequisites
+
+To follow along you'll need a Kubernetes cluster with Flux installed on it.
+Please see the [get started guide](../get-started/index.md)
+or the [installation guide](../installation/).
+
+
 ## Getting Started
 
 The simplest way to explain is by example.
@@ -47,25 +54,26 @@ helm install my-traefik traefik/traefik \
 
 Flux client:
 
+Clone your bootstrap repository to your local machine and create a `traefik` directory in your bootstrap path.
+
 ```sh
-flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik --export > /flux/boot/traefik/helmrepo.yaml
+flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik --export > traefik/helmrepo.yaml
 flux create helmrelease my-traefik --chart traefik \
   --source HelmRepository/traefik \
   --chart-version 9.18.2 \
   --namespace traefik \
-  --export > /flux/boot/traefik/helmrepo.yaml
+  --export > traefik/helmrepo.yaml
 ```
 
-These commands save the YAML for the Flux helm custom resources to a file which can be edited and pushed to git.
-When these resources are pushed to a repository that Flux watches, Flux applies them on the cluster and the Flux
-Helm Controller automatically reconciles these instructions with the running state of your cluster based on your
-configured rules. Alternatively, you can run the commands without the  `--export` command and this will apply the
-resources directly on your cluster.
+These commands save the YAML for the Flux helm custom resources to the specified fil. When these resources are pushed to the 
+repository, Flux applies them on the cluster and the Flux Helm Controller automatically reconciles these instructions 
+with the running state of your cluster based on your configured rules. Alternatively, you can run the commands without 
+the  `--export` command and this will apply the resources directly on your cluster.
 
 Let’s check out what the Custom Resource files look like:
 
 ```yaml
-# /flux/boot/traefik/helmrepo.yaml
+# traefik/helmrepo.yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
@@ -77,7 +85,7 @@ spec:
 ```
 
 ```yaml
-# /flux/boot/traefik/helmrelease.yaml
+# traefik/helmrelease.yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
