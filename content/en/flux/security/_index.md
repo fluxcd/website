@@ -20,7 +20,8 @@ what they enable for both Kubernetes cluster and external system security.
 See our [security processes document](/security) for vulnerability reporting, handling,
 and disclosure of information for the Flux project and community.
 
-Please also have a look at [our security-related blog posts](/tags/security/). We are writing there to inform you what we are doing to keep Flux and you safe!
+Please also have a look at [our security-related blog posts](/tags/security/).
+We are writing there to inform you what we are doing to keep Flux and you safe!
 
 ## Signed container images
 
@@ -67,7 +68,8 @@ Or by using Docker's [sbom command](https://www.docker.com/blog/announcing-docke
 docker sbom fluxcd/source-controller:v0.34.0
 ```
 
-Please also refer to [this blog post](/blog/2022/02/security-the-value-of-sboms/) which discusses the idea and value of SBOMs.
+Please also refer to [this blog post](/blog/2022/02/security-the-value-of-sboms/)
+which discusses the idea and value of SBOMs.
 
 ## SLSA Provenance Attestations
 
@@ -133,7 +135,6 @@ Given this, and while we do appreciate the effort, reporting CVEs found by a sec
 scanner through issues and/or the security mailing list is not necessary.
 {{% /alert %}}
 
-
 ## Pod security standard
 
 The controller deployments are configured in conformance with the
@@ -148,7 +149,8 @@ Kubernetes [restricted pod security standard](https://kubernetes.io/docs/concept
 
 ## Controller permissions
 
-While Flux integrates with other systems it is built on Kubernetes core controller-runtime and properly adheres to Kubernetes security model including RBAC [^1].
+While Flux integrates with other systems it is built on Kubernetes core controller-runtime
+and properly adheres to Kubernetes security model including RBAC [^1].
 
 Flux installs a set of [RBAC manifests](https://github.com/fluxcd/flux2/tree/main/manifests/rbac).
 These include:
@@ -164,6 +166,10 @@ These include:
 3. A `cluster-reconciler` `ClusterRoleBinding`:
     - References `cluster-admin` `ClusterRole`
     - Bound to service accounts for only `kustomize-controller` and `helm-controller`
+4. A `flux-view` `ClusterRole`:
+    - Grants the Kubernetes builtin `view` role read-only access to Flux Custom Resources
+5. A `flux-edit` `ClusterRole`:
+    - Grants the Kubernetes builtin `edit` and `admin` roles write access to Flux Custom Resources
 
 Flux uses these two `ClusterRoleBinding` strategies in order to allow for clear access separation using tools
 purpose-built for policy enforcement (OPA, Kyverno, admission controllers).
