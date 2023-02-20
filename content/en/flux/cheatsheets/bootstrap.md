@@ -513,12 +513,18 @@ patches:
       - op: add
         path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/eventSources/items/properties/kind/enum/-
         value: Terraform
+      - op: add
+        path: /spec/versions/1/schema/openAPIV3Schema/properties/spec/properties/eventSources/items/properties/kind/enum/-
+        value: Terraform
     target:
       kind: CustomResourceDefinition
       name:  alerts.notification.toolkit.fluxcd.io
   - patch: |
       - op: add
         path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/resources/items/properties/kind/enum/-
+        value: Terraform
+      - op: add
+        path: /spec/versions/1/schema/openAPIV3Schema/properties/spec/properties/resources/items/properties/kind/enum/-
         value: Terraform
     target:
       kind: CustomResourceDefinition
