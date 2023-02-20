@@ -46,9 +46,6 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 
 | Name                                  | Type          | Description                                                                                                                             |
 |---------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `--aws-autologin-for-ecr`             | boolean       | Attempt to get credentials for images in Elastic Container Registry, when no secret is referenced                                       |
-| `--azure-autologin-for-acr`           | boolean       | Attempt to get credentials for images in Azure Container Registry, when no secret is referenced                                         |
-| `--gcp-autologin-for-gcr`             | boolean       | Attempt to get credentials for images in Google Container Registry, when no secret is referenced                                        |
 | `--concurrent`                        | int           | The number of concurrent kustomize reconciles. (default 4)                                                                              |
 | `--default-service-account`           | string        | Default service account used for impersonation.                                                                                         |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                   |
