@@ -234,7 +234,7 @@ spec:
 
 The `chart.spec` values are used by the helm-controller as a template
 to create a new `HelmChart` resource in the same namespace as the
-`sourceRef`. The source-controller will then lookup the chart in the
+`sourceRef`. The source-controller will then look up the chart in the
 artifact of the referenced source, and either fetch the chart for a
 `HelmRepository`, or build it from a `GitRepository` or `Bucket`.
 It will then make it available as a `HelmChart` artifact to be used by

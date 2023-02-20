@@ -161,7 +161,7 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A...
 ✔ GitRepository source created
 ◎ waiting for GitRepository source reconciliation
 ✔ GitRepository source reconciliation completed
-✔ fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
+✔ fetched revision: main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
 
 Configure the reconciliation of the `deploy` dir on your cluster:
@@ -177,7 +177,7 @@ $ flux create kustomization app \
 ✔ Kustomization created
 ◎ waiting for Kustomization reconciliation
 ✔ Kustomization app is ready
-✔ applied revision main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
+✔ applied revision main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
 
 If your repository contains secrets encrypted with Mozilla SOPS, please read this
@@ -255,8 +255,8 @@ Check the status of the Kustomization reconciliation:
 
 ```sh
 $ flux get kustomizations app
-NAME	REVISION                                     	SUSPENDED	READY
-app 	main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
+NAME	REVISION                                     	      SUSPENDED	READY
+app 	main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9b	False    	True
 ```
 
 ### Flux with Slack notifications
@@ -294,7 +294,7 @@ Check the status of Git operations:
 ```sh
 $ kubectl -n flux-system get gitrepositories
 NAME	READY	MESSAGE                                                                                                                                                                                        
-app 	True 	Fetched revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b                                                                                                                               	
+app 	True 	Fetched revision: main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9b                                                                                                                               	
 test	False	SSH handshake failed: unable to authenticate, attempted methods [none publickey]
 ```
 
@@ -303,7 +303,7 @@ Check the status of the cluster reconciliation with kubectl:
 ```sh
 $ kubectl -n flux-system get kustomizations
 NAME   READY   STATUS
-app    True    Applied revision: main/5302d04c2ab8f0579500747efa0fe7abc72c8f9
+app    True    Applied revision: main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9
 test   False   The Service 'backend' is invalid: spec.type: Unsupported value: 'Ingress'
 ```
 
@@ -331,5 +331,5 @@ $ flux resume kustomization app
 ✔ Kustomization resumed
 ◎ waiting for Kustomization reconciliation
 ✔ Kustomization reconciliation completed
-✔ applied revision main/5302d04c2ab8f0579500747efa0fe7abc72c8f9b
+✔ applied revision main@sha1:5302d04c2ab8f0579500747efa0fe7abc72c8f9b
 ```
