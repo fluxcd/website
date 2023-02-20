@@ -528,15 +528,15 @@ $ kubectl -n flux-system describe ocirepository podinfo
 
 Status:
   Artifact:
-    Revision:          04db795c5e8f039ee06e7f388e90ef9d16b713506dc100faed1773e0f8410d07
+    Revision:          sha256:04db795c5e8f039ee06e7f388e90ef9d16b713506dc100faed1773e0f8410d07
     Last Update Time:  2022-08-09T18:29:11Z
     Metadata:
       org.opencontainers.image.created:   2022-08-08T12:31:05+03:00
-      org.opencontainers.image.revision:  6.1.5/6b869d1a184969f7e24e6e4ad30be0b18f8b7416
+      org.opencontainers.image.revision:  6.1.5@sha1:6b869d1a184969f7e24e6e4ad30be0b18f8b7416
       org.opencontainers.image.source:    https://github.com/stefanprodan/podinfo.git                           
   Conditions:
     Last Transition Time:     2022-08-09T18:29:12Z
-    Message:                  stored artifact for digest '04db795c5e8f039ee06e7f388e90ef9d16b713506dc100faed1773e0f8410d07'
+    Message:                  stored artifact for digest 'sha256:04db795c5e8f039ee06e7f388e90ef9d16b713506dc100faed1773e0f8410d07'
     Observed Generation:      9
     Reason:                   Succeeded
     Status:                   True
@@ -556,19 +556,19 @@ Kustomization:   podinfo
 Namespace:       flux-system
 Target:          default
 Path:            ./kustomize
-Revision:        dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
+Revision:        sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
 Status:          Last reconciled at 2022-08-10 14:40:28 +0200 CEST
-Message:         Applied revision: dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
+Message:         Applied revision: sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
 ---
 OCIRepository:   podinfo
 Namespace:       flux-system
 URL:             oci://ghcr.io/stefanprodan/manifests/podinfo
 Digest:          sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
-Revision:        dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
-Origin Revision: 6.1.6/450796ddb2ab6724ee1cc32a4be56da032d1cca0
+Revision:        sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3
+Origin Revision: 6.1.6@sha1:450796ddb2ab6724ee1cc32a4be56da032d1cca0
 Origin Source:   https://github.com/stefanprodan/podinfo.git
 Status:          Last reconciled at 2022-08-10 14:40:22 +0200 CEST
-Message:         stored artifact for digest 'dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3'
+Message:         stored artifact for digest 'sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3'
 ```
 
 ## Automated updates to Git

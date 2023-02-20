@@ -99,7 +99,7 @@ flux create source git test \
 The source-watcher will log the revision:
 
 ```sh
-New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.34.0/90f0d81532f6ea76c30974267956c7eaee5c1dea"}
+New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.34.0@sha1:90f0d81532f6ea76c30974267956c7eaee5c1dea"}
 Processing manifests...
 ```
 
@@ -115,10 +115,10 @@ flux create source git test \
 And source-watcher will log the new revision:
 
 ```sh
-New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.35.0/1bf63a94c22d1b9b7ccf92f66a1a34a74bd72fca"}
+New revision detected   {"gitrepository": "flux-system/test", "revision": "v0.35.0@sha1:1bf63a94c22d1b9b7ccf92f66a1a34a74bd72fca"}
 ```
 
-The source-controller reports the revision under `GitRepository.Status.Artifact.Revision` in the format: `<branch|tag>/<commit>`.
+The source-controller reports the revision under `GitRepository.Status.Artifact.Revision` in the format: `<branch|tag>@sha1:<commit>`.
 
 ## How it works
 

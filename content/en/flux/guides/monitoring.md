@@ -219,7 +219,7 @@ Example of a `info` log:
   "msg": "server-side apply completed",
   "name": "demo-frontend",
   "namespace": "msdemo",
-  "revision": "main/30081ad7170fb8168536768fe399493dd43160d7",
+  "revision": "main@sha1:30081ad7170fb8168536768fe399493dd43160d7",
   "output": {
     "ConfigMap/msdemo/demo-frontend-redis": "created",
     "Deployment/msdemo/demo-frontend-app": "configured",
@@ -241,7 +241,7 @@ Example of an `error` log:
   "msg": "Reconciliation failed after 1.864823186s, next try in 5m0s",
   "name": "demo-frontend",
   "namespace": "msdemo",
-  "revision": "main/f68c334e0f5fae791d1e47dbcabed256f4f89e68",
+  "revision": "main@sha1:f68c334e0f5fae791d1e47dbcabed256f4f89e68",
   "error": "Service/msdemo/frontend dry-run failed, reason: Invalid, error: Service frontend is invalid: spec.type: Unsupported value: Ingress"
 }
 ```

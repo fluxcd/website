@@ -268,7 +268,7 @@ $ flux reconcile source git -n $FLUX_NS $GIT_NAME
 ✔ GitRepository annotated
 ◎ waiting for GitRepository reconciliation
 ✔ GitRepository reconciliation completed
-✔ fetched revision main/d537304e8f5f41f1584ca1e807df5b5752b2577e
+✔ fetched revision main@sha1:d537304e8f5f41f1584ca1e807df5b5752b2577e
 ```
 
 When this is successful, it tells you the new credentials have at least read access.
@@ -330,12 +330,12 @@ $ flux reconcile kustomization --with-source flux-system
 ✔ GitRepository annotated
 ◎ waiting for GitRepository reconciliation
 ✔ GitRepository reconciliation completed
-✔ fetched revision main/401dd3b550f82581c7d12bb79ade389089c6422f
+✔ fetched revision main@sha1:401dd3b550f82581c7d12bb79ade389089c6422f
 ► annotating Kustomization flux-system in flux-system namespace
 ✔ Kustomization annotated
 ◎ waiting for Kustomization reconciliation
 ✔ Kustomization reconciliation completed
-✔ reconciled revision main/401dd3b550f82581c7d12bb79ade389089c6422f
+✔ reconciled revision main@sha1:401dd3b550f82581c7d12bb79ade389089c6422f
 $ flux get image update
 NAME            READY   MESSAGE         LAST RUN                SUSPENDED
 my-app-auto     True    no updates made 2021-02-08T14:53:43Z    False
@@ -462,12 +462,12 @@ $ flux reconcile kustomization --with-source flux-system
 ✔ GitRepository annotated
 ◎ waiting for GitRepository reconciliation
 ✔ GitRepository reconciliation completed
-✔ fetched revision main/fd2fe8a61d4537bcfa349e4d1dbc480ea699ba8a
+✔ fetched revision main@sha1:fd2fe8a61d4537bcfa349e4d1dbc480ea699ba8a
 ► annotating Kustomization flux-system in flux-system namespace
 ✔ Kustomization annotated
 ◎ waiting for Kustomization reconciliation
 ✔ Kustomization reconciliation completed
-✔ reconciled revision main/fd2fe8a61d4537bcfa349e4d1dbc480ea699ba8a
+✔ reconciled revision main@sha1:fd2fe8a61d4537bcfa349e4d1dbc480ea699ba8a
 $ flux get image repository podinfo-image
 NAME            READY   MESSAGE                         LAST SCAN               SUSPENDED
 podinfo-image   True    successful scan, found 16 tags  2021-02-08T14:31:38Z    False
@@ -630,12 +630,12 @@ $ flux reconcile kustomization --with-source flux-system
 ✔ GitRepository annotated
 ◎ waiting for GitRepository reconciliation
 ✔ GitRepository reconciliation completed
-✔ fetched revision main/7dcf50222499be8c97e22cd37e26bbcda8f70b95
+✔ fetched revision main@sha1:7dcf50222499be8c97e22cd37e26bbcda8f70b95
 ► annotating Kustomization flux-system in flux-system namespace
 ✔ Kustomization annotated
 ◎ waiting for Kustomization reconciliation
 ✔ Kustomization reconciliation completed
-✔ reconciled revision main/7dcf50222499be8c97e22cd37e26bbcda8f70b95
+✔ reconciled revision main@sha1:7dcf50222499be8c97e22cd37e26bbcda8f70b95
 $ flux get image policy flux-system
 NAME            READY   MESSAGE                                                                 LATEST IMAGE
 my-app-policy   True    Latest image tag for 'ghcr.io/stefanprodan/podinfo' resolved to: 5.1.4  ghcr.io/stefanprodan/podinfo:5.1.4
