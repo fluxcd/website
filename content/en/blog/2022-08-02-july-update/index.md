@@ -339,7 +339,7 @@ to the following alternatives for UIs for Flux instead.
    \
    You can install the Weave GitOps UI
    using a Flux HelmRelease, please see the [Weave GitOps
-   documentation](https://docs.gitops.weave.works/docs/getting-started/)
+   documentation](https://docs.gitops.weave.works/docs/getting-started/intro/)
    for more details.
 1. The Flux community maintains a series of Grafana dashboards for
    monitoring Flux.\
