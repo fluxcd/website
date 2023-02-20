@@ -158,7 +158,7 @@ on the same cluster, for when resource isolation strategies are in place, so
 you can see the health of all controllers in the Flux Runtime view.
 
 Then in the Enterprise edition of Weave GitOps, [the Pipelines
-feature](https://docs.gitops.weave.works/docs/enterprise/pipelines/intro/) is
+feature](https://docs.gitops.weave.works/docs/pipelines/getting-started/) is
 now enabled by default to help you automatically promote applications through a
 series of environments, and GitOpsTemplates continue to be enhanced as a generic
 self-service capability for building out an Internal Developer Platform.
