@@ -1,0 +1,23 @@
+{{ $benefits := $.Page.Params.benefits -}}
+
+<div class="body-container benefits">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-12 mt-5 mb-5">
+          <h2 class="text-center">Benefits</h2>
+        </div>
+  
+        {{ range $benefits -}}
+        {{ $icon  := .icon -}}
+        {{ $desc := .description | markdownify -}}
+        {{ $title := .title | markdownify -}}
+        <div class="col-lg-4 mb-5">
+          <div class="card-shadow">
+            <i class="{{ $icon }} fa-3x"></i>
+            <h4 class="my-3">{{ $title }}</h4>
+            <p class="section-text">{{ $desc }}</p>
+          </div>
+        </div>
+        {{ end }}
+    </div>
+</div>

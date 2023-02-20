@@ -1,0 +1,66 @@
+.features, .benefits {
+  .fas, .fab, .fa {
+    color: $flux-dark-blue;
+  }
+}
+
+
+.features {
+    .feature-card {
+      padding: 20px;
+      border-radius: 0;
+      height: 100%;
+      border: 1px solid #E8E8E8;
+      background-color: #FFFFFF;
+    
+      p.section-text {
+        font-size: 15px;
+      }
+      
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .card-header-custom {
+      display: flex;
+      flex-direction: row;
+      align-items:center;
+      min-height: 58px;
+
+      h4 {
+        font-size: 18px;
+        color: #3b3c4c;
+      }
+
+      i {
+        margin-right: 16px;
+      }
+    }
+
+    .card .section-text {
+      font-size: 14px;
+      color: #5a5b75;
+    }
+}
+
+
+.benefits {
+  .card-shadow {
+    padding: 35px 30px 30px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(41,26,204,.12);
+    border: none;
+    height: 100%;
+    text-align: center;
+
+    i {
+      margin: 2px auto;
+    }
+  
+    h4 {
+      font-weight: 600;
+      line-height: 1.2;
+    }
+  }
+}
