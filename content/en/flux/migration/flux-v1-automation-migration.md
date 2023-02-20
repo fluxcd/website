@@ -417,7 +417,7 @@ $ flux create image repository podinfo-image \
     --export > ./$AUTO_PATH/podinfo-image.yaml
 $ cat ./$AUTO_PATH/podinfo-image.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: podinfo-image
@@ -523,7 +523,7 @@ Say you want to filter for only images that are from `main` branch, and pick the
 `ImagePolicy` would look like this:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: my-app-policy
@@ -567,7 +567,7 @@ example, you might put a target environment as well as the version in your image
 Then you would use an `ImagePolicy` similar to this one:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: my-app-policy
@@ -598,7 +598,7 @@ $ flux create image policy my-app-policy \
     --export > ./$AUTO_PATH/my-app-policy.yaml
 $ cat ./$AUTO_PATH/my-app-policy.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: my-app-policy

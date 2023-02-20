@@ -612,7 +612,7 @@ and [GitHub Actions Auto Pull Request](/flux/use-cases/gh-actions-auto-pr/).
 Define an image repository and a semver policy for the OCI artifact:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: podinfo-oci
@@ -621,7 +621,7 @@ spec:
   image: ghcr.io/stefanprodan/manifests/podinfo
   interval: 5m
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: podinfo-oci
@@ -658,7 +658,7 @@ change to Git.
 Define an image repository and a semver policy for the Helm chart:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: podinfo-chart
@@ -667,7 +667,7 @@ spec:
   image: ghcr.io/stefanprodan/charts/podinfo
   interval: 5m
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: podinfo-chart

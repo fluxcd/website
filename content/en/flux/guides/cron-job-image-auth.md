@@ -7,7 +7,7 @@ weight: 90
 
 ## Image Repository Authentication
 
-While [native authentication mechanisms](image-update.md/#imageRepository-cloud-providers-authentication) 
+While [native authentication mechanisms](../components/image/imagerepositories.md#provider)
 are available, using a cron job is the preferred way of syncing image repository credentials for
 multi-tenancy as the controller cannot natively get access to the image repository.
 
@@ -151,8 +151,6 @@ spec:
 ```
 
 ### GCP Container Registry
-
-#### Using Native GCP GCR Auto-Login
 
 #### Using access token [short-lived]
 
