@@ -39,6 +39,11 @@ For example the [tf-controller](https://github.com/weaveworks/tf-controller)
 (A Flux controller created by Weaveworks) expects for Terraform files to be included in the OCI artifact.
 {{% /alert %}}
 
+The OCI artifacts produced with `flux push artifact` have the following custom media types:
+- artifact media type `application/vnd.oci.image.manifest.v1+json`
+- config media type `application/vnd.cncf.flux.config.v1+json`
+- content media type `application/vnd.cncf.flux.content.v1.tar+gzip`
+
 ### Consuming artifacts
 
 On the server-side, Flux pulls OCI artifacts from container registries, extracts the Kubernetes manifests
@@ -116,10 +121,6 @@ spec:
         kind: HelmRepository
         name: podinfo
 ```
-
-Unlike Helm, the Flux OCI artifacts don't have a custom media type and they can be stored in
-any container registry. The artifacts created by Flux can contain any type of configuration
-besides Kubernetes manifests.
 
 The two artifact types can be used together, for example you could bundle a `Namespace`,
 a `HelmRepository` and a `HelmRelease` into a Flux OCI artifact where the `HelmRepository`
@@ -285,9 +286,8 @@ spec:
 ## Authentication
 
 Flux works with Docker Hub, GitHub and GitLab Container Registry,
-ACR, ECR, GCR, Artifactory, Harbor, self-hosted Docker Registry and
-any other registry which is compatible with the
-[OCI Distribution Specification](https://github.com/opencontainers/distribution-spec).
+ACR, ECR, GAR, Harbor, self-hosted Docker Registry and
+any other registry which supports custom OCI media types.
 
 For authentication purposes, the `flux <verb> artifact` commands are using the `~/.docker/config.json`
 config file and the Docker credential helpers.
@@ -499,7 +499,7 @@ spec:
 Or watch the Kubernetes events:
 
 ```console
-$ kubectl alpha events -n flux-system --for OCIRepository/podinfo --watch
+$ kubectl events -n flux-system --for OCIRepository/podinfo --watch
 
 stored artifact with digest '04db795c5e8f039ee06e7f388e90ef9d16b713506dc100faed1773e0f8410d07'
 from 'oci://ghcr.io/stefanprodan/manifests/podinfo',
