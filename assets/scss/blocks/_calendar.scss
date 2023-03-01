@@ -80,6 +80,10 @@
         padding: 6px 0;
         font-weight: 500;
         vertical-align: bottom;
+        width: 60%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
