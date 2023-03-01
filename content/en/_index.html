@@ -4,11 +4,71 @@ description: >
   Flux is a set of continuous and progressive delivery solutions for Kubernetes, and they are open and extensible. 
   
   The APIs of Flux are stable now.
+benefits:
+  - title: GitOps for apps and infrastructure
+    icon: fas fa-handshake
+    description: >
+      Flux and [Flagger](https://github.com/fluxcd/flagger) deploy apps with canaries, feature flags,
+      and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload
+      dependency management is built in.
+  - title: Declarative & Automated
+    icon: fab fa-git-square
+    description: >
+      Describe the entire desired state of your system in [Git](https://git-scm.com).
+      This includes apps, configuration, dashboards, monitoring, and everything else.
+      Use [YAML](https://yaml.org) to enforce conformance to the declared system.
+      You don't need to run [kubectl](https://kubectl.docs.kubernetes.io) because all
+      changes are synced automatically.
+  - title: Auditable
+    icon: fas fa-code
+    description: >
+      Everything is controlled through pull requests. Your Git history provides a sequence of
+      transactions, allowing you to recover state from any snapshot.
+features:
+  - title: Push to Git and Flux does the rest
+    icon: fas fa-robot
+    description: >
+      Flux enables application deployment (CD) and (with the help of
+      [Flagger](https://github.com/fluxcd/flagger)) progressive delivery (PD) through automatic
+      reconciliation. Flux can even push back to Git for you with automated container image updates
+      to Git (image scanning and patching).
+  - title: Works with your existing tools
+    icon: fas fa-wrench
+    description: >
+      Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets
+      as a source), all major container registries, fully integrates [with
+      OCI](/flux/cheatsheets/oci-artifacts) and all CI workflow providers.
+  - title: Designed with security in mind
+    icon: fas fa-lock
+    description: >
+      Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and
+      tight integration with security tools and best-practices. Read more about [our security
+      considerations](/flux/security).
+  - title: Does Multi-Tenancy (and “Multi-everything”)
+    icon: fas fa-people-roof
+    description: >
+      Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories.
+      Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use
+      one Kubernetes cluster to manage apps in either the same or other clusters, spin up
+      additional clusters themselves, and manage clusters including lifecycle and fleets.
+  - title: Works with any Kubernetes and all common tooling
+    icon: fas fa-dharmachakra
+    description: >
+      Support for e.g. [Kustomize](https://kustomize.io), [Helm](https://helm.sh); GitHub, GitLab, Harbor
+      and custom webhooks; notifications on Slack and [other chat
+      systems](/flux/components/notification/provider/); RBAC, and policy-driven validation (OPA, Kyverno,
+      admission controllers).
+  - title: Dashboards love Flux
+    icon: fas fa-wand-magic-sparkles
+    description: >
+      No matter if you use one of [the Flux UIs](/ecosystem/#flux-uis--guis) or a hosted cloud offering from
+      your cloud vendor, Flux has a thriving ecosystem of integrations and products built on top of it and
+      all have great dashboards for you.
 ---
 
-{{% blocks/announce emoji="📢" url="/blog/2022/11/flux-is-a-cncf-graduated-project/" %}}
+{{% home/announce emoji="📢" url="/blog/2022/11/flux-is-a-cncf-graduated-project/" %}}
 Flux is a CNCF Graduated project!
-{{% /blocks/announce %}}
+{{% /home/announce %}}
 
 <div class="hero-gitops">
   {{% blocks/hero title="Flux has been promoted to Graduated status in the CNCF" color="primary"
@@ -22,69 +82,23 @@ Flux is a CNCF Graduated project!
 
   <div class="lead-flux">
   {{< blocks/lead >}}
-
-  {{< blocks/next_event >}}
-
-  <h2 id="flux-facts">Flux in short</h2>
-
+  {{< home/next_event >}}
   {{< /blocks/lead >}}
   </div>
 </div>
 
-<!-- used in ./content/en/flux/_index.md as well -->
+<!-- Benefits & Features -->
 
-<div id="feature-list">
-{{% blocks/section color="white" %}}
-  <div class="feature-items">
+{{< home/benefits >}}
+{{< home/features >}}
 
-  {{< blocks/featureitem emoji="🤝" caption="Flux provides GitOps for both apps and infrastructure" >}}
-    Flux and <a href="https://github.com/fluxcd/flagger">Flagger</a> deploy apps with canaries, feature flags, and A/B rollouts. Flux can also manage any Kubernetes resource. Infrastructure and workload dependency management is built in.
-  {{< /blocks/featureitem >}}
-  
-  {{< blocks/featureitem emoji="🤖" caption="Just push to Git and Flux does the rest" >}}
-    Flux enables application deployment (CD) and (with the help of <a href="https://github.com/fluxcd/flagger">Flagger</a>) progressive delivery (PD) through automatic reconciliation. Flux can even push back to Git for you with automated container image updates to Git (image scanning and patching).
-  {{< /blocks/featureitem >}}
 
-  {{< blocks/featureitem emoji="🔩" caption="Flux works with your existing tools" >}}
-    Flux works with your Git providers (GitHub, GitLab, Bitbucket, can even use s3-compatible buckets as a source), all major container registries, fully integrates <a href="/flux/cheatsheets/oci-artifacts">with OCI</a> and all CI workflow providers.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="🔒" caption="Flux is designed with security in mind" >}}
-    Pull vs. Push, least amount of privileges, adherence to Kubernetes security policies and tight integration with security tools and best-practices. Read more about <a href="/flux/security">our security considerations</a>.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="☸️" caption="Flux works with any Kubernetes and all common Kubernetes tooling" >}}
-    Kustomize, Helm, RBAC, and policy-driven validation (OPA, Kyverno, admission controllers) so it simply falls into place.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="🤹" caption="Flux does Multi-Tenancy (and “Multi-everything”)" >}}
-    Flux uses true Kubernetes RBAC via impersonation and supports multiple Git repositories. Multi-cluster infrastructure and apps work out of the box with Cluster API: Flux can use one Kubernetes cluster to manage apps in either the same or other clusters, spin up additional clusters themselves, and manage clusters including lifecycle and fleets.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="✨" caption="Dashboards love Flux" >}}
-    No matter if you use one of <a href="/ecosystem/#flux-uis--guis">the Flux UIs</a> or a hosted cloud offering from your cloud vendor, Flux has a thriving ecosystem of integrations and products built on top of it and all have great dashboards for you.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="📞" caption="Flux alerts and notifies" >}}
-  Flux provides health assessments, alerting to external systems, and external events handling. Just “git push”, and get notified on Slack and <a href="/flux/components/notification/provider/">other chat systems</a>.
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="👍" caption="Users trust Flux" >}}
-  Flux is a CNCF Graduated project and was categorised as "Adopt" on the <a href="https://radar.cncf.io/2020-06-continuous-delivery">CNCF CI/CD Tech Radar</a> (alongside Helm).
-  {{< /blocks/featureitem >}}
-
-  {{< blocks/featureitem emoji="💖" caption="Flux has a lovely community that is very easy to work with!" >}}
-    We welcome contributors of any kind. The components of Flux are on Kubernetes core controller-runtime, so anyone can contribute and its functionality can be extended very easily.
-  {{< /blocks/featureitem >}}
-  </div>
-{{% /blocks/section %}}
-</div>
 
 
 <!-- Community -->
 <div class="section-community">
   {{< blocks/section color="dark" type="calendar-row">}}
-  {{< blocks/calendar >}}
+  {{< home/calendar >}}
   {{< /blocks/section >}}
 
   {{< blocks/lead color="dark" >}}
@@ -93,32 +107,33 @@ Flux is a CNCF Graduated project!
   </h2>
 
   <p>The Flux project aspires to be the vendor-neutral home for GitOps in a Cloud Native world.
-  What we achieved up until today is only possible because of <a href="/community">our community</a>.</p>
+  What we achieved up until today is only possible because of <a href="/community">our community</a>,
+  that is very easy to work with.</p>
 
   {{< /blocks/lead >}}
 
   <div class="subsection-community-row">
     {{< blocks/section color="dark" type="community-row">}}
 
-    {{< blocks/community icon="fab fa-github" title="GitHub Discussions" >}}
+    {{< home/community icon="fab fa-github" title="GitHub Discussions" >}}
     <a href="https://github.com/fluxcd/flux2/discussions">Join the conversation in GitHub Discussions</a>. Everything Flux related ranging from specifications and feature planning to Show & Tell happens here.
 
-    {{< /blocks/community >}}
+    {{< /home/community >}}
 
 
-    {{< blocks/community icon="fab fa-slack" title="Slack" >}}
+    {{< home/community icon="fab fa-slack" title="Slack" >}}
     If you want to talk to the Flux team and community in real-time, join us on Slack. This is a great way to get to know everyone.
 
     Get a <a href="https://slack.cncf.io/">Slack invite</a>, or go to the <a href="https://cloud-native.slack.com/messages/flux"><code>#flux</code> channel</a>.
 
 
-    {{< /blocks/community >}}
+    {{< /home/community >}}
 
 
-    {{< blocks/community icon="fa fa-paper-plane" title="Mailing list" >}}
+    {{< home/community icon="fa fa-paper-plane" title="Mailing list" >}}
     <a href="https://lists.cncf.io/g/cncf-flux-dev">Join our (low-traffic) mailing list</a> to stay up to day on announcements and sporadic discussions.
 
-    {{< /blocks/community >}}
+    {{< /home/community >}}
 
     {{< /blocks/section >}}
   </div>
@@ -128,57 +143,9 @@ Flux is a CNCF Graduated project!
 
 
 <div id="adopters-wall">
-  {{< blocks/adopters_wall >}}
+  {{< home/adopters_wall >}}
 </div>
 
-
-<!-- gitops -->
-
-{{% blocks/lead title="GitOps at your fingertips" color="primary" %}}
-
-<h2 class="section-label">GitOps at your fingertips</h2>
-
-Flux is a collection of tools for keeping <a href="https://kubernetes.io/">Kubernetes</a> clusters
-in sync with sources of configuration (like Git repositories), and automating updates to configuration
-when there is new code to deploy.
-
-{{< /blocks/lead >}}
-
-{{< blocks/section type="features" color="white" >}}
-
-{{% blocks/feature icon="fab fa-git-square fa-3x" title="Declarative" height="auto" color="blue" %}}
-Describe the entire desired state of your system in [Git](https://git-scm.com). This includes apps, configuration,
-dashboards, monitoring, and everything else.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-robot fa-3x" title="Automated" height="auto" color="blue" %}}
-Use [YAML](https://yaml.org) to enforce conformance to the declared system. You don't need to run
-[`kubectl`](https://kubectl.docs.kubernetes.io/) because all changes are synced automatically.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-code fa-3x" title="Auditable" height="auto" color="blue" %}}
-Everything is controlled through pull requests. Your Git history provides a sequence of transactions, allowing you to
-recover state from any snapshot.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-drafting-compass fa-3x" title="Designed for Kubernetes" height="auto" color="blue" %}}
-Declaratively configurable using Custom Resources, state reports in the
-[object's status](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/#object-spec-and-status)
-and via [Kubernetes Events](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/),
-and integrations with Kubernetes RBAC
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-box-open fa-3x" title="Out-of-the-box integrations" height="auto" color="blue" %}}
-Support for e.g. [Kustomize](https://kustomize.io), [Helm](https://helm.sh); GitHub, GitLab, Harbor and custom
-webhooks; notifications to most team communication platforms; and many more.
-{{% /blocks/feature %}}
-
-{{% blocks/feature icon="fas fa-cube fa-3x" title="Extensible" height="auto" color="blue" %}}
-Easily create a continuous delivery solution with only the components you need, or use the [GitOps Toolkit](/flux/components)
-to extend Flux.
-{{% /blocks/feature %}}
-
-{{< /blocks/section >}}
 
 
 <div class="d-flex justify-content-center align-items-center mb-5">
@@ -198,12 +165,14 @@ to extend Flux.
 {{% blocks/lead title="Who is using Flux" color="primary" %}}
 <h2 class="section-label">Who is using Flux</h2>
 
+Flux is a CNCF Graduated project and was categorised as "Adopt" on the <a href="https://radar.cncf.io/2020-06-continuous-delivery">CNCF CI/CD Tech Radar</a> (alongside Helm).
+
 Some of the biggest organisations have adopted the Flux family of projects for their GitOps needs.
 
 See <a href="/adopters">who is part of our community</a> and how about joining yourself?
 {{< /blocks/lead >}}
 
-{{< blocks/endorsements >}}
+{{< home/endorsements >}}
 
 
 <!-- RESOURCES HERE -->
@@ -218,7 +187,7 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
 
   <div class="subsection-resources">
   {{< blocks/section color="primary" type="resources" >}}
-  {{< blocks/resources_section >}}
+  {{< home/resources_section >}}
   {{< /blocks/section >}}
   </div>
 
@@ -231,8 +200,10 @@ See <a href="/adopters">who is part of our community</a> and how about joining y
 
 {{< blocks/lead color="dark" >}}
 <h2 class="section-label">Made possible by our contributors</h2>
+<p class="text-muted">We welcome contributors of any kind. The components of Flux are on Kubernetes core
+  controller-runtime, so anyone can contribute and its functionality can be extended very easily.</p>
 
-{{< blocks/contributors >}}
+{{< home/contributors >}}
 {{< /blocks/lead >}}
 
-{{< blocks/cncf >}}
+{{< home/cncf >}}

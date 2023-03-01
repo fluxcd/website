@@ -69,50 +69,23 @@ main.td-main {
   }
 }
 
-.features, .resources {
-  .h3 {
-    margin-top: 2rem;
-    font-weight: 600;
-  }
-
-  h4 {
-    font-weight: 600;
-    margin: 0.85rem 0;
-  }
-}
-
-.features {
-  .fas, .fab, .fa {
-    color: $flux-dark-blue;
-  }
-
-  .col-lg-4 {
-    padding: 0 2rem !important;
-    margin: 2rem 0rem !important;
-  }
-
-
-
-  @include white-background-a;
-}
-
 .resources {
   h4 {
     color: $flux-white;
     font-size: 1.25rem;
-    padding-bottom: 0;
-    margin-bottom: 0.25rem;
+    font-weight: 600;
+    margin: 0.85rem 0;
   }
+
   img {
     height: 220px;
   }
-
+ 
   .col-lg-4 {
-    padding: 1rem 1rem 0 1rem !important;
+    padding: 0 2rem !important;
   }
-
-
 }
+
 
 .td-content {
   div.lead  {
