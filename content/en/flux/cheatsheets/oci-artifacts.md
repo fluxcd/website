@@ -389,7 +389,7 @@ spec:
 
 {{% alert color="info" title="Cosign Keyless" %}}
 For publicly available OCI artifacts, which are signed using
-the [Cosign Keyless](https://github.com/sigstore/cosign/blob/main/KEYLESS.md)
+the [Cosign Keyless](https://docs.sigstore.dev/cosign/keyless/)
 method, you can enable the verification by omitting the `.verify.secretRef` field.
 
 Note that keyless verification is an **experimental feature**, using
