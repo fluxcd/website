@@ -252,3 +252,6 @@ adopters:
     - name: MyTaxi
       url: https://mytaxi.uz
       logo: logos/mytaxi.png
+    - name: ScaleAq
+      url: https://scaleaq.com
+      logo: logos/scaleaq.svg
