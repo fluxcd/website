@@ -105,7 +105,7 @@ apply errors and health check failures.
 When the verbosity is set to `info`, the controller will alert if:
 
 * a Kubernetes object was created, updated or deleted
-* heath checks are passing
+* health checks are passing
 * a dependency is delaying the execution
 * an error occurs
 
