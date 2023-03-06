@@ -2,6 +2,9 @@
   padding: 0 1rem 1.5rem 1rem;
   max-width: 600px;
   margin: 0 auto;
+  @include media-breakpoint-down(sm) {
+    overflow-x: hidden;
+  }
 
   h3 {
     font-weight: 600;
@@ -20,6 +23,9 @@
   ul.calendar-list {
     margin: 0 auto;
     list-style-type: none;
+    @include media-breakpoint-down(sm) {
+      padding-left: 0;
+    }
 
     & > li {
       border-bottom: 1px solid rgba($flux-white, 0.25);
@@ -76,7 +82,6 @@
 
       .label {
         display: inline-block;
-
         padding: 6px 0;
         font-weight: 500;
         vertical-align: bottom;
@@ -84,6 +89,9 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
       }
     }
 
