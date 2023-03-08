@@ -223,6 +223,9 @@ For security and performance reasons, it is advised to disallow the usage of
 [remote bases](https://github.com/kubernetes-sigs/kustomize/blob/a7f4db7fb41e17b2c826a524f545e6174b4dc6ac/examples/remoteBuild.md)
 in Kustomize overlays. To enforce this setting, platform admins can set the `--no-remote-bases=true` flag for kustomize-controller.
 
+**Note:** This flag prevents the usage of remote bases only, i.e. a Git repository or a sub directory.
+It does not affect the usage of remote targets pointing to a single file.
+
 When using remote bases, the manifests are fetched over HTTPS from their remote source on every reconciliation e.g.:
 
 ```yaml
@@ -230,7 +233,7 @@ When using remote bases, the manifests are fetched over HTTPS from their remote 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/kyverno/kyverno/releases/download/v1.8.0/install.yaml
+  - https://github.com/stefanprodan/podinfo/deploy/overlays/dev?ref=master
 ```
 
 To take advantage of Flux's verification and caching features,
