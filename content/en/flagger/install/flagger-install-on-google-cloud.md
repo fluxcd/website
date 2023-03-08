@@ -360,7 +360,7 @@ helm upgrade -i flagger flagger/flagger \
 --set crd.create=false \
 --set metricsServer=http://prometheus.istio-system:9090 \
 --set slack.url=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK \
---set slack.channel=general \
+--set slack.channel=some-channel-name \
 --set slack.user=flagger
 ```
 

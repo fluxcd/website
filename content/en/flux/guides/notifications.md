@@ -47,7 +47,7 @@ metadata:
   namespace: flux-system
 spec:
   type: slack
-  channel: general
+  channel: some-channel-name
   secretRef:
     name: slack-url
 ```

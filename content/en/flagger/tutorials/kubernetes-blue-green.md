@@ -39,7 +39,7 @@ helm upgrade -i flagger flagger/flagger \
 --reuse-values \
 --namespace flagger \
 --set slack.url=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK \
---set slack.channel=general \
+--set slack.channel=some-channel-name \
 --set slack.user=flagger
 ```
 
