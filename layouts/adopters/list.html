@@ -3,7 +3,7 @@
 <a class="td-offset-anchor"></a>
 <div class="page td-content container">
 
-    {{ .Content | markdownify }}
+    {{ .Content | markdownify -}}
 
     {{ $projects := $.Site.Data.adopters }}
     {{ range $projects }}

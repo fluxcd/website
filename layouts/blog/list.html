@@ -13,10 +13,10 @@
 			<h2>{{ T "post_posts_in" }} {{ .Key }}</h2>
 			<ul class="list-unstyled mt-4">
 				{{ range .Pages }}
-				<!-- Styling changes for blog previews: https://github.com/fluxcd/website/pull/636 -->
-				<li class="media mb-5">
+				<li class="media mb-4">
 					<div class="media-body">
 						<h5 class="mt-0 mb-1"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h5>
+						<!-- Styling changes for blog previews: https://github.com/fluxcd/website/pull/636 -->
 						<p class="mt-0 mb-1"><small class="text-muted">{{ .Date.Format ($.Param "time_format_blog") }} {{ T "ui_in"}} {{ .CurrentSection.LinkTitle }}</small></p>
 						<header class="article-meta">
 							{{ partial "taxonomy_terms_article_wrapper.html" . }}
@@ -24,11 +24,9 @@
 								{{ partial "reading-time.html" . }}
 							{{ end }}
 						</header>
-						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "float-left mr-3 pt-1 d-none d-md-block") }}
+						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "float-start me-3 pt-1 d-none d-md-block") }}
 						<p class="mb-md-2"><small class="text-muted">tl;dr: {{ .Description }}</small></p>
-						<p class="mb-2 mb-md-3">
-							{{ .Plain | safeHTML | truncate 400 }}
-						</p>
+						<p class="pt-0 mt-0">{{ .Plain | safeHTML | truncate 400 }}</p>
 						{{ if .Truncated }}
 						<p class="pt-0"><a href="{{ .RelPermalink }}" aria-label="{{ T "ui_read_more"}} - {{ .LinkTitle }}">{{ T "ui_read_more"}}</a></p>
 						{{ end }}
@@ -40,7 +38,7 @@
 		{{ end }}
 	</div>
 </div>
-<div class="row pl-2 pt-2">
+<div class="row ps-2 pt-2">
 	<div class="col">
 		{{ if .Pages }}
 			{{ template "_internal/pagination.html" . }}
