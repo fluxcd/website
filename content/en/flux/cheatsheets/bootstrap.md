@@ -319,7 +319,7 @@ error loop.
 To prevent this from happening, the controller offers an OOM watcher which can
 be enabled with `--feature-gates=OOMWatch=true`. When enabled, the memory usage
 of the controller will be monitored, and a graceful shutdown will be triggered
-when it reaches a certain threshold (default 95% utilization). 
+when it reaches a certain threshold (default 95% utilization).
 
 When gracefully shutting down, running Helm actions may mark the release as
 `failed`. Because of this, enabling this feature is best combined with
@@ -337,11 +337,11 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: --feature-gates=OOMWatch=true
-      # Threshold at which to trigger a graceful shutdown (default 95%)
+      # Threshold at which to trigger a graceful shutdown (optional, default 95%)
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: --oom-watch-memory-threshold=95
-      # Interval at which to check memory usage (default 500ms)
+      # Interval at which to check memory usage (optional, default 500ms)
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: --oom-watch-interval=500ms
@@ -383,10 +383,10 @@ patches:
       labelSelector: app.kubernetes.io/part-of=flux
 ```
 
-### Git repository access via SOCKS5 ssh proxy
+### Git repository access via SOCKS5 SSH proxy
 
 If your cluster has Internet restrictions, requiring egress traffic to go
-through a proxy, you must use a SOCKS5 ssh proxy to be able to reach GitHub
+through a proxy, you must use a SOCKS5 SSH proxy to be able to reach GitHub
 (or other external Git servers) via SSH.
 
 To configure a SOCKS5 proxy set the environment variable `ALL_PROXY` to allow
