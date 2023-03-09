@@ -40,6 +40,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 
 ### Feature Gates
 
-| Name                              | Default Value | Description                                                                                                                                                                                                               |
-|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `CacheSecretsAndConfigMaps`       | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| Name                        | Default Value | Description                                                                                                                                                                                                                                                             |
+|-----------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps` | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch).                                               |
+| `DisableStatusPollerCache`  | `false`       | Disables the cache of the status poller, which is used to determine the health of the resources applied by the controller. This may have a positive impact on memory usage on large clusters with many objects, at the cost of an increased number of direct API calls. |
