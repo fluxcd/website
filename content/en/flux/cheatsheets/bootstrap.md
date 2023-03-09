@@ -272,10 +272,109 @@ patches:
       name: source-controller
 ```
 
-
 When `helm-cache-max-size` is reached, an error is logged and the index is instead
 read from file. Cache hits are exposed via the `gotk_cache_events_total` Prometheus
 metrics. Use this data to fine-tune the configuration flags.
+
+### Enable Helm drift detection
+
+At present, Helm releases are not by default checked for drift compared to
+cluster-state. To enable experimental drift detection, you must add the
+`--feature-gates=DetectDrift=true` flag to the helm-controller Deployment.
+
+Enabling it will cause the controller to check for drift on all Helm releases
+using a dry-run Server Side Apply, triggering an upgrade if a change is detected.
+For detailed information about this feature, [refer to the
+documentation](/flux/components/helm/helmreleases/#drift-detection).
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      # Enable drift detection feature
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --feature-gates=DetectDrift=true
+      # Enable debug logging for diff output (optional)
+      - op: replace
+        path: /spec/template/spec/containers/0/args/2
+        value: --log-level=debug
+    target:
+      kind: Deployment
+      name: helm-controller
+```
+
+### Enable Helm near OOM detection
+
+When memory usage of the helm-controller exceeds the configured limit, the
+controller will forcefully be killed by Kubernetes' OOM killer. This may result
+in a Helm release being left in a `pending-*` state which causes the HelmRelease
+to get stuck in an `another operation (install/upgrade/rollback) is in progress`
+error loop.
+
+To prevent this from happening, the controller offers an OOM watcher which can
+be enabled with `--feature-gates=OOMWatch=true`. When enabled, the memory usage
+of the controller will be monitored, and a graceful shutdown will be triggered
+when it reaches a certain threshold (default 95% utilization).
+
+When gracefully shutting down, running Helm actions may mark the release as
+`failed`. Because of this, enabling this feature is best combined with
+thoughtful [remediation strategies](/flux/components/helm/helmreleases/#configuring-failure-remediation).
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      # Enable OOM watch feature
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --feature-gates=OOMWatch=true
+      # Threshold at which to trigger a graceful shutdown (optional, default 95%)
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --oom-watch-memory-threshold=95
+      # Interval at which to check memory usage (optional, default 500ms)
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --oom-watch-interval=500ms
+    target:
+      kind: Deployment
+      name: helm-controller
+```
+
+### Allow Helm DNS lookups
+
+By default, the helm-controller will not perform DNS lookups when rendering Helm
+templates in clusters because of potential [security
+implications](https://github.com/helm/helm/security/advisories/GHSA-pwcw-6f5g-gxf8).
+
+To enable DNS lookups, you must add the `--feature-gates=AllowDNSLookups=true`
+flag to the helm-controller Deployment.
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      # Allow Helm DNS lookups
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --feature-gates=AllowDNSLookups=true
+    target:
+      kind: Deployment
+      name: helm-controller
+```
 
 ### Using HTTP/S proxy for egress traffic
 
@@ -310,10 +409,10 @@ patches:
       labelSelector: app.kubernetes.io/part-of=flux
 ```
 
-### Git repository access via SOCKS5 ssh proxy
+### Git repository access via SOCKS5 SSH proxy
 
 If your cluster has Internet restrictions, requiring egress traffic to go
-through a proxy, you must use a SOCKS5 ssh proxy to be able to reach GitHub
+through a proxy, you must use a SOCKS5 SSH proxy to be able to reach GitHub
 (or other external Git servers) via SSH.
 
 To configure a SOCKS5 proxy set the environment variable `ALL_PROXY` to allow
