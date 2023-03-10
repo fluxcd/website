@@ -282,7 +282,7 @@ Grant the service account the role of `Container Registry Service Agent`
 so that it can access GCR and download the json file.
 
 Then create a secret, encrypt it using [Mozilla SOPS](mozilla-sops.md)
-or [Sealed Secrets](sealed-secrets.md) , commit and push the encypted file to git.
+or [Sealed Secrets](sealed-secrets.md) , commit and push the encrypted file to git.
 
 ```sh
 kubectl create secret docker-registry <secret-name> \
@@ -363,7 +363,7 @@ Using a static credential requires a Secrets management solution compatible with
 Follow the official Azure documentation for [Creating an Image Pull Secret for ACR](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes).
 
 Instead of creating the Secret directly into your Kubernetes cluster, encrypt it using [Mozilla SOPS](mozilla-sops.md)
-or [Sealed Secrets](sealed-secrets.md), then commit and push the encypted file to git.
+or [Sealed Secrets](sealed-secrets.md), then commit and push the encrypted file to git.
 
 This Secret should be in the same Namespace as your flux `ImageRepository` object.
 Update the `ImageRepository.spec.secretRef` to point to it.
