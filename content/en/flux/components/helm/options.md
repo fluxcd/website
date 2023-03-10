@@ -38,6 +38,8 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                                                     |
 | `--oom-watch-interval`                | duration      | The interval at which the OOM watcher will check for memory usage. Requires feature gate 'OOMWatch' to be enabled. (default 500ms)                         |
 | `--oom-watch-memory-threshold`        | unit8         | The memory threshold in percentage at which the OOM watcher will trigger a graceful shutdown. Requires feature gate 'OOMWatch' to be enabled. (default 95) |
+| `--oom-watch-max-memory-path`         | string        | The path to the cgroup memory limit file. Requires feature gate 'OOMWatch' to be enabled. If not set, the path will be automatically detected.             |
+| `--oom-watch-current-memory-path`     | string        | The path to the cgroup current memory usage file. Requires feature gate 'OOMWatch' to be enabled. If not set, the path will be automatically detected.     |
 
 ### Feature Gates
 
