@@ -618,7 +618,7 @@ patches:
       $patch: delete
     target:
       kind: ClusterRole
-      name: "(flux-view|flux-edit)"
+      name: "(flux-view|flux-edit)-flux-system"
 ```
 
 ### Enable notifications for third party controllers
