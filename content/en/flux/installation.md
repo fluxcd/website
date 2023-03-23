@@ -284,6 +284,18 @@ flux bootstrap gitlab \
   --personal
 ```
 
+To use a [GitLab deploy token](https://docs.gitlab.com/ee/user/project/deploy_tokens/) instead of your personal access token
+or an SSH deploy key, you can specify the `--deploy-token-auth` option:
+
+```sh
+flux bootstrap gitlab \
+  --owner=my-gitlab-username \
+  --repository=my-repository \
+  --branch=master \
+  --path=clusters/my-cluster \
+  --deploy-token-auth
+```
+
 To run the bootstrap for a repository using deploy keys for authentication, you have to specify the SSH hostname:
 
 ```sh
