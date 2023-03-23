@@ -35,11 +35,11 @@ The completion of this milestone will be marked by the `v2.0.0` release of the F
   - [ ] [kustomizations.kustomize.toolkit.fluxcd.io/v1](https://github.com/fluxcd/kustomize-controller/issues/755)
   - [ ] [receivers.notification.toolkit.fluxcd.io/v1](https://github.com/fluxcd/notification-controller/issues/436)
 
-- [ ] Git operations
+- [x] Git operations
   - [x] [Consolidate Git implementations](https://github.com/fluxcd/pkg/issues/245)
-  - [ ] [End-to-end testing for Git protocols](https://github.com/fluxcd/pkg/issues/334)
+  - [x] [End-to-end testing for Git protocols](https://github.com/fluxcd/pkg/issues/334)
   - [x] [Bootstrap support for Git v2 proto (Azure DevOps and AWS CodeCommit)](https://github.com/fluxcd/flux2/issues/3273)
-  - [ ] [Git webhook receiver refactoring](https://github.com/fluxcd/notification-controller/pull/435)
+  - [x] [Git webhook receiver refactoring](https://github.com/fluxcd/notification-controller/pull/435)
 
 - [x] Adopt Kubernetes server-side apply
   - [x] Rewrite the kustomize-controller reconciler using server-side apply
@@ -56,6 +56,14 @@ The completion of this milestone will be marked by the `v2.0.0` release of the F
   - [x] End-to-end testing for Flux self-upgrade
   - [x] End-to-end testing for multi-tenancy lockdown
 
+- [ ] Terraform Provider
+  - [x] [Implement `flux_bootstrap_git` resource](https://github.com/fluxcd/terraform-provider-flux/pull/332)
+  - [x] [End-to-End testing with Kubernetes Kind](https://github.com/fluxcd/terraform-provider-flux/pull/411)
+  - [x] [Migration guide to `flux_bootstrap_git`](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/migrating-to-resource)
+  - [x] [Bootstrap guide for GitHub](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/bootstrap_github_ssh)
+  - [ ] Bootstrap guide for GitLab
+  - [ ] Bootstrap guide for BitBucket
+  
 - [ ] Documentation
   - [x] Install and bootstrap guides for Kubernetes (Generic Git, GitHub, GitLab, BitBucket)
   - [x] Install and bootstrap guides for managed Kubernetes (AWS, Azure, Google Cloud)
@@ -129,7 +137,5 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
 - [x] [RFC-0003](https://github.com/fluxcd/flux2/tree/main/rfcs/0003-kubernetes-oci) Flux OCI support for Kubernetes manifests
 - [x] [RFC-0004](https://github.com/fluxcd/flux2/tree/main/rfcs/0004-insecure-http) Block insecure HTTP connections across Flux
-- [ ] [RFC-0005](https://github.com/fluxcd/flux2/pull/3233) Artifact `Revision` format and introduction of `Digest`
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/2092) Access control for cross-namespace source references
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/2093) Flux Multi-Tenancy Security Profile
+- [x] [RFC-0005](https://github.com/fluxcd/flux2/pull/3233) Artifact `Revision` format and introduction of `Digest`
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
