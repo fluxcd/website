@@ -142,7 +142,7 @@ spec:
   sourceRef:
     kind: OCIRepository
     name: flagger-loadtester
-  path: ./kustomize/tester
+  path: ./tester
   targetNamespace: apps
 ```
 
