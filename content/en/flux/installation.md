@@ -133,8 +133,8 @@ flux bootstrap git \
   --path=clusters/my-cluster
 ```
 
-The above command will generate an SSH key (defaults to RSA 2048 but can be changed with `--ssh-key-algorithm`),
-and it will prompt you to add the SSH public key as a deploy key to your repository.
+The above command will generate an SSH key (defaults to ECDSA P-384 but can be changed with `--ssh-key-algorithm` and 
+`--ssh-ecdsa-curve`), and it will prompt you to add the SSH public key as a deploy key to your repository.
 
 If you want to use your own SSH key, you can provide a private key using
 `--private-key-file=<path/to/private.key>` (you can supply the passphrase with `--password=<key-passphrase>`).
