@@ -55,7 +55,7 @@ Part 3: Installing Flux - could this be easier?
 
 The Flux developers spend a lot of their time on supporting Flux users and often it takes a while to discover the misunderstanding of a new user. That's why we ideally would like to see the number of support requests go down and get the sense that users can more easily "help themselves".
 
-We get support requests through different channels, and e.g. Slack does not make it easy to measure, especially as we are in a growing field and have a growing user-base. Still we want to monitor the number of Github discussions and Slack requests and compare with the previous months and hope for 20% number of requests.
+We get support requests through different channels, and e.g. Slack does not make it easy to measure, especially as we are in a growing field and have a growing user-base. Still we want to monitor the number of Github discussions and Slack requests and compare with the previous months and hope for a reduction 20% number of requests.
 
 - [Questions in Flux issues](https://github.com/fluxcd/flux2/issues?q=is%3Aissue+label%3Aquestion+)
 - [Q&A discussions on GitHub](https://github.com/fluxcd/flux2/discussions/categories/q-a)
