@@ -10,6 +10,6 @@ Documentation is written in Markdown.
 
 To get a good sense of the general mechanics of the repository and what your options are of running the site locally, please visit <https://github.com/fluxcd/website/#readme>.
 
-To better understand the mechanics of adding blog posts, please see <https://github.com/fluxcd/website/tree/main/content/en/blog#readme>.
+To better understand the mechanics of adding blog posts, please see <https://github.com/fluxcd/website/tree/main/internal_docs/how-to-write-a-blog-post.md>.
 
 In this section we will focus on common use-cases of folks who contribute to docs.
