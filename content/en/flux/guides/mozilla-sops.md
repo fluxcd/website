@@ -342,18 +342,18 @@ If using [AAD Pod-Identity](https://azure.github.io/aad-pod-identity/docs), Crea
 export IDENTITY_NAME="sops-akv-decryptor"
 # Create an identity in Azure and assign it a role to access Key Vault  (note: the identity's resourceGroup should match the desired Key Vault):
 az identity create -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP}
-az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n sops-akv-decryptor -o tsv --query principalId  -g $RESOURCE_GROUP)"
+az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n ${IDENTITY_NAME} -o tsv --query principalId  -g ${RESOURCE_GROUP})"
 # Fetch the clientID and resourceID to configure the AzureIdentity spec below:
 export IDENTITY_CLIENT_ID="$(az identity show -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP} -otsv --query clientId)"
-export IDENTITY_RESOURCE_ID="$(az identity show -n ${IDENTITY_NAME} -otsv --query id)"
+export IDENTITY_RESOURCE_ID="$(az identity show -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP} -otsv --query id)"
 ```
 
 Create a Keyvault access policy so that the identity can perform operations on Key Vault keys/
 
 ```sh
-export IDENTITY_ID="$(az identity show -g aks-somto -n ${IDENTITY_NAME} -otsv --query principalId)"
+export IDENTITY_ID="$(az identity show -g ${RESOURCE_GROUP} -n ${IDENTITY_NAME} -otsv --query principalId)"
 
-az keyvault set-policy --name $VAULT_NAME --object-id ${IDENTITY_NAME} --key-permissions decrypt
+az keyvault set-policy --name ${VAULT_NAME} --object-id ${IDENTITY_ID} --key-permissions decrypt
 ```
 
 Create an `AzureIdentity` object that references the identity created above:
@@ -362,11 +362,11 @@ Create an `AzureIdentity` object that references the identity created above:
 apiVersion: aadpodidentity.k8s.io/v1
 kind: AzureIdentity
 metadata:
-  name: sops-akv-decryptor  # kustomize-controller label will match this name
+  name: ${IDENTITY_NAME}  # kustomize-controller label will match this name
   namespace: flux-system
 spec:
-  clientID: <IDENTITY_CLIENT_ID>
-  resourceID: <IDENTITY_RESOURCE_ID>
+  clientID: ${IDENTITY_CLIENT_ID}
+  resourceID: ${IDENTITY_RESOURCE_ID}
   type: 0  # user-managed identity
 ```
 
@@ -376,6 +376,7 @@ apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
 metadata:
   name: ${IDENTITY_NAME}-binding
+  namespace: flux-system
 spec:
   azureIdentity: ${IDENTITY_NAME}
   selector: ${IDENTITY_NAME}
