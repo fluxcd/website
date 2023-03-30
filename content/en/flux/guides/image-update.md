@@ -430,7 +430,7 @@ spec:
 Flux `Kustomization` example:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: podinfo
@@ -445,7 +445,7 @@ spec:
 Kustomize config (`kustomization.yaml`) example:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 resources:
 - deployment.yaml
@@ -537,7 +537,7 @@ kubectl -n flux-system create secret generic webhook-token \
 Define a receiver for DockerHub:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: podinfo

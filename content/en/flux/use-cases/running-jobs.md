@@ -64,7 +64,7 @@ spec:
 And a Flux Kustomization that reconciles it at `./flux/pre-deploy.yaml`:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app-pre-deploy
@@ -91,7 +91,7 @@ we define a Flux Kustomization that depends on the migration one.
 Example of `./flux/deploy.yaml`:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app-deploy
@@ -117,7 +117,7 @@ application was upgraded.
 Example of `./flux/post-deploy.yaml`:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app-post-deploy

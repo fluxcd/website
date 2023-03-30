@@ -47,7 +47,7 @@ Define a source of type `gitrepository.source.toolkit.fluxcd.io`
 that pulls changes from the app repository every 5 minutes inside the cluster:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: my-app
@@ -63,7 +63,7 @@ Then define a `kustomization.kustomize.toolkit.fluxcd.io` that uses the `kustomi
 from `./deploy/prod` to determine which resources to create, update or delete:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: my-app
@@ -122,7 +122,7 @@ Assuming an app repository with the following structure:
 Create a `GitRepository` definition and exclude all the files that are not Kubernetes manifests:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: my-app
@@ -144,7 +144,7 @@ spec:
 Then create a `Kustomization` definition to reconcile the `./deploy/prod` dir:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: my-app
@@ -257,7 +257,7 @@ spec:
 Then to reconcile the manifests on a cluster, you'll use the ones from the verified source:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: kyverno
@@ -488,7 +488,7 @@ roll out a new version. We have couple options:
 #### Using Kustomize patches:
 ```yaml
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: apps
@@ -537,7 +537,7 @@ spec:
 
 To enable the replacement of the `PODINFO_CHART_VERSION` variable with a different version than the `6.2.0` default, specify `postBuild` in the `Kustomization`:
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: apps
