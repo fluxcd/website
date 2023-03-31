@@ -32,15 +32,14 @@ go get github.com/fluxcd/source-controller/api
 Import package
 
 ```go
-import sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
+import sourcev1b2 "github.com/fluxcd/source-controller/api/v1beta2"
 ```
 
-and/or (depending on the API types you will be consuming)
+and for `GitRepository` objects:
 
 ```go
 import sourcev1 "github.com/fluxcd/source-controller/api/v1"
 ```
-
 
 API Types
 
@@ -102,10 +101,10 @@ go get github.com/fluxcd/notification-controller/api
 Import package
 
 ```go
-import notificationv1 "github.com/fluxcd/notification-controller/api/v1beta2"
+import notificationv1b2 "github.com/fluxcd/notification-controller/api/v1beta2"
 ```
 
-and/or (depending on the API types you will be consuming)
+and for `Receiver` objects:
 
 ```go
 import notificationv1 "github.com/fluxcd/notification-controller/api/v1"
@@ -169,7 +168,7 @@ import (
 
   helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
   apimeta "github.com/fluxcd/pkg/apis/meta"
-  sourcev1 "github.com/fluxcd/source-controller/api/v1beta1"
+  sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
 )
 
 func main() {
