@@ -126,7 +126,7 @@ echo ::set-output name=VERSION::${VERSION}
 ```
 
 {{% alert title="When migrating to Flux v2" %}}
-Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "../guides/sortable-image-tags/" >}}), preferred by the `image-automation-controller`.
+Users will find that [some guidance has changed since Flux v1](https://github.com/fluxcd/flux2/discussions/802#discussioncomment-320189). Tagging images with a `GIT_SHA` was a common practice that is no longer supported by Flux's Image Automation. A newer alternative is adding timestamp or build number in [Sortable image tags]({{< relref "./guides/sortable-image-tags/" >}}), preferred by the `image-automation-controller`.
 {{% /alert %}}
 
 Next we call out to a shell script `update-k8s.sh` taking one argument, the Git SHA value from GitHub:
