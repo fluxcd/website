@@ -35,6 +35,7 @@ please see the [bootstrap cheatsheet](../../cheatsheets/bootstrap.md).
 | `--no-remote-bases`                   | boolean       | Disallow remote bases usage in Kustomize overlays. When this flag is enabled, all resources must refer to local files included in the source artifact. |
 | `--requeue-dependency`                | duration      | The interval at which failing dependencies are reevaluated. (default 30s)                                                                              |
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)                                 |
+| `--watch-label-selector`              | string        | Watch for resources with matching labels e.g. 'sharding.fluxcd.io/shard=shard1'.                                                                       |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                                                 |
 
 
