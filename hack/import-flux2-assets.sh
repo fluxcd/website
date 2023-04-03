@@ -66,7 +66,7 @@ controller_version() {
       cat /tmp/releases
       exit 1
   fi
-  jq -r '.[] | .tag_name' < /tmp/releases | sort -V | tail -n 1
+  jq -r '.[] | .tag_name' < /tmp/releases | grep -v '^v1' | sort -V | tail -n 1
 }
 
 gen_crd_doc() {
