@@ -42,11 +42,11 @@ community. Better to write:]
 
 -->
 
-#### Flux Subsystem for Argo
+#### Weave GitOps
 
 #### Terraform-controller
 
-#### Weave GitOps
+#### Flux Subsystem for Argo
 
 #### Azure GitOps
 
@@ -76,7 +76,7 @@ We are happy to announce that we have a number of events coming up in
 MONTH- tune in to learn more about Flux and GitOps best practices,
 get to know the team and join our community.
 
-### Flux Bug Scrub
+#### Flux Bug Scrub
 
 Our Flux Bug Scrubs still are happening on a weekly basis and remain one
 of the best ways to get involved in Flux. They are a friendly and
@@ -85,8 +85,10 @@ as a project.
 
 The next dates are going to be:
 
-- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](https://www.meetup.com/weave-user-group/events/wvhvvsydclbnb/)
-- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](https://www.meetup.com/weave-user-group/events/wvhvvsydclbgc/)
+- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](/#calendar)
+- [YEAR-xx-yy 17:00 UTC, 19:00 CEST](/#calendar)
+- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](/#calendar)
+- [YEAR-xx-yy 17:00 UTC, 19:00 CEST](/#calendar)
 
 We are flexible with subjects and often go with the interests of the
 group or of the presenter. If you want to come and join us in either
