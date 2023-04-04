@@ -602,7 +602,7 @@ love to hear from you.
 
 And finally on our blog, we added a tag cloud and a note to blog posts
 that are older than a year - we also typed up [how to
-blog](https://github.com/fluxcd/website/tree/main/content/en/blog#readme).
+blog](https://github.com/fluxcd/website/tree/main/internal_docs/how-to-write-a-blog-post.md).
 
 Thanks a lot to these folks who contributed to docs and website: Kingdon
 Barrett, Stefan Prodan, Stacey Potter, Hidde Beydals, Sebastian
