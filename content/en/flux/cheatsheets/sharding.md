@@ -37,7 +37,7 @@ touch clusters/my-cluster/flux-system/shard1/kustomization.yaml
 
 ### Configure controller sharding
 
-In the `shard1` directory you can generate a set of controller deployments that
+In the `shard1` directory generate a set of controller deployments that
 will reconcile the Flux resources labels with `sharding.fluxcd.io/key: shard1`.
 
 To spin up a dedicated source-controller, kustomize-controller and helm-controller instance,
@@ -132,7 +132,7 @@ The above configuration will generate three deployments `source-controller-shard
 `kustomize-controller-shard1` and `helm-controller-shard1` all configured 
 with `--watch-label-selector=sharding.fluxcd.io/key=shard1`.
 
-To enable these deployments at bootstrap, you need to add the `shard1` directory to
+To enable these deployments at bootstrap, add the `shard1` directory to
 the `clusters/my-cluster/flux-system/kustomization.yaml` resources:
 
 ```yaml
@@ -153,7 +153,7 @@ patches:
         value: --watch-label-selector=sharding.fluxcd.io/key notin (shard1, shard2)
 ```
 
-Note that you must exclude the sharding keys from the main controllers watch with
+Note how this configuration excludes the sharding keys from the main controllers watch with
 `--watch-label-selector=sharding.fluxcd.io/key notin (shard1, shard2)`. This ensures
 that the main controllers will not reconcile any Flux resources labels with the sharding keys.
 
@@ -195,11 +195,11 @@ the sharded controllers will be automatically upgraded along with the main ones.
 
 ## Assign resources to shards
 
-To assign a group of Flux resources to a particular shard, you need to label
+To assign a group of Flux resources to a particular shard, label
 them with `sharding.fluxcd.io/key`.
 
 For example, assuming you want to assign the reconciliation of an application
-to the `shard1` controllers, you can label both the Flux source and its Kustomization
+to the `shard1` controllers, label both the Flux source and its Kustomization
 with `sharding.fluxcd.io/key: shard1`:
 
 ```yaml
@@ -239,7 +239,7 @@ Note that Source object kinds which have a dependency on another kind
 applied to work as expected.
 
 For example, assuming you want to assign the reconciliation of a Helm release
-to the `shard1` controllers, you can label the HelmRelease, its chart and its repository
+to the `shard1` controllers, label the HelmRelease, its chart and its repository
 with `sharding.fluxcd.io/key: shard1`:
 
 ```yaml
@@ -275,18 +275,18 @@ spec:
         name: podinfo
 ```
 
-Note that with `.spec.chart.metadata.labels` we set the shading key on the
+Note that with `.spec.chart.metadata.labels` we set the sharding key on the
 generated Flux `HelmChart` object, so that both the Helm repository and charts
 are managed by source-controller-shard1 instance.
 
 ### Bulk assign shards
 
-Instead of manual labeling each Flux resource with a shard key, you can use a top level
+Instead of manual labeling each Flux resource with a shard key, use a top-level
 Flux Kustomization and automatically label all resources.
 
 For example, assuming you want to assign a tenant to a particular shard, in the
 root Flux Kustomization that reconcile the tenant's Flux sources, kustomizations and
-Helm releases you can label these resources as follows:
+Helm releases label these resources as follows:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
