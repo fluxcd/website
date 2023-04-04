@@ -2,7 +2,7 @@
 title: "Bootstrap cheatsheet"
 linkTitle: "Bootstrap"
 description: "Showcase various configurations of Flux controllers at bootstrap time."
-weight: 30
+weight: 29
 ---
 
 ## How to customize Flux
@@ -192,6 +192,11 @@ patches:
       kind: Deployment
       name: "(kustomize-controller|helm-controller|source-controller)"
 ```
+
+{{% alert color="info" title="Horizontal scaling" %}}
+When vertical scaling is not an option, you can use sharding to horizontally scale
+the Flux controllers. For more details please see the [sharding guide](sharding.md).
+{{% /alert %}}
 
 ### Persistent storage for Flux internal artifacts
 
