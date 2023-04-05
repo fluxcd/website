@@ -20,7 +20,7 @@ jobs:
       - run: |
           ./hack/contributors.py
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.BOT_GITHUB_TOKEN}}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
