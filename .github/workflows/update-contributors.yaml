@@ -26,3 +26,4 @@ jobs:
         with:
           title: Update contributors section
           signoff: true
+          token: ${{secrets.BOT_GITHUB_TOKEN}}
