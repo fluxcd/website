@@ -58,11 +58,12 @@ These open source projects offer a dedicated graphical user interface for Flux.
 
 These open source projects extend Flux with new capabilities.
 
-| Source                                                                            | Description                                                             |
-|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| [weaveworks/tf-controller](https://github.com/weaveworks/tf-controller)           | A Flux controller for managing Terraform resources.                     |
-| [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)     | A Flux controller for managing manifests declared in jsonnet.           |
-| [kluctl/flux-kluctl-controller](https://github.com/kluctl/flux-kluctl-controller) | A Flux controller for managing [Kluctl](https://kluctl.io) deployments. |
+| Source                                                                            | Description                                                                                         |
+|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| [weaveworks/tf-controller](https://github.com/weaveworks/tf-controller)           | A Flux controller for managing Terraform resources.                                                 |
+| [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)     | A Flux controller for managing manifests declared in jsonnet.                                       |
+| [kluctl/flux-kluctl-controller](https://github.com/kluctl/flux-kluctl-controller) | A Flux controller for managing [Kluctl](https://kluctl.io) deployments.                             |
+| [kluctl/template-controller](https://github.com/kluctl/template-controller)       | A Controller that allows to create Flux based preview environments from branches and pull requests. |
 
 ## Integrations
 
