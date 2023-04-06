@@ -281,7 +281,7 @@ are managed by source-controller-shard1 instance.
 
 ### Bulk assign shards
 
-Instead of manual labeling each Flux resource with a shard key, use a top-level
+Instead of manually labeling each Flux resource with a shard key, use a top-level
 Flux Kustomization and automatically label all resources.
 
 For example, assuming you want to assign a tenant to a particular shard, in the
