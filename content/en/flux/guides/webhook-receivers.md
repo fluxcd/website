@@ -87,7 +87,7 @@ Add any necessary annotations for your ingress controller or, for example, cert-
 Create a Git source pointing to a GitHub repository that you have control over:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: webapp
@@ -119,7 +119,7 @@ kubectl -n flux-system create secret generic webhook-token \
 Create a receiver for GitHub and specify the `GitRepository` object:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: webapp

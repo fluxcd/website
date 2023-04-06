@@ -63,7 +63,7 @@ metadata:
   # annotations:
   #   eks.amazonaws.com/role-arn: <role arn>
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: ecr-credentials-sync
@@ -208,7 +208,7 @@ metadata:
   name: gcr-credentials-sync
   namespace: flux-system
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: gcr-credentials-sync
@@ -309,7 +309,7 @@ our desired Namespace.
 Create a directory in your control repository and save this `kustomization.yaml`:
 ```yaml
 # kustomization.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 resources:
 - https://github.com/fluxcd/flux2/manifests/integrations/registry-credentials-sync/azure?ref=main

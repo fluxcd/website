@@ -271,11 +271,11 @@ spec:
     path: ./charts/my-chart
 ```
 
-With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta2.GitRepository):
+With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1.GitRepository):
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: my-repository
@@ -288,7 +288,7 @@ spec:
   # The Git reference to checkout and monitor for changes
   # (defaults to master)
   # For all available options, see:
-  # https://fluxcd.io/flux/components/source/api/#source.toolkit.fluxcd.io/v1beta2.GitRepositoryRef
+  # https://fluxcd.io/flux/components/source/api/#source.toolkit.fluxcd.io/v1.GitRepositoryRef
   ref:
     branch: master
 ```
@@ -311,7 +311,7 @@ data:
   identity.pub: <base64 public key>
   known_hosts: <base64 encoded known_hosts>
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: my-repository

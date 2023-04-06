@@ -66,7 +66,7 @@ controller_version() {
       cat /tmp/releases
       exit 1
   fi
-  jq -r '.[] | .tag_name' < /tmp/releases | grep -v '^v1' | sort -V | tail -n 1
+  jq -r '.[] | .tag_name' < /tmp/releases | sort -V | tail -n 1
 }
 
 gen_crd_doc() {
@@ -94,6 +94,11 @@ gen_crd_doc() {
     exit 1
   fi
 
+  WEIGHT="$(grep -E '^<!-- menuweight:[[:digit:]]+ -->$' "$TMP" | cut -d' ' -f2|cut -d':' -f2)"
+  if [ -z "${WEIGHT}" ] ; then
+    WEIGHT=0
+  fi
+
   if [ -n "$TITLE" ]; then
     {
       echo "---"
@@ -103,6 +108,7 @@ gen_crd_doc() {
       if [ -n "$HUGETABLE" ]; then
         echo "hugeTable: true"
       fi
+      echo "weight: $WEIGHT"
       echo "---"
     } >> "$DEST"
     grep -vE "^<!--" "$TMP" |sed '1d' >> "$DEST"
@@ -115,9 +121,11 @@ gen_crd_doc() {
 {
   # source-controller CRDs
   SOURCE_VER="$(controller_version source-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/source.md" "$COMPONENTS_DIR/source/api.md" "HUGETABLE"
-  SOURCE_CRD_VER="v1beta2"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/v1/source.md" "$COMPONENTS_DIR/source/api/v1.md" "HUGETABLE"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/api/v1beta2/source.md" "$COMPONENTS_DIR/source/api/v1beta2.md" "HUGETABLE"
+  SOURCE_CRD_VER="v1"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/gitrepositories.md" "$COMPONENTS_DIR/source/gitrepositories.md"
+  SOURCE_CRD_VER="v1beta2"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/ocirepositories.md" "$COMPONENTS_DIR/source/ocirepositories.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/helmrepositories.md" "$COMPONENTS_DIR/source/helmrepositories.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/source-controller/$SOURCE_VER/docs/spec/$SOURCE_CRD_VER/helmcharts.md" "$COMPONENTS_DIR/source/helmcharts.md"
@@ -127,8 +135,8 @@ gen_crd_doc() {
 {
   # kustomize-controller CRDs
   KUSTOMIZE_VER="$(controller_version kustomize-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/kustomize.md" "$COMPONENTS_DIR/kustomize/api.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1beta2/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/v1/kustomize.md" "$COMPONENTS_DIR/kustomize/api/v1.md" "HUGETABLE"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
 }
 
 {
@@ -141,11 +149,12 @@ gen_crd_doc() {
 {
   # notification-controller CRDs
   NOTIFICATION_VER="$(controller_version notification-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/api/notification.md" "$COMPONENTS_DIR/notification/api.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/api/v1/notification.md" "$COMPONENTS_DIR/notification/api/v1.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/api/v1beta2/notification.md" "$COMPONENTS_DIR/notification/api/v1beta2.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/notification/event.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/alerts.md" "$COMPONENTS_DIR/notification/alert.md"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/providers.md" "$COMPONENTS_DIR/notification/provider.md"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1beta2/receivers.md" "$COMPONENTS_DIR/notification/receiver.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/notification-controller/$NOTIFICATION_VER/docs/spec/v1/receivers.md" "$COMPONENTS_DIR/notification/receiver.md"
 }
 
 {

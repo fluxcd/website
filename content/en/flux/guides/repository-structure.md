@@ -155,7 +155,7 @@ App repository plain Kubernetes manifests example:
 Delivery example (stored in config repo):
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: app
@@ -164,7 +164,7 @@ spec:
   ref:
     semver: "1.x"
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app
@@ -195,7 +195,7 @@ App repository Kustomize overlays example:
 Delivery example (stored in config repo):
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: app
@@ -204,7 +204,7 @@ spec:
   ref:
     branch: main
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app

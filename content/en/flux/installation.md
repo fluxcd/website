@@ -502,7 +502,7 @@ touch clusters/my-cluster/flux-system/gotk-components.yaml \
 Add patches to `kustomization.yaml`:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 resources: # manifests generated during bootstrap
   - gotk-components.yaml
@@ -543,7 +543,7 @@ Assuming you want to lock down Flux on multi-tenant clusters,
 add the following patches to `clusters/my-cluster/flux-system/kustomization.yaml`:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 resources:
   - gotk-components.yaml

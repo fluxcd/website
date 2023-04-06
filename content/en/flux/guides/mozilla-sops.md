@@ -509,7 +509,7 @@ add the GitRepository/Kustomization manifests to the fleet repository.
 Git repository manifest:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: my-secrets
@@ -522,7 +522,7 @@ spec:
 Kustomization manifest:
 
 ```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: my-secrets

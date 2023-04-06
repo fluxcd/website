@@ -156,7 +156,7 @@ later on in the guide).
 An example `GitRepository`:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: podinfo
@@ -349,7 +349,7 @@ spec:
 Create a `kustomization.yaml` that generates the `ConfigMap` using our kustomize config:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 namespace: podinfo
 resources:
@@ -436,7 +436,7 @@ Kustomize configuration.
 Create a `kustomization.yaml` that generates the `Secret`:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.config.k8s.io/v1
 kind: Kustomization
 namespace: podinfo
 resources:
@@ -594,7 +594,7 @@ kubectl -n flux-system create secret generic webhook-token \
 When using [Harbor](https://goharbor.io/) as your Helm repository, you can define a receiver with:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: helm-podinfo

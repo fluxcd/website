@@ -129,7 +129,7 @@ podinfo is a tiny web application made with Go.
     The output is similar to:
 
     ```yaml
-    apiVersion: source.toolkit.fluxcd.io/v1beta2
+    apiVersion: source.toolkit.fluxcd.io/v1
     kind: GitRepository
     metadata:
       name: podinfo
@@ -168,7 +168,7 @@ directory located in the podinfo repository.
     The output is similar to:
 
     ```yaml
-    apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    apiVersion: kustomize.toolkit.fluxcd.io/v1
     kind: Kustomization
     metadata:
       name: podinfo
