@@ -12,7 +12,7 @@ Flux is interested in applying to the 2023 Google Season of Docs to improve the 
 
 Flux was created in 2016 and helped to formalise GitOps, or "Operations by Pull Request" as industry standard. In 2020 a rewrite of the project was started which helped to drastically modernise the code base and make new use-cases possible. [The Flux project](https://github.com/fluxcd) has become center of a rich ecosytem of GitOps solutions. Its controllers have become the basis for products, services and other tools. That's why the project is seeing contributors from end-user companies, integrators and e.g. cloud vendors.
 
-Flux is used by SREs, Platform Engineers, Architects and Developers. GitOps is the natural evolution of configuration as code. Organisations moving to Flux can deal with infrastructure at scale more easily, and allow their developers to focus on code, no on deployment problems.
+Flux is used by SREs, Platform Engineers, Architects and Developers. GitOps is the natural evolution of configuration as code. Organisations moving to Flux can deal with infrastructure at scale more easily, and allow their developers to focus on code, not on deployment problems.
 
 Flux is licensed under the Apache License 2.0 license and is a graduated Cloud Native Computing Foundation (CNCF) project, used in production by various organisations and cloud providers.
 
@@ -98,6 +98,6 @@ Flux has not participated in any of these initiatives, so we are looking forward
 If you are interested in participating in Google Season of Docs as a technical writer, please do the following:
 
 1. Join the `#flux-contributors` channel on [CNCF Slack](http://slack.cncf.io/).
-1. Review this project proposal and familiarise yourself with the [documentation website](/flux). Particularly the sections `Core Concepts`, `Get Started` and `Installation` are read by our users all them time. Getting a general sense of the structure of the organisation of the documentation will be of help as well.
+1. Review this project proposal and familiarise yourself with the [documentation website](/flux). Particularly the sections `Core Concepts`, `Get Started` and `Installation` are read by our users all the time. Getting a general sense of the documentation structure of the organisation will be of help as well.
 1. You will need some familiarity with Cloud Native technologies such as [Kubernetes](https://kubernetes.io), so you can more easily understand the problems and background of users.
 1. Talk to us on Slack, introduce yourself - we are happy to tell you more.
