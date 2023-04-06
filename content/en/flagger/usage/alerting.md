@@ -24,7 +24,7 @@ Once the webhook has been generated. Flagger can be configured to send Slack not
 helm upgrade -i flagger flagger/flagger \
 --set slack.url=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK \
 --set slack.proxy=my-http-proxy.com \ # optional http/s proxy
---set slack.channel=general \
+--set slack.channel=some-channel-name \
 --set slack.user=flagger \
 --set clusterName=my-cluster
 ```

@@ -269,7 +269,7 @@ With Flux v2, create an alert provider for a Slack channel:
 ```sh
 flux create alert-provider slack \
   --type=slack \
-  --channel=general \
+  --channel=some-channel-name \
   --address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
 ```
 
