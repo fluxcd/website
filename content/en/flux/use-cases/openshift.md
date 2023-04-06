@@ -51,12 +51,12 @@ Before installing Flux with CLI, you need to set the **nonroot** SCC for all con
 
 ```sh
 NS="flux-system"
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:kustomize-controller
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:helm-controller
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:source-controller
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:notification-controller
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-automation-controller
-oc adm policy add-scc-to-user nonroot system:serviceaccount:$NS:image-reflector-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:kustomize-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:helm-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:source-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:notification-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:image-automation-controller
+oc adm policy add-scc-to-user nonroot system:serviceaccount:${NS}:image-reflector-controller
 ```
 
 Also, you have to patch your Kustomization to remove the SecComp Profile and enforce `runUserAs` to the same UID provided by the images to prevent OpenShift to alter the user expected by our controllers, before bootstrapping by.
