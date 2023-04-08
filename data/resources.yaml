@@ -1,4 +1,23 @@
 resources:
+# Use this template when adding new resources:
+# - youtube: enter youtube code
+#    title: "enter title here"
+#    date: YYYY-MM-DD
+  - youtube: Mi6SQzjI938
+    title: "How Flux and Pulumi Give Each Other Super Powers by Michael Bridgen"
+    date: 2023-03-30
+  - youtube: G7fdFWW1I-0
+    title: "GitOps Deployments from VS Code with little to no Kubernetes Knowledge"
+    date: 2023-03-23
+  - youtube: kGrpLKNi4ZI
+    title: "Kubernetes in 2023"
+    date: 2023-03-16
+  - youtube: rK1Y6d1A9Ck
+    title: "Cloud Native Live: Automating Kubernetes Deployemnts"
+    date: 2023-03-15
+  - youtube: jxsFePSmWx0
+    title: "GitOps Testing in Kubernetes with Flux & Testkube"
+    date: 2023-03-02
   - youtube: JHmQlSvL0II
     title: "HashiCorp User Group (Luxembourg): GitOps Your Terraform Configurations with Flux"
     date: 2022-11-30
