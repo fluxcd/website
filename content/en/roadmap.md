@@ -30,10 +30,10 @@ and the Flux Git bootstrap & webhooks functionalities.
 
 The completion of this milestone will be marked by the `v2.0.0` release of the Flux distribution and CLI. 
 
-- [ ] API promotions to GA
-  - [ ] [gitrepositories.source.toolkit.fluxcd.io/v1](https://github.com/fluxcd/source-controller/issues/947)
-  - [ ] [kustomizations.kustomize.toolkit.fluxcd.io/v1](https://github.com/fluxcd/kustomize-controller/issues/755)
-  - [ ] [receivers.notification.toolkit.fluxcd.io/v1](https://github.com/fluxcd/notification-controller/issues/436)
+- [x] API promotions to GA
+  - [x] [gitrepositories.source.toolkit.fluxcd.io/v1](https://github.com/fluxcd/source-controller/issues/947)
+  - [x] [kustomizations.kustomize.toolkit.fluxcd.io/v1](https://github.com/fluxcd/kustomize-controller/issues/755)
+  - [x] [receivers.notification.toolkit.fluxcd.io/v1](https://github.com/fluxcd/notification-controller/issues/436)
 
 - [x] Git operations
   - [x] [Consolidate Git implementations](https://github.com/fluxcd/pkg/issues/245)
@@ -56,20 +56,18 @@ The completion of this milestone will be marked by the `v2.0.0` release of the F
   - [x] End-to-end testing for Flux self-upgrade
   - [x] End-to-end testing for multi-tenancy lockdown
 
-- [ ] Terraform Provider
+- [x] Terraform Provider
   - [x] [Implement `flux_bootstrap_git` resource](https://github.com/fluxcd/terraform-provider-flux/pull/332)
   - [x] [End-to-End testing with Kubernetes Kind](https://github.com/fluxcd/terraform-provider-flux/pull/411)
   - [x] [Migration guide to `flux_bootstrap_git`](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/migrating-to-resource)
   - [x] [Bootstrap guide for GitHub](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/bootstrap_github_ssh)
-  - [ ] Bootstrap guide for GitLab
-  - [ ] Bootstrap guide for BitBucket
+  - [x] [Bootstrap guide for GitLab](https://github.com/fluxcd/terraform-provider-flux/pull/438)
   
-- [ ] Documentation
+- [x] Documentation
   - [x] Install and bootstrap guides for Kubernetes (Generic Git, GitHub, GitLab, BitBucket)
   - [x] Install and bootstrap guides for managed Kubernetes (AWS, Azure, Google Cloud)
   - [x] `gitrepositories.source.toolkit.fluxcd.io` API specification
-  - [ ] `kustomizations.kustomize.toolkit.fluxcd.io` API specification
-    [kustomize-controller#664](https://github.com/fluxcd/kustomize-controller/issues/664)
+  - [x] `kustomizations.kustomize.toolkit.fluxcd.io` API specification
 
 ### Flux Helm GA (Q2 2023)
 
