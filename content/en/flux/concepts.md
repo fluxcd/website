@@ -71,3 +71,23 @@ The bootstrap is done using the `flux` CLI or
 using our [Terraform Provider](https://github.com/fluxcd/terraform-provider-flux).
 
 For more information, take a look at [the bootstrap documentation](installation.md#bootstrap).
+
+## Continuous Delivery
+
+Continuous Delivery refers to the practice of delivering software updates frequently and reliably. 
+
+For more information, take a look at continuous delivery as defined in the [CNCF](https://glossary.cncf.io/continuous-delivery/).
+
+## Continuous Deployment
+
+Continuous Deployment is the practice of automatically deploying code changes to production once they have passed through automated testing. 
+
+For more information, take a look at continuous delivery as defined in the [CNCF Glossary](https://glossary.cncf.io/continuous-delivery/).
+
+## Progressive Delivery
+
+Progressive Delivery builds on Continuous Delivery by gradually rolling out new features or updates to a subset of users, allowing developers to test and monitor the new features in a controlled environment and make necessary adjustments before releasing them to everyone.
+
+Developers can use techniques like feature flags, [canary releases](https://glossary.cncf.io/canary-deployment/), and A/B testing to minimize the chances of introducing bugs or errors that could harm users or interrupt business operations. These strategies enable a controlled and gradual rollout of new features, ensuring a smooth and successful release that enhances user trust and improves the overall user experience.
+
+The Flux project offers a specialised controller called [Flagger](https://github.com/fluxcd/flagger) that implements various progressive delivery techniques. For more information, take a look at [Flagger deployment strategies](https://fluxcd.io/flagger/usage/deployment-strategies/).
