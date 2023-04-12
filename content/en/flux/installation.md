@@ -462,26 +462,35 @@ with `flux --version`.
 
 The bootstrap procedure can be implemented with Terraform using the Flux provider published on
 [registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux).
+The provider offers a Terraform resource called
+[flux_bootstrap_git](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/resources/bootstrap_git)
+that can be used to bootstrap Flux in the same way the Flux CLI does it.
 
-The provider consists of two data sources (`flux_install` and `flux_sync`) for generating the
-Kubernetes manifests that can be used to install or upgrade Flux:
+Example of Git HTTPS bootstrap:
 
 ```hcl
-data "flux_install" "main" {
-  target_path    = "clusters/my-cluster"
-  network_policy = false
-  version        = "latest"
+provider "flux" {
+  kubernetes = {
+    config_path = "~/.kube/config"
+  }
+  git = {
+    url  = var.gitlab_url
+    http = {
+      username = var.gitlab_user
+      password = var.gitlab_token
+    }
+  }
 }
 
-data "flux_sync" "main" {
-  target_path = "clusters/my-cluster"
-  url         = "https://github.com/${var.github_owner}/${var.repository_name}"
-  branch      = "main"
+resource "flux_bootstrap_git" "this" {
+  path                   = "clusters/my-cluster"
+  network_policy         = true
+  kustomization_override = file("${path.module}/kustomization.yaml")
 }
 ```
 
 For more details on how to use the Terraform provider
-please see [fluxcd/terraform-provider-flux](https://github.com/fluxcd/terraform-provider-flux).
+please see the [Flux docs on registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux/latest/docs).
 
 ## Customize Flux manifests
 
