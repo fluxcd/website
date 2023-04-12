@@ -6,6 +6,18 @@ weight: 10
 
 These are some core concepts in Flux.
 
+## Continuous Delivery
+
+Continuous Delivery is a software development practice that automates the software release process up to the point of deployment except that manual intervention is required at some point. As code changes are made, they undergo testing, and artifacts are subsequently created. These artifacts are deployed to a staging environment for additional manual testing and approval before being released to production servers.
+
+By adopting this practice, software teams can update their code more frequently and reliably with less risk, while maintaining control over deployment and improving overall software quality.
+
+## Continuous Deployment
+
+Continuous Deployment is a software development practice that streamlines the process of delivering code changes to production through automation.
+
+As code changes are made, they are automatically built, tested, and deployed to production servers without human or manual intervention. This significantly reduces the time it takes to deliver software updates to users as the approach allows developers to focus on writing code, while automated processes handle the tasks of testing and deploying the code changes.
+
 ## GitOps
 
 GitOps is a way of managing your infrastructure and applications so that whole system
@@ -14,6 +26,12 @@ and having an automated process that ensures that the deployed environment
 matches the state specified in a repository.
 
 For more information, take a look at ["What is GitOps?"](https://www.gitops.tech/#what-is-gitops).
+
+## Progressive Delivery
+
+Progressive Delivery builds on Continuous Delivery by gradually rolling out new features or updates to a subset of users, allowing developers to test and monitor the new features in a controlled environment and make necessary adjustments before releasing them to everyone.
+
+Developers can use techniques like feature flags, canary releases, and A/B testing to minimize the chances of introducing bugs or errors that could harm users or interrupt business operations. These strategies enable a controlled and gradual rollout of new features, ensuring a smooth and successful release that enhances user trust and improves the overall user experience.
 
 ## Sources
 
