@@ -12,7 +12,7 @@ Continuous Delivery is a software development practice that automates the softwa
 
 By adopting this practice, software teams can update their code more frequently and reliably with less risk, while maintaining control over deployment and improving overall software quality.
 
-## Continuous Deployment
+## Continuous Deploymen
 
 Continuous Deployment is a software development practice that streamlines the process of delivering code changes to production through automation.
 
