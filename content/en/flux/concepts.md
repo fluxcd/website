@@ -13,6 +13,8 @@ is described declaratively and version controlled (most likely in a Git reposito
 and having an automated process that ensures that the deployed environment
 matches the state specified in a repository.
 
+![GitOps Workflow](https://user-images.githubusercontent.com/89241109/232053334-5c5f29e7-0063-488a-86af-9bc692b545f2.png)
+
 For more information, take a look at ["What is GitOps?"](https://www.gitops.tech/#what-is-gitops).
 
 ## Sources
