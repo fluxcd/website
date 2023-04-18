@@ -21,7 +21,7 @@ linkerd viz install | kubectl apply -f -
 Install Flagger in the linkerd namespace:
 
 ```bash
-kubectl apply -k github.com/fluxcd/flagger//kustomize/linkerd
+kubectl apply -k github.com/fluxcd/flagger/tree/main/kustomize/linkerd
 ```
 
 ## Bootstrap
@@ -40,13 +40,13 @@ kubectl annotate namespace test linkerd.io/inject=enabled
 Install the load testing service to generate traffic during the canary analysis:
 
 ```bash
-kubectl apply -k https://github.com/fluxcd/flagger//kustomize/tester?ref=main
+kubectl apply -k https://github.com/fluxcd/flagger/tree/main/kustomize/tester
 ```
 
 Create a deployment and a horizontal pod autoscaler:
 
 ```bash
-kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
+kubectl apply -k https://github.com/fluxcd/flagger/tree/main/kustomize/podinfo
 ```
 
 Create a canary custom resource for the podinfo deployment:
@@ -472,4 +472,3 @@ Events:
 ```
 
 The above procedure can be extended with [custom metrics](../usage/metrics.md) checks, [webhooks](../usage/webhooks.md), [manual promotion](../usage/webhooks.md#manual-gating) approval and [Slack or MS Teams](../usage/alerting.md) notifications.
-
