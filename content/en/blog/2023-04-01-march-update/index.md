@@ -256,19 +256,21 @@ we have a nice programme prepared for you.
 
 - 10:30 - 14:30 (2.30pm): Meet the Flux team at our booth at the Project Pavilion  
   at Project Pavilion, Kiosk 3
-- 16:00 (4pm) - 16:35 (4.35 pm): [Self-Service GitOps at a Regulated
-  Enterprise](https://sched.co/1Hyc9)  
-  Erick Bourgeois (Freelance) at Auditorium Center, G104-105
-- 16:00 (4pm) - 16:35 (4.35 pm): [A Look Under the Hood of CNCF Security
-  Audits](https://sched.co/1Hybf)  
-  Adam Korczynski & David Korczynski, Ada Logics at Auditorium Center, Auditorium + Balcony
-- 16:55 (4.55pm) - 17:30 (5.30pm): [How GitOps Changed Our Lives & Can Change
+- 14:55 (2.55pm) - 15:30 (5.30pm): [How GitOps Changed Our Lives & Can Change
   Yours Too!](https://sched.co/1HydD) at Auditorium Center, G104-105  
   Priyanka Ravi, Weaveworks  
   Christian Hernandez, Red Hat  
   Filip Jansson, Strålfors  
   Roberth Strand, Amesto Fortytwo  
   Leigh Capili, VMware
+- 16:00 (4pm) - 16:35 (4.35 pm): [Self-Service GitOps at a Regulated
+  Enterprise](https://sched.co/1Hyc9)  
+  Erick Bourgeois (Freelance) at Auditorium Center, G104-105
+- 16:00 (4pm) - 16:35 (4.35 pm): [A Look Under the Hood of CNCF Security
+  Audits](https://sched.co/1Hybf)  
+  Adam Korczynski & David Korczynski, Ada Logics at Auditorium Center, Auditorium + Balcony
+
+**Update:** previously the time for the panel was 16:55, it has been moved to 14:55.
 
 #### Flux Bug Scrub
 
