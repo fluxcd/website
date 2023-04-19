@@ -237,11 +237,13 @@ we have a nice programme prepared for you.
   at Project Pavilion, Kiosk 3
 - 11:00 - 11:35: [A CI/CD Platform in the Palm of Your Hand](https://sched.co/1HyVW)  
   Claudia Beresford, Weaveworks at Elicium Building, D201-202
-- 17:25 - 18:00 (6pm): [Flux Beyond Git: Harnessing the Power of
+- 11:55 - 12:30: [Flux Beyond Git: Harnessing the Power of
   OCI](https://sched.co/1HySr)  
   Stefan Prodan & Hidde Beydals, Weaveworks at Forum Center, E103-E104
 - 18:00 (6pm) - 20:00 (8pm): Meet the Flux team at our booth for the Booth Crawl  
   at Project Pavilion, Kiosk 3
+
+**Update:** previously the OCI talk was scheduled to happen at 17:25. 11:55 is correct.
 
 ##### Thursday, April 20
 
