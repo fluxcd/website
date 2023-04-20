@@ -273,3 +273,6 @@ adopters:
     - name: Orange
       url: https://orange.com
       logo: logos/orange.png
+    - name: Tchibo
+      url: https://tchibo.de
+      logo: logos/tchibo.png
