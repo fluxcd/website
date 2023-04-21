@@ -2,7 +2,15 @@
 title: Google Season of Docs 2023
 ---
 
-Flux is interested in applying to the 2023 Google Season of Docs to improve the documentation experience for our users and contributors. Below is our project ideas, if you have any questions, please reach out to Daniel Holbach or Tamao Nakahara on CNCF Slack.
+Flux is interested in applying to the 2023 Google Season of Docs to improve the documentation experience for our users and contributors. Below is our project ideas, if you have any questions, please reach out to Daniel Holbach or Kingdon Barrett on CNCF Slack.
+
+Timeline:
+
+| Date          | What happens |
+| ------------- | ------------ |
+| March 21st    | Flux was accepted as project for Google Season of Docs 2023 |
+| May 1st (EOD) | We stop accepting new applications |
+|May 10th       | We submit the technical writer we selected to Google |
 
 ## Improving the Flux User Onramp
 
