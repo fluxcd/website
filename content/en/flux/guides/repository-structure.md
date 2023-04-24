@@ -64,7 +64,7 @@ and end-to-end testing.
 
 This approach is similar to the [monorepo](#monorepo), with some notable differences:
 
-* In the monorepo approach, all team members can read the production config since Git is not designed to restrict access to certain files in a      repository. Access control can be provided by tools like GitHub or GitLab, as they provide additional layers of security and permission management on top of Git. Having a separate repository for production means that you can grant access to a subset of team members while allowing everyone to clone staging and open pull requests.
+* In the monorepo approach, all team members can read the production config since Git is not designed to restrict access to certain files in a repository. Access control can be provided by tools like GitHub or GitLab, as they provide additional layers of security and permission management on top of Git. Having a separate repository for production means that you can grant access to a subset of team members while allowing everyone to clone staging and open pull requests.
 * Promoting changes from one environment to another can be more time-consuming especially for infrastructure changes 
   that can't be automated with Flux image updates.
 * When using the same repository for all environments, unintentional changes to production are harder to spot,
