@@ -83,3 +83,8 @@ hot to use the `readfile` shortcode.
 You can create tabbed sections that contain both markdown and code snippets.
 Please refer to <https://www.docsy.dev/docs/adding-content/shortcodes/#tabbed-panes>
 for how to use the `tabpane` and `tab` shortcodes.
+
+## Gallery shortcodes
+
+You can use gallery shortcodes to easily create and display photo galleries or image sliders within your posts or blogs. 
+Please refer to https://github.com/mfg92/hugo-shortcode-gallery for how to use the `hugo-shortcode-gallery` tool.
