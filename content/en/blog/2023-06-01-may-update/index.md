@@ -1,9 +1,9 @@
 ---
 author: XX
-date: YEAR-XX-01 15:30:00+00:00
-title: LAST_MONTH YEAR Update
+date: 2023-05-10 7:30:00+00:00
+title: May 2023 Update
 description: "XX"
-url: /blog/YEAR/XX/LAST_MONTH-YEAR-update/
+url: /blog/2023/06/may-2023-update/
 tags: [monthly-update]
 resources:
 - src: "**.{png,jpg}"
@@ -26,14 +26,44 @@ to get more background on how to publish this blog post.
 As the Flux family of projects and its communities are growing, we
 strive to inform you each month about what has already landed, new
 possibilities which are available for integration, and where you can get
-involved. Read our last update here (xxx).
+involved. Read our last update [here](/blog/2023/05/april-2023-update/).
 
-It's the beginning of MONTH YEAR - let's recap together what
-happened in LAST_MONTH - it has been a lot!
+It's the beginning of June 2023 - let's recap together what
+happened in May - it has been a lot!
 
 ## News in the Flux family
 
-### Next Flux release: more stability and performance improvements
+### Flux 2.0.0RC2 released: many improvements - please test
+
+On our path to GA, we released v2.0.0-rc2, the second release candidate for
+the 2.0.0 release. It includes many fixes, so you are very much encouraged to
+upgrade to this latest version - even though it carries "RC" in its version
+number, it is the most stable Flux release to date. Users are advised to
+upgrade from v0.41 and older versions to v2.0.0-rc.2 as soon as possible.
+
+Fixes and improvements
+
+- Starting with this version, source-controller, kustomize-controller and
+  helm-controller pods are marked as
+  [system-cluster-critical](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/).
+- Fix bootstrap for BitBucket Server (CLI).
+- Fix secrets decryption when using Azure Key Vault (kustomize-controller).
+- Fix drift detection for renamed HelmReleases (helm-controller).
+- Improve performance when handling webhook receivers (notification-controller).
+- The `Alert` v1beta2 API has a new optional field `.spec.inclusionList` for
+  fine-grained control over events filtering (notification-controller).
+- The deprecated field `.status.url` was removed from the `Receiver` v1
+  API (notification-controller).
+- Add support for commit signing using OpenPGP keys with
+  passphrases (image-automation-controller).
+
+To upgrade from v0.x to v2.0.0-rc.2 please follow the same produce published in
+the [RC.1 release notes](https://github.com/fluxcd/flux2/releases/tag/v2.0.0-rc.1).
+
+Note that Kubernetes 1.27.0 contains a regression bug that affects Flux, it is
+recommended to upgrade Kubernetes to 1.27.1.
+
+Big thanks to all the Flux contributors that helped us with this release!
 
 ### Security news
 
@@ -57,6 +87,8 @@ community. Better to write:]
 
 #### Weave GitOps
 
+- <https://github.com/weaveworks/weave-gitops/releases/tag/v0.23.0-rc.1>
+
 #### Terraform-controller
 
 #### Flux Subsystem for Argo
@@ -73,20 +105,28 @@ It's important to keep you up to date with new features and developments
 in Flux and provide simple ways to see our work in action and chat with
 our engineers.
 
+### GitOpsCon North America 2023
+
+### Open Source Summit 2023
+
 ### Recent Events (ICYMI) 📺
 
 We feel blessed to have such a big community of users, contributors and
 integrators and so many are happy to talk about their experiences. In
-LAST_MONTH here are a couple of talks we would like to highlight.
+May here are a couple of talks we would like to highlight.
+
+...
 
 Here is a list of additional videos and topics we really enjoyed -
 please let us know if we missed anything of interest and we will make
 sure to mention it in the next post!
 
+...
+
 ### Upcoming Events 📆
 
 We are happy to announce that we have a number of events coming up in
-MONTH- tune in to learn more about Flux and GitOps best practices,
+April- tune in to learn more about Flux and GitOps best practices,
 get to know the team and join our community.
 
 #### Flux Bug Scrub
@@ -98,10 +138,10 @@ as a project.
 
 The next dates are going to be:
 
-- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](/#calendar)
-- [YEAR-xx-yy 17:00 UTC, 19:00 CEST](/#calendar)
-- [YEAR-xx-yy 12:00 UTC, 14:00 CEST](/#calendar)
-- [YEAR-xx-yy 17:00 UTC, 19:00 CEST](/#calendar)
+- [2023-06-yy 12:00 UTC, 14:00 CEST](/#calendar)
+- [2023-06-yy 17:00 UTC, 19:00 CEST](/#calendar)
+- [2023-06-yy 12:00 UTC, 14:00 CEST](/#calendar)
+- [2023-06-yy 17:00 UTC, 19:00 CEST](/#calendar)
 
 We are flexible with subjects and often go with the interests of the
 group or of the presenter. If you want to come and join us in either
@@ -116,11 +156,26 @@ depend on GitHub or other hosted services.
 
 ## In other news
 
+### Priyanka Ravi joins as Flux Project Member
+
+We are very happy that Priyanka "Pinky" Ravi [joined us as a Flux
+Project Member](https://github.com/fluxcd/community/issues/293).
+
+Over the past years, Pinky spoke at conferences, meetups and elsewhere.
+Demoing Flux, discussing use-cases and discussing what's new. If you
+want to have a look at some of her talks, check out our [resources
+section](/resources).
+
+Thanks a lot for everything you have done - we are happy to have you
+in our team!
+
 ### People writing/talking about Flux
 
 We love it when you all write about Flux and share your experience,
 write how-tos on integrating Flux with other pieces of software or other
 things. Give us a shout-out and we will link it from this section! ✍
+
+- <https://softwareengineeringdaily.com/2023/05/02/gitops-for-kubernetes/>
 
 ### News from the Website and our Docs
 
@@ -134,7 +189,8 @@ for this.
 -->
 
 We are very pleased to announce that the following adopters of Flux have
-come forward and added themselves to our website: xxx
+come forward and added themselves to our website:
+[BlaBlaCar](https://blablacar.com) and [Nuvme](https://nuvme.com).
 
 If you have not already done so, [use the instructions
 here](/adopters/) or give us a ping and we will help to add you. Not only
@@ -212,7 +268,7 @@ If you like what you read and would like to get involved, here are a few
 good ways to do that:
 
 - Join our [upcoming dev meetings](/community/#meetings) on
-  YEAR-XX-XX or YEAR-XX-XX.
+  2023-06-01 or 2023-06-07.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
