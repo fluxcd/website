@@ -189,7 +189,8 @@ next level with this integration.
    <source
       src="https://github.com/flux-subsystem-argo/website/raw/main/docs/flamingo-wego.mp4"
       type="video/mp4">
-   Your browser does not support the video tag.
+   If the video is not displayed, view the video
+   <a href="https://github.com/flux-subsystem-argo/website/raw/main/docs/flamingo-wego.mp4">here</a>.
 </video>
 
 You might be interested in [this blog
