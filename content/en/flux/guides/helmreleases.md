@@ -537,7 +537,7 @@ fetch the chart. To determine why the `HelmChart` fails to produce an artifact, 
 ```sh
 $ kubectl get helmcharts --all-namespaces
 NAME    READY   STATUS
-mongodb False   failed to locate override values file: values-prod.yaml
+mongodb False   failed to locate override values file: values-production.yaml
 ```
 
 ## Configure notifications
