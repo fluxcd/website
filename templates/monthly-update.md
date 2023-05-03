@@ -10,6 +10,19 @@ resources:
   title: "Image #:counter"
 ---
 
+<!--
+
+Have a look at these documents
+
+- internal_docs/how-to-do-the-monthly-update.md
+  online: https://github.com/fluxcd/website/blob/main/internal_docs/how-to-do-the-monthly-update.md
+- internal_docs/how-to-write-a-blog-post.md
+  online: https://github.com/fluxcd/website/blob/main/internal_docs/how-to-write-a-blog-post.md
+
+to get more background on how to publish this blog post.
+
+-->
+
 As the Flux family of projects and its communities are growing, we
 strive to inform you each month about what has already landed, new
 possibilities which are available for integration, and where you can get

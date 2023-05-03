@@ -1,8 +1,21 @@
 resources:
 # Use this template when adding new resources:
+#
 # - youtube: enter youtube code
-#    title: "enter title here"
-#    date: YYYY-MM-DD
+#   title: "enter title here"
+#   date: YYYY-MM-DD
+#   (optional) description: this will surface the entry on the main landing page
+  - youtube: hd7VkCLnTWk
+    title: "How GitOps Changed Our Lives & Can Change Yours Too! - Priyanka, Christian, Filip, Roberth, Leigh"
+    date: 2023-04-21
+  - url: https://www.youtube.com/watch?v=yit0zu8g_O4&t=76s
+    title: "Flux at CNCF Graduated Project Updates"
+    thumbnail: yit0zu8g_O4
+    date: 2023-04-19
+  - youtube: gKR95Kmc5ac
+    title: "Flux Beyond Git: Harnessing the Power of OCI - Stefan Prodan & Hidde Beydals, Weaveworks"
+    description: "With Flux, OCI can serve as the single source of truth for both application code (container images) and configuration (OCI artifacts)."
+    date: 2023-04-19
   - youtube: Mi6SQzjI938
     title: "How Flux and Pulumi Give Each Other Super Powers by Michael Bridgen"
     date: 2023-03-30
@@ -13,7 +26,7 @@ resources:
     title: "Kubernetes in 2023"
     date: 2023-03-16
   - youtube: rK1Y6d1A9Ck
-    title: "Cloud Native Live: Automating Kubernetes Deployemnts"
+    title: "Cloud Native Live: Automating Kubernetes Deployments"
     date: 2023-03-15
   - youtube: jxsFePSmWx0
     title: "GitOps Testing in Kubernetes with Flux & Testkube"
