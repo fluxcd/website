@@ -16,9 +16,9 @@ To follow the guide, you need the following:
 
 ## Objectives
 
-- Bootstrap Flux on a Kubernetes Cluster
-- Deploy a sample application using Flux
-- Customize application configuration through Kustomize patches
+- Bootstrap Flux on a Kubernetes Cluster.
+- Deploy a sample application using Flux.
+- Customize application configuration through Kustomize patches.
 
 ## Install the Flux CLI
 
@@ -95,12 +95,12 @@ deployment "notification-controller" successfully rolled out
 ✔ bootstrap finished
 ```
 
-The bootstrap command above does following:
+The bootstrap command above does the following:
 
-- Creates a git repository `fleet-infra` on your GitHub account
-- Adds Flux component manifests to the repository
-- Deploys Flux Components to your Kubernetes Cluster
-- Configures Flux components to track the path `/clusters/my-cluster/` in the repository
+- Creates a git repository `fleet-infra` on your GitHub account.
+- Adds Flux component manifests to the repository.
+- Deploys Flux Components to your Kubernetes Cluster.
+- Configures Flux components to track the path `/clusters/my-cluster/` in the repository.
 
 ## Clone the git repository
 
@@ -206,7 +206,7 @@ directory located in the podinfo repository.
 
 ## Watch Flux sync the application
 
-1. Use the `flux get` command to watch the podinfo app
+1. Use the `flux get` command to watch the podinfo app.
 
     ```sh
     flux get kustomizations --watch
@@ -240,7 +240,7 @@ Changes made to the podinfo
 Kubernetes manifests in the master branch are reflected in your cluster.
 
 When a Kubernetes manifest is removed from the podinfo repository, Flux removes it from your cluster.
-When you delete a `Kustomization` from the fleet-infra repository, Flux removes all Kubernetes objects previously applied from that `Kustomization`.
+When you delete a `Kustomization` from the `fleet-infra` repository, Flux removes all Kubernetes objects previously applied from that `Kustomization`.
 
 When you alter the podinfo deployment using `kubectl edit`, the changes are reverted to match
 the state described in Git.
