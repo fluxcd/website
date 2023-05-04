@@ -7,7 +7,7 @@ cascade:
 ---
 
 The Flux CLI is available as a binary executable for all major platforms,
-the binaries can be downloaded form GitHub
+the binaries can be downloaded from GitHub
 [releases page](https://github.com/fluxcd/flux2/releases).
 
 ## Install using package management
