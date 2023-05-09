@@ -23,7 +23,7 @@ The GA roadmap has been split into separate milestones.
 The Flux team's current focus is to finalise the tasks from the [Flux GitOps GA](#flux-gitops-ga-q1-2023) milestone.
 We estimate that the Flux features part of this milestone will become generally available in the first quarter of 2023.
 
-### Flux GitOps GA (Q1 2023)
+### Flux GitOps GA (Q2 2023)
 
 The goal of this milestone is to make a generally available release for the Flux GitOps APIs,
 and the Flux Git bootstrap & webhooks functionalities.
@@ -69,7 +69,11 @@ The completion of this milestone will be marked by the `v2.0.0` release of the F
   - [x] `gitrepositories.source.toolkit.fluxcd.io` API specification
   - [x] `kustomizations.kustomize.toolkit.fluxcd.io` API specification
 
-### Flux Helm GA (Q2 2023)
+- [ ] Kustomize v5 support
+  - [ ] [Update Flux controllers to Kustomize v5.0](https://github.com/fluxcd/flux2/issues/3564)
+  - [ ] [Update Kubernetes to 1.27.2](https://github.com/fluxcd/pkg/pull/534)
+
+### Flux Helm GA (Q3 2023)
 
 The goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
