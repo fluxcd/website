@@ -22,7 +22,28 @@ This issue only affects you if you are using `--network-policy` on AKS, which is
 AKS `--network-policy` is currently in Preview
 {{% /alert %}}
 
-### AAD Pod-Identity
+### AAD Workload Identity
+
+[AAD Workload Identities](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview) can be used
+to enable access to AAD resources from workloads in your Kubernetes cluster.
+
+In order to leverage AAD Workload Identities, you'll need to have `--enable-oidc-issuer` 
+and `--enable-workload-identity` configured in your AKS cluster. 
+
+You will also need to establish an identity that has access to ACR.
+
+You can then [establish a federated identity credential](https://azure.github.io/azure-workload-identity/docs/quick-start.html#6-establish-federated-identity-credential-between-the-identity-and-the-service-account-issuer--subject) 
+between the identity and the Flux source-controller ServiceAccount.
+
+Please follow guides for [OCIRepositories and AAD Workload Identities](https://fluxcd.io/flux/components/source/ocirepositories/#workload-identity) 
+and [HelmRepositories and AAD Workload Identities](https://fluxcd.io/flux/components/source/helmrepositories/#azure-workload-identity). 
+
+### AAD Pod Identity
+
+{{% warning %}}
+[AAD Pod Identity has been deprecated](https://github.com/Azure/aad-pod-identity#-announcement) and replaced with 
+Azure Workload Identity. 
+{{% /warning %}}
 
 Depending on the features you are interested in using with Flux, you may want to install AAD Pod Identity.
 With [AAD Pod-Identity](https://azure.github.io/aad-pod-identity/docs/), we can create Pods that have their own
@@ -53,8 +74,9 @@ az aks create \
  --network-plugin="azure" \
  --network-policy="calico" \
  --enable-managed-identity \
- --enable-pod-identity \
- --name="my-cluster"
+ --enable-oidc-issuer \
+ --enable-workload-identity \
+ --name="my-cluster" 
 ```
 
 {{% alert color="info" %}}
