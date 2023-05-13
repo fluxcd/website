@@ -29,16 +29,18 @@ The Flux CLI and the controllers' images are signed using [Sigstore](https://www
 The container images along with their signatures are published on GitHub Container Registry and Docker Hub.
 
 To verify the authenticity of Flux's container images,
-install [cosign](https://docs.sigstore.dev/cosign/installation/) and run:
+install [cosign](https://docs.sigstore.dev/cosign/installation/) v2 and run:
 
 ```console
-$ COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/fluxcd/source-controller:v0.34.0
+$ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
+  --certificate-identity-regexp=https://github.com/fluxcd \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com 
 
-Verification for ghcr.io/fluxcd/source-controller:v0.34.0 --
+Verification for ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 --
 The following checks were performed on each of these signatures:
   - The cosign claims were validated
   - Existence of the claims in the transparency log was verified offline
-  - Any certificates were verified against the Fulcio roots.
+  - The code-signing certificate was verified using trusted certificate authority certificates
 ```
 
 We also wrote [a blog post](/blog/2022/02/security-image-provenance/) which discusses this in some more detail.
@@ -58,14 +60,14 @@ The Flux controllers' images come with SBOMs for each CPU architecture,
 you can extract the SPDX JSON using Docker's inspect command:
 
 ```shell
-docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v0.34.0 \
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
     --format "{{ json (index .SBOM \"linux/amd64\").SPDX}}"
 ```
 
 Or by using Docker's [sbom command](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/):
 
 ```shell
-docker sbom fluxcd/source-controller:v0.34.0
+docker sbom fluxcd/source-controller:v1.0.0-rc.3
 ```
 
 Please also refer to [this blog post](/blog/2022/02/security-the-value-of-sboms/)
@@ -90,7 +92,7 @@ To extract the SLSA provenance JSON for a specific CPU architecture,
 you can use Docker's inspect command:
 
 ```shell
-docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v0.34.0 \
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
     --format "{{ json (index .Provenance \"linux/amd64\").SLSA}}"
 ```
 
@@ -114,7 +116,7 @@ which is an OSS scanner made by [Aqua Security](https://www.aquasec.com/).
 To scan a controller image with Trivy:
 
 ```shell
-trivy image ghcr.io/fluxcd/source-controller:v0.34.0
+trivy image ghcr.io/fluxcd/source-controller:v1.0.0-rc.3
 ```
 
 We ask users to keep Flux up-to-date on their clusters,
