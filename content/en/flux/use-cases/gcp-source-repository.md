@@ -106,5 +106,5 @@ flux bootstrap git \
 ```
 
 Follow the [Image Update Automation Guide](../guides/image-update.md) and see the
-[GCR specific section](../guides/image-update.md#using-native-gcp-gcr-auto-login)
+[GCP specific Image Automation Contollers documentation](../components/image/imagerepositories/#gcp)
 for more details on how to configure image update automation for GKE.
