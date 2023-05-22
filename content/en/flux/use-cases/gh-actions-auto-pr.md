@@ -32,7 +32,7 @@ To create the pull request whenever automation creates a new branch, in your man
 # ./.github/workflows/staging-auto-pr.yaml
 name: Staging Auto-PR
 on:
-  create:
+  push:
     branches: ['staging']
 
 jobs:
