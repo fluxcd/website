@@ -59,7 +59,7 @@ choco install flux
 To install the latest release on Linux, macOS or Windows WSL:
 
 ```bash
-curl -s https://fluxcd.io/install.sh | sudo bash
+curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.0.0-rc.4 bash
 ```
 
 The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh) does the following:
@@ -78,7 +78,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 Example usage:
 
 ```console
-$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v0.17.0 
+$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v2.0.0-rc.4
 / # flux check --kubeconfig=kubeconfig
 ```
 

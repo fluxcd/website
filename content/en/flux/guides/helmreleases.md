@@ -349,7 +349,7 @@ spec:
 Create a `kustomization.yaml` that generates the `ConfigMap` using our kustomize config:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: podinfo
 resources:
@@ -436,7 +436,7 @@ Kustomize configuration.
 Create a `kustomization.yaml` that generates the `Secret`:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: podinfo
 resources:
@@ -553,23 +553,22 @@ release:
 
 ```yaml
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
-  kind: Alert
-  metadata:
-    generation: 2
-    name: helm-podinfo
-    namespace: flux-system
-  spec:
-    providerRef:
-      name: slack
-    eventSeverity: info
-    eventSources:
-    - kind: HelmRepository
-      name: podinfo
-    - kind: HelmChart
-      name: default-podinfo
-    - kind: HelmRelease
-      name: podinfo
-      namespace: default
+kind: Alert
+metadata:
+  name: helm-podinfo
+  namespace: flux-system
+spec:
+  providerRef:
+    name: slack
+  eventSeverity: info
+  eventSources:
+  - kind: HelmRepository
+    name: podinfo
+  - kind: HelmChart
+    name: default-podinfo
+  - kind: HelmRelease
+    name: podinfo
+    namespace: default
 ```
 
 ![helm-controller alerts](/img/helm-controller-alerts.png)

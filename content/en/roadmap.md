@@ -69,9 +69,9 @@ The completion of this milestone will be marked by the `v2.0.0` release of the F
   - [x] `gitrepositories.source.toolkit.fluxcd.io` API specification
   - [x] `kustomizations.kustomize.toolkit.fluxcd.io` API specification
 
-- [ ] Kustomize v5 support
-  - [ ] [Update Flux controllers to Kustomize v5.0](https://github.com/fluxcd/flux2/issues/3564)
-  - [ ] [Update Kubernetes to 1.27.2](https://github.com/fluxcd/pkg/pull/534)
+- [x] Kustomize v5 support
+  - [x] [Update Flux controllers to Kustomize v5.0](https://github.com/fluxcd/flux2/issues/3564)
+  - [x] [Update Kubernetes to 1.27.2](https://github.com/fluxcd/pkg/pull/534)
 
 ### Flux Helm GA (Q3 2023)
 

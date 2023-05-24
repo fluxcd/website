@@ -13,13 +13,17 @@ You will need a Kubernetes cluster that matches one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.20`            | `>= 1.20.6`      |
-| `v1.21`            | `>= 1.21.0`      |
-| `v1.22`            | `>= 1.22.0`      |
-| `v1.23` and later  | `>= 1.23.0`      |
+| `v1.23`            | `>= 1.23.0`      |
+| `v1.24`            | `>= 1.24.0`      |
+| `v1.25`            | `>= 1.25.0`      |
+| `v1.26`            | `>= 1.26.0`      |
+| `v1.27` and later  | `>= 1.27.1`      |
 
-Note that Flux may work on Kubernetes 1.19,
-but we don't recommend running EOL versions in production.
+{{% alert color="info" title="Kubernetes EOL" %}}
+Note that Flux may work on older versions of Kubernetes e.g. 1.19,
+but we don't recommend running [EOL versions](https://endoflife.date/kubernetes)
+in production nor do we offer support for these versions.
+{{% /alert %}}
 
 ## Install the Flux CLI
 
@@ -419,18 +423,18 @@ List all container images:
 ```sh
 $ flux install --export | grep ghcr.io
 
-image: ghcr.io/fluxcd/helm-controller:v0.8.0
-image: ghcr.io/fluxcd/kustomize-controller:v0.9.0
-image: ghcr.io/fluxcd/notification-controller:v0.9.0
-image: ghcr.io/fluxcd/source-controller:v0.9.0
+image: ghcr.io/fluxcd/helm-controller:v2.0.0-rc.4
+image: ghcr.io/fluxcd/kustomize-controller:v2.0.0-rc.4
+image: ghcr.io/fluxcd/notification-controller:v2.0.0-rc.4
+image: ghcr.io/fluxcd/source-controller:v2.0.0-rc.4
 ```
 
 Pull the images locally and push them to your container registry:
 
 ```sh
-docker pull ghcr.io/fluxcd/source-controller:v0.9.0
-docker tag ghcr.io/fluxcd/source-controller:v0.9.0 registry.internal/fluxcd/source-controller:v0.9.0
-docker push registry.internal/fluxcd/source-controller:v0.9.0
+docker pull ghcr.io/fluxcd/source-controller:v2.0.0-rc.4
+docker tag ghcr.io/fluxcd/source-controller:v2.0.0-rc.4 registry.internal/fluxcd/source-controller:v2.0.0-rc.4
+docker push registry.internal/fluxcd/source-controller:v2.0.0-rc.4
 ```
 
 Copy `flux` binary to a computer with access to your air-gapped cluster,
@@ -652,6 +656,7 @@ flux create helmrelease nginx \
 
 There are several reasons you may want to rotate the deploy key:
 
+- The token used to generate the key has expired.
 - The key has been compromised.
 - You want to change the scope of the key, e.g. to allow write access using the `--read-write-key` flag to `flux bootstrap`.
 
@@ -663,8 +668,6 @@ To rotate the SSH key generated at bootstrap, first delete the secret from the c
 ```sh
 kubectl -n flux-system delete secret flux-system
 ```
-
-
 
 Then you have two alternatives to generate a new key:
 

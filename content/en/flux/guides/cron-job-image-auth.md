@@ -309,7 +309,7 @@ our desired Namespace.
 Create a directory in your control repository and save this `kustomization.yaml`:
 ```yaml
 # kustomization.yaml
-apiVersion: kustomize.config.k8s.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - https://github.com/fluxcd/flux2/manifests/integrations/registry-credentials-sync/azure?ref=main
