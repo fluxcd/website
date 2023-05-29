@@ -57,25 +57,26 @@ jobs:
             BUILD_ID=${GITHUB_REF/refs\/tags\//}
             LATEST_ID=latest
           fi
-          echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          echo ::set-output name=BUILD_ID::${BUILD_ID}
-          echo ::set-output name=LATEST_ID::${LATEST_ID}
+          echo BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') >> $GITHUB_OUTPUT
+          echo BUILD_ID=${BUILD_ID} >> $GITHUB_OUTPUT
+          echo LATEST_ID=${LATEST_ID} >> $GITHUB_OUTPUT
+
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           push: true
           tags: |
@@ -145,9 +146,9 @@ Another sensible choice could be to build and push canary images only from the `
         BUILD_ID=${GITHUB_REF/refs\/tags\//}
         LATEST_ID=latest
       fi
-      echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-      echo ::set-output name=BUILD_ID::${BUILD_ID}
-      echo ::set-output name=LATEST_ID::${LATEST_ID}
+      echo BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') >> $GITHUB_OUTPUT
+      echo BUILD_ID=${BUILD_ID} >> $GITHUB_OUTPUT
+      echo LATEST_ID=${LATEST_ID} >> $GITHUB_OUTPUT
 ```
 
 This script has no external effects, it only takes some inputs from environment variables set by GitHub Actions and calculates them into several outputs: `BUILD_ID` and `LATEST_ID`. The `BUILD_DATE` is also exported as an output for informational purposes and is not used elsewhere in the workflow.

@@ -40,7 +40,7 @@ jobs:
     name: Open PR to main
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       name: checkout
 
     - uses: repo-sync/pull-request@v2

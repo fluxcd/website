@@ -121,7 +121,7 @@ jobs:
         id: staging
         run: |
           VERSION=${{ github.event.client_payload.metadata.revision }}
-          echo ::set-output name=VERSION::${VERSION}
+          echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       # Patch the chart version in the production Helm release manifest.
       - name: Set chart version in production
         id: production
