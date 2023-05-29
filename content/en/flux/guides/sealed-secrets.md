@@ -2,7 +2,7 @@
 title: "Sealed Secrets"
 linkTitle: "Sealed Secrets"
 description: "Manage Kubernetes secrets with Bitnami sealed-secrets controller."
-weight: 60
+weight: 70
 ---
 
 In order to store secrets safely in a public or private Git repository, you can use

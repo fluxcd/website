@@ -15,7 +15,8 @@ workloads defined with Kubernetes manifests and assembled with Kustomize.
 Features:
 
 - Reconciles the cluster state from multiple sources (provided by source-controller)
-- Generates manifests with Kustomize (from plain Kubernetes yamls or Kustomize overlays)
+- Generates manifests with Kustomize (from plain Kubernetes YAMLs or Kustomize overlays)
+- Decrypts Kubernetes secrets with Mozilla SOPS and KMS
 - Validates manifests against Kubernetes API
 - Impersonates service accounts (multi-tenancy RBAC)  
 - Health assessment of the deployed workloads

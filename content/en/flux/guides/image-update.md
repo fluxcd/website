@@ -64,6 +64,8 @@ export GITHUB_USER=<your-username>
 If you bootstrapped Flux before, you need to add
 `--components-extra=image-reflector-controller,image-automation-controller` to your
 bootstrapping routine as image automation components are not installed by default.
+Please note that you need to delete the `flux-system` secret before rerunning bootstrap
+to [rotate the deploy key](../installation.md#deploy-key-rotation).
 {{% /alert %}}
 
 Install Flux with the image automation components:
@@ -445,7 +447,7 @@ spec:
 Kustomize config (`kustomization.yaml`) example:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1
+apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - deployment.yaml

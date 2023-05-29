@@ -43,12 +43,12 @@ import sourcev1 "github.com/fluxcd/source-controller/api/v1"
 
 API Types
 
-| Name | Version |
-|---|---|
-| [GitRepository](../components/source/gitrepositories.md) | v1 |
+| Name                                                       | Version |
+|------------------------------------------------------------|---------|
+| [GitRepository](../components/source/gitrepositories.md)   | v1      |
 | [HelmRepository](../components/source/helmrepositories.md) | v1beta2 |
-| [HelmChart](../components/source/helmcharts.md) | v1beta2 |
-| [Bucket](../components/source/buckets.md) | v1beta2 |
+| [HelmChart](../components/source/helmcharts.md)            | v1beta2 |
+| [Bucket](../components/source/buckets.md)                  | v1beta2 |
 
 ### kustomize.toolkit.fluxcd.io
 
@@ -66,9 +66,9 @@ import kustomizev1 "github.com/fluxcd/kustomize-controller/api/v1"
 
 API Types
 
-| Name | Version |
-|---|---|
-| [Kustomization](../components/kustomize/kustomization.md) | v1 |
+| Name                                                      | Version |
+|-----------------------------------------------------------|---------|
+| [Kustomization](../components/kustomize/kustomization.md) | v1      |
 
 ### helm.toolkit.fluxcd.io
 
@@ -86,8 +86,8 @@ import helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
 
 API Types
 
-| Name | Version |
-|---|---|
+| Name                                              | Version |
+|---------------------------------------------------|---------|
 | [HelmRelease](../components/helm/helmreleases.md) | v2beta1 |
 
 ### notification.toolkit.fluxcd.io
@@ -112,11 +112,11 @@ import notificationv1 "github.com/fluxcd/notification-controller/api/v1"
 
 API Types
 
-| Name | Version |
-|---|---|
-| [Receiver](../components/notification/receiver.md) | v1 |
+| Name                                               | Version |
+|----------------------------------------------------|---------|
+| [Receiver](../components/notification/receiver.md) | v1      |
 | [Provider](../components/notification/provider.md) | v1beta2 |
-| [Alert](../components/notification/alert.md) | v1beta2 |
+| [Alert](../components/notification/alert.md)       | v1beta2 |
 
 ### image.toolkit.fluxcd.io
 
@@ -138,10 +138,10 @@ import (
 
 API Types
 
-| Name | Version |
-|---|---|
-| [ImageRepository](../components/image/imagerepositories.md) | v1beta2 |
-| [ImagePolicy](../components/image/imagepolicies.md) | v1beta2 |
+| Name                                                                   | Version |
+|------------------------------------------------------------------------|---------|
+| [ImageRepository](../components/image/imagerepositories.md)            | v1beta2 |
+| [ImagePolicy](../components/image/imagepolicies.md)                    | v1beta2 |
 | [ImageUpdateAutomation](../components/image/imageupdateautomations.md) | v1beta1 |
 
 ## CRUD Example

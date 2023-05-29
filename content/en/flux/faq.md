@@ -340,17 +340,16 @@ spec:
 
 ### What is the behavior of Kustomize used by Flux?
 
-We referred to the **Kustomize v4** CLI flags here,
+We referred to the **Kustomize v5** CLI flags here,
 so that you can replicate the same behavior using `kustomize build`:
 
 - `---enable-alpha-plugins` is disabled by default, so it uses only the built-in plugins.
 - `--load-restrictor` is set to `LoadRestrictionsNone`, so it allows loading files outside the dir containing `kustomization.yaml`.
-- `--reorder` is set to `legacy`, so the output will have namespaces and cluster roles/role bindings first, CRDs before CRs, and webhooks last.
 
 To replicate the build and apply dry run locally:
 
 ```sh
-kustomize build --load-restrictor=LoadRestrictionsNone --reorder=legacy . \
+kustomize build --load-restrictor=LoadRestrictionsNone . \
 | kubectl apply --server-side --dry-run=server -f-
 ```
 
