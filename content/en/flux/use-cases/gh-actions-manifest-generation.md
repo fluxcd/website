@@ -103,7 +103,7 @@ jobs:
           echo ::set-output name=VERSION::${VERSION}
 
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Update manifests
         run: ./update-k8s.sh $GITHUB_SHA
@@ -301,20 +301,20 @@ jobs:
           echo ::set-output name=VERSION::${VERSION}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           push: true
           tags: kingdonb/any-old-app:${{ steps.prep.outputs.VERSION }}
@@ -389,7 +389,7 @@ jobs:
           echo ::set-output name=VERSION::${VERSION}
 
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup kubecfg CLI
         uses: kingdonb/kubecfg/action@main
@@ -1179,7 +1179,7 @@ jobs:
           echo ::set-output name=VERSION::${VERSION}
 
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Update manifests
         run: ./update-k8s.sh $GITHUB_SHA
