@@ -12,7 +12,7 @@
     {{ range $match }}
     <div class="card">
         <div class="card-body" style="padding: 0rem;">
-            <img src="{{ .RelPermalink }}" class="img-thumbnail" data-toggle="modal" data-target="#{{ $id }}">
+            <img src="{{ .RelPermalink }}" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#{{ $id }}">
         </div>
     </div>
     {{ end }}
@@ -21,16 +21,16 @@
 <div class="modal fade" id="{{ $id }}" tabindex="-1"aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div id="{{ $id }}-carousel" class="carousel slide" data-ride="carousel">
+            <div id="{{ $id }}-carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     {{ $match := resources.Match $glob }}
                     {{ range first 1 $match }}
-                    <div class="carousel-item active" data-interval="2500">
+                    <div class="carousel-item active" data-bs-interval="2500">
                         <img src="{{ .RelPermalink }}" class="d-block w-100">
                     </div>
                     {{ end }}
                     {{ range after 1 $match }}
-                    <div class="carousel-item" data-interval="2500">
+                    <div class="carousel-item" data-bs-interval="2500">
                         <img src="{{ .RelPermalink }}" class="d-block w-100">
                     </div>
                     {{ end }}

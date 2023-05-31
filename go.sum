@@ -1,8 +1,8 @@
-github.com/FortAwesome/Font-Awesome v0.0.0-20220831210243-d3a7818c253f/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
-github.com/google/docsy v0.6.0 h1:43bVF18t2JihAamelQjjGzx1vO2ljCilVrBgetCA8oI=
-github.com/google/docsy v0.6.0/go.mod h1:VKKLqD8PQ7AglJc98yBorATfW7GrNVsn0kGXVYF6G+M=
-github.com/google/docsy/dependencies v0.6.0 h1:BFXDCINbp8ZuUGl/mrHjMfhCg+b1YX+hVLAA5fGW7Pc=
-github.com/google/docsy/dependencies v0.6.0/go.mod h1:EDGc2znMbGUw0RW5kWwy2oGgLt0iVXBmoq4UOqstuNE=
-github.com/mfg92/hugo-shortcode-gallery v0.0.0-20230213173546-50e99e854f92 h1:uQSat8EsvCDjt9ztbhel+yBOp/7fEID4BNkn7hNmQpc=
-github.com/mfg92/hugo-shortcode-gallery v0.0.0-20230213173546-50e99e854f92/go.mod h1:uP48acoDrLxll/agXBGFRWEv5F237K3XKWyAeVZ+Mm8=
-github.com/twbs/bootstrap v4.6.2+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
+github.com/FortAwesome/Font-Awesome v0.0.0-20230207192303-d02961b01815/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
+github.com/google/docsy v0.6.1-0.20230506181721-13db293f5217 h1:Y8koE8oLAB3UnGwH0smG2pMh2X9cEbPEigmqlqxCjug=
+github.com/google/docsy v0.6.1-0.20230506181721-13db293f5217/go.mod h1:AjZ9LGWVr59YKiRIyjDWLY0Xy5vfF9Ceai+dbth2No4=
+github.com/google/docsy/dependencies v0.6.1-0.20230506181721-13db293f5217 h1:5lZJ8cWKfztBmJYwdwtZlXM3tLlRQcQ5KlLPLaJo1oA=
+github.com/google/docsy/dependencies v0.6.1-0.20230506181721-13db293f5217/go.mod h1:aWJs7B+mxVEyZ6OVxU7aQpubjnZMXALRKrSdTbd8uNw=
+github.com/mfg92/hugo-shortcode-gallery v0.0.0-20230506064530-25b6243b8884 h1:RUa9bD7v1EnC/1qtERUtBvFMidwMeB0GW63wOuQoC7c=
+github.com/mfg92/hugo-shortcode-gallery v0.0.0-20230506064530-25b6243b8884/go.mod h1:uP48acoDrLxll/agXBGFRWEv5F237K3XKWyAeVZ+Mm8=
+github.com/twbs/bootstrap v5.2.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=

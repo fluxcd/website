@@ -13,7 +13,7 @@ infrastructure as programs written in JavaScript, Python, Java, Go, .NET languag
 from Kubernetes, so you can maintain your infrastructure by pushing commits to git and letting
 automation take it from there.
 
-<img class="img-fluid float-left m-3" alt="Pulumi mascot with sparkling cape" src="flying-sparkles-purple-cape-featured.png" />
+<img class="img-fluid float-end m-3" alt="Pulumi mascot with sparkling cape" src="flying-sparkles-purple-cape-featured.png" />
 
 Recently, we added support to the operator for [using Flux
 sources](https://www.pulumi.com/docs/guides/continuous-delivery/pulumi-kubernetes-operator/#using-a-flux-source). This
