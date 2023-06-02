@@ -1,5 +1,5 @@
 ---
-author: dholbach
+author: XXX
 date: YEAR-XX-01 15:30:00+00:00
 title: LAST_MONTH YEAR Update
 description: "XX"
