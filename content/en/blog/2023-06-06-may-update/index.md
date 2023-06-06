@@ -1,6 +1,6 @@
 ---
 author: somtochiama
-date: 2023-05-10 7:30:00+00:00
+date: 2023-06-06 20:30:00+00:00
 title: May 2023 Update
 description: "Flux v2.0.0-rc5 is out with lots of improvements, please test and give us feedback. We went to GitOpsCon / Open Source Summit - check out our talks from these events. That plus lots of news from our contributors and ecosystem."
 url: /blog/2023/06/may-2023-update/
