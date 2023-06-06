@@ -5,6 +5,33 @@ resources:
 #   title: "enter title here"
 #   date: YYYY-MM-DD
 #   (optional) description: this will surface the entry on the main landing page
+  - youtube: LHVjp7JeKzE
+    title: "Keynote Session: GitOps as an Evolution of Kubernetes, Brendan Burns"
+    date: 2023-05-09
+  - youtube: AIdG4hTr0dk
+    title: "Multitenancy - Build Vs. Buy, Neeta Rathi & Josh Carlisle, ZScaler"
+    date: 2023-05-04
+  - youtube: y--oZrATl6c
+    title: "Managing Software Upgrades with a kpt, GitLab and Flux Workflow in a Telecom Context by Peter Wörndle, Ericsson"
+    date: 2023-05-08
+  - youtube: TEeZ1gYWwrw
+    title: "Flux at the Point of Change - Using the K8s Golang SDK and the Flux Api to Automatically Fix and Deploy CVEs in Your Base Images by Bryan Oliver"
+    date: 2023-05-09
+  - youtube: pVuwrstpET4
+    title: "Kubernetes Quick Wins and Migration Best Practices by Ivan Anisimov"
+    date: 2023-05-09
+  - youtube: UFcO9oZMbdA
+    title: "Deliver a Multicloud Application with Flux and Carvel by Peter Tran"
+    date: 2023-05-08
+  - youtube: 9axzrzhrfgw
+    title: "High-Security, Zero-Connectivity & Air-Gapped Clouds: Delivering Complex Software with the Open Component Model & Flux by Dan Small and Mohamed Ahmed"
+    date: 2023-05-08
+  - youtube: LBD4EYDYlCU
+    title: "Delivering Secure & Compliant Software Components with the Open Component Model & GitOps by Dan Small"
+    date: 2023-05-09
+  - youtube: RgzGNY1uy3U
+    title: "Extending Observability to the Application Lifecycle with ArgoCD, Flux and Keptn by Ana Margarita Medina, Lightstep & Adam Gardner"
+    date: 2023-05-09
   - youtube: hd7VkCLnTWk
     title: "How GitOps Changed Our Lives & Can Change Yours Too! - Priyanka, Christian, Filip, Roberth, Leigh"
     date: 2023-04-21
