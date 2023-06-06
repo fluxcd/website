@@ -63,20 +63,19 @@ Users are advised to upgrade from v0.41 and older versions to v2.0.0-rc.5 as soo
 - Support for Helm 3.12.0 and Kustomize v5.0.3.
 
 To upgrade from v0.x to v2.0.0-rc.5, please see
-[the procedure documented in RC.1.](https://github.com/fluxcd/flux2/releases/tag/v2.0.0-rc.1).
+[the procedure documented in RC.1](https://github.com/fluxcd/flux2/releases/tag/v2.0.0-rc.1).
 
 :warning: Note that Kubernetes 1.27.0 contains a regression bug that affects
 Flux, it is recommended to upgrade Kubernetes to 1.27.1 or newer. The upgrade to
 Kustomize v5 also contains breaking changes, please consult their
-[changelog](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.0) for more details.
+[CHANGELOG](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.0) for more details.
 
 Big thanks to all the Flux contributors that helped us with this release!
 
 ### Security news
 
 All components have been updated to patch vulnerabilities in Docker (CVE-2023-28840,
-CVE-2023-28841, CVE-2023-28842) and Sigstore (CVE-2023-30551). The source-controller
-has also been updated to patch a vulnerability in Sigstore (CVE-2023-33199)
+CVE-2023-28841, CVE-2023-28842) and Sigstore (CVE-2023-30551, CVE-2023-33199).
 
 ### Flagger 1.31.0
 
@@ -84,9 +83,8 @@ This release adds support for Linkerd 2.13. Furthermore, a bug which led the con
 webhook to be executed at every step of the Canary instead of only being executed before the
 canary deployment is scaled up, has been fixed.
 
-
 :warning: This release contains some breaking changes for the Linkerd integration.
-Please see the [Changelog](https://github.com/fluxcd/flagger/blob/main/CHANGELOG.md#1310)
+Please see the [CHANGELOG](https://github.com/fluxcd/flagger/blob/main/CHANGELOG.md#1310)
 on how to upgrade.
 
 ## News from Flux users & the Community!
@@ -97,7 +95,8 @@ on how to upgrade.
             thumbnailResizeOptions="600x600 q90 Lanczos"
             previewType="blur" embedPreview=true lastRow="nojustify" >}}
 
-- [Blablacar](https://www.blablacar.com/): a long distance carpooling platform that connects drivers with empty seats and passengers to share travel costs.
+- [Blablacar](https://www.blablacar.com/): a long distance carpooling platform that connects
+  drivers with empty seats and passengers to share travel costs.
 - [Nuvme](https://nuvme.com): a consulting firm specializing in cloud application modernization.
 - [TTMzero](https://ttmzero.com): a RegTech company that assists financial players
   with pre and post-trade digitization.
@@ -107,10 +106,10 @@ Peter König ([@konigpeter](https://github.com/konigpeter)), and Julien Haumont
 ([@jhaumont](https://github.com/jhaumont)) for taking the time to make these
 additions to the Flux adopters list!
 
-*If you have not already done so, [use the instructions here](/adopters/) or give us a ping
-and we will help to add you. Not only is it great for us to get to know and
-welcome you to our community. It also gives the team a big boost in morale
-to know where in the world Flux is used everywhere*
+*If you have not already done so, [use the instructions here](/adopters/) or
+give us a ping and we will help to add you. Not only is it great for us to
+get to know and welcome you to our community, it also gives the team a big
+boost in morale to see Flux being used across the world.*
 
 ### Flux members, contributors, and maintainers!
 
@@ -150,19 +149,19 @@ Thanks for all your contributions to Flux! This is well-deserved.
 We are excited to welcome Mehak Saheed who would be working to
 improve Flux's documentation during this year's Google Season
 of Docs. Mehak is a technical writer with over six years of experience
-and has worked on documentation for projects such as [cert-manager]
-(https://cert-manager.io/docs/) and [Unfurl](https://docs.unfurl.run/).
+and has worked on documentation for projects such as [cert-manager](https://cert-manager.io/docs/)
+and [Unfurl](https://docs.unfurl.run/).
 
 We look forward to the great work she'll do!
 
 ### Share your story at KubeCon NA in Chicago this year! 📆
 
-*If you’d like to attend KubeCon NA in Chicago as a speaker, reach out to
-us to collaborate on proposals on a range of topics related to Kubernetes.
-We are happy to provide our writing expertise to your proposal, and to collaborate
-on ideas. Contact tamao@weave.works asap because the call for papers is due June 18, 2023.
-The conference is November 6-9, 2023 in Chicago.*
-
+*If you wish to speak at KubCon NA, reach out to us to collaborate on
+proposals on a range of topics related to Kuberentes. We are happy to
+provide our writing expertise to your proposal and to collaborate on
+ideas. The CFP deadline is June 18, so kindly contact
+[tamao@weave.works](mailto:tamao@weave.works) ASAP if you're interested.
+The conference is from 6th-9th November in Chicago.*
 
 ### Use Cases from Flux users at GitOpsCon / Open Source Summit 2023 in May!
 
@@ -184,9 +183,9 @@ from the conference from contributors and maintainers. Here are highlighted talk
 - [Extending Observability to the Application Lifecycle with ArgoCD, Flux and Keptn](https://youtu.be/RgzGNY1uy3U) - Flux users Ana Margarita Medina, Lightstep & Adam Gardner, Dynatrace
 
 ### DevOps Days Medellin, Colombia
+
 [David Caballero](https://cv.dcaballero.net/) gave a talk this month on Flux
 and shared slides and other resources in the [CNCF Flux slack](https://cloud-native.slack.com/archives/CLAJ40HV3/p1684432848208149). Check it out!
-
 
 ### Talks on Flux+GitLab, Flux+ARM64, Flux+Terraform, Flux+VS Code, Flux+WASM and more from GitOpsCon-CDCon / Open Source Summit 2023
 
@@ -195,10 +194,12 @@ Here are additional talks from [GitOpsCon-CDCon](http://gitopscon.com) and
 during the week of May 8-12, 2023 in Vancouver, Canada. 
 
 #### Talk summaries in The New Stack:
+
 - [Kingdon’s talk](https://thenewstack.io/case-study-a-webassembly-failure-and-lessons-learned/) on WASM
 - GitOps principles quoting [Pinky’s GitOpsCon keynote](https://thenewstack.io/4-core-principles-of-gitops/) panel
 
 #### Talks by Flux contributors and maintainers include:
+
 - [GitOpsCon Keynote panel featuring Flux contributor](https://youtu.be/yGrTxkzjmZA), Priyanka “Pinky” Ravi, Weaveworks 
 - [GitLab + Flux!](https://youtu.be/CeCpvJH_RuA) - Priyanka “Pinky” Ravi, Weaveworks & Flux user, Viktor Nagy, GitLab 
 - [GitOps Sustainability with Flux and arm64 (full version)](https://youtu.be/KT_Hxr8pGLg)- Tamao Nakahara, Weaveworks & Liz Fong-Jones, Honeycomb
@@ -247,7 +248,6 @@ group or of the presenter. If you want to come and join us in either
 capacity, just show up or if you have questions, reach out to Kingdon on
 Slack.*
 
-
 ## Flux Fun Fact!
 
 Did you know … 
@@ -272,4 +272,3 @@ If you like what you read and would like to get involved, here are a few good wa
 - We are looking forward to working with you.
 
 :heart: Your Flux maintainer, Somtochi Onyekwere, and project member, Tamao Nakahara.
-
