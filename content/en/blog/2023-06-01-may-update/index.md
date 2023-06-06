@@ -29,7 +29,7 @@ Also, don’t miss future Flux Bug Scrubs using ChatGPT.
 
 ## Flux technology things to know
 
-### Three more Flux release candidates! Many improvements - please test
+### Three more Flux release candidates! Many improvements - Please test
 
 On our path to GA, we released [v2.0.0-rc5](https://github.com/fluxcd/flux2/releases/tag/v2.0.0-rc.5),
 the fifth release candidate for the 2.0.0 release. It includes many fixes,
@@ -93,8 +93,8 @@ on how to upgrade.
 
 ### Newly posted Flux adopters!
 
-{{< gallery match="logos/*" sortOrder="desc" rowHeight="200" margins="5"
-            thumbnailResizeOptions="900x900 q90 Lanczos"
+{{< gallery match="logos/*" sortOrder="desc" rowHeight="150" margins="5"
+            thumbnailResizeOptions="600x600 q90 Lanczos"
             previewType="blur" embedPreview=true lastRow="nojustify" >}}
 
 - [Blablacar](https://www.blablacar.com/): a long distance carpooling platform that connects drivers with empty seats and passengers to share travel costs.
@@ -212,8 +212,8 @@ during the week of May 8-12, 2023 in Vancouver, Canada.
 - [Lightning Talk: GitOps Sustainability with Flux and arm64 (5-min version)](https://youtu.be/vBQ3wN1c9xU) - Flux contributor, Tamao Nakahara, Weaveworks
 - [Community Diversity and Inclusion as Business Metric (and Not Just a Feel-Good Tactic)](https://youtu.be/A-su3Rb7UC8) - Flux contributor, Tamao Nakahara, Weaveworks
 
-{{< gallery match="images/*" sortOrder="desc" rowHeight="150" margins="5"
-            thumbnailResizeOptions="600x600 q90 Lanczos"
+{{< gallery match="images/*" sortOrder="desc" rowHeight="250" margins="5"
+            thumbnailResizeOptions="900x900 q90 Lanczos"
             previewType="blur" embedPreview=true lastRow="nojustify" >}}
 
 ## Upcoming Events
