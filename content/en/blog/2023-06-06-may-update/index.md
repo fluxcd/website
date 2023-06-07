@@ -126,6 +126,16 @@ section](/resources).
 Thanks a lot for everything you have done - we are happy to have you
 in our team!
 
+#### Matheus Pimenta joins as a Flux Project Member
+
+We are very happy to have [Matheus Pimenta](https://github.com/fluxcd/community/issues/300)
+as a Flux Project Member. Matheus has been very active in the Flux community.
+He has been opening issues, participating in discussions and raising pull requests
+especially in the notification-controller.
+
+Thanks a lot for everything you have done - we are happy to have you
+in our team!
+
 #### Tamao Nakahara joins as Flux Project Member
 
 Tamao has been actively assisting with managing the Flux community
