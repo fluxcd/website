@@ -3,7 +3,7 @@
   command = "make production-build"
 
 [build.environment]
-  HUGO_VERSION = "0.112.7"
+  HUGO_VERSION = "0.113.0"
   NODE_VERSION = "16"
   GO_VERSION = "1.18"
 
