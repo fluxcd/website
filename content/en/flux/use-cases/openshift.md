@@ -81,6 +81,7 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
 patches:
+  # Remove seccompProfile from the flux Deployments when running on OpenShift
   - patch: |
       apiVersion: apps/v1
       kind: Deployment
@@ -97,6 +98,16 @@ patches:
                     $patch: delete
     target:
       kind: Deployment
+      labelSelector: app.kubernetes.io/part-of=flux
+  # OpenShift will overwrite these Namespace labels
+  # Remove them from the flux definition and leave them to openshift.
+  - patch: |-
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn-version
+    target:
+      kind: Namespace
       labelSelector: app.kubernetes.io/part-of=flux
 ```
 
