@@ -99,6 +99,16 @@ patches:
     target:
       kind: Deployment
       labelSelector: app.kubernetes.io/part-of=flux
+  # OpenShift will overwrite these Namespace labels
+  # Remove them from the flux definition and leave them to openshift.
+  - patch: |-
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn
+      - op: remove
+        path: /metadata/labels/pod-security.kubernetes.io~1warn-version
+    target:
+      kind: Namespace
+      labelSelector: app.kubernetes.io/part-of=flux
 ```
 
 4. Commit and push the changes to main branch:
@@ -167,73 +177,3 @@ Flux is available on OperatorHub and Red Hat OpenShift Community Operators, whic
 On the OpenShift UI, you go to "Operators -> OperatorHub" menu, search for "Flux", click the Flux Operator, then click the "Install" button.
 
 Here's the link to [Flux on OperatorHub](https://operatorhub.io/operator/flux).
-
-## Managing flux with flux through GitRepository
-
-You can manage flux with flux.
-OpenShift have since 4.11 started to add pod-security labels by default.
-Since the `gotk-components.yaml` in flux *also* adds those labels, but with diffent values, you end up with the `flux-system` Namespace being continuously configured.
-
-This samle configuration show how you can handle:
-
-1. Removing the seccompProfile
-2. Removing the pod-security labels from the *flux configuration* - leaving them to OpenShift to manage (implicitly - flux won't manage labels not configured in flux)
-
-```yaml
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
-metadata:
-  name: flux-system
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  ref:
-    branch: your-branch
-  secretRef:
-    name: flux-system
-  url: ssh://git@github.com/your-organization/flux
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: flux-system
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  path: ./manifests
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  patches:
-    # Remove seccomp from flux components
-    # https://fluxcd.io/flux/use-cases/openshift/#security-context-constraints
-    - patch: |-
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: all
-        spec:
-          template:
-            spec:
-              containers:
-                - name: manager
-                  securityContext:
-                    runAsUser: 65534
-                    seccompProfile:
-                      $patch: delete
-      target:
-        kind: Deployment
-        labelSelector: app.kubernetes.io/part-of=flux
-    # OpenShift will overwrite these Namespace labels
-    # Remove them from the flux definition and leave them to openshift.
-    - target:
-        kind: Namespace
-        labelSelector: app.kubernetes.io/part-of=flux
-      patch: |-
-        - op: remove
-          path: /metadata/labels/pod-security.kubernetes.io~1warn
-        - op: remove
-          path: /metadata/labels/pod-security.kubernetes.io~1warn-version
-```
