@@ -217,7 +217,7 @@ The recommendations below are based on Flux's latest version.
 
     For improved reliability, additional instances of Flux Components could be deployed, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.
 
-    Running multiple Flux instances within the same cluster is supported by means of sharding, please consult the [Flux sharding and horizontal scaling documentation](flux/cheatsheets/sharding/) for more details.
+    Running multiple Flux instances within the same cluster is supported by means of sharding, please consult the [Flux sharding and horizontal scaling documentation](/flux/cheatsheets/sharding/) for more details.
 
     To avoid conflicts among controllers while attempting to reconcile Custom Resources, controller types (e.g. `source-controller`) must have be configured with unique label selectors in the `--watch-label-selector` flag.
   </details>
