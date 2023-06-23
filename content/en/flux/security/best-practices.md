@@ -17,8 +17,9 @@ convenience, performance or resources utilization of Flux. Therefore, use this i
 combination with your own Security Posture and Risk Appetite.
 
 Some recommendations may overlap with Kubernetes security recommendations, to keep
-this short and more easily maintainable, please refer to [Kubernetes CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes) for non
-Flux-specific guidance.
+this short and more easily maintainable, please refer to
+[Kubernetes CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+for non Flux-specific guidance.
 
 For help implementing these recommendations, seek [enterprise support](/support/#commercial-support).
 
@@ -134,7 +135,7 @@ The recommendations below are based on Flux's latest version.
   <details>
     <summary>Rationale</summary>
 
-    The Kustomize Controller have an auto decryption mechanism that can decrypt cipher texts on-demand at reconciliation time using an embedded implementation of [SOPS](https://github.com/mozilla/sops). This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
+    The kustomize-controller has an auto decryption mechanism that can decrypt cipher texts on-demand at reconciliation time using an embedded implementation of [SOPS](https://github.com/mozilla/sops). This enables credentials (e.g. passwords, tokens) and sensitive information to be kept in an encrypted state in the sources.    
   </details>
   <details>
     <summary>Audit Procedure</summary>
@@ -207,23 +208,23 @@ The recommendations below are based on Flux's latest version.
 
 ### Resource Isolation
 
-- Ensure additional Flux instances are deployed when mission critical tenants/workloads must be assured.
+- Ensure additional Flux instances are deployed when mission-critical tenants/workloads must be assured.
 
   <details>
     <summary>Rationale</summary>
 
     Sharing the same instances of Flux Components across all tenants including the Platform Admin, will lead to all reconciliations competing for the same resources. In addition, all Flux objects will be placed on the same queue for reconciliation which is limited by the number of workers set by each controller (i.e. `--concurrent=20`), which could cause reconciliation intervals not to be accurately honored.
 
-    For improved reliability, additional instances of Flux Components could be deployed in specific namespaces, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.
+    For improved reliability, additional instances of Flux Components could be deployed, effectively creating separate "lanes" that are not disrupted by noisy neighbors. An example of this approach would be having additional instances of both Kustomize and Helm controllers that focuses on applying platform level changes, which do not compete with Tenants changes.
 
-    Multiple Flux instances within the same cluster is not supported by the Flux tooling, and therefore users won't be able to rely on the Flux CLI or the community maintained Helm chart. Users pursuing this setup will need to build their own deployment method for it. Whilst ensuring that their `NetworkPolicy`and `RBAC` settings still align with their security posture. Whilst updating Flux controllers, they will also need to ensure that CRD versions are aligned with all the controllers within the cluster.
+    Running multiple Flux instances within the same cluster is supported by means of sharding, please consult the [Flux sharding and horizontal scaling documentation](flux/cheatsheets/sharding/) for more details.
 
-    In order for controllers not to compete with each other when trying to reconcile Custom Resources, controller types (e.g. `image-automation-controller`) must have their `--watch-all-namespaces` setting aligned across the cluster. If one instance has that flag set to `false`, all other instances must be set to the same value. When it is set to true (e.g. `--watch-all-namespaces=true`), there must be a single instance of that controller type within the cluster.
+    To avoid conflicts among controllers while attempting to reconcile Custom Resources, controller types (e.g. `source-controller`) must have be configured with unique label selectors in the `--watch-label-selector` flag.
   </details>
   <details>
     <summary>Audit Procedure</summary>
 
-    Check for the existence of additional Flux controllers instances and their respective scopes. Each "non-global" controller must be started with `--watch-all-namespaces=false` and have the namespace scope set via environment variable `RUNTIME_NAMESPACE`:
+    Check for the existence of additional Flux controllers instances and their respective scopes. Each controller must be started with `--watch-label-selector` and have the selector point to unique label values:
     
     ```sh
     kubectl describe pod -n flux-system -l app=kustomize-controller | grep -B 5 -A 10 Args
