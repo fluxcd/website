@@ -24,16 +24,7 @@ had this addition:
 >
 > To verify the authenticity of Flux's container images, install
 > [cosign](https://docs.sigstore.dev/cosign/installation/)
-> and run:
->
-> ```shell
-> COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/fluxcd/source-controller:v0.21.1
->
-> Verification for ghcr.io/fluxcd/source-controller:v0.21.1
-> The following checks were performed on each of these signatures:>
-> - The cosign claims were validated
-> - Existence of the claims in the transparency log was verified offline
-> - Any certificates were verified against the Fulcio roots.
+> and run `cosign verify`.
 > ```
 
 We are very pleased to bring this to you and encourage you to make use
@@ -45,9 +36,8 @@ unpack everything the above section says.
 Essentially we want you to be able to verify Flux's *image provenance*, which
 boils down to making sure that
 
-1. The release you just downloaded actually comes from us, the Flux
-   team
-1. It hasn't been tampered with
+1. The release you just downloaded actually comes from us, the Flux team
+2. It hasn't been tampered with
 
 Cryptographic signatures are the go-to choice for this and have been
 used for decades, but are not without challenges.
@@ -101,23 +91,25 @@ source-controller](https://github.com/fluxcd/source-controller/pull/550/files)).
 
 If you want to do this manually as an one-off, [install the cosign
 tool](https://docs.sigstore.dev/cosign/installation) and
-essentially just run
+essentially just run `cosign verify` for the image you want to verify:
 
 ```shell
-COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/fluxcd/source-controller:v0.21.1
+cosign verify ghcr.io/fluxcd/source-controller:v1.0.0-rc.5 \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  --certificate-identity-regexp=^https://github.com/fluxcd/.*$
 ```
 
-for the image you want to verify. `COSIGN_EXPERIMENTAL=1` is currently
-(cosign version 1.5.1) required to verify the transparency log as well.
+With `--certificate-oidc-issuer` we verify that the Flux image was signed by GitHub Actions OIDC issuer.
+With `--certificate-identity-regexp` we verify that the image originates from the FluxCD GitHub organization.
 
-Indeed the output says:
+The output should be:
 
 ```shell
-Verification for ghcr.io/fluxcd/source-controller:v0.21.1
+Verification for ghcr.io/fluxcd/source-controller:v1.0.0-rc.5 --
 The following checks were performed on each of these signatures:
-- The cosign claims were validated
-- Existence of the claims in the transparency log was verified offline
-- Any certificates were verified against the Fulcio roots.
+  - The cosign claims were validated
+  - Existence of the claims in the transparency log was verified offline
+  - The code-signing certificate was verified using trusted certificate authority certificates
 ```
 
 Now let's take a look at how to automate this further.
@@ -142,37 +134,27 @@ spec:
   rules:
     - name: verify-cosign-signature
       match:
-        resources:
-          kinds:
-            - Pod
+        any:
+          - resources:
+              kinds:
+                - Pod
       verifyImages:
+        - imageReferences:
+            - "ghcr.io/fluxcd/source-controller:*"
+            - "ghcr.io/fluxcd/kustomize-controller:*"
+            - "ghcr.io/fluxcd/helm-controller:*"
+            - "ghcr.io/fluxcd/notification-controller:*"
+            - "ghcr.io/fluxcd/image-reflector-controller:*"
+            - "ghcr.io/fluxcd/image-automation-controller:*"
+          attestors:
+            - entries:
+                - keyless:
+                    subject: "https://github.com/fluxcd/*"
+                    issuer: "https://token.actions.githubusercontent.com"
+                    rekor:
+                      url: https://rekor.sigstore.dev
 ```
 
-Now list all the images you want verified. For `helm-controller` for
-example, add
-
-```yaml
-      - image: "ghcr.io/fluxcd/helm-controller:*"
-        repository: "ghcr.io/fluxcd/helm-controller"
-        roots: |
-          -----BEGIN CERTIFICATE-----
-          MIIB9zCCAXygAwIBAgIUALZNAPFdxHPwjeDloDwyYChAO/4wCgYIKoZIzj0EAwMw
-          KjEVMBMGA1UEChMMc2lnc3RvcmUuZGV2MREwDwYDVQQDEwhzaWdzdG9yZTAeFw0y
-          MTEwMDcxMzU2NTlaFw0zMTEwMDUxMzU2NThaMCoxFTATBgNVBAoTDHNpZ3N0b3Jl
-          LmRldjERMA8GA1UEAxMIc2lnc3RvcmUwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAAT7
-          XeFT4rb3PQGwS4IajtLk3/OlnpgangaBclYpsYBr5i+4ynB07ceb3LP0OIOZdxex
-          X69c5iVuyJRQ+Hz05yi+UF3uBWAlHpiS5sh0+H2GHE7SXrk1EC5m1Tr19L9gg92j
-          YzBhMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRY
-          wB5fkUWlZql6zJChkyLQKsXF+jAfBgNVHSMEGDAWgBRYwB5fkUWlZql6zJChkyLQ
-          KsXF+jAKBggqhkjOPQQDAwNpADBmAjEAj1nHeXZp+13NWBNa+EDsDP8G1WWg1tCM
-          WP/WHPqpaVo0jhsweNFZgSs0eE7wYI4qAjEA2WB9ot98sIkoF3vZYdd3/VtWB5b9
-          TNMea7Ix/stJ5TfcLLeABLE4BNJOsQ4vnBHJ
-          -----END CERTIFICATE-----
-
-```
-
-The certificate copied here is the [root certificate of Fulcio, the
-sigstore CA](https://github.com/SigStore/fulcio#status).
 Have a look at
 [fluxcd/flux2-multi-tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
 to see a more elaborate example and how the Kyverno policies are wired
