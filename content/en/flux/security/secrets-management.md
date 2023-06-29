@@ -24,7 +24,7 @@ concerns and techniques to consider when managing secrets with Flux.
 First of all, let's go through the different options supported by Flux and Kubernetes.
 
 Nowadays there are a multitude of secret management options. Some are available in-cluster,
-directly in the comfort of of your Kubernetes cluster, and others that are provided from
+directly in the comfort of your Kubernetes cluster, and others that are provided from
 out-of-cluster, for example a Cloud based KMS.
 
 #### Kubernetes Secrets
@@ -100,19 +100,19 @@ The source of truth for your secrets can reside outside of the cluster, and then
 into the cluster as Kubernetes Secrets by operators. Much like encrypted secrets, this process
 is transparent to the workloads in the cluster.
 
-Two examples of this type of operators are [1Password Operator] and [External Secrets Operator].
+Two examples of this type of operator are [1Password Operator] and [External Secrets Operator].
 But given their nature, Flux is able to support any operator that manages Kubernetes secrets.
 
 This approach provides a level of redundancy by default, as secrets are kept at both the cluster
-and the remote source, so small failures can go undetected. It works supports hybrid workloads
+and the remote source, so small failures can go undetected. It supports hybrid workloads
 quite well, when some secrets have to be shared with applications that are not Kubernetes-based.
 
 When using mutable secrets, it could be hard for Flux or the dependent applications to know
-whether they are using the latest version of a given secret. On such cases, immutable secrets,
+whether they are using the latest version of a given secret. In such cases, immutable secrets,
 where the name also contains the version of the secret, may help.
 
 Take into account the loading times when provisioning a new cluster, as that can become a
-bottleneck slowing down the provisioning time as the number of secrets increase.
+bottleneck slowing down the provisioning time as the number of secrets increases.
 
 Flux supports all operators that provide this functionality.
 
@@ -122,7 +122,7 @@ Another way to bring external secrets into Kubernetes, is the use of CSI Drivers
 which mounts secrets as files directly into a Pod filesystem, instead of generating
 native Kubernetes Secrets.
 
-Due to the way it works the secrets are not accessible within the Kubernetes Control
+Due to the way it works, the secrets are not accessible within the Kubernetes Control
 Plane, so although you can use it with your workloads, it won't work when providing
 to CustomResourceTypes (CRDs) that need a reference to a secret
 (e.g. `.spec.secretRef.name` in `GitRepository`).
@@ -144,7 +144,7 @@ cluster is also an option. Which could be a useful alternative when lifting and
 shifting legacy applications that already depend on such approach.
 
 Here the secret management solution will become a single point of failure,
-expect issues when it goes temporarily unavailable and have disaster recovery plans.
+expect issues when it goes temporarily unavailable and make sure to have disaster recovery plans.
 Also observe throttling limits of cloud solutions, given that different applications
 may be targeting the same Secret Manager, without a rate limiter across all of them,
 this could easily lead to an outage at scale.
@@ -176,7 +176,7 @@ Cloud KMS solutions tend to provide secret versioning built-in.
 #### Access Management and Auditing
 
 Access to secrets should be restricted to the servers and applications within the environment
-they need to be accessed. The same goes to users and service accounts.
+they need to be accessed. The same goes for users and service accounts.
 
 When considering the different solutions, it is important to note how they hang together
 and what the gaps are. If you have a strong requirement for access and auditing controls,
@@ -190,7 +190,7 @@ such requirements.
 
 The scope of each secret must be carefully considered to decrease the blast radius in
 case of breach. A trade-off must be reached to attain a balance between the two extremes:
-having a single secrets that has all the access, versus having too many secrets that are
+having a single secret that has all the access, versus having too many secrets that are
 always used in combination.
 
 Sharing the same secret across different scopes, just because they have the same permissions
@@ -249,7 +249,7 @@ into the trap of building a non-provisionable cluster. For example, if your firs
 depends on a CustomResourceType (CRD) to deploy a secret, which is only deployed as part of another
 Kustomization, Flux may not be able to redeploy your sources from scratch on a new cluster.
 
-Make sure that your pipeline identify and test such scenarios. Automate the provisioning of clusters
+Make sure that your pipeline identifies and tests such scenarios. Automate the provisioning of clusters
 that can test the entire E2E of your deployment process, and ensure that it is executed regularly.
 
 ### Summary
@@ -265,7 +265,7 @@ recommended.
 
 Take into account your threat model, availability and resilience requirements
 when deciding what works best for you, and rest assured that a combination of some of
-the above will make more sense, specially when disaster recovery and break the glass
+the above will make more sense, especially when disaster recovery and break the glass
 scenarios are considered.
 
 [kubernetes secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
