@@ -1,4 +1,4 @@
-name: Push updated Docker hugo version
+name: push-hugo
 
 on:
   workflow_dispatch:
