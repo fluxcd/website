@@ -1,4 +1,4 @@
-name: Push updated hugo support image
+name: push-hugo-support
 
 on:
   workflow_dispatch:

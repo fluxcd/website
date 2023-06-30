@@ -1,10 +1,10 @@
-name: Re-run build from 'main' on Netlify
+name: netlify
 on:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 jobs:
-  build:
+  publish:
     if: github.repository == 'fluxcd/website'
     runs-on: ubuntu-latest
     steps:
