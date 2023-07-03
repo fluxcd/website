@@ -2,7 +2,7 @@
 title: "Frequently asked questions"
 linkTitle: "FAQ"
 description: "Flux and the GitOps Toolkit frequently asked questions."
-weight: 100
+weight: 144
 ---
 
 {{% alert title="Troubleshooting" %}}
