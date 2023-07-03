@@ -109,7 +109,7 @@ jobs:
     # Start promotion when the staging cluster has successfully
     # upgraded the Helm release to a new chart version.
     if: |
-      github.event.client_payload.metadata.summary == 'env=staging' &&
+      github.event.client_payload.metadata.env == 'staging' &&
       github.event.client_payload.severity == 'info'
     steps:
       # Checkout main branch.
@@ -120,7 +120,7 @@ jobs:
       - name: Get chart version from staging
         id: staging
         run: |
-          VERSION=${{ github.event.client_payload.metadata.revision }}
+          VERSION=$(echo ${{ github.event.client_payload.metadata.revision }} | cut -d '@' -f1)
           echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       # Patch the chart version in the production Helm release manifest.
       - name: Set chart version in production
@@ -182,18 +182,24 @@ metadata:
 spec:
   providerRef:
     name: github
-  summary: "env=staging"
+  summary: "Trigger promotion"
+  eventMetadata:
+    env: staging
+    cluster: staging-1
+    region: eu-central-1
   eventSeverity: info
   eventSources:
     - kind: HelmRelease
       name: demo
-  exclusionList:
-    - ".*upgrade.*has.*started"
-    - ".*is.*not.*ready"
-    - "^Dependencies.*"
+  inclusionList:
+    - "*.upgrade.*succeeded.*"
 ```
 
 **Note** that you should adapt the above definitions to match your GitHub repository address.
+If [testing is enabled](https://fluxcd.io/flux/components/helm/helmreleases/#configuring-helm-test-actions)
+in your HelmRelease, you can use the `"*.test.*succeeded.*"`
+expression in the inclusion list instead of `"*.upgrade.*succeeded.*"`.
+This will ensure the promotion happens only after tests have been successfully run.
 
 You also need to create a Kubernetes secret with a GitHub Personal Access Token
 that has access to the repository:
