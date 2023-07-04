@@ -1,5 +1,5 @@
-automation-api.md
+automation-api/v*.md
+reflector-api/v*.md
 imagepolicies.md
 imagerepositories.md
 imageupdateautomations.md
-reflector-api.md
