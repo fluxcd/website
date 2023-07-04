@@ -151,29 +151,29 @@ What follows is the list of Flux components along with their minimum required ve
 
 ### Example
 
-We will be using the [helm-controller](https://github.com/fluxcd/helm-controller) container
+We will be using the [source-controller](https://github.com/fluxcd/source-controller) container
 image hosted on GHCR for this example, but these instructions can be used for all Flux container images.
 
 First, we need to find the digest of the image we want to verify:
 
 ```console
-$ crane digest ghcr.io/fluxcd/helm-controller:v0.34.2
-sha256:f97672c005dcfa4d03d76b2fd4063cd9015d9bd088c1c0f50b64e8dba5e37d1e
+$ crane digest ghcr.io/fluxcd/source-controller:v1.0.0
+sha256:8dfd386a338eab2fde70cd7609e3b35a6e2f30283ecf2366da53013295fa65f3
 ```
 
 Using the digest, we can now verify the provenance of the Flux controller by specified its repository and version:
 
 ```console
-$ slsa-verifier verify-image ghcr.io/fluxcd/helm-controller:@sha256:f97672c005dcfa4d03d76b2fd4063cd9015d9bd088c1c0f50b64e8dba5e37d1e --source-uri github.com/fluxcd/helm-controller --source-tag v0.34.2
-Verified build using builder https://github.comslsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v1.7.0 at commit 06979867d50edf49ea335fe960cdb9b1d4928a8d
+$ slsa-verifier verify-image ghcr.io/fluxcd/source-controller:v1.0.0@sha256:8dfd386a338eab2fde70cd7609e3b35a6e2f30283ecf2366da53013295fa65f3 --source-uri github.com/fluxcd/source-controller --source-tag v1.0.0
+Verified build using builder https://github.comslsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v1.7.0 at commit a40e0da705f26710077a7591f9dad05b7cd55acd
 PASSED: Verified SLSA provenance
 ```
 
 Using Cosign, we can verify the SLSA provenance attestation by specified the workflow and the GitHub OIDC issuer:
 
 ```console
-$ cosign verify-attestation --type slsaprovenance --certificate-identity-regexp https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v --certificate-oidc-issuer https://token.actions.githubusercontent.com ghcr.io/fluxcd/helm-controller:v0.34.2
-Verification for ghcr.io/fluxcd/helm-controller:v0.34.2 --
+$ cosign verify-attestation --type slsaprovenance --certificate-identity-regexp https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v --certificate-oidc-issuer https://token.actions.githubusercontent.com ghcr.io/fluxcd/source-controller:v1.0.0
+Verification for ghcr.io/fluxcd/source-controller:v1.0.0 --
 The following checks were performed on each of these signatures:
   - The cosign claims were validated
   - Existence of the claims in the transparency log was verified offline
@@ -181,8 +181,8 @@ The following checks were performed on each of these signatures:
 Certificate subject: https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v1.7.0
 Certificate issuer URL: https://token.actions.githubusercontent.com
 GitHub Workflow Trigger: push
-GitHub Workflow SHA: 06979867d50edf49ea335fe960cdb9b1d4928a8d
+GitHub Workflow SHA: a40e0da705f26710077a7591f9dad05b7cd55acd
 GitHub Workflow Name: release
-GitHub Workflow Repository: fluxcd/helm-controller
-GitHub Workflow Ref: refs/tags/v0.34.2
+GitHub Workflow Repository: fluxcd/source-controller
+GitHub Workflow Ref: refs/tags/v1.0.0
 ```

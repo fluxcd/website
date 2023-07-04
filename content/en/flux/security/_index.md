@@ -32,11 +32,11 @@ To verify the authenticity of Flux's container images,
 install [cosign](https://docs.sigstore.dev/cosign/installation/) v2 and run:
 
 ```console
-$ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
+$ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0 \
   --certificate-identity-regexp=https://github.com/fluxcd \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com 
 
-Verification for ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 --
+Verification for ghcr.io/fluxcd/source-controller:v1.0.0 --
 The following checks were performed on each of these signatures:
   - The cosign claims were validated
   - Existence of the claims in the transparency log was verified offline
@@ -53,27 +53,42 @@ The SBOM is generated with [Syft](https://github.com/anchore/syft) in the [SPDX]
 The `spdx.json` file is available for download on the GitHub release page e.g.:
 
 ```shell
-curl -sL https://github.com/fluxcd/flux2/releases/download/v0.25.3/flux_0.25.3_sbom.spdx.json | jq
+curl -sL https://github.com/fluxcd/flux2/releases/download/v2.0.0/flux_0.25.3_sbom.spdx.json | jq
 ```
 
 The Flux controllers' images come with SBOMs for each CPU architecture,
 you can extract the SPDX JSON using Docker's inspect command:
 
 ```shell
-docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0 \
     --format "{{ json (index .SBOM \"linux/amd64\").SPDX}}"
 ```
 
 Or by using Docker's [sbom command](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/):
 
 ```shell
-docker sbom fluxcd/source-controller:v1.0.0-rc.3
+docker sbom fluxcd/source-controller:v1.0.0
 ```
 
 Please also refer to [this blog post](/blog/2022/02/security-the-value-of-sboms/)
 which discusses the idea and value of SBOMs.
 
-## SLSA Provenance Attestations
+## SLSA Provenance 
+
+Starting with Flux version 2.0.0, the build, release and provenance portions of the Flux
+project supply chain provisionally meet [SLSA Build Level 3](https://slsa.dev/spec/v1.0/levels).
+
+Please see the [SLSA Assessment](slsa-assessment.md) documentation for more details on how the
+provenance is generated and how Flux complies with the SLSA requirements.
+
+### Provenance verification
+
+The provenance of the Flux release artifacts (binaries, container images, SBOMs, deploy manifests)
+can be verified using the official SLSA verifier tool and Sigstore Cosign.
+Please see the [SLSA provenance verification](slsa-assessment.md#provenance-verification) documentation
+for more details on how to verify the provenance of Flux release artifacts.
+
+### Buildkit attestations
 
 The Flux controllers' images come with provenance attestations which follow
 the [SLSA provenance schema version 0.2](https://slsa.dev/provenance/v0.2#schema).
@@ -92,7 +107,7 @@ To extract the SLSA provenance JSON for a specific CPU architecture,
 you can use Docker's inspect command:
 
 ```shell
-docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0-rc.3 \
+docker buildx imagetools inspect ghcr.io/fluxcd/source-controller:v1.0.0 \
     --format "{{ json (index .Provenance \"linux/amd64\").SLSA}}"
 ```
 
@@ -116,7 +131,7 @@ which is an OSS scanner made by [Aqua Security](https://www.aquasec.com/).
 To scan a controller image with Trivy:
 
 ```shell
-trivy image ghcr.io/fluxcd/source-controller:v1.0.0-rc.3
+trivy image ghcr.io/fluxcd/source-controller:v1.0.0
 ```
 
 We ask users to keep Flux up-to-date on their clusters,
@@ -180,7 +195,7 @@ For example, the design allows all controllers to access Flux CRDs (binds to `cr
 but only binds the Flux reconciler controllers for Kustomize and Helm to `cluster-admin` `ClusterRole`,
 as these are the only two controllers that manage resources in the cluster.
 
-However in a [soft multi-tenancy setup]({{< relref "../get-started#multi-cluster-setup" >}}),
+However in a [soft multi-tenancy setup](https://github.com/fluxcd/flux2-multi-tenancy),
 Flux does not reconcile a tenant's repo under the `cluster-admin` role.
 Instead, you specify a different service account in your manifest, and the Flux controllers will use
 the Kubernetes Impersonation API under `cluster-admin` to impersonate that service account [^2].
@@ -193,7 +208,7 @@ are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
 
 Beyond the security features that Flux has backed into it, there are further best
 practices that can be implemented to ensure your Flux deployment is as secure
-as it can be. For more information, checkout the [Flux Security Best Practices]({{< relref "./best-practices" >}}).
+as it can be. For more information, checkout the [Flux Security Best Practices](best-practices.md).
 
 [^1]: However, by design cross-namespace references are an exception to RBAC.
 Platform admins have to option to turnoff cross-namespace references as described in the
