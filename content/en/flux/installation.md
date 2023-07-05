@@ -13,7 +13,6 @@ You will need a Kubernetes cluster that matches one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.23`            | `>= 1.23.0`      |
 | `v1.24`            | `>= 1.24.0`      |
 | `v1.25`            | `>= 1.25.0`      |
 | `v1.26`            | `>= 1.26.0`      |
