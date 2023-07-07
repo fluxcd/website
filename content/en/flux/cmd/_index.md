@@ -59,7 +59,7 @@ choco install flux
 To install the latest release on Linux, macOS or Windows WSL:
 
 ```bash
-curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.0.0-rc.4 bash
+curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.0.0 bash
 ```
 
 The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh) does the following:
@@ -78,7 +78,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 Example usage:
 
 ```console
-$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v2.0.0-rc.4
+$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v2.0.0
 / # flux check --kubeconfig=kubeconfig
 ```
 
@@ -93,3 +93,19 @@ To configure your shell to load `flux` [bash completions](flux_completion_bash.m
 [`zsh`](flux_completion_zsh.md), [`fish`](flux_completion_fish.md),
 and [`powershell`](flux_completion_powershell.md)
 are also supported with their own sub-commands.
+
+## Install using GitHub Actions
+
+To install the latest release on Linux, macOS or Windows GitHub runners:
+
+```yaml
+steps:
+  - name: Setup Flux CLI
+    uses: fluxcd/flux2/action@main
+    with:
+      version: 'latest'
+  - name: Run Flux CLI
+    run: flux version --client
+```
+
+For more information please see the [Flux GitHub Action documentation](/flux/flux-gh-action.md).
