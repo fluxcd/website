@@ -730,7 +730,7 @@ flux check
 {{% alert color="info" title="Automated upgrades" %}}
 You can automate the components manifest update with GitHub Actions
 and open a PR when there is a new Flux version available.
-For more details please see [Flux GitHub Action docs](https://github.com/fluxcd/flux2/tree/main/action).
+For more details please see [Flux GitHub Action docs](/flux/flux-gh-action.md).
 {{% /alert %}}
 
 ### Terraform upgrade

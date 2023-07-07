@@ -140,7 +140,7 @@ New Flux versions are published periodically (at least once per month),
 and the container images are based on the latest Alpine and Go releases.
 We offer a fully automated solution for keeping Flux up-to-date,
 please see the Flux GitHub Actions
-[documentation](https://github.com/fluxcd/flux2/tree/main/action#automate-flux-updates)
+[documentation](/flux/flux-gh-action.md#automate-flux-updates)
 for more details.
 
 {{% alert color="warning" title="Reporting CVEs in Flux images" %}}

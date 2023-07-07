@@ -190,7 +190,7 @@ source-controller-shard1      1/1     1            1           1m
 ```
 
 When upgrading Flux, either by rerunning bootstrap with a newer version or
-by using the [Flux GitHub Actions](https://github.com/fluxcd/flux2/tree/main/action),
+by using the [Flux GitHub Actions](/flux/flux-gh-action.md#automate-flux-updates),
 the sharded controllers will be automatically upgraded along with the main ones.
 
 ## Assign resources to shards

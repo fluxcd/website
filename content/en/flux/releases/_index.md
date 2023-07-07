@@ -94,7 +94,7 @@ for which migration instructions are provided as part of the
 [changelog](#release-changelog).
 
 We expect users to keep Flux up-to-date on their clusters using automation tools
-such as [Flux GitHub Actions](https://github.com/fluxcd/flux2/tree/main/action) and
+such as [Flux GitHub Actions](/flux/flux-gh-action.md) and
 [Renovatebot](https://docs.renovatebot.com/modules/manager/flux/).
 
 Various vendors such as Microsoft Azure, D2iQ, Weaveworks and others offer a managed Flux service,
