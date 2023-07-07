@@ -14,5 +14,14 @@ docsearch({
         indexName: 'fluxcd',
 });
 
+for (const e of document.querySelectorAll(".docsearch-placeholder")) {
+        docsearch({
+                container: e,
+                apiKey: 'd466984187cbf406354da362d45b8e3f',
+                appId: 'Z41T3FAXIU',
+                indexName: 'fluxcd',
+        });
+}
+
 </script>
 {{ end }}
