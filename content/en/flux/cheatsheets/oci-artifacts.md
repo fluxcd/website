@@ -152,7 +152,7 @@ The Flux controllers running on the production cluster
 detects the new semver tag, pulls the manifests and applies them.
 
 {{% alert color="info" title="GitHub Actions" %}}
-If you are using GitHub for CI, please see [these examples](https://github.com/fluxcd/flux2/tree/main/action) on
+If you are using GitHub for CI, please see [these examples](/flux/flux-gh-action.md#examples) on
 how to automate the publishing of OCI Artifacts in your workflows with the Flux GitHub Action.
 {{% /alert %}}
 
