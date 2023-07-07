@@ -1,5 +1,3 @@
-<!-- Our own 404 page: https://github.com/fluxcd/website/pull/608 -->
-
 {{ define "main"}}
 <main id="main">
   <div class="d-flex justify-content-center">
@@ -15,25 +13,10 @@
 
       <div class="search404">
         <h3>Something else...</h3>
-        <div>
-          <input type="search" class="form-control search-404-input"
-          aria-label="{{ T "ui_search" }}"
-          autocomplete="off">
-        </div>
+        <div class="docsearch-placeholder"></div>
       </div>
     </div>
   </div>
 </main>
-
-<script defer type="text/javascript">
-  $(function() {
-    const docsearch = docsearchInit('.search-404-input');
-    const ac = docsearch.autocomplete.autocomplete
-
-    let algoliaQuery = document.location.pathname.replace(/\.\w+/, '').replace(/\W/g, ' ').trim();
-    ac.setVal(algoliaQuery);
-    ac.open();
-  });
-</script>
 
 {{ end }}
