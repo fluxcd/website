@@ -288,3 +288,6 @@ adopters:
     - name: TTMzero
       url: https://ttmzero.com/
       logo: logos/ttmzero.png
+    - name: Sonatype
+      url: https://sonatype.com/
+      logo: logos/sonatype.png
