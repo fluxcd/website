@@ -493,7 +493,8 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 30m
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -542,7 +543,8 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 30m
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system

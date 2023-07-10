@@ -161,7 +161,7 @@ Create an `ImageRepository` to tell Flux which container registry to scan for ne
 ```sh
 flux create image repository podinfo \
 --image=ghcr.io/stefanprodan/podinfo \
---interval=1m \
+--interval=5m \
 --export > ./clusters/my-cluster/podinfo-registry.yaml
 ```
 
@@ -175,7 +175,7 @@ metadata:
   namespace: flux-system
 spec:
   image: ghcr.io/stefanprodan/podinfo
-  interval: 1m0s
+  interval: 5m
 ```
 
 For private images, you can create a Kubernetes secret
@@ -305,6 +305,7 @@ Create an `ImageUpdateAutomation` to tell Flux which Git repository to write ima
 
 ```sh
 flux create image update flux-system \
+--interval=30m \
 --git-repo-ref=flux-system \
 --git-repo-path="./clusters/my-cluster" \
 --checkout-branch=main \
@@ -324,7 +325,7 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 30m
   sourceRef:
     kind: GitRepository
     name: flux-system
