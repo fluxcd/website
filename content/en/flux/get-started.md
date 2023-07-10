@@ -122,7 +122,7 @@ podinfo is a tiny web application made with Go.
     flux create source git podinfo \
       --url=https://github.com/stefanprodan/podinfo \
       --branch=master \
-      --interval=30s \
+      --interval=1m \
       --export > ./clusters/my-cluster/podinfo-source.yaml
     ```
 
@@ -135,7 +135,7 @@ podinfo is a tiny web application made with Go.
       name: podinfo
       namespace: flux-system
     spec:
-      interval: 30s
+      interval: 1m
       ref:
         branch: master
       url: https://github.com/stefanprodan/podinfo
@@ -161,7 +161,10 @@ directory located in the podinfo repository.
       --source=podinfo \
       --path="./kustomize" \
       --prune=true \
-      --interval=5m \
+      --wait=true \
+      --interval=30m \
+      --retry-interval=2m \
+      --health-check-timeout=3m \
       --export > ./clusters/my-cluster/podinfo-kustomization.yaml
     ```
 
@@ -174,13 +177,16 @@ directory located in the podinfo repository.
       name: podinfo
       namespace: flux-system
     spec:
-      interval: 5m0s
+      interval: 30m0s
       path: ./kustomize
       prune: true
+      retryInterval: 2m0s
       sourceRef:
         kind: GitRepository
         name: podinfo
       targetNamespace: default
+      timeout: 3m0s
+      wait: true
     ```
 
 2. Commit and push the `Kustomization` manifest to the repository:

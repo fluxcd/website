@@ -287,7 +287,7 @@ $ FLUXBOT_EMAIL=fluxbot@example.com # supply your own host or address here
 $ flux create image update my-app-auto \
     --author-name FluxBot --author-email "$FLUXBOT_EMAIL" \
     --git-repo-ref $GIT_NAME --branch main \
-    --interval 5m \
+    --interval 30m \
     --export > ./$AUTO_PATH/my-app-auto.yaml
 $ cat my-app-auto.yaml
 ---
@@ -297,7 +297,7 @@ metadata:
   name: my-app-auto
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 30m
   sourceRef:
     kind: GitRepository
     name: flux-system
