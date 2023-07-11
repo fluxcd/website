@@ -141,7 +141,7 @@ What follows is the list of Flux components along with their minimum required ve
 
 | Git Repository                                                                       | Images                                                                                        | Min version | Provenance (SLSA L3) |
 |--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|-------------|----------------------|
-| [flux2](https://github.com/fluxcd/flux2)                                             | `docker.io/fluxcd/flux-cli`<br/>`ghcr.io/fluxcd/flux-cli`                                     | `v2.0.0`    | Yes                  |
+| [flux2](https://github.com/fluxcd/flux2)                                             | `docker.io/fluxcd/flux-cli`<br/>`ghcr.io/fluxcd/flux-cli`                                     | `v2.0.1`    | Yes                  |
 | [source-controller](https://github.com/fluxcd/source-controller)                     | `docker.io/fluxcd/source-contoller`<br/>`ghcr.io/fluxcd/source-contoller`                     | `v1.0.0`    | Yes                  |
 | [kustomize-controller](https://github.com/fluxcd/kustomize-controller)               | `docker.io/fluxcd/kustomize-contoller`<br/>`ghcr.io/fluxcd/kustomize-contoller`               | `v1.0.0`    | Yes                  |
 | [notification-controller](https://github.com/fluxcd/notification-controller)         | `docker.io/fluxcd/notification-contoller`<br/>`ghcr.io/fluxcd/notification-contoller`         | `v1.0.0`    | Yes                  |
@@ -154,14 +154,14 @@ What follows is the list of Flux components along with their minimum required ve
 We will be using the [source-controller](https://github.com/fluxcd/source-controller) container
 image hosted on GHCR for this example, but these instructions can be used for all Flux container images.
 
-First, we need to find the digest of the image we want to verify:
+First, collect the digest of the image to verify:
 
 ```console
 $ crane digest ghcr.io/fluxcd/source-controller:v1.0.0
 sha256:8dfd386a338eab2fde70cd7609e3b35a6e2f30283ecf2366da53013295fa65f3
 ```
 
-Using the digest, we can now verify the provenance of the Flux controller by specified its repository and version:
+Using the digest, verify the provenance of the Flux controller by specifying the repository and version:
 
 ```console
 $ slsa-verifier verify-image ghcr.io/fluxcd/source-controller:v1.0.0@sha256:8dfd386a338eab2fde70cd7609e3b35a6e2f30283ecf2366da53013295fa65f3 --source-uri github.com/fluxcd/source-controller --source-tag v1.0.0
@@ -169,7 +169,7 @@ Verified build using builder https://github.comslsa-framework/slsa-github-genera
 PASSED: Verified SLSA provenance
 ```
 
-Using Cosign, we can verify the SLSA provenance attestation by specified the workflow and the GitHub OIDC issuer:
+Using Cosign, verify the SLSA provenance attestation by specifying the workflow and GitHub OIDC issuer:
 
 ```console
 $ cosign verify-attestation --type slsaprovenance --certificate-identity-regexp https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v --certificate-oidc-issuer https://token.actions.githubusercontent.com ghcr.io/fluxcd/source-controller:v1.0.0
@@ -185,4 +185,32 @@ GitHub Workflow SHA: a40e0da705f26710077a7591f9dad05b7cd55acd
 GitHub Workflow Name: release
 GitHub Workflow Repository: fluxcd/source-controller
 GitHub Workflow Ref: refs/tags/v1.0.0
+```
+
+### Flux artifacts
+
+The provenance of the Flux release artifacts (binaries, container images, SBOMs, deploy manifests) published on
+GitHub can be verified using the official [SLSA verifier tool](https://github.com/slsa-framework/slsa-verifier).
+
+### Example
+
+In this example we use the Flux SBOM file,
+but the instructions can be used for all artifacts included with the Flux release.
+
+First, download the release artifacts from GitHub:
+
+```shell
+FLUX_VER=2.0.1 && \
+gh release download v${FLUX_VER} -R=fluxcd/flux2 -p="*"
+```
+
+Using the `provenance.intoto.jsonl` file,
+verify the provenance attestation of the Flux SBOM (`flux_<version>_sbom.spdx.json`):
+
+```console
+$ slsa-verifier verify-artifact --provenance-path provenance.intoto.jsonl --source-uri github.com/fluxcd/flux2 --source-tag v${FLUX_VER} flux_${FLUX_VER}_sbom.spdx.json
+Verified signature against tlog entry index 27066821 at URL: https://rekor.sigstore.dev/api/v1/log/entries/24296fb24b8ad77ac2d2dc6381ec7f1f04d991344771214c5fb5861621dbd9da6f0551f806cbf609
+Verified build using builder https://github.comslsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@refs/tags/v1.7.0 at commit 9b3162495ce1b99b1fcdf137c553f543eafe3ec7
+Verifying artifact flux_2.0.1_sbom.spdx.json: PASSED
+PASSED: Verified SLSA provenance
 ```
