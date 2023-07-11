@@ -294,3 +294,7 @@ adopters:
     - name: MilliporeSigma
       url: https://www.sigmaaldrich.com/
       logo: logos/milliporesigma.png
+    - name: Prophesee
+      url: https://www.prophesee.ai/
+      logo: logos/prophesee.png
+        
