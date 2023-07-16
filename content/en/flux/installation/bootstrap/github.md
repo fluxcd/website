@@ -1,7 +1,7 @@
 ---
 title: GitHub
 linkTitle: GitHub
-description: "GitHub installation method"
+description: "How to follow bootstrap procedure for Flux using GitHub"
 weight: 20
 ---
 ### GitHub and GitHub Enterprise
