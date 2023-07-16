@@ -1,7 +1,7 @@
 ---
 title: GitLab
 linkTitle: GitLab
-description: "GitLab installation method"
+description: "How to follow bootstrap procedure for Flux using GitLab"
 weight: 30
 ---
 
