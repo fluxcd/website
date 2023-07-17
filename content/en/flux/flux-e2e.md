@@ -6,7 +6,7 @@ weight: 146
 ---
 
 {{% alert color="warning" title="Disclaimer" %}}
-Note that this guide has not been updated since more than a year ago, it does not address `OCIRepository`, and needs to be refreshed for Flux 2.0.0.
+Note that this guide has not been updated since more than a year ago. It does not address `OCIRepository`, needs review in consideration of Flux v2.0.0, and likely needs to be refreshed.
 
 Expect this doc to receive an overhaul soon.
 {{% /alert %}}
