@@ -1,6 +1,6 @@
 ---
 author: somtochiama
-date: 2023-07-17 20:30:00+00:00
+date: 2023-07-18 20:30:00+00:00
 title: June 2023 Update
 description: "Flux 2.0 and General Availability!"
 url: /blog/2023/07/june-2023-update/
@@ -12,7 +12,7 @@ resources:
 
 ## Flux 2.0 and General Availability!
 
-![FluxCD community stats](images/infographic.png)
+![FluxCD community stats](infographic-featured.png)
 
 > Best Buy: Tahir Raza, Staff Engineer - Cloud & Platform Engineering: 
 > “GitOps practices and Flux has elevated our engineering: code infra
