@@ -93,7 +93,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 * `docker.io/fluxcd/flux-cli:<version>`
 * `ghcr.io/fluxcd/flux-cli:<version>`
 
-## Bootstrap
+## Bootstrap with Flux CLI
 
 Using the `flux bootstrap` command you can install Flux on a
 Kubernetes cluster and configure it to manage itself from a Git
