@@ -4,7 +4,6 @@ linkTitle: GitHub
 description: "How to follow bootstrap procedure for Flux using GitHub"
 weight: 20
 ---
-### GitHub and GitHub Enterprise
 
 The `bootstrap github` command creates a GitHub repository if one doesn't exist and
 commits the Flux components manifests to specified branch. Then it
