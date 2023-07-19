@@ -1,7 +1,7 @@
 ---
 title: Upgrade
-linkTitle: Upgrade (CLI bootstrap, GH Action, Renovate, terraform, in-cluster)
-description: "Upgrade (CLI bootstrap, GH Action, Renovate, terraform, in-cluster)"
+linkTitle: Upgrade
+description: "Upgrade Flux using bootstrap"
 weight: 40
 ---
 
