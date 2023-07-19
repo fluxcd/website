@@ -5,6 +5,12 @@ description: "A narrative of the life of a commit as it relates to Flux componen
 weight: 146
 ---
 
+{{% alert color="warning" title="Disclaimer" %}}
+Note that this guide has not been updated since more than a year ago. It does not address `OCIRepository`, needs review in consideration of Flux v2.0.0, and likely needs to be refreshed.
+
+Expect this doc to receive an overhaul soon.
+{{% /alert %}}
+
 Below we describe the flow of data through Flux, from End to End.
 
 We assume a standard Flux installation, with all optional features enabled, then explain how Flux users can expect their change to flow through the stages
