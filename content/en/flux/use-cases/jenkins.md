@@ -5,6 +5,12 @@ description: "How to use Jenkins CI for building images together with Flux's ima
 weight: 50
 ---
 
+{{% alert color="warning" title="Disclaimer" %}}
+Note that this guide has not been updated since more than a year ago, it does not address Kubernetes 1.24 or above, and needs to be refreshed.
+
+Expect this doc to either be archived soon, or to receive an overhaul.
+{{% /alert %}}
+
 This guide explains how to configure Flux with Jenkins, with the core ideas of [GitOps Principles] in mind. Let Jenkins handle CI (or Continuous Integration: image build and test, tagging and pushing), and let Flux handle CD (or Continuous Deployment) by making use of the Image Update Automation feature.
 
 ## Declarative Artifacts
