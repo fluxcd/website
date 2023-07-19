@@ -66,7 +66,8 @@ controller_version() {
       cat /tmp/releases
       exit 1
   fi
-  jq -r '.[] | .tag_name' < /tmp/releases | sort -V | tail -n 1
+
+  jq -r '.[] | .tag_name' < /tmp/releases | sed 's/.*\///' | awk '{ if ($1 ~ /-/) print; else print $0"_" ; }' | sort -rV | sed 's/_$//' | head -n1
 }
 
 gen_crd_doc() {
