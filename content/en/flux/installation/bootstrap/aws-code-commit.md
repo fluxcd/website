@@ -1,7 +1,7 @@
 ---
 title: AWS Code Commit
 linkTitle: AWS Code Commit
-description: "How to follow bootstrap procedure for Flux using AWS Code Commit"
+description: "How to bootstrap Flux with AWS Code Commit"
 weight: 50
 ---
 
