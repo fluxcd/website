@@ -1,7 +1,7 @@
 ---
 title: Google Cloud Source
 linkTitle: Google Cloud Source
-description: "How to use bootstrap procedure for Flux using Google Cloud Source"
+description: "How bootstrap Flux with Google Cloud Source"
 weight: 70
 ---
 
