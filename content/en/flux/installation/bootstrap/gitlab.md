@@ -1,7 +1,7 @@
 ---
 title: GitLab
 linkTitle: GitLab
-description: "How to follow bootstrap procedure for Flux using GitLab"
+description: "How to bootstrap Flux with GitLab"
 weight: 30
 ---
 
