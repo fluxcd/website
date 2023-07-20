@@ -5,8 +5,6 @@ description: "Uninstall Flux using CLI uninstall method"
 weight: 50
 ---
 
-## Uninstall
-
 You can uninstall Flux with:
 
 ```sh
@@ -26,7 +24,7 @@ If you've installed Flux in a namespace that you wish to preserve, you
 can skip the namespace deletion with:
 
 ```sh
-flux uninstall --namespace=infra --keep-namespace
+flux uninstall --namespace=flux-system --keep-namespace
 ```
 
 {{% alert color="info" title="Reinstall" %}}

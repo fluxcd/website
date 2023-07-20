@@ -1,7 +1,7 @@
 ---
 title: Azure DevOps
 linkTitle: Azure DevOps
-description: "How to follow bootstrap Flux with Azure DevOps"
+description: "How to bootstrap Flux with Azure DevOps"
 weight: 60
 ---
 
