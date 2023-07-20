@@ -192,13 +192,13 @@ spec:
     - kind: HelmRelease
       name: demo
   inclusionList:
-    - "*.upgrade.*succeeded.*"
+    - ".*.upgrade.*succeeded.*"
 ```
 
 **Note** that you should adapt the above definitions to match your GitHub repository address.
 If [testing is enabled](https://fluxcd.io/flux/components/helm/helmreleases/#configuring-helm-test-actions)
-in your HelmRelease, you can use the `"*.test.*succeeded.*"`
-expression in the inclusion list instead of `"*.upgrade.*succeeded.*"`.
+in your HelmRelease, you can use the `".*.test.*succeeded.*"`
+expression in the inclusion list instead of `".*.upgrade.*succeeded.*"`.
 This will ensure the promotion happens only after tests have been successfully run.
 
 You also need to create a Kubernetes secret with a GitHub Personal Access Token
