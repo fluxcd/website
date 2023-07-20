@@ -4,39 +4,77 @@ linkTitle: Generic Git server
 description: "How to bootstrap Flux with a generic Git server"
 weight: 20
 ---
-### Generic Git Server
 
-The `bootstrap git` command takes an existing Git repository, clones it and
-commits the Flux components manifests to the specified branch. Then it
-configures the target cluster to synchronize with that repository.
+The [flux bootstrap git](/flux/cmd/flux_bootstrap_git/) command deploys the Flux controllers
+on a Kubernetes cluster and configures the controllers to sync the cluster state from a Git repository.
+Besides installing the controllers, the bootstrap command pushes the Flux manifests to the Git repository
+and configures Flux to update itself from Git.
 
-{{% alert color="warning" %}}
-:warning: Note that if set, your SSH hostname and port could be overwritten by your [ssh_config](https://linux.die.net/man/5/ssh_config).
+After running the bootstrap command, any operation on the cluster (including Flux upgrades)
+can be done via Git push, without the need to connect to the Kubernetes cluster.
+
+{{% alert color="danger" title="Required permissions" %}}
+To bootstrap Flux, the person running the command must have **cluster admin rights** for the target Kubernetes cluster.
+It is also required that the person running the command to have **push rights** to the Git repository.
 {{% /alert %}}
 
-Run bootstrap for a Git repository and authenticate with your SSH agent:
+## SSH Private Key
+
+Run bootstrap for an exiting Git repository and authenticate with a SSH key which has pull and push access:
 
 ```sh
 flux bootstrap git \
   --url=ssh://git@<host>/<org>/<repository> \
-  --branch=<my-branch> \
+  --branch=main \
+  --private-key-file=<path/to/private.key> \
+  --password=<key-passphrase> \
   --path=clusters/my-cluster
 ```
 
-The above command will generate an SSH key (defaults to ECDSA P-384 but can be changed with `--ssh-key-algorithm` and 
-`--ssh-ecdsa-curve`), and it will prompt you to add the SSH public key as a deploy key to your repository.
+The private key is stored in the cluster as a Kubernetes secret named `flux-system`
+inside the `flux-system` namespace.
 
-If you want to use your own SSH key, you can provide a private key using
-`--private-key-file=<path/to/private.key>` (you can supply the passphrase with `--password=<key-passphrase>`).
-This option can also be used if no SSH agent is available on your machine.
+{{% alert color="info" title="SSH Key rotation" %}}
+To regenerate the SSH private key and known hosts keys,
+delete the `flux-system` secret from the cluster and run:
 
-{{% alert color="info" title="Bootstrap options" %}}
-There are many options available when bootstrapping Flux, such as installing a subset of Flux components,
-setting the Kubernetes context, changing the Git author name and email, enabling Git submodules, and more.
-To list all the available options run `flux bootstrap git --help`.
+```shell
+flux create secret git flux-system \
+  --url=ssh://git@<host>/<org>/<repository> \
+  --ssh-key-algorithm=rsa \
+  --ssh-rsa-bits=4096
+```
+
+The CLI will prompt you to add the SSH public key as a deploy key to your repository.
 {{% /alert %}}
 
-If your Git server doesn't support SSH, you can run bootstrap for Git over HTTPS:
+## SSH Agent
+
+Run bootstrap for an exiting Git repository and authenticate with your SSH agent:
+
+```sh
+flux bootstrap git \
+  --url=ssh://git@<host>/<org>/<repository> \
+  --branch=main \
+  --path=clusters/my-cluster
+```
+
+{{% alert color="warning" title="SSH hostname" %}}
+If the Flux CLI must connect to a different SSH endpoint
+than your cluster, you can set the SSH hostname and port for the CLI
+with `--ssh-hostname=<host:port>`.
+Note that if set, your SSH hostname and port could be overwritten by
+your [ssh_config](https://linux.die.net/man/5/ssh_config).
+{{% /alert %}}
+
+When using the SSH Agent, the bootstrap command will generate a new SSH private key for the cluster, 
+and it will prompt you to add the SSH public key as a deploy key to your repository.
+
+The generated SSH key defaults to `ECDSA P-384`, to change the format use `--ssh-key-algorithm` and `--ssh-ecdsa-curve`.
+
+## HTTPS basic auth
+
+If your Git server has basic auth enabled, you can bootstrap Flux over HTTPS with:
 
 ```sh
 flux bootstrap git \
@@ -47,8 +85,12 @@ flux bootstrap git \
   --path=clusters/my-cluster
 ```
 
+You can also supply the password or Git token using a pipe e.g. `echo "<my-pass>" | flux bootstrap git`.
+
 If your Git server uses a self-signed TLS certificate, you can specify the CA file with
 `--ca-file=<path/to/ca.crt>`.
+
+## Boostrap multiple clusters
 
 With `--path` you can configure the directory which will be used to reconcile the target cluster.
 To control multiple clusters from the same Git repository, you have to set a unique path per
@@ -65,10 +107,8 @@ cluster e.g. `clusters/staging` and `clusters/production`:
     └── flux-system
 ```
 
-After running bootstrap you can place Kubernetes YAMLs inside a dir under path
-e.g. `clusters/staging/my-app`, and Flux will reconcile them on your cluster.
-
-For examples on how you can structure your Git repository see:
-
-* [flux2-kustomize-helm-example](https://github.com/fluxcd/flux2-kustomize-helm-example)
-* [flux2-multi-tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
+{{% alert color="info" title="Bootstrap options" %}}
+There are many options available when bootstrapping Flux, such as installing a subset of Flux components,
+setting the Kubernetes context, changing the Git author name and email, enabling Git submodules, and more.
+To list all the available options run `flux bootstrap git --help`.
+{{% /alert %}}
