@@ -1,7 +1,7 @@
 ---
 title: Bitbucket
 linkTitle: Bitbucket
-description: "How to follow bootstrap procedure for Flux using Bitbucket"
+description: "How to bootstrap Flux with Bitbucket"
 weight: 40
 ---
 
