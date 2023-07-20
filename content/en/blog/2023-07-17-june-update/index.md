@@ -1,6 +1,6 @@
 ---
 author: somtochiama
-date: 2023-07-20 20:30:00+00:00
+date: 2023-07-20 00:00:00+00:00
 title: Announcing Flux 2.0 GA
 description: "Flux 2.0 and General Availability!"
 url: /blog/2023/07/flux-ga/
