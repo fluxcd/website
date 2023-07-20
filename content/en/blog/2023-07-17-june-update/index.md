@@ -29,14 +29,15 @@ and Joe Beda have stated how GitOps is a natural evolution of Kubernetes itself.
 >
 > Tahir Raza, Staff Engineer - Cloud & Platform Engineering at Best Buy
 
-It’s, therefore, no surprise that the open-source Flux project has reached many
-great achievements: continued developmental improvements and thought leadership
-such as microservices architecture, security-first design, multi-tenancy, OCI and
-Cosign support, and more. as part of this journey, Flux is a graduated project in the Cloud
-Native Computing Foundation and is the GitOps tool that companies such as Microsoft,
-AWS, GitLab, D2iQ, and more trust to deliver GitOps to their customers. 
-Enterprises such as SAP, RingCentral, Best Buy, Volvo and many others 
-also trust Flux to be an essential part of their Kubernetes journey.
+Intending to be the best GitOps tool available, the Flux project has evolved into a
+mature and trustworthy software. During its evolution, Flux has accomplished several
+goals such as low resource consumption by adopting a microservices architecture,
+safe multi-tenancy through its security-first design and support for bleeding edge innovation by having
+first-class support for technologies like OCI and Cosign.
+
+We are proud to see that Flux is one of the few CNCF graduated projects
+and the GitOps tool that companies such as Microsoft, AWS, GitLab, D2iQ,q
+and more trust to deliver GitOps to their customers.
 
 > "Safaricom PLC provides mobile telephony, mobile money transfer, consumer electronics, e-commerce,
 > cloud computing, data, music streaming, and fiber optic services to the Kenyan
@@ -105,8 +106,8 @@ before being promoted to GA status at a later stage.
 
 Release Cadence: Flux will have at least three minor releases in a year
 following the Kubernetes release cadence. The release will happen roughly
-two weeks after the Kubernetes release. Two weeks timeline can be adjusted if more
-time is needed for testing the Kubernetes version.
+two weeks after a new Kubernetes release. The two weeks timeline can be adjusted if more
+time is needed for testing compatibility with the new Kubernetes version.
 
 API Versioning: The Flux project follows the semver standard for versioning.
 Release candidates are marked as `x.y.z-rc.a` (e.g v1.0.0-rc.3) and stable
