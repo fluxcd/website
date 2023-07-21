@@ -1,5 +1,5 @@
 ---
-title: Azure DevOps
+title: Flux bootstrap for Azure DevOps
 linkTitle: Azure DevOps
 description: "How to bootstrap Flux with Azure DevOps"
 weight: 60

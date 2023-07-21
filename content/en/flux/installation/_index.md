@@ -1,5 +1,6 @@
 ---
-title: "Installation"
+title: "Flux installation"
+linkTitle: "Installation"
 description: "How to install the Flux CLI and the Flux controllers."
 weight: 30
 ---
@@ -168,7 +169,7 @@ helm install -n flux-system flux oci://ghcr.io/fluxcd-community/charts/flux2
 ```
 
 {{% alert color="danger" title="Helm support" %}}
-Please note that the Helm charts are maintained and released by
+Please note that the Helm charts are maintained by
 the [fluxcd-community](https://github.com/fluxcd-community/helm-charts) on
 a best effort basis with no guarantees around release cadence.
 {{% /alert %}}

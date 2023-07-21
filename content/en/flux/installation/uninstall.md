@@ -1,5 +1,5 @@
 ---
-title: Uninstall
+title: Flux uninstall
 linkTitle: Uninstall
 description: "How to uninstall the Flux controllers"
 weight: 50
