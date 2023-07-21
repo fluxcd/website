@@ -1,19 +1,19 @@
 ---
 title: Upgrade
 linkTitle: Upgrade
-description: "Upgrade Flux using bootstrap"
+description: "Upgrade the Flux CLI and controllers"
 weight: 40
 ---
 
-## Upgrade
+Flux can be upgrade from any `v2.x` release to any other `v2.x` release (the latest patch version).
+For more details about supported versions and upgrades please see the Flux [release documentation](/flux/releases/).
 
-{{% alert color="info" title="Patch versions" %}}
-It is safe and advised to use the latest PATCH version when upgrading to a
-new MINOR version.
-{{% /alert %}}
+## Flux CLI upgrade
 
-Update Flux CLI to the latest release with `brew upgrade fluxcd/tap/flux` or by
-downloading the binary from [GitHub](https://github.com/fluxcd/flux2/releases).
+Running `flux check --pre` will tell you if a newer Flux version is available.
+
+Update the Flux CLI to the latest release using a [package manager](/flux/installation/) or by
+downloading the binary from [GitHub releaases](https://github.com/fluxcd/flux2/releases).
 
 Verify that you are running the latest version with:
 
@@ -21,9 +21,43 @@ Verify that you are running the latest version with:
 flux --version
 ```
 
-### Bootstrap upgrade
+## Flux controllers upgrade
 
-If you've used the [bootstrap](/flux/installation#bootstrap) procedure to deploy Flux,
+The Flux controllers have the capability to upgrade themselves if they were installed using the
+[bootstrap procedure](flux/installation/bootstrap/).
+
+### Upgrade with Git
+
+To upgrade the Flux controllers with Git, you can generate the new Kubernetes manifests using the
+Flux CLI and push them to the Git repository where bootstrap was run.
+
+Note that this procedure **does not require direct access** to the Kubernetes cluster where Flux is installed.
+
+Assuming you've bootstrapped with `--path=/clusters/my-cluster`, you can update the manifests in Git with:
+
+```shell
+git clone https://<git-host>/<org>/<bootstrap-repo>
+cd <bootstrap-repo>
+flux install --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
+git add -A && git commit -m "Update $(flux -v) on my-cluster"
+git push
+```
+
+Wait for Flux to detect the changes or, tell it to do the upgrade immediately with:
+
+```sh
+flux reconcile ks flux-system --with-source
+```
+
+{{% alert color="info" title="Automated upgrades" %}}
+You can automate the components manifest update with GitHub Actions
+and open a PR when there is a new Flux version available.
+For more details please see [Flux GitHub Action docs](/flux/flux-gh-action.md).
+{{% /alert %}}
+
+### Upgrade with Flux CLI
+
+If you've used the [bootstrap](/flux/installation/bootstrap/) procedure to deploy Flux,
 then rerun the bootstrap command for each cluster using the same arguments as before:
 
 ```sh
@@ -38,49 +72,25 @@ flux bootstrap github \
 The above command will clone the repository, it will update the components manifest in
 `<path>/flux-system/gotk-components.yaml` and it will push the changes to the remote branch.
 
-Tell Flux to pull the manifests from Git and upgrade itself with:
-
-```sh
-flux reconcile source git flux-system
-```
-
 Verify that the controllers have been upgrade with:
 
 ```sh
 flux check
 ```
 
-{{% alert color="info" title="Automated upgrades" %}}
-You can automate the components manifest update with GitHub Actions
-and open a PR when there is a new Flux version available.
-For more details please see [Flux GitHub Action docs](/flux/flux-gh-action.md).
-{{% /alert %}}
+### Upgrade with Terraform
 
-### Terraform upgrade
-
-Update the Flux provider to the [latest release](https://github.com/fluxcd/terraform-provider-flux/releases)
+If you've used the [Terraform Provider](https://github.com/fluxcd/terraform-provider-flux/) to bootstrap Flux,
+then update the provider to the [latest version](https://github.com/fluxcd/terraform-provider-flux/releases)
 and run `terraform apply`.
 
-Tell Flux to upgrade itself in-cluster or wait for it to pull the latest commit from Git:
+The upgrade performed with Terraform behaves in the same way as the [upgrade with Flux CLI](#upgrade-with-flux-cli).
 
-```sh
-kubectl annotate --overwrite gitrepository/flux-system reconcile.fluxcd.io/requestedAt="$(date +%s)"
-```
-
-### In-cluster upgrade
-
-If you've installed Flux directly on the cluster, then rerun the install command:
-
-```sh
-flux install
-```
-
-The above command will  apply the new manifests on your cluster.
-You can verify that the controllers have been upgraded to the latest version with `flux check`.
+### Upgrade with kubectl
 
 If you've installed Flux directly on the cluster with kubectl,
-then rerun the command using the latest manifests from the `main` branch:
+then rerun the command using the latest manifests from GitHub releases page:
 
 ```sh
-kustomize build https://github.com/fluxcd/flux2/manifests/install?ref=main | kubectl apply -f-
+kubectl apply --server-side -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml
 ```
