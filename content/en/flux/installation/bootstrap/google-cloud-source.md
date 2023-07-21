@@ -1,5 +1,5 @@
 ---
-title: Google Cloud Source
+title: Flux bootstrap for Google Cloud Source
 linkTitle: Google Cloud Source
 description: "How to bootstrap Flux with Google Cloud Source Repository"
 weight: 70

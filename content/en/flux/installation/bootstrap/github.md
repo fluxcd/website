@@ -1,5 +1,5 @@
 ---
-title: GitHub and GitHub Enterprise
+title: Flux bootstrap for GitHub
 linkTitle: GitHub
 description: "How to bootstrap Flux with GitHub and GitHub Enterprise"
 weight: 20

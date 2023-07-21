@@ -1,5 +1,5 @@
 ---
-title: Upgrade
+title: Flux upgrade
 linkTitle: Upgrade
 description: "Upgrade the Flux CLI and controllers"
 weight: 40
