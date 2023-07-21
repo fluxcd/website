@@ -1,14 +1,25 @@
 ---
 title: Uninstall
-linkTitle: Uninstall (CLI uninstall)
-description: "Uninstall Flux using CLI uninstall method"
+linkTitle: Uninstall
+description: "How to uninstall the Flux controllers"
 weight: 50
 ---
 
-You can uninstall Flux with:
+No matter which [installation](_index.md) method you've used to deploy the
+Flux controllers on a cluster, you can uninstall them using the Flux CLI.
+
+The uninstallation procedure removes only the Flux components, without touching
+reconciled namespaces, tenants, cluster addons, workloads, Helm releases, etc.
+
+Please note that uninstalling Flux by any other means e.g. deleting the deployments
+and namespace with **kubectl is not supported**.
+
+## Uninstall with Flux CLI
+
+You can uninstall the Flux controllers running on a cluster with:
 
 ```sh
-flux uninstall --namespace=flux-system
+flux uninstall
 ```
 
 The above command performs the following operations:
