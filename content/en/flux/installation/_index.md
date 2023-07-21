@@ -1,15 +1,22 @@
 ---
 title: "Installation"
-description: "Flux install, bootstrap, upgrade and uninstall documentation."
+description: "How to install the Flux CLI and the Flux controllers."
 weight: 30
 ---
 
-This guide walks you through setting up Flux to
-manage one or more Kubernetes clusters.
+The Flux project is comprised of a command-line tool (the FLux CLI) and a series
+of [Kubernetes controllers](/flux/components/).
+
+To install Flux, first you'll need to download the `flux` CLI.
+Then using the CLI, you can deploy the Flux controllers on your clusters
+and configure your first GitOps delivery pipeline.
 
 ## Prerequisites
 
-You will need a Kubernetes cluster that matches one of the following versions:
+The person performing the Flux installation must have
+**cluster admin rights** for the target Kubernetes cluster.
+
+The Kubernetes cluster should match one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
@@ -92,216 +99,76 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 * `docker.io/fluxcd/flux-cli:<version>`
 * `ghcr.io/fluxcd/flux-cli:<version>`
 
-## Bootstrap with Flux CLI
+## Install the Flux controllers
 
-Using the `flux bootstrap` command you can install Flux on a
-Kubernetes cluster and configure it to manage itself from a Git
-repository.
+The recommend way of installing Flux on Kubernetes clusters is by using the bootstrap procedure.
 
-If the Flux components are present on the cluster, the bootstrap
-command will perform an upgrade if needed. The bootstrap is
-idempotent, it's safe to run the command as many times as you want.
+### Bootstrap with Flux CLI
 
-The Flux component images are published to DockerHub and GitHub Container Registry
-as [multi-arch container images](https://docs.docker.com/docker-for-mac/multi-arch/)
-with support for Linux `amd64`, `arm64` and `armv7` (e.g. 32bit Raspberry Pi)
-architectures.
+The `flux bootstrap` command deploys the Flux controllers on Kubernetes cluster(s)
+and configures the controllers to sync the cluster(s) state from a Git repository.
+Besides installing the controllers, the bootstrap command pushes the Flux manifests
+to the Git repository and configures Flux to update itself from Git.
 
-If your Git provider is **AWS CodeCommit**, **Azure DevOps**, **Bitbucket Server**, **GitHub** or **GitLab** please
-follow the specific bootstrap procedure:
+If the Flux controllers are present on the cluster, the bootstrap command will perform
+an upgrade if needed. Bootstrap is idempotent, it's safe to run the command as many times as you want.
 
-* [AWS CodeCommit](./bootstrap/aws-code-commit.md#flux-installation-for-aws-codecommit)
-* [Azure DevOps](./bootstrap/azure.md#flux-installation-for-azure-devops)
-* [Bitbucket Server and Data Center](./bootstrap/bitbucket.md#bitbucket-server-and-data-center)
-* [GitHub.com and GitHub Enterprise](./bootstrap/github.md#github-and-github-enterprise)
-* [GitLab.com and GitLab Enterprise](./bootstrap/gitlab.md#gitlab-and-gitlab-enterprise)
+After running the bootstrap command, any operation on the cluster(s) (including Flux upgrades)
+can be done via Git push, without the need to connect to the Kubernetes API.
 
-## Bootstrap with Terraform
+#### Bootstrap options
+
+Flux integrates with popular Git providers to simplify the
+initial setup of deploy keys and other authentication mechanisms:
+
+* [GitHub](./bootstrap/github.md)
+* [GitLab](./bootstrap/gitlab.md)
+* [Bitbucket](./bootstrap/bitbucket.md)
+* [AWS CodeCommit](./bootstrap/aws-code-commit.md)
+* [Azure DevOps](./bootstrap/azure.md)
+* [Google Cloud Source Repository](./bootstrap/google-cloud-source.md)
+
+If your Git provider is not in the above list,
+please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)
+which works with any Git server.
+
+### Bootstrap with Terraform
 
 The bootstrap procedure can be implemented with Terraform using the Flux provider published on
 [registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux).
+
 The provider offers a Terraform resource called
 [flux_bootstrap_git](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/resources/bootstrap_git)
 that can be used to bootstrap Flux in the same way the Flux CLI does it.
 
-Example of Git HTTPS bootstrap:
-
-```hcl
-provider "flux" {
-  kubernetes = {
-    config_path = "~/.kube/config"
-  }
-  git = {
-    url  = var.gitlab_url
-    http = {
-      username = var.gitlab_user
-      password = var.gitlab_token
-    }
-  }
-}
-
-resource "flux_bootstrap_git" "this" {
-  path                   = "clusters/my-cluster"
-  network_policy         = true
-  kustomization_override = file("${path.module}/kustomization.yaml")
-}
-```
-
 For more details on how to use the Terraform provider
 please see the [Flux docs on registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux/latest/docs).
 
-## Customize Flux manifests
+### Dev install
 
-You can customize the Flux components before or after running bootstrap.
+For testing purposes you can install the Flux controllers
+without storing their manifests in a Git repository.
 
-Assuming you want to customise the Flux controllers before they get deployed on the cluster,
-first you'll need to create a Git repository and clone it locally.
-
-Create the file structure required by bootstrap with:
-
-```sh
-mkdir -p clusters/my-cluster/flux-system
-touch clusters/my-cluster/flux-system/gotk-components.yaml \
-    clusters/my-cluster/flux-system/gotk-sync.yaml \
-    clusters/my-cluster/flux-system/kustomization.yaml
-```
-
-Add patches to `kustomization.yaml`:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1
-kind: Kustomization
-resources: # manifests generated during bootstrap
-  - gotk-components.yaml
-  - gotk-sync.yaml
-
-patches: # customize the manifests during bootstrap
-  - target:
-      kind: Deployment
-      labelSelector: app.kubernetes.io/part-of=flux
-    patch: |
-      # strategic merge or JSON patch
-```
-
-Push the changes to main branch:
-
-```sh
-git add -A && git commit -m "init flux" && git push
-```
-
-And run the bootstrap for `clusters/my-cluster`:
-
-```sh
-flux bootstrap git \
-  --url=ssh://git@<host>/<org>/<repository> \
-  --branch=main \
-  --path=clusters/my-cluster
-```
-
-To make further amendments, pull the changes locally,
-edit the `kustomization.yaml` file, push the changes upstream
-and rerun bootstrap or let Flux upgrade itself.
-
-Checkout the [bootstrap cheatsheet](../cheatsheets/bootstrap) for various examples of how to customize Flux.
-
-### Multi-tenancy lockdown
-
-Assuming you want to lock down Flux on multi-tenant clusters,
-add the following patches to `clusters/my-cluster/flux-system/kustomization.yaml`:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/args/0
-        value: --no-cross-namespace-refs=true
-    target:
-      kind: Deployment
-      name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
-  - patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/args/-
-        value: --no-remote-bases=true
-    target:
-      kind: Deployment
-      name: "kustomize-controller"
-  - patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/args/0
-        value: --default-service-account=default
-    target:
-      kind: Deployment
-      name: "(kustomize-controller|helm-controller)"
-  - patch: |
-      - op: add
-        path: /spec/serviceAccountName
-        value: kustomize-controller
-    target:
-      kind: Kustomization
-      name: "flux-system"
-```
-
-With the above configuration, Flux will:
-
-- Deny cross-namespace access to Flux custom resources, thus ensuring that a tenant can't use another tenant's sources or subscribe to their events.
-- Deny accesses to Kustomize remote bases, thus ensuring all resources refer to local files, meaning only the Flux Sources can affect the cluster-state.
-- All `Kustomizations` and `HelmReleases` which don't have `spec.serviceAccountName` specified, will use the `default` account from the tenant's namespace.
-  Tenants have to specify a service account in their Flux resources to be able to deploy workloads in their namespaces as the `default` account has no permissions.
-- The flux-system `Kustomization` is set to reconcile under a service account with cluster-admin role,
-  allowing platform admins to configure cluster-wide resources and provision the tenant's namespaces, service accounts and RBAC.
-
-To apply these patches, push the changes to the main branch and run `flux bootstrap`.
-
-## Dev install
-
-For testing purposes you can install Flux without storing its manifests in a Git repository:
+Install with `flux`:
 
 ```sh
 flux install
 ```
 
-Or using kubectl:
+Install with `kubectl`:
 
 ```sh
 kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/install.yaml
 ```
 
-Then you can register Git repositories and reconcile them on your cluster:
+Install with `helm`:
 
 ```sh
-flux create source git podinfo \
-  --url=https://github.com/stefanprodan/podinfo \
-  --tag-semver=">=4.0.0" \
-  --interval=1m
-
-flux create kustomization podinfo-default \
-  --source=podinfo \
-  --path="./kustomize" \
-  --prune=true \
-  --validation=client \
-  --interval=10m \
-  --health-check="Deployment/podinfo.default" \
-  --health-check-timeout=2m \
-  --target-namespace=default
+helm install -n flux-system flux oci://ghcr.io/fluxcd-community/charts/flux2
 ```
 
-You can register Helm repositories and create Helm releases:
-
-```sh
-flux create source helm bitnami \
-  --interval=1h \
-  --url=https://charts.bitnami.com/bitnami
-
-flux create helmrelease nginx \
-  --interval=1h \
-  --release-name=nginx-ingress-controller \
-  --target-namespace=kube-system \
-  --source=HelmRepository/bitnami \
-  --chart=nginx-ingress-controller \
-  --chart-version="5.x.x"
-```
+{{% alert color="danger" title="Helm support" %}}
+Please note that the Helm charts are maintained and released by
+the [fluxcd-community](https://github.com/fluxcd-community/helm-charts) on
+a best effort basis with no guarantees around release cadence.
+{{% /alert %}}
