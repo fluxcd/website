@@ -60,8 +60,8 @@ flux bootstrap git \
 ```
 
 {{% alert color="warning" title="SSH hostname" %}}
-If the Flux CLI must connect to a different SSH endpoint
-than your cluster, you can set the SSH hostname and port for the CLI
+If the Flux controllers must connect to a different SSH endpoint
+than the CLI, you can set the SSH hostname and port for the cluster
 with `--ssh-hostname=<host:port>`.
 Note that if set, your SSH hostname and port could be overwritten by
 your [ssh_config](https://linux.die.net/man/5/ssh_config).
