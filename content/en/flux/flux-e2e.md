@@ -170,6 +170,29 @@ Once the repository is created and Flux adds its components there as a commit, b
 cluster, waits for the components to become ready, then applies the Flux sync resources (`GitRepository` and `Kustomization`) and finally waits for a
 successful reconciliation before reporting back to the user that this was successful.
 
+#### Diagram: Bootstrapping over SSH
+
+
+```mermaid
+sequenceDiagram
+  actor me as admin
+  participant cli as Flux<br><br>CLI
+  participant kube as Kubernetes<br><br>API server
+  participant flux as Flux<br><br>controllers
+  participant git as Git<br><br>repository
+  me->>cli: 1. flux bootstrap
+  cli-->>git: 2. push install config
+  cli->>kube: 3. install controllers
+  cli-->>git: 4. set deploy key
+  cli->>kube: 5. set private key
+  cli-->>git: 6. push sync config
+  cli->>kube: 7. apply sync config
+  git-->>flux: 8. pull config
+  flux->>kube: 9. reconcile
+  kube->>cli: 10. report status
+  cli->>me: 11. return status
+```
+
 ### Generating a Flux resource
 
 After bootstrapping, the Flux CLI provides `create` generators to help users build more of Flux's Custom Resources that drive the operation of Flux.
