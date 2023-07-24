@@ -195,7 +195,7 @@ patches:
 
 {{% alert color="info" title="Horizontal scaling" %}}
 When vertical scaling is not an option, you can use sharding to horizontally scale
-the Flux controllers. For more details please see the [sharding guide](sharding.md).
+the Flux controllers. For more details please see the [sharding guide](../installation/configuration/sharding.md).
 {{% /alert %}}
 
 ### Persistent storage for Flux internal artifacts
