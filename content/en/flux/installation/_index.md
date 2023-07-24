@@ -111,6 +111,8 @@ and configures the controllers to sync the cluster(s) state from a Git repositor
 Besides installing the controllers, the bootstrap command pushes the Flux manifests
 to the Git repository and configures Flux to update itself from Git.
 
+![bootstrap](/flux/img/flux-bootstrap-diagram.png)
+
 If the Flux controllers are present on the cluster, the bootstrap command will perform
 an upgrade if needed. Bootstrap is idempotent, it's safe to run the command as many times as you want.
 
