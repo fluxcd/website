@@ -26,17 +26,9 @@
 /flagger/usage/kuma-progressive-delivery        /flagger/tutorials/kuma-progressive-delivery        301!
 /flagger/usage/gatewayapi-progressive-delivery  /flagger/tutorials/gatewayapi-progressive-delivery  301!
 
-/flux/installation/#bootstrap                                         /flux/installation/bootstrap                             301!
-/flux/installation/#bitbucket-server-and-data-center                  /flux/installation/bootstrap/bitbucket                   301!
-/flux/installation/#generic-git-server                                /flux/installation/bootstrap/generic-git-server          301!
-/flux/installation/#github-and-github-enterprise                      /flux/installation/bootstrap/github                      301!
-/flux/installation/#gitlab-and-gitlab-enterprise                      /flux/installation/bootstrap/gitlab                      301!
-/flux/installation/#upgrade                                           /flux/installation/upgrade                               301!
-/flux/installation/#uninstall                                         /flux/installation/uninstall                             301!
-/flux/use-cases/aws-codecommit/*                                      /flux/installation/bootstrap/aws-code-commit             301!
-/flux/use-cases/azure/*                                               /flux/installation/bootstrap/azure                       301!
-/flux/use-cases/gcp-source-repository                                 /flux/installation/bootstrap/google-cloud-source         301!                       301!
-
+/flux/use-cases/aws-codecommit                  /flux/installation/bootstrap/aws-code-commit        301!
+/flux/use-cases/azure                           /flux/installation/bootstrap/azure-devops           301!
+/flux/use-cases/gcp-source-repository           /flux/installation/bootstrap/google-cloud-source    301!
 
 /docs/contributing/*                            /contributing/:splat                                301!
 /docs/*                                         /flux/:splat                                        301!
