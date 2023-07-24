@@ -127,9 +127,9 @@ initial setup of deploy keys and other authentication mechanisms:
 * [GitHub](./bootstrap/github.md)
 * [GitLab](./bootstrap/gitlab.md)
 * [Bitbucket](./bootstrap/bitbucket.md)
-* [AWS CodeCommit](./bootstrap/aws-code-commit.md)
+* [AWS CodeCommit](./bootstrap/aws-codecommit.md)
 * [Azure DevOps](./bootstrap/azure-devops.md)
-* [Google Cloud Source Repository](./bootstrap/google-cloud-source.md)
+* [Google Cloud Source](./bootstrap/google-cloud-source.md)
 
 If your Git provider is not in the above list,
 please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)

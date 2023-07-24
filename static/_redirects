@@ -26,7 +26,7 @@
 /flagger/usage/kuma-progressive-delivery        /flagger/tutorials/kuma-progressive-delivery        301!
 /flagger/usage/gatewayapi-progressive-delivery  /flagger/tutorials/gatewayapi-progressive-delivery  301!
 
-/flux/use-cases/aws-codecommit                  /flux/installation/bootstrap/aws-code-commit        301!
+/flux/use-cases/aws-codecommit                  /flux/installation/bootstrap/aws-codecommit         301!
 /flux/use-cases/azure                           /flux/installation/bootstrap/azure-devops           301!
 /flux/use-cases/gcp-source-repository           /flux/installation/bootstrap/google-cloud-source    301!
 
