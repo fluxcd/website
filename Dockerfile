@@ -29,6 +29,7 @@ RUN python3 -m pip install -r /tmp/requirements.txt
 RUN ln -s `which python3` /usr/bin/python
 COPY package.json package-lock.json /site/
 RUN npm i
+RUN git config --global --add safe.directory /site
 
 # VOLUME /site	# provided by upstream
 # WORKDIR /site
