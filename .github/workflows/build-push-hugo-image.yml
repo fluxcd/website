@@ -12,6 +12,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
       -
         name: Set up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v2
       -
         name: Login to DockerHub
@@ -37,7 +38,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: hugo
+          platforms: linux/amd64,linux/arm64
           push: true
+          builder: ${{ steps.buildx.outputs.name }}
           build-args: |
             HUGO_VERSION=${{ env.hugo_version }}
             HUGO_BUILD_TAGS=extended
