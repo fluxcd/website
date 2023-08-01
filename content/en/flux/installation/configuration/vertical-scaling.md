@@ -2,7 +2,7 @@
 title: "Flux vertical scaling"
 linkTitle: "Vertical scaling"
 description: "How to configure vertical scaling for Flux controllers"
-weight: 12
+weight: 10
 ---
 
 When Flux is managing hundreds of applications that are deployed multiple times per day, cluster admins
@@ -91,7 +91,7 @@ read from file. Cache hits are exposed via the `gotk_cache_events_total` Prometh
 metrics. Use this data to fine-tune the configuration flags.
 
 
-### Persistent storage for Flux internal artifacts
+## Persistent storage for Flux internal artifacts
 
 Flux maintains a local cache of artifacts acquired from external sources.
 By default, the cache is stored in an `EmptyDir` volume, which means that after a restart,
@@ -143,7 +143,7 @@ patches:
       name: source-controller
 ```
 
-### Node affinity and tolerations
+## Node affinity and tolerations
 
 Pin the Flux controllers to specific nodes:
 

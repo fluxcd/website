@@ -2,7 +2,7 @@
 title: "Flux sharding and horizontal scaling"
 linkTitle: "Horizontal scaling"
 description: "How to configure sharding for Flux controllers"
-weight: 13
+weight: 11
 ---
 
 When Flux is managing tens of thousands of applications, it is advised to adopt

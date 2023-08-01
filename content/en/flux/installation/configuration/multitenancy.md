@@ -2,7 +2,7 @@
 title: "Flux multi-tenancy"
 linkTitle: "Multi-tenancy lockdown"
 description: "How to configure Flux multi-tenancy lockdown."
-weight: 10
+weight: 12
 ---
 
 Flux allows different organizations and/or teams to share the same Kubernetes control plane; this is
