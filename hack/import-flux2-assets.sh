@@ -1,9 +1,11 @@
-#!/bin/sh -x
+#!/usr/bin/env bash
+
+set -euxo pipefail
 
 COMPONENTS_DIR="content/en/flux/components"
 FLUX_DIR="content/en/flux/cmd"
 
-if [ -z "${GITHUB_USER}" ]; then
+if [ -z "${GITHUB_USER:-}" ]; then
     GITHUB_USER=fluxcdbot
 fi
 
@@ -19,7 +21,7 @@ fatal() {
 
 # Set os, fatal if operating system not supported
 setup_verify_os() {
-    if [ -z "${OS}" ]; then
+    if [ -z "${OS:-}" ]; then
         OS=$(uname)
     fi
     case ${OS} in
@@ -36,7 +38,7 @@ setup_verify_os() {
 
 # Set arch, fatal if architecture not supported
 setup_verify_arch() {
-    if [ -z "${ARCH}" ]; then
+    if [ -z "${ARCH:-}" ]; then
         ARCH=$(uname -m)
     fi
     case ${ARCH} in
@@ -59,21 +61,14 @@ setup_verify_arch() {
 
 
 controller_version() {
-  url=https://api.github.com/repos/fluxcd/$1/releases
-  out=$(curl -w "%{http_code}" -o /tmp/releases -u "$GITHUB_USER:$GITHUB_TOKEN" -s "$url")
-  if [ "${out}" -ne "200" ] ; then
-      echo "error fetching releases from $url: $out"
-      cat /tmp/releases
-      exit 1
-  fi
-
-  jq -r '.[] | .tag_name' < /tmp/releases | sed 's/.*\///' | awk '{ if ($1 ~ /-/) print; else print $0"_" ; }' | sort -rV | sed 's/_$//' | head -n1
+  ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/v${VERSION_FLUX}/manifests/bases/${1}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
+  echo "${ks_url}" | cut -d/ -f8
 }
 
 gen_crd_doc() {
   URL="$1"
   DEST="$2"
-  HUGETABLE="$3"
+  HUGETABLE="${3:-}"
 
   TMP="$(mktemp)"
   curl -u "$GITHUB_USER:$GITHUB_TOKEN" -# -Lf "$URL" > "$TMP"
@@ -85,7 +80,7 @@ gen_crd_doc() {
   # 3. While others go     # Here is the title you're looking for...
   #
 
-  FIRST_LINE="$(grep -vE "^<!--" "$TMP" | head -n1)"
+  FIRST_LINE="$(grep -vEm1 "^<!--" "$TMP")"
   if echo "$FIRST_LINE" | grep -q "<h1>" ; then
     TITLE="$(echo "$FIRST_LINE" | cut -d'<' -f2 | cut -d'>' -f2 | sed 's/^\#\ //')"
   elif echo "$FIRST_LINE" | grep -E "^# "; then
@@ -95,7 +90,7 @@ gen_crd_doc() {
     exit 1
   fi
 
-  WEIGHT="$(grep -E '^<!-- menuweight:[[:digit:]]+ -->$' "$TMP" | cut -d' ' -f2|cut -d':' -f2)"
+  WEIGHT="$(grep -E '^<!-- menuweight:[[:digit:]]+ -->$' "$TMP" | cut -d' ' -f2|cut -d':' -f2 || true)"
   if [ -z "${WEIGHT}" ] ; then
     WEIGHT=0
   fi
@@ -117,6 +112,44 @@ gen_crd_doc() {
   else
     mv "$TMP" "$DEST"
   fi
+}
+
+{
+  # get flux cmd docs
+  setup_verify_os
+  setup_verify_arch
+
+  TMP="$(mktemp -d)"
+  TMP_METADATA="$TMP/flux.json"
+  TMP_BIN="$TMP/flux.tar.gz"
+
+  if [[ "${BRANCH}" =~ ^pull/[[:digit:]]*/head$ ]] ; then
+    BRANCH=$(curl -sSfL "https://api.github.com/repos/fluxcd/website/pulls/$(echo ${BRANCH}|cut -d/ -f2)" | jq .base.ref -r)
+  fi
+
+  page=1
+  while [ -z "${VERSION_FLUX:-}" ] ; do
+    tags=$(curl -u "${GITHUB_USER}:${GITHUB_TOKEN}" -sSfL "https://api.github.com/repos/fluxcd/flux2/releases?page=${page}" | jq .[].tag_name -r) || false
+    for tag in $tags ; do
+      if [ "${BRANCH}" = "main" ] ; then
+        VERSION_FLUX="${tag#v}"
+        break
+      fi
+      if [ "${tag%.*}" = "${BRANCH/-/.}" ] ; then
+        VERSION_FLUX="${tag#v}"
+        break
+      fi
+    done
+    ((page = page + 1))
+  done
+
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -o "${TMP_BIN}" --retry 3 -sSfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
+  tar xfz "${TMP_BIN}" -C "${TMP}"
+
+  rm -rf "${FLUX_DIR:?}/*"
+  "${TMP}/flux" docgen --path "${FLUX_DIR}"
+
+  rm -rf "$TMP"
 }
 
 {
@@ -168,27 +201,6 @@ gen_crd_doc() {
   IMG_AUTO_VER="$(controller_version image-automation-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/api/image-automation.md" "$COMPONENTS_DIR/image/automation-api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/image-automation-controller/$IMG_AUTO_VER/docs/spec/v1beta1/imageupdateautomations.md" "$COMPONENTS_DIR/image/imageupdateautomations.md"
-}
-
-{
-  # get flux cmd docs
-  setup_verify_os
-  setup_verify_arch
-
-  TMP="$(mktemp -d)"
-  TMP_METADATA="$TMP/flux.json"
-  TMP_BIN="$TMP/flux.tar.gz"
-
-  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -o "${TMP_METADATA}" --retry 3 -sSfL "https://api.github.com/repos/fluxcd/flux2/releases/latest"
-  VERSION_FLUX=$(grep '"tag_name":' "${TMP_METADATA}" | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
-
-  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -o "${TMP_BIN}" --retry 3 -sSfL "https://github.com/fluxcd/flux2/releases/download/v${VERSION_FLUX}/flux_${VERSION_FLUX}_${OS}_${ARCH}.tar.gz"
-  tar xfz "${TMP_BIN}" -C "${TMP}"
-
-  rm -rf "${FLUX_DIR:?}/*"
-  "${TMP}/flux" docgen --path "${FLUX_DIR}"
-
-  rm -rf "$TMP"
 }
 
 {
