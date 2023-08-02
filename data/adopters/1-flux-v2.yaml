@@ -300,3 +300,6 @@ adopters:
     - name: Infolegale
       url: https://www.infolegale.fr/
       logo: logos/infolegale.png
+    - name: ZEIT ONLINE
+      url: https://www.zeit.de
+      logo: logos/zeit-online.svg
