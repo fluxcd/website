@@ -32,7 +32,7 @@ spec:
 
 ## Add the PVC to the source-controller
 
-Add the PVC file to the `kustomization.yaml` resources and patch the source-controller volumes:
+To add the PVC file to the `kustomization.yaml` resources and patch the source-controller volumes [during bootstrap](_index.md), add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
