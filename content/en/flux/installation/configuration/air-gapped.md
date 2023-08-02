@@ -1,8 +1,8 @@
 ---
 title: "Flux air-gapped installation"
 linkTitle: "Air-Gapped installation"
-description: "How to install Flux on air-gapped environments."
-weight: 11
+description: "How to configure Flux for air-gapped clusters."
+weight: 15
 ---
 
 Flux can be installed on air-gapped environments where the Kubernetes cluster,
