@@ -78,7 +78,7 @@ The completion of this milestone is marked by the [v2.0.0](https://github.com/fl
 The goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
 
-The completion of this milestone will be marked by the `v2.1.0` release of the Flux distribution and CLI.
+The completion of this milestone will be marked by the `v2.2.0` release of the Flux distribution and CLI.
 
 - [ ] API promotions to GA
   - [ ] `helmrepositories.source.toolkit.fluxcd.io/v1`
@@ -141,3 +141,4 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0004](https://github.com/fluxcd/flux2/tree/main/rfcs/0004-insecure-http) Block insecure HTTP connections across Flux
 - [x] [RFC-0005](https://github.com/fluxcd/flux2/pull/3233) Artifact `Revision` format and introduction of `Digest`
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4114) Passswordless authentication for Git repositories
