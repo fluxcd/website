@@ -7,7 +7,7 @@ weight: 14
 
 Flux controllers can be restricted to run specifically on certain nodes in the Kubernetes cluster. This enables better control over the placement of Flux controllers in the Kubernetes cluster and ensures they are deployed on dedicated nodes with the appropriate labels and taints.
 
-Pin the Flux controllers to specific nodes with:
+To pin the Flux controllers to specific nodes [during bootstrap](_index.md), add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
