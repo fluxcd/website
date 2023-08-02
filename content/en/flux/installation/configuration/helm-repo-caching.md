@@ -11,8 +11,7 @@ For large repositories, this process can consume a significant amount of memory.
 Helm repositories caching helps Flux's source-controller to store and reuse data from remote Helm repositories, 
 reducing the need to repeatedly fetch data and conserving memory resources.
 
-For large Helm repository index files, enable
-caching to reduce the memory footprint of source-controller:
+To enable caching and reduce the memory footprint of source-controller for large Helm repository index files [during bootstrap](_index.md), add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
