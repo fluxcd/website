@@ -51,7 +51,7 @@ preview-build: gen-content prereqs ## Builds a preview build (for e.g. a pull re
 branch-build: gen-content prereqs ## Builds a Git branch (for e.g. development branches).
 	hugo \
 		--baseURL $(DEPLOY_PRIME_URL) \
-		--buildDrafts \
+		--environment branch \
 		--buildFuture \
 		--gc \
 		--minify \

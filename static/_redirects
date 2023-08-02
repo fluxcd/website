@@ -29,7 +29,8 @@
 /flux/use-cases/aws-codecommit                  /flux/installation/bootstrap/aws-codecommit         301!
 /flux/use-cases/azure                           /flux/installation/bootstrap/azure-devops           301!
 /flux/use-cases/gcp-source-repository           /flux/installation/bootstrap/google-cloud-source    301!
-/flux/cheatsheets/sharding/                     /flux/installation/configuration/sharding           301!
+/flux/use-cases/openshift                       /flux/installation/configuration/openshift          301!
+/flux/cheatsheets/sharding                      /flux/installation/configuration/sharding           301!
 
 /docs/contributing/*                            /contributing/:splat                                301!
 /docs/*                                         /flux/:splat                                        301!

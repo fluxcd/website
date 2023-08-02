@@ -82,3 +82,6 @@ adopters:
     - name: BlaBlaCar
       url: https://www.blablacar.com/
       logo: logos/blablacar.png
+    - name: EcoVadis
+      url: https://ecovadis.com/
+      logo: logos/ecovadis.png
