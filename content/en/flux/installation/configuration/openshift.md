@@ -1,7 +1,7 @@
 ---
 title: "Flux OpenShift installation"
 linkTitle: "OpenShift installation"
-description: "How to configure Flux for OpenShift."
+description: "How to configure Flux for OpenShift"
 weight: 15
 ---
 

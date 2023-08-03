@@ -1,7 +1,7 @@
 ---
 title: "Flux air-gapped installation"
 linkTitle: "Air-Gapped installation"
-description: "How to configure Flux for air-gapped clusters."
+description: "How to configure Flux for air-gapped clusters"
 weight: 15
 ---
 

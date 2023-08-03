@@ -1,7 +1,7 @@
 ---
 title: "Flux multi-tenancy"
 linkTitle: "Multi-tenancy lockdown"
-description: "How to configure Flux multi-tenancy lockdown."
+description: "How to configure Flux multi-tenancy lockdown"
 weight: 12
 ---
 
