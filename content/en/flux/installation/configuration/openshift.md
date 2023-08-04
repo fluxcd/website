@@ -7,7 +7,7 @@ weight: 15
 
 {{% alert color="danger" title="Required permissions" %}}
 To bootstrap Flux, the person running the command must have **cluster admin rights** for the target OpenShift cluster.
-It is also required to prepare a Git repository as described in the [bootstrap configuration](_index.md).
+It is also required to prepare a Git repository as described in the [bootstrap customization](boostrap-customization.md).
 {{% /alert %}}
 
 First allow Flux controllers to run as non-root:

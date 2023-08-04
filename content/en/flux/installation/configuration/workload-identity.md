@@ -11,7 +11,7 @@ registries, KMS, S3, etc.
 
 ## AWS IAM roles for service accounts
 
-To grant Flux access to AWS resources using IRSA [during bootstrap](_index.md) add the following patches
+To grant Flux access to AWS resources using IRSA [during bootstrap](boostrap-customization.md) add the following patches
 to the flux-system `kustomization.yaml`:
 
 ```yaml
@@ -45,7 +45,7 @@ patches:
 
 ## Azure Workload Identity
 
-To grant Flux access to Azure resources [during bootstrap](_index.md) add the following patches
+To grant Flux access to Azure resources [during bootstrap](boostrap-customization.md) add the following patches
 to the flux-system `kustomization.yaml`:
 
 ```yaml
@@ -85,7 +85,7 @@ patches:
 
 ## GCP Workload Identity
 
-To grant Flux access to Google Cloud resources [during bootstrap](_index.md) add the following patches
+To grant Flux access to Google Cloud resources [during bootstrap](boostrap-customization.md) add the following patches
 to the flux-system `kustomization.yaml`:
 
 ```yaml

@@ -14,7 +14,7 @@ using a dry-run Server Side Apply, triggering an upgrade if a change is detected
 For detailed information about this feature, [refer to the
 documentation](/flux/components/helm/helmreleases/#drift-detection).
 
-To enable drift detection [during bootstrap](_index.md) add the following patches to the flux-system `kustomization.yaml`:
+To enable drift detection [during bootstrap](boostrap-customization.md) add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

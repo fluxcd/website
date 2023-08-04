@@ -119,7 +119,7 @@ an upgrade if needed. Bootstrap is idempotent, it's safe to run the command as m
 After running the bootstrap command, any operation on the cluster(s) (including Flux upgrades)
 can be done via Git push, without the need to connect to the Kubernetes API.
 
-#### Bootstrap options
+#### Bootstrap providers
 
 Flux integrates with popular Git providers to simplify the
 initial setup of deploy keys and other authentication mechanisms:
@@ -134,6 +134,17 @@ initial setup of deploy keys and other authentication mechanisms:
 If your Git provider is not in the above list,
 please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)
 which works with any Git server.
+
+#### Bootstrap configuration
+
+Various configuration options are available at bootstrap time such as:
+
+* [Installing optional components](configuration/optional-components.md)
+* [Enforcing tenant isolation on shared clusters](configuration/multitenancy.md)
+* [Using workload identity on AWS, Azure and GCP](configuration/workload-identity.md)
+
+Please see the [boostrap configuration](configuration/_index.md) section for more examples 
+on how to customize Flux.
 
 ### Bootstrap with Terraform
 
