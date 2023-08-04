@@ -145,7 +145,7 @@ patches:
 
 ## Node affinity and tolerations
 
-Pin the Flux controllers to specific nodes:
+Pin the Flux controller pods to specific nodes and allow the cluster autoscaler to evict them:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -161,6 +161,9 @@ patches:
         name: all
       spec:
         template:
+          metadata:
+            annotations:
+              cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
           spec:
             affinity:
               nodeAffinity:
