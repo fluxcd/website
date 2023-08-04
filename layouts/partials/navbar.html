@@ -35,12 +35,6 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
     <ul class="navbar-nav mt-2 mt-lg-0">
-      <!-- Move docs selector forward -->
-      {{ if .Site.Params.versions -}}
-      <li class="nav-item dropdown mr-4">
-        {{ partial "navbar-version-selector.html" . -}}
-      </li>
-      {{ end -}}
       {{ $p := . -}}
       {{ range .Site.Menus.main -}}
         {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
@@ -60,25 +54,32 @@
             {{ range .Children  }}
             {{ $childrenurl := urls.Parse .URL }}
             <a class="dropdown-item" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $childrenurl.Host $baseurl.Host }}target="_blank" {{ end }}>{{ .Name }}</a>
-          {{ end }}
+            {{ end }}
          </div>
         </li>
         {{ else }}
-      <li class="nav-item mr-4 mb-2 mb-lg-0">
-        <a {{/**/ -}}
-          class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
-          href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
-          {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}
-        >
-            {{- with .Pre }}{{ $pre }}{{ end -}}
-            <span {{- if $active }} class="active" {{- end }}>
-              {{- .Name -}}
-            </span>
-            {{- with .Post }}{{ $post }}{{ end -}}
-        </a>
+        <li class="nav-item mr-4 mb-2 mb-lg-0">
+          <a {{/**/ -}}
+            class="nav-link {{- if $active }} active {{- end }}" {{/**/ -}}
+            href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
+            {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}
+          >
+              {{- with .Pre }}{{ $pre }}{{ end -}}
+              <span {{- if $active }} class="active" {{- end }}>
+                {{- .Name -}}
+              </span>
+              {{- with .Post }}{{ $post }}{{ end -}}
+          </a>
+        </li>
+        {{ end -}}
+	    {{ end -}}
+
+      {{ if .Site.Params.versions -}}
+      <li class="nav-item dropdown mr-4">
+        {{ partial "navbar-version-selector.html" . -}}
       </li>
       {{ end -}}
-	  {{ end -}}
+
       {{ if (gt (len .Site.Home.Translations) 0) -}}
       <li class="nav-item dropdown mr-4 d-none d-lg-block">
         {{ partial "navbar-lang-selector.html" . -}}
