@@ -95,15 +95,16 @@ params:
   # Enable Algolia DocSearch
   algolia_docsearch: true
   offlineSearch: false
-  version_menu: "Docs"
-  version: "Flux"
-  url_latest_version: /flux/
+  version_menu: "Versions"
+  version: "2.1"
+  archived_version: false
+  version_menu_pagelinks: true
+  url_latest_version: https://fluxcd.io/flux/
   versions:
-    # Add your release versions here
-    - version: Flux
-      url: /flux
-    - version: Flagger
-      url: /flagger
+    - version: "v2.1"
+      url: https://fluxcd.io
+    - version: "v2.0"
+      url: https://v2-0.docs.fluxcd.io
   logos:
     navbar: flux-horizontal-white.png
     hero: flux-horizontal-color.png
@@ -166,9 +167,9 @@ params:
 
 menus:
   main:
-  - identifier: Project
-    name: Project
-    weight: 20
+  - name: Documentation
+    url: /flux
+    weight: 10
   - name: Code of Conduct
     parent: Project
     url: https://github.com/fluxcd/community/blob/main/CODE_OF_CONDUCT.md
@@ -211,7 +212,9 @@ menus:
   - name: Ecosystem
     url: /ecosystem
     weight: 90
-  - url: https://github.com/fluxcd/flux2
-    name: GitHub
-    pre: "<i class='fab fa-github'></i> "
+  - name: Flagger
+    url: https://flagger.app
     weight: 100
+  - identifier: Project
+    name: Project
+    weight: 110

@@ -19,6 +19,7 @@
             {{ partial "taxonomy_terms_clouds.html" . }}
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5 pr-md-4" role="main">
+            {{ partial "version-banner.html" . }}
             {{ with .CurrentSection.OutputFormats.Get "rss" -}}
             <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
               <i class="fa-solid fa-rss" aria-hidden="true"></i>
