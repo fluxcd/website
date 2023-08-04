@@ -1,8 +1,8 @@
 ---
-title: Enable Flux drift detection for Helm Releases
+title: Flux drift detection for Helm Releases
 linkTitle: Helm drift detection
 description: "How to enable Helm drift detection in Flux"
-weight: 17
+weight: 20
 ---
 
 At present, Helm releases are not by default checked for drift compared to
@@ -24,10 +24,10 @@ resources:
   - gotk-sync.yaml
 patches:
   - patch: |
-      # Enable drift detection feature
+      # Enable drift detection and correction
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --feature-gates=DetectDrift=true
+        value: --feature-gates=DetectDrift=true,CorrectDrift=true
       # Enable debug logging for diff output (optional)
       - op: replace
         path: /spec/template/spec/containers/0/args/2
@@ -36,3 +36,8 @@ patches:
       kind: Deployment
       name: helm-controller
 ```
+
+{{% alert color="info" title="Disable drift correction" %}}
+To help aid transition to this new feature, it is possible to enable drift detection without it correcting drift.
+This can be done by setting the `CorrectDrift=false` feature flag in the above patch.
+{{% /alert %}}
