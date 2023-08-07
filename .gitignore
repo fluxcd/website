@@ -15,3 +15,6 @@ static/install.sh
 
 # local GH token, used for some scripts
 .gh-token
+
+# build directories
+/bin
