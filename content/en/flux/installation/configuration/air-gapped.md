@@ -63,4 +63,4 @@ flux bootstrap git \
 as the deploy key on your Git server in advance.
 
 For more information on how to use the `flux bootstrap git` command,
-please see the generic Git server [documentation](flux/installation/generic-git-server/).
+please see the generic Git server [documentation](../../bootstrap/generic-git-server/).
