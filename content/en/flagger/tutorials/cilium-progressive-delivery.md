@@ -61,9 +61,9 @@ spec:
 ----
 ## Bootstrap
 
-Flagger takes a Kubernetes deployment and optionally a horizontal pod autoscaler \(HPA\), then creates a series of objects \(Kubernetes deployments, ClusterIP services, Istio destination rules and virtual services\). These objects expose the application inside the mesh and drive the canary analysis and promotion.
+Flagger takes a Kubernetes deployment and optionally a horizontal pod autoscaler \(HPA\), then creates a series of objects \(Kubernetes deployments, ClusterIP services, HTTPRoutes for the Gateway\). These objects expose the application inside the mesh and drive the canary analysis and promotion.
 
-Create a test namespace with Istio sidecar injection enabled:
+Create a test namespace:
 
 ```bash
 kubectl create ns test
@@ -219,9 +219,7 @@ horizontalpodautoscaler.autoscaling/podinfo-primary
 service/podinfo
 service/podinfo-canary
 service/podinfo-primary
-destinationrule.networking.istio.io/podinfo-canary
-destinationrule.networking.istio.io/podinfo-primary
-virtualservice.networking.istio.io/podinfo
+httproutes.gateway.networking.k8s.io/podinfo
 ```
 
 ## Automated canary promotion
