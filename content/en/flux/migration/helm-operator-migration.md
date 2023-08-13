@@ -22,13 +22,13 @@ In combination with the fact that [Helm v2 reaches end of life after November 13
 
 When working with the Helm Operator, you had to mount various files to either make it recognize new (private) Helm repositories or make it gain access to Helm and/or Git repositories. While this approach was declarative, it did not provide a great user experience and was at times hard to set up.
 
-By moving this configuration to [`HelmRepository`](../components/source/helmrepositories.md), [`GitRepository`](../components/source/gitrepositories.md), [`Bucket`](../components/source/buckets.md) and [`HelmChart`](../components/source/helmcharts.md) Custom Resources, they can now be declaratively described (including their credentials using references to `Secret` resources), and applied to the cluster.
+By moving this configuration to [`HelmRepository`](/flux/components/source/helmrepositories/), [`GitRepository`](/flux/components/source/gitrepositories.md), [`Bucket`](/flux/components/source/buckets/) and [`HelmChart`](/flux/components/source/helmcharts/) Custom Resources, they can now be declaratively described (including their credentials using references to `Secret` resources), and applied to the cluster.
 
-The reconciliation of these resources has been offloaded to a dedicated [Source Controller](../components/source/_index.md), specialized in the acquisition of artifacts from external sources.
+The reconciliation of these resources has been offloaded to a dedicated [Source Controller](/flux/components/source/), specialized in the acquisition of artifacts from external sources.
 
 The result of this all is an easier and more flexible configuration, with much better observability. Failures are traceable to the level of the resource that lead to a failure, and are easier to resolve. As polling intervals can now be configured per resource, you can customize your repository and/or chart configuration to a much finer grain.
 
-From a technical perspective, this also means less overhead, as the resources managed by the Source  Controller can be shared between multiple `HelmRelease` resources, or even reused by other controllers like the [Kustomize Controller](../components/kustomize/_index.md).
+From a technical perspective, this also means less overhead, as the resources managed by the Source  Controller can be shared between multiple `HelmRelease` resources, or even reused by other controllers like the [Kustomize Controller](/flux/components/kustomize/).
 
 ### The `HelmRelease` Custom Resource group domain changed
 
@@ -76,7 +76,7 @@ Getting similar behaviour is still possible [using a workaround that makes use o
 
 There was a long outstanding request for the Helm Operator to support merging single values at a given path.
 
-With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
+With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
 
 ### Support added for depends-on relationships
 
@@ -96,18 +96,18 @@ There is a new `spec.suspend` field, that if set to `true` causes the Helm Contr
 
 We have added support for making Helm releases to other clusters. If the `spec.kubeConfig` field in the `HelmRelease` is set, Helm actions will run against the default cluster specified in that KubeConfig instead of the local cluster that is responsible for the reconciliation of the `HelmRelease`.
 
-The Helm storage is stored on the remote cluster in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.storageNamespace`. The release itself is made in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.targetNamespace`. The namespaces are expected to exist, and can for example be created using the [Kustomize Controller](/flux/components/kustomize/controller/) which has the same cross-cluster support.
+The Helm storage is stored on the remote cluster in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.storageNamespace`. The release itself is made in a namespace that equals to the namespace of the `HelmRelease`, or the configured `spec.targetNamespace`. The namespaces are expected to exist, and can for example be created using the [Kustomize Controller](/flux/components/kustomize/) which has the same cross-cluster support.
 Other references to Kubernetes resources in the `HelmRelease`, like `ValuesReference` resources, are expected to exist on the reconciling cluster.
 
 ### Added support for notifications and webhooks
 
-Sending notifications and/or alerts to Slack, Microsoft Teams, Discord, or Rocker is now possible using the [Notification Controller](../components/notification/_index.md), [`Provider` Custom Resources](../components/notification/provider.md) and [`Alert` Custom Resources](../components/notification/alert.md).
+Sending notifications and/or alerts to Slack, Microsoft Teams, Discord, or Rocker is now possible using the [Notification Controller](/flux/components/notification/), [`Provider` Custom Resources](/flux/components/notification/provider/) and [`Alert` Custom Resources](/flux/components/notification/alert/).
 
-It does not stop there, using [`Receiver` Custom Resources](../components/notification/receiver.md) you can trigger **push based** reconciliations from Harbor, GitHub, GitLab, BitBucket or your CI system by making use of the webhook endpoint the resource creates.
+It does not stop there, using [`Receiver` Custom Resources](/flux/components/notification/receiver/) you can trigger **push based** reconciliations from Harbor, GitHub, GitLab, BitBucket or your CI system by making use of the webhook endpoint the resource creates.
 
 ### Introduction of the `flux` CLI to create and/or generate Custom Resources
 
-With the new [`flux` CLI](../cmd/flux.md) it is now possible to create and/or generate the Custom Resources mentioned earlier. To generate the YAML for a `HelmRepository` and `HelmRelease` resource, you can for example run:
+With the new [`flux` CLI](/flux/cmd/flux/) it is now possible to create and/or generate the Custom Resources mentioned earlier. To generate the YAML for a `HelmRepository` and `HelmRelease` resource, you can for example run:
 
 ```sh
 $ flux create source helm podinfo \
@@ -150,7 +150,7 @@ spec:
 
 ## API spec changes
 
-The following is an overview of changes to the API spec, including behavioral changes compared to how the Helm Operator performs actions. For a full overview of the new API spec, consult the [API spec documentation](../components/helm/helmreleases.md#specification).
+The following is an overview of changes to the API spec, including behavioral changes compared to how the Helm Operator performs actions. For a full overview of the new API spec, consult the [API spec documentation](/flux/components/helm/helmreleases/#specification).
 
 ### Defining the Helm chart
 
@@ -220,7 +220,7 @@ spec:
     name: my-repository-creds
 ```
 
-In the `HelmRelease`, you then use a reference to the `HelmRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
+In the `HelmRelease`, you then use a reference to the `HelmRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
 
 ```yaml
 ---
@@ -271,7 +271,7 @@ spec:
     path: ./charts/my-chart
 ```
 
-With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1.GitRepository):
+With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](/flux/components/source/api/#source.toolkit.fluxcd.io/v1.GitRepository):
 
 ```yaml
 ---
@@ -322,7 +322,7 @@ spec:
     name: my-repository-creds
 ```
 
-In the `HelmRelease`, you then use a reference to the `GitRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
+In the `HelmRelease`, you then use a reference to the `GitRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
 
 ```yaml
 ---
@@ -404,7 +404,7 @@ spec:
       optional: true
 ```
 
-In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.ValuesReference) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
+In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.ValuesReference) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
 
 ```yaml
 ---
@@ -588,7 +588,7 @@ spec:
 
 With the Helm Operator the release options used to be configured in the `spec` of the `HelmRelease` and applied to both Helm install and upgrade actions.
 
-This has changed for the Helm Controller, where some defaults can be defined in the [`spec`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.HelmReleaseSpec), but specific action configurations and overwrites for the defaults can be defined in the [`spec.install`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Install), [`spec.upgrade`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Upgrade) and [`spec.test`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Test) sections of the `HelmRelease`.
+This has changed for the Helm Controller, where some defaults can be defined in the [`spec`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmReleaseSpec), but specific action configurations and overwrites for the defaults can be defined in the [`spec.install`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Install), [`spec.upgrade`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Upgrade) and [`spec.test`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Test) sections of the `HelmRelease`.
 
 ### Defining a rollback / uninstall configuration
 
@@ -613,11 +613,11 @@ spec:
     timeout: 300
 ```
 
-The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [`spec.upgrade.remediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [`spec.rollback`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [`spec.uninstall`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
+The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediation`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [`spec.upgrade.remediation`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [`spec.rollback`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [`spec.uninstall`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
 
 #### Automated uninstalls
 
-The configuration below mimics the uninstall behavior of the Helm Operator (for all available fields, consult the [`InstallRemediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation) and [`Uninstall`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall) API references):
+The configuration below mimics the uninstall behavior of the Helm Operator (for all available fields, consult the [`InstallRemediation`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation) and [`Uninstall`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Uninstall) API references):
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
@@ -682,7 +682,7 @@ Here are some things to know:
 * If both the Helm Controller and Helm Operator are running, and both a new and old custom resources define a release, they will fight over the release.
 * The Helm Controller will always perform an upgrade the first time it encounters a new `HelmRelease` for an existing release; this is [due to the changes to release mechanics and bookkeeping](#helm-storage-drift-detection-no-longer-relies-on-dry-runs).
 
-The safest way to upgrade is to avoid deletions and fights by stopping the Helm Operator. Once the operator is not running, it is safe to deploy the Helm Controller (e.g., by following the [Get Started guide](../get-started/index.md), [utilizing `flux install`](../cmd/flux_install.md), or using the manifests from the [release page](https://github.com/fluxcd/helm-controller/releases)), and start replacing the old resources with new resources. You can keep the old resources around during this process, since the Helm Controller will ignore them.
+The safest way to upgrade is to avoid deletions and fights by stopping the Helm Operator. Once the operator is not running, it is safe to deploy the Helm Controller (e.g., by following the [Get Started guide](/flux/get-started/), [utilizing `flux install`](../cmd/flux_install.md), or using the manifests from the [release page](https://github.com/fluxcd/helm-controller/releases)), and start replacing the old resources with new resources. You can keep the old resources around during this process, since the Helm Controller will ignore them.
 
 ### Steps
 
@@ -845,7 +845,7 @@ Yes, image updates are supported for `HelmRelease` as well as any other Kubernet
 
 If you are currently a Flux v1 user, you can commit the `HelmRelease` resources to Git, and Flux will automatically apply them to the cluster like any other resource.
 
-If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](/flux/components/kustomize/controller/) will serve your needs.
+If you are not a Flux v1 user or want to fully migrate to Flux v2, the [Kustomize Controller](/flux/components/kustomize/) will serve your needs.
 
 ### I am still running Helm v2, what is the right upgrade path for me?
 
@@ -860,7 +860,7 @@ Probably, but with some side notes:
 
 ### Can I use Helm Controller standalone?
 
-Helm Controller depends on [Source Controller](../components/source/_index.md), you can install both controllers
+Helm Controller depends on [Source Controller](/flux/components/source/), you can install both controllers
 and manager Helm releases in a declarative way without GitOps.
 
 For more details please see this [answer]({{< relref "../faq.md#can-i-use-flux-helmreleases-without-gitops" >}}).
