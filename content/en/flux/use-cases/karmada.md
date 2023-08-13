@@ -62,7 +62,7 @@ flux install --kubeconfig ~/.kube/members.config --context member1
 flux install --kubeconfig ~/.kube/members.config --context member2
 ```
 
-Please refer to the documentations [here](../installation.md) for more ways to set up Flux in details.
+Please refer to the documentations [here](/flux/installation/) for more ways to set up Flux in details.
 
 {{% alert color="info" title="Tip" %}}
 If you want to manage Helm releases across your fleet of clusters, Flux must be installed on each cluster.
