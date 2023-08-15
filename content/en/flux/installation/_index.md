@@ -85,14 +85,14 @@ choco install flux
 {{% /tab %}}
 {{< /tabpane >}}
 
-To configure your shell to load `flux` [bash completions](./cmd/flux_completion_bash.md) add to your profile:
+To configure your shell to load `flux` [bash completions](/flux/cmd/flux_completion_bash/) add to your profile:
 
 ```sh
 . <(flux completion bash)
 ```
 
-[`zsh`](./cmd/flux_completion_zsh.md), [`fish`](./cmd/flux_completion_fish.md),
-and [`powershell`](./cmd/flux_completion_powershell.md)
+[`zsh`](/flux/cmd/flux_completion_zsh/), [`fish`](/flux/cmd/flux_completion_fish/),
+and [`powershell`](/flux/cmd/flux_completion_powershell/)
 are also supported with their own sub-commands.
 
 A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
@@ -143,7 +143,7 @@ Various configuration options are available at bootstrap time such as:
 * [Enforcing tenant isolation on shared clusters](configuration/multitenancy.md)
 * [Using workload identity on AWS, Azure and GCP](configuration/workload-identity.md)
 
-Please see the [boostrap configuration](configuration/_index.md) section for more examples 
+Please see the [bootstrap configuration](configuration/_index.md) section for more examples 
 on how to customize Flux.
 
 ### Bootstrap with Terraform
