@@ -271,7 +271,7 @@ spec:
     path: ./charts/my-chart
 ```
 
-With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](/flux/components/source/api/#source.toolkit.fluxcd.io/v1.GitRepository):
+With the Helm Controller, you create a `GitRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](/flux/components/source/api/v1/#source.toolkit.fluxcd.io/v1.GitRepository):
 
 ```yaml
 ---

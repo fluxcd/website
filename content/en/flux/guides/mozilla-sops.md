@@ -311,7 +311,7 @@ kubectl -n flux-system rollout restart deployment/kustomize-controller
 ```
 
 {{% alert color="info" title="Bootstrap" %}}
-Note that when using `flux bootstrap` you can [set the annotation](/flux/cheatsheets/bootstrap/#iam-roles-for-service-accounts/) to take effect at install time.
+Note that when using `flux bootstrap` you can [set the annotation](/flux/cheatsheets/bootstrap/#iam-roles-for-service-accounts) to take effect at install time.
 {{% /alert %}}
 
 #### Azure
