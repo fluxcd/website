@@ -76,7 +76,7 @@ Getting similar behaviour is still possible [using a workaround that makes use o
 
 There was a long outstanding request for the Helm Operator to support merging single values at a given path.
 
-With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
+With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
 
 ### Support added for depends-on relationships
 
@@ -175,7 +175,7 @@ spec:
     version: 1.2.3
 ```
 
-With the Helm Controller, you now create a `HelmRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](../components/source/api.md#source.toolkit.fluxcd.io/v1beta2.HelmRepository)):
+With the Helm Controller, you now create a `HelmRepository` resource in addition to the `HelmRelease` you would normally create (for all available fields, consult the [Source API reference](/flux/components/source/api/v1beta2/#source.toolkit.fluxcd.io/v1beta2.HelmRepository)):
 
 ```yaml
 ---
@@ -643,7 +643,7 @@ spec:
 
 #### Automated rollbacks
 
-The configuration below shows an automated rollback configuration that equals [the configuration for the Helm Operator showed above](#defining-a-rollback-uninstall-configuration) (for all available fields, consult the [`UpgradeRemediation`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation) and [`Rollback`](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback) API references):
+The configuration below shows an automated rollback configuration that equals [the configuration for the Helm Operator showed above](#defining-a-rollback--uninstall-configuration) (for all available fields, consult the [`UpgradeRemediation`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation) and [`Rollback`](/flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.Rollback) API references):
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1

@@ -157,7 +157,7 @@ in [`helm/helm#8281`](https://github.com/helm/helm/issues/8281).
 
 If you are running into this, confirm first that your chart has all the required excludes in
 their respective [`.helmignore`](https://helm.sh/docs/chart_template_guide/helm_ignore_file/) and
-[`.sourceignore`](/flux/components/source/api/#source.toolkit.fluxcd.io/v1.GitRepository) files.
+[`.sourceignore`](/flux/components/source/api/v1/#source.toolkit.fluxcd.io/v1.GitRepository) files.
 
 ### How to debug "not ready" errors?
 

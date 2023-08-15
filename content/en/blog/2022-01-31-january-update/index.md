@@ -39,7 +39,7 @@ previously the controllers ignored the service account.
 #### :lock: Security enhancements
 
 - Platform admins have the option to [lock down Flux on multi-tenant
-  clusters](/flux/installation/#multi-tenancy-lockdown)
+  clusters](/flux/installation/configuration/multitenancy/)
   and enforce tenant isolation at namespace level without having to
   use a 3rd party admission controller.
 - The Flux installation conforms to the Kubernetes [restricted pod

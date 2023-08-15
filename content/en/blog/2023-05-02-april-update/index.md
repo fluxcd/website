@@ -35,7 +35,7 @@ In addition, RC.1 comes with support for auth with Azure Workload
 Identity when pulling OCI artifacts from ACR and when decrypting secret
 with Azure Vault. Also, Bootstrap for GitLab was extended with support
 for generating [GitLab Deploy
-Tokens](/flux/installation/#gitlab-and-gitlab-enterprise).
+Tokens](/flux/installation/bootstrap/gitlab/).
 
 Big thanks to all the Flux contributors that helped us with this release!
 
@@ -73,7 +73,7 @@ reconciliation of multiple resources using `.spec.resources.matchLabels`.
 The v1 API is backwards compatible with v1beta2, no fields were removed.
 
 To upgrade Flux from `v0.x` to `v2.0.0-rc-1` you can either rerun
-[flux bootstrap](/flux/installation/#bootstrap-upgrade)
+[flux bootstrap](/flux/installation/upgrade/#flux-controllers-upgrade)
 or use the [Flux GitHub Action](https://github.com/fluxcd/flux2/tree/main/action).
 
 To upgrade the APIs from v1beta2, after deploying the new CRDs and controllers,

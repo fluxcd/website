@@ -156,9 +156,9 @@ to a chart. The Flux Kustomize Controller method allows you to accomplish this
 on any chart without additional templated annotations.
 
 You may also use Kustomize Controller
-built-in [Mozilla SOPS integration](../components/kustomize/kustomization.md#secrets-decryption)
+built-in [Mozilla SOPS integration](/flux/components/kustomize/kustomization/#decryption)
 to securely manage your encrypted secrets stored in git.
-See the [Flux SOPS guide](../guides/mozilla-sops.md) for step-by-step instructions through various use cases.
+See the [Flux SOPS guide](/flux/guides/mozilla-sops/) for step-by-step instructions through various use cases.
 
 ## Automatic Release Upgrades
 
