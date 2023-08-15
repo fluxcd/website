@@ -75,7 +75,7 @@ Source controller. Kustomize controller delivers, or applies, resources into a c
 user defines how Kustomize controller delivers workloads from sources.
 
 The Kustomize controller is responsible for validating manifests against the Kubernetes API, and managing access to permissions in a way that is safe for
-multi-tenant clusters through Kubernetes Service Account impersonation. The controller supports health assessment of deployed resources and dependency
+multi-tenant clusters through Kubernetes Service Account impersonation. The controller supports health checking of deployed resources and dependency
 ordering, optionally enabled garbage collection or "pruning" of deleted resources from the cluster when they are removed from the source, and also
 notification of when cluster state changes – Kustomizations can also target and deliver resources onto a remote cluster, (which can, but does not necessarily
 also run its own local independent set of Flux controllers.)
@@ -120,7 +120,7 @@ changes to a given Git repository. The behavior of the automation process is def
 
 That resource defines the way that automated commits are created and pushed.  The `ImagePolicy` is another custom resource that determines what image tags go
 where. `ImagePolicy` can be defined to select the latest image from images within a SemVer range, or more flexible RegEx filters with alphabetical or
-numerical sorting to select the "latest" image. Image tags can also be [filtered with FilterTags](/flux/components/image/imagepolicies/#filtertags)
+numerical sorting to select the "latest" image. Image tags can also be [filtered with FilterTags](/flux/components/image/imagepolicies/#filter-tags)
 before they are considered as candidate images by the policy rule.
 
 The updates are governed by marking fields to be updated in each YAML file. For each field marked, the automation process checks the image policy named, and
@@ -150,7 +150,7 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 13. [Using a GitRepository-backed or S3-backed HelmRelease][] is an alternative to use Helm without a `HelmRepository`.
 14. [Channel-based Providers for Notifications][] re-publish `Events` from Flux resources at-large to a channel where users can see them.
 15. [Git Commit Status Provider Notifications][] re-publish `Events` from the Kustomize Controller as commit checks.
-16. [Waiting and Health Assessment for Flux Kustomization][].
+16. [Waiting and Health Checking for Flux Kustomization][].
 
 ### Bootstrapping Flux
 
@@ -428,8 +428,8 @@ that refer to or use them.
 The Kustomize Controller communicates directly with the Kubernetes API using [server-side apply and update][] API operations instead of running the `kubectl
 apply` command as a separate forked process and passing it manifest data through a system pipe. Applying resource manifests directly to the Kubernetes
 API is both more efficient and provides more control over the process, enabling the Kustomize Controller to give real-time feedback on validation errors,
-garbage-collection and resource health assessment.  It also allows the Kubernetes API to track [field management][], so different management tools or
-controllers can set field values within the same resource without interfering with each other.
+garbage-collection and resource "health assessment" or health checking.  It also allows the Kubernetes API to track [field management][], so different
+management tools or controllers can set field values within the same resource without interfering with each other.
 
 The server-side apply operation is synchronous rather than asynchronous. If any resources fail to become ready before a specified timeout, the controller can
 abort the entire transaction. The timeout value is used in two separate contexts, such that either or both of them can take up to `spec.timeout` seconds
@@ -569,13 +569,13 @@ commit hash to be present in the metadata.
 The provider will continuously receive events as they happen, and multiple events may be received for the same commit hash. The Git
 providers are configured to update the status only if it has changed. This avoids repeatedly spamming the commit status history.
 
-### Waiting and Health Assessment for Flux Kustomization
+### Waiting and Health Checking for Flux Kustomization
 
 Kustomize Controller can be configured with or without `spec.wait` which decides whether the `Kustomization` will be considered ready
 as soon as the resources are applied, or if the Kustomization will not be considered ready until the resources it created are all
 marked as ready.
 
-The health checking feature is called [Health Assessment][] in the Flux Kustomization API.
+The health checking feature is called [Health Checks][] in the Flux Kustomization API.
 
 [Bootstrapping Flux]: #bootstrapping-flux
 [Generating a Flux resource]: #generating-a-flux-resource
@@ -593,7 +593,7 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [Using a GitRepository-backed or S3-backed HelmRelease]: #using-a-gitrepository-backed-or-s3-backed-helmrelease
 [Channel-based Providers for Notifications]: #channel-based-providers-for-notifications
 [Git Commit Status Provider Notifications]: #git-commit-status-provider-notifications
-[Waiting and Health Assessment for Flux Kustomization]: #waiting-and-health-assessment-for-flux-kustomization
+[Waiting and Health Checking for Flux Kustomization]: #waiting-and-health-checking-for-flux-kustomization
 
 [GitOps toolkit]: /flux/components/
 [Security]: /flux/security/
@@ -626,4 +626,4 @@ The health checking feature is called [Health Assessment][] in the Flux Kustomiz
 [Alert API]: /flux/components/notification/alert/
 [Event API]: /flux/components/notification/event/
 [Setup Git Commit Status Notications]: /flux/guides/notifications/#git-commit-status
-[Health Assessment]: /flux/components/kustomize/kustomization/#health-assessment
+[Health Checks]: /flux/components/kustomize/kustomization/#health-checks

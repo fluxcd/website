@@ -98,7 +98,7 @@ Big shout-out to Soulé Ba for adding Bitbucket support to Flux. This
 will make lots of Flux users happy. Thank you very much!
 
 To find out how to bootstrap Flux on Bitbucket Server, please review
-[our documentation](/flux/installation/#bitbucket-server-and-data-center).
+[our documentation](/flux/installation/bootstrap/bitbucket/).
 We love feedback, so please reach out if you have any questions or are
 missing anything. We are also working on support for BitBucket Cloud,
 for which we might need some help testing, documentation or wherever

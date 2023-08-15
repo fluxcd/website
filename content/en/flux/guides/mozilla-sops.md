@@ -382,7 +382,7 @@ spec:
   selector: ${IDENTITY_NAME}
 ```
 
-[Customize your Flux Manifests](../installation/_index.md#customize-flux-manifests) so that kustomize-controller has the proper credentials.
+[Customize your Flux Manifests](/flux/cheatsheets/bootstrap/#how-to-customize-flux) so that kustomize-controller has the proper credentials.
 Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` selector.
 Additionally, the SOPS specific environment variable `AZURE_AUTH_METHOD=msi` to activate the proper auth method within kustomize-controller.
 
