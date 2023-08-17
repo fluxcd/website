@@ -77,7 +77,7 @@ shortcomings. Things which "just work" in the Git CLI, any of the
 implementations get subtly wrong, as they work on the ["plumbing"
 level](https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain)
 of Git. In the end we chose to make `gitImplementation` a [configurable
-setting](/flux/components/source/gitrepositories/#git-implementation).
+setting](/flux/components/source/api/v1beta2/#source.toolkit.fluxcd.io/v1beta2.GitRepository).
 
 Just to illustrate what happens when you try to do things just right,
 here's a couple of pieces of work we needed to get done along

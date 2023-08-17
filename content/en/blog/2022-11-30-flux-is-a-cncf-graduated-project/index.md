@@ -93,7 +93,7 @@ these days, a lot of this is based on Flux as a technology and the
 learnings we made until today. We are extremely pleased to have this
 [huge ecosystem](/ecosystem/) built on
 top of and around Flux, including recent [Flux
-UIs](/ecosystem/#flux-uis)!
+UIs](/ecosystem/#flux-uis--guis)!
 
 ## Next up: Flux going GA
 

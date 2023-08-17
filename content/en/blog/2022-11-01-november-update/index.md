@@ -27,7 +27,7 @@ features further into Flux. Here is a list of features and improvements
 that were added in the last release:
 
 - Verify OCI Helm charts signed by Cosign (including keyless) with
-  [`HelmChart.spec.verify`](/docs/cheatsheets/oci-artifacts/#verify-helm-charts).
+  [`HelmChart.spec.verify`](/flux/cheatsheets/oci-artifacts/#verify-helm-charts).
 - Allow publishing a single YAML file to OCI with
   `flux push artifact <URL> --path=deploy/install.yaml`.
 - Detect changes to local files before pushing to OCI with
@@ -511,7 +511,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the

@@ -14,7 +14,7 @@ description: >
 
 To contribute new pages or improve existing pages, open a pull request (PR).
 
-If your change is small, or you're unfamiliar with git, read [Changes using GitHub](#Changes-using-GitHub).
+If your change is small, or you're unfamiliar with git, read [Changes using GitHub](#changes-using-github).
 
 ### Changes using GitHub
 
@@ -47,7 +47,7 @@ If you are a maintainer of the repo, the edit page button will not let you work 
    - Leave the **Allow edits from maintainers** checkbox selected.
 
    {{% alert title="" color="info" %}}
-   PR descriptions are a great way to help reviewers understand your change. For more information, see [Opening a PR](#open-a-pr).
+   PR descriptions are a great way to help reviewers understand your change. For more information, see [Opening a PR](#open-a-pull-request-from-your-fork-to-fluxcdwebsite).
    {{% /alert %}}
 
 1. Select **Create pull request**.

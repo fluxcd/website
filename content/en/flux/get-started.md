@@ -30,7 +30,7 @@ To install the CLI with Homebrew run:
 brew install fluxcd/tap/flux
 ```
 
-For other installation methods, see the [CLI install documentation](installation.md#install-the-flux-cli).
+For other installation methods, see the [CLI install documentation](/flux/installation/#install-the-flux-cli).
 
 ## Export your credentials
 
@@ -53,7 +53,7 @@ The output is similar to:
 
 ```
 ► checking prerequisites
-✔ kubernetes 1.27.3 >=1.24.0
+✔ kubernetes 1.28.0 >=1.25.0
 ✔ prerequisites checks passed
 ```
 
@@ -262,14 +262,14 @@ To resume updates run the command `flux resume kustomization <name>`.
 ## Customize podinfo deployment
 
 To customize a deployment from a repository you don't control, you can use Flux
-[in-line patches](../components/kustomize/kustomization/#override-kustomize-config). The following example shows how to use in-line patches to change the podinfo deployment.
+[in-line patches](/flux/components/kustomize/kustomization/#patches). The following example shows how to use in-line patches to change the podinfo deployment.
 
 1. Add the following to the field `spec` of your `podinfo-kustomization.yaml` file:
 
     ```yaml clusters/my-cluster/podinfo-kustomization.yaml
       patches:
         - patch: |-
-            apiVersion: autoscaling/v2beta2
+            apiVersion: autoscaling/v2
             kind: HorizontalPodAutoscaler
             metadata:
               name: podinfo

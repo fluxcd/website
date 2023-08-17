@@ -51,11 +51,11 @@ It's important to us to document all the new features, so here goes a list of ne
 articles and how-tos:
 
 - Cheatsheet: [Enable Helm drift
-  detection](/flux/cheatsheets/bootstrap/#enable-helm-drift-detection)
+  detection](/flux/installation/configuration/helm-drift-detection/)
 - Cheatsheet: [Enable Helm near OOM
-  detection](/flux/cheatsheets/bootstrap/#enable-helm-near-oom-detection)
+  detection](/flux/installation/configuration/helm-oom-detection/)
 - Cheatsheet: [Allow Helm DNS
-  lookups](/flux/cheatsheets/bootstrap/#allow-helm-dns-lookups)
+  lookups](/flux/installation/configuration/helm-dns-lookup/)
 - Controller: [New helm-controller feature gates and
   options](/flux/components/helm/options/#feature-gates)
 - Controller: [New kustomize-controller feature
@@ -365,9 +365,9 @@ couple of small things we landed recently:
   2023](/contributing/docs/google-season-of-docs-2023/). If you are
   interested in the initiative, go and check out the link.
 - We added information about to [enable Helm drift
-  detection](/flux/cheatsheets/bootstrap/#enable-helm-drift-detection)
+  detection](/flux/installation/configuration/helm-drift-detection/)
   and how to [allow Helm DNS
-  lookups](/flux/cheatsheets/bootstrap/#allow-helm-dns-lookups).
+  lookups](/flux/installation/configuration/helm-dns-lookup/).
 
 And on top of that countless fixes, small improvements and updates as
 always. Thanks a lot to these folks who contributed to docs and website:
@@ -440,7 +440,7 @@ good ways to do that:
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

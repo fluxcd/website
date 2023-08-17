@@ -143,7 +143,7 @@ guide][flux-v1-migration].
 
 When starting from scratch, you are likely to have used `flux bootstrap`. Rerun the command, and
 include the image automation controllers in your starting configuration with the flag
-`--components-extra`, [as shown in the installation guide][flux-bootstrap].
+`--components-extra`, [as shown in the installation guide][additional components].
 
 This will commit changes to your Git repository and sync them in the cluster.
 
@@ -159,7 +159,7 @@ If you followed the [Flux v1 migration guide][flux-v1-migration], you will alrea
 Flux v2 controllers. The automation controllers are currently considered an optional extra to those,
 but are installed and run in much the same way. You may or may not have committed the Flux v2
 configuration to your Git repository. If you did, go to the section [After committing Flux v2
-configuration to Git](#after-committing-flux-v2-configuration-to-git).
+configuration to Git](#after-committing-a-flux-v2-configuration-to-git).
 
 If _not_, you will be installing directly to the cluster:
 
@@ -546,7 +546,7 @@ timestamp part of the tag will be extracted and sorted numerically in ascending 
 reference docs][imagepolicy-ref] for more examples.
 
 Once you have made sure you have image tags and an `ImagePolicy`, jump ahead to [Checking
-the ImagePolicy works](#checking-that-the-image-policy-works).
+the ImagePolicy works](#checking-that-the-imagepolicy-works).
 
 ### How to use SemVer image tags
 
@@ -746,7 +746,7 @@ from ["Migrating each manifest to Flux v2"](#migrating-each-manifest-to-flux-v2)
 [image-update-tute-custom]: /flux/guides/image-update/#configure-image-update-for-custom-resources
 [flux-v1-migration]: /flux/migration/flux-v1-migration/
 [install-cli]: /flux/get-started/#install-the-flux-cli
-[flux-bootstrap]: /flux/installation/_index.md#bootstrap
+[additional components]: /flux/installation/configuration/optional-components/
 [github-pat]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
 [image-update-tute-creds]: /flux/guides/image-update/#configure-image-scanning
 [image-update-tute-clouds]: /flux/guides/image-update/#imagerepository-cloud-providers-authentication

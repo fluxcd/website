@@ -70,7 +70,7 @@ are created for the Flux components, then the manifests are pushed to an existin
 The bootstrap is done using the `flux` CLI or
 using our [Terraform Provider](https://github.com/fluxcd/terraform-provider-flux).
 
-For more information, take a look at [the bootstrap documentation](installation.md#bootstrap).
+For more information, take a look at [the bootstrap documentation](/flux/installation/bootstrap/).
 
 ## Continuous Delivery
 

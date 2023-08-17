@@ -5,17 +5,25 @@ description: "Flux and the GitOps Toolkit frequently asked questions."
 weight: 144
 ---
 
-{{% alert title="Troubleshooting" %}}
-Troubleshooting advice can be found on our [Troubleshooting Cheatsheet](/flux/cheatsheets/troubleshooting/).
-{{% /alert %}}
-
 ## General questions
 
 ### Does Flux have a UI / GUI?
 
-The Flux project does not provide a UI of its own, but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis--guis).
+The Flux project does not provide a UI of its own,
+but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis--guis).
 
 {{< blocks/flux_ui_galleries >}}
+
+### Where can I find information about Flux release cadence and supported versions?
+
+Flux is _at least_ released at the same rate as Kubernetes, following their cadence of
+**three minor releases per year**.
+
+For Flux the CLI and its controllers, we support the last three minor releases.
+Critical bug fixes, such as security fixes, may be back-ported to those three minor
+versions as patch releases, depending on severity and feasibility.
+
+For more details please see the Flux [release documentation](/flux/releases/).
 
 ## Kustomize questions
 
@@ -484,7 +492,8 @@ spec:
 and we want to override the chart version per cluster for example to gradually
 roll out a new version. We have couple options:
 
-#### Using Kustomize patches:
+#### Using Kustomize patches
+
 ```yaml
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -514,6 +523,7 @@ spec:
 ```
 
 #### Using Kustomize variable substitution
+
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -535,7 +545,9 @@ spec:
       retries: 3
 ```
 
-To enable the replacement of the `PODINFO_CHART_VERSION` variable with a different version than the `6.2.0` default, specify `postBuild` in the `Kustomization`:
+To enable the replacement of the `PODINFO_CHART_VERSION` variable with a different
+version than the `6.2.0` default, specify `postBuild` in the `Kustomization`:
+
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -577,9 +589,3 @@ to help you migrate to Flux v2:
 - [How to manage multi-tenant clusters with Flux v2](https://github.com/fluxcd/flux2-multi-tenancy)
 - [Migrate from Helm Operator to Flux v2](/flux/migration/helm-operator-migration/)
 - [How to structure your HelmReleases](https://github.com/fluxcd/flux2-kustomize-helm-example)
-
-## Release questions
-
-### Where can I find information on how long versions are supported and how often to expect releases?
-
-Releases are as needed for now and a release page with the schedule will be created when Flux reaches general availability status ([Flux roadmap can be found here](/roadmap/)). We understand the importance of having a release schedule and are aware that such a schedule will support the users' ability to plan for an upgrade in advance. For now you can expect the current release cadence of at least once per month to continue.

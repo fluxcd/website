@@ -146,9 +146,9 @@ of the event. Therefore the providers will only work with `Kustomization` as an
 event source, as it is the only resource which includes this data.
 {{% /alert %}}
 
-First follow the [get started guide](../../get-started) if you do not have a Kubernetes cluster with Flux installed in it.
+First follow the [get started guide](/flux/get-started) if you do not have a Kubernetes cluster with Flux installed in it.
 You will need a authentication token to communicate with the API. The authentication method depends on
-the git provider used, refer to the [Provider CRD](../../components/notification/provider/#git-commit-status)
+the git provider used, refer to the [Provider CRD](/flux/components/notification/provider/#git-commit-status-updates)
 for details about how to get the correct token. The guide will use GitHub, but the other providers will work in a very similar manner.
 The token will need to have write access to the repository it is going to update the commit status in.
 Store the generated token in a Secret with the following data format in the cluster.

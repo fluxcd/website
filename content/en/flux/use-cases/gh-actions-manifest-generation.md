@@ -1254,7 +1254,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [image update guide]: /flux/guides/image-update/
 [any old app]: https://github.com/kingdonb/any_old_app
 [Flux bootstrap guide]: /flux/get-started/
-[String Substitution with sed -i]: #string-substitution-with-sed-i
+[String Substitution with sed -i]: #string-substitution-with-sed--i
 [Docker Build and Tag with Version]: #docker-build-and-tag-with-version
 [Jsonnet for YAML Document Rehydration]: #jsonnet-for-yaml-document-rehydration
 [Commit Across Repositories Workflow]: #commit-across-repositories-workflow
@@ -1291,7 +1291,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [anguslees example jsonnet]: https://github.com/anguslees/kustomize-libsonnet/blob/master/example.jsonnet
 [Kubernetes docs on Using Service Accounts]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-multiple-service-accounts
 [sops/issues/315]: https://github.com/mozilla/sops/issues/315
-[using various cloud providers]: /guides/mozilla-sops/#using-various-cloud-providers
+[using various cloud providers]: /flux/guides/mozilla-sops/#encrypting-secrets-using-various-cloud-providers
 [Decrypt SOPS Secrets]: https://github.com/marketplace/actions/decrypt-sops-secrets
 [Sops Binary Installer]: https://github.com/marketplace/actions/sops-binary-installer
 [04-update-fleet-infra.yaml]: https://github.com/kingdonb/any_old_app/blob/main/.github/workflows/04-update-fleet-infra.yaml

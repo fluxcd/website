@@ -74,14 +74,14 @@ And finally **0.24** comes with security updates for Alpine CVEs. We are
 also happy to bring you
 
 - New bootstrap command for [Bitbucket Server and Data
-  Center](/flux/installation/#bitbucket-server-and-data-center)
+  Center](/flux/installation/bootstrap/bitbucket/)
   repositories (CLI).
 - Add support for self-signed certificates when bootstrapping Flux
   with on-prem GitHub, GitLab and BitBucket servers (CLI).
 - Improved performance when building Helm charts and introduced limits
   for Helm index and chart files. (source-controller).
 - Add support for [Slack Apps
-  bot](/flux/components/notification/provider/#slack-app)
+  bot](/flux/components/notification/provider/#slack)
   alerting provider (notification-controller).
 
 Please note that this version comes with breaking changes to Helm users.
@@ -98,7 +98,7 @@ Big shout-out to Soulé Ba for adding Bitbucket support to Flux. This
 will make lots of Flux users happy. Thank you very much!
 
 To find out how to bootstrap Flux on Bitbucket Server, please review
-[our documentation](/flux/installation/#bitbucket-server-and-data-center).
+[our documentation](/flux/installation/bootstrap/bitbucket/).
 We love feedback, so please reach out if you have any questions or are
 missing anything. We are also working on support for BitBucket Cloud,
 for which we might need some help testing, documentation or wherever

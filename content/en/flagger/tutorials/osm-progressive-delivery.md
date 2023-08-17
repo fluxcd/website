@@ -20,7 +20,7 @@ OSM must have permissive traffic policy enabled and have an instance of Promethe
     --set=OpenServiceMesh.enablePermissiveTrafficPolicy=true
     ```
 - If a managed instance of OSM is being used:
-  - [Bring your own instance](docs.openservicemesh.io/docs/guides/observability/metrics/#byo-prometheus) of Prometheus, 
+  - [Bring your own instance](https://docs.openservicemesh.io/docs/guides/observability/metrics/#bring-your-own) of Prometheus,
     setting the namespace to match the managed OSM controller namespace
   - Enable permissive traffic policy after installation by updating the OSM MeshConfig resource:
     ```bash

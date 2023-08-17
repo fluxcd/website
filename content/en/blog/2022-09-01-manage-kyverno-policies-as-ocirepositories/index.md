@@ -27,7 +27,7 @@ The Flux CLI generates a single layer OCI image for storing things. As you can u
 
 Today, we’ll leverage the OCI Repositories feature to apply Kyverno policies stored in an OCI registry into the Kubernetes cluster.
 
-First, we need to install Flux CLI, please see the [installation](/docs/installation/) page for more details.
+First, we need to install Flux CLI, please see the [installation](/flux/installation/) page for more details.
 
 Next, we should have a Kubernetes cluster running. We’ll be using [KinD](https://kind.sigs.k8s.io/docs/user/quick-start#configuring-your-kind-cluster) for this purpose.
 
@@ -156,11 +156,11 @@ spec:
         kind: ClusterPolicy
 ```
 
-I'd like to highlight some key points about the resources above. Here in `OCIRepository` resource, we are using [SemVer](/docs/components/source/ocirepositories/#semver-example) to select the policies that we want to apply. `.spec.ref` is an optional field to specify the OCI reference to resolve and watch for changes. If not specified, the latest version of the repository will be used. You can reach out to the complete list of references supported in Flux, here is the [link](/docs/components/source/ocirepositories/#reference) for you.
+I'd like to highlight some key points about the resources above. Here in `OCIRepository` resource, we are using [SemVer](/flux/components/source/ocirepositories/#semver-example) to select the policies that we want to apply. `.spec.ref` is an optional field to specify the OCI reference to resolve and watch for changes. If not specified, the latest version of the repository will be used. You can reach out to the complete list of references supported in Flux, here is the [link](/flux/components/source/ocirepositories/#reference) for you.
 
-Also, in the `Kustomization` resource, we are using `.spec.patches` to apply patches to the policies that we want to enforce. We are using `op: replace` to replace the existing value of the field with the new one. `path` is the path to the field that we want to replace. `value` is the value of the field that we want to replace. To get more detail about the `Patches`, please see the [link](/docs/components/kustomize/kustomization/#patches).
+Also, in the `Kustomization` resource, we are using `.spec.patches` to apply patches to the policies that we want to enforce. We are using `op: replace` to replace the existing value of the field with the new one. `path` is the path to the field that we want to replace. `value` is the value of the field that we want to replace. To get more detail about the `Patches`, please see the [link](/flux/components/kustomize/kustomization/#patches).
 
-Last but not least, we are specifying an explicit dependencies for the `Kustomization` resource by using `dependsOn` keyword that ensures the Kyverno deployment is ready before applying the policies. This is important because Kyverno needs to be installed before applying the policies. Otherwise, the policies won't be used because CRD (Custom Resource Definitions) won't exist until Kyverno works. You can learn more about the dependencies of `Kustomization` resource, [here](/flux/components/kustomize/kustomization/#kustomization-dependencies).
+Last but not least, we are specifying an explicit dependencies for the `Kustomization` resource by using `dependsOn` keyword that ensures the Kyverno deployment is ready before applying the policies. This is important because Kyverno needs to be installed before applying the policies. Otherwise, the policies won't be used because CRD (Custom Resource Definitions) won't exist until Kyverno works. You can learn more about the dependencies of `Kustomization` resource, [here](/flux/components/kustomize/kustomization/#dependencies).
 
 Now, we can apply these manifests by committing and pushing them to the repository and letting Flux take care of the rest but still, one little step left that we need to do, which is authentication.
 

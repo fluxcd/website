@@ -52,18 +52,18 @@ Support for context-based authorization should only increase over time.
 For more information, please visit the tracking issue: https://github.com/fluxcd/flux2/issues/3003.
 
 
-[AWS Buckets]: ../components/source/buckets/#aws
-[Azure Buckets]: ../components/source/buckets/#azure
-[GCP Buckets]: ../components/source/buckets/#gcp
-[AWS OCI Repository]: ../components/source/ocirepositories/#aws
-[Azure OCI Repository]: ../components/source/ocirepositories/#azure
-[GCP OCI Repository]: ../components/source/ocirepositories/#gcp
-[AWS Helm Repository]: ../components/source/helmrepositories/#aws
-[Azure Helm Repository]: ../components/source/helmrepositories/#azure
-[GCP Helm Repository]: ../components/source/helmrepositories/#gcp
-[AWS Container Registry]: ../guides/image-update/#using-native-aws-ecr-auto-login
-[Azure Container Registry]: ../guides/image-update/#using-native-azure-acr-auto-login
-[GCP Container Registry]: ../guides/image-update/#using-native-gcp-gcr-auto-login
-[AWS KMS]: ../guides/mozilla-sops/#aws
-[Azure KMS]: ../guides/mozilla-sops/#azure
-[GCP KMS]: ../guides/mozilla-sops/#google-cloud
+[AWS Buckets]: /flux/components/source/buckets/#aws
+[Azure Buckets]: /flux/components/source/buckets/#azure
+[GCP Buckets]: /flux/components/source/buckets/#gcp
+[AWS OCI Repository]: /flux/components/source/ocirepositories/#aws
+[Azure OCI Repository]: /flux/components/source/ocirepositories/#azure
+[GCP OCI Repository]: /flux/components/source/ocirepositories/#gcp
+[AWS Helm Repository]: /flux/components/source/helmrepositories/#aws
+[Azure Helm Repository]: /flux/components/source/helmrepositories/#azure
+[GCP Helm Repository]: /flux/components/source/helmrepositories/#gcp
+[AWS Container Registry]: /flux/components/image/imagerepositories/#aws
+[Azure Container Registry]: /flux/components/image/imagerepositories/#azure
+[GCP Container Registry]: /flux/components/image/imagerepositories/#gcp
+[AWS KMS]: /flux/guides/mozilla-sops/#aws
+[Azure KMS]: /flux/guides/mozilla-sops/#azure
+[GCP KMS]: /flux/guides/mozilla-sops/#google-cloud

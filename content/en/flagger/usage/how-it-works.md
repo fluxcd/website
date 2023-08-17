@@ -205,7 +205,7 @@ spec:
 
 Note that the `apex` annotations are added to both the generated Kubernetes Service and the
 generated service mesh/ingress object. This allows using external-dns with Istio `VirtualServices`
-and `TraefikServices`. Beware of configuration conflicts [here](../faq.md#ExternalDNS).
+and `TraefikServices`. Beware of configuration conflicts [here](../faq.md#externaldns).
 
 Besides port mapping and metadata, the service specification can
 contain URI match and rewrite rules, timeout and retry polices:

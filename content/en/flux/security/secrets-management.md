@@ -92,7 +92,7 @@ could impact your solution.
 Flux supports the two main names in Encrypted Secrets and has specific how-to guides for them:
 
 - [Mozilla SOPS Guide](/flux/guides/mozilla-sops/)
-- [Secrets decryption](/flux/components/kustomize/kustomization/#secrets-decryption)
+- [Secrets decryption](/flux/components/kustomize/kustomization/#decryption)
 
 #### Secrets Synchronized by Operators
 

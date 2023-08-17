@@ -138,7 +138,7 @@ For more details on the release procedure, take a look at https://fluxcd.io/flux
 - Watch our [CNCF webinar on Flux 2.0](https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-flux-20-what-you-need-to-know/),
   which has an intro to GitOps for newcomers and Flux 2.0-specific updates for existing users.
 - Need extra support for Flux and Flagger? Check out the
-  [Flux support page](https://fluxcd.io/support/#my-employer-needs-additional-help) and this
+  [Flux support page](/support/#commercial-support) and this
   [August 2 webinar](https://go.weave.works/Webinar-FluxCD-Positioned-for-Growth_LP.html)
   on Flux 2.0-specific support.
 

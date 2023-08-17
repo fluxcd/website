@@ -301,7 +301,7 @@ Note that the resulting ImagePullSecret for Flux could also be specified by Pods
 
 #### Generating Tokens for Managed Identities [short-lived]
 
-As a pre-requisite, your AKS cluster will need [AAD Pod Identity](../use-cases/azure.md#aad-pod-identity) installed.
+As a pre-requisite, your AKS cluster will need [AAD Pod Identity](/flux/components/image/imagerepositories/#aad-pod-identity) installed.
 
 Once we have AAD Pod Identity installed, we can create a Deployment that frequently refreshes an image pull secret into
 our desired Namespace.

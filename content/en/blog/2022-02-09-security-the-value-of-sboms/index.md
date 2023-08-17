@@ -14,7 +14,7 @@ resources:
 
 You don't get to re-architect a successful project very often, but we
 did about two years ago. The Flux project was already off to a great
-start and had [many happy adopters](/adopters/#flux-v1) and many of
+start and had [many happy adopters](/adopters/#flux-legacy) and many of
 its design principles we kept at the forefront of our mind:
 
 - Pull vs Push: if you haven't read this [great blog

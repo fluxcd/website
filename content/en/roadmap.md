@@ -20,7 +20,7 @@ from beta to stable.
 ## Milestones
 
 The GA roadmap has been split into separate milestones.
-The Flux team's current focus is to finalise the tasks from the [Flux GitOps GA](#flux-gitops-ga-q1-2023) milestone.
+The Flux team's current focus is to finalise the tasks from the [Flux GitOps GA](#flux-gitops-ga-completed-in-july-2023) milestone.
 We estimate that the Flux features part of this milestone will become generally available in the first quarter of 2023.
 
 ### Flux GitOps GA (Completed in July 2023)
@@ -49,7 +49,7 @@ The completion of this milestone is marked by the [v2.0.0](https://github.com/fl
 - [x] Multi-tenancy lockdown
   - [x] [Allow setting a default service account for impersonation](https://github.com/fluxcd/flux2/issues/2340)
   - [x] [Allow disabling cross-namespace references](https://github.com/fluxcd/flux2/issues/2337)
-  - [x] [Document multi-tenancy lockdown configuration](flux/installation.md#multi-tenancy-lockdown)
+  - [x] [Document multi-tenancy lockdown configuration](/flux/installation/configuration/multitenancy/)
 
 - [x] Conformance testing
   - [x] End-to-end testing for bootstrap on AMD64 and ARM64 clusters

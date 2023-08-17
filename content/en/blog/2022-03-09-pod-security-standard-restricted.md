@@ -83,7 +83,7 @@ issue](https://github.com/fluxcd/source-controller/issues/582)
 ([related upstream
 report](https://github.com/openshift/cluster-kube-apiserver-operator/issues/1325)).
 The work-around right now is to remove the seccomp profile as
-described in [these instructions](/flux/use-cases/openshift/#flux-installation-with-cli).
+described in [these instructions](/flux/use-cases/openshift/).
 {{% /note %}}
 
 ## `seccomp` and `RuntimeDefault`
