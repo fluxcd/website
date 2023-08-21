@@ -11,7 +11,7 @@ Note that this guide has not been updated since more than a year ago. It does no
 Expect this doc to receive an overhaul soon.
 {{% /alert %}}
 
-below we describe the flow of data through flux, from end to end. [here is a link that doesn't go anywhere](#id-anchor-failure)
+Below we describe the flow of data through Flux, from End to End.
 
 We assume a standard Flux installation, with all optional features enabled, then explain how Flux users can expect their change to flow through the stages
 of its life as a commit, and describe how the commit data passes through the Flux system and the cluster, in rough chronological order. We tried to cover
