@@ -16,29 +16,27 @@ as these are more useful for the people administering and maintaining Flux. Most
 of the time, the users of Flux who interact with Flux through the Flux custom
 resources want to know about the resources they work with. For example, the
 state of GitRepositories and their branches or tag references. These metrics can
-be scraped by using [kube-state-metrics
-(KSM)](https://github.com/kubernetes/kube-state-metrics), which is part of the
-[kube-prometheus-stack](https://github.com/prometheus-operator/kube-prometheus).
-KSM can be configured to add custom labels to the resource metrics, for example,
-some value from the status of a resource or some arbitrary value like a team
-name, department name, etc.
+be scraped by using [kube-state-metrics (KSM)][kube-state-metrics], which is
+part of the [kube-prometheus-stack][kube-prometheus-stack]. KSM can be
+configured to add custom labels to the resource metrics, for example, some value
+from the status of a resource or some arbitrary value like a team name, department name, etc.
 
 ## Set up kube-state-metrics
 
 Kube-state-metrics can be installed along with the whole monitoring stack using
 kube-prometheus-stack. The
-[fluxcd/flux2-monitoring-example](https://github.com/fluxcd/flux2-monitoring-example)
-repository contains example configurations for deploying and configuring
-kube-prometheus-stack to monitor Flux. These configurations will be discussed in
-detail in the following sections to show how they can be customized. Refer to
-[Monitoring with Prometheus](monitoring.md) for detailed installation
-instructions.
+[fluxcd/flux2-monitoring-example][monitoring-example-repo] repository contains
+example configurations for deploying and configuring kube-prometheus-stack to
+monitor Flux. These configurations will be discussed in detail in the following
+sections to show how they can be customized.
 
-The [Helm chart values for
-kube-prometheus-stack](https://github.com/fluxcd/flux2-monitoring-example/blob/main/kube-prometheus-stack/release.yaml)
-configure KSM to run in `custom-resource-state-only` mode. In this state, KSM
-will not collect metrics for any of the Kubernetes core resources. The `rbac`
-section provides KSM access to list and watch Flux custom resources. If
+The Kube-prometheus-stack Helm chart is used to install the monitoring stack.
+The kube-state-metrics related configuration in the chart values exists in a
+separate file called
+[kube-state-metrics-config.yaml](https://github.com/fluxcd/flux2-monitoring-example/blob/main/monitoring/controllers/kube-prometheus-stack/kube-state-metrics-config.yaml).
+It configures KSM to run in `custom-resource-state-only` mode. In this state,
+KSM will not collect metrics for any of the Kubernetes core resources. The
+`rbac` section provides KSM access to list and watch Flux custom resources. If
 image-reflector-controller and image-automation-controllers are not used, the
 API group (`image.toolkit.fluxcd.io`) and resources (`imagerepositories`,
 `imagepolicies`, `imageupdateautomations`) can be removed. The
@@ -50,8 +48,8 @@ kube-apiserver and exporting them as configured.
 ## Adding custom metrics
 
 The example `customResourceState` values used in the above setup add a metric
-called `gotk_resource_info` with labels `name`, `exported_namespace`, and
-`ready`.
+called `gotk_resource_info` with labels `name`, `exported_namespace`,
+`suspended`, `ready`, etc.
 
 ```yaml
 - name: "resource_info"
@@ -63,7 +61,9 @@ called `gotk_resource_info` with labels `name`, `exported_namespace`, and
       name: [metadata, name]
   labelsFromPath:
     exported_namespace: [metadata, namespace]
+    suspended: [spec, suspend]
     ready: [status, conditions, "[type=Ready]", status]
+    ...
 ```
 
 This provides the current state of the Flux resources. It can be used to monitor
@@ -95,6 +95,7 @@ customResourceState:
                     name: [metadata, name]
               labelsFromPath:
                 exported_namespace: [metadata, namespace]
+                suspended: [spec, suspend]
                 ready: [status, conditions, "[type=Ready]", status]
             - name: "helmrelease_version_info"
               help: "The version information of helm release resource."
@@ -176,6 +177,7 @@ customResourceState:
                     name: [metadata, name]
               labelsFromPath:
                 exported_namespace: [metadata, namespace]
+                suspended: [spec, suspend]
                 ready: [status, conditions, "[type=Ready]", status]
                 branch: [spec, ref, branch]
 ...
@@ -191,5 +193,11 @@ It contains the `ownedBy="teamA"`, `department="baz"` and `branch="main"`
 labels. Similarly, more custom labels can be added depending on the need.
 
 Refer to the [kube-state-metrics custom-resource state configuration
-docs](https://github.com/kubernetes/kube-state-metrics/blob/main/docs/customresourcestate-metrics.md)
-to learn more about customizing the metrics.
+docs][ksm-customresourcestate-metrics] to learn more about customizing the
+metrics.
+
+
+[kube-state-metrics]: https://github.com/kubernetes/kube-state-metrics
+[monitoring-example-repo]: https://github.com/fluxcd/flux2-monitoring-example
+[kube-prometheus-stack]: https://github.com/prometheus-operator/kube-prometheus
+[ksm-customresourcestate-metrics]: https://github.com/kubernetes/kube-state-metrics/blob/main/docs/customresourcestate-metrics.md
