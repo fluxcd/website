@@ -146,7 +146,9 @@ dashboard in
 [`monitoring/configs/dashboards/logs.json`](https://github.com/fluxcd/flux2-monitoring-example/tree/main/monitoring/configs/dashboards/logs.json)
 that queries and shows logs from all the Flux controllers.
 
-[Insert screenshot of the grafana logs dashboard]
+Control plane logs:
+
+![Control plane logs dashboard](/img/grafana-logs-dashboard.png)
 
 This can be used to browse logs from all the Flux controllers in a centralized
 manner.
