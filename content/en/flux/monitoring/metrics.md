@@ -194,7 +194,21 @@ dashboard shows the overall state of the Flux Sources and Cluster Reconcilers.
 The Flux Control Plane dashboard shows the statistics of the various components
 that constitute the Flux Control Plane and their operational metrics.
 
-[Insert screenshots of the grafana dashboards]
+Control plane dashboard:
+
+![Control Plane Dashboard - Part 1](/img/grafana-cp-dashboard-p1.png)
+
+![Control Plane Dashboard - Part 2](/img/grafana-cp-dashboard-p2.png)
+
+![Control Plane Dashboard - Part 3](/img/grafana-cp-dashboard-p3.png)
+
+![Control Plane Dashboard - Part 4](/img/grafana-cp-dashboard-p4.png)
+
+Cluster reconciliation dashboard:
+
+![Cluster reconciliation dashboard - Part 1](/img/grafana-cluster-dashboard-p1.png)
+
+![Cluster reconciliation dashboard - Part 2](/img/grafana-cluster-dashboard-p2.png)
 
 More custom metrics can be created and used in the dashboards for monitoring
 Flux.
