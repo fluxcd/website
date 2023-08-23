@@ -137,13 +137,13 @@ gen_crd_doc() {
   # kustomize-controller CRDs
   KUSTOMIZE_VER="$(controller_version kustomize-controller)"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/api/v1/kustomize.md" "$COMPONENTS_DIR/kustomize/api/v1.md" "HUGETABLE"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1/kustomization.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/kustomize-controller/$KUSTOMIZE_VER/docs/spec/v1/kustomizations.md" "$COMPONENTS_DIR/kustomize/kustomization.md"
 }
 
 {
   # helm-controller CRDs
   HELM_VER="$(controller_version helm-controller)"
-  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/api/helmrelease.md" "$COMPONENTS_DIR/helm/api.md" "HUGETABLE"
+  gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/api/v2beta1/helm.md" "$COMPONENTS_DIR/helm/api.md" "HUGETABLE"
   gen_crd_doc "https://raw.githubusercontent.com/fluxcd/helm-controller/$HELM_VER/docs/spec/v2beta1/helmreleases.md" "$COMPONENTS_DIR/helm/helmreleases.md"
 }
 
