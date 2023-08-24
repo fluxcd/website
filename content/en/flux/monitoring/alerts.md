@@ -49,7 +49,7 @@ spec:
 
 {{% alert color="info" title="Providers" %}}
 Flux supports various providers such as Discord, PagerDuty, Teams, Telegram, Sentry and many others.
-For a complete list please see the [Provider `.spec.type` documentation](/flux/components/notification/provider/#type).
+For a complete list please see the [Provider `.spec.type` documentation](/flux/components/notification/providers/#type).
 {{% /alert %}}
 
 ## Define an alert
@@ -139,7 +139,7 @@ event source, as it is the only resource which includes this data.
 
 First follow the [get started guide](/flux/get-started) if you do not have a Kubernetes cluster with Flux installed in it.
 You will need a authentication token to communicate with the API. The authentication method depends on
-the git provider used, refer to the [Provider CRD](/flux/components/notification/provider/#git-commit-status-updates)
+the git provider used, refer to the [Provider CRD](/flux/components/notification/providers/#git-commit-status-updates)
 for details about how to get the correct token. The guide will use GitHub, but the other providers will work in a very similar manner.
 The token will need to have write access to the repository it is going to update the commit status in.
 Store the generated token in a Secret with the following data format in the cluster.
@@ -333,4 +333,4 @@ spec:
 ```
 
 For more details on how to integrate Flux with Grafana API please see the
-[Grafana provider documentation](/flux/components/notification/provider/#grafana).
+[Grafana provider documentation](/flux/components/notification/providers/#grafana).

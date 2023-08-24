@@ -316,7 +316,7 @@ Note that when using `flux bootstrap` you can [set the annotation](/flux/install
 
 #### Azure
 
-When using Azure Key Vault you need to authenticate kustomize-controller either with [aad-pod-identity](/flux/components/kustomize/kustomization/#aad-pod-identity)
+When using Azure Key Vault you need to authenticate kustomize-controller either with [aad-pod-identity](/flux/components/kustomize/kustomizations/#aad-pod-identity)
 or by passing [Service Principal credentials as environment variables](https://github.com/mozilla/sops#encrypting-using-azure-key-vault).
 
 Create the Azure Key-Vault:

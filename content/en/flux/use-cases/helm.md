@@ -156,7 +156,7 @@ to a chart. The Flux Kustomize Controller method allows you to accomplish this
 on any chart without additional templated annotations.
 
 You may also use Kustomize Controller
-built-in [Mozilla SOPS integration](/flux/components/kustomize/kustomization/#decryption)
+built-in [Mozilla SOPS integration](/flux/components/kustomize/kustomizations/#decryption)
 to securely manage your encrypted secrets stored in git.
 See the [Flux SOPS guide](/flux/guides/mozilla-sops/) for step-by-step instructions through various use cases.
 
@@ -177,10 +177,10 @@ documentation.
 ## Automatic Uninstalls and Rollback
 
 The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails,
-using [spec.install.remediation](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
-[spec.upgrade.remediation](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
-[spec.rollback](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Rollback)
-and [spec.uninstall](../components/helm/api.md#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
+using [spec.install.remediation](../components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation),
+[spec.upgrade.remediation](../components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation),
+[spec.rollback](../components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Rollback)
+and [spec.uninstall](../components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Uninstall).
 Features include the option to remediate with an uninstall after an upgrade failure,
 and the option to keep a failed release for debugging purposes when it has run out of retries.
 

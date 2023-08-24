@@ -153,7 +153,7 @@ podinfo is a tiny web application made with Go.
 Configure Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)
 directory located in the podinfo repository.
 
-1. Use the `flux create` command to create a [Kustomization](../components/kustomize/kustomization/) that applies the podinfo deployment.
+1. Use the `flux create` command to create a [Kustomization](/flux/components/kustomize/kustomizations/) that applies the podinfo deployment.
 
     ```sh
     flux create kustomization podinfo \
@@ -262,7 +262,7 @@ To resume updates run the command `flux resume kustomization <name>`.
 ## Customize podinfo deployment
 
 To customize a deployment from a repository you don't control, you can use Flux
-[in-line patches](/flux/components/kustomize/kustomization/#patches). The following example shows how to use in-line patches to change the podinfo deployment.
+[in-line patches](/flux/components/kustomize/kustomizations/#patches). The following example shows how to use in-line patches to change the podinfo deployment.
 
 1. Add the following to the field `spec` of your `podinfo-kustomization.yaml` file:
 
