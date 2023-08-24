@@ -59,7 +59,7 @@ If you make any changes to the cluster using `kubectl edit/patch/delete`,
 they will be promptly reverted. You either suspend the reconciliation or push your changes to a Git repository.
 
 For more information, take a look at the [Kustomize FAQ](faq.md#kustomize-questions)
-and the [Kustomization CRD](components/kustomize/kustomization.md).
+and the [Kustomization CRD](/flux/components/kustomize/kustomizations/).
 
 ## Bootstrap
 

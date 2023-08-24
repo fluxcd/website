@@ -18,7 +18,7 @@ removed and then reapplied to the cluster.
 A typical use case for running Kubernetes Jobs with Flux is to implement pre-deployment tasks
 for e.g. database scheme migration and post-deployment jobs (like cache refresh).
 
-This requires separate [Flux Kustomization](../components/kustomize/kustomization.md) resources
+This requires separate [Flux Kustomization](/flux/components/kustomize/kustomizations) resources
 that depend on each other: one for running the pre-deployment Jobs,
 one to deploy the application, and a 3rd one for running the post-deployment Jobs.
 
