@@ -32,11 +32,6 @@ In order to run the Flux site locally, you need to install:
 
 Once those tools are installed, fetch the assets necessary to run the site:
 
-```cli
-npm install
-python3 -m pip install -r requirements.txt
-```
-
 Then run the site in "server" mode:
 
 ```cli
@@ -45,13 +40,19 @@ make serve
 
 Navigate to <http://localhost:1313> to see the site running in your browser. As you make updates to the site, the browser will immediately update to reflect those changes.
 
+> **Note**: Sometimes you need to clear the output of previous builds, e.g. when the structure of imported documentation has changed. If you see duplicate pages being served, run
+> ```
+> git clean -fx -- content/
+> ```
+> and then run `make serve` again. The duplicates will then be gone.
+
 ## Publishing the site
 
 The Flux website is published automatically by [Netlify](https://netlify.com) when changes are pushed to the `main` branch. The site does not need to be published manually.
 
 ### Preview builds
 
-When you submit a pull request to this repository, Netlify builds a "deploy preview" of your changes. You can see that preview by clicking on the **deploy/netlify** link in the pull request window.
+When you submit a pull request to this repository, Netlify builds a "deploy preview" of your changes. You can see that preview by clicking on the **Details** link of the **netlify/fluxcd/deploy-preview** check at the bottom of the pull request page.
 
 ## Local Development (docker)
 

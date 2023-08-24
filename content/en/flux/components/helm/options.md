@@ -2,7 +2,7 @@
 title: Controller Options
 linkTitle: Controller Options
 description: "Controller command flags and defaults."
-weight: 1000
+weight: 1
 ---
 
 To customise the controller options at install time,

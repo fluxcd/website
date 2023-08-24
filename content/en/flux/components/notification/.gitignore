@@ -1,5 +1,5 @@
-alert.md
+alerts.md
 api/v*.md
-event.md
-provider.md
-receiver.md
+events.md
+providers.md
+receivers.md
