@@ -66,9 +66,9 @@ import kustomizev1 "github.com/fluxcd/kustomize-controller/api/v1"
 
 API Types
 
-| Name                                                      | Version |
-|-----------------------------------------------------------|---------|
-| [Kustomization](../components/kustomize/kustomization.md) | v1      |
+| Name                                                       | Version |
+|------------------------------------------------------------|---------|
+| [Kustomization](../components/kustomize/kustomizations.md) | v1      |
 
 ### helm.toolkit.fluxcd.io
 
