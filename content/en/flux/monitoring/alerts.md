@@ -1,11 +1,8 @@
 ---
-title: "Setup Notifications"
-linkTitle: "Setup Notifications"
-description: "Configure alerting for Slack, Teams, Discord and others using Flux notification controller."
-weight: 30
-card:
-  name: tasks
-  weight: 50
+title: "Flux alerts"
+linkTitle: "Alerts"
+description: "Configure alerting for Slack, Teams, Discord and others using Flux notification controller"
+weight: 1
 ---
 
 When operating a cluster, different teams may wish to receive notifications about
@@ -16,26 +13,23 @@ of an app was deployed and if the deployment is healthy.
 
 ## Prerequisites
 
-To follow this guide you'll need a Kubernetes cluster with Flux installed on it.
-Please see the [get started guide](../get-started/index.md)
-or the [installation guide](../installation/).
+To follow this guide you'll need a Kubernetes cluster bootstrap with Flux.
+Please see the [get started guide](/flux/get-started/)
+or the [installation guide](/flux/installation/).
 
 The Flux controllers emit Kubernetes events whenever a resource status changes.
-You can use the [notification-controller](../components/notification/_index.md)
+You can use the [notification-controller](/flux/components/notification/)
 to forward these events to Slack, Microsoft Teams, Discord and others.
 The notification controller is part of the default Flux installation.
 
 ## Define a provider
 
-First create a secret with your Slack incoming webhook:
+First create a secret with your Slack bot token:
 
 ```sh
-kubectl -n flux-system create secret generic slack-url \
---from-literal=address=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+kubectl -n flagger-system create secret generic slack-bot-token \
+--from-literal=token=xoxb-YOUR-TOKEN
 ```
-
-Note that the secret must contain an `address` field,
-it can be a Slack, Microsoft Teams, Discord or Rocket webhook URL.
 
 Create a notification provider for Slack by referencing the above secret:
 
@@ -43,21 +37,20 @@ Create a notification provider for Slack by referencing the above secret:
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
 metadata:
-  name: slack
-  namespace: flux-system
+  name: slack-bot
+  namespace: flagger-system
 spec:
   type: slack
-  channel: some-channel-name
+  channel: general
+  address: https://slack.com/api/chat.postMessage
   secretRef:
-    name: slack-url
+    name: slack-bot-token
 ```
 
-The provider type can be `slack`, `msteams`, `discord`, `rocket`, `googlechat`, `webex`, `sentry` or `generic`.
-
-When type `generic` is specified, the notification controller will post the incoming
-[event](../components/notification/event.md) in JSON format to the webhook address.
-This way you can create custom handlers that can store the events in
-Elasticsearch, CloudWatch, Stackdriver, etc.
+{{% alert color="info" title="Providers" %}}
+Flux supports various providers such as Discord, PagerDuty, Teams, Telegram, Sentry and many others.
+For a complete list please see the [Provider `.spec.type` documentation](/flux/components/notification/provider/#type).
+{{% /alert %}}
 
 ## Define an alert
 
@@ -70,9 +63,13 @@ metadata:
   name: on-call-webapp
   namespace: flux-system
 spec:
-  summary: "production cluster"
+  summary: "cluster addons"
+  eventMetadata:
+    env: "production"
+    cluster: "my-cluster"
+    region: "us-east-2"
   providerRef:
-    name: slack
+    name: slack-bot
   eventSeverity: info
   eventSources:
     - kind: GitRepository
@@ -81,15 +78,12 @@ spec:
       name: '*'
 ```
 
-Apply the above files or commit them to the `fleet-infra` repository.
+Apply the above files or commit them to the bootstrap repository.
 
-To verify that the alert has been acknowledge by the notification controller do:
+To verify that the alert has been acknowledged by the notification controller do:
 
 ```sh
-$ kubectl -n flux-system get alerts
-
-NAME             READY   STATUS        AGE
-on-call-webapp   True    Initialized   1m
+flux get alerts
 ```
 
 Multiple alerts can be used to send notifications to different channels or Slack organizations.
@@ -113,17 +107,13 @@ When the verbosity is set to `info`, the controller will alert if:
 
 ## Git commit status
 
-The GitHub, GitLab, Bitbucket, and Azure DevOps providers are slightly different to the other providers. Instead of
-a stateless stream of events, the git notification providers will link the event with accompanying git commit which
+The GitHub, GitLab, Gitea, Bitbucket, and Azure DevOps providers are slightly different to the other providers. Instead of
+a stateless stream of events, the Git notification providers will link the event with accompanying Git commit which
 triggered the event. The linking is done by updating the commit status of a specific commit.
-
-  - [GitHub](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-status-checks)
-  - [GitLab](https://docs.gitlab.com/ee/api/commits.html)
-  - [Bitbucket](https://developer.atlassian.com/server/bitbucket/how-tos/updating-build-status-for-commits/)
-  - [Azure DevOps](https://docs.microsoft.com/en-us/rest/api/azure/devops/git/statuses?view=azure-devops-rest-6.0)
 
 In GitHub the commit status set by notification-controller will result in a green checkmark or red cross next to the commit hash.
 Clicking the icon will show more detailed information about the status.
+
 ![commit status GitHub overview](/img/commit-status-github-overview.png)
 
 Receiving an event in the form of a commit status rather than a message in a chat conversation has the benefit
@@ -138,11 +128,12 @@ When a new commit is pushed to the repository, source-controller will sync the c
 to reconcile the new commit. After this is done the kustomize-controller sends an event to the notification-controller
 with the result and the commit hash it reconciled. Then notification-controller can update the correct commit and repository
 when receiving the event.
+
 ![commit status flow](/img/commit-status-flow.png)
 
 {{% alert color="info" title="Limitations" %}}
-The git notification providers require that a commit hash present in the meta data
-of the event. Therefore the providers will only work with `Kustomization` as an
+The git notification providers require that a commit hash present in the metadata
+of the event. Therefore, the providers will only work with `Kustomization` as an
 event source, as it is the only resource which includes this data.
 {{% /alert %}}
 
@@ -152,6 +143,7 @@ the git provider used, refer to the [Provider CRD](/flux/components/notification
 for details about how to get the correct token. The guide will use GitHub, but the other providers will work in a very similar manner.
 The token will need to have write access to the repository it is going to update the commit status in.
 Store the generated token in a Secret with the following data format in the cluster.
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -170,6 +162,7 @@ if the manifests comes from a repository which the API token is not allowed to w
 Copy the manifest content in the "[kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize)" directory
 into the directory "./clusters/my-cluster/podinfo" in your fleet-infra repository. Make sure that you also add the
 namespace podinfo.
+
 ```yaml
 apiVersion: v1
 kind: Namespace
@@ -178,6 +171,7 @@ metadata:
 ```
 
 Then create a Kustomization to deploy podinfo.
+
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -203,6 +197,7 @@ spec:
 Creating a git provider is very similar to creating other types of providers.
 The only caveat being that the provider address needs to point to the same
 git repository as the event source originates from.
+
 ```yaml
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
@@ -262,6 +257,7 @@ Clicking the check-mark should show a detailed view.
 Generate error
 
 A deployment failure can be forced by setting an invalid image tag in the podinfo deployment.
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -302,3 +298,39 @@ It is important to keep this in mind when building any automation tools that dea
 status, and consider the fact that receiving a successful status once does not mean it will
 always be successful.
 
+## Grafana annotations
+
+![Annotations Dashboard](/img/grafana-annotation.png)
+
+To display the Flux notifications on Grafana dashboards
+you can configure Flux to push events to Grafana annotations API:
+
+```yaml
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Alert
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  providerRef:
+    name: grafana
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      name: '*'
+      namespace: flux-system
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Provider
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  type: grafana
+  address: "http://kube-prometheus-stack-grafana.monitoring/api/annotations"
+  secretRef:
+    name: grafana-auth
+```
+
+For more details on how to integrate Flux with Grafana API please see the
+[Grafana provider documentation](/flux/components/notification/provider/#grafana).
