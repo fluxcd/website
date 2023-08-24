@@ -220,4 +220,4 @@ to the repositories used with `flux bootstrap github`.
 - [Guides > Manage Helm Releases](/flux/guides/helmreleases.md)
 - [Toolkit Components > Helm Repository API](/flux/components/source/helmrepositories.md)
 - [Toolkit Components > Helm Release API](/flux/components/helm/helmreleases.md)
-- [Toolkit Components > Notification API > GitHub Dispatch](/flux/components/notification/provider/#github-dispatch)
+- [Toolkit Components > Notification API > GitHub Dispatch](/flux/components/notification/providers/#github-dispatch)

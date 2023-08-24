@@ -92,7 +92,7 @@ could impact your solution.
 Flux supports the two main names in Encrypted Secrets and has specific how-to guides for them:
 
 - [Mozilla SOPS Guide](/flux/guides/mozilla-sops/)
-- [Secrets decryption](/flux/components/kustomize/kustomization/#decryption)
+- [Secrets decryption](/flux/components/kustomize/kustomizations/#decryption)
 
 #### Secrets Synchronized by Operators
 
@@ -279,5 +279,5 @@ scenarios are considered.
 [Buckets]: /flux/components/source/buckets/
 [OCI Repositories]: /flux/components/source/ocirepositories/
 [stakater/Reloader]: https://github.com/stakater/Reloader
-[kustomize-secretgenerator]: /flux/components/kustomize/kustomization/#kustomize-secretgenerator
-[kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#secretgenerator
+[kustomize-secretgenerator]: /flux/components/kustomize/kustomizations/#kustomize-secretgenerator
+[kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomizations/#secretgenerator

@@ -23,7 +23,7 @@ RBAC rules to Flux API objects.
 To give users control over the authorisation, the Flux controllers can _impersonate_ (assume the
 identity of) a service account mentioned in the apply specification (e.g., the field
 `.spec.serviceAccountName` in
-a [`Kustomization` object](https://fluxcd.io/flux/components/kustomize/kustomization/#role-based-access-control)
+a [`Kustomization` object](https://fluxcd.io/flux/components/kustomize/kustomizations/#role-based-access-control)
 or in a [`HelmRelease` object](https://fluxcd.io/flux/components/helm/helmreleases/#role-based-access-control))
 for both accessing resources and applying configuration.
 This lets a user constrain the operations performed by the Flux controllers with RBAC.

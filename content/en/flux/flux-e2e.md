@@ -621,9 +621,9 @@ The health checking feature is called [Health Checks][] in the Flux Kustomizatio
 [Helm Use Case]: /flux/use-cases/helm/
 [HelmRepository API]: /flux/components/source/helmrepositories/
 [HelmChart API]: /flux/components/source/helmcharts/
-[HelmChartTemplate.spec.reconcileStrategy]: /flux/components/helm/api/#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
+[HelmChartTemplate.spec.reconcileStrategy]: /flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate
 [Setup Notifications]: /flux/guides/notifications/
 [Alert API]: /flux/components/notification/alert/
 [Event API]: /flux/components/notification/event/
 [Setup Git Commit Status Notications]: /flux/guides/notifications/#git-commit-status
-[Health Checks]: /flux/components/kustomize/kustomization/#health-checks
+[Health Checks]: /flux/components/kustomize/kustomizations/#health-checks
