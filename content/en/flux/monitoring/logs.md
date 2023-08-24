@@ -2,7 +2,7 @@
 title: "Flux logs"
 linkTitle: "Logs"
 description: "How to monitor the Flux logs with Loki and Grafana"
-weight: 3
+weight: 4
 ---
 
 The Flux controllers follow the Kubernetes structured logging conventions. These

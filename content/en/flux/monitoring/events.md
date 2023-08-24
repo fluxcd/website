@@ -2,7 +2,7 @@
 title: "Flux events"
 linkTitle: "Events"
 description: "How to monitor the Flux events"
-weight: 4
+weight: 5
 ---
 
 The Flux controllers emit [Kubernetes events][kubernetes-events] during the

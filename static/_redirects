@@ -32,6 +32,8 @@
 /flux/use-cases/openshift                       /flux/installation/configuration/openshift          301!
 /flux/cheatsheets/sharding                      /flux/installation/configuration/sharding           301!
 /flux/cheatsheets/bootstrap                     /flux/installation/configuration                    301!
+/flux/guides/monitoring                         /flux/monitoring/metrics                            301!
+/flux/guides/notifications                      /flux/monitoring/alerts                             301!
 
 /docs/contributing/*                            /contributing/:splat                                301!
 /docs/*                                         /flux/:splat                                        301!

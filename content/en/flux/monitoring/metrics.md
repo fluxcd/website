@@ -2,7 +2,7 @@
 title: "Flux Prometheus metrics"
 linkTitle: "Metrics"
 description: "How to monitor Flux with Prometheus Operator and Grafana"
-weight: 1
+weight: 2
 ---
 
 {{% alert color="info" title="Metrics Deprecation" %}}

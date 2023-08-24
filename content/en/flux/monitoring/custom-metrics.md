@@ -2,7 +2,7 @@
 title: "Flux custom Prometheus metrics"
 linkTitle: "Custom metrics"
 description: "How to extend the Flux Prometheus metrics with kube-state-metrics"
-weight: 2
+weight: 3
 ---
 
 By default, the standard installation of Flux exports a specific set of metrics
