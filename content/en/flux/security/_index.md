@@ -212,6 +212,6 @@ as it can be. For more information, checkout the [Flux Security Best Practices](
 
 [^1]: However, by design cross-namespace references are an exception to RBAC.
 Platform admins have to option to turnoff cross-namespace references as described in the
-[installation documentation](../installation/_index.md#multi-tenancy-lockdown).
+[installation documentation](/flux/installation/configuration/multitenancy/).
 [^2]: Platform admins have to option to enforce impersonation as described in the
-[installation documentation](../installation/_index.md#multi-tenancy-lockdown).
+[installation documentation](/flux/installation/configuration/multitenancy/).

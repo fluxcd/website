@@ -247,7 +247,7 @@ multi-tenancy:
 > example](https://github.com/fluxcd/flux2-multi-tenancy)
 > to help users kick start their multi-tenancy deployments. And also how
 > to implement control plane isolation with the*
-> *[multi-tenancy-lockdown](/flux/cheatsheets/bootstrap/#multi-tenancy-lockdown).*
+> *[multi-tenancy-lockdown](/flux/installation/configuration/multitenancy/).*
 >
 > ***What\'s next***
 >

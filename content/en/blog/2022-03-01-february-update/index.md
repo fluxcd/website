@@ -50,7 +50,7 @@ and improvements
   using the Alert API `spec.eventSources[].matchLabels` field.
 - Add support to `kustomize-controller` for making the Kubernetes
   `Secrets` and `ConfigMaps` referenced in `postBuild.substituteFrom`
-  [optional](/flux/components/kustomize/kustomization/#variable-substitution).
+  [optional](/flux/components/kustomize/kustomization/#post-build-variable-substitution).
 - Allow dot-prefixed paths to be used for bootstrap e.g. `flux
   bootstrap --path=".flux/clusters/my-cluster"`.
 - All Flux controllers and libraries are now tested by Google's

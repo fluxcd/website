@@ -40,7 +40,7 @@ features and improvements:
 
 - Verify OCI artifacts signed by Cosign (including `keyless` - currently
   still experimental and only supporting GCP and GHCR) with
-  [OCIRepository.spec.verify](/docs/components/source/ocirepositories/#verification).
+  [OCIRepository.spec.verify](/flux/components/source/ocirepositories/#verification).
   Note this supports contextual login, but not insecure registries.
 - Allow pulling Helm charts dependencies from HTTPS repositories with
   mixed self-signed TLS and public CAs.
@@ -53,7 +53,7 @@ features and improvements:
 - The controllers and the Flux CLI are now built with Go 1.19.
 - Allow pulling artifacts from an in-cluster Docker Registry over
   plain HTTP with
-  [`OCIRepository.spec.insecure`](/docs/components/source/ocirepositories/#insecure).
+  [`OCIRepository.spec.insecure`](/flux/components/source/ocirepositories/#insecure).
 - Allow defining OCI sources for non-TLS container registries with
   `flux create source oci --insecure`.
 - Enable contextual login when publishing OCI artifacts from a Cloud
@@ -72,7 +72,7 @@ features and improvements:
   DockerHub container registries under `fluxcd/flux-manifests`.
 
 For more information on OCI and Cosign support please see the [Flux
-documentation](/docs/cheatsheets/oci-artifacts/#signing-and-verification).
+documentation](/flux/cheatsheets/oci-artifacts/#signing-and-verification).
 
 It took us six months to debate, design and implement OCI support in
 Flux. Big thanks to all the Flux contributors that helped us reach this
@@ -443,7 +443,7 @@ couple of small things we landed recently:
 
 - We simplified the build process of the website. We are on a very
   recent version of the Docsy theme again!
-- Our [Bootstrap Cheatsheet](/docs/cheatsheets/bootstrap/)
+- Our [Bootstrap Cheatsheet](/flux/cheatsheets/bootstrap/)
   now contains instructions on how to enable notifications for third
   party controllers.
 - [Flux End-To-End documentation](/flux/flux-e2e/) was
@@ -516,7 +516,7 @@ good ways to do that:
 - Talk to us in the \#flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd), join the
   discussion in the [Flux LinkedIn group](https://www.linkedin.com/groups/8985374/).
 

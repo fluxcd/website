@@ -15,10 +15,10 @@ every time a source changes. Using webhook receivers make
 
 To follow this guide you'll need a Kubernetes cluster with the GitOps 
 toolkit controllers installed on it.
-Please see the [get started guide](../get-started.md)
-or the [installation guide](../installation.md).
+Please see the [get started guide](/flux/get-started/)
+or the [installation guide](/flux/installation/).
 
-The [notification controller](../components/notification/_index.md)
+The [notification controller](/flux/components/notification/)
 can handle events coming from external systems
 (GitHub, GitLab, Bitbucket, Harbor, Jenkins, etc)
 and notify the GitOps toolkit controllers about source changes.
@@ -101,7 +101,7 @@ spec:
 
 {{% alert color="info" title="Authentication" %}}
 SSH or token based authentication can be configured for private repositories.
-See the [GitRepository CRD docs](../components/source/gitrepositories.md) for more details.
+See the [GitRepository CRD docs](/flux/components/source/gitrepositories/) for more details.
 {{% /alert %}}
 
 ## Define a Git repository receiver
@@ -139,7 +139,7 @@ spec:
 {{% alert color="info" title="Other receiver" %}}
 Besides GitHub, you can define receivers for **GitLab**, **Bitbucket**, **Harbor**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
-See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
+See the [Receiver CRD docs](/flux/components/notification/receiver/) for more details.
 {{% /alert %}}
 
 The notification controller generates a unique URL using the provided token and the receiver name/namespace.

@@ -79,7 +79,7 @@ Check out these new pieces of documentation:
 
 - Guide: [AWS CodeCommit bootstrap](/flux/use-cases/aws-codecommit/)
 - Guide: [Azure DevOps
-  bootstrap](/flux/use-cases/azure/#flux-installation-for-azure-devops)
+  bootstrap](/flux/installation/bootstrap/azure-devops/)
 
 💖 Big thanks to all the Flux contributors that helped us with this
 release!
@@ -427,7 +427,7 @@ good ways to do that:
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

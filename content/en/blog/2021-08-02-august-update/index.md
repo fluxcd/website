@@ -165,7 +165,7 @@ scheduling information available on the [CNCF Flux Dev
 Calendar](https://lists.cncf.io/g/cncf-flux-dev/calendar),
 usually scheduled opposite the CNCF Flux Project Meeting. You can
 [subscribe to the
-calendar](/community/#subscribing-to-the-flux-dev-calendar)
+calendar](/community/#subscribing-to-the-flux-calendar)
 to receive notifications about upcoming events and schedule changes. The
 Bug Scrub is an opportunity to meet with other Flux contributors in
 another setting besides the Dev meeting, where we try to identify "Good

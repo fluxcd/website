@@ -300,7 +300,7 @@ couple of small things we landed recently:
   this document shows how to do just that.
 - We expanded our documentation on Azure to include [Using Helm OCI
   with Azure Container
-  Registry](/flux/use-cases/azure/#using-helm-oci-with-azure-container-registry).
+  Registry](/flux/components/source/helmrepositories/#provider).
 - Flagger news! We updated the docs on our website to match the newest
   version of Flagger (1.22). This adds a tutorial for how to do
   [Canary analysis with KEDA

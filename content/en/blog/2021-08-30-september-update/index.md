@@ -76,7 +76,7 @@ Some of the highlights in this release are:
   Prometheus Operator and others.
 - The Notification controller can now send alerts to Telegram, Lark
   and Matrix in addition to [many
-  others](/flux/components/notification/provider/#specification).
+  others](/flux/components/notification/provider/#writing-a-provider-spec).
 - Kustomize controller has been updated to on a par with the latest
   Kustomize release v4.3.0.
 
@@ -167,7 +167,7 @@ accessible than ever before.
 The Zoom link is broadcast via Slack a few minutes before the
 meeting start time. For more event details, subscribe to the [CNCF Flux
 Dev
-calendar](/community/#subscribing-to-the-flux-dev-calendar).
+calendar](/community/#subscribing-to-the-flux-calendar).
 Attendees all are asked to RSVP in advance, which can be done by posting
 on the Slack thread for Bug Scrub, and introducing yourself briefly in
 case you are new to the Flux contributor team.
@@ -201,7 +201,7 @@ section - directly on the home page:
 
 For this we re-use Flux's calendar that is provided by CNCF
 infrastructure, so if you [subscribed to
-it](/community/#subscribing-to-the-flux-dev-calendar)
+it](/community/#subscribing-to-the-flux-calendar)
 in the past, you will continue to receive all the information there.
 
 **🤝 Thanks everyone!** In the last month, 15 people contributed to the

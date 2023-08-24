@@ -70,7 +70,7 @@ users migrate to Flux v2.
 
 Now is the perfect time to familiarise yourself with [Flux
 v2](/) - the Get Started guide only takes a couple of minutes to complete.
-If you prefer a video, check out [our resources section](/#resources).
+If you prefer a video, check out [our resources section](/resources/).
 
 Migrating from v1 will require some work, but it will definitely be
 worth it: in this iteration you are going to get

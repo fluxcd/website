@@ -14,7 +14,7 @@ resources:
 {{< /imgproc >}}
 
 Everybody in Team Flux is busy with [the run-up to Flux
-GA](/roadmap/#the-road-to-flux-v2-ga), but -- with the help of
+GA](/roadmap/#flux-gitops-ga-completed-in-july-2023), but -- with the help of
 the great folks in our Community and Ecosystem -- we also
 managed to put together quite a number of talks, tutorials and sessions
 for you at KubeCon / CloudNativeCon!

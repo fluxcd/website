@@ -37,7 +37,7 @@ The highlights are:
 Docs:
 
 - 📔 [GitRepository include
-  documentation](/flux/components/source/gitrepositories/#including-gitrepository)
+  documentation](/flux/components/source/gitrepositories/#include)
 - 🎁 Checkout the new [guide on ways of structuring your
   repositories](/flux/guides/repository-structure/)
 

@@ -1,8 +1,8 @@
 ---
-title: "Controller sharding and horizontal scaling"
-linkTitle: "Sharding"
-description: "Showcase how to configure sharding of Flux controllers at bootstrap time."
-weight: 30
+title: "Flux sharding and horizontal scaling"
+linkTitle: "Horizontal scaling"
+description: "How to configure sharding for Flux controllers"
+weight: 11
 ---
 
 When Flux is managing tens of thousands of applications, it is advised to adopt
@@ -15,7 +15,7 @@ shard the reconciliation of Flux resources using the `sharding.fluxcd.io/key` la
 
 ## Bootstrap with sharding
 
-At [bootstrap time](bootstrap.md), you can define the number of shards
+At [bootstrap time](boostrap-customization.md), you can define the number of shards
 and spin up a Flux controller instance for each shard.
 
 First you'll need to create a Git repository and clone it locally, then

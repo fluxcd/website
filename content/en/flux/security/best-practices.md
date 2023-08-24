@@ -268,7 +268,7 @@ The recommendations below are based on Flux's latest version.
     <summary>Audit Procedure</summary>
 
     - Check whether you adhere to [Kubernetes Network Isolation Guidelines](https://kubernetes.io/docs/concepts/security/multi-tenancy/#network-isolation)
-    - Confirm that the [Network Policy](/flux-e2e/#fluxs-default-configuration-for-networkpolicy) objects created by Flux are being enforced by the CNI. Alternatively, run a tool such as [Cyclonus](https://github.com/mattfenwick/cyclonus) or [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) to validate NetworkPolicy enforcement by the CNI plugin on your cluster.
+    - Confirm that the [Network Policy](/flux/flux-e2e/#fluxs-default-configuration-for-networkpolicy) objects created by Flux are being enforced by the CNI. Alternatively, run a tool such as [Cyclonus](https://github.com/mattfenwick/cyclonus) or [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) to validate NetworkPolicy enforcement by the CNI plugin on your cluster.
   </details>
 
 ## Additional Best Practices for Tenant Dedicated Cluster Multi-tenancy

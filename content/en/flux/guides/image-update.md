@@ -65,7 +65,7 @@ If you bootstrapped Flux before, you need to add
 `--components-extra=image-reflector-controller,image-automation-controller` to your
 bootstrapping routine as image automation components are not installed by default.
 Please note that you need to delete the `flux-system` secret before rerunning bootstrap
-to [rotate the deploy key](../installation.md#deploy-key-rotation).
+to [rotate the deploy key](/flux/installation/configuration/deploy-key-rotation/).
 {{% /alert %}}
 
 Install Flux with the image automation components:

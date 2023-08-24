@@ -112,7 +112,7 @@ Azure DevOps users will have to specify to use libgit2 in their
 GitRepository resources.
 
 Follow [the generic git server
-guide](/flux/installation/#generic-git-server)
+guide](/flux/installation/bootstrap/generic-git-server/)
 for further instructions in how to use Flux with Azure DevOps.
 
 Upcoming events

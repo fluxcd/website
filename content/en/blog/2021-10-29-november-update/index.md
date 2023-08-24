@@ -234,7 +234,7 @@ Here is an update from Kingdon and the rest of the Flux team:
 > calendar](/#calendar), which has the Zoom
 > link and is in UTC time, or get reminded in your own time zone by
 > [subscribing to the flux-dev
-> calendar](/community/#subscribing-to-the-flux-dev-calendar).
+> calendar](/community/#subscribing-to-the-flux-calendar).
 >
 > Hope to see you there!
 

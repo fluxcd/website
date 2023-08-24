@@ -39,7 +39,7 @@ previously the controllers ignored the service account.
 #### :lock: Security enhancements
 
 - Platform admins have the option to [lock down Flux on multi-tenant
-  clusters](/flux/installation/#multi-tenancy-lockdown)
+  clusters](/flux/installation/configuration/multitenancy/)
   and enforce tenant isolation at namespace level without having to
   use a 3rd party admission controller.
 - The Flux installation conforms to the Kubernetes [restricted pod
@@ -289,7 +289,7 @@ are less random and we can attract more interest. Look to the schedule
 for information about how to join at
 [https://fluxcd.io/\#calendar](/#calendar)
 or [add the Flux events to your own
-calendar](/community/#subscribing-to-the-flux-dev-calendar)
+calendar](/community/#subscribing-to-the-flux-calendar)
 if you want to participate, and be sure you don't miss out on the new
 Flux Bug Scrub, Special Edition!
 

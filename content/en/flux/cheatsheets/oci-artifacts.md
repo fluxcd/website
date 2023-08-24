@@ -703,3 +703,32 @@ spec:
 Based on the above configuration, Flux will scan the container registry every five minutes,
 and when it finds a newer Helm chart version, it will update the
 `HelmRelease.spec.chart.spec.chart.version` and will push the change to Git.
+
+### Diagram: OCI artifacts reconciliation 
+
+```mermaid
+sequenceDiagram
+    actor me
+    participant git as OCI<br><br>repository
+    participant sc as Flux<br><br>source-controller
+    participant kc as Flux<br><br>kustomize-controller
+    participant kube as Kubernetes<br><br>api-server
+    participant nc as Flux<br><br>notification-controller
+    me->>git: 1. flux push
+    sc->>git: 2. pull artifact
+    sc-->>sc: 3. verify signatures
+    sc->>sc: 4. store artifact revision
+    sc->>kube: 5. update status for revision
+    sc-->>nc: 6. emit events
+    kube->>kc: 7. notify about new revision
+    kc->>sc: 8. fetch artifact for revision
+    kc->>kc: 9. extract k8s objects
+    kc-->>kc: 10. customize objects
+    kc->>kube: 11. validate objects
+    kc->>kube: 12. apply objects (ssa)
+    kc-->>kube: 13. delete objects
+    kc-->>kube: 14. wait for readiness
+    kc->>kube: 15. update status for revision
+    kc-->>nc: 16. emit events
+    nc-->>me: 17. send alerts for revision
+```

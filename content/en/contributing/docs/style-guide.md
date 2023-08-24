@@ -23,7 +23,7 @@ You may use the word "resource", "API", or "object" to clarify a Flux resource t
 
 Don't split an API object name into separate words. For example, use HelmRelease, not Helm Release.
 
-The following examples focus on capitalization. For more information about formatting API object names, review the related guidance on [Code Style](#code-style-inline-code).
+The following examples focus on capitalization. For more information about formatting API object names, review the related guidance on [Code Style](#use-code-style-for-inline-code-commands-and-api-objects).
 
 Do | Don't
 :--| :-----
@@ -204,7 +204,7 @@ You can use a `{{</* note */>}}` in a list:
 1. A second item with an embedded note
 
    {{</* note */>}}
-   Warning, Caution, and Note shortcodes, embedded in lists, need to be indented four spaces. See [Common Shortcode Issues](#common-shortcode-issues).
+   Warning, Caution, and Note shortcodes, embedded in lists, need to be indented four spaces. See [Common Shortcode Issues](https://kubernetes.io/docs/contribute/style/style-guide/#common-shortcode-issues).
    {{</* /note */>}}
 
 1. A third item in a list
@@ -219,7 +219,7 @@ The output is:
 1. A second item with an embedded note
 
     {{< note >}}
-    Warning, Caution, and Note shortcodes, embedded in lists, need to be indented four spaces. See [Common Shortcode Issues](#common-shortcode-issues).
+    Warning, Caution, and Note shortcodes, embedded in lists, need to be indented four spaces. See [Common Shortcode Issues](https://kubernetes.io/docs/contribute/style/style-guide/#common-shortcode-issues).
     {{< /note >}}
 
 1. A third item in a list
@@ -286,6 +286,7 @@ Do | Don't
 Try to keep paragraphs under 6 sentences. | Indent the first paragraph with space characters. For example, ⋅⋅⋅Three spaces before a paragraph will indent it.
 Use three hyphens (`---`) to create a horizontal rule. Use horizontal rules for breaks in paragraph content. For example, a change of scene in a story, or a shift of topic within a section. | Use horizontal rules for decoration.
 
+<a id="check-required-ports"> &nbsp; </a>
 ### Links
 
 Do | Don't

@@ -40,7 +40,7 @@ fuzzing for open source software](https://github.com/google/oss-fuzz).
 ## How we got here
 
 When we [announced the results of the security
-audit](/blog/2021-11-10-flux-security-audit/#flux-coming-to-oss-fuzz)
+audit](/blog/2021/11/flux-security-audit/#flux-coming-to-oss-fuzz)
 back in November, we already shared that the team at [ADA
 Logics](https://adalogics.com/) had helped put together an initial
 implementation of Fuzzing for some of the Flux controllers. In this

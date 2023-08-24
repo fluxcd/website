@@ -360,7 +360,7 @@ couple of small things we landed recently:
   come here.
 - Flagger docs were update to the latest.
 - Flux Bootstrap: cheatsheet for how to [Persistent storage for Flux
-  internal artifacts](/flux/cheatsheets/bootstrap/#persistent-storage-for-flux-internal-artifacts)
+  internal artifacts](/flux/installation/configuration/vertical-scaling/#persistent-storage-for-flux-internal-artifacts)
 - [Our FAQ](/flux/faq/) now has entries about how to safely rename a
   Flux Kustomization and how to set local overrides to a Helm chart.
   As it's one of the very common FAQs: We also mention the different
@@ -440,7 +440,7 @@ good ways to do that:
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/)
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/) and give us feedback
+  Started guide](/flux/get-started/) and give us feedback
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd),
   join the discussion in the [Flux LinkedIn
   group](https://www.linkedin.com/groups/8985374/).

@@ -342,7 +342,7 @@ you'll have to create a dedicated service account and add the release namespace 
 ```
 
 If the test hangs or logs error messages hinting to insufficient permissions it can be related to RBAC,
-check the [Troubleshooting](webhooks.md#Troubleshooting) section for an example configuration.
+check the [Troubleshooting](webhooks.md#troubleshooting) section for an example configuration.
 
 As an alternative to Helm you can use the
 [Bash Automated Testing System](https://github.com/bats-core/bats-core) to run your tests.

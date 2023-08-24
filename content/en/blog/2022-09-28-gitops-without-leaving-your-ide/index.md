@@ -11,7 +11,7 @@ resources:
 ---
 
 Welcome to the second [blog post in our Flux Ecosystem category](/tags/ecosystem/)!
-This time we are talking about one of the [Flux UIs](/ecosystem/#flux-uis): it's
+This time we are talking about one of the [Flux UIs](/ecosystem/#flux-uis--guis): it's
 the [VS Code GitOps Extension](https://github.com/weaveworks/vscode-gitops-tools).
 
 If you already use VS Code, this extension will be straight up your alley: it
@@ -32,7 +32,7 @@ the Install button away.
 Additionally, you will need to
 
 - [Install Kubectl](https://kubectl.docs.kubernetes.io/installation/kubectl/)
-- [Install Flux CLI](/docs/installation/#install-the-flux-cli)
+- [Install Flux CLI](/flux/installation/#install-the-flux-cli)
 - [Install git](https://git-scm.com/downloads)
 
 Optionally, if available, the extension will make use of the `az` tool

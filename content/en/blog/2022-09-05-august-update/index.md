@@ -31,7 +31,7 @@ Let's go through the major changes one by one.
 - Enable contextual login to container registries when pulling Helm
   charts from Amazon Elastic Container Registry, Azure Container
   Registry and Google Artifact Registry using
-  [`HelmRepository.spec.provider`](/docs/components/source/helmrepositories/#provider).
+  [`HelmRepository.spec.provider`](/flux/components/source/helmrepositories/#provider).
 - Select which layer contains the Kubernetes configs by specifying a
   matching OCI media type using
   [`OCIRepository.spec.layerSelector`](/flux/components/source/ocirepositories/#layer-selector).
@@ -51,7 +51,7 @@ Let's go through the major changes one by one.
 The big news was of course that we added support for distributing
 Kubernetes manifests, Kustomize overlays and Terraform code as OCI
 artifacts. For more information on OCI support please see the [Flux
-documentation](/docs/cheatsheets/oci-artifacts/).
+documentation](/flux/cheatsheets/oci-artifacts/).
 
 Big thanks to the Flux contributors that helped us along the way. It
 took us almost 4 months, from the first RFC version to shipping OCI
@@ -244,20 +244,20 @@ We are constantly improving our documentation and website - here are a
 couple of small things we landed recently:
 
 - New security docs on [Secrets
-  Management](/docs/security/secrets-management/)
+  Management](/flux/security/secrets-management/)
   and [Contextual
-  Authorization](/docs/security/contextual-authorization/).
+  Authorization](/flux/security/contextual-authorization/).
 - New blog post: [Managing Kyverno Policies as OCI Artifacts with
   OCIRepository
   Sources](/blog/2022/08/manage-kyverno-policies-as-ocirepositories)
 - Cheatsheet news
   - [OCI
-    Artifacts](/docs/cheatsheets/oci-artifacts/)
+    Artifacts](/flux/cheatsheets/oci-artifacts/)
   - Bootstrap: [Git repository access via SOCKS5 ssh
-    proxy](/docs/cheatsheets/bootstrap/#git-repository-access-via-socks5-ssh-proxy)
+    proxy](/flux/installation/configuration/proxy-setting/#git-repository-access-via-socks5-ssh-proxy)
   - Bootstrap: [Enable notifications for third party
-    controllers](/docs/cheatsheets/bootstrap/#enable-notifications-for-third-party-controllers)
-- [Flux's Work Well With section](/docs/#flux-works-well-with): find out
+    controllers](https://weaveworks.github.io/tf-controller/how_to/flux_receiver_and_alert/#enable-notifications-for-third-party-controllers)
+- [Flux's Work Well With section](/flux/#flux-works-well-with): find out
   how to make Flux work with your favourite other OSS software
 - Lots of new videos from GitOpsCon / KubeCon on [our resources
   page](/resources/)
@@ -341,7 +341,7 @@ some Flux facts - they are sort of our mission statement with Flux.
   assessments, alerting to external systems and external events
   handling. Just "git push", and get notified on Slack and [other
   chat
-  systems](https://github.com/fluxcd/notification-controller/blob/main/docs/spec/v1beta1/provider.md).
+  systems](https://github.com/fluxcd/notification-controller/blob/main/docs/spec/v1beta1/providers.md).
 1. 👍 Users trust Flux: Flux is a CNCF Incubating project
   and was categorised as \"Adopt\" on the [CNCF CI/CD Tech
   Radar](https://radar.cncf.io/2020-06-continuous-delivery)
@@ -364,7 +364,7 @@ good ways to do that:
 - Join the [planning
   discussions](https://github.com/fluxcd/flux2/discussions)
 - And if you are completely new to Flux, take a look at our [Get
-  Started guide](/docs/get-started/)
+  Started guide](/flux/get-started/)
   and give us feedback
 - Social media: Follow [Flux on
   Twitter](https://twitter.com/fluxcd), join the
