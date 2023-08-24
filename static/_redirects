@@ -35,6 +35,12 @@
 /flux/guides/monitoring                         /flux/monitoring/metrics                            301!
 /flux/guides/notifications                      /flux/monitoring/alerts                             301!
 
+/flux/components/kustomize/kustomization        /flux/components/kustomize/kustomizations           301!
+/flux/components/notification/alert             /flux/components/notification/alerts                301!
+/flux/components/notification/provider          /flux/components/notification/providers             301!
+/flux/components/notification/receiver          /flux/components/notification/receivers             301!
+/flux/components/notification/event             /flux/components/notification/events                301!
+
 /docs/contributing/*                            /contributing/:splat                                301!
 /docs/*                                         /flux/:splat                                        301!
 
