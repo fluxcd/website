@@ -204,14 +204,18 @@ If the binding is not defined for the correct service account and namespace, it 
 The roles and permissions for this multi-tenancy approach
 are described in detail here: <https://github.com/fluxcd/flux2-multi-tenancy>.
 
+## Cross-Namespace reference policy
+
+Flux's general premise is to follow Kubernetes best RBAC practices which forbid cross-namespace references to potential sensitive data, i.e. Secrets and ConfigMaps. For sources and events, Flux allows referencing resources from other Namespaces. In these cases, the policy is governed by each controller's `--no-cross-namespace-refs` flag. See the [Flux multi-tenancy configuration page](/flux/installation/configuration/multitenancy/) for further information on this flag.
+
 ## Further securing Flux Deployments
 
-Beyond the security features that Flux has backed into it, there are further best
+Beyond the baked-in security features of Flux, there are further best
 practices that can be implemented to ensure your Flux deployment is as secure
 as it can be. For more information, checkout the [Flux Security Best Practices](best-practices.md).
 
 [^1]: However, by design cross-namespace references are an exception to RBAC.
-Platform admins have to option to turnoff cross-namespace references as described in the
+Platform admins have the option to turn off cross-namespace references as described in the
 [installation documentation](/flux/installation/configuration/multitenancy/).
 [^2]: Platform admins have to option to enforce impersonation as described in the
 [installation documentation](/flux/installation/configuration/multitenancy/).
