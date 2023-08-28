@@ -1,4 +1,6 @@
 .gallery-wrapper {
+    margin-bottom: 20px;
+    margin-top: 20px;
     @include media-breakpoint-up(lg) {
         max-width: 80%;
     }
