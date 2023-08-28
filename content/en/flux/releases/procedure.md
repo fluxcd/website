@@ -153,6 +153,8 @@ release.
 
 9. Create a pull request for the release series branch and merge it into `main`.
 
+10. Add the `backport/v1.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
+
 ##### Controllers: patch releases
 
 1. Ensure everything to be included in the release is backported to the
@@ -300,6 +302,8 @@ version in the `main` branch when a new controller version is released.
 
 7. Post a message in the [`#flux` CNCF Slack channel](https://cloud-native.slack.com/archives/CLAJ40HV3)
    announcing the release, and pin it.
+
+8. Add the `backport/v2.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
 
 #### Distribution: patch releases
 
