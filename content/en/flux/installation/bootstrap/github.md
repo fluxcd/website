@@ -70,7 +70,7 @@ please see how to configure [GitHub Deploy Keys](#github-deploy-keys).
 ## GitHub Organization
 
 If you want to bootstrap Flux for a repository owned by an GitHub organization,
-it is recommended to creat a dedicated user for Flux under your organization.
+it is recommended to create a dedicated user for Flux under your organization.
 
 Generate a GitHub PAT for the Flux user that can create repositories by checking all permissions under `repo`.
 
