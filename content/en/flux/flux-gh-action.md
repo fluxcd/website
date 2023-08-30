@@ -172,7 +172,8 @@ jobs:
           $OCI_REPO:$(git rev-parse --short HEAD) \
           --path="./manifests" \
           --source="$(git config --get remote.origin.url)" \
-          --revision="$(git branch --show-current)@sha1:$(git rev-parse HEAD)" |\
+          --revision="$(git branch --show-current)@sha1:$(git rev-parse HEAD)" \
+          --output=json | \
           jq -r '. | .repository + "@" + .digest')
 
           cosign sign --yes $digest_url
