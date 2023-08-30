@@ -17,7 +17,7 @@ flux bootstrap git \
   --components source-controller,kustomize-controller,helm-controller,notification-controller
 ```
 
-The minim required components for bootstrapping are `source-controller` and `kustomize-controller`.
+The minimum required components for bootstrapping are `source-controller` and `kustomize-controller`.
 
 When not specifying the `--components` flag, both `flux bootstrap` and `flux install` will
 deploy the default components.
