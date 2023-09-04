@@ -303,3 +303,6 @@ adopters:
     - name: ZEIT ONLINE
       url: https://www.zeit.de
       logo: logos/zeit-online.svg
+    - name: UiPath
+      url: https://www.uipath.com/
+      logo: logos/uipath.svg
