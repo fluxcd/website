@@ -8,7 +8,8 @@ type: page
 
 # Flux Ecosystem
 
-All entries on this page were added by people who worked on these and thus self-identified as being part of the Flux Ecosystem.
+All entries on this page were added by people who worked on these and thus self-identified
+as being part of the Flux Ecosystem.
 
 ## Products and Services built on top of Flux
 
@@ -17,13 +18,13 @@ All entries on this page were added by people who worked on these and thus self-
 <div class="ecosystem">
 {{< cardpane >}}
 {{% card header="[Azure](https://docs.microsoft.com/azure/azure-arc/)" %}}
-![Azure](./img/azure.png)
+![Azure](/img/logos/azure.png)
+{{% /card %}}
+{{% card header="[GitLab](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)" %}}
+![GitLab](/img/logos/gitlab.svg)
 {{% /card %}}
 {{% card header="[D2iQ Kommander](https://d2iq.com/products/kommander)" %}}
 ![D2iQ](/img/logos/d2iq.png)
-{{% /card %}}
-{{% card header="[Giant Swarm](https://docs.giantswarm.io/advanced/gitops/)" %}}
-![Giant Swarm](/img/logos/giantswarm.svg)
 {{% /card %}}
 {{% card header="[Weave GitOps](https://www.weave.works/enterprise-flux/)" %}}
 ![Weaveworks](/img/logos/weaveworks.png)
@@ -40,6 +41,7 @@ All entries on this page were added by people who worked on these and thus self-
 | D2iQ        | Kommander               | [Product page](https://d2iq.com/products/kommander)                                  |
 | Giant Swarm | Kubernetes Platform     | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
 | Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                              |
+| GitLab      | GitLab                  | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
 | VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
 | Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/enterprise-flux/)                             |
 
@@ -84,7 +86,8 @@ These projects make use of Flux to offer GitOps capabilities to their users.
 
 ## Ancillary Tools
 
-The functionality of Flux can be easily extended with ancillary utility tools. Here is a list of tools we like. If yours is missing, feel free to send a PR to add it.
+The functionality of Flux can be easily extended with ancillary utility tools. Here is a list of tools we like. If yours
+is missing, feel free to send a PR to add it.
 
 | Source                                                                | Description                                                                                 | Documentation                                                                               |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -98,7 +101,8 @@ The functionality of Flux can be easily extended with ancillary utility tools. H
 ## Join us
 
 {{% alert color="info" %}}
-To join this list, please open a PR on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem/index.md).
+To join this list, please open a PR
+on [this file](https://github.com/fluxcd/website/blob/main/content/en/ecosystem/index.md).
 If you represent an organisation, please add yourself to [the adopters page](/adopters).
 We are happy and proud to have you all as part of our community! :sparkling_heart:
 
