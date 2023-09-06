@@ -4,7 +4,7 @@ date: YEAR-XX-01 15:30:00+00:00
 title: LAST_MONTH YEAR Update
 description: "XX"
 url: /blog/YEAR/XX/LAST_MONTH-YEAR-update/
-tags: [monthly-update]
+tags: [announcement]
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
@@ -31,43 +31,36 @@ involved. Read our last update here (xxx).
 It's the beginning of MONTH YEAR - let's recap together what
 happened in LAST_MONTH - it has been a lot!
 
-## News in the Flux family
+## New Releases
 
-### Next Flux release: more stability and performance improvements
+### Flux vx.y.z
 
-### Security news
+### Flagger vx.y.z
 
-### Flagger x.y.z
+### Security news [if available]
 
-### Flux Ecosystem
+## Community News
 
-<!--
+### People writing/talking about Flux
 
-If you add entries to this subsection, please don't use "we" as it gets
-confusing from which perspective the whole blog post is written and who
-"we" is. The whole post is meant to be from the perspective of the Flux
-community. Better to write:]
+We love it when you all write about Flux and share your experience,
+write how-tos on integrating Flux with other pieces of software or other
+things. Give us a shout-out and we will link it from this section! ✍
 
-- "Since the new release of X, it supports Y." or
-- "Team lead X says: 'we have put a lot of effort into Y and are
-   really proud of the performance results' ..." or
-- "The team has been working on ..."
+### New Adopters
 
--->
+We are very pleased to announce that the following adopters of Flux have
+come forward and added themselves to our website: xxx
 
-#### Weave GitOps
+If you have not already done so, [use the instructions
+here](/adopters/) or give us a ping and we will help to add you. Not only
+is it great for us to get to know and welcome you to our community. It
+also gives the team a big boost in morale to know where in the world
+Flux is used everywhere.
 
-#### Terraform-controller
+### New Contributors (or Project Members / Project Maintainers)
 
-#### Flux Subsystem for Argo
-
-#### Azure GitOps
-
-#### VS Code GitOps Extension
-
-#### New additions to the Flux Ecosystem
-
-## Recent & Upcoming Events
+## Events
 
 It's important to keep you up to date with new features and developments
 in Flux and provide simple ways to see our work in action and chat with
@@ -89,7 +82,7 @@ We are happy to announce that we have a number of events coming up in
 MONTH- tune in to learn more about Flux and GitOps best practices,
 get to know the team and join our community.
 
-#### Flux Bug Scrub
+### Project Meeting & Bug Scrub
 
 Our Flux Bug Scrubs still are happening on a weekly basis and remain one
 of the best ways to get involved in Flux. They are a friendly and
@@ -108,48 +101,37 @@ group or of the presenter. If you want to come and join us in either
 capacity, just show up or if you have questions, reach out to Kingdon on
 Slack.
 
-We really enjoyed this [demo of the k3d git
-server](https://www.youtube.com/watch?v=hNt3v0kk6ec)
-recently. It's a local Git server that runs outside of Kubernetes, to
-support offline dev in a realistic but also simple way that does not
-depend on GitHub or other hosted services.
+## Flux Ecosystem
 
-## In other news
+<!--
 
-### Your Community Team
+If you add entries to this subsection, please don't use "we" as it gets
+confusing from which perspective the whole blog post is written and who
+"we" is. The whole post is meant to be from the perspective of the Flux
+community. Better to write:]
 
-### People writing/talking about Flux
+- "Since the new release of X, it supports Y." or
+- "Team lead X says: 'we have put a lot of effort into Y and are
+   really proud of the performance results' ..." or
+- "The team has been working on ..."
 
-We love it when you all write about Flux and share your experience,
-write how-tos on integrating Flux with other pieces of software or other
-things. Give us a shout-out and we will link it from this section! ✍
+-->
 
-### News from the Website and our Docs
+### Weave GitOps
 
-#### Flux Adopters shout-out
+### Terraform-controller
 
-We are very pleased to announce that the following adopters of Flux have
-come forward and added themselves to our website: xxx
+### Flux Subsystem for Argo
 
-If you have not already done so, [use the instructions
-here](/adopters/) or give us a ping and we will help to add you. Not only
-is it great for us to get to know and welcome you to our community. It
-also gives the team a big boost in morale to know where in the world
-Flux is used everywhere.
+### Azure GitOps
 
-#### More docs and website news
+### VS Code GitOps Extension
 
-We are constantly improving our documentation and website - here are a
-couple of small things we landed recently:
+### New additions to the Flux Ecosystem
 
-- ..
+## Flux Fun Facts 
 
-Thanks a lot to these folks who contributed to docs and website:
-
-## Flux Project Facts
-
-We are very proud of what we have put together. We want to reiterate
-some Flux facts - they are sort of our mission statement with Flux.
+<!-- Select one of the items below for this section
 
 1. 🤝 Flux provides GitOps for both apps or
   infrastructure. Flux and [Flagger](https://github.com/fluxcd/flagger)
@@ -200,6 +182,7 @@ some Flux facts - they are sort of our mission statement with Flux.
   components of Flux are on Kubernetes core controller-runtime, so
   anyone can contribute and its functionality can be extended very
   easily.
+-->
 
 ## Over and out
 
