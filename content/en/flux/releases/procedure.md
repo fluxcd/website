@@ -347,6 +347,15 @@ the final (non-RC) release should follow the procedure for [patch releases](#dis
 The release notes template for Flux distributions is available in the
 [release-notes-template.md](https://github.com/fluxcd/flux2/blob/main/docs/release/release-notes-template.md) file.
 
+#### Distribution: Release and EOL notice update
+
+Release and support cadence information is published at https://endoflife.date/flux. The source of truth for that page
+is maintained in [this Git repository](https://github.com/endoflife-date/endoflife.date/blob/master/products/flux.md).
+Patch releases should automatically be captured by the automation in place there in a matter of roughly one day after
+release.
+
+New minor releases need to be added manually to the flux.md page. Create a PR updating the file accordingly.
+
 ## Backport changes for patch releases
 
 The Flux projects have a backport bot that automates the process of backporting
