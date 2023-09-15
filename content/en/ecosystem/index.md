@@ -66,6 +66,7 @@ These open source projects extend Flux with new capabilities.
 | [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)                                       | A Flux controller for managing manifests declared in jsonnet.           |
 | [kluctl/flux-kluctl-controller](https://github.com/kluctl/flux-kluctl-controller)                                   | A Flux controller for managing [Kluctl](https://kluctl.io) deployments. |
 | [awslabs/aws-cloudformation-controller-for-flux](https://github.com/awslabs/aws-cloudformation-controller-for-flux) | A Flux controller for managing AWS CloudFormation stacks.               |
+| [open-component-model/ocm-controller](https://github.com/open-component-model/ocm-controller) | A Flux controller for managing products represented by an [OCM](https://ocm.software)-based release train descriptor. |
 
 ## Integrations
 
