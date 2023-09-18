@@ -166,7 +166,7 @@ release.
 
    ```shell
    git pull origin release/v1.2.x
-   git switch -c release-v1.2.1 release/v1.2.1
+   git switch -c release-v1.2.1 release/v1.2.x
    ```
 
 3. Add an entry to `CHANGELOG.md` for the new release and commit the changes.
