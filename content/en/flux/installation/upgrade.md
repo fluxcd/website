@@ -43,6 +43,16 @@ git add -A && git commit -m "Update $(flux -v) on my-cluster"
 git push
 ```
 
+If you've enabled extra Flux components at bootstrap,
+like those required for the [image automation feature](/flux/guides/image-update/).
+Ensure to include these components when generating the components manifest:
+
+```shell
+flux install \
+--components-extra image-reflector-controller,image-automation-controller \
+--export > ./clusters/my-cluster/flux-system/gotk-components.yaml
+```
+
 Wait for Flux to detect the changes or, tell it to do the upgrade immediately with:
 
 ```sh
