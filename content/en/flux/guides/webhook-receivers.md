@@ -58,7 +58,7 @@ Wait for Kubernetes to assign a public address with:
 watch kubectl -n flux-system get svc/receiver
 ``` 
 
-...or, create an `Ingress` with the same destination, the `notification-webhook` http service on port 80:
+...or, create an `Ingress` with a similar destination, the `webhook-receiver` service on port 80:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -132,6 +132,8 @@ spec:
   secretRef:
     name: webhook-token
   resources:
+    - kind: GitRepository
+      name: flux-system
     - kind: GitRepository
       name: webapp
 ```
