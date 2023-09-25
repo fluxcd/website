@@ -3,6 +3,9 @@
 
 <p class="next-event">
 {{ range first 1 $.Site.Data.calendar }}
-📆 Next event: <a href="{{ .where }}">{{ .date }} {{ .time }} UTC: {{ .label }}</a>
+📆 Next event: {{ .date }} {{ .time }} UTC:<br/>
+{{ .label }}<br/>
+Where: {{ safeURL .where }}
+
 {{ end }}
 </p>
