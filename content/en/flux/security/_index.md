@@ -136,7 +136,7 @@ trivy image ghcr.io/fluxcd/source-controller:v1.0.0
 
 We ask users to keep Flux up-to-date on their clusters,
 this is the only way to ensure a Flux deployment is free of CVEs.
-New Flux versions are published periodically (at least once per month),
+New Flux versions are [published periodically](/flux/releases/#release-cadence),
 and the container images are based on the latest Alpine and Go releases.
 We offer a fully automated solution for keeping Flux up-to-date,
 please see the Flux GitHub Actions
