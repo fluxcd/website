@@ -133,8 +133,6 @@ spec:
     name: webhook-token
   resources:
     - kind: GitRepository
-      name: flux-system
-    - kind: GitRepository
       name: webapp
 ```
 
