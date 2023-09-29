@@ -191,6 +191,15 @@ deployment manifests named `deploy.yaml` from `app1` to `app2`:
 5. Reconcile the `app1` Kustomization and verify that the deployment is no longer managed by it `flux reconcile ks app1 && flux tree ks app1`.
 6. Finally, enable garbage collection by setting `prune: true` in `app1` Kustomization, then commit and push the changes upstream.
 
+Another option is to disable the garbage collection of the objects using an annotation:
+
+1. Disable garbage collection in the `deploy.yaml` by adding the `kustomize.toolkit.fluxcd.io/prune: disabled` annotation.
+2. Commit, push and reconcile the changes e.g. `flux reconcile ks flux-system --with-source`.
+3. Verify that the annotation has been applied `kubectl get deploy/app1 -o yaml`.
+4. Move the `deploy.yaml` manifest to the `app2` dir, then commit, push and reconcile e.g. `flux reconcile ks app2 --with-source`.
+5. Reconcile the `app1` Kustomization and verify that the deployment is no longer managed by it `flux reconcile ks app1 && flux tree ks app1`.
+6. Finally, enable garbage collection by setting `kustomize.toolkit.fluxcd.io/prune: enabled`, then commit and push the changes upstream.
+
 ### How can I safely rename a Flux Kustomization?
 
 If a Flux Kustomization has `spec.prune` set to `true` and you rename the object, then all reconciled
