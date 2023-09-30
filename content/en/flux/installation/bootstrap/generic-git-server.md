@@ -15,7 +15,7 @@ can be done via Git push, without the need to connect to the Kubernetes cluster.
 
 {{% alert color="danger" title="Required permissions" %}}
 To bootstrap Flux, the person running the command must have **cluster admin rights** for the target Kubernetes cluster.
-It is also required that the person running the command to have **push rights** to the Git repository.
+It is also required that the person running the command has **push rights** to the Git repository.
 {{% /alert %}}
 
 ## SSH Private Key
