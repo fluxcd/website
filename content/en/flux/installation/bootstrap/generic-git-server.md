@@ -20,7 +20,7 @@ It is also required that the person running the command to have **push rights** 
 
 ## SSH Private Key
 
-Run bootstrap for an exiting Git repository and authenticate with a SSH key which has pull and push access:
+Run bootstrap for an existing Git repository and authenticate with a SSH key which has pull and push access:
 
 ```sh
 flux bootstrap git \
@@ -50,7 +50,7 @@ The CLI will prompt you to add the SSH public key as a deploy key to your reposi
 
 ## SSH Agent
 
-Run bootstrap for an exiting Git repository and authenticate with your SSH agent:
+Run bootstrap for an existing Git repository and authenticate with your SSH agent:
 
 ```sh
 flux bootstrap git \
