@@ -50,7 +50,7 @@ The CLI will prompt you to add the SSH public key as a deploy key to your reposi
 
 ## SSH Agent
 
-Run bootstrap for an exiting Git repository and authenticate with your SSH agent:
+Run bootstrap for an existing Git repository and authenticate with your SSH agent:
 
 ```sh
 flux bootstrap git \
