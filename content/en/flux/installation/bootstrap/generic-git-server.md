@@ -15,12 +15,12 @@ can be done via Git push, without the need to connect to the Kubernetes cluster.
 
 {{% alert color="danger" title="Required permissions" %}}
 To bootstrap Flux, the person running the command must have **cluster admin rights** for the target Kubernetes cluster.
-It is also required that the person running the command to have **push rights** to the Git repository.
+It is also required that the person running the command has **push rights** to the Git repository.
 {{% /alert %}}
 
 ## SSH Private Key
 
-Run bootstrap for an exiting Git repository and authenticate with a SSH key which has pull and push access:
+Run bootstrap for an existing Git repository and authenticate with a SSH key which has pull and push access:
 
 ```sh
 flux bootstrap git \
@@ -50,7 +50,7 @@ The CLI will prompt you to add the SSH public key as a deploy key to your reposi
 
 ## SSH Agent
 
-Run bootstrap for an exiting Git repository and authenticate with your SSH agent:
+Run bootstrap for an existing Git repository and authenticate with your SSH agent:
 
 ```sh
 flux bootstrap git \
