@@ -5,6 +5,9 @@ resources:
 #   title: "enter title here"
 #   date: YYYY-MM-DD
 #   (optional) description: this will surface the entry on the main landing page
+  - youtube: EWofHnNngoc
+    title: "Nerdearla: Introducción a GitOps con Flux"
+    date: 2023-09-29
   - youtube: LHVjp7JeKzE
     title: "Keynote Session: GitOps as an Evolution of Kubernetes, Brendan Burns"
     date: 2023-05-09
