@@ -31,6 +31,13 @@ Additional benefits Flux adds to Helm include:
 - Automated drift detection between the desired and actual state of your operations
 - Automated responses to that drift, including reconciliation, notifications, and unified logging
 
+## Prerequisites
+
+To follow along you'll need a Kubernetes cluster with Flux installed on it.
+Please see the [get started guide](../get-started/index.md)
+or the [installation guide](../installation/).
+
+
 ## Getting Started
 
 The simplest way to explain is by example.
@@ -39,58 +46,63 @@ Lets translate imperative Helm commands to Flux Helm Controller Custom Resources
 Helm client:
 
 ```sh
-helm repo add traefik https://helm.traefik.io/traefik
-helm install my-traefik traefik/traefik \
-  --version 9.18.2 \
-  --namespace traefik
+helm repo add flagger https://flagger.app
+helm install my-flagger flagger/flagger \
+  --version 1.28.0 
 ```
 
 Flux client:
 
+Clone your bootstrap repository to your local machine and create a `flagger` directory in your bootstrap path.
 ```sh
-flux create source helm traefik --url https://helm.traefik.io/traefik --namespace traefik
-flux create helmrelease my-traefik --chart traefik \
-  --source HelmRepository/traefik \
-  --chart-version 9.18.2 \
-  --namespace traefik
+git clone <bootstrap-repo> 
+cd <bootstrap-path>
+mkdir flagger
 ```
 
-The main difference is that the Flux client will not imperatively create resources in the cluster.
-Instead, these commands create Custom Resource *files*, which are committed to version control
-as instructions only (note: you may use the `--export` flag to manage any file edits with
-finer grained control before pushing to version control).
-Separately, the Flux Helm Controller automatically reconciles these instructions
-with the running state of your cluster based on your configured rules.
+```sh
+flux create source helm flagger --url https://flagger.app --export > flagger/helmrepo.yaml
+flux create helmrelease flagger --chart flagger \
+  --source HelmRepository/flagger \
+  --chart-version '*' \
+  --export > flagger/helmrelease.yaml
+```
 
-Let's check out what the Custom Resource files look like:
+These commands save the YAML for the Flux helm custom resources to the specified file. When these resources are pushed to the 
+repository, Flux applies them on the cluster and the Flux Helm Controller automatically reconciles these instructions 
+with the running state of your cluster based on your configured rules. Alternatively, you can run the commands without 
+the  `--export` command and this will apply the resources directly on your cluster.
+
+Let’s check out what the Custom Resource files look like:
 
 ```yaml
-# /flux/boot/traefik/helmrepo.yaml
+# flagger/helmrepo.yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: traefik
-  namespace: traefik
+  name: flagger
+  namespace: flux-system
 spec:
   interval: 1m0s
-  url: https://helm.traefik.io/traefik
+  url: https://flagger.app
 ```
 
 ```yaml
-# /flux/boot/traefik/helmrelease.yaml
+# flagger/helmrelease.yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: my-traefik
-  namespace: traefik
+  name: flagger
+  namespace: flux-system
 spec:
   chart:
     spec:
-      chart: traefik
+      chart: flagger
+      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: traefik
-      version: 9.18.2
+        name: flagger
+      version: '*'
   interval: 1m0s
 ```
 
@@ -112,20 +124,21 @@ The Helm client allows this by imperatively specifying override values with `--s
 and in additional `--values` files. For example:
 
 ```sh
-helm install my-traefik traefik/traefik --set service.type=ClusterIP
+helm install my-flagger flagger/flagger --set resource.limit.memory=1Gi
 ```
 
 and
 
 ```sh
-helm install my-traefik traefik/traefik --values ci/kind-values.yaml
+helm install my-flagger flagger/flagger --values ci/kind-values.yaml
 ```
 
 where `ci/kind-values.yaml` contains:
 
 ```yaml
-service:
-  type: ClusterIP
+resource:
+  limit:
+    memory: 1Gi
 ```
 
 Flux Helm Controller allows these same YAML values overrides on the `HelmRelease` CRD.
@@ -134,8 +147,9 @@ These can be declared directly in `spec.values`:
 ```yaml
 spec:
   values:
-    service:
-      type: ClusterIP
+    resource:
+      limit:
+        memory: 1Gi
 ```
 
 and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values,
