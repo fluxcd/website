@@ -43,5 +43,5 @@ or shared with one of the maintainers.
 
 As `kubectl top` gives a limited (and at times inaccurate) overview of
 resource usage, it is often better to make use of the Grafana metrics
-to gather insights. See [monitoring](../guides/monitoring.md) for a
+to gather insights. See [Flux Prometheus metrics](../monitoring/metrics.md) for a
 guide on how to visualize this data with a Grafana dashboard.
