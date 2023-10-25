@@ -13,7 +13,15 @@ is described declaratively and version controlled (most likely in a Git reposito
 and having an automated process that ensures that the deployed environment
 matches the state specified in a repository.
 
-For more information, take a look at ["What is GitOps?"](https://www.gitops.tech/#what-is-gitops).
+For more information, take a look at the following resources:
+* [What is GitOps?](https://www.gitops.tech/#what-is-gitops)
+* [GitOps Principles](https://opengitops.dev/#principles)
+
+## GitOps Toolkit (gotk)
+
+In Flux, GitOps Toolkit refers to a collection of specialized tools, Flux Controllers, composable APIs, and reusable Go packages available under the fluxcd GitHub organization. These components are designed for the purpose of constructing Continuous Delivery workflows on Kubernetes using GitOps principles. The GitOps Toolkit serves as the foundation for managing and automating the deployment and configuration of applications and infrastructure within a Kubernetes cluster, promoting a declarative and version-controlled approach to operations.
+
+For more information, take a look at [GitOps Toolkit components](/flux/components/)
 
 ## Sources
 
