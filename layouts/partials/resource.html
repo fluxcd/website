@@ -9,10 +9,19 @@
 {{ $url := .url | default $youtube_url }}
 {{ $title := .title | default "Video title" }}
 
+{{ $t := .date }}
+{{ $t = time.AsTime $t }}
+{{ $format := "2 Jan, 2006" }}
+{{ $dateTime := $t.Format $format }} 
+
 <div class="col-lg-4 mb-3 mb-lg-0 text-center ">
   <a href="{{ $url }}"><img class="img-fluid img-thumbnail" alt="{{ $title | markdownify }}" src="{{ $thumbnail }}"></a>
   <a href="{{ $url }}"><h4>{{ $title | markdownify }}</h4></a>
+  <span class="tag1 tag">
+    video
+</span>
+<label class="date">{{ $dateTime }}</label>
 
-  {{ if .description }}<p>{{ .description }}</p>{{ end }}
+  {{ if .description }}<h4>{{ .description }}</h4>{{ end }}
 
 </div>
