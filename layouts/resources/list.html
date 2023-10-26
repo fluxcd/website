@@ -1,12 +1,17 @@
 {{ define "main" }}
 
 <a class="td-offset-anchor"></a>
-<div class="page td-content container">
+<div class="page td-content">
 
     {{ partial "version-banner.html" . }}
-
+    
     {{ .Content | markdownify }}
-
+    
+    <p class="mt-100">
+        <span class="tag tag-heading">
+            video
+        </span>
+    </p>
     {{ $resources := $.Site.Data.resources.resources }}
     {{ $years := slice }}
     {{ range $resources }}
@@ -15,7 +20,33 @@
     {{ end }}
     {{ range $years }}
     {{ $year := . }}
-    <h2 id={{ . }}>{{ . }}</h2>
+    <div class="d-flex flex-gap-md mt-5">
+        <div class="filter ml-5">
+            <div>
+                <h3>Content Type</h3>
+                <div>
+                    <input id="video" type="checkbox" name="contentType">
+                    <label for="video">Video</label>
+                </div>
+                <div>
+                    <input id="blog" type="checkbox" name="contentType">
+                    <label for="blog">Blog post</label>
+                </div>
+            </div>
+            <div class="mt-5">
+                <h3>Year</h3>
+                <div>
+                    <input id="2023" type="checkbox" name="year">
+                    <label for="2023">2023</label>
+                </div>
+                <div>
+                    <input id="2022" type="checkbox" name="year">
+                    <label for="2022">2022</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 id={{ . }}>{{ . }}</h2>
     <a id=td-block-0 class=td-offset-anchor></a>
     <section class="row td-box td-box--white td-box--gradient td-box--height-auto">
         <div class=col>
@@ -28,6 +59,8 @@
             </div>
         </div>
     </section>
+        </div>
+    </div>
     {{ end }}
 
 </div>
