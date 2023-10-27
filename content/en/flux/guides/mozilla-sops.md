@@ -72,7 +72,7 @@ kubectl create secret generic sops-gpg \
 ```
 
 It's a good idea to back up this secret-key/K8s-Secret with a password manager or offline storage.
-Also consider deleting the secret decryption key from you machine:
+Also consider deleting the secret decryption key from your machine:
 
 ```sh
 gpg --delete-secret-keys "${KEY_FP}"
