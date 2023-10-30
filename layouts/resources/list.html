@@ -1,7 +1,32 @@
 {{ define "main" }}
 
+<div class="filter ml-5">
+    <div>
+        <h3>Content Type</h3>
+        <div>
+            <input id="video" type="checkbox" name="contentType">
+            <label for="video">Video</label>
+        </div>
+        <div>
+            <input id="blog" type="checkbox" name="contentType">
+            <label for="blog">Blog post</label>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h3>Year</h3>
+        <div>
+            <input id="2023" type="checkbox" name="year">
+            <label for="2023">2023</label>
+        </div>
+        <div>
+            <input id="2022" type="checkbox" name="year">
+            <label for="2022">2022</label>
+        </div>
+    </div>
+</div>
+
 <a class="td-offset-anchor"></a>
-<div class="page td-content">
+<div class="page td-content container">
 
     {{ partial "version-banner.html" . }}
     
@@ -20,31 +45,7 @@
     {{ end }}
     {{ range $years }}
     {{ $year := . }}
-    <div class="d-flex flex-gap-md mt-5">
-        <div class="filter ml-5">
-            <div>
-                <h3>Content Type</h3>
-                <div>
-                    <input id="video" type="checkbox" name="contentType">
-                    <label for="video">Video</label>
-                </div>
-                <div>
-                    <input id="blog" type="checkbox" name="contentType">
-                    <label for="blog">Blog post</label>
-                </div>
-            </div>
-            <div class="mt-5">
-                <h3>Year</h3>
-                <div>
-                    <input id="2023" type="checkbox" name="year">
-                    <label for="2023">2023</label>
-                </div>
-                <div>
-                    <input id="2022" type="checkbox" name="year">
-                    <label for="2022">2022</label>
-                </div>
-            </div>
-        </div>
+    <!-- <div class="d-flex flex-gap-md mt-5"> -->
         <div>
             <h2 id={{ . }}>{{ . }}</h2>
     <a id=td-block-0 class=td-offset-anchor></a>
@@ -60,7 +61,7 @@
         </div>
     </section>
         </div>
-    </div>
+    <!-- </div> -->
     {{ end }}
 
 </div>
