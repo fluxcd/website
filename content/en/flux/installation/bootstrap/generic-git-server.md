@@ -90,7 +90,7 @@ You can also supply the password or Git token using a pipe e.g. `echo "<my-pass>
 If your Git server uses a self-signed TLS certificate, you can specify the CA file with
 `--ca-file=<path/to/ca.crt>`.
 
-## Boostrap multiple clusters
+## Bootstrap multiple clusters
 
 With `--path` you can configure the directory which will be used to reconcile the target cluster.
 To control multiple clusters from the same Git repository, you have to set a unique path per
