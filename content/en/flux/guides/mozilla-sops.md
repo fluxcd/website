@@ -357,6 +357,7 @@ az keyvault set-policy --name ${VAULT_NAME} --object-id ${IDENTITY_ID} --key-per
 ```
 
 Create an `AzureIdentity` object that references the identity created above:
+
 ```yaml
 ---
 apiVersion: aadpodidentity.k8s.io/v1
@@ -371,6 +372,7 @@ spec:
 ```
 
 Create an `AzureIdentityBinding` object that binds pods with a specific selector with the `AzureIdentity` created above.
+
 ```yaml
 apiVersion: "aadpodidentity.k8s.io/v1"
 kind: AzureIdentityBinding
@@ -437,6 +439,7 @@ to get started committing encrypted files to your Git Repository or other Source
 [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#before_you_begin) has to be enabled on the cluster and on the node pools.
 
 {{% alert color="info" title="Terraform" %}} If you like to use terraform instead of gcloud, you will need the following resources from the `hashicorp/google` provider:
+
 * create GCP service account: "google_service_account"
 * add role KMS encrypter/decrypter: "google_project_iam_member"
 * bind GCP SA to Flux kustomize-controller SA: "google_service_account_iam_binding" {{% /alert %}}
@@ -476,16 +479,19 @@ gcloud iam service-accounts add-iam-policy-binding \
 3. [Customize your Flux Manifests](/flux/installation/) and patch the kustomize-controller service account with the proper annotation so that Workload Identity knows the relationship between the gcp service account and the k8s service account.
 
 ``` yaml
- ### add this patch to annotate service account if you are using Workload identity
-patchesStrategicMerge:
-- |-
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: kustomize-controller
-    namespace: flux-system
-    annotations:
-      iam.gke.io/gcp-service-account: <SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
+### add this patch to annotate service account if you are using Workload identity
+patches:
+  - patch: |
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: kustomize-controller
+        namespace: flux-system
+        annotations:
+          iam.gke.io/gcp-service-account: <SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
+    target:
+      kind: ServiceAccount
+      name: kustomize-controller
 ```
 
 If you didn't bootstrap Flux, you can use this instead

@@ -171,13 +171,17 @@ spec:
     kind: GitRepository
     name: app
   path: ./deploy/manifests
-  patchesStrategicMerge:
-    - apiVersion: apps/v1
-      kind: Deployment
-      metadata:
+  patches:
+    - patch: |
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: app
+        spec:
+          replicas: 2
+      target:
+        kind: Deployment
         name: app
-      spec:
-        replicas: 2
 ```
 
 App repository Kustomize overlays example:
