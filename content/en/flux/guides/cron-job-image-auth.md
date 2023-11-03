@@ -137,7 +137,7 @@ Since the cronjob will not create a job right away, after applying the manifest,
 you can manually create an init job using the following command:
 
 ```sh
-$ kubectl create job --from=cronjob/ecr-credentials-sync -n flux-system ecr-credentials-sync-init
+kubectl create job --from=cronjob/ecr-credentials-sync -n flux-system ecr-credentials-sync-init
 ```
 
 After the job runs, a secret named `ecr-credentials` should be created. Use this
@@ -249,7 +249,7 @@ Since the cronjob will not create a job right away, after applying the manifest,
 you can manually create an init job using the following command:
 
 ```sh
-$ kubectl create job --from=cronjob/gcr-credentials-sync -n flux-system gcr-credentials-sync-init
+kubectl create job --from=cronjob/gcr-credentials-sync -n flux-system gcr-credentials-sync-init
 ```
 
 After the job runs, a secret named `gcr-credentials` should be created. Use this
@@ -307,18 +307,28 @@ Once we have AAD Pod Identity installed, we can create a Deployment that frequen
 our desired Namespace.
 
 Create a directory in your control repository and save this `kustomization.yaml`:
+
 ```yaml
 # kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - https://github.com/fluxcd/flux2/manifests/integrations/registry-credentials-sync/azure?ref=main
-patchesStrategicMerge:
-- config-patches.yaml
+patches:
+  - path: config-map-patch.yaml
+    target:
+      kind: ConfigMap
+      name: credentials-sync
+  - path: azure-identity-patch.yaml
+    target:
+      kind: AzureIdentity
+      name: credentials-sync
 ```
-Save and configure the following patch -- note the instructional comments for configuring matching Azure resources:
+
+Save and configure the following patches -- note the instructional comments for configuring matching Azure resources:
+
 ```yaml
-# config-patches.yaml
+# config-map-patch.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -328,6 +338,10 @@ data:
   ACR_NAME: my-registry
   KUBE_SECRET: my-registry  # does not yet exist -- will be created in the same Namespace
   SYNC_PERIOD: "3600"  # ACR tokens expire every 3 hours; refresh faster than that
+```
+
+```yaml
+# azure-identity-patch.yaml
 
 # Create an identity in Azure and assign it a role to pull from ACR  (note: the identity's resourceGroup should match the desired ACR):
 #     az identity create -n acr-sync
