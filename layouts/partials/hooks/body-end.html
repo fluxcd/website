@@ -25,3 +25,158 @@ for (const e of document.querySelectorAll(".docsearch-placeholder")) {
 
 </script>
 {{ end }}
+
+<!-- logic for resource filter -->
+<script>
+window.addEventListener("DOMContentLoaded", function(event){
+  let index = null;
+  let lookup = [];
+  let lookupp = null;
+  let queuedTerm = null;
+
+let checkboxes = document.querySelectorAll('input[name="resource_filter"]:checked');
+checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener('OnChange', function (event) {
+                        if (checkbox.checked) {
+                                lookup = lookup.push(event.target.value);
+                                queuedTerm = lookup.join(' ');
+                                startSearch(queuedTerm);
+                        } else {
+                                lookup = lookup.filter((word) => word === event.target.value);
+                                queuedTerm = lookup.join(' ');
+                                startSearch(queuedTerm);
+                        }
+                });
+            });
+
+
+       
+
+//   form.addEventListener("submit", function(event){
+//     event.preventDefault();
+
+//     var term = input.value.trim();
+//     if (!term)
+//       return;
+
+//     startSearch(term);
+//   }, false);
+
+  function startSearch(term)
+  {
+    // Show loading state.
+    form.setAttribute("data-running", "true");
+
+    if (index)
+    {
+      // Index already present, search directly.
+      search(term);
+    }
+//     else if (queuedTerm)
+//     {
+//       // Index is being loaded, replace the term we want to search for.
+//       queuedTerm = term;
+//     }
+    else
+    {
+      // Start loading index, perform the search when done.
+//       queuedTerm = term;
+      initIndex();
+    }
+  }
+
+//   function searchDone()
+//   {
+//     // Stop icon animation.
+//     form.removeAttribute("data-running");
+
+//     queuedTerm = null;
+//   }
+
+  function initIndex()
+  {
+    var request = new XMLHttpRequest();
+    request.open("GET", "/index.json");
+    request.responseType = "json";
+    request.addEventListener("load", function(event)
+    {
+      lookupp = {};
+      index = lunr(function()
+      {
+        // Uncomment the following line and replace de by the right language
+        // code to use a lunr language pack.
+
+        // this.use(lunr.de);
+
+        this.ref("title");
+
+        // If you added more searchable fields to the search index, list them here.
+        this.field("title");
+        this.field("youtube");
+        this.field("url");
+        this.field("type");
+        this.field("year");
+        this.field("date");
+
+        for (var doc of request.response)
+        {
+          this.add(doc);
+          lookup[doc.title] = doc;
+        }
+      });
+
+      // Search index is ready, perform the search now
+      search(queuedTerm);
+    }, false);
+//     request.addEventListener("error", searchDone, false);
+    request.send(null);
+  }
+
+  function search(term)
+  {
+    var results = index.search(term);
+
+    // The element where search results should be displayed, adjust as needed.
+    var target = document.querySelector(".row");
+
+    while (target.firstChild)
+      target.removeChild(target.firstChild);
+
+//     var title = document.createElement("h1");
+//     title.id = "search-results";
+//     title.className = "list-title";
+
+//     if (results.length == 0)
+//       title.textContent = `No results found for “${term}”`;
+//     else if (results.length == 1)
+//       title.textContent = `Found one result for “${term}”`;
+//     else
+//       title.textContent = `Found ${results.length} results for “${term}”`;
+//     target.appendChild(title);
+//     document.title = title.textContent;
+
+    var template = document.getElementById("search-result");
+    for (var result of results)
+    {
+      var doc = lookupp[result.ref];
+
+      // Fill out search result template, adjust as needed.
+      var element = template.content.cloneNode(true);
+      if (doc.url) {
+        element.querySelector(".thumbnail-link").href = doc.url;
+      };
+      if (doc.youtube) {
+        element.querySelector(".thumbnail-link").href = doc.youtube;
+      };
+          element.querySelector(".read-more-link").href = doc.uri;
+      element.querySelector(".summary-title-link").textContent = doc.title;
+      element.querySelector(".summary").textContent = truncate(doc.content, 70);
+      target.appendChild(element);
+    }
+    title.scrollIntoView(true);
+
+    searchDone();
+  }
+
+}, false);
+</script>
