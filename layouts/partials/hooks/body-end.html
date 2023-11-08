@@ -27,23 +27,35 @@ for (const e of document.querySelectorAll(".docsearch-placeholder")) {
 {{ end }}
 
 <!-- logic for resource filter -->
+<script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
 window.addEventListener("DOMContentLoaded", function(event){
   let index = null;
   let lookup = [];
   let lookupp = null;
   let queuedTerm = null;
+  let resource = document.querySelector('.resource');
+  let templateResource = document.querySelector('.template-resource');
+  var tagTemplate = document.getElementById("template-tag-section");
+  var tagSection = document.getElementById("tag-section");
 
-let checkboxes = document.querySelectorAll('input[name="resource_filter"]:checked');
+let checkboxes = document.querySelectorAll('input[name="resource_filter"]');
+console.log(checkboxes);
 checkboxes.forEach((checkbox) => {
-                checkbox.addEventListener('OnChange', function (event) {
+                checkbox.addEventListener('change', function (event) {
                         if (checkbox.checked) {
-                                lookup = lookup.push(event.target.value);
-                                queuedTerm = lookup.join(' ');
+                                console.log('checkbox clicked', checkbox.checked, event.target.value);
+                                lookup.push(event.target.value);
+                                console.log(lookup)
+                                queuedTerm = lookup.join(" ");
+                                renderTags(lookup);
                                 startSearch(queuedTerm);
                         } else {
-                                lookup = lookup.filter((word) => word === event.target.value);
+                                console.log(checkbox.checked);
+                                lookup = lookup.filter((word) => word != event.target.value);
+                                console.log(lookup);
                                 queuedTerm = lookup.join(' ');
+                                renderTags(lookup);
                                 startSearch(queuedTerm);
                         }
                 });
@@ -62,10 +74,25 @@ checkboxes.forEach((checkbox) => {
 //     startSearch(term);
 //   }, false);
 
+function renderTags (tagArray) {
+        while (tagSection.firstChild)
+        tagSection.removeChild(tagSection.firstChild);
+
+        for (var tag of tagArray) {
+                var tagElement = tagTemplate.content.cloneNode(true); 
+                tagElement.querySelector(".tag-heading").textContent = tag;
+                tagSection.appendChild(tagElement);
+        }
+}
+
   function startSearch(term)
   {
-    // Show loading state.
-    form.setAttribute("data-running", "true");
+        if (term.length >= 1) {
+                resource.style.display = "none";
+                templateResource.style.display = "block";
+
+                // Show loading state.
+//     form.setAttribute("data-running", "true");
 
     if (index)
     {
@@ -83,6 +110,11 @@ checkboxes.forEach((checkbox) => {
 //       queuedTerm = term;
       initIndex();
     }
+        } else {
+                resource.style.display = "block";
+                templateResource.style.display = "none";
+        }
+    
   }
 
 //   function searchDone()
@@ -112,8 +144,10 @@ checkboxes.forEach((checkbox) => {
 
         // If you added more searchable fields to the search index, list them here.
         this.field("title");
+        this.field("description")
         this.field("youtube");
         this.field("url");
+        this.field("thumbnail");
         this.field("type");
         this.field("year");
         this.field("date");
@@ -121,7 +155,7 @@ checkboxes.forEach((checkbox) => {
         for (var doc of request.response)
         {
           this.add(doc);
-          lookup[doc.title] = doc;
+          lookupp[doc.title] = doc;
         }
       });
 
@@ -137,7 +171,7 @@ checkboxes.forEach((checkbox) => {
     var results = index.search(term);
 
     // The element where search results should be displayed, adjust as needed.
-    var target = document.querySelector(".row");
+    var target = document.querySelector(".template-row");
 
     while (target.firstChild)
       target.removeChild(target.firstChild);
@@ -162,20 +196,25 @@ checkboxes.forEach((checkbox) => {
 
       // Fill out search result template, adjust as needed.
       var element = template.content.cloneNode(true);
-      if (doc.url) {
-        element.querySelector(".thumbnail-link").href = doc.url;
-      };
-      if (doc.youtube) {
-        element.querySelector(".thumbnail-link").href = doc.youtube;
-      };
-          element.querySelector(".read-more-link").href = doc.uri;
-      element.querySelector(".summary-title-link").textContent = doc.title;
-      element.querySelector(".summary").textContent = truncate(doc.content, 70);
+//       if (doc.url) {
+//         element.querySelector(".thumbnail-link").href = doc.url;
+//       };
+//       if (doc.youtube) {
+//         element.querySelector(".thumbnail-link").href = doc.youtube;
+//       };
+      element.querySelector(".thumbnail-link").href = doc.youtube ? `https://www.youtube.com/watch?v=${doc.youtube}` : doc.url ? doc.url : "";
+          element.querySelector(".img-thumbnail").src = doc.youtube ? `https://i3.ytimg.com/vi/${doc.youtube}/0.jpg` : doc.thumbnail ? `https://i3.ytimg.com/vi/${doc.thumbnail}/0.jpg` : "";
+          element.querySelector(".img-thumbnail").alt = doc.title; 
+          element.querySelector(".resource-title-link").href = doc.youtube ? `https://www.youtube.com/watch?v=${doc.youtube}` : doc.url ? doc.url : "";
+      element.querySelector(".resource-title-heading").textContent = doc.title;
+      element.querySelector(".tag").textContent = doc.type;
+      element.querySelector(".date").textContent = doc.date;
+      element.querySelector(".resource-description").textContent = doc.description;  
       target.appendChild(element);
     }
-    title.scrollIntoView(true);
+//     title.scrollIntoView(true);
 
-    searchDone();
+//     searchDone();
   }
 
 }, false);
