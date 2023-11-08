@@ -85,3 +85,6 @@ adopters:
     - name: EcoVadis
       url: https://ecovadis.com/
       logo: logos/ecovadis.png
+    - name: Tchibo
+      url: https://tchibo.de
+      logo: logos/tchibo.png
