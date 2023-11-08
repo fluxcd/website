@@ -69,6 +69,11 @@ main.td-main {
   }
 }
 
+main.td-main {
+  section.template-row {
+    justify-content: unset !important;
+  }}
+
 .resources {
   h4 {
     color: $flux-white;

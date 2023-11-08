@@ -4,39 +4,39 @@
     <div>
         <h3>Content Type</h3>
         <div>
-            <input id="video" type="checkbox" name="resource_filter">
+            <input id="video" type="checkbox" name="resource_filter" value="video">
             <label for="video">Video</label>
         </div>
         <div>
-            <input id="blog" type="checkbox" name="resource_filter">
-            <label for="blog">Blog post</label>
+            <input id="article" type="checkbox" name="resource_filter" value="article">
+            <label for="article">article</label>
         </div>
     </div>
     <div class="mt-5">
         <h3>Year</h3>
-        <div>
-            <input id="2023" type="checkbox" name="resource_filter">
-            <label for="2023">2023</label>
+            {{ $resources := $.Site.Data.resources.resources }}
+    {{ $years := slice }}
+    {{ range $resources }}
+        {{ $years = $years | append (time.Format "2006" .date) }}
+        {{ $years = uniq $years }}
+    {{ end }}
+    {{ range $years }}
+    {{ $year := . }}
+         <div>
+            <input id="{{ . }}" type="checkbox" name="resource_filter" value="{{ . }}">
+            <label for="{{ . }}">{{ . }}</label>
         </div>
-        <div>
-            <input id="2022" type="checkbox" name="resource_filter">
-            <label for="2022">2022</label>
-        </div>
+        {{ end }}
     </div>
 </div>
 
 <a class="td-offset-anchor"></a>
-<div class="page td-content container">
+<div class="page td-content container resource">
 
     {{ partial "version-banner.html" . }}
     
     {{ .Content | markdownify }}
     
-    <p class="mt-100">
-        <span class="tag tag-heading">
-            video
-        </span>
-    </p>
     {{ $resources := $.Site.Data.resources.resources }}
     {{ $years := slice }}
     {{ range $resources }}
@@ -46,7 +46,7 @@
     {{ range $years }}
     {{ $year := . }}
     <!-- <div class="d-flex flex-gap-md mt-5"> -->
-        <div>
+        <div class="mt-100">
             <h2 id={{ . }}>{{ . }}</h2>
     <a id=td-block-0 class=td-offset-anchor></a>
     <section class="row td-box td-box--white td-box--gradient td-box--height-auto">
@@ -63,6 +63,37 @@
         </div>
     <!-- </div> -->
     {{ end }}
+
+</div>
+
+ <!-- template for resource -->
+<div class="page td-content container template-resource">
+
+    {{ partial "version-banner.html" . }}
+    
+    {{ .Content | markdownify }}
+    
+    <p id="tag-section" class="mt-100">
+        <template id="template-tag-section">
+            <span class="tag tag-heading">
+            
+            </span>
+        </template>
+    </p>
+
+        <div class="template-resource">
+    <a id=td-block-0 class=td-offset-anchor></a>
+    <section class="template-row row td-box td-box--white td-box--gradient td-box--height-auto">
+        <div class=col>
+            <div class="row">
+                
+                    {{ partial "template-resource.html" . }}
+
+            </div>
+        </div>
+    </section>
+        </div>
+    <!-- </div> -->
 
 </div>
 {{ end }}
