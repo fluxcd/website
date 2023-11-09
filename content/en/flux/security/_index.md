@@ -33,7 +33,7 @@ install [cosign](https://docs.sigstore.dev/cosign/installation/) v2 and run:
 
 ```console
 $ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0 \
-  --certificate-identity-regexp=https://github.com/fluxcd \
+  --certificate-identity-regexp=^https://github\\.com/fluxcd/.*$ \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com 
 
 Verification for ghcr.io/fluxcd/source-controller:v1.0.0 --
