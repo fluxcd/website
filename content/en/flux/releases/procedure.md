@@ -25,6 +25,7 @@ clarification.
     * [Preview releases](#controllers-preview-releases)
   + [Distribution](#distribution)
     * [Minor releases](#distribution-minor-releases)
+    * [Minor release website](#distribution-minor-release-website)
     * [Patch releases](#distribution-patch-releases)
     * [Release candidates](#distribution-release-candidates)
 - [Backport changes for patch releases](#backport-changes-for-patch-releases)
@@ -304,6 +305,44 @@ version in the `main` branch when a new controller version is released.
    announcing the release, and pin it.
 
 8. Add the `backport/v2.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
+
+##### Distribution: minor release website
+
+1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
+2. Click on "Configure"
+3. In "Additional branches" add the "v2-N" branch, e.g. "v2-1" for the 2.2.0
+   release (the documentation for the 2.2.0 release itself is built from
+   `main`).
+4. Click "Save"
+5. Create the "v2-N" branch (e.g. "v2-1") in the 
+   [website repo](https://github.com/fluxcd/website/) from `main`:
+   
+   ```shell
+   git checkout main
+   git pull
+   git checkout -b v2-1
+   git push origin HEAD:v2-1
+   ```
+6. In the `v2-1` branch edit the following fields in `hugo.yaml`:
+   1. Set `params.archived_version` to `true`
+   2. Add the following entry to `params.versions`:
+      ```yaml
+      - version: "v2.2"
+        url: https://fluxcd.io
+      ```
+   3. Edit the existing `params.versions` entry pointing to
+      `https://fluxcd.io` to point to `https://v2-1.docs.fluxcd.io`
+   4. Commit the changes and create a PR for the `v2-1` branch.
+7. In the `main` branch edit the following fields in `hugo.yaml`:
+   1. Set `params.version` to the latest version (e.g. "2.2")
+   2. Add the following entry to `params.versions`:
+      ```yaml
+      - version: "v2.2"
+        url: https://fluxcd.io
+      ```
+   3. Edit the existing `params.versions` entry pointing to 
+      `https://fluxcd.io` to point to `https://v2-1.docs.fluxcd.io`
+   4. Commit the changes and create a PR for the `main` branch.
 
 #### Distribution: patch releases
 
