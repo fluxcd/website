@@ -59,7 +59,7 @@ The output is similar to:
 
 ## Install Flux onto your cluster
 
-For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Installation](installation.md).
+For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Bootstrapping](/flux/installation/bootstrap/).
 
 Run the bootstrap command:
 
