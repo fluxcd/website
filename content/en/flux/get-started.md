@@ -59,7 +59,7 @@ The output is similar to:
 
 ## Install Flux onto your cluster
 
-For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Installation](installation.md).
+For information on how to bootstrap using a GitHub org, Gitlab and other git providers, see [Bootstrapping](/flux/installation/bootstrap/).
 
 Run the bootstrap command:
 
@@ -116,7 +116,7 @@ cd fleet-infra
 This example uses a public repository [github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo),
 podinfo is a tiny web application made with Go.
 
-1. Create a [GitRepository](../components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
+1. Create a [GitRepository](/flux/components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
 
     ```sh
     flux create source git podinfo \
