@@ -479,7 +479,7 @@ please see the [HelmChart documentation](/flux/components/source/helmcharts/#ver
 Configure alerting for when new artifacts are pulled and reconciled:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: podinfo
