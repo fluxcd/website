@@ -73,7 +73,7 @@ The completion of this milestone is marked by the [v2.0.0](https://github.com/fl
   - [x] [Update Flux controllers to Kustomize v5.0](https://github.com/fluxcd/flux2/issues/3564)
   - [x] [Update Kubernetes to 1.27.2](https://github.com/fluxcd/pkg/pull/534)
 
-### Flux Helm GA (Q3 2023)
+### Flux Helm GA (Q1 2024)
 
 The goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
