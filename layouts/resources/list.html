@@ -1,8 +1,46 @@
 {{ define "main" }}
+<div class="filter-container">
+    <div class="filter ml-5">
+        <div>
+            <h3>Type</h3>
+            <div>
+                <input id="video" type="checkbox" name="resource_filter" value="video">
+                <label for="video">Video</label>
+            </div>
+            <div>
+                <input id="article" type="checkbox" name="resource_filter" value="article">
+                <label for="article">article</label>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h3>Year</h3>
+                {{ $resources := $.Site.Data.resources.resources }}
+        {{ $years := slice }}
+        {{ range $resources }}
+            {{ $years = $years | append (time.Format "2006" .date) }}
+            {{ $years = uniq $years }}
+        {{ end }}
+        {{ range $years }}
+        {{ $year := . }}
+             <div>
+                <input id="{{ . }}" type="checkbox" name="resource_filter" value="{{ . }}">
+                <label for="{{ . }}">{{ . }}</label>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
 
+<div class="filter-mobile-modal container">
+    <div class="flex justify-content-space width-80 mt-40">
+        <p>Filter resources accordingly</p>
+        <div>
+            <button onclick="closeModal()">x</button>
+        </div>
+    </div>
 <div class="filter ml-5">
     <div>
-        <h3>Content Type</h3>
+        <h3>Type</h3>
         <div>
             <input id="video" type="checkbox" name="resource_filter" value="video">
             <label for="video">Video</label>
@@ -29,6 +67,7 @@
         {{ end }}
     </div>
 </div>
+</div>
 
 <a class="td-offset-anchor"></a>
 <div class="page td-content container resource">
@@ -36,6 +75,10 @@
     {{ partial "version-banner.html" . }}
     
     {{ .Content | markdownify }}
+
+    <div class="filter-mobile-btn mt-100">
+        <button onclick="openModal()">Filter</button>
+    </div>
     
     {{ $resources := $.Site.Data.resources.resources }}
     {{ $years := slice }}
@@ -72,6 +115,10 @@
     {{ partial "version-banner.html" . }}
     
     {{ .Content | markdownify }}
+
+    <div class="filter-mobile-btn mt-100">
+        <button onclick="openModal()">Filter</button>
+    </div>
     
     <p id="tag-section" class="mt-100">
         <template id="template-tag-section">
