@@ -110,6 +110,18 @@ main.td-main {
   position: absolute;
   top: 36%;
   left: 40px;
+  z-index: 100;
+  @include media-breakpoint-down(md) {
+    top: 16%;
+  left: -15px;
+  }
+}
+
+.filter-container {
+  display: block;
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 
 .mt-100 {
@@ -372,4 +384,37 @@ label.date {
   padding-right: 12px;
   padding-top: 12px;
   padding-bottom: 8px;
+}
+
+.filter-mobile-modal {
+  border: 1px solid black;
+  background-color: white;
+  position: absolute;
+  z-index: 90;
+  top: 37%;
+  bottom: 5%;
+  display: none;
+}
+
+.filter-mobile-btn {
+  display: none;
+  @include media-breakpoint-down(md) {
+    display: inline-block;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-content-space {
+  justify-content: space-between;
+}
+
+.width-80 {
+  width: 90%;
+}
+
+.mt-40 {
+  margin-top: 40px;
 }
