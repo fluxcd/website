@@ -10,9 +10,9 @@ resources:
   #   thumbnail_url: enter absolute link for thumbnail
   #   (optional) description: this will surface the entry on the main landing page
   #
-  # Note: To generate thumbnail url for article, visit https://embed.ly/docs/explore/extract
-  # and enter the link to the article. Once you do that, select any thumbnail url of choice to use.
-  
+  # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
+  # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
+
   - youtube: QDghS96Kd9g
     title: "Platform Engineering: Build Fleets of GKE Clusters with FluxCD"
     date: 2023-12-13
