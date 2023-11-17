@@ -6,7 +6,7 @@
 
 <!-- filter panel on mobile -->
 <div class="filter-mobile-modal container">
-    <div class="flex justify-content-space width-80 mt-40">
+    <div class="flex justify-content-space width-90 mt-40">
         <h4>Filter resources accordingly</h4>
         <div>
             <button onclick="closeModal()">x</button>
@@ -21,7 +21,9 @@
     {{ partial "version-banner.html" . }}
     {{ .Content | markdownify }}
     <div class="filter-mobile-btn mt-100">
-        <button onclick="openModal()">Filter</button>
+        <button onclick="openModal()">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            Filter</button>
     </div>
     
     {{ $resources := $.Site.Data.resources.resources }}
