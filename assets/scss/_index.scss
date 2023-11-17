@@ -1,3 +1,6 @@
+// import fontAwesome
+@import url("https://use.fontawesome.com/releases/5.12.1/css/all.css");
+
 @mixin white-background-a {
   a {
     color: $flux-lighter-blue !important;
@@ -411,7 +414,7 @@ label.date {
   justify-content: space-between;
 }
 
-.width-80 {
+.width-90 {
   width: 90%;
 }
 
