@@ -21,7 +21,7 @@ If you want to use a fine-grained personal access token that limits access to on
 Here are the required permission levels for fine-grained personal access token:
 
 | Administration | Contents | Metadata (mandatory) |
-|---|---|---|---|
+|---|---|---|
 | Read and Write | Read and Write | Read-only |
 
 For a classic personal access token, you don't need to create the `fleet-infra` repository in advance. The required permission level for this token is the **repo** scope.
