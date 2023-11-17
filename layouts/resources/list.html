@@ -1,81 +1,25 @@
 {{ define "main" }}
+<!-- filter panel on desktop -->
 <div class="filter-container">
-    <div class="filter ml-5">
-        <div>
-            <h3>Type</h3>
-            <div>
-                <input id="video" type="checkbox" name="resource_filter" value="video">
-                <label for="video">Video</label>
-            </div>
-            <div>
-                <input id="article" type="checkbox" name="resource_filter" value="article">
-                <label for="article">article</label>
-            </div>
-        </div>
-        <div class="mt-5">
-            <h3>Year</h3>
-                {{ $resources := $.Site.Data.resources.resources }}
-        {{ $years := slice }}
-        {{ range $resources }}
-            {{ $years = $years | append (time.Format "2006" .date) }}
-            {{ $years = uniq $years }}
-        {{ end }}
-        {{ range $years }}
-        {{ $year := . }}
-             <div>
-                <input id="{{ . }}" type="checkbox" name="resource_filter" value="{{ . }}">
-                <label for="{{ . }}">{{ . }}</label>
-            </div>
-            {{ end }}
-        </div>
-    </div>
+    {{ partial "filter-panel.html" . }}
 </div>
 
+<!-- filter panel on mobile -->
 <div class="filter-mobile-modal container">
     <div class="flex justify-content-space width-80 mt-40">
-        <p>Filter resources accordingly</p>
+        <h4>Filter resources accordingly</h4>
         <div>
             <button onclick="closeModal()">x</button>
         </div>
     </div>
-<div class="filter ml-5">
-    <div>
-        <h3>Type</h3>
-        <div>
-            <input id="video" type="checkbox" name="resource_filter" value="video">
-            <label for="video">Video</label>
-        </div>
-        <div>
-            <input id="article" type="checkbox" name="resource_filter" value="article">
-            <label for="article">article</label>
-        </div>
-    </div>
-    <div class="mt-5">
-        <h3>Year</h3>
-            {{ $resources := $.Site.Data.resources.resources }}
-    {{ $years := slice }}
-    {{ range $resources }}
-        {{ $years = $years | append (time.Format "2006" .date) }}
-        {{ $years = uniq $years }}
-    {{ end }}
-    {{ range $years }}
-    {{ $year := . }}
-         <div>
-            <input id="{{ . }}" type="checkbox" name="resource_filter" value="{{ . }}">
-            <label for="{{ . }}">{{ . }}</label>
-        </div>
-        {{ end }}
-    </div>
-</div>
+    {{ partial "filter-panel.html" . }}
 </div>
 
+<!-- Resource pane -->
 <a class="td-offset-anchor"></a>
 <div class="page td-content container resource">
-
     {{ partial "version-banner.html" . }}
-    
     {{ .Content | markdownify }}
-
     <div class="filter-mobile-btn mt-100">
         <button onclick="openModal()">Filter</button>
     </div>
@@ -88,9 +32,8 @@
     {{ end }}
     {{ range $years }}
     {{ $year := . }}
-    <!-- <div class="d-flex flex-gap-md mt-5"> -->
-        <div class="mt-100">
-            <h2 id={{ . }}>{{ . }}</h2>
+    <div class="mt-100">
+    <h2 id="{{ . }}">{{ . }}</h2>
     <a id=td-block-0 class=td-offset-anchor></a>
     <section class="row td-box td-box--white td-box--gradient td-box--height-auto">
         <div class=col>
@@ -103,44 +46,10 @@
             </div>
         </div>
     </section>
-        </div>
-    <!-- </div> -->
-    {{ end }}
-
-</div>
-
- <!-- template for resource -->
-<div class="page td-content container template-resource">
-
-    {{ partial "version-banner.html" . }}
-    
-    {{ .Content | markdownify }}
-
-    <div class="filter-mobile-btn mt-100">
-        <button onclick="openModal()">Filter</button>
     </div>
-    
-    <p id="tag-section" class="mt-100">
-        <template id="template-tag-section">
-            <span class="tag tag-heading">
-            
-            </span>
-        </template>
-    </p>
-
-        <div class="template-resource">
-    <a id=td-block-0 class=td-offset-anchor></a>
-    <section class="template-row row td-box td-box--white td-box--gradient td-box--height-auto">
-        <div class=col>
-            <div class="row">
-                
-                    {{ partial "template-resource.html" . }}
-
-            </div>
-        </div>
-    </section>
-        </div>
-    <!-- </div> -->
-
+    {{ end }}
 </div>
+
+<!-- template for resource pane -->
+{{ partial "template-container.html" . }}
 {{ end }}
