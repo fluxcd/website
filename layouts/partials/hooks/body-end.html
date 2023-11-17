@@ -115,6 +115,7 @@
               this.field("youtube");
               this.field("url");
               this.field("thumbnail");
+              this.field("thumbnail_url");
               this.field("type");
               this.field("year");
               this.field("date");
@@ -156,7 +157,7 @@
             ? `https://i3.ytimg.com/vi/${doc.youtube}/0.jpg`
             : doc.thumbnail
             ? `https://i3.ytimg.com/vi/${doc.thumbnail}/0.jpg`
-            : "";
+            : doc.thumbnail_url;
           element.querySelector(".img-thumbnail").alt = doc.title;
           element.querySelector(".resource-title-link").href = doc.youtube
             ? `https://www.youtube.com/watch?v=${doc.youtube}`
