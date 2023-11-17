@@ -12,8 +12,20 @@ This tutorial shows you how to bootstrap Flux to a Kubernetes cluster and deploy
 To follow the guide, you need the following:
 
 - **A Kubernetes cluster**. We recommend [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/) for trying Flux out in a local development environment.
-- **A GitHub personal access token with repo permissions**. See the GitHub documentation on [creating a personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+- **A GitHub personal access token (PAT)**. See the GitHub documentation on [creating a personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
+ 
+It is recommended to use a [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) over a [classic personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) due to several security advantages.
 
+If you want to use a fine-grained personal access token that limits access to only the `fleet-infra` repository, you need to create this repository manually **before** creating the token. 
+
+Here are the required permission levels for fine-grained personal access token:
+
+| Administration  | Contents  | Metadata (mandatory)  |
+|---|---|---|---|
+| Read and Write  | Read and Write  | Read-only  |
+
+For a classic personal access token, you don't need to create the `fleet-infra` repository in advance. The required permission level for this token is the **repo** scope.
+ 
 ## Objectives
 
 - Bootstrap Flux on a Kubernetes Cluster.
@@ -95,9 +107,11 @@ deployment "notification-controller" successfully rolled out
 ✔ bootstrap finished
 ```
 
+Based on the type of personal access token used, the first few lines of the output above might vary.
+
 The bootstrap command above does the following:
 
-- Creates a git repository `fleet-infra` on your GitHub account.
+- Creates a git repository `fleet-infra` on your GitHub account. However, it won't create the repository if you're using a fine-grained personal access token, as the repository should already exist.
 - Adds Flux component manifests to the repository.
 - Deploys Flux Components to your Kubernetes Cluster.
 - Configures Flux components to track the path `/clusters/my-cluster/` in the repository.
