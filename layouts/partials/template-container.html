@@ -3,7 +3,9 @@
   {{ partial "version-banner.html" . }} {{ .Content | markdownify }}
 
   <div class="filter-mobile-btn mt-100">
-    <button onclick="openModal()">Filter</button>
+    <button onclick="openModal()">
+      <i class="fa-solid fa-filter" aria-hidden="true"></i>
+      Filter</button>
   </div>
 
   <p id="tag-section" class="mt-100">
