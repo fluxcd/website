@@ -60,9 +60,16 @@ patches:
       name: "(kustomize-controller|helm-controller|source-controller)"
 ```
 
+{{% alert color="info" title="I/O Device Contention" %}}
+Note that further increasing the number of concurrent reconciliations for kustomize-controller,
+without using a [RAM-backed filesystem](#enable-in-memory-kustomize-builds),
+may not have the desired effect due to IO contention on the Kubernetes node disk.
+{{% /alert %}}
+
 ## Enable in-memory kustomize builds
 
-To speed up the Flux kustomize build operations, it is advised to use tmpfs for the `/tmp` filesystem:
+When increasing the number of concurrent reconciliations, it is advised 
+to use tmpfs for the `/tmp` filesystem to speed up the Flux kustomize build operations:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -86,12 +93,11 @@ patches:
       name: kustomize-controller
 ```
 
-{{% alert color="info" title="“I/O Device Contention" %}}
-Note that increasing the number of concurrent reconciliations for kustomize-controller,
-without using a RAM-backed filesystem, may not have the desired effect due to
-IO contention on the Kubernetes node disk.
+{{% alert color="info" title="Memory usage" %}}
+Note that tmpfs will count against the controller's pod memory usage, so it is advised to
+make use of the `GitRepository` [ignore feature](/flux/components/source/gitrepositories/#ignore-spec)
+to exclude non-YAML files when Flux syncs app repos.
 {{% /alert %}}
-
 
 ## Enable Helm repositories caching
 
