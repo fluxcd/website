@@ -9,6 +9,7 @@ When Flux is managing hundreds of applications that are deployed multiple times 
 can fine tune the Flux controller at [bootstrap time](boostrap-customization.md) to run at scale by:
 
 - [Increasing the number of workers and resource limits](#increase-the-number-of-workers-and-limits)
+- [Enabling in-memory kustomize builds](#enable-in-memory-kustomize-builds)
 - [Enabling Helm repository caching to reduce memory usage](#enable-helm-repositories-caching)
 - [Enabling persistent storage for internal artifacts](#persistent-storage-for-flux-internal-artifacts)
 - [Running the Flux controllers on dedicated nodes](#node-affinity-and-tolerations)
@@ -33,7 +34,7 @@ patches:
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --concurrent=20
+        value: --concurrent=10
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: --requeue-dependency=5s
@@ -58,6 +59,45 @@ patches:
       kind: Deployment
       name: "(kustomize-controller|helm-controller|source-controller)"
 ```
+
+{{% alert color="info" title="I/O Device Contention" %}}
+Note that further increasing the number of concurrent reconciliations for kustomize-controller,
+without using a [RAM-backed filesystem](#enable-in-memory-kustomize-builds),
+may not have the desired effect due to IO contention on the Kubernetes node disk.
+{{% /alert %}}
+
+## Enable in-memory kustomize builds
+
+When increasing the number of concurrent reconciliations, it is advised 
+to use tmpfs for the `/tmp` filesystem to speed up the Flux kustomize build operations:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --concurrent=20
+      - op: replace
+        path: /spec/template/spec/volumes/0
+        value:
+          name: temp
+          emptyDir:
+            medium: Memory
+    target:
+      kind: Deployment
+      name: kustomize-controller
+```
+
+{{% alert color="info" title="Memory usage" %}}
+Note that tmpfs will count against the controller's pod memory usage, so it is advised to
+make use of the `GitRepository` [ignore feature](/flux/components/source/gitrepositories/#ignore-spec)
+to exclude non-YAML files when Flux syncs app repos.
+{{% /alert %}}
 
 ## Enable Helm repositories caching
 
@@ -89,7 +129,6 @@ patches:
 When `helm-cache-max-size` is reached, an error is logged and the index is instead
 read from file. Cache hits are exposed via the `gotk_cache_events_total` Prometheus
 metrics. Use this data to fine-tune the configuration flags.
-
 
 ## Persistent storage for Flux internal artifacts
 
