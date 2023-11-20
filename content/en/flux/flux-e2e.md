@@ -39,22 +39,7 @@ scope of this document.
 
 ## Terminology
 
-Flux uses the following terms throughout the codebase and documentation:
-
-* **Cluster** - Any number of Kubernetes nodes, joined into a group to run containerized applications.
-* **Commit** - A snapshot of a Git repository's state (or any Version Control System) at any given time.
-* **Client** - Any application or resource manager which implements the "customer" side of any API or Service.
-* **Resource** - In Kubernetes, a YAML data structure represents cluster objects that drive workloads like: `Deployment`, `Pod`, `Service`, `Ingress`,
-  `StatefulSet`, `Job`, and many others.
-* **Custom Resource** - Kubernetes provides a Custom Resource Definition (CRD) type for defining Custom Resources to be implemented by a controller. In
-  Flux, examples include: `GitRepository`, `Bucket`, `HelmRepository`, `Kustomization`, `HelmRelease`, `Alert`, and others.
-* **Field** - YAML resources are collections of data fields, which can be nested to create complex structures like with Array and Map.
-* **Event** - A YAML resource emits events while undergoing state transitions, which themselves (`Event`) are also resources.
-* **API** - In Kubernetes, an API consists of (usually) a CRD, a control loop, and optionally one or more admission or mutation hooks. Flux's APIs are also
-  known, collectively, as the GitOps Toolkit.
-* **Agent** - A process which runs in the cluster and does some work on behalf of users. Flux's controllers are "software agents" that implement a control loop.
-* **Service** - When Kubernetes `Deployments` spawn workloads, they are placed in ephemeral `Pods` which usually are not directly addressable. `Services`
-  are used to connect these `Endpoints` to a stable address that can usually be discovered through a DNS lookup in the cluster.
+To learn about the terms Flux uses throughout the codebase and documentation, refer to the [Core Concepts](/flux/flux-e2e/) section.
 
 ## Microservice architecture
 
