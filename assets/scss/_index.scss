@@ -113,10 +113,10 @@ main.td-main {
   position: absolute;
   top: 36%;
   left: 40px;
-  z-index: 100;
   @include media-breakpoint-down(md) {
     top: 16%;
   left: -15px;
+  z-index: 100;
   }
 }
 
@@ -404,6 +404,10 @@ label.date {
   @include media-breakpoint-down(md) {
     display: inline-block;
   }
+}
+
+.template-resource {
+  display: none;
 }
 
 .flex {
