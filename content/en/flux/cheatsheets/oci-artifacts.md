@@ -471,7 +471,7 @@ spec:
           name: cosign-pub
 ```
 
-For more details on how Helm chart versification works,
+For more details on how Helm chart verification works,
 please see the [HelmChart documentation](/flux/components/source/helmcharts/#verification).
 
 ## Monitoring
