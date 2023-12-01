@@ -17,6 +17,9 @@ users have a six months window to upgrade the Flux CRDs and their Custom Resourc
 from beta to stable.
 {{% /alert %}}
 
+To learn more about Flux supported versions and release cadence,
+please see the [Flux release process](/flux/releases/).
+
 ## Milestones
 
 The GA roadmap has been split into separate milestones.
