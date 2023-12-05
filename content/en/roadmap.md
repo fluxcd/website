@@ -81,7 +81,7 @@ The completion of this milestone is marked by the [v2.0.0](https://github.com/fl
 The goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
 
-The completion of this milestone will be marked by the `v2.2.0` release of the Flux distribution and CLI.
+The completion of this milestone will be marked by the `v2.3.0` release of the Flux distribution and CLI.
 
 - [ ] API promotions to GA
   - [ ] `helmrepositories.source.toolkit.fluxcd.io/v1`
@@ -90,9 +90,12 @@ The completion of this milestone will be marked by the `v2.2.0` release of the F
 
 - [ ] Reconcilers
   - [x] [OCI support and Cosgin verification for HelmChart](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci#implementation-history)
-  - [ ] [Atomic reconciliation of HelmReleases](https://github.com/fluxcd/helm-controller/pull/532)
-  - [ ] [Standardize events and status conditions for HelmReleases](https://github.com/fluxcd/helm-controller/issues/487)
-
+  - [x] [Atomic reconciliation of HelmReleases](https://github.com/fluxcd/helm-controller/pull/532)
+  - [x] [Standardize events and status conditions for HelmReleases](https://github.com/fluxcd/helm-controller/issues/487)
+  - [x] [Add support for drift detection and correction](https://github.com/fluxcd/helm-controller/pull/815)
+  - [ ] [Reuse charts between releases with OCIRepository](https://github.com/fluxcd/helm-controller/issues/789)
+  - [ ] [Reuse existing HelmChart resource between releases](https://github.com/fluxcd/helm-controller/issues/204)
+  
 - [ ] CLI
   - [ ] [Cover more Helm release configuration options](https://github.com/fluxcd/flux2/issues/213)
 
