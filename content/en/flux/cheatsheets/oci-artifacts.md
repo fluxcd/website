@@ -106,7 +106,7 @@ spec:
   type: oci
   url: oci://ghcr.io/stefanprodan/charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -452,7 +452,7 @@ spec:
   url: oci://<registry-host>/<org>/charts
   type: oci
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: <app-name>
@@ -683,7 +683,7 @@ spec:
 Then add the policy marker to the `HelmRelease` manifest in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo

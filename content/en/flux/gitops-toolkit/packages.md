@@ -81,14 +81,14 @@ go get github.com/fluxcd/helm-controller/api
 Import package
 
 ```go
-import helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
+import helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
 ```
 
 API Types
 
 | Name                                              | Version |
 |---------------------------------------------------|---------|
-| [HelmRelease](../components/helm/helmreleases.md) | v2beta1 |
+| [HelmRelease](../components/helm/helmreleases.md) | v2beta2 |
 
 ### notification.toolkit.fluxcd.io
 
@@ -166,7 +166,7 @@ import (
   ctrl "sigs.k8s.io/controller-runtime"
   "sigs.k8s.io/controller-runtime/pkg/client"
 
-  helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
+  helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
   apimeta "github.com/fluxcd/pkg/apis/meta"
   sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
 )

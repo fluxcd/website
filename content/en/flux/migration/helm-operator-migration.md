@@ -34,7 +34,7 @@ From a technical perspective, this also means less overhead, as the resources ma
 
 Due to the Helm Controller becoming part of the extensive set of controller components Flux now has, the Custom Resource group domain has changed from `helm.fluxcd.io` to `helm.toolkit.fluxcd.io`.
 
-Together with the new API version (`v2beta1` at time of writing), the full `apiVersion` you use in your YAML document becomes `helm.toolkit.fluxcd.io/v2beta1`.
+Together with the new API version (`v2beta2` at time of writing), the full `apiVersion` you use in your YAML document becomes `helm.toolkit.fluxcd.io/v2beta2`.
 
 ### The API specification changed (quite a lot), for the better
 
@@ -76,7 +76,7 @@ Getting similar behaviour is still possible [using a workaround that makes use o
 
 There was a long outstanding request for the Helm Operator to support merging single values at a given path.
 
-With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
+With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
 
 ### Support added for depends-on relationships
 
@@ -131,7 +131,7 @@ $ flux create helmrelease podinfo \
     --chart-version=">4.0.0" \
     --export
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -220,11 +220,11 @@ spec:
     name: my-repository-creds
 ```
 
-In the `HelmRelease`, you then use a reference to the `HelmRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
+In the `HelmRelease`, you then use a reference to the `HelmRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.HelmChartTemplate)):
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -322,11 +322,11 @@ spec:
     name: my-repository-creds
 ```
 
-In the `HelmRelease`, you then use a reference to the `GitRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.HelmChartTemplate)):
+In the `HelmRelease`, you then use a reference to the `GitRepository` resource in the `spec.chart.spec` (for all available fields, consult the [Helm API reference](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.HelmChartTemplate)):
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -356,7 +356,7 @@ Inlined values (defined in the `spec.values` of the `HelmRelease`) still work as
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -404,11 +404,11 @@ spec:
       optional: true
 ```
 
-In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.ValuesReference) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
+In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.ValuesReference) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -452,7 +452,7 @@ With the Helm Controller, this declaration has moved to the `spec.chart.spec`, a
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -572,7 +572,7 @@ You can now refer to the `my-external-values` `ConfigMap` resource in your `Helm
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -588,7 +588,7 @@ spec:
 
 With the Helm Operator the release options used to be configured in the `spec` of the `HelmRelease` and applied to both Helm install and upgrade actions.
 
-This has changed for the Helm Controller, where some defaults can be defined in the [`spec`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.HelmReleaseSpec), but specific action configurations and overwrites for the defaults can be defined in the [`spec.install`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Install), [`spec.upgrade`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Upgrade) and [`spec.test`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Test) sections of the `HelmRelease`.
+This has changed for the Helm Controller, where some defaults can be defined in the [`spec`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.HelmReleaseSpec), but specific action configurations and overwrites for the defaults can be defined in the [`spec.install`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Install), [`spec.upgrade`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Upgrade) and [`spec.test`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Test) sections of the `HelmRelease`.
 
 ### Defining a rollback / uninstall configuration
 
@@ -613,14 +613,14 @@ spec:
     timeout: 300
 ```
 
-The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediation`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation), [`spec.upgrade.remediation`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation), [`spec.rollback`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Rollback) and [`spec.uninstall`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
+The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails, using [`spec.install.remediation`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.InstallRemediation), [`spec.upgrade.remediation`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.UpgradeRemediation), [`spec.rollback`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Rollback) and [`spec.uninstall`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Uninstall). Some of the new features include the option to remediate with an uninstall after an upgrade failure, and the option to keep a failed release for debugging purposes when it has run out of retries.
 
 #### Automated uninstalls
 
-The configuration below mimics the uninstall behavior of the Helm Operator (for all available fields, consult the [`InstallRemediation`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.InstallRemediation) and [`Uninstall`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Uninstall) API references):
+The configuration below mimics the uninstall behavior of the Helm Operator (for all available fields, consult the [`InstallRemediation`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.InstallRemediation) and [`Uninstall`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Uninstall) API references):
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -643,10 +643,10 @@ spec:
 
 #### Automated rollbacks
 
-The configuration below shows an automated rollback configuration that equals [the configuration for the Helm Operator showed above](#defining-a-rollback--uninstall-configuration) (for all available fields, consult the [`UpgradeRemediation`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.UpgradeRemediation) and [`Rollback`](/flux/components/helm/api/v2beta1#helm.toolkit.fluxcd.io/v2beta1.Rollback) API references):
+The configuration below shows an automated rollback configuration that equals [the configuration for the Helm Operator showed above](#defining-a-rollback--uninstall-configuration) (for all available fields, consult the [`UpgradeRemediation`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.UpgradeRemediation) and [`Rollback`](/flux/components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Rollback) API references):
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -726,7 +726,7 @@ spec:
   interval: 10m
   url: https://stefanprodan.github.io/podinfo
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo

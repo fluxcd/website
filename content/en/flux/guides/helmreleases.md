@@ -212,7 +212,7 @@ With the chart source created, define a new `HelmRelease` to release
 the Helm chart:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -327,7 +327,7 @@ nameReference:
 Create a `HelmRelease` definition that references a `ConfigMap`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -368,7 +368,7 @@ When [kustomize-controller](../components/kustomize/_index.md) reconciles the ab
 a unique name of the `ConfigMap` every time `my-values.yaml` content is updated in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -408,7 +408,7 @@ nameReference:
 Create a `HelmRelease` definition that references a `Secret`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -511,7 +511,7 @@ in the context then they can recover decrypted values using `helm get values`.
 It is possible to replace the `values.yaml` with a different file present inside the Helm chart.
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: mongodb
@@ -644,7 +644,7 @@ It is possible create a new chart artifact when a Source's revision has changed,
 `version` in the Chart.yml has not been bumped, for `GitRepository` and `Bucket` sources.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v2beta1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmChart
 metadata:
   name: podinfo

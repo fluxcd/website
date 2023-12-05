@@ -37,7 +37,7 @@ and it will automatically upgrade the Helm release to the latest chart version b
 Example of `clusters/staging/apps/demo.yaml`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: demo
@@ -65,7 +65,7 @@ update in Git by GitHub Actions based on the Flux events.
 Example of `clusters/production/apps/demo.yaml`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: demo
