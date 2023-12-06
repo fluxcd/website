@@ -635,7 +635,7 @@ With the above settings, when you upload a chart, the following happens:
 {{% alert color="info" title="Note" %}}
 Besides Harbor, you can define receivers for **GitHub**, **GitLab**, **Bitbucket**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
-See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
+See the [Receiver CRD docs](../components/notification/receivers.md) for more details.
 {{% /alert %}}
 
 ## Release when a source revision changes for Git and Cloud Storage
