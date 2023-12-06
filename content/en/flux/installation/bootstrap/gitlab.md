@@ -27,7 +27,7 @@ with complete read/write access to the GitLab API.
 The GitLab PAT can be exported as an environment variable:
 
 ```sh
-export GITLAB_TOKEN=<gh-token>
+export GITLAB_TOKEN=<gl-token>
 ```
 
 If the `GITLAB_TOKEN` env var is not set, the bootstrap command will prompt you to type it the token.
