@@ -20,5 +20,5 @@ Lastly, the new release introduces the ability to enable drift detection on a pe
 
 There's much more in the upcoming Flux v2.2.0 release such as updates and improvements to Flux source-controller, image-reflector-controller, kustomize-controller, notification-controller, and the Flux CLI!
 
-If you get stuck with anything or have feedback, we've got a Slack channel, GitHub discussions, and many other ways to get help from the Flux maintainers, contributors, and community: [fluxcd.io/support/](https://fluxcd.io/support/)
+If you need help with anything or have feedback, we've got a Slack channel, GitHub discussions, and many other ways to get help from the Flux maintainers, contributors, and community: [fluxcd.io/support/](https://fluxcd.io/support/)
 
