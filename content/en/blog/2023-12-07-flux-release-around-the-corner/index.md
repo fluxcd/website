@@ -34,7 +34,7 @@ spec:
       - paths: ["/spec/replicas"]
 ```
 
-There's much more in the upcoming Flux v2.2.0 release such as updates and improvements to Flux source-controller, image-reflector-controller, kustomize-controller, notification-controller, and the Flux CLI!
+There's much more in the upcoming Flux v2.2.0 release, more updates and improvements for all of Flux's controllers, and a major overhaul of the dependencies from the perspective of image-automation-controller! (Stay tuned for more details in a future post!)
 
 If you need help with anything or have feedback, we've got a Slack channel, GitHub discussions, and many other ways to get help from the Flux maintainers, contributors, and community: [fluxcd.io/support/](https://fluxcd.io/support/)
 
