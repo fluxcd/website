@@ -114,9 +114,9 @@ API Types
 
 | Name                                               | Version |
 |----------------------------------------------------|---------|
-| [Receiver](../components/notification/receiver.md) | v1      |
-| [Provider](../components/notification/provider.md) | v1beta2 |
-| [Alert](../components/notification/alert.md)       | v1beta2 |
+| [Receiver](../components/notification/receivers.md)| v1      |
+| [Provider](../components/notification/providers.md) | v1beta2 |
+| [Alert](../components/notification/alerts.md)       | v1beta2 |
 
 ### image.toolkit.fluxcd.io
 

@@ -572,7 +572,7 @@ LB and the generated URL `http://<LoadBalancerAddress>/<ReceiverURL>`.
 {{% alert color="info" title="Other receivers" %}}
 Besides DockerHub, you can define receivers for **Harbor**, **Quay**, **Nexus**, **GCR**,
 and any other system that supports webhooks e.g. GitHub Actions, Jenkins, CircleCI, etc.
-See the [Receiver CRD docs](../components/notification/receiver.md) for more details.
+See the [Receiver CRD docs](../components/notification/receivers.md) for more details.
 {{% /alert %}}
 
 ## Incident management
