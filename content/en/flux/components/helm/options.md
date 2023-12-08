@@ -42,6 +42,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--oom-watch-max-memory-path`         | string        | The path to the cgroup memory limit file. Requires feature gate 'OOMWatch' to be enabled. If not set, the path will be automatically detected.                                           |
 | `--oom-watch-current-memory-path`     | string        | The path to the cgroup current memory usage file. Requires feature gate 'OOMWatch' to be enabled. If not set, the path will be automatically detected.                                   |
 | `--interval-jitter-percentage`        | uint8         | Percentage of jitter to apply to interval durations. A value of 10 will apply a jitter of +/-10% to the interval duration. It cannot be negative, and must be less than 100. (default 5) |
+| `--snapshot-digest-algo`              | string        | The algorithm to use to calculate the digest of Helm release storage snapshots. (default "sha256")                                                                                       |
 
 
 ### Feature Gates
@@ -50,6 +51,4 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 |-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `AllowDNSLookups`           | `false`       | Allows the controller to perform DNS lookups when rendering Helm templates. This is disabled by default, as it can be a security risk.                                                                                    |
 | `CacheSecretsAndConfigMaps` | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
-| `CorrectDrift`              | `true`        | Configures the correction of cluster state drift compared to the desired state as described in the manifest of the Helm release storage object. It is only effective when `DetectDrift` is enabled.                       |
-| `DetectDrift`               | `false`       | Configures the detection of cluster state drift compared to the desired state as described in the manifest of the Helm release storage object.                                                                            |
 | `OOMWatch`                  | `false`       | Enables the OOM watcher, which will gracefully shut down the controller when the memory usage exceeds the configured limit. This is disabled by default.                                                                  |
