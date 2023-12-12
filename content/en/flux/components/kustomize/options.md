@@ -38,6 +38,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--watch-label-selector`              | string        | Watch for resources with matching labels e.g. 'sharding.fluxcd.io/shard=shard1'.                                                                                                         |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                                                                                   |
 | `--interval-jitter-percentage`        | uint8         | Percentage of jitter to apply to interval durations. A value of 10 will apply a jitter of +/-10% to the interval duration. It cannot be negative, and must be less than 100. (default 5) |
+| `--override-manager`                  | stringArray   | Field manager disallowed to perform changes on managed resources.                                                                                                                        |
 
 
 ### Feature Gates
@@ -45,4 +46,4 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | Name                        | Default Value | Description                                                                                                                                                                                                                                                             |
 |-----------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `CacheSecretsAndConfigMaps` | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch).                                               |
-| `DisableStatusPollerCache`  | `false`       | Disables the cache of the status poller, which is used to determine the health of the resources applied by the controller. This may have a positive impact on memory usage on large clusters with many objects, at the cost of an increased number of direct API calls. |
+| `DisableStatusPollerCache`  | `true`        | Disables the cache of the status poller, which is used to determine the health of the resources applied by the controller. This may have a positive impact on memory usage on large clusters with many objects, at the cost of an increased number of direct API calls. |
