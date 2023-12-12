@@ -21,7 +21,6 @@ The Kubernetes cluster should match one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.25`            | `>= 1.25.0`      |
 | `v1.26`            | `>= 1.26.0`      |
 | `v1.27`            | `>= 1.27.1`      |
 | `v1.28` and later  | `>= 1.28.0`      |
