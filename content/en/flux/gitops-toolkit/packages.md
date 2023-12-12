@@ -81,14 +81,14 @@ go get github.com/fluxcd/helm-controller/api
 Import package
 
 ```go
-import helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
+import helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
 ```
 
 API Types
 
 | Name                                              | Version |
 |---------------------------------------------------|---------|
-| [HelmRelease](../components/helm/helmreleases.md) | v2beta1 |
+| [HelmRelease](../components/helm/helmreleases.md) | v2beta2 |
 
 ### notification.toolkit.fluxcd.io
 
@@ -101,7 +101,7 @@ go get github.com/fluxcd/notification-controller/api
 Import package
 
 ```go
-import notificationv1b2 "github.com/fluxcd/notification-controller/api/v1beta2"
+import notificationv1b3 "github.com/fluxcd/notification-controller/api/v1beta3"
 ```
 
 and for `Receiver` objects:
@@ -114,9 +114,9 @@ API Types
 
 | Name                                               | Version |
 |----------------------------------------------------|---------|
-| [Receiver](../components/notification/receivers.md)| v1      |
-| [Provider](../components/notification/providers.md) | v1beta2 |
-| [Alert](../components/notification/alerts.md)       | v1beta2 |
+| [Receiver](../components/notification/receiver.md) | v1      |
+| [Provider](../components/notification/provider.md) | v1beta3 |
+| [Alert](../components/notification/alert.md)       | v1beta3 |
 
 ### image.toolkit.fluxcd.io
 
@@ -166,7 +166,7 @@ import (
   ctrl "sigs.k8s.io/controller-runtime"
   "sigs.k8s.io/controller-runtime/pkg/client"
 
-  helmv2 "github.com/fluxcd/helm-controller/api/v2beta1"
+  helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
   apimeta "github.com/fluxcd/pkg/apis/meta"
   sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
 )

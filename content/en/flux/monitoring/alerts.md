@@ -34,7 +34,7 @@ kubectl -n flagger-system create secret generic slack-bot-token \
 Create a notification provider for Slack by referencing the above secret:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
   name: slack-bot
@@ -57,7 +57,7 @@ For a complete list please see the [Provider `.spec.type` documentation](/flux/c
 Create an alert definition for all repositories and kustomizations:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: on-call-webapp
@@ -199,7 +199,7 @@ The only caveat being that the provider address needs to point to the same
 git repository as the event source originates from.
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
   name: flux-system
@@ -210,7 +210,7 @@ spec:
   secretRef:
     name: github
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: podinfo
@@ -306,7 +306,7 @@ To display the Flux notifications on Grafana dashboards
 you can configure Flux to push events to Grafana annotations API:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: grafana
@@ -320,7 +320,7 @@ spec:
       name: '*'
       namespace: flux-system
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta2
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
   name: grafana

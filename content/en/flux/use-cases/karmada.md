@@ -83,7 +83,7 @@ spec:
   interval: 1m
   url: https://stefanprodan.github.io/podinfo  
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -122,7 +122,7 @@ metadata:
   name: helm-release
 spec:
   resourceSelectors:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta2
       kind: HelmRelease
       name: podinfo
   placement:
@@ -179,7 +179,7 @@ metadata:
   namespace: default
 spec:
   resourceSelectors:
-  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  - apiVersion: helm.toolkit.fluxcd.io/v2beta2
     kind: HelmRelease
     name: podinfo
   overrideRules:

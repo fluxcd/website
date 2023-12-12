@@ -56,7 +56,7 @@ Define a Flux `HelmRelease` that verifies and installs Flagger's latest version 
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: flagger

@@ -219,7 +219,7 @@ Deployment is not ready: default/podinfo. 0 out of 1 expected pods are ready
 To inspect the failing resources, you can disable the health checks with:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
  name: podinfo
