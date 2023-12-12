@@ -5,6 +5,9 @@ resources:
 #   title: "enter title here"
 #   date: YYYY-MM-DD
 #   (optional) description: this will surface the entry on the main landing page
+  - youtube: QDghS96Kd9g
+    title: "Platform Engineering: Build Fleets of GKE Clusters with FluxCD"
+    date: 2023-12-13
   - youtube: EWofHnNngoc
     title: "Nerdearla: Introducción a GitOps con Flux"
     date: 2023-09-29
