@@ -1,6 +1,12 @@
 # Configuration file to declaratively configure labels
 # Ref: https://github.com/EndBug/label-sync#Config-files
 
+- name: backport:v2-1
+  description: To be backported to v2-1
+  color: '#ffd700'
+- name: backport:v2-0
+  description: To be backported to v2-0
+  color: '#ffd700'
 - name: area/adopters
   description: Flux & Flagger adopters pull requests
   color: '#00b140'
