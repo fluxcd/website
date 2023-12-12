@@ -176,7 +176,7 @@ The recommendations below are based on Flux's latest version.
 
     Enforces all reconciliations to impersonate a given Service Account, effectively disabling the use of the privileged service account that would otherwise be used by the controller.
 
-    Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](/flux/components/helm/helmreleases/#enforce-impersonation) and [Kustomization](/flux/components/helm/helmreleases/#enforce-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
+    Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](/flux/components/helm/helmreleases/#enforcing-impersonation) and [Kustomization](/flux/components/kustomize/kustomizations/#enforcing-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
   </details>
   <details>
     <summary>Audit Procedure</summary>
