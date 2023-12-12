@@ -114,7 +114,7 @@ For more information about the benchmark setup and how you can run them on your 
 
 ## Breaking changes to Kustomizations
 
-All Flux components have been updated from Kustomize v5.0.3 to [v5.3.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.3.0). 
+All Flux components have been updated from Kustomize v5.0.3 to [v5.3.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.3.0).
 
 You should be aware that this update comes with a breaking change in Kustomize, as components are now applied after generators. If you use Kustomize components or `.spec.components` in Kustomizations along with generators, then please make necessary changes before upgrading to avoid any undesirable behavior. For more information, see the relevant [Kustomize issue](https://github.com/kubernetes-sigs/kustomize/issues/5141).
 
@@ -124,7 +124,7 @@ You should be aware that this update comes with a breaking change in Kustomize, 
 - Gitea support has been added to `flux bootstrap`. To bootstrap Flux onto a cluster using Gitea as the Git provider, run `flux bootstrap gitea --repository <repo> --owner <owner>`.
 - The OIDC issuer and identity subject can now be verified for images signed using Cosign. Refer to the [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/#keyless-verification) and [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#keyless-verification) specifications for more information.
 - [Prefix based file filtering](https://fluxcd.io/flux/components/source/buckets/#prefix) support has been added to the Bucket API for `generic`, `aws` and `gcp` providers.
-- Support for insecure (non-TLS HTTP) container registries has been added to the [ImageRepository](https://fluxcd.io/flux/components/source/imagerepositories/#insecure) and [HelmRepository](https://fluxcd.io/flux/components/source/helmrepositories/#insecure) APIs.
+- Support for insecure (non-TLS HTTP) container registries has been added to the [ImageRepository](https://fluxcd.io/flux/components/image/imagerepositories/#insecure) and [HelmRepository](https://fluxcd.io/flux/components/source/helmrepositories/#insecure) APIs.
 - The Flux alerting capabilities have been extended with [NATS](https://fluxcd.io/flux/components/notification/provider/#nats) and [Bitbucket Server & Data Center](https://fluxcd.io/flux/components/notification/provider/#bitbucket-serverdata-center) support.
 
 ## Installing or upgrading Flux
