@@ -23,10 +23,11 @@ The Kubernetes cluster should match one of the following versions:
 |--------------------|------------------|
 | `v1.26`            | `>= 1.26.0`      |
 | `v1.27`            | `>= 1.27.1`      |
-| `v1.28` and later  | `>= 1.28.0`      |
+| `v1.28`            | `>= 1.28.0`      |
+| `v1.29` and later  | `>= 1.29.0`      |
 
 {{% alert color="info" title="Kubernetes EOL" %}}
-Note that Flux may work on older versions of Kubernetes e.g. 1.19,
+Note that Flux may work on older versions of Kubernetes e.g. 1.25,
 but we don't recommend running [EOL versions](https://endoflife.date/kubernetes)
 in production nor do we offer support for these versions.
 {{% /alert %}}
