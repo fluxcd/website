@@ -19,10 +19,25 @@ It is also required that the person running the command to be the **owner** of t
 or to have admin rights of a Gitea organization.
 {{% /alert %}}
 
-## Gitea PAT 
+## Gitea PAT
 
 For accessing the Gitea API, the boostrap command requires a Gitea personal access token (PAT)
-with administration permissions.
+with the following permissions:
+
+- read:misc
+- write:repository
+
+If you want Flux to to create a new personal repository with Flux the following permissions are necessary:
+
+- read:misc
+- write:repository
+- write:user
+
+If you want Flux to to create a new organization repository with Flux the following permissions are necessary:
+
+- read:misc
+- write:organization
+- write:repository
 
 The Gitea PAT can be exported as an environment variable:
 
@@ -35,13 +50,6 @@ If the `GITEA_TOKEN` env var is not set, the bootstrap command will prompt you t
 You can also supply the token using a pipe e.g. `echo "<gt-token>" | flux bootstrap gitea`.
 
 ## Gitea Personal Account
-
-If you want to bootstrap Flux for a repository owned by a personal account, you can generate a
-[Gitea PAT](https://gitea.com/user/settings/applications)
-that can create repositories by checking all permissions under `Select permissions` drop down menu.
-
-If you want to use an existing repository, the PAT's user must have `admin`
-[permissions](https://docs.gitea.com/development/oauth2-provider#scopes).
 
 Run the bootstrap for a repository on your personal Gitea account:
 
@@ -71,10 +79,6 @@ please see how to configure [Gitea Deploy Keys](#gitea-deploy-keys).
 
 If you want to bootstrap Flux for a repository owned by a Gitea organization,
 it is recommended to create a dedicated user for Flux under your organization.
-
-Generate a Gitea PAT for the Flux user that can create repositories by checking all permissions under `Select permissions`.
-
-If you want to use an existing repository, the Flux user must have `admin` permissions for that repository.
 
 Run the bootstrap for a repository owned by a Gitea organization:
 
