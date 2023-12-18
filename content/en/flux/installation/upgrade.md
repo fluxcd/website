@@ -13,7 +13,7 @@ For more details about supported versions and upgrades please see the Flux [rele
 Running `flux check --pre` will tell you if a newer Flux version is available.
 
 Update the Flux CLI to the latest release using a [package manager](/flux/installation/) or by
-downloading the binary from [GitHub releaases](https://github.com/fluxcd/flux2/releases).
+downloading the binary from [GitHub releases](https://github.com/fluxcd/flux2/releases).
 
 Verify that you are running the latest version with:
 
