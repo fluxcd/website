@@ -89,7 +89,7 @@ The completion of this milestone will be marked by the `v2.3.0` release of the F
   - [ ] `helmreleases.helm.toolkit.fluxcd.io/v2`
 
 - [ ] Reconcilers
-  - [x] [OCI support and Cosgin verification for HelmChart](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci#implementation-history)
+  - [x] [OCI support and Cosign verification for HelmChart](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci#implementation-history)
   - [x] [Atomic reconciliation of HelmReleases](https://github.com/fluxcd/helm-controller/pull/532)
   - [x] [Standardize events and status conditions for HelmReleases](https://github.com/fluxcd/helm-controller/issues/487)
   - [x] [Add support for drift detection and correction](https://github.com/fluxcd/helm-controller/pull/815)
