@@ -306,3 +306,6 @@ adopters:
     - name: UiPath
       url: https://www.uipath.com/
       logo: logos/uipath.svg
+    - name: SOFTSWISS Game Aggregator
+      url: https://www.softswiss.com/game-aggregator/
+      logo: logos/softswiss-game-aggregator.svg
