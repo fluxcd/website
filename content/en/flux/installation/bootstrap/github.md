@@ -159,5 +159,11 @@ flux bootstrap git \
 
 **Note** that you must generate a SSH private key and set the public key as a deploy key on GitHub in advance.
 
+{{% alert color="warning" title="Using SSH over HTTPS Port" %}}
+https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port
+
+If you encounter known hosts mismatch errors you may need to change the port back to 22 for bootstrapping.
+{{% /alert %}}
+
 For more information on how to use the `flux bootstrap git` command,
 please see the generic Git server [documentation](generic-git-server.md).
