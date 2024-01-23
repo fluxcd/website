@@ -79,9 +79,14 @@ languages:
 permalinks:
   blog: /:section/:year/:month/:slug/
 
+outputFormats:
+  SearchIndex:
+    baseName: index
+    mediaType: application/json
+
 outputs:
-  home: [HTML]
-  page: [HTML]
+  home: [HTML, SearchIndex]
+  page: [HTML, SearchIndex]
 
 params:
   description: Open and extensible continuous delivery solution for Kubernetes.
