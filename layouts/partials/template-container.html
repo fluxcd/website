@@ -1,0 +1,27 @@
+<!-- template container for resource pane -->
+<div class="page td-content container template-resource">
+  {{ partial "version-banner.html" . }} {{ .Content | markdownify }}
+
+  <div class="filter-mobile-btn mt-100">
+    <button onclick="openModal()">
+      <i class="fa-solid fa-filter" aria-hidden="true"></i>
+      Filter</button>
+  </div>
+
+  <p id="tag-section" class="mt-100">
+    <template id="template-tag-section">
+      <span class="tag tag-heading"> </span>
+    </template>
+  </p>
+
+  <div>
+    <a id="td-block-0" class="td-offset-anchor"></a>
+    <section
+      class="template-row row td-box td-box--white td-box--gradient td-box--height-auto"
+    >
+      <div class="col">
+        <div class="row">{{ partial "template-resource.html" . }}</div>
+      </div>
+    </section>
+  </div>
+</div>
