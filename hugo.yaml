@@ -71,10 +71,11 @@ markup:
 
 languages:
   en:
-    languageName: English
-    languageCode: en
-    time_format_default: 2006-01-02
-    time_format_blog: 2006-01-02
+    params:
+      languageName: English
+      languageCode: en
+      time_format_default: 2006-01-02
+      time_format_blog: 2006-01-02
 
 permalinks:
   blog: /:section/:year/:month/:slug/
