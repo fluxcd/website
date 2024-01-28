@@ -88,3 +88,6 @@ adopters:
     - name: Tchibo
       url: https://tchibo.de
       logo: logos/tchibo.png
+    - name: Kurator
+      url: https://kurator.dev/
+      logo: logos/kurator.svg

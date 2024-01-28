@@ -1,531 +1,859 @@
 resources:
-# Use this template when adding new resources:
-#
-# - youtube: enter youtube code
-#   title: "enter title here"
-#   date: YYYY-MM-DD
-#   (optional) description: this will surface the entry on the main landing page
+  # Use this template when adding new resources:
+  #
+  # - youtube: enter youtube code
+  #   url: enter absolute link for resource
+  #   title: "enter title here"
+  #   date: YYYY-MM-DD
+  #   type: video | article
+  #   thumbnail: enter youtube or url code
+  #   thumbnail_url: enter absolute link for thumbnail
+  #   (optional) description: this will surface the entry on the main landing page
+  #
+  # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
+  # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
+
   - youtube: QDghS96Kd9g
     title: "Platform Engineering: Build Fleets of GKE Clusters with FluxCD"
     date: 2023-12-13
+    type: video
+  - url: "https://www.weave.works/blog/gitops-kubernetes-resources-for-absolute-beginners"
+    title: "GitOps & Kubernetes Resources for Absolute Beginners"
+    date: "2023-10-17"
+    type: article
+    thumbnail_url: "https://www.weave.works/assets/images/bltb8f2fce43601c761/GITOP-PIPELINE-StartingOut.png"
   - youtube: EWofHnNngoc
     title: "Nerdearla: Introducción a GitOps con Flux"
-    date: 2023-09-29
+    date: "2023-09-29"
+    type: video
   - youtube: LHVjp7JeKzE
     title: "Keynote Session: GitOps as an Evolution of Kubernetes, Brendan Burns"
-    date: 2023-05-09
+    date: "2023-05-09"
+    type: video
   - youtube: AIdG4hTr0dk
     title: "Multitenancy - Build Vs. Buy, Neeta Rathi & Josh Carlisle, ZScaler"
-    date: 2023-05-04
+    date: "2023-05-04"
+    type: video
   - youtube: y--oZrATl6c
-    title: "Managing Software Upgrades with a kpt, GitLab and Flux Workflow in a Telecom Context by Peter Wörndle, Ericsson"
-    date: 2023-05-08
+    title: >-
+      Managing Software Upgrades with a kpt, GitLab and Flux Workflow in a
+      Telecom Context by Peter Wörndle, Ericsson
+    date: "2023-05-08"
+    type: video
   - youtube: TEeZ1gYWwrw
-    title: "Flux at the Point of Change - Using the K8s Golang SDK and the Flux Api to Automatically Fix and Deploy CVEs in Your Base Images by Bryan Oliver"
-    date: 2023-05-09
+    title: >-
+      Flux at the Point of Change - Using the K8s Golang SDK and the Flux Api to
+      Automatically Fix and Deploy CVEs in Your Base Images by Bryan Oliver
+    date: "2023-05-09"
+    type: video
   - youtube: pVuwrstpET4
-    title: "Kubernetes Quick Wins and Migration Best Practices by Ivan Anisimov"
-    date: 2023-05-09
+    title: Kubernetes Quick Wins and Migration Best Practices by Ivan Anisimov
+    date: "2023-05-09"
+    type: video
   - youtube: UFcO9oZMbdA
-    title: "Deliver a Multicloud Application with Flux and Carvel by Peter Tran"
-    date: 2023-05-08
+    title: Deliver a Multicloud Application with Flux and Carvel by Peter Tran
+    date: "2023-05-08"
+    type: video
   - youtube: 9axzrzhrfgw
-    title: "High-Security, Zero-Connectivity & Air-Gapped Clouds: Delivering Complex Software with the Open Component Model & Flux by Dan Small and Mohamed Ahmed"
-    date: 2023-05-08
+    title: >-
+      High-Security, Zero-Connectivity & Air-Gapped Clouds: Delivering Complex
+      Software with the Open Component Model & Flux by Dan Small and Mohamed
+      Ahmed
+    date: "2023-05-08"
+    type: video
   - youtube: LBD4EYDYlCU
-    title: "Delivering Secure & Compliant Software Components with the Open Component Model & GitOps by Dan Small"
-    date: 2023-05-09
+    title: >-
+      Delivering Secure & Compliant Software Components with the Open Component
+      Model & GitOps by Dan Small
+    date: "2023-05-09"
+    type: video
   - youtube: RgzGNY1uy3U
-    title: "Extending Observability to the Application Lifecycle with ArgoCD, Flux and Keptn by Ana Margarita Medina, Lightstep & Adam Gardner"
-    date: 2023-05-09
+    title: >-
+      Extending Observability to the Application Lifecycle with ArgoCD, Flux and
+      Keptn by Ana Margarita Medina, Lightstep & Adam Gardner
+    date: "2023-05-09"
+    type: video
   - youtube: hd7VkCLnTWk
-    title: "How GitOps Changed Our Lives & Can Change Yours Too! - Priyanka, Christian, Filip, Roberth, Leigh"
-    date: 2023-04-21
-  - url: https://www.youtube.com/watch?v=yit0zu8g_O4&t=76s
-    title: "Flux at CNCF Graduated Project Updates"
+    title: >-
+      How GitOps Changed Our Lives & Can Change Yours Too! - Priyanka,
+      Christian, Filip, Roberth, Leigh
+    date: "2023-04-21"
+    type: video
+  - url: "https://www.youtube.com/watch?v=yit0zu8g_O4&t=76s"
+    title: Flux at CNCF Graduated Project Updates
     thumbnail: yit0zu8g_O4
-    date: 2023-04-19
+    date: "2023-04-19"
+    type: video
   - youtube: gKR95Kmc5ac
-    title: "Flux Beyond Git: Harnessing the Power of OCI - Stefan Prodan & Hidde Beydals, Weaveworks"
-    description: "With Flux, OCI can serve as the single source of truth for both application code (container images) and configuration (OCI artifacts)."
-    date: 2023-04-19
+    title: >-
+      Flux Beyond Git: Harnessing the Power of OCI - Stefan Prodan & Hidde
+      Beydals, Weaveworks
+    description: >-
+      With Flux, OCI can serve as the single source of truth for both
+      application code (container images) and configuration (OCI artifacts).
+    date: "2023-04-19"
+    type: video
   - youtube: Mi6SQzjI938
-    title: "How Flux and Pulumi Give Each Other Super Powers by Michael Bridgen"
-    date: 2023-03-30
+    title: How Flux and Pulumi Give Each Other Super Powers by Michael Bridgen
+    date: "2023-03-30"
+    type: video
   - youtube: G7fdFWW1I-0
-    title: "GitOps Deployments from VS Code with little to no Kubernetes Knowledge"
-    date: 2023-03-23
+    title: GitOps Deployments from VS Code with little to no Kubernetes Knowledge
+    date: "2023-03-23"
+    type: video
   - youtube: kGrpLKNi4ZI
-    title: "Kubernetes in 2023"
-    date: 2023-03-16
+    title: Kubernetes in 2023
+    date: "2023-03-16"
+    type: video
   - youtube: rK1Y6d1A9Ck
     title: "Cloud Native Live: Automating Kubernetes Deployments"
-    date: 2023-03-15
+    date: "2023-03-15"
+    type: video
   - youtube: jxsFePSmWx0
-    title: "GitOps Testing in Kubernetes with Flux & Testkube"
-    date: 2023-03-02
+    title: GitOps Testing in Kubernetes with Flux & Testkube
+    date: "2023-03-02"
+    type: video
   - youtube: JHmQlSvL0II
-    title: "HashiCorp User Group (Luxembourg): GitOps Your Terraform Configurations with Flux"
-    date: 2022-11-30
+    title: >-
+      HashiCorp User Group (Luxembourg): GitOps Your Terraform Configurations
+      with Flux
+    date: "2022-11-30"
+    type: video
   - youtube: uRiCRTSkPOQ
-    title: "Flux's Security & Scalability with OCI & Helm"
-    date: 2022-11-29
+    title: Flux's Security & Scalability with OCI & Helm
+    date: "2022-11-29"
+    type: video
   - youtube: Bmh7kKYLIhY
-    title: "Flux Security & Scalability using VS Code GitOps Extension"
-    date: 2022-11-16
+    title: Flux Security & Scalability using VS Code GitOps Extension
+    date: "2022-11-16"
+    type: video
   - youtube: PhV5dJtTaDw
-    title: "Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi Onyekwere, Weaveworks"
-    date: 2022-10-27
+    title: >-
+      Flux Maturity, Feature, and Contrib Update - Kingdon Barrett & Somtochi
+      Onyekwere, Weaveworks
+    date: "2022-10-27"
+    type: video
   - youtube: 9Ag45POgnKw
-    title: "Flagger, Linkerd, And Gateway API: Oh My! - Jason Morgan, Buoyant & Sanskar Jaiswal, Weaveworks"
-    date: 2022-10-26
+    title: >-
+      Flagger, Linkerd, And Gateway API: Oh My! - Jason Morgan, Buoyant &
+      Sanskar Jaiswal, Weaveworks
+    date: "2022-10-26"
+    type: video
   - youtube: G1Mt4KE4Dao
-    title: "Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi Onyekwere, Weaveworks"
-    date: 2022-10-25
+    title: >-
+      Flux + Observability: Featuring Prometheus Operator and Pixie - Somtochi
+      Onyekwere, Weaveworks
+    date: "2022-10-25"
+    type: video
   - youtube: Ums3Q9kMPd8
     title: "GitOps with Flux and OCI Registries - Soulé Ba & Scott Rigby, Weaveworks"
-    date: 2022-10-25
+    date: "2022-10-25"
+    type: video
   - youtube: jRil9H1NhZI
-    title: "Complete DR of Stateful Workloads, PVs and CSI Snapshots via Flux and Vault OSS - Kingdon Barrett"
-    date: 2022-10-25
+    title: >-
+      Complete DR of Stateful Workloads, PVs and CSI Snapshots via Flux and
+      Vault OSS - Kingdon Barrett
+    date: "2022-10-25"
+    type: video
   - youtube: Wgp04xTNqq4
-    title: "Automate Your SLO Validation with Prometheus & Flagger - Sanskar Jaiswal & Kingdon Patrick Barrett"
-    date: 2022-10-25
+    title: >-
+      Automate Your SLO Validation with Prometheus & Flagger - Sanskar Jaiswal &
+      Kingdon Patrick Barrett
+    date: "2022-10-25"
+    type: video
   - youtube: cYcmXCJ2tLU
-    title: "Simplifying Edge Deployments Using EMCO and GitOps - Igor DC & Adarsh Vincent Chittilappilly, Intel"
-    date: 2022-10-25
+    title: >-
+      Simplifying Edge Deployments Using EMCO and GitOps - Igor DC & Adarsh
+      Vincent Chittilappilly, Intel
+    date: "2022-10-25"
+    type: video
   - youtube: h8G3LM9uIHk
-    title: "Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan Anisimov & Tamao Nakahara"
-    date: 2022-10-25
+    title: >-
+      Toward Full Adoption of GitOps and Best Practices at RingCentral - Ivan
+      Anisimov & Tamao Nakahara
+    date: "2022-10-25"
+    type: video
   - youtube: EXp2xAbII_k
-    title: "How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi, Weaveworks"
-    date: 2022-10-25 
-  - url: https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr
+    title: >-
+      How to Achieve (Actual) GitOps with Terraform and Flux - Priyanka Ravi,
+      Weaveworks
+    date: "2022-10-25"
+    type: video
+  - url: "https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr"
     thumbnail: qCDWsIcFU-A
     title: "Playlist: GitOps Days 2022"
-    description: "Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux integrators, end-users/adopters, and maintainers."
-    date: 2022-06-09
+    description: >-
+      Playlist from GitOps Days 2022 on June 8-9, 2022 featuring Flux
+      integrators, end-users/adopters, and maintainers.
+    date: "2022-06-09"
+    type: video
   - youtube: irvrjmlnUgg
-    title: "Policy Management & GItOps by Tony Chong & Mohamed Ahmed"
-    date: 2022-06-09
+    title: Policy Management & GItOps by Tony Chong & Mohamed Ahmed
+    date: "2022-06-09"
+    type: video
   - youtube: 1X3JgCnRNsw
     title: Flux - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak
-    date: 2021-12-01
+    date: "2021-12-01"
+    type: video
   - youtube: 56zWQpDXdB0
-    title: "GitOps and Flux Scaled to Hundreds of Developers by Bryan Oliver & Kingdon Barrett"
-    date: 2022-06-09
+    title: >-
+      GitOps and Flux Scaled to Hundreds of Developers by Bryan Oliver & Kingdon
+      Barrett
+    date: "2022-06-09"
+    type: video
   - youtube: t1UNordcChk
-    title: "Flagger & Linkerd revisited How I Learned to Stop Worrying and use A/B Testing"
-    date: 2022-06-09
+    title: >-
+      Flagger & Linkerd revisited How I Learned to Stop Worrying and use A/B
+      Testing
+    date: "2022-06-09"
+    type: video
   - youtube: n2DjCYRIzIA
-    title: "GitOps at RingCentral with Flux & Flagger by Ivan Anisimov"
-    date: 2022-06-09
+    title: GitOps at RingCentral with Flux & Flagger by Ivan Anisimov
+    date: "2022-06-09"
+    type: video
   - youtube: vIU3qH5EAF8
     title: "Multi-tenancy Best Practices Using Cloud Native: ZScaler's GitOps Journey"
-    date: 2022-06-09
+    date: "2022-06-09"
+    type: video
   - youtube: cR5SpyDsSYA
-    title: "GitOps and Flux at State Farm Technical Deep Dive by Rayce Brossette & Perry Wu"
-    date: 2022-06-09
+    title: >-
+      GitOps and Flux at State Farm Technical Deep Dive by Rayce Brossette &
+      Perry Wu
+    date: "2022-06-09"
+    type: video
   - youtube: TKYSAp2T2Qg
-    title: "Applying GitOps to Everything with Crossplane + Flux by Viktor Farcic"
-    date: 2022-06-09
+    title: Applying GitOps to Everything with Crossplane + Flux by Viktor Farcic
+    date: "2022-06-09"
+    type: video
   - youtube: a1FOFA5GV8Q
-    title: "Security First by Anais Urlichs"
-    date: 2022-06-09
+    title: Security First by Anais Urlichs
+    date: "2022-06-09"
+    type: video
   - youtube: H3KjJRI5QHY
     title: "GitOps, A Slightly Realistic Situation on Kubernetes with Flux"
-    date: 2022-06-09
+    date: "2022-06-09"
+    type: video
   - youtube: UDNXuXNM3po
-    title: "Key Learnings from Migrating from Flux1 to Flux2 by Josh Callis"
-    date: 2022-06-09
+    title: Key Learnings from Migrating from Flux1 to Flux2 by Josh Callis
+    date: "2022-06-09"
+    type: video
   - youtube: Op6EQAfo7J8
-    title: "GitOps with Flux at Safaricom by Winnie Gakuru"
-    date: 2022-06-09
+    title: GitOps with Flux at Safaricom by Winnie Gakuru
+    date: "2022-06-09"
+    type: video
   - youtube: 8pNhbCxLtNc
-    title: "GitOps & Progressive Delivery with Flux, Flagger, and Istio by Marco Amador"
-    date: 2022-06-09
+    title: >-
+      GitOps & Progressive Delivery with Flux, Flagger, and Istio by Marco
+      Amador
+    date: "2022-06-09"
+    type: video
   - youtube: YBfwtMj4LpY
-    title: "Crayon's Cloud Native Journey by Roberth Strand"
-    date: 2022-06-09
+    title: Crayon's Cloud Native Journey by Roberth Strand
+    date: "2022-06-09"
+    type: video
   - youtube: 9SVmaOSWZZE
-    title: "Flux Flagger Deep Dive by Stefan Prodan & Philip Laine"
-    date: 2022-06-09
+    title: Flux Flagger Deep Dive by Stefan Prodan & Philip Laine
+    date: "2022-06-09"
+    type: video
   - youtube: QRZTc6hlCjI
-    title: Introducing Flux Visual Studio Code Extension in Public Beta by Kingdon Barrett
-    date: 2022-06-08
+    title: >-
+      Introducing Flux Visual Studio Code Extension in Public Beta by Kingdon
+      Barrett
+    date: "2022-06-08"
+    type: video
   - youtube: AwpOK525imo
-    title: "Happier Helming with Flux by Scott Rigby & Kingdon Barrett"
-    date: 2022-06-08
+    title: Happier Helming with Flux by Scott Rigby & Kingdon Barrett
+    date: "2022-06-08"
+    type: video
   - youtube: gGaOYHTlIiQ
-    title: "Securing Kubernetes Secrets for GitOps with HashiCorp Vault by Rosemary Wang"
-    date: 2022-06-08
+    title: >-
+      Securing Kubernetes Secrets for GitOps with HashiCorp Vault by Rosemary
+      Wang
+    date: "2022-06-08"
+    type: video
   - youtube: xim0Yj0SNms
-    title: "Reconcile Terraform Resources the GitOps Way by Pinky Ravi & Roberth Strand"
-    date: 2022-06-08
+    title: >-
+      Reconcile Terraform Resources the GitOps Way by Pinky Ravi & Roberth
+      Strand
+    date: "2022-06-08"
+    type: video
   - youtube: 2zGTn3S9uhw
-    title: "GitOps with Flux + OpenShift by Andrew Block"
-    date: 2022-06-08
+    title: GitOps with Flux + OpenShift by Andrew Block
+    date: "2022-06-08"
+    type: video
   - youtube: Lqeg94xuJkw
-    title: "How D2iQ Operates Flux by Deepak Goel and Max Jonas Werner"
-    date: 2022-06-08
+    title: How D2iQ Operates Flux by Deepak Goel and Max Jonas Werner
+    date: "2022-06-08"
+    type: video
   - youtube: ChIdJXkK_CI
-    title: "GitOps with VMware Tanzu Application Platform by Leigh Capili"
-    date: 2022-06-08
+    title: GitOps with VMware Tanzu Application Platform by Leigh Capili
+    date: "2022-06-08"
+    type: video
   - youtube: 99nVJbILhLY
-    title: "GitOps with Amazon EKS Anywhere by Chandler Hoisington & Joey Wang"
-    date: 2022-06-08
+    title: GitOps with Amazon EKS Anywhere by Chandler Hoisington & Joey Wang
+    date: "2022-06-08"
+    type: video
   - youtube: 60jhYD2wLkY
-    title: "GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis"
-    date: 2022-06-08
+    title: GitOps in Microsoft Azure with Flux by Chris Sanders & Jonathan Innis
+    date: "2022-06-08"
+    type: video
   - youtube: 5b91fhbLcE0
-    title: "Weave GitOps & Scaling Teams by James Wilson"
-    date: 2022-06-08
+    title: Weave GitOps & Scaling Teams by James Wilson
+    date: "2022-06-08"
+    type: video
   - youtube: swfLyou3Ggo
-    title: "GitOps Business Benefits at State Farm by Rayce Brossette"
-    date: 2022-06-08
+    title: GitOps Business Benefits at State Farm by Rayce Brossette
+    date: "2022-06-08"
+    type: video
   - youtube: QoVShNwMJiQ
-    title: "GitOps Wealth of Opportunity by Mae Large"
-    date: 2022-06-08
+    title: GitOps Wealth of Opportunity by Mae Large
+    date: "2022-06-08"
+    type: video
   - youtube: lKI7juzYgMo
-    title: "Overcoming the Scaling Wall - An Enterprise Perspective Philippe Ensarguet"
-    date: 2022-06-08
+    title: Overcoming the Scaling Wall - An Enterprise Perspective Philippe Ensarguet
+    date: "2022-06-08"
+    type: video
   - youtube: ETwX5oiRG3Q
     title: "Pre-show Workshop: Intro to Kubernetes, GitOps, & Observability"
-    date: 2022-06-08
-  - url: https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do
+    date: "2022-06-08"
+    type: video
+  - url: "https://youtube.com/playlist?list=PLwjBY07V76p53FP85y03psCnb95u095Do"
     thumbnail: es5ngkzJDEc
     title: "Playlist: Flux at GitOps Con, KubeCon CloudNativeCon EU 2022"
-    description: "A playlist with a compilation of all talks featuring Flux during GitOpsCon & KubeCon / CloudNativeCon EU 2022 (May 17 – 20)."
-    date: 2022-05-17
+    description: >-
+      A playlist with a compilation of all talks featuring Flux during GitOpsCon
+      & KubeCon / CloudNativeCon EU 2022 (May 17 – 20).
+    date: "2022-05-17"
+    type: video
   - youtube: 1rJYsdLgJGA
-    title: "Simplifying Service Mesh Operations with Flux and Flagger - Mitch Connors & Stefan Prodan"
-    date: 2022-05-20
+    title: >-
+      Simplifying Service Mesh Operations with Flux and Flagger - Mitch Connors
+      & Stefan Prodan
+    date: "2022-05-20"
+    type: video
   - youtube: eYZO7n_o0OQ
-    title: "Observing Fastly's Network at Scale Thanks to K8s and the Stri... Fernando Crespo & Daniel Caballero"
-    date: 2022-05-20
+    title: >-
+      Observing Fastly's Network at Scale Thanks to K8s and the Stri... Fernando
+      Crespo & Daniel Caballero
+    date: "2022-05-20"
+    type: video
   - youtube: BrYgx4cB7p4
-    title: "Flux Virtual Office Hours KubeCon EU 2022 with Flux Maintainers"
-    date: 2022-05-19
+    title: Flux Virtual Office Hours KubeCon EU 2022 with Flux Maintainers
+    date: "2022-05-19"
+    type: video
   - youtube: rra7TkYOnko
-    title: "GitOps to Automate the Setup, Management and Extension a K8s Cluster - Kim Schlesinger, DigitalOcean"
-    date: 2022-05-19
+    title: >-
+      GitOps to Automate the Setup, Management and Extension a K8s Cluster - Kim
+      Schlesinger, DigitalOcean
+    date: "2022-05-19"
+    type: video
   - youtube: 2rJur5VE6yA
-    title: "Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets - Somtochi Onyekwere"
-    date: 2022-05-19
+    title: >-
+      Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets -
+      Somtochi Onyekwere
+    date: "2022-05-19"
+    type: video
   - youtube: MjxZcY6THdc
     title: "Flux Security Deep Dive - Stefan Prodan, Weaveworks"
-    date: 2022-05-18
+    date: "2022-05-18"
+    type: video
   - youtube: WKvogzTg2iM
-    title: "Intro to Kubernetes, GitOps, and Observability Hands-On Tutorial - Joaquin Rodriguez & Tiffany Wang"
-    date: 2022-05-18
+    title: >-
+      Intro to Kubernetes, GitOps, and Observability Hands-On Tutorial - Joaquin
+      Rodriguez & Tiffany Wang
+    date: "2022-05-18"
+    type: video
   - youtube: BKegE2VQhnU
-    title: "Lightning Talk: Scaling Container Builds with Software Supply Chains - Duane DeCapite, VMware"
-    date: 2022-05-17
+    title: >-
+      Lightning Talk: Scaling Container Builds with Software Supply Chains -
+      Duane DeCapite, VMware
+    date: "2022-05-17"
+    type: video
   - youtube: pN41tIKn3eE
-    title: "Progressive Delivery with Flagger and Gateway API by Sanskar Jaiswal"
-    date: 2022-05-17
+    title: Progressive Delivery with Flagger and Gateway API by Sanskar Jaiswal
+    date: "2022-05-17"
+    type: video
   - youtube: 6gwgG6yhN04
-    title: "Secure Your Secrets in GitOps with Rosemary Wang"
-    date: 2022-05-17
+    title: Secure Your Secrets in GitOps with Rosemary Wang
+    date: "2022-05-17"
+    type: video
   - youtube: qGQyGuoS5Ds
     title: "GitOps Everything!? We Sure Can!, Ayelet de-Roos, AppsFlyer"
-    date: 2022-05-17
+    date: "2022-05-17"
+    type: video
   - youtube: 0jNtDnWT3yo
-    title: "Crossing the Divide: How GitOps Brought AppDev & Platform Teams Together! - Priyanka 'Pinky' Ravi"
-    date: 2022-05-17
+    title: >-
+      Crossing the Divide: How GitOps Brought AppDev & Platform Teams Together!
+      - Priyanka 'Pinky' Ravi
+    date: "2022-05-17"
+    type: video
   - youtube: Xei2ZcEg5B0
-    title: "Managing Thousands of Clusters and Their Workloads with Flux - Max Jonas Werner, D2iQ"
-    date: 2022-05-17
+    title: >-
+      Managing Thousands of Clusters and Their Workloads with Flux - Max Jonas
+      Werner, D2iQ
+    date: "2022-05-17"
+    type: video
   - youtube: gqs4mVppn1Q
-    title: "Solving Environment Promotion with Flux - Sam Tavakoli & Adelina Simion, Form3"
-    date: 2022-05-17
+    title: >-
+      Solving Environment Promotion with Flux - Sam Tavakoli & Adelina Simion,
+      Form3
+    date: "2022-05-17"
+    type: video
   - youtube: uU-zbTgbHPI
-    title: "Lightning Talk: GitOps, A Slightly Realistic Situation on Kuberne... Laurent Grangeau & Ludovic Piot"
-    date: 2022-05-17
+    title: >-
+      Lightning Talk: GitOps, A Slightly Realistic Situation on Kuberne...
+      Laurent Grangeau & Ludovic Piot
+    date: "2022-05-17"
+    type: video
   - youtube: agsnktpIxzU
-    title: "Creating A Landlord for Multi-tenant K8s Using Flux, Gatekeeper, Helm, and Friends - Michael Irwin"
-    date: 2022-05-17
+    title: >-
+      Creating A Landlord for Multi-tenant K8s Using Flux, Gatekeeper, Helm, and
+      Friends - Michael Irwin
+    date: "2022-05-17"
+    type: video
   - youtube: AKVfqn85ZJ4
-    title: "Lightning Talk: GitOps and Progressive Delivery with Flagger, Istio and Flux - Marco Amador, Anova"
-    date: 2022-05-17
+    title: >-
+      Lightning Talk: GitOps and Progressive Delivery with Flagger, Istio and
+      Flux - Marco Amador, Anova
+    date: "2022-05-17"
+    type: video
   - youtube: 20f6yYK-RWM
-    title: "Lightning Talk: Taming the Thundering Gitops Herd with Update... Joaquim Rocha & Iago López Galeiras"
-    date: 2022-05-17
+    title: >-
+      Lightning Talk: Taming the Thundering Gitops Herd with Update... Joaquim
+      Rocha & Iago López Galeiras
+    date: "2022-05-17"
+    type: video
   - youtube: 2rJur5VE6yA
-    title: "Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets - Somtochi Onyekwere, Weaveworks"
-    date: 2022-05-17
+    title: >-
+      Lightning Talk: Hiding in Plain Sight - How Flux Decrypts Secrets -
+      Somtochi Onyekwere, Weaveworks
+    date: "2022-05-17"
+    type: video
   - youtube: es5ngkzJDEc
-    title: "We Have Always Done It This Way! Now Let's Try Something Completely Different -Eliran Bivas"
-    date: 2022-05-17
+    title: >-
+      We Have Always Done It This Way! Now Let's Try Something Completely
+      Different -Eliran Bivas
+    date: "2022-05-17"
+    type: video
   - youtube: 5u45lXmhgxA
     title: "Full GitOps Tutorial: Getting started with Flux"
-    description: "Anaïs Urlichs walks you through getting started with Flux, installing the Starboard Helm Chart through GitOps best practices, managing your app, and setting up notifications and monitoring using Flux."
-    date: 2022-04-14
+    description: >-
+      Anaïs Urlichs walks you through getting started with Flux, installing the
+      Starboard Helm Chart through GitOps best practices, managing your app, and
+      setting up notifications and monitoring using Flux.
+    date: "2022-04-14"
+    type: video
   - youtube: PFLimPh5-wo
-    title: "The FASTEST way to deploy apps to Kubernetes"
-    description: "Techno Tim shows how Flux can be leveraged to monitor git repositories, source control, image container repositories, helm repositories, and more."
-    date: 2022-05-13
+    title: The FASTEST way to deploy apps to Kubernetes
+    description: >-
+      Techno Tim shows how Flux can be leveraged to monitor git repositories,
+      source control, image container repositories, helm repositories, and more.
+    date: "2022-05-13"
+    type: video
   - youtube: dunU2ABitMA
-    title: "How To Apply GitOps To Everything Using Crossplane And Flux"
-    date: 2022-04-13
+    title: How To Apply GitOps To Everything Using Crossplane And Flux
+    date: "2022-04-13"
+    type: video
   - youtube: 73kOXNTrNVU
-    title: "From Zero to GitOps Heroes"
-    date: 2022-03-30
-  - url: https://youtu.be/-3K74I7t7CQ?t=447
-    thumbnail: -3K74I7t7CQ
+    title: From Zero to GitOps Heroes
+    date: "2022-03-30"
+    type: video
+  - url: "https://youtu.be/-3K74I7t7CQ?t=447"
+    thumbnail: "-3K74I7t7CQ"
     title: "Security: The Value of SBOMs"
-    date: 2022-03-24
+    date: "2022-03-24"
+    type: video
   - youtube: etbvuV9EjLc
-    title: "Securing GitOps Debug Access - Leigh Capili"
-    date: 2022-03-16
+    title: Securing GitOps Debug Access - Leigh Capili
+    date: "2022-03-16"
+    type: video
   - youtube: XG2uuAMTJg8
     title: "Tanzu Tuesdays 89: GitOps with Flux on Kubernetes - Stefan Prodan"
-    date: 2022-03-15
-  - url: https://youtu.be/V1AOVwzmIKE?t=287
+    date: "2022-03-15"
+    type: video
+  - url: "https://youtu.be/V1AOVwzmIKE?t=287"
     thumbnail: V1AOVwzmIKE
-    title: "Managing Thousand of Clusters and Their Workloads - Max Jonas Werner"
-    date: 2022-03-02
+    title: Managing Thousand of Clusters and Their Workloads - Max Jonas Werner
+    date: "2022-03-02"
+    type: video
   - youtube: NwAgATWoEcM
     title: "CNCF On-demand Webinar: Getting Started with GitOps & Flux - Priyanka Ravi"
-    date: 2022-02-24
-  - url: https://youtu.be/cR2eCMbiZg4?t=298
+    date: "2022-02-24"
+    type: video
+  - url: "https://youtu.be/cR2eCMbiZg4?t=298"
     thumbnail: cR2eCMbiZg4
-    title: "GitOps with GitHub Actions & Flux - Kingdon Barrett"
-    description: "Kingdon Barret demos of GitHub Actions and three different methods for doing Flux deployment automation using SemVer with GitRepository Source, HelmRelease, and Image Update Automation."
-    date: 2022-02-24
-  - url: https://youtu.be/0KmqEp4VxSQ?t=292
+    title: GitOps with GitHub Actions & Flux - Kingdon Barrett
+    description: >-
+      Kingdon Barret demos of GitHub Actions and three different methods for
+      doing Flux deployment automation using SemVer with GitRepository Source,
+      HelmRelease, and Image Update Automation.
+    date: "2022-02-24"
+    type: video
+  - url: "https://youtu.be/0KmqEp4VxSQ?t=292"
     thumbnail: 0KmqEp4VxSQ
-    title: "GitOps for Helm Users - Scott Rigby"
-    date: 2022-02-18
-  - url: https://youtu.be/U2n3oYuIIfc?t=289
+    title: GitOps for Helm Users - Scott Rigby
+    date: "2022-02-18"
+    type: video
+  - url: "https://youtu.be/U2n3oYuIIfc?t=289"
     thumbnail: U2n3oYuIIfc
-    title: "GitOps with Amazon EKS Anywhere + Flux - Dan Budris"
-    date: 2022-02-17
-  - url: https://youtu.be/6_dlU9WYBeY?t=439
+    title: GitOps with Amazon EKS Anywhere + Flux - Dan Budris
+    date: "2022-02-17"
+    type: video
+  - url: "https://youtu.be/6_dlU9WYBeY?t=439"
     thumbnail: 6_dlU9WYBeY
-    title: "Get Started with Flux - Priyanka Ravi"
-    date: 2022-02-02
-  - url: https://youtu.be/81EOeobifio?t=387
+    title: Get Started with Flux - Priyanka Ravi
+    date: "2022-02-02"
+    type: video
+  - url: "https://youtu.be/81EOeobifio?t=387"
     thumbnail: 81EOeobifio
     title: "GitOps & Flux: A Refresher with Priyanka Ravi"
-    date: 2022-01-28
+    date: "2022-01-28"
+    type: video
   - youtube: 1X3JgCnRNsw
-    title: "Flux - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak"
-    description: "Saiyam provides an excellent introduction to Flux's architecture and its powerful features with a quick demo of Bootstraping using FluxCLI."
-    date: 2021-12-01
+    title: Flux - Kubernetes GitOps (CNCFMinutes 20) with Saiyam Pathak
+    description: >-
+      Saiyam provides an excellent introduction to Flux's architecture and its
+      powerful features with a quick demo of Bootstraping using FluxCLI.
+    date: "2021-12-01"
+    type: video
   - youtube: jD0fi5vKCV0
-    title: "Technically Speaking (S1E09): Get into GitOps with Stefan Prodan and Chris Wright"
-    date: 2021-10-27
+    title: >-
+      Technically Speaking (S1E09): Get into GitOps with Stefan Prodan and Chris
+      Wright
+    date: "2021-10-27"
+    type: video
   - youtube: qm1ZKsTcxa4
-    title: "GitOps with VMware Tanzu Application Platform VMware - Ben Hale & Leigh Capili"
-    date: 2021-10-27
+    title: >-
+      GitOps with VMware Tanzu Application Platform VMware - Ben Hale & Leigh
+      Capili
+    date: "2021-10-27"
+    type: video
   - youtube: 8ybCtNVP5To
-    title: "GitOps with Flux + OpenShift - Andrew Block (Red Hat)"
-    date: 2021-10-27
+    title: GitOps with Flux + OpenShift - Andrew Block (Red Hat)
+    date: "2021-10-27"
+    type: video
   - youtube: ShRjg9uWSaw
-    title: "How D2iQ leverages Flux for a Declarative Approach to Cluster and Application Lifecycle Management"
-    date: 2021-10-27
+    title: >-
+      How D2iQ leverages Flux for a Declarative Approach to Cluster and
+      Application Lifecycle Management
+    date: "2021-10-27"
+    type: video
   - youtube: FCtImtLNnjk
-    title: "GitOps with Amazon EKS Anywhere - Chandler Hoisington & Joey Wang"
-    date: 2021-10-27
+    title: GitOps with Amazon EKS Anywhere - Chandler Hoisington & Joey Wang
+    date: "2021-10-27"
+    type: video
   - youtube: GJ-Tq5w5sgE
-    title: "GitOps with Azure Arc Kubernetes - Jason Hansen & Jonathan Innis (Microsoft)"
-    date: 2021-10-27
+    title: >-
+      GitOps with Azure Arc Kubernetes - Jason Hansen & Jonathan Innis
+      (Microsoft)
+    date: "2021-10-27"
+    type: video
   - youtube: nke29laH8Xk
-    title: "GitOps with Weave GitOps - Liz Warner & Mark Ramm (Weaveworks)"
-    date: 2021-10-27
+    title: GitOps with Weave GitOps - Liz Warner & Mark Ramm (Weaveworks)
+    date: "2021-10-27"
+    type: video
   - youtube: yg2EglZwUXE
-    title: "Fireside Chat with Flux creator Michael Bridgen"
-    date: 2021-10-27
+    title: Fireside Chat with Flux creator Michael Bridgen
+    date: "2021-10-27"
+    type: video
   - youtube: UZO051oMdN4
-    title: "A Major Milestone for a CNCF Project Flux - Ihor Dvoretsky"
-    date: 2021-10-27
+    title: A Major Milestone for a CNCF Project Flux - Ihor Dvoretsky
+    date: "2021-10-27"
+    type: video
   - youtube: MpGFC7xO6P0
-    title: "Orchestrating Software Factories for the Department of Defense by Tom Runyon"
-    date: 2021-10-15
+    title: >-
+      Orchestrating Software Factories for the Department of Defense by Tom
+      Runyon
+    date: "2021-10-15"
+    type: video
   - youtube: yzE-9qgyJGg
-    title: "GitOps and Cloud Native API Gateways by Dan Wessels"
-    date: 2021-10-15
+    title: GitOps and Cloud Native API Gateways by Dan Wessels
+    date: "2021-10-15"
+    type: video
   - youtube: IiFj6DVKRoc
-    title: "Architecting a Multi tenant Application Platform using Flux and Friends by Michael Irwin"
-    date: 2021-10-15
+    title: >-
+      Architecting a Multi tenant Application Platform using Flux and Friends by
+      Michael Irwin
+    date: "2021-10-15"
+    type: video
   - youtube: 8RFxYooMc5A
-    title: "Flux's Roadmap to General Availability - Hidde Beydals & Michael Bridgen"
-    date: 2021-10-15
+    title: Flux's Roadmap to General Availability - Hidde Beydals & Michael Bridgen
+    date: "2021-10-15"
+    type: video
   - youtube: nItIDpKsing
-    title: "Authentication Challenges in multi tenant Flux by Philip Laine"
-    date: 2021-10-15
+    title: Authentication Challenges in multi tenant Flux by Philip Laine
+    date: "2021-10-15"
+    type: video
   - youtube: rtkBnADRpNE
-    title: "GitOps+Jenkins-CI With Declarative Everything - Kingdon Barrett"
-    date: 2021-10-15
+    title: GitOps+Jenkins-CI With Declarative Everything - Kingdon Barrett
+    date: "2021-10-15"
+    type: video
   - youtube: 8lodCio_EnU
     title: "TheCube KubeCon NA 2021 Coverage: Flux Interview with Kingdon Barrett"
-    date: 2021-10-14
+    date: "2021-10-14"
+    type: video
   - youtube: PTsDNC33SFo
-    title: "Flexing the Flux - Multi-Cluster, Multi-Cloud - somewhat opinionated take by Mohsin Shafique"
-    date: 2021-10-14
+    title: >-
+      Flexing the Flux - Multi-Cluster, Multi-Cloud - somewhat opinionated take
+      by Mohsin Shafique
+    date: "2021-10-14"
+    type: video
   - youtube: bzuvsrmzh6o
-    title: "Flux as a Community and Project by Daniel Holbach"
-    date: 2021-10-14
+    title: Flux as a Community and Project by Daniel Holbach
+    date: "2021-10-14"
+    type: video
   - youtube: MwUEpGuP7FU
-    title: "Best Practices for securing the GitOps pipeline by Stefan Prodan"
-    date: 2021-10-14
+    title: Best Practices for securing the GitOps pipeline by Stefan Prodan
+    date: "2021-10-14"
+    type: video
   - youtube: 9_hoXNZKfOk
-    title: "Building Flux's Multi-Tenant API with K8s User Impersonation - Leigh Capili, VMware"
-    date: 2021-10-12
+    title: >-
+      Building Flux's Multi-Tenant API with K8s User Impersonation - Leigh
+      Capili, VMware
+    date: "2021-10-12"
+    type: video
   - youtube: MiDKZ56aTsY
-    title: "A Day in the Life of the GitOps Platform Team - Mae Large & Priyanka Ravi, State Farm"
-    date: 2021-10-12
+    title: >-
+      A Day in the Life of the GitOps Platform Team - Mae Large & Priyanka Ravi,
+      State Farm
+    date: "2021-10-12"
+    type: video
   - youtube: rT9VM_JSf5A
-    title: "Managing Apps Dependencies and Kubernetes Versions with Kraan and Flux - Adrian Vacaru, Fidelity"
-    date: 2021-10-12
+    title: >-
+      Managing Apps Dependencies and Kubernetes Versions with Kraan and Flux -
+      Adrian Vacaru, Fidelity
+    date: "2021-10-12"
+    type: video
   - youtube: nJ1PCIsIoK0
-    title: "Gitopsify Cellular Architecture - Ayush Ghosh & Sergey Sergeev, Cisco Systems, Inc."
-    date: 2021-10-12
-  - url: https://youtu.be/gXUXdaVT__U?t=199
+    title: >-
+      Gitopsify Cellular Architecture - Ayush Ghosh & Sergey Sergeev, Cisco
+      Systems, Inc.
+    date: "2021-10-12"
+    type: video
+  - url: "https://youtu.be/gXUXdaVT__U?t=199"
     thumbnail: gXUXdaVT__U
-    title: "The Power of Three: Flux, Flagger, & Linkerd with Kingdon Barrett & Jason Morgan"
-    date: 2021-09-29
-  - url: https://youtu.be/R0BA2QMPWTE?t=720
+    title: >-
+      The Power of Three: Flux, Flagger, & Linkerd with Kingdon Barrett & Jason
+      Morgan
+    date: "2021-09-29"
+    type: video
+  - url: "https://youtu.be/R0BA2QMPWTE?t=720"
     thumbnail: R0BA2QMPWTE
-    title: "Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch & Matheiu Gillot (at DevSecOps Road Trip: France)"
-    date: 2021-09-15
+    title: >-
+      Build a Smooth CI/CD Pipeline Using GitOps and Flux with Smaïne Kahlouch &
+      Matheiu Gillot (at DevSecOps Road Trip: France)
+    date: "2021-09-15"
+    type: video
   - youtube: JR8rev98SH0
-    title: "Flux Provider for Terraform (Terraform Community Office Hours) with Philip Laine & Taylor Dolezal"
-    date: 2021-09-09
+    title: >-
+      Flux Provider for Terraform (Terraform Community Office Hours) with Philip
+      Laine & Taylor Dolezal
+    date: "2021-09-09"
+    type: video
   - youtube: p5TOfD_MsWw
-    title: "Flux Controllers in Kubernetes with Terraform by Philip Laine"
-    date: 2021-08-27
-  # Most dates below here are made up because we didn't have them.
+    title: Flux Controllers in Kubernetes with Terraform by Philip Laine
+    date: "2021-08-27"
+    type: video
+    # Most dates below here are made up because we didn't have them.
   # Years are correct though. Order was preserved
   - youtube: Gidqz3D9yes
-    title: "Cloud Native @Scale Meetup: CNCF Incubating Projects featuring Flux with Leigh Capili"
-    date: 2021-06-14
+    title: >-
+      Cloud Native @Scale Meetup: CNCF Incubating Projects featuring Flux with
+      Leigh Capili
+    date: "2021-06-14"
+    type: video
   - youtube: kX1fxly9-4Y
-    title: "GitOps Guide to the Galaxy: Helm GitOps Workflows with he Flux Helm Controller - Scott Rigby"
-    date: 2021-06-13
+    title: >-
+      GitOps Guide to the Galaxy: Helm GitOps Workflows with he Flux Helm
+      Controller - Scott Rigby
+    date: "2021-06-13"
+    type: video
   - youtube: E9vHgvsQNzQ
     title: "Flux Bug Scrub #0001"
-    date: 2021-06-12
+    date: "2021-06-12"
+    type: video
   - youtube: dEMYVkIU0aU
-    title: "Building a Web Scale Internal Developer Platform at Alibaba - Lei “Harry” Zhang"
-    date: 2021-06-11
+    title: >-
+      Building a Web Scale Internal Developer Platform at Alibaba - Lei “Harry”
+      Zhang
+    date: "2021-06-11"
+    type: video
   - youtube: dtGgOVYJTv8
-    title: "GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris Sanders & Jonathan Innis"
-    date: 2021-06-10
+    title: >-
+      GitOps Days 2021 Keynote: GitOps in Microsoft Azure with Flux - Chris
+      Sanders & Jonathan Innis
+    date: "2021-06-10"
+    type: video
   - youtube: laMwuG8r7Tw
-    title: "Handling Dependencies with Flux - Jason Morgan"
-    date: 2021-06-09
+    title: Handling Dependencies with Flux - Jason Morgan
+    date: "2021-06-09"
+    type: video
   - youtube: Fzzg4KQavEU
-    title: "Flux Deep Dive - Stefan Prodan"
-    date: 2021-06-08
+    title: Flux Deep Dive - Stefan Prodan
+    date: "2021-06-08"
+    type: video
   - youtube: gfyo6VqgD_k
-    title: "Flux's Catalog - Keeping Track of Things! - Leigh Capili"
-    date: 2021-06-07
+    title: Flux's Catalog - Keeping Track of Things! - Leigh Capili
+    date: "2021-06-07"
+    type: video
   - youtube: UYZGym5p0m8
-    title: "Flux UI Announcement & Preview - Jordan Pellizzari"
-    date: 2021-06-06
+    title: Flux UI Announcement & Preview - Jordan Pellizzari
+    date: "2021-06-06"
+    type: video
   - youtube: NLU6b82FhFs
-    title: "From Wild West to Flux Multi-tenancy - Mae Large & Russ Parmer"
-    date: 2021-06-05
+    title: From Wild West to Flux Multi-tenancy - Mae Large & Russ Parmer
+    date: "2021-06-05"
+    type: video
   - youtube: 3jyYNrDqGVQ
-    title: "GitOps Loops - A step Towards Autonomous Infrastructure - Vuk Gojnic"
-    date: 2021-06-04
+    title: GitOps Loops - A step Towards Autonomous Infrastructure - Vuk Gojnic
+    date: "2021-06-04"
+    type: video
   - youtube: 59mTx8tBYag
-    title: "How We Sailed Into Production - GitOps-based CaaS at Deutsche Telekom - Maximilian Rink and Marcel Fest"
-    date: 2021-06-03
+    title: >-
+      How We Sailed Into Production - GitOps-based CaaS at Deutsche Telekom -
+      Maximilian Rink and Marcel Fest
+    date: "2021-06-03"
+    type: video
   - youtube: F7B_TBcIyl8
     title: "Flux: Multi-tenancy Deep Dive - Philip Laine"
-    date: 2021-06-02
+    date: "2021-06-02"
+    type: video
   - youtube: kuzZpKHLoVM
     title: "Keynote: CNCF Project Update: Flux - Stefan Prodan"
-    date: 2021-06-01
+    date: "2021-06-01"
+    type: video
   - youtube: hCTgCRlU-M0
-    title: "Helm Users! What Flux Can Do For You - Scott Rigby & Kingdon Barrett"
-    date: 2021-05-14 # correct
-  - url: https://youtube.com/playlist?list=PLXOML2VBdIo7xEp8Bo9kFB-d6tTlHK5Fk
+    title: Helm Users! What Flux Can Do For You - Scott Rigby & Kingdon Barrett
+    date: "2021-05-14"
+    type: video
+  - url: "https://youtube.com/playlist?list=PLXOML2VBdIo7xEp8Bo9kFB-d6tTlHK5Fk"
     thumbnail: KbFLAl7zZKo
-    title: "GitOpsCon at KubeCon EU!"
-    date: 2021-01-15
-  - url: https://youtube.be/AyRhi92v9O0?t=40
+    title: GitOpsCon at KubeCon EU!
+    date: "2021-01-15"
+    type: video
+  - url: "https://youtube.be/AyRhi92v9O0?t=40"
     thumbnail: AyRhi92v9O0
-    title: "Doing GitOps for multi-cloud resource management using Crossplane and Flux2 (at Conf42: Cloud Native 2021)"
-    date: 2021-01-14
+    title: >-
+      Doing GitOps for multi-cloud resource management using Crossplane and
+      Flux2 (at Conf42: Cloud Native 2021)
+    date: "2021-01-14"
+    type: video
   - youtube: pYcUukYGyZE
     title: "CNCF Cloud Native Live: Migrating from Flux v1 to Flux with Leigh Capili"
-    date: 2021-01-13
+    date: "2021-01-13"
+    type: video
   - youtube: cakxixc-yQk
     title: "Setting Up Notifications, Alerts, & Webhooks with Alison Dowdney"
-    date: 2021-01-12
+    date: "2021-01-12"
+    type: video
   - youtube: QWWzfkdr6Zg
-    title: "GitOps Guide to the Galaxy (Ep 13): Digging deeper into Flux with Weaveworks"
-    date: 2021-01-11
+    title: >-
+      GitOps Guide to the Galaxy (Ep 13): Digging deeper into Flux with
+      Weaveworks
+    date: "2021-01-11"
+    type: video
   - youtube: va1iho7O4WQ
     title: "CNCF Webinar: Flux is Incubating + The Road Ahead"
-    date: 2021-01-10
+    date: "2021-01-10"
+    type: video
   - youtube: K6OQ93UNSB8
-    title: "Flux on Azure with Leigh Capili"
-    date: 2021-01-09
+    title: Flux on Azure with Leigh Capili
+    date: "2021-01-09"
+    type: video
   - youtube: W_rcYPZkhFg
-    title: "GitOps Guide to the Galaxy (Ep 12): Flux On OpenShift with Cornelia Davis & Scott Rigby"
-    date: 2021-01-08
+    title: >-
+      GitOps Guide to the Galaxy (Ep 12): Flux On OpenShift with Cornelia Davis
+      & Scott Rigby
+    date: "2021-01-08"
+    type: video
   - youtube: ljouUBPtnuI
-    title: "GitOps Hands-On Patterns for Helm Users with Scott Rigby"
-    date: 2021-01-07
+    title: GitOps Hands-On Patterns for Helm Users with Scott Rigby
+    date: "2021-01-07"
+    type: video
   - youtube: vwvTwLQhXVI
-    title: "Migrating from Flux v1 to Flux with Leigh Capili"
-    date: 2021-01-06
+    title: Migrating from Flux v1 to Flux with Leigh Capili
+    date: "2021-01-06"
+    type: video
   - youtube: 7E1aFQKNE40
     title: "Dallas Kubernetes Meetup: Introduction to GitOps with Flux & Flagger"
-    date: 2021-01-05
+    date: "2021-01-05"
+    type: video
   - youtube: 8pbdXAd-F44
-    title: "Manage Kubernetes Secrets with Mozilla SOPS & Flux"
-    date: 2021-01-04
+    title: Manage Kubernetes Secrets with Mozilla SOPS & Flux
+    date: "2021-01-04"
+    type: video
   - youtube: WnVTY9KQXE0
-    title: "Flux Image Update Automation Sneak Peak with Leigh Capili"
-    date: 2021-01-03
+    title: Flux Image Update Automation Sneak Peak with Leigh Capili
+    date: "2021-01-03"
+    type: video
   - youtube: nWN1F6bsuqc
-    title: "GitOps Core Concepts & How to Teach Your Teams with Leigh Capili"
-    date: 2021-01-02
+    title: GitOps Core Concepts & How to Teach Your Teams with Leigh Capili
+    date: "2021-01-02"
+    type: video
   - youtube: YG8jMFrYQvM
-    title: "Helm + GitOps = ⚡️⚡️⚡️ with Scott Rigby"
-    date: 2021-01-01
+    title: Helm + GitOps = ⚡️⚡️⚡️ with Scott Rigby
+    date: "2021-01-01"
+    type: video
   - youtube: cB7iXeNLteE
-    title: "The Power of GitOps with Flux and Flagger (GitOps Hands-On) with Leigh Capili"
-    date: 2020-01-13
+    title: >-
+      The Power of GitOps with Flux and Flagger (GitOps Hands-On) with Leigh
+      Capili
+    date: "2020-01-13"
+    type: video
   - youtube: N_K5g7o9JKg
-    title: "The Power of GitOps with Flux 2 - Part 3 with Leigh Capili"
-    date: 2020-01-12
+    title: The Power of GitOps with Flux 2 - Part 3 with Leigh Capili
+    date: "2020-01-12"
+    type: video
   - youtube: R6OeIgb7lUI
-    title: "Flux with GitOps Toolkit - Kubernetes Deployment and Sync Mechanism"
-    date: 2020-01-11
+    title: Flux with GitOps Toolkit - Kubernetes Deployment and Sync Mechanism
+    date: "2020-01-11"
+    type: video
   - youtube: nGLpUCPX8JE
-    title: "The evolution of Flux with Stefan Prodan at GitOps Days EMEA"
-    date: 2020-01-10
+    title: The evolution of Flux with Stefan Prodan at GitOps Days EMEA
+    date: "2020-01-10"
+    type: video
   - youtube: 7W27tAv7Tvs
-    title: "The Power of GitOps with Flux: Managing Remote Clusters (CAPI demo) with Leigh Capili at GitOps Days EMEA"
-    date: 2020-01-09
+    title: >-
+      The Power of GitOps with Flux: Managing Remote Clusters (CAPI demo) with
+      Leigh Capili at GitOps Days EMEA
+    date: "2020-01-09"
+    type: video
   - youtube: fC2YCxQRUwU
-    title: "Helm Users! What Flux 2 can do for you! by Scott Rigby at GitOps Days EMEA"
-    date: 2020-01-08
+    title: Helm Users! What Flux 2 can do for you! by Scott Rigby at GitOps Days EMEA
+    date: "2020-01-08"
+    type: video
   - youtube: fC2YCxQRUwU
-    title: "The Power of GitOps with Flux & GitOps Toolkit - Part 2"
-    date: 2020-01-07
-  - url: https://www.heavybit.com/library/podcasts/the-kubelist-podcast/ep-5-flux-with-michael-bridgen-of-weaveworks/
+    title: The Power of GitOps with Flux & GitOps Toolkit - Part 2
+    date: "2020-01-07"
+    type: video
+  - url: >-
+      https://www.heavybit.com/library/podcasts/the-kubelist-podcast/ep-5-flux-with-michael-bridgen-of-weaveworks/
     title: "The Kubelist Podcast: Flux with Michael Bridgen"
-    date: 2020-01-06
+    date: "2020-01-06"
+    type: video
   - youtube: 0v5bjysXTL8
-    title: "The Power of GitOps with Flux & GitOps Toolkit - Part 1"
-    date: 2020-01-05
+    title: The Power of GitOps with Flux & GitOps Toolkit - Part 1
+    date: "2020-01-05"
+    type: video
   - youtube: HqTzuOBP0eY
     title: "Rawkode Live: Introduction to GitOps Toolkit with Stefan Prodan"
-    date: 2020-01-04
+    date: "2020-01-04"
+    type: video
   - youtube: 8v94nUkXsxU
-    title: "KubeCon/CloudNativeCon Europe: The road to Flux and Progressive Delivery with Stefan Prodan & Hidde Beydals"
-    date: 2020-01-03
+    title: >-
+      KubeCon/CloudNativeCon Europe: The road to Flux and Progressive Delivery
+      with Stefan Prodan & Hidde Beydals
+    date: "2020-01-03"
+    type: video
   - youtube: qQBtSkgl7tI
-    title: "Cloud Native Nordics: Introduction to GitOps & GitOps Toolkit with Alexis Richardson & Stefan Prodan"
-    date: 2020-01-02
+    title: >-
+      Cloud Native Nordics: Introduction to GitOps & GitOps Toolkit with Alexis
+      Richardson & Stefan Prodan
+    date: "2020-01-02"
+    type: video
   - youtube: WHzxunv4DKk
-    title: "GitOps Days - Community Special: GitOps Toolkit Experimentation with Stefan Prodan"
-    date: 2020-01-01
+    title: >-
+      GitOps Days - Community Special: GitOps Toolkit Experimentation with
+      Stefan Prodan
+    date: "2020-01-01"
+    type: video
