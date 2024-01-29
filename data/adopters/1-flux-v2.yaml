@@ -309,3 +309,6 @@ adopters:
     - name: SOFTSWISS Game Aggregator
       url: https://www.softswiss.com/game-aggregator/
       logo: logos/softswiss-game-aggregator.svg
+    - name: STRG.at GmbH
+      url: https://strg.at
+      logo: logos/strg-at.png
