@@ -11,3 +11,6 @@ jobs:
       - name: Deploy 'main' on Netlify
         run: |
           curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}'
+          # So fluxcd.io/#calendar advances, rebuild the current minor:
+          # Ref: https://github.com/fluxcd/website/issues/1787
+          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK_V22 }}'
