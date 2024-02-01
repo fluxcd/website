@@ -60,13 +60,14 @@ These open source projects offer a dedicated graphical user interface for Flux.
 
 These open source projects extend Flux with new capabilities.
 
-| Source                                                                                                              | Description                                                             |
-|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| [weaveworks/tf-controller](https://github.com/weaveworks/tf-controller)                                             | A Flux controller for managing Terraform resources.                     |
-| [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)                                       | A Flux controller for managing manifests declared in jsonnet.           |
-| [kluctl/flux-kluctl-controller](https://github.com/kluctl/flux-kluctl-controller)                                   | A Flux controller for managing [Kluctl](https://kluctl.io) deployments. |
-| [awslabs/aws-cloudformation-controller-for-flux](https://github.com/awslabs/aws-cloudformation-controller-for-flux) | A Flux controller for managing AWS CloudFormation stacks.               |
-| [open-component-model/ocm-controller](https://github.com/open-component-model/ocm-controller) | A Flux controller for managing products represented by an [OCM](https://ocm.software)-based release train descriptor. |
+| Source                                                                                                              | Description                                                                                                                 |
+|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| [weaveworks/tf-controller](https://github.com/weaveworks/tf-controller)                                             | A Flux controller for managing Terraform resources.                                                                         |
+| [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)                                       | A Flux controller for managing manifests declared in jsonnet.                                                               |
+| [kluctl/flux-kluctl-controller](https://github.com/kluctl/flux-kluctl-controller)                                   | A Flux controller for managing [Kluctl](https://kluctl.io) deployments.                                                     |
+| [awslabs/aws-cloudformation-controller-for-flux](https://github.com/awslabs/aws-cloudformation-controller-for-flux) | A Flux controller for managing AWS CloudFormation stacks.                                                                   |
+| [open-component-model/ocm-controller](https://github.com/open-component-model/ocm-controller)                       | A Flux controller for managing products represented by an [OCM](https://ocm.software)-based release train descriptor.       |
+| [xUnholy/fluxcd-kustomize-mutating-webhook](https://github.com/xUnholy/fluxcd-kustomize-mutating-webhook)           | A Flux mutating webhook allowing for the federation and use of global platform configuration stored in a central namespace. |
 
 ## Integrations
 
