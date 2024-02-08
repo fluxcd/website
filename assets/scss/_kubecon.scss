@@ -1,0 +1,40 @@
+.flux-logo-inner-header-left {
+  width: 33.3333333333%;
+  float: left;
+  figure {
+    padding-left: 3.75%;
+    padding-right: 3.75%;
+  }
+}
+
+.float-header-kubecon {
+  float: left;
+  width: 50%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.inner-header-right-align {
+  width: 16.6666666667%;
+  float: left;
+}
+
+.stickers-float-left {
+  width: 50%;
+  float: left;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.float-booth-fun {
+  width: 50%;
+  float: left;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
