@@ -26,9 +26,6 @@ as being part of the Flux Ecosystem.
 {{% card header="[D2iQ Kommander](https://d2iq.com/products/kommander)" %}}
 ![D2iQ](/img/logos/d2iq.png)
 {{% /card %}}
-{{% card header="[Weave GitOps](https://www.weave.works/enterprise-flux/)" %}}
-![Weaveworks](/img/logos/weaveworks.png)
-{{% /card %}}
 {{< /cardpane >}}
 </div>
 
@@ -43,7 +40,6 @@ as being part of the Flux Ecosystem.
 | Gimlet      | Gimlet                  | [Documentation](https://gimlet.io/concepts/components/)                              |
 | GitLab      | GitLab                  | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
 | VMware      | Tanzu                   | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
-| Weaveworks  | Weave Gitops Enterprise | [Product Page](https://www.weave.works/enterprise-flux/)                             |
 
 ## Flux UIs / GUIs
 
@@ -52,7 +48,7 @@ These open source projects offer a dedicated graphical user interface for Flux.
 | Source                                                                              | Description                                                                                                                                                                                                                                                                                                                   |
 |-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [weaveworks/vscode-gitops-tools](https://github.com/weaveworks/vscode-gitops-tools) | GitOps Tools for Visual Studio Code: provides an intuitive way to manage, troubleshoot and operate your Kubernetes environment following the GitOps operating model                                                                                                                                                           |
-| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)               | Weaveworks offers a free and open source GUI for Flux under the [weave-gitops](https://docs.gitops.weave.works/docs/intro) project. You can install the Weave GitOps UI using a Flux `HelmRelease`, please see the [get started documentation](https://docs.gitops.weave.works/docs/getting-started/intro/) for more details. |
+| [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)               | Weaveworks offered a free and open source GUI for Flux under the [weave-gitops](https://docs.gitops.weave.works/docs/intro) project. You can install the Weave GitOps UI using a Flux `HelmRelease`, please see the [get started documentation](https://docs.gitops.weave.works/docs/getting-started/intro/) for more details. |
 
 {{< blocks/flux_ui_galleries >}}
 
