@@ -121,7 +121,7 @@ podinfo is a tiny web application made with Go.
     ```sh
     flux create source git podinfo \
       --url=https://github.com/stefanprodan/podinfo \
-      --branch=master \
+      --branch=main \
       --interval=1m \
       --export > ./clusters/my-cluster/podinfo-source.yaml
     ```
