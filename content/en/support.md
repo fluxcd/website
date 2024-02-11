@@ -19,21 +19,18 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 {{% card header="[DoneOps](https://www.doneops.com/#contactus)" %}}
 ![DoneOps](/img/logos/doneops.svg)
 {{% /card %}}
-{{% card header="[Weaveworks](https://www.weave.works/contact/)" %}}
-![Weaveworks](/img/logos/weaveworks.png)
-{{% /card %}}
 {{% card header="[Xenit](https://xenit.se/contact/)" %}}
 ![Xenit](/img/logos/xenit.png)
 {{% /card %}}
 {{< /cardpane >}}
 
-| Involvement / Service                                 | DoneOps | Weaveworks | Xenit |
-| ----------------------------------------------------- | ------- | ---------- | ----- |
-| Involved in Flux Community                            | ✅      | ✅         | ✅    |
-| Employs [Flux Core Maintainers][core-maintainers]     |         | ✅         | ✅    |
-| Offers GitOps infrastructure review and support       | ✅      | ✅         | ✅    |
-| Offers Custom Engineering                             |         | ✅         | ✅    |
-| Offers [Enterprise product based on Flux][enterprise] |         | ✅         |       |
+| Involvement / Service                                 | DoneOps |  Xenit |
+| ----------------------------------------------------- | ------- |  ----- |
+| Involved in Flux Community                            | ✅      |  ✅    |
+| Employs [Flux Core Maintainers][core-maintainers]     |         |  ✅    |
+| Offers GitOps infrastructure review and support       | ✅      |  ✅    |
+| Offers Custom Engineering                             |         |  ✅    |
+| Offers [Enterprise product based on Flux][enterprise] |         |        |
 
 [core-maintainers]: https://github.com/fluxcd/community/blob/main/CORE-MAINTAINERS
 [enterprise]: /ecosystem/#products-and-services-built-on-top-of-flux
