@@ -16,6 +16,9 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 <div class="support">
 
 {{< cardpane >}}
+{{% card header="[ControlPlane](https://control-plane.io/enterprise-flux/)" %}}
+![ControlPlane](/img/logos/controlplane.png)
+{{% /card %}}
 {{% card header="[DoneOps](https://www.doneops.com/#contactus)" %}}
 ![DoneOps](/img/logos/doneops.svg)
 {{% /card %}}
@@ -24,13 +27,13 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 {{% /card %}}
 {{< /cardpane >}}
 
-| Involvement / Service                                 | DoneOps |  Xenit |
-| ----------------------------------------------------- | ------- |  ----- |
-| Involved in Flux Community                            | ✅      |  ✅    |
-| Employs [Flux Core Maintainers][core-maintainers]     |         |  ✅    |
-| Offers GitOps infrastructure review and support       | ✅      |  ✅    |
-| Offers Custom Engineering                             |         |  ✅    |
-| Offers [Enterprise product based on Flux][enterprise] |         |        |
+| Involvement / Service                                 | ControlPlane | DoneOps | Xenit |
+|-------------------------------------------------------|--------------|---------|-------|
+| Involved in Flux Community                            | ✅            | ✅       | ✅     |
+| Employs [Flux Core Maintainers][core-maintainers]     | ✅            |         | ✅     |
+| Offers GitOps infrastructure review and support       | ✅            | ✅       | ✅     |
+| Offers Custom Engineering                             | ✅            |         | ✅     |
+| Offers [Enterprise product based on Flux][enterprise] | ✅            |         |       |
 
 [core-maintainers]: https://github.com/fluxcd/community/blob/main/CORE-MAINTAINERS
 [enterprise]: /ecosystem/#products-and-services-built-on-top-of-flux
