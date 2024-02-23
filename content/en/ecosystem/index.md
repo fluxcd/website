@@ -26,24 +26,21 @@ as being part of the Flux Ecosystem.
 {{% card header="[GitLab](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)" %}}
 ![GitLab](/img/logos/gitlab.svg)
 {{% /card %}}
-{{% card header="[D2iQ Kommander](https://d2iq.com/products/kommander)" %}}
-![D2iQ](/img/logos/d2iq.png)
-{{% /card %}}
 {{< /cardpane >}}
 </div>
 
 ### Complete list
 
-| Vendor       | Product / Service                | Link                                                                                 |
-|--------------|----------------------------------|--------------------------------------------------------------------------------------|
-| AWS          | EKS Anywhere                     | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
-| Azure        | AKS + Azure Arc                  | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
-| ControlPlane | Enterprise Distribution for Flux | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
-| D2iQ         | Kommander                        | [Product page](https://d2iq.com/products/kommander)                                  |
-| Giant Swarm  | Kubernetes Platform              | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
-| Gimlet       | Gimlet                           | [Documentation](https://gimlet.io/concepts/components/)                              |
-| GitLab       | GitLab                           | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
-| VMware       | Tanzu                            | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
+| Vendor       | Product / Service                   | Link                                                                                 |
+|--------------|-------------------------------------|--------------------------------------------------------------------------------------|
+| AWS          | EKS Anywhere                        | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
+| Azure        | AKS + Azure Arc                     | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
+| ControlPlane | Enterprise Distribution for Flux    | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
+| Giant Swarm  | Kubernetes Platform                 | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
+| Gimlet       | Gimlet                              | [Documentation](https://gimlet.io/concepts/components/)                              |
+| GitLab       | GitLab                              | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
+| Nutanix      | D2iQ Kubernetes Management Platform | [Product page](https://www.nutanix.com/products/dkp)                                 |
+| VMware       | Tanzu                               | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
 
 ## Flux UIs / GUIs
 
@@ -51,6 +48,7 @@ These open source projects offer a dedicated graphical user interface for Flux.
 
 | Source                                                                              | Description                                                                                                                                                                                                                                                                                                                   |
 |-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [gimlet-io/capacitor](https://github.com/gimlet-io/capacitor)               | Capacitor is a general purpose Flux UI to debug Flux and application issues. Apply [these manifests](https://github.com/gimlet-io/capacitor?tab=readme-ov-file#flux) to install it. |
 | [weaveworks/vscode-gitops-tools](https://github.com/weaveworks/vscode-gitops-tools) | GitOps Tools for Visual Studio Code: provides an intuitive way to manage, troubleshoot and operate your Kubernetes environment following the GitOps operating model                                                                                                                                                           |
 | [weaveworks/weave-gitops](https://github.com/weaveworks/weave-gitops)               | Weaveworks offered a free and open source GUI for Flux under the [weave-gitops](https://docs.gitops.weave.works/docs/intro) project. You can install the Weave GitOps UI using a Flux `HelmRelease`, please see the [get started documentation](https://docs.gitops.weave.works/docs/getting-started/intro/) for more details. |
 
