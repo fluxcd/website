@@ -1,6 +1,7 @@
 {{ $one := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
 {{ $two := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
-{{ $data := slice $one $two }}
+{{ $three := slice "Capacitor" "/img/uis/vscode-*.png" "capacitor" }}
+{{ $data := slice $one $two $three }}
 
 {{ range $data }}
     {{ $title := index . 0 }}
