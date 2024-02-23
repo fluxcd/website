@@ -26,24 +26,21 @@ as being part of the Flux Ecosystem.
 {{% card header="[GitLab](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)" %}}
 ![GitLab](/img/logos/gitlab.svg)
 {{% /card %}}
-{{% card header="[D2iQ Kommander](https://d2iq.com/products/kommander)" %}}
-![D2iQ](/img/logos/d2iq.png)
-{{% /card %}}
 {{< /cardpane >}}
 </div>
 
 ### Complete list
 
-| Vendor       | Product / Service                | Link                                                                                 |
-|--------------|----------------------------------|--------------------------------------------------------------------------------------|
-| AWS          | EKS Anywhere                     | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
-| Azure        | AKS + Azure Arc                  | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
-| ControlPlane | Enterprise Distribution for Flux | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
-| D2iQ         | Kommander                        | [Product page](https://d2iq.com/products/kommander)                                  |
-| Giant Swarm  | Kubernetes Platform              | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
-| Gimlet       | Gimlet                           | [Documentation](https://gimlet.io/concepts/components/)                              |
-| GitLab       | GitLab                           | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
-| VMware       | Tanzu                            | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
+| Vendor       | Product / Service                   | Link                                                                                 |
+|--------------|-------------------------------------|--------------------------------------------------------------------------------------|
+| AWS          | EKS Anywhere                        | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
+| Azure        | AKS + Azure Arc                     | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
+| ControlPlane | Enterprise Distribution for Flux    | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
+| Giant Swarm  | Kubernetes Platform                 | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
+| Gimlet       | Gimlet                              | [Documentation](https://gimlet.io/concepts/components/)                              |
+| GitLab       | GitLab                              | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
+| Nutanix      | D2iQ Kubernetes Management Platform | [Product page](https://www.nutanix.com/products/dkp)                                 |
+| VMware       | Tanzu                               | [Product Page](https://tanzu.vmware.com/tanzu)                                       |
 
 ## Flux UIs / GUIs
 
