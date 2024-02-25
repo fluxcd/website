@@ -91,3 +91,6 @@ adopters:
     - name: Kurator
       url: https://kurator.dev/
       logo: logos/kurator.svg
+    - name: OpsMx
+      url: https://opsmx.com
+      logo: logos/OpsMx.png
