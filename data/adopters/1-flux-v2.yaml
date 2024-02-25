@@ -314,4 +314,7 @@ adopters:
       logo: logos/strg-at.png
     - name: Ænix
       url: https://aenix.io
-      logo: logos/aenix.io
+      logo: logos/aenix.svg
+    - name: OpsMx
+      url: https://opsmx.com/
+      logo: logos/OpsMx.png
