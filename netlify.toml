@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "make production-build"
+  command = "git submodule update --init --recursive --depth 1 && make production-build"
 
 [build.environment]
   HUGO_VERSION = "0.123.4"
@@ -11,10 +11,10 @@
   HUGO_ENV = "production"
 
 [context.deploy-preview]
-  command = "make preview-build"
+  command = "git submodule update --init --recursive --depth 1 && make deploy-preview"
 
 [context.branch-deploy]
-  command = "make branch-build"
+  command = "git submodule update --init --recursive --depth 1 && make branch-build"
 
 [[headers]]
   for = "/*"
