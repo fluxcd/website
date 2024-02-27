@@ -1,6 +1,6 @@
 ---
 author: Laszlo Fogas
-date: 2024-02-26 06:00:00+00:00
+date: 2024-02-27 18:00:00+00:00
 title: Introducing Capacitor, a general purpose UI for Flux
 description: "Capacitor is a GUI that acts as a dashboard for Flux where you can get quick overview about your Flux resources and application deployments to debug issues quickly."
 url: /blog/2024/02/introducing-capacitor/
