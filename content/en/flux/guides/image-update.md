@@ -687,8 +687,7 @@ spec:
 
 A more strict filter would be `^main-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)`.
 Before applying policies in-cluster, you can validate your filters using
-a [Go regular expression tester](https://regoio.herokuapp.com)
-or [regex101.com](https://regex101.com/).
+[regex101.com](https://regex101.com/).
 
 Select the latest stable version (semver):
 
@@ -730,6 +729,20 @@ spec:
   policy:
     semver:
       range: '^1.x-0'
+```
+
+Select the latest version by extracting the semver from tags in the format `<semver>-<distro>`
+e.g. [Redis on DockerHub](https://hub.docker.com/_/redis):
+
+```yaml
+kind: ImagePolicy
+spec:
+  filterTags:
+    pattern: '^(?P<semver>[0-9]*\.[0-9]*\.[0-9]*)-(alpine[0-9]*\.[0-9]*)'
+    extract: '$semver'
+  policy:
+    semver:
+      range: '>=1.0.0'
 ```
 
 Select the latest release tagged as `RELEASE.<RFC3339-TIMESTAMP>`
