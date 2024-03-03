@@ -40,9 +40,12 @@ def get_contributions_from_gh():
     repos = [
         '.github',
         'community',
+        'cues',
         'flagger',
+        'flux-benchmark',
         'flux2',
         'flux2-kustomize-helm-example',
+        'flux2-monitoring-example',
         'flux2-multi-tenancy',
         'go-git-providers',
         'golang-with-libgit2',
@@ -55,6 +58,7 @@ def get_contributions_from_gh():
         'source-controller',
         'source-watcher',
         'terraform-provider-flux',
+        'test-infra',
         'website'
     ]
     bots = [
