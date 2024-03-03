@@ -3,9 +3,9 @@
   command = "make production-build"
 
 [build.environment]
-  HUGO_VERSION = "0.122.0"
+  HUGO_VERSION = "0.123.7"
   NODE_VERSION = "18"
-  GO_VERSION = "1.18"
+  GO_VERSION = "1.22"
 
 [context.production.environment]
   HUGO_ENV = "production"
