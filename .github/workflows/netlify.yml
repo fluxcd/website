@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-workflow]
 jobs:
   publish:
     if: github.repository == 'fluxcd/website'
