@@ -10,16 +10,18 @@
   name: makkes
 - avatar_url: https://avatars.githubusercontent.com/u/62033?v=4
   name: squaremo
-- avatar_url: https://avatars.githubusercontent.com/u/10550243?v=4
-  name: phillebaba
 - avatar_url: https://avatars.githubusercontent.com/u/34774756?v=4
   name: somtochiama
+- avatar_url: https://avatars.githubusercontent.com/u/10550243?v=4
+  name: phillebaba
 - avatar_url: https://avatars.githubusercontent.com/u/681456?v=4
   name: relu
 - avatar_url: https://avatars.githubusercontent.com/u/5442475?v=4
   name: luxas
 - avatar_url: https://avatars.githubusercontent.com/u/1346979?v=4
   name: dholbach
+- avatar_url: https://avatars.githubusercontent.com/u/3286998?v=4
+  name: kingdonb
 - avatar_url: https://avatars.githubusercontent.com/u/13513977?v=4
   name: mathetake
 - avatar_url: https://avatars.githubusercontent.com/u/26163841?v=4
@@ -28,8 +30,6 @@
   name: scottrigby
 - avatar_url: https://avatars.githubusercontent.com/u/4100?v=4
   name: juozasg
-- avatar_url: https://avatars.githubusercontent.com/u/3286998?v=4
-  name: kingdonb
 - avatar_url: https://avatars.githubusercontent.com/u/19580905?v=4
   name: alisondy
 - avatar_url: https://avatars.githubusercontent.com/u/50154848?v=4
@@ -156,6 +156,8 @@
   name: mmorejon
 - avatar_url: https://avatars.githubusercontent.com/u/18269095?v=4
   name: Frederik-Baetens
+- avatar_url: https://avatars.githubusercontent.com/u/6375667?v=4
+  name: knutgoetz
 - avatar_url: https://avatars.githubusercontent.com/u/3788909?v=4
   name: jtyr
 - avatar_url: https://avatars.githubusercontent.com/u/31516558?v=4
@@ -298,6 +300,8 @@
   name: nguyenductoan
 - avatar_url: https://avatars.githubusercontent.com/u/2349470?v=4
   name: ViBiOh
+- avatar_url: https://avatars.githubusercontent.com/u/2912732?v=4
+  name: gecube
 - avatar_url: https://avatars.githubusercontent.com/u/57249450?v=4
   name: paulcarlton-ww
 - avatar_url: https://avatars.githubusercontent.com/u/3892786?v=4
@@ -322,8 +326,6 @@
   name: Alan01252
 - avatar_url: https://avatars.githubusercontent.com/u/75983712?v=4
   name: dmitriishaburov
-- avatar_url: https://avatars.githubusercontent.com/u/6375667?v=4
-  name: knutgoetz
 - avatar_url: https://avatars.githubusercontent.com/u/1069919?v=4
   name: monotek
 - avatar_url: https://avatars.githubusercontent.com/u/1709030?v=4
@@ -438,6 +440,8 @@
   name: ruzickap
 - avatar_url: https://avatars.githubusercontent.com/u/707227?v=4
   name: raphapr
+- avatar_url: https://avatars.githubusercontent.com/u/261502?v=4
+  name: mjtrangoni
 - avatar_url: https://avatars.githubusercontent.com/u/2056009?v=4
   name: allymparker
 - avatar_url: https://avatars.githubusercontent.com/u/29008123?v=4
@@ -452,8 +456,6 @@
   name: willejs
 - avatar_url: https://avatars.githubusercontent.com/u/101469?v=4
   name: hoffimar
-- avatar_url: https://avatars.githubusercontent.com/u/2912732?v=4
-  name: gecube
 - avatar_url: https://avatars.githubusercontent.com/u/6672421?v=4
   name: michalschott
 - avatar_url: https://avatars.githubusercontent.com/u/1080056?v=4
@@ -812,6 +814,8 @@
   name: thepaulmacca
 - avatar_url: https://avatars.githubusercontent.com/u/232433?v=4
   name: rverchere
+- avatar_url: https://avatars.githubusercontent.com/u/140439307?v=4
+  name: ed-boykin
 - avatar_url: https://avatars.githubusercontent.com/u/69248573?v=4
   name: nw0rn
 - avatar_url: https://avatars.githubusercontent.com/u/2693687?v=4
