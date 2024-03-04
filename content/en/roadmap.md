@@ -11,128 +11,153 @@ type: page
 {{% alert color="info" title="Production readiness" %}}
 The Flux latest [beta and stable APIs](/flux/components/)
 (including their reconcilers) are well tested and safe to use in production environments.
-
-The beta APIs will be replaced in time with stable versions. After an API reaches GA,
-users have a six months window to upgrade the Flux CRDs and their Custom Resources
-from beta to stable.
-{{% /alert %}}
+The beta APIs will be replaced in time with stable versions.
 
 To learn more about Flux supported versions and release cadence,
 please see the [Flux release process](/flux/releases/).
+{{% /alert %}}
 
 ## Milestones
 
-The GA roadmap has been split into separate milestones.
-The Flux team's current focus is to finalise the tasks from the [Flux GitOps GA](#flux-gitops-ga-completed-in-july-2023) milestone.
-We estimate that the Flux features part of this milestone will become generally available in the first quarter of 2023.
+The Flux project roadmap is divided into milestones representing minor releases,
+each with a set of goals and tasks. The milestones marked as **provisional** are
+subject to change based on the project's priorities and the community's feedback.
 
-### Flux GitOps GA (Completed in July 2023)
+Please note that the Flux maintainers prioritize fixes to defects affecting GA APIs
+and security issues over new features. Depending on the volume of incoming issues and
+the complexity of the fixes, the roadmap may be adjusted and new features
+may be postponed to the next milestone.
 
-The goal of this milestone is to make a generally available release for the Flux GitOps APIs,
-and the Flux Git bootstrap & webhooks functionalities.
+### v2.2 (Q4 2023)
 
-The completion of this milestone is marked by the [v2.0.0](https://github.com/fluxcd/flux2/releases/tag/v2.0.0) release of the Flux distribution and CLI. 
+**Status**: Completed (v2.2.0 [changelog](https://github.com/fluxcd/flux2/releases/tag/v2.2.0))
 
-- [x] API promotions to GA
-  - [x] [gitrepositories.source.toolkit.fluxcd.io/v1](https://github.com/fluxcd/source-controller/issues/947)
-  - [x] [kustomizations.kustomize.toolkit.fluxcd.io/v1](https://github.com/fluxcd/kustomize-controller/issues/755)
-  - [x] [receivers.notification.toolkit.fluxcd.io/v1](https://github.com/fluxcd/notification-controller/issues/436)
+The primary goal of this milestone is to promote the `HelmRelease` beta API to `v2beta2` and to introduce
+a new reconciliation model for Helm releases.
 
-- [x] Git operations
-  - [x] [Consolidate Git implementations](https://github.com/fluxcd/pkg/issues/245)
-  - [x] [End-to-end testing for Git protocols](https://github.com/fluxcd/pkg/issues/334)
-  - [x] [Bootstrap support for Git v2 proto (Azure DevOps and AWS CodeCommit)](https://github.com/fluxcd/flux2/issues/3273)
-  - [x] [Git webhook receiver refactoring](https://github.com/fluxcd/notification-controller/pull/435)
+- **Helm integrations**
+  - [x] [Promote `HelmRelease` API to v2beta2](https://v2-2.docs.fluxcd.io/flux/components/helm/helmreleases/)
+  - [x] [Enhanced helm-controller reconciliation model](https://fluxcd.io/blog/2023/12/flux-v2.2.0/#enhanced-helmrelease-reconciliation-model)
+  - [x] [Improved observability of Helm releases](https://fluxcd.io/blog/2023/12/flux-v2.2.0/#improved-observability-of-helm-releases)
+  - [x] [Implement Helm Release drift detection and correction](https://fluxcd.io/blog/2023/12/flux-v2.2.0/#helm-release-drift-detection-and-correction)
+  - [x] [Allow forcing and retrying Helm releases](https://fluxcd.io/blog/2023/12/flux-v2.2.0/#forcing-and-retrying-helm-releases)
 
-- [x] Adopt Kubernetes server-side apply
-  - [x] Rewrite the kustomize-controller reconciler using server-side apply
-  - [x] Replace `kubectl` usage in Flux CLI with server-side apply (`fluxcd/pkg/ssa`)
-  - [x] Preview local changes with server-side apply dry-run (`flux diff kustomization`)
+- **OCI artifacts integrations**
+  - [x] [Static Helm OCI repositories](https://v2-2.docs.fluxcd.io/flux/components/source/helmrepositories/#helm-oci-repository)
+  - [x] [Cosign keyless verification for `HelmChart` artifacts](https://v2-2.docs.fluxcd.io/flux/components/source/helmcharts/#keyless-verification)
+  - [x] [Cosign keyless verification for `OCIRepository` artifacts](https://v2-2.docs.fluxcd.io/flux/components/source/ocirepositories/#keyless-verification)
+  - [x] [Allow connecting to insecure HelmRepositories](https://v2-2.docs.fluxcd.io/flux/components/source/helmrepositories/#insecure)
+  - [x] [Allow connecting to insecure ImageRepositories](https://v2-2.docs.fluxcd.io/flux/components/image/imagerepositories/#insecure)
 
-- [x] Multi-tenancy lockdown
-  - [x] [Allow setting a default service account for impersonation](https://github.com/fluxcd/flux2/issues/2340)
-  - [x] [Allow disabling cross-namespace references](https://github.com/fluxcd/flux2/issues/2337)
-  - [x] [Document multi-tenancy lockdown configuration](/flux/installation/configuration/multitenancy/)
+- **Git integrations**
+  - [x] [Support for Gitea bootstrap](https://v2-2.docs.fluxcd.io/flux/installation/bootstrap/gitea/)
+  - [x] [Support for BitBucket commit status updates](https://v2-2.docs.fluxcd.io/flux/components/notification/providers/#bitbucket-serverdata-center/)
 
-- [x] Conformance testing
-  - [x] End-to-end testing for bootstrap on AMD64 and ARM64 clusters
-  - [x] End-to-end testing for Flux self-upgrade
-  - [x] End-to-end testing for multi-tenancy lockdown
+- **Alerting integrations**
+  - [x] [Promote the `Alert` API to `v1beta3`](https://v2-2.docs.fluxcd.io/flux/components/notification/alerts/)
+  - [x] [Promote the `Provider` API to `v1beta3`](https://v2-2.docs.fluxcd.io/flux/components/notification/providers/)
 
-- [x] Terraform Provider
-  - [x] [Implement `flux_bootstrap_git` resource](https://github.com/fluxcd/terraform-provider-flux/pull/332)
-  - [x] [End-to-End testing with Kubernetes Kind](https://github.com/fluxcd/terraform-provider-flux/pull/411)
-  - [x] [Migration guide to `flux_bootstrap_git`](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/migrating-to-resource)
-  - [x] [Bootstrap guide for GitHub](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/guides/bootstrap_github_ssh)
-  - [x] [Bootstrap guide for GitLab](https://github.com/fluxcd/terraform-provider-flux/pull/438)
-  
-- [x] Documentation
-  - [x] Install and bootstrap guides for Kubernetes (Generic Git, GitHub, GitLab, BitBucket)
-  - [x] Install and bootstrap guides for managed Kubernetes (AWS, Azure, Google Cloud)
-  - [x] `gitrepositories.source.toolkit.fluxcd.io` API specification
-  - [x] `kustomizations.kustomize.toolkit.fluxcd.io` API specification
+- **Conformance testing**
+  - [x] [Benchmark to measure the Mean Time To Production (MTTP)](https://github.com/fluxcd/flux-benchmark/)
+  - [x] [End-to-end testing for Google Cloud integrations](https://github.com/fluxcd/flux2/tree/v2.2.0/tests/integration#gcp)
+  - [x] [End-to-end testing for Kubernetes 1.29](https://github.com/fluxcd/flux2/pull/4484)
 
-- [x] Kustomize v5 support
-  - [x] [Update Flux controllers to Kustomize v5.0](https://github.com/fluxcd/flux2/issues/3564)
-  - [x] [Update Kubernetes to 1.27.2](https://github.com/fluxcd/pkg/pull/534)
+- **EOL and Deprecations**
+  - End support for Kubernetes v1.25.x
+  - Deprecate APIs in group `helm.toolkit.fluxcd.io/v2beta1`
+  - Deprecate APIs in group `notification.toolkit.fluxcd.io/v2beta2`
 
-### Flux Helm GA (Q1 2024)
+### v2.3 (Q2 2024)
 
-The goal of this milestone is to make a generally available release for the Flux Helm APIs
+**Status**: In progress
+
+The primary goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
 
-The completion of this milestone will be marked by the `v2.3.0` release of the Flux distribution and CLI.
-
-- [ ] API promotions to GA
-  - [ ] `helmrepositories.source.toolkit.fluxcd.io/v1`
-  - [ ] `helmcharts.source.toolkit.fluxcd.io/v1`
-  - [ ] `helmreleases.helm.toolkit.fluxcd.io/v2`
-
-- [ ] Reconcilers
-  - [x] [OCI support and Cosign verification for HelmChart](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci#implementation-history)
-  - [x] [Atomic reconciliation of HelmReleases](https://github.com/fluxcd/helm-controller/pull/532)
-  - [x] [Standardize events and status conditions for HelmReleases](https://github.com/fluxcd/helm-controller/issues/487)
-  - [x] [Add support for drift detection and correction](https://github.com/fluxcd/helm-controller/pull/815)
+- **Helm integrations**
+  - [ ] Promote the `HelmRepository` API to `v1` GA
+  - [ ] Promote the `HelmChart` API to `v1` GA
+  - [ ] Promote the `HelmRelease` API to `v2` GA
+  - [ ] Promote the Flux CLI Helm-related commands to GA
   - [ ] [Reuse charts between releases with OCIRepository](https://github.com/fluxcd/helm-controller/issues/789)
   - [ ] [Reuse existing HelmChart resource between releases](https://github.com/fluxcd/helm-controller/issues/204)
-  
-- [ ] CLI
-  - [ ] [Cover more Helm release configuration options](https://github.com/fluxcd/flux2/issues/213)
 
-- [ ] Documentation
-  - [x] `helmrepositories.source.toolkit.fluxcd.io` API specification
-  - [x] `helmcharts.source.toolkit.fluxcd.io` API specification
-  - [ ] `helmreleases.helm.toolkit.fluxcd.io` API specification
+- **OCI artifacts integrations**
+  - [ ] [Notation verification for `HelmChart` artifacts](https://github.com/fluxcd/source-controller/pull/1075)
+  - [ ] [Notation verification for `OCIRepository` artifacts](https://github.com/fluxcd/source-controller/pull/1075)
+  - [ ] [Add `ref.semverFilter` to `OCIRepository` API](https://github.com/fluxcd/source-controller/issues/1391)
 
-### Flux Notifications GA (TBA)
+- **CDEvents integrations**
+  - [ ] [Extend the `Receiver` API with support for CDEvents](https://github.com/fluxcd/flux2/pull/4534)
 
-- [ ] API promotions to GA
-  - [ ] `alerts.notification.toolkit.fluxcd.io/v1`
-  - [ ] `providers.notification.toolkit.fluxcd.io/v1`
+- **Image automation**
+  - [ ] Promote the `ImageUpdateAutomation` API to `v1beta2`
+  - [ ] [Enhance image-automation-controller reconciliation model](https://github.com/fluxcd/image-automation-controller/issues/643)
+  - [ ] [Add support for selecting image policies with a label selector](https://github.com/fluxcd/image-automation-controller/pull/619)
+  - [ ] [Allow including the previous image tag in the commit message template](https://github.com/fluxcd/image-automation-controller/issues/437)
 
-This milestone's tasks haven't been determined yet.
+- **Conformance testing**
+  - [ ] End-to-end testing for Kubernetes 1.30
+  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
+  - [ ] [End-to-end testing for OpenShift](https://github.com/fluxcd/flux2/issues/4625)
 
-### Flux Image Automation GA (TBA)
+- **EOL and Deprecations**
+  - End support for Flux v2.0.x
+  - End support for Kubernetes v1.26.x
+  - Deprecate APIs in group `helm.toolkit.fluxcd.io/v2beta2`
+  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
-- [ ] API promotions to GA
-  - [ ] `imagepolicies.image.toolkit.fluxcd.io/v1`
-  - [ ] `imageupdateautomations.image.toolkit.fluxcd.io/v1`
+### v2.4 (Q3 2024)
 
-This milestone's tasks haven't been determined yet.
+**Status**: Provisional
 
-### Flux S3-compatible APIs GA (TBA)
+The primary goal of this milestone is to make a generally available release for the Flux image automation APIs
+and S3-compatible storage APIs.
 
-- [ ] API promotions to GA
-  - [ ] `buckets.source.toolkit.fluxcd.io/v1`
+- **Image automation**
+  - [ ] Promote the `ImageUpdateAutomation` API to `v1`
+  - [ ] Promote the `ImageRepository` API to `v1`
+  - [ ] Promote the `ImagePolicy` API to `v1`
+  - [ ] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
 
-This milestone's tasks haven't been determined yet.
+- **S3-compatible storage integrations**
+  - [ ] Promote the `Bucket` API to `v1`
 
-### Flux OCI artifacts GA (TBA)
+- **OCI artifacts integrations**
+  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
+  - [ ] [Enhance OCI Artifact support](https://github.com/fluxcd/source-controller/issues/1247)
+  - [ ] [Add support for layer extraction from OCI artifacts with `ImageIndex`](https://github.com/fluxcd/source-controller/pull/1369)
 
-- [ ] API promotions to GA
-  - [ ] `ocirepositories.source.toolkit.fluxcd.io/v1`
+- **Git integrations**
+  - [ ] [Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4114)
+  - [ ] Implement Workload Identity auth for Azure DevOps repositories
+  - [ ] Implement GitHub App auth for GitHub repositories
 
-This milestone's tasks haven't been determined yet.
+- **Conformance testing**
+  - [ ] End-to-end testing for Kubernetes 1.31
+
+- **EOL and Deprecations**
+  - End support for Flux v2.1.x
+  - End support for Kubernetes v1.27.x
+  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
+  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
+
+### v2.5 (TBD)
+
+**Status**: Provisional
+
+This milestone's tasks have not been determined yet.
+
+- **Conformance testing**
+  - [ ] End-to-end testing for Kubernetes 1.32
+
+- **EOL and Deprecations**
+  - End support for Flux v2.2.x
+  - End support for Kubernetes v1.28.x
+  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
+  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
 ## Request for comments
 
@@ -148,3 +173,4 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0005](https://github.com/fluxcd/flux2/pull/3233) Artifact `Revision` format and introduction of `Digest`
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4114) Passswordless authentication for Git repositories
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4528) Custom Health Checks for Kustomization using Common Expression Language(CEL)
