@@ -24,6 +24,9 @@ adopters:
     - name: SoulCycle
       url: https://www.soul-cycle.com
       logo: logos/soulcycle.png
+    - name: Luma Health
+      url: https://lumahealth.io/
+      logo: logos/lumahealth.svg
     - name: Luminovo
       url: https://luminovo.ai
       logo: logos/luminovo.png
