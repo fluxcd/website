@@ -76,6 +76,18 @@ Generate a GitHub PAT for the Flux user that can create repositories by checking
 
 If you want to use an existing repository, the Flux user must have `admin` permissions for that repository.
 
+{{% alert color="info" title="GitHub fine-grained PAT" %}}
+Bootstrap can be run with a GitHub [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens),
+but the GitHub repository must be created ahead of time by an organization admin.
+
+The fine-grained PAT must be generated with the following permissions:
+
+- `Administration` -> `Access: Read-only` (should be set to `Read and write` when using `bootstrap github --token-auth=false`)
+- `Contents` -> `Access: Read and write`
+- `Metadata` -> `Access: Read-only`
+
+{{% /alert %}}
+
 Run the bootstrap for a repository owned by a GitHub organization:
 
 ```sh
