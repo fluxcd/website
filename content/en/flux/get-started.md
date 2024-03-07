@@ -14,6 +14,9 @@ To follow the guide, you need the following:
 - **A Kubernetes cluster**. We recommend [Kubernetes kind](https://kind.sigs.k8s.io/docs/user/quick-start/) for trying Flux out in a local development environment.
 - **A GitHub personal access token with repo permissions**. See the GitHub documentation on [creating a personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
+Note that for production use, it is recommended to have a dedicated GitHub account for Flux and 
+use [fine-grained access tokens](/flux/installation/bootstrap/github/#github-organization) with the minimum required permissions.
+
 ## Objectives
 
 - Bootstrap Flux on a Kubernetes Cluster.
