@@ -321,3 +321,6 @@ adopters:
     - name: OpsMx
       url: https://opsmx.com/
       logo: logos/OpsMx.png
+    - name: Cisco
+      url: https://cisco.com/
+      logo: logos/cisco.png
