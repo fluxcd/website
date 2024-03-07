@@ -54,7 +54,7 @@ commonAnnotations:
   sharding.fluxcd.io/role: "shard"
 patches:
   - target:
-      kind: (Namespace|CustomResourceDefinition|ClusterRole|ClusterRoleBinding|ServiceAccount|NetworkPolicy)
+      kind: (Namespace|CustomResourceDefinition|ClusterRole|ClusterRoleBinding|ServiceAccount|NetworkPolicy|ResourceQuota)
       labelSelector: "app.kubernetes.io/part-of=flux"
     patch: |
       apiVersion: v1
