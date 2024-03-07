@@ -106,7 +106,7 @@ def write_yaml(contributors):
     if os.path.exists(out_file):
         os.remove(out_file)
     with open(out_file, 'w') as stream:
-        yaml.dump(contributors, stream, default_flow_style=False)
+        yaml.dump(contributors, stream)
         stream.close()
 
 def main():
