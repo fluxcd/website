@@ -85,10 +85,16 @@ def get_contributions_from_gh():
             contributors[name]['avatar_url'] = contributor.avatar_url
     return contributors
 
+# If you are trying to make this list have a stable sort order, you haven't understood.
+# This function is intended to return the contributors in order of the most contributions.
+# People move up and down the list because they are making contributions and going up and
+# down in the rankings. Do not attempt to make this return stable sorted results. It's OK
+# for this leaderboard to change every week.
 def sort_contributions(contributors):
     contribs = [{'name': x,
                  'contributions': contributors[x]['contributions'],
                  'avatar_url': contributors[x]['avatar_url']} for x in contributors.keys()]
+    contribs = sorted(contribs, key=lambda a: a['name'], reverse=False)
     contribs = sorted(contribs, key=lambda a: a['contributions'], reverse=True)
     for x in contribs:
         x.pop('contributions')
