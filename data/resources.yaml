@@ -17,11 +17,6 @@ resources:
     title: "Platform Engineering: Build Fleets of GKE Clusters with FluxCD"
     date: 2023-12-13
     type: video
-  - url: "https://www.weave.works/blog/gitops-kubernetes-resources-for-absolute-beginners"
-    title: "GitOps & Kubernetes Resources for Absolute Beginners"
-    date: "2023-10-17"
-    type: article
-    thumbnail_url: "https://www.weave.works/assets/images/bltb8f2fce43601c761/GITOP-PIPELINE-StartingOut.png"
   - youtube: EWofHnNngoc
     title: "Nerdearla: Introducción a GitOps con Flux"
     date: "2023-09-29"
