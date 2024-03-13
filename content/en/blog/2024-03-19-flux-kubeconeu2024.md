@@ -2,7 +2,7 @@
 author: Tamao
 date: 2024-03-19 08:00:00+00:00
 title: Flux project gains New Corporate Support and Ecosystem in 2024
-description: "Flux project gains new supporters"
+description: "Flux project gains new supporters in 2024"
 url: /blog/2024/03/Flux-project-gains-new-corporate-support-and-ecosystem-in-2024/
 tags: [announcement]
 ---
