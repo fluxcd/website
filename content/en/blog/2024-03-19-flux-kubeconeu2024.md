@@ -3,7 +3,7 @@ author: Tamao
 date: 2024-03-19 08:00:00+00:00
 title: Flux project gains New Corporate Support and Ecosystem in 2024
 description: "Flux project gains new supporters in 2024"
-url: /blog/2024/03/Flux-project-gains-new-corporate-support-and-ecosystem-in-2024/
+url: /blog/2024/03/flux-project-gains-new-corporate-support-and-ecosystem-in-2024/
 tags: [announcement]
 ---
 
@@ -29,7 +29,7 @@ is committed to upstream contributions.
 > in Flux through upstream contributions for the long-term health and
 > support of the project, and downstream partnerships to help customers
 >
->-  Lachie Evenson, Principal PDM Manager – Cloud Native Ecosystem, Microsoft
+> Lachie Evenson, Principal PDM Manager – Cloud Native Ecosystem, Microsoft
 
 Both Azure and AWS use Flux to streamline
 Kubernetes cluster and application management, adopting GitOps principles
@@ -54,7 +54,7 @@ Flux’s security, modularity, resilience, and community all contribute to how i
 > cloud native infrastructure relies on the strength and resilience of the Flux community.
 > Flux’s technology and community make it the GitOps framework in our Telco networks.
 >
-> - Philippe Ensarguet, VP Software Engineering, Orange
+> Philippe Ensarguet, VP Software Engineering, Orange
 
 Other long-time Flux [adopters](https://fluxcd.io/adopters/) who have added themselves to the public
 list recently include Cisco and German retailer, Tchibo.
