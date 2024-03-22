@@ -291,7 +291,7 @@ $ flux create image update my-app-auto \
     --export > ./$AUTO_PATH/my-app-auto.yaml
 $ cat my-app-auto.yaml
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: my-app-auto
@@ -337,8 +337,8 @@ $ flux reconcile kustomization --with-source flux-system
 ✔ Kustomization reconciliation completed
 ✔ reconciled revision main@sha1:401dd3b550f82581c7d12bb79ade389089c6422f
 $ flux get image update
-NAME            READY   MESSAGE         LAST RUN                SUSPENDED
-my-app-auto     True    no updates made 2021-02-08T14:53:43Z    False
+NAME            LAST RUN                    SUSPENDED       READY   MESSAGE
+my-app-auto     2021-02-08T14:53:43Z        False           True    repository up-to-date
 ```
 
 Read on to the next section to see how to change each manifest file to work with Flux v2.

@@ -132,7 +132,7 @@ Import package
 ```go
 import (
 	imagev1 "github.com/fluxcd/image-reflector-controller/api/v1beta2"
-	autov1 "github.com/fluxcd/image-automation-controller/api/v1beta1"
+	autov1 "github.com/fluxcd/image-automation-controller/api/v1beta2"
 )
 ```
 
@@ -142,7 +142,7 @@ API Types
 |------------------------------------------------------------------------|---------|
 | [ImageRepository](../components/image/imagerepositories.md)            | v1beta2 |
 | [ImagePolicy](../components/image/imagepolicies.md)                    | v1beta2 |
-| [ImageUpdateAutomation](../components/image/imageupdateautomations.md) | v1beta1 |
+| [ImageUpdateAutomation](../components/image/imageupdateautomations.md) | v1beta2 |
 
 ## CRUD Example
 
