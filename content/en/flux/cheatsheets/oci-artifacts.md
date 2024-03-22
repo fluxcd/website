@@ -580,7 +580,7 @@ tags in the YAML manifests stored in the Git repository used at bootstrap.
 First we'll configure Flux to clone the bootstrap repository and push commits to the `main` branch:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: flux-system
@@ -597,7 +597,7 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
   update:
     path: ./clusters/my-cluster
     strategy: Setters
