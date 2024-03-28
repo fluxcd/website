@@ -175,9 +175,6 @@ params:
 
 menus:
   main:
-  - name: KubeCon Paris 2024
-    url: /kubecon
-    weight: 5
   - name: Documentation
     url: /flux
     weight: 10
