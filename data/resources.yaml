@@ -13,6 +13,30 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - youtube: LTwJIMWovO4
+    title: "KubeCon EU 2024: Flux: Secure and Scalable GitOps | Project Lightning Talk"
+    date: "2024-03-26"
+    type: video
+  - youtube: JFLNFJT59DY
+    title: "KubeCon EU 2024: GitOps Continuous Delivery at Scale with Flux - Stefan Prodan"
+    date: "2024-03-25"
+    type: video
+  - youtube: rJ6vebxS0aI
+    title: "KubeCon EU 2024: Tackling Configuration Management at Scale with Flux, CUE and OCI at Cisco | Alec Hothan & Stefan Prodan"
+    date: "2024-03-25"
+    type: video
+  - youtube: i3d_gMeqU3c
+    title: "KubeCon EU 2024: Flux and the Wider Ecosystem Planning BoF"
+    date: "2024-03-20"
+    type: video
+  - youtube: crmTnB6Zwt8
+    title: "KubeCon EU 2024: How We Are Moving from GitOps to Kubernetes Resource Model in 5G Core"
+    date: "2024-03-20"
+    type: video
+  - youtube: W-xTeBTQ2kI
+    title: "ArgoCon EU 2024: Panel: Argo Vs Flagger: Progressive Delivery with Linkerd - Scott Rigby, Anastasiia Gubska & Kostis Kapelonis"
+    date: "2024-03-19"
+    type: video
   - youtube: QDghS96Kd9g
     title: "Platform Engineering: Build Fleets of GKE Clusters with FluxCD"
     date: 2023-12-13
