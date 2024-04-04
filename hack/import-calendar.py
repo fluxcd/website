@@ -104,7 +104,7 @@ def read_calendar(cal):
 
         events.append(formatted_event)
 
-    events.sort(key=lambda e: e['time'])
+    events.sort(key=lambda e: f'{e["date"]}{e["time"]}')
     return events
 
 def format_location_html(location):
