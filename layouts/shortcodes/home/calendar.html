@@ -18,10 +18,12 @@
                         <dd>{{ .where }}</dd>
                     </li>
 
+                    {{ if and .org_email .org_name }}
                     <li>
                         <dt>Organizer</dt>
                         <dd><a href="mailto:{{ .org_email }}">{{ .org_name }}</a></dd>
                     </li>
+                    {{ end }}
                 </ul>
 
                <span class="description">{{ .description | safeHTML }}</span>
