@@ -96,6 +96,7 @@ def read_calendar(cal):
                 'label': str(event['summary']),
                 'where': format_location_html(event_location),
                 'description': description,
+                'timestamp': event_time,
         }
 
         if 'organizer' in event:
@@ -104,7 +105,7 @@ def read_calendar(cal):
 
         events.append(formatted_event)
 
-    events.sort(key=lambda e: e['time'])
+    events.sort(key=lambda e: e['timestamp'])
     return events
 
 def format_location_html(location):
