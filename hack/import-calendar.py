@@ -63,6 +63,8 @@ def download_calendar():
 
 
 def read_organizer(event):
+    if not 'organizer' in event:
+        return None
     organizer = event['organizer']
     email = organizer.title().split(':')[1].lower()
     name = email
@@ -88,47 +90,38 @@ def read_calendar(cal):
             event_location = ''
         else:
             event_location = event['location'].title().lower()
-        events += [
-            {
-                "time": event_time,
-                "title": event['summary'],
-                "location": event_location,
-                "organizer": read_organizer(event),
-                "description": description
-            }
-        ]
+        formatted_event = {
+                'date': event_time.strftime('%F'),
+                'time': event_time.strftime('%H:%M'),
+                'label': str(event['summary']),
+                'where': format_location_html(event_location),
+                'description': description,
+        }
+
+        if 'organizer' in event:
+            formatted_event['org_email'] = event['organizer']['email']
+            formatted_event['org_name'] = event['organizer']['name']
+
+        events.append(formatted_event)
+
     events.sort(key=lambda e: e['time'])
     return events
 
-def format_location_html(event):
-    lc = event['location'].lower()
-    location = event['location']
-    html = event['location']
-    if lc.startswith("http://") or lc.startswith("https://"):
-        html = f"""<a href="{lc}">{location}</a>"""
-    elif lc.find("slack") or lc.find('#flux'):
+def format_location_html(location):
+    html = location
+    if html.startswith("http://") or html.startswith("https://"):
+        html = f"""<a href="{html}">{location}</a>"""
+    elif html.find("slack") or html.find('#flux'):
         html = f"""<a href="https://cloud-native.slack.com/messages/flux">{location}</a>"""
     return html
 
 
-def write_events_yaml(ical):
-    if os.path.exists(CALENDAR_YAML):
-        os.remove(CALENDAR_YAML)
-
-    if not ical:
+def write_events_yaml(events):
+    if not events:
         return
 
-    events = []
-    for entry in ical:
-        events += [{
-            'date': entry['time'].strftime('%F'),
-            'time': entry['time'].strftime('%H:%M'),
-            'label': str(entry['title']),
-            'where': format_location_html(entry),
-            'org_email': entry['organizer']['email'],
-            'org_name': entry['organizer']['name'],
-            'description': entry['description']
-        }]
+    if os.path.exists(CALENDAR_YAML):
+        os.remove(CALENDAR_YAML)
 
     with open(CALENDAR_YAML, 'w') as stream:
         yaml.dump(events, stream)
