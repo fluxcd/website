@@ -324,3 +324,6 @@ adopters:
     - name: Cisco
       url: https://cisco.com/
       logo: logos/cisco.png
+    - name: Netic
+      url: https://www.netic.dk/
+      logo: logos/netic.svg
