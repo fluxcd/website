@@ -71,7 +71,7 @@ def read_organizer(event):
     if 'cn' in organizer.params:
         name = organizer.params['cn']
 
-    return {"name": name, "email": email}
+    return {"org_name": name, "org_email": email}
 
 
 def read_calendar(cal):
@@ -93,15 +93,12 @@ def read_calendar(cal):
         formatted_event = {
                 'date': event_time.strftime('%F'),
                 'time': event_time.strftime('%H:%M'),
+                'timestamp': event_time,
                 'label': str(event['summary']),
                 'where': format_location_html(event_location),
                 'description': description,
-                'timestamp': event_time,
         }
-
-        if 'organizer' in event:
-            formatted_event['org_email'] = event['organizer']['email']
-            formatted_event['org_name'] = event['organizer']['name']
+        formatted_event.update(read_organizer(event))
 
         events.append(formatted_event)
 
