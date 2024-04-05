@@ -1,6 +1,6 @@
 ARG HUGO_VERSION
 FROM fluxcd/website:hugo-${HUGO_VERSION}-extended
-COPY --from=golang:1.19-alpine /usr/local/go/ /usr/local/go/
+COPY --from=golang:1.21-alpine /usr/local/go/ /usr/local/go/
 
 ENV PATH="/usr/local/go/bin:${PATH}"
 
