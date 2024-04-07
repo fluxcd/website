@@ -27,7 +27,7 @@ import recurring_ical_events
 import urllib3
 import yaml
 
-CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/4130481/1290943905/feed.ics'
+CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/9524119/1081862612/feed.ics'
 
 TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
@@ -57,7 +57,7 @@ def download_calendar():
     http = urllib3.PoolManager()
     r = http.request('GET', CAL_URL)
     if r.status != 200:
-        print('Error retrieving calendar.', sys.stderr)
+        print(f'Error retrieving calendar. Status: {r.status}, Body: {r.data.decode()}', file=sys.stderr)
         return None
     return r.data
 
