@@ -15,32 +15,26 @@ download the Flux CLI from [GitHub releases page](https://github.com/fluxcd/flux
 
 List the Flux container images with:
 
-```console
-$ flux install --export | grep ghcr.io
-image: ghcr.io/fluxcd/source-controller:v1.0.0
-image: ghcr.io/fluxcd/kustomize-controller:v1.0.0
-image: ghcr.io/fluxcd/helm-controller:v0.35.0
-image: ghcr.io/fluxcd/notification-controller:v1.0.0
+```sh
+flux install --export | grep ghcr.io
 ```
 
-Copy each controller image to your private container registry using
+Copy each controller images to your private container registry using
 [crane](https://github.com/google/go-containerregistry/blob/main/cmd/crane/README.md):
 
 ```sh
-crane copy ghcr.io/fluxcd/source-controller:v1.0.0 registry.internal/fluxcd/source-controller:v1.0.0
-```
+FLUX_CONTROLLERS=(
+"source-controller"
+"kustomize-controller"
+"helm-controller"
+"notification-controller"
+"image-reflector-controller"
+"image-automation-controller"
+)
 
-## Configure the image pull secret
-
-From a machine inside the air-gapped network
-create the pull secret in the `flux-system` namespace:
-
-```sh
-kubectl create ns flux-system
-
-kubectl -n flux-system create secret generic regcred \
-  --from-file=.dockerconfigjson=/.docker/config.json \
-  --type=kubernetes.io/dockerconfigjson
+for controller in "${FLUX_CONTROLLERS[@]}"; do
+ crane copy --all-tags ghcr.io/fluxcd/$controller  <your-registry>/$controller
+done
 ```
 
 ## Bootstrap Flux
@@ -51,7 +45,6 @@ run bootstrap using the images from your private registry:
 ```sh
 flux bootstrap git \
   --registry=registry.internal/fluxcd \
-  --image-pull-secret=regcred \
   --url=ssh://git@<host>/<org>/<repository> \
   --branch=<my-branch> \
   --private-key-file=<path/to/private.key> \
@@ -64,3 +57,33 @@ as the deploy key on your Git server in advance.
 
 For more information on how to use the `flux bootstrap git` command,
 please see the generic Git server [documentation](/flux/installation/bootstrap/generic-git-server/).
+
+## Bootstrap Flux and authenticate to a private container registry
+
+If the private container registry requires authentication,
+you can pass the credentials to the Flux CLI using the `--registry-creds` flag.
+Replace `username:password` with your credentials and run:
+
+```sh
+flux bootstrap git \
+  --registry-creds=username:password \
+  --image-pull-secret=regcred \
+  --registry=registry.internal/fluxcd \
+  --url=ssh://git@<host>/<org>/<repository> \
+  --branch=<my-branch> \
+  --private-key-file=<path/to/private.key> \
+  --password=<key-passphrase> \
+  --path=clusters/my-cluster
+```
+
+The Flux CLI creates the image pull secret specified with `--image-pull-secret`
+in the `flux-system` namespace and configures the controllers pods to use it.
+
+To update the credentials in the image pull secret, you can re-run the
+bootstrap command with the new credentials or update the secret directly with:
+
+```sh
+flux -n flux-system create secret oci regcred \
+  --username=username \
+  --password=password
+```
