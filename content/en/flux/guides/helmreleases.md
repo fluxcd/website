@@ -206,10 +206,47 @@ that are stored in the same bucket.
 
 A better option is to use an [OCI registry for chart storage](#helm-oci-repository).
 
+### OCI repository
+
+Helm charts stored in an OCI registry, can be retrieved by declaring an `OCIRepository`.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+spec:
+  interval: 5m0s
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  ref:
+    tag: 6.0.0
+```
+
+The source-controller will fetch the Helm chart from the OCI registry namespace 
+on an interval and expose it as an artifact.
+
+The `interval` defines at which interval the OCI repository contents
+are fetched, and should be at least `1m`. Setting this to a higher
+value means newer chart versions will be detected at a slower pace,
+a push-based fetch can be introduced using [webhook receivers](webhook-receivers.md)
+
+The `url` has to point to a registry repository and to start with `oci://`.
+
+The `ref` defines the checkout strategy, and can be one of `tag`, `digest` or `semver`.
+When using `semver`, an optional `semverFilter` can be provided to filter the tags.
+See the [`OCIRepository` CRD docs](../components/source/ocirepositories.md) for more details.
+
+{{% alert color="info" title="Authentication" %}}
+HTTP/S authentication and contextual login can be configured for private
+OCI registries. See the [`OCIRepository` CRD docs](../components/source/ocirepositories.md)
+for more details.
+{{% /alert %}}
+
 ## Define a Helm release
 
-With the chart source created, define a new `HelmRelease` to release
-the Helm chart:
+To release a Helm chart, a `HelmRelease` resource has to be created.
+
+### Using a chart template
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
@@ -259,6 +296,37 @@ for finer grain control over how Helm actions are performed.
 See the [`HelmRelease` CRD docs](../components/helm/helmreleases.md)
 for more details.
 {{% /alert %}}
+
+### Using a chart reference
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: podinfo
+    namespace: flux-system
+  interval: 30s
+  values:
+    replicaCount: 2
+```
+
+The `.chartRef` field is used to reference a `OCIRepository` or `HelmChart` resource.
+The helm-controller will then look up the chart in the artifact of the referenced source,
+and fetch it directly.
+
+The pros of using a chart reference are:
+- The chart is fetched directly from the source, without the need to create a `HelmChart`
+  resource. This can reduces the number of resources in the cluster.
+- In the case of a `OCIRepository`, the fact that it is possible to pin on a
+  specific `tag` or `digest` makes it easier to enfore that a specific chart is
+  used, and overall more flexible.
+
+**Note**: When switching from a `chart.Spec` to a `chartRef`, the old `HelmChart`
+resource is garbage collected by the helm-controller.
 
 ## Refer to values in `ConfigMaps` generated with Kustomize
 
