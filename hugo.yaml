@@ -84,10 +84,12 @@ outputFormats:
   SearchIndex:
     baseName: index
     mediaType: application/json
+    isPlainText: true
+    notAlternative: true
 
 outputs:
   home: [HTML, SearchIndex]
-  page: [HTML, SearchIndex]
+  page: [HTML]
 
 params:
   description: Open and extensible continuous delivery solution for Kubernetes.
