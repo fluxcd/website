@@ -126,6 +126,8 @@ jobs:
       - name: Get chart version from staging
         id: staging
         run: |
+          # For OCIRepository source, use the oci-digest field instead of revision.
+          # e.g. DIGEST=$(echo ${{ github.event.client_payload.metadata.oci-digest }} | cut -d '@' -f1)
           VERSION=$(echo ${{ github.event.client_payload.metadata.revision }} | cut -d '@' -f1)
           echo VERSION=${VERSION} >> $GITHUB_OUTPUT
       # Patch the chart version in the production Helm release manifest.

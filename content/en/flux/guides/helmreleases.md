@@ -252,6 +252,7 @@ for more details.
 
 ### Using a chart reference
 
+It is possible to reference a chart directly from an `OCIRepository`:
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
@@ -267,16 +268,34 @@ spec:
     replicaCount: 2
 ```
 
+
+Or a `HelmChart`:
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chartRef:
+    kind: HelmChart
+    name: podinfo
+    namespace: flux-system
+  interval: 30s
+  values:
+    replicaCount: 2
+```
+
 The `.chartRef` field is used to reference a `OCIRepository` or `HelmChart` resource.
 The helm-controller will then look up the chart in the artifact of the referenced source,
 and fetch it directly.
 
 The pros of using a chart reference are:
 - The chart is fetched directly from the source, without the need to create a `HelmChart`
-  resource. This can reduces the number of resources in the cluster.
-- In the case of a `OCIRepository`, the fact that it is possible to pin on a
-  specific `tag` or `digest` makes it easier to enfore that a specific chart is
-  used, and overall more flexible.
+  resource for the sepcif `HelmRelease`. This can reduces the number of resources
+  in the cluster.
+- In the case of a `OCIRepository`, the fact that it is possible to pin to a
+  specific `tag` or `digest` makes it easier to enforce a specific change, and
+  overall more flexible.
 
 **Note**: When switching from a `chart.Spec` to a `chartRef`, the old `HelmChart`
 resource is garbage collected by the helm-controller.
