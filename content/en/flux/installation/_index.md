@@ -5,7 +5,7 @@ description: "How to install the Flux CLI and the Flux controllers."
 weight: 30
 ---
 
-The Flux project is comprised of a command-line tool (the FLux CLI) and a series
+The Flux project is comprised of a command-line tool (the Flux CLI) and a series
 of [Kubernetes controllers](/flux/components/).
 
 To install Flux, first you'll need to download the `flux` CLI.
@@ -104,7 +104,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 
 ## Install the Flux controllers
 
-The recommend way of installing Flux on Kubernetes clusters is by using the bootstrap procedure.
+The recommended way of installing Flux on Kubernetes clusters is by using the bootstrap procedure.
 
 ### Bootstrap with Flux CLI
 
