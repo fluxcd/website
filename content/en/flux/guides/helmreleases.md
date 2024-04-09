@@ -67,26 +67,6 @@ Helm repositories. See the [`HelmRepository` CRD docs](../components/source/helm
 for more details.
 {{% /alert %}}
 
-#### Helm OCI repository
-
-The source-controller performs the Helm repository url validation i.e. the url is
-a valid OCI registry url.
-
-The URL is expected to point to a registry repository and to start with `oci://`.
-
-```yaml
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: podinfo
-  namespace: default
-spec:
-  type: oci
-  interval: 5m0s
-  url: oci://ghcr.io/stefanprodan/charts
-```
-
 #### Helm repository authentication with credentials
 
 In order to use a private Helm repository, you may need to provide the credentials.
@@ -114,33 +94,6 @@ metadata:
 stringData:
   username: example
   password: "123456"
-```
-
-For OCI repositories, the credentials can be provided alternatively as a secret reference
-with dockerconfig authentication.
-
-```yaml
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: podinfo
-  namespace: default
-spec:
-  interval: 5m0s
-  url: oci://ghcr.io/stefanprodan/charts
-  type: "oci"
-  secretRef:
-    name: regcred
-```
-
-The Docker registry Secret `regcred` can be created with `kubectl`:
-
-```shell
-kubectl create secret docker-registry regcred \
- --docker-server=ghcr.io \
- --docker-username=gh-user \
- --docker-password=gh-token
 ```
 
 ### Git repository
@@ -204,7 +157,7 @@ as the source-controller will download the whole storage bucket at each sync. Th
 bucket can easily become very large if there are frequent releases of multiple charts
 that are stored in the same bucket.
 
-A better option is to use an [OCI registry for chart storage](#helm-oci-repository).
+A better option is to use an [OCI registry for chart storage](#oci-repository).
 
 ### OCI repository
 
