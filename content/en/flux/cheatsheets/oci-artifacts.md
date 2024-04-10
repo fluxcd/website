@@ -340,13 +340,13 @@ For more details on how to setup contextual authorization for Azure, AWS and Goo
 
 ## Signing and verification
 
-Starting with v0.35, Flux comes with support for verifying OCI artifacts
-signed with [Sigstore Cosign](https://github.com/sigstore/cosign).
+Flux comes with support for verifying OCI artifacts signed with [Sigstore Cosign](https://github.com/sigstore/cosign)
+or [Notaryproject notation](https://https://github.com/notaryproject/notation).
 
 To secure your delivery pipeline, you can sign the artifacts and configure Flux
 to verify the artifacts' signatures before they are downloaded and reconciled in production.
 
-### Workflow example
+### Cosign Workflow example
 
 Generate a Cosign key-pair and create a Kubernetes secret with the public key:
 
@@ -396,6 +396,87 @@ Note that keyless verification is an **experimental feature**, using
 custom root CAs or self-hosted Rekor instances are not currently supported.
 {{% /alert %}}
 
+### Notary Workflow example
+
+Add a certificate to the trusted certificates store:
+
+```shell
+notation cert add --type ca --store <store> <cert>
+```
+
+It is also possible to generate a test certificate:
+
+```shell
+# Generate a certificate and RSA key pair
+notation cert generate-test valid-example
+```
+
+Push and sign the artifact using the certificate's private key:
+
+```shell
+flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) \
+	--path="./kustomize" \
+	--source="$(git config --get remote.origin.url)" \
+	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
+
+notation sign ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) -k <key>
+```
+
+Create a `trustpolicy.json` file:
+
+```json
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "<policy-name>",
+            "registryScopes": [ 
+                "ghcr.io/stefanprodan/manifests/podinfo"
+             ],
+            "signatureVerification": {
+                "level" : "strict" 
+            },
+            "trustStores": [ "ca:<store-name>" ],
+            "trustedIdentities": [
+                "*"
+            ]
+        }
+    ]
+}
+```
+
+{{% alert color="info" title="Notation trust policy" %}}
+For more details see [trust policy spec](https://github.com/notaryproject/specifications/blob/main/specs/trust-store-trust-policy.md#trust-policy)
+{{% /alert %}}
+
+Generate a kubernetes secret with the certificate and trust policy:
+
+```shell
+flux create secret notation podinfo-cfg \
+    --namespace=<namespace> \
+    --trust-policy-file=<trust-policy-file-path> \
+    --ca-cert-file=<ca-cert-file-path>
+```
+
+Configure Flux to verify the artifacts using the Notary trust policy and certificate:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    semver: "*"
+  verify:
+    provider: notation
+    secretRef:
+      name: podinfo-cfg
+```
+
 ### Verification status
 
 If the verification succeeds, Flux adds a condition with the
@@ -427,8 +508,8 @@ Verification failures are also visible when running `flux get sources oci` and i
 
 ## Verify Helm charts
 
-Starting with v0.36, Flux comes with support for verifying Helm charts stored as OCI artifacts
-and signed with [Sigstore Cosign](https://github.com/sigstore/cosign).
+Flux comes with support for verifying Helm charts stored as OCI artifacts signed
+with [Sigstore Cosign](https://github.com/sigstore/cosign) or [Notaryproject notation](https://https://github.com/notaryproject/notation).
 
 The verification works the same as for `OCIRepository`, the main difference is that for Helm,
 the verification must be enabled with `HelmRelease.spec.chart.spec.verify`.
