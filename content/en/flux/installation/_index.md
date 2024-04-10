@@ -157,6 +157,14 @@ The provider offers a Terraform resource called
 [flux_bootstrap_git](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/resources/bootstrap_git)
 that can be used to bootstrap Flux in the same way the Flux CLI does it.
 
+There are examples available for the provider in the [fluxcd/terraform-provider-flux](https://github.com/fluxcd/terraform-provider-flux) repository, some you may be interested in are:
+
+- [Bootstrapping a cluster using a GitHub repository and a personal access token (PAT)](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-pat)
+- [Bootstrapping a cluster using a GitHub repository via SSH](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-ssh)
+- [Bootstrapping a cluster using a GitHub repository via SSH and GPG](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-ssh-with-gpg)
+- [Bootstrapping a cluster using a GitHub repository self-managing the SSH keypair secret)](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-self-managed-ssh-keypair)
+- [Bootstrapping a cluster using a Gitlab repository via SSH](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/gitlab-via-ssh)
+
 For more details on how to use the Terraform provider
 please see the [Flux docs on registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux/latest/docs).
 
