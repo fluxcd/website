@@ -18,3 +18,5 @@ static/install.sh
 
 # build directories
 /bin
+/lib/python*
+/pyvenv.cfg
