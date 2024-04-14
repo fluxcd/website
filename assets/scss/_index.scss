@@ -65,6 +65,9 @@ main.td-main {
       padding-bottom: 45px;
       padding-top: 20px;
       font-size: 32px;
+      span.origtz {
+        display: none;
+      }
     }
     a {
       text-decoration: underline;
