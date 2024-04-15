@@ -32,12 +32,12 @@ $('.calendar-list li').click(function() {
         let dt_string = dto.toLocaleDateString(locale, {
           month: 'numeric', day: 'numeric', year: 'numeric',
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        }).replace(/\//g, '-');
+        }); // .replace(/\//g, '-');
         this.dateTarget.innerHTML = dt_string;
 
         let tm_string = dto.toLocaleTimeString(locale, {
           hour: '2-digit',
-          minute:'2-digit',
+          minute: '2-digit',
           timeZoneName: 'short'
         });
         this.timeTarget.innerHTML = tm_string;
