@@ -25,8 +25,8 @@ $('.calendar-list li').click(function() {
       if(this.hasTimestampTarget && this.hasDateTarget && this.hasTimeTarget) {
         let ts = Date.parse(this.timestampTarget.innerHTML);
         let dto = new Date(ts);
-        // let locale = navigator.language;
-        let locale = 'en-UK';
+        let locale = navigator.language;
+        // let locale = 'en-UK';
 
         // Set date string 
         let dt_string = dto.toLocaleDateString(locale, {
