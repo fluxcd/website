@@ -80,6 +80,16 @@ docker-serve:
 	docker run -v $(shell pwd):/site -p 1313:1313 -it $(SUPPORT_IMAGE_NAME) \
 		make \"MAKEFLAGS=$(MAKEFLAGS)\" serve HUGO_BIND_ADDRESS=0.0.0.0 GITHUB_TOKEN=$(GITHUB_TOKEN) BRANCH=$(BRANCH)
 
+.PHONY : spin-up # spin-deploy
+port = 3000
+spin-up:
+	hugo -D -b "http://127.0.0.1:$(port)/"
+	cd app && spin build && spin up --listen 127.0.0.1:$(port)
+
+# spin-deploy:
+# 	hugo -b "/"
+# 	cd app && spin build && spin deploy
+
 .PHONY: docker-push docker-push-hugo docker-push-support
 docker-push: docker-push-hugo docker-push-support
 

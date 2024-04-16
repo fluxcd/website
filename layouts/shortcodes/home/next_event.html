@@ -1,11 +1,12 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 {{ $blockID := printf "td-cover-block-%d" .Ordinal }}
 
-<p class="next-event">
+<p class="next-event" data-controller="calrow">
 {{ range first 1 $.Site.Data.calendar }}
-📆 Next event: {{ .date }} {{ .time }} UTC:<br/>
+📆 Next event: <span data-calrow-target="date">{{ .date }}</span> <span data-calrow-target="time">{{ .time }} UTC</span>:<br/>
 {{ .label }}<br/>
 Where: {{ safeURL .where }}
+<span data-calrow-target="timestamp" aria-hidden="true" class="origtz">{{ .timestamp }}</span>
 
 {{ end }}
 </p>
