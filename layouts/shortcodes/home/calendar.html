@@ -1,14 +1,16 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="team-calendar">
+<div class="team-calendar" data-controller="calendar">
     <h3 id="calendar">Our Team Calendar</h3>
-    <p class="caption">The upcoming meetings, talks and community events in the next month are listed below. (All times are UTC.)</p>
+    <p class="caption">The upcoming meetings, talks and community events in the next month are listed<br/>
+    below. (All times are <span data-calendar-target="localtz">UTC</span>.)</p>
 
     <ul class="calendar-list">
         {{ range $.Site.Data.calendar }}
         <li>
-            <div class="calendar-row">
-                <div class="date">{{ .date }}</div>
-                <div class="time">{{ .time }}</div>
+            <div class="calendar-row" data-controller="calrow">
+              <div class="date" data-calrow-target="date">{{ .date }}</div><span>&nbsp;</span>
+                <div class="time" data-calrow-target="time">{{ .time }}</div><span>&nbsp;</span>
+                <div class="origtz" aria-hidden="true" data-calrow-target="timestamp">{{ .timestamp }}</div> 
                 <div class="label">{{ .label }}</div>
             </div>
             <div class="calendar-card">

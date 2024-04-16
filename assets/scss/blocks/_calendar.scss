@@ -1,6 +1,6 @@
 .team-calendar {
   padding: 0 1rem 1.5rem 1rem;
-  max-width: 600px;
+  max-width: 740px;
   margin: 0 auto;
   @include media-breakpoint-down(sm) {
     overflow-x: hidden;
@@ -70,7 +70,7 @@
 
       .time {
         display: inline-block;
-        width: 3rem;
+        width: 10rem;
 
         padding: 6px 0;
         padding-right: 2rem;
@@ -85,7 +85,7 @@
         padding: 6px 0;
         font-weight: 500;
         vertical-align: bottom;
-        width: 60%;
+        width: 55%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -95,9 +95,15 @@
       }
     }
 
+    .calendar-row {
+      .origtz {
+        display: none;
+      }
+    }
+
     .calendar-card {
       display: none;
-      max-width: 600px;
+      max-width: 740px;
 
       padding: 0 1rem 1rem 1rem;
       // word-break: break-all;
