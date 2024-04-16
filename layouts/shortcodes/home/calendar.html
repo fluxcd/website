@@ -8,8 +8,8 @@
         {{ range $.Site.Data.calendar }}
         <li>
             <div class="calendar-row" data-controller="calrow">
-              <div class="date" data-calrow-target="date">{{ .date }}</div><span> </span>
-                <div class="time" data-calrow-target="time">{{ .time }}</div>
+              <div class="date" data-calrow-target="date">{{ .date }}</div><span>&nbsp;</span>
+                <div class="time" data-calrow-target="time">{{ .time }}</div><span>&nbsp;</span>
                 <div class="origtz" aria-hidden="true" data-calrow-target="timestamp">{{ .timestamp }}</div> 
                 <div class="label">{{ .label }}</div>
             </div>
