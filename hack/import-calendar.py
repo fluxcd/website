@@ -78,8 +78,10 @@ def read_calendar(cal):
     events = []
     gcal = Calendar.from_ical(cal)
     today = date.today()
+    now = datetime.now()
+    hour_ago = now - timedelta(hours=0, minutes=50)
     next_month = today+timedelta(days=30)
-    for event in recurring_ical_events.of(gcal).between(today, next_month):
+    for event in recurring_ical_events.of(gcal).between(hour_ago, next_month):
         description = replace_url_to_link(fix_double_url(event['description']))
         if type(event['dtstart'].dt) == date:
             event_time = datetime.combine(
@@ -100,7 +102,9 @@ def read_calendar(cal):
         }
         formatted_event.update(read_organizer(event))
 
-        events.append(formatted_event)
+        # Only include events that haven't started more than 1 hour ago
+        if event_time > pytz.utc.localize(hour_ago):
+            events.append(formatted_event)
 
     events.sort(key=lambda e: e['timestamp'])
     return events
