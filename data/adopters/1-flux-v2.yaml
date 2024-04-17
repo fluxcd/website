@@ -327,3 +327,6 @@ adopters:
     - name: Netic
       url: https://www.netic.dk/
       logo: logos/netic.svg
+    - name: Replicated
+      url: https://replicated.com/
+      logo: logos/replicated.png
