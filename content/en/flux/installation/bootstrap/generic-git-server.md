@@ -90,6 +90,21 @@ You can also supply the password or Git token using a pipe e.g. `echo "<my-pass>
 If your Git server uses a self-signed TLS certificate, you can specify the CA file with
 `--ca-file=<path/to/ca.crt>`.
 
+## HTTPS authorization header
+
+To access Git repositories that require a bearer token in the HTTP headers as an Authorization header such as [Oracle VBS Git Repositories](https://docs.oracle.com/en/cloud/paas/visual-builder/visualbuilder-manage-development-process/access-git-repository-using-token-based-authentication.html):
+
+```sh
+flux bootstrap git \
+  --url=https://repository-url \
+  --with-bearer-token \
+  --password=<Access Token> \
+  --path=clusters/my-cluster
+```
+
+If your Git server uses a self-signed TLS certificate, you can specify the CA file with
+`--ca-file=<path/to/ca.crt>`.
+
 ## Bootstrap multiple clusters
 
 With `--path` you can configure the directory which will be used to reconcile the target cluster.
