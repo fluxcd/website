@@ -53,7 +53,7 @@ The SBOM is generated with [Syft](https://github.com/anchore/syft) in the [SPDX]
 The `spdx.json` file is available for download on the GitHub release page e.g.:
 
 ```shell
-curl -sL https://github.com/fluxcd/flux2/releases/download/v2.0.0/flux_0.25.3_sbom.spdx.json | jq
+curl -sL https://github.com/fluxcd/flux2/releases/download/v2.0.0/flux_2.0.0_sbom.spdx.json | jq
 ```
 
 The Flux controllers' images come with SBOMs for each CPU architecture,
