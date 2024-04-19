@@ -132,6 +132,7 @@ initial setup of deploy keys and other authentication mechanisms:
 * [AWS CodeCommit](./bootstrap/aws-codecommit.md)
 * [Azure DevOps](./bootstrap/azure-devops.md)
 * [Google Cloud Source](./bootstrap/google-cloud-source.md)
+* [Oracle Cloud Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
 
 If your Git provider is not in the above list,
 please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)
