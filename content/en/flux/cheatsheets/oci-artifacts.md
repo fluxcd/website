@@ -438,7 +438,7 @@ Create a `trustpolicy.json` file:
             },
             "trustStores": [ "ca:<store-name>" ],
             "trustedIdentities": [
-                "*"
+                "x509.subject: C=RO, ST=BU, L=Bucharest, O=Notary, CN=stefanprodan.com"
             ]
         }
     ]
