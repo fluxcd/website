@@ -79,8 +79,8 @@ and the Flux Helm functionalities.
   - [ ] Promote the `HelmChart` API to `v1` GA
   - [ ] Promote the `HelmRelease` API to `v2` GA
   - [ ] Promote the Flux CLI Helm-related commands to GA
-  - [ ] [Reuse charts between releases with OCIRepository](https://github.com/fluxcd/helm-controller/issues/789)
-  - [ ] [Reuse existing HelmChart resource between releases](https://github.com/fluxcd/helm-controller/issues/204)
+  - [x] [Reuse charts between releases with OCIRepository](https://github.com/fluxcd/helm-controller/issues/789)
+  - [x] [Reuse existing HelmChart resource between releases](https://github.com/fluxcd/helm-controller/issues/204)
 
 - **OCI artifacts integrations**
   - [x] [Notation verification for `HelmChart` artifacts](https://github.com/fluxcd/source-controller/pull/1075)
@@ -92,14 +92,18 @@ and the Flux Helm functionalities.
 
 - **Image automation**
   - [ ] Promote the `ImageUpdateAutomation` API to `v1beta2`
-  - [ ] [Enhance image-automation-controller reconciliation model](https://github.com/fluxcd/image-automation-controller/issues/643)
+  - [x] [Enhance image-automation-controller reconciliation model](https://github.com/fluxcd/image-automation-controller/issues/643)
   - [x] [Add support for selecting image policies with a label selector](https://github.com/fluxcd/image-automation-controller/pull/619)
   - [x] [Allow including the previous image tag in the commit message template](https://github.com/fluxcd/image-automation-controller/issues/437)
 
+- **Terraform provider**
+  - [x] [Add support for air-gapped bootstrap](https://github.com/fluxcd/terraform-provider-flux/pull/664)
+  - [x] [Implement drift detection and correction for cluster state](https://github.com/fluxcd/terraform-provider-flux/pull/661)
+  - [x] [Improve documentation with concrete examples for the various bootstrap methods](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples)
+
 - **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.30
-  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
-  - [ ] [End-to-end testing for OpenShift](https://github.com/fluxcd/flux2/issues/4625)
+  - [x] End-to-end testing for Kubernetes 1.30
+  - [x] [End-to-end testing for OpenShift](https://github.com/fluxcd/flux2/issues/4625)
 
 - **EOL and Deprecations**
   - End support for Flux v2.0.x
@@ -136,6 +140,7 @@ and S3-compatible storage APIs.
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.31
+  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
 
 - **EOL and Deprecations**
   - End support for Flux v2.1.x
