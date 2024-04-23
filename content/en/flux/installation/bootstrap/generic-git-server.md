@@ -41,11 +41,9 @@ delete the `flux-system` secret from the cluster and run:
 ```shell
 flux create secret git flux-system \
   --url=ssh://git@<host>/<org>/<repository> \
-  --ssh-key-algorithm=rsa \
-  --ssh-rsa-bits=4096
+  --private-key-file=<path/to/private.key> \
+  --password=<key-passphrase>
 ```
-
-The CLI will prompt you to add the SSH public key as a deploy key to your repository.
 {{% /alert %}}
 
 ## SSH Agent
@@ -72,6 +70,20 @@ and it will prompt you to add the SSH public key as a deploy key to your reposit
 
 The generated SSH key defaults to `ECDSA P-384`, to change the format use `--ssh-key-algorithm` and `--ssh-ecdsa-curve`.
 
+{{% alert color="info" title="SSH Key rotation" %}}
+To regenerate the SSH private key and known hosts keys,
+delete the `flux-system` secret from the cluster and run:
+
+```shell
+flux create secret git flux-system \
+  --url=ssh://git@<host>/<org>/<repository> \
+  --ssh-key-algorithm=ecdsa \
+  --ssh-ecdsa-curve=p384
+```
+
+The CLI will prompt you to add the SSH public key as a deploy key to your repository.
+{{% /alert %}}
+
 ## HTTPS basic auth
 
 If your Git server has basic auth enabled, you can bootstrap Flux over HTTPS with:
@@ -92,13 +104,14 @@ If your Git server uses a self-signed TLS certificate, you can specify the CA fi
 
 ## HTTPS authorization header
 
-To access Git repositories that require a bearer token in the HTTP headers as an Authorization header such as [Oracle VBS Git Repositories](https://docs.oracle.com/en/cloud/paas/visual-builder/visualbuilder-manage-development-process/access-git-repository-using-token-based-authentication.html):
+To access Git repositories that require a bearer token in the HTTP headers
+as an Authorization header such as [Oracle VBS Git Repositories](https://docs.oracle.com/en/cloud/paas/visual-builder/visualbuilder-manage-development-process/access-git-repository-using-token-based-authentication.html):
 
 ```sh
 flux bootstrap git \
-  --url=https://repository-url \
-  --with-bearer-token \
+  --url=https://<host>/<org>/<repository> \
   --password=<Access Token> \
+  --with-bearer-token \
   --path=clusters/my-cluster
 ```
 
