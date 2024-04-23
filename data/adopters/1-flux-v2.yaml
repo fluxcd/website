@@ -333,3 +333,6 @@ adopters:
     - name: AppsCode
       url: https://appscode.com/
       logo: logos/appscode.png
+    - name: Rad AI
+      url: https://radai.com
+      logo: logos/radai.svg
