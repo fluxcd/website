@@ -1,18 +1,18 @@
-.team-calendar {
-  padding: 0 0 1.5rem 1rem;
+.team-calendar-dark {
+  padding: 0 1rem 1.5rem 1rem;
   max-width: 740px;
-  // margin: 0 auto;
+  margin: 0 auto;
   @include media-breakpoint-down(sm) {
     overflow-x: hidden;
   }
 
   h3 {
     font-weight: 600;
-    text-align: left;
+    text-align: center;
   }
   p.caption, p.details {
-    text-align: left;
-    margin: 1rem 0 1rem 1rem;
+    text-align: center;
+    margin: 1rem 0 2rem 0;
   }
 
   p.details {
@@ -23,22 +23,22 @@
   ul.calendar-list {
     margin: 0 auto;
     list-style-type: none;
-    // @include media-breakpoint-down(sm) {
-    padding-left: 0;
-    // }
+    @include media-breakpoint-down(sm) {
+      padding-left: 0;
+    }
 
     & > li {
-      border-bottom: 1px solid rgba($flux-black, 0.25);
+      border-bottom: 1px solid rgba($flux-white, 0.25);
      
       .label {
-        text-decoration: underline 0.15em rgba($flux-black, 0);
+        text-decoration: underline 0.15em rgba($flux-white, 0);
         text-underline-offset: 0.2em;
         transition: text-decoration-color 300ms;
       }
 
       &:hover {
         .label {
-          text-decoration-color: rgba($flux-black, 0.75);
+          text-decoration-color: rgba($flux-white, 0.75);
           text-underline-offset: 0.2em;
           cursor: pointer;
         }
@@ -48,7 +48,7 @@
         border-bottom: none;
         .label {
           text-underline-offset: 0.2em;
-          text-decoration: underline 0.15em rgba($flux-black, 0.25);
+          text-decoration: underline 0.15em rgba($flux-white, 0.25);
         }
       }
 
@@ -61,7 +61,7 @@
         width: 6rem;
         text-align: left;
         font-weight: 500;
-        color:rgba($flux-black, 0.75);
+        color:rgba($flux-white, 0.75);
 
         padding: 6px 0;
 
@@ -75,7 +75,7 @@
         padding: 6px 0;
         padding-right: 2rem;
         font-weight: 300;
-        color:rgba($flux-black, 0.75);
+        color:rgba($flux-white, 0.75);
 
         vertical-align: bottom;
       }
@@ -121,7 +121,7 @@
       }
       
       dt {
-        color: rgba($flux-black, 0.75);
+        color: rgba($flux-white, 0.75);
         display: inline-block;
         width: 7.5rem;
         text-align: right;
@@ -130,7 +130,7 @@
       dd {
         margin: 0;
         padding-left: 14px;
-        color: rgba($flux-black, 1);
+        color: rgba($flux-white, 1);
         display: inline-block;
         clear: both;
       }

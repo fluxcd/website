@@ -14,7 +14,7 @@ $('.calendar-list li').click(function() {
     static targets = [ "localtz" ];
     connect(){
       let tz_description = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      this.localtzTarget.innerHTML = `<b>now localized for ${tz_description}</b>`;
+      this.localtzTarget.innerHTML = `<b>localized for ${tz_description}</b>`;
     }
   })
 
