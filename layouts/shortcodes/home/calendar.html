@@ -1,39 +1,35 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 <div class="team-calendar" data-controller="calendar">
-    <h3 id="calendar">Our Team Calendar</h3>
-    <p class="caption">The upcoming meetings, talks and community events in the next month are listed<br/>
-    below. (All times are <span data-calendar-target="localtz">UTC</span>.)</p>
-
-    <ul class="calendar-list">
-        {{ range $.Site.Data.calendar }}
-        <li>
-            <div class="calendar-row" data-controller="calrow">
-              <div class="date" data-calrow-target="date">{{ .date }}</div><span>&nbsp;</span>
-                <div class="time" data-calrow-target="time">{{ .time }}</div><span>&nbsp;</span>
-                <div class="origtz" aria-hidden="true" data-calrow-target="timestamp">{{ .timestamp }}</div> 
-                <div class="label">{{ .label }}</div>
-            </div>
-            <div class="calendar-card">
-                <ul class="details-list">
-                    <li>
-                        <dt>Where</dt>
-                        <dd>{{ .where }}</dd>
-                    </li>
-
-                    {{ if and .org_email .org_name }}
-                    <li>
-                        <dt>Organizer</dt>
-                        <dd><a href="mailto:{{ .org_email }}">{{ .org_name }}</a></dd>
-                    </li>
-                    {{ end }}
-                </ul>
-
-               <span class="description">{{ .description | safeHTML }}</span>
-            </div>
-        </li>
-        {{ end }}
-    </ul>
-
-    <p class="details">See <a href="/community/#meetings">this page</a>
-        for more detail and subscription options.</p>
+<h3 id="calendar">Our Team Calendar</h3>
+<p class="caption">The upcoming meetings, talks and community events in the next month are listed<br/>
+below. (All times are <span data-calendar-target="localtz">UTC</span>.)</p>
+<ul class="calendar-list">
+{{ range $.Site.Data.calendar }}
+<li>
+<div class="calendar-row" data-controller="calrow">
+<div class="date" data-calrow-target="date">{{ .date }}</div><span>&nbsp;</span>
+<div class="time" data-calrow-target="time">{{ .time }}</div><span>&nbsp;</span>
+<div class="origtz" aria-hidden="true" data-calrow-target="timestamp">{{ .timestamp }}</div> 
+<div class="label">{{ .label }}</div>
+</div>
+<div class="calendar-card">
+ <ul class="details-list">
+<li>
+<dt>Where</dt>
+<dd>{{ .where }}</dd>
+</li>
+{{ if and .org_email .org_name }}
+<li>
+<dt>Organizer</dt>
+<dd><a href="mailto:{{ .org_email }}">{{ .org_name }}</a></dd>
+</li>
+{{ end }}
+ </ul>
+<span class="description">{{ .description | safeHTML }}</span>
+</div>
+</li>
+{{ end }}
+</ul>
+<p class="details">See <a href="/community/#meetings">this page</a>
+    for more detail and subscription options.</p>
 </div>
