@@ -51,29 +51,65 @@ inside the `flux-system` namespace.
 
 {{% alert color="info" title="Token rotation" %}}
 Note that Azure DevOps PAT have an expiry date. To rotate the token before it expires,
-delete the `flux-system` secret from the cluster and re-run
-the bootstrap command using a valid PAT.
+delete the `flux-system` secret from the cluster and create a new one with the new PAT:
+
+```sh
+flux create secret git flux-system \
+   --url=https://dev.azure.com/<org>/<project>/_git/<repository> \
+   --username=git \
+   --password=<az-token>
+```
 {{% /alert %}}
 
-If you want to avoid storing your PAT in the cluster, set `--ssh-hostname` and the Flux controllers will use SSH:
+## Bootstrap using SSH keys
 
-```shell
-flux bootstrap git \
-  --url=https://dev.azure.com/<org>/<project>/_git/<repository> \
-  --branch=main \
-  --password=${GIT_PASSWORD} \
-  --ssh-hostname=ssh.dev.azure.com \
-  --ssh-key-algorithm=rsa \
-  --ssh-rsa-bits=4096 \
-  --path=clusters/my-cluster
+Azure DevOps SSH works only with RSA SHA-2 keys. 
+
+To configure Flux with RSA SHA-2 keys, you need to clone the DevOps locally, then
+create the file structure required by bootstrap with:
+
+```sh
+mkdir -p clusters/my-cluster/flux-system
+touch clusters/my-cluster/flux-system/gotk-components.yaml \
+    clusters/my-cluster/flux-system/gotk-sync.yaml \
+    clusters/my-cluster/flux-system/kustomization.yaml
 ```
 
-The bootstrap command will generate a new SSH private key for the cluster,
-and it will prompt you to add the SSH public key to your personal SSH keys.
+Edit the `kustomization.yaml` file to include the following patches:
 
-## Bootstrap without a DevOps PAT
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --ssh-hostkey-algos=rsa-sha2-512,rsa-sha2-256      
+    target:
+      kind: Deployment
+      name: (source-controller|image-automation-controller)
+```
 
-To bootstrap using a SSH key instead of a Azure DevOps PAT, run:
+Commit and push the changes to upstream with:
+
+```sh
+git add -A && git commit -m "init flux" && git push
+```
+
+To generate an SSH key pair compatible with
+Azure DevOps, you'll need to use `ssh-keygen` with the `rsa-sha2-512` algorithm:
+
+```sh
+ssh-keygen -t rsa-sha2-512
+```
+
+Upload the SSH public key to Azure DevOps. For more information, see the
+[Azure DevOps documentation](https://learn.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops#step-2-add-the-public-key-to-azure-devops).
+
+Run bootstrap using the SSH URL of the Azure DevOps repository and the RSA SHA-2 private key:
 
 ```sh
 flux bootstrap git \
@@ -83,8 +119,6 @@ flux bootstrap git \
   --password=<key-passphrase> \
   --path=clusters/my-cluster
 ```
-
-**Note** that you must generate an SSH private key and set the public key to your personal SSH keys in advance.
 
 For more information on how to use the `flux bootstrap git` command,
 please see the generic Git server [documentation](generic-git-server.md).
