@@ -57,13 +57,49 @@ delete the `flux-system` secret from the cluster and create a new one with the n
 flux create secret git flux-system \
    --url=https://dev.azure.com/<org>/<project>/_git/<repository> \
    --username=git \
-   --password=$AZURE_DEVOPS_PAT
+   --password=<az-token>
 ```
 {{% /alert %}}
 
 ## Bootstrap using SSH keys
 
-Azure DevOps SSH works only with RSA SHA-2 keys. To generate an SSH key pair compatible with
+Azure DevOps SSH works only with RSA SHA-2 keys. 
+
+To configure Flux with RSA SHA-2 keys, you need to clone the DevOps locally, then
+create the file structure required by bootstrap with:
+
+```sh
+mkdir -p clusters/my-cluster/flux-system
+touch clusters/my-cluster/flux-system/gotk-components.yaml \
+    clusters/my-cluster/flux-system/gotk-sync.yaml \
+    clusters/my-cluster/flux-system/kustomization.yaml
+```
+
+Edit the `kustomization.yaml` file to include the following patches:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --ssh-hostkey-algos=rsa-sha2-512,rsa-sha2-256      
+    target:
+      kind: Deployment
+      name: (source-controller|image-automation-controller)
+```
+
+Commit and push the changes to upstream with:
+
+```sh
+git add -A && git commit -m "init flux" && git push
+```
+
+To generate an SSH key pair compatible with
 Azure DevOps, you'll need to use `ssh-keygen` with the `rsa-sha2-512` algorithm:
 
 ```sh
