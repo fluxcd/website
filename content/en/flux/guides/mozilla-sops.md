@@ -1,12 +1,11 @@
 ---
-title: "Manage Kubernetes secrets with Mozilla SOPS"
-linkTitle: "Mozilla SOPS"
-description: "Manage Kubernetes secrets with Mozilla SOPS, OpenPGP, Age and Cloud KMS."
+title: "Manage Kubernetes secrets with SOPS"
+linkTitle: "SOPS"
+description: "Manage Kubernetes secrets with SOPS, OpenPGP, Age and Cloud KMS."
 weight: 60
 ---
 
-In order to store secrets safely in a public or private Git repository, you can use
-Mozilla's [SOPS](https://github.com/mozilla/sops) CLI to encrypt
+In order to store secrets safely in a public or private Git repository, you can use [SOPS](https://github.com/mozilla/sops) CLI to encrypt
 Kubernetes secrets with OpenPGP, AWS KMS, GCP KMS and Azure Key Vault.
 
 ## Prerequisites
@@ -411,7 +410,7 @@ patches:
 At this point, kustomize-controller is now authorized to decrypt values in
 SOPS encrypted files from your Sources via the related Key Vault.
 
-See Mozilla's guide to
+See the SOPS guide to
 [Encrypting Using Azure Key Vault](https://github.com/mozilla/sops#encrypting-using-azure-key-vault)
 to get started committing encrypted files to your Git Repository or other Sources.
 
