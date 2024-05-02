@@ -247,7 +247,7 @@ And finally set the decryption secret in the Flux Kustomization to `sops-hcvault
 
 ## Encrypting secrets using various cloud providers
 
-When using AWS/GCP KMS or Azure Keyvault, you don't have to include the gpg `secretRef` under
+When using AWS/GCP KMS, you don't have to include the gpg `secretRef` under
 `spec.provider` (you can skip the `--decryption-secret` flag when running `flux create kustomization`),
 instead you'll have to bind an IAM Role with access to the KMS
 keys to the `kustomize-controller` service account of the `flux-system` namespace for
@@ -316,7 +316,7 @@ Note that when using `flux bootstrap` you can [set the annotation](/flux/install
 
 #### Azure
 
-When using Azure Key Vault, Kubernetes cluster has to be [enabled](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster#create-aks-cluster) with workload identity and oidc issuer. These are the steps to setup the identity, patch kustomize-controller to authenticate with the federated identity setup with Azure key vault. 
+[Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster#create-aks-cluster) has to be enabled on the cluster. These are the steps to setup the identity, patch kustomize-controller to authenticate with the federated identity setup with Azure key vault. 
 
 Setup the identity: 
 
@@ -345,8 +345,32 @@ az identity federated-credential create \
 --audience api://AzureADTokenExchange
 ```
 
+Create the Azure Key-Vault and give the required permissions to the managed identity. The key id in the last step is used to encrypt secrets with sops client.
 
-To setup kustomize-controller to use workload identity, add the following patches to the flux-system kustomization.yaml
+
+```sh
+export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
+export KEY_NAME="sops-cluster0"
+export LOCATION=<AZURE-REGION>
+
+az keyvault create --name "${VAULT_NAME}" --resource-group "${RESOURCE_GROUP}" --location "${LOCATION}"
+
+az keyvault key create --name "${KEY_NAME}" \
+  --vault-name "${VAULT_NAME}" \
+  --protection software \
+  --ops encrypt decrypt
+
+az keyvault set-policy --name "${VAULT_NAME}" \
+ --spn "${USER_ASSIGNED_CLIENT_ID}"
+ --key-permissions decrypt
+
+az keyvault key show --name "${KEY_NAME}" \
+  --vault-name "${VAULT_NAME}" \
+  --query key.kid
+
+```
+
+Setup kustomize-controller to use workload identity adding the following patches to the flux-system kustomization.yaml
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -383,30 +407,6 @@ patches:
       name: "(kustomize-controller)"
 ```
 
-
-Create the Azure Key-Vault and give the required permissions to the managed identity.
-
-
-```sh
-export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
-export KEY_NAME="sops-cluster0"
-
-az keyvault create --name "${VAULT_NAME}" -g ${RESOURCE_GROUP}
-
-az keyvault key create --name "${KEY_NAME}" \
-  --vault-name "${VAULT_NAME}" \
-  --protection software \
-  --ops encrypt decrypt
-
-az keyvault set-policy --name "${VAULT_NAME}" \
- --spn "${USER_ASSIGNED_CLIENT_ID}"
- --key-permissions decrypt
-
-az keyvault key show --name "${KEY_NAME}" \
-  --vault-name "${VAULT_NAME}" \
-  --query key.kid
-
-```
 
 At this point, kustomize-controller is now authorized to decrypt values in
 SOPS encrypted files from your Sources via the related Key Vault.
