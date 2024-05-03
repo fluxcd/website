@@ -1,12 +1,11 @@
 ---
-title: "Manage Kubernetes secrets with Mozilla SOPS"
-linkTitle: "Mozilla SOPS"
-description: "Manage Kubernetes secrets with Mozilla SOPS, OpenPGP, Age and Cloud KMS."
+title: "Manage Kubernetes secrets with SOPS"
+linkTitle: "SOPS"
+description: "Manage Kubernetes secrets with SOPS, OpenPGP, Age and Cloud KMS."
 weight: 60
 ---
 
-In order to store secrets safely in a public or private Git repository, you can use
-Mozilla's [SOPS](https://github.com/mozilla/sops) CLI to encrypt
+In order to store secrets safely in a public or private Git repository, you can use [SOPS](https://github.com/mozilla/sops) CLI to encrypt
 Kubernetes secrets with OpenPGP, AWS KMS, GCP KMS and Azure Key Vault.
 
 ## Prerequisites
@@ -316,121 +315,102 @@ Note that when using `flux bootstrap` you can [set the annotation](/flux/install
 
 #### Azure
 
-When using Azure Key Vault you need to authenticate kustomize-controller either with [aad-pod-identity](/flux/components/kustomize/kustomizations/#aad-pod-identity)
-or by passing [Service Principal credentials as environment variables](https://github.com/mozilla/sops#encrypting-using-azure-key-vault).
+[Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster#create-aks-cluster) has to be enabled on the cluster. These are the steps to setup the identity, patch kustomize-controller to authenticate with the federated identity setup with Azure key vault. 
 
-Create the Azure Key-Vault:
+Setup the identity: 
+
+```sh
+export RESOURCE_GROUP=<AKS-RESOURCE-GROUP>
+export CLUSTER_NAME=<AKS-CLUSTER-NAME>
+export IDENTITY_NAME="sops-akv-decryptor"
+export FEDERATED_IDENTITY_NAME="sops-akv-decryptor-federated"
+
+# Get the OIDC Issuer URL
+export AKS_OIDC_ISSUER="$(az aks show -n ${CLUSTER_NAME} -g ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" -otsv)"
+
+# Create the managed identity
+az identity create --name "${IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}"
+
+# Get identity client ID
+export USER_ASSIGNED_CLIENT_ID="$(az identity show --resource-group ${RESOURCE_GROUP} --name ${IDENTITY_NAME} --query 'clientId' -o tsv)"
+
+# Federate the identity with the kustomize controller sa in flux-system ns
+az identity federated-credential create \
+--name "${FEDERATED_IDENTITY_NAME}" \
+--identity-name "${IDENTITY_NAME}" \
+--resource-group "${RESOURCE_GROUP}" \
+--issuer "${AKS_OIDC_ISSUER}" \
+--subject system:serviceaccount:flux-system:kustomize-controller \
+--audience api://AzureADTokenExchange
+```
+
+Create the Azure Key-Vault and give the required permissions to the managed identity. The key id in the last step is used to encrypt secrets with sops client.
+
 
 ```sh
 export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
 export KEY_NAME="sops-cluster0"
-export RESOURCE_GROUP=<AKS-RESOURCE-GROUP>
+export LOCATION=<AZURE-REGION>
 
-az keyvault create --name "${VAULT_NAME}" -g ${RESOURCE_GROUP}
+az keyvault create --name "${VAULT_NAME}" --resource-group "${RESOURCE_GROUP}" --location "${LOCATION}"
+
 az keyvault key create --name "${KEY_NAME}" \
   --vault-name "${VAULT_NAME}" \
   --protection software \
   --ops encrypt decrypt
+
+az keyvault set-policy --name "${VAULT_NAME}" \
+ --spn "${USER_ASSIGNED_CLIENT_ID}"
+ --key-permissions decrypt
+
 az keyvault key show --name "${KEY_NAME}" \
   --vault-name "${VAULT_NAME}" \
   --query key.kid
+
 ```
 
-If using [AAD Pod-Identity](https://azure.github.io/aad-pod-identity/docs), Create an identity within Azure that has permission to access Key Vault:
-
-```sh
-export IDENTITY_NAME="sops-akv-decryptor"
-# Create an identity in Azure and assign it a role to access Key Vault  (note: the identity's resourceGroup should match the desired Key Vault):
-az identity create -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP}
-az role assignment create --role "Key Vault Crypto User" --assignee-object-id "$(az identity show -n ${IDENTITY_NAME} -o tsv --query principalId  -g ${RESOURCE_GROUP})"
-# Fetch the clientID and resourceID to configure the AzureIdentity spec below:
-export IDENTITY_CLIENT_ID="$(az identity show -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP} -otsv --query clientId)"
-export IDENTITY_RESOURCE_ID="$(az identity show -n ${IDENTITY_NAME} -g ${RESOURCE_GROUP} -otsv --query id)"
-```
-
-Create a Keyvault access policy so that the identity can perform operations on Key Vault keys/
-
-```sh
-export IDENTITY_ID="$(az identity show -g ${RESOURCE_GROUP} -n ${IDENTITY_NAME} -otsv --query principalId)"
-
-az keyvault set-policy --name ${VAULT_NAME} --object-id ${IDENTITY_ID} --key-permissions decrypt
-```
-
-Create an `AzureIdentity` object that references the identity created above:
+Setup kustomize-controller to use workload identity adding the following patches to the flux-system kustomization.yaml
 
 ```yaml
----
-apiVersion: aadpodidentity.k8s.io/v1
-kind: AzureIdentity
-metadata:
-  name: ${IDENTITY_NAME}  # kustomize-controller label will match this name
-  namespace: flux-system
-spec:
-  clientID: ${IDENTITY_CLIENT_ID}
-  resourceID: ${IDENTITY_RESOURCE_ID}
-  type: 0  # user-managed identity
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: controller
+        annotations:
+          azure.workload.identity/client-id: <AZURE CLIENT ID>
+          azure.workload.identity/tenant-id: <AZURE TENANT ID>
+    target:
+      kind: ServiceAccount
+      name: "(kustomize-controller)"
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: controller
+        labels:
+          azure.workload.identity/use: "true"
+      spec:
+        template:
+          metadata:
+            labels:
+              azure.workload.identity/use: "true"    
+    target:
+      kind: Deployment
+      name: "(kustomize-controller)"
 ```
 
-Create an `AzureIdentityBinding` object that binds pods with a specific selector with the `AzureIdentity` created above.
-
-```yaml
-apiVersion: "aadpodidentity.k8s.io/v1"
-kind: AzureIdentityBinding
-metadata:
-  name: ${IDENTITY_NAME}-binding
-  namespace: flux-system
-spec:
-  azureIdentity: ${IDENTITY_NAME}
-  selector: ${IDENTITY_NAME}
-```
-
-[Customize your Flux Manifests](/flux/installation/configuration/workload-identity/#azure-workload-identity) so that kustomize-controller has the proper credentials.
-Patch the kustomize-controller Pod template so that the label matches the `AzureIdentity` selector.
-Additionally, the SOPS specific environment variable `AZURE_AUTH_METHOD=msi` to activate the proper auth method within kustomize-controller.
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kustomize-controller
-  namespace: flux-system
-spec:
-  template:
-    metadata:
-      labels:
-        aadpodidbinding: ${IDENTITY_NAME}  # match the AzureIdentity name
-    spec:
-      containers:
-      - name: manager
-        env:
-        - name: AZURE_AUTH_METHOD
-          value: msi
-```
-
-Alternatively, if using a Service Principal stored in a K8s Secret, patch the Pod's envFrom
-to reference the `AZURE_TENANT_ID`/`AZURE_CLIENT_ID`/`AZURE_CLIENT_SECRET`
-fields from your Secret.
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kustomize-controller
-  namespace: flux-system
-spec:
-  template:
-    spec:
-      containers:
-      - name: manager
-        envFrom:
-        - secretRef:
-            name: sops-akv-decryptor-service-principal
-```
 
 At this point, kustomize-controller is now authorized to decrypt values in
 SOPS encrypted files from your Sources via the related Key Vault.
 
-See Mozilla's guide to
+See the SOPS guide to
 [Encrypting Using Azure Key Vault](https://github.com/mozilla/sops#encrypting-using-azure-key-vault)
 to get started committing encrypted files to your Git Repository or other Sources.
 
