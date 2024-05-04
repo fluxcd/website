@@ -1,8 +1,9 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="team-calendar" data-controller="calendar">
+<div class="team-calendar-dark" data-controller="calendar">
+<h3 id="calendar">Our Team Calendar</h3>
 <p class="caption">Times shown are <span data-calendar-target="localtz">UTC</span>.</p>
 <ul class="calendar-list">
-{{ range $.Site.Data.calendar }}
+{{ range first 6 $.Site.Data.calendar }}
 <li>
 <div class="calendar-row" data-controller="calrow">
 <div class="date" data-calrow-target="date">{{ .date }}</div><span>&nbsp;</span>
@@ -28,4 +29,6 @@
 </li>
 {{ end }}
 </ul>
+<p class="details">See <a href="/community/#meetings">this page</a>
+    for more events, more details, and subscription options.</p>
 </div>
