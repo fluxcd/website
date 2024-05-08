@@ -526,7 +526,7 @@ spec:
     replicaCount: 5
 ```
 
-If the `spec.chart.spec.valuesFiles` doesn't exists inside the chart, helm-controller will not be able to
+If the `spec.chart.spec.valuesFiles` doesn't exist inside the chart, helm-controller will not be able to
 fetch the chart. To determine why the `HelmChart` fails to produce an artifact, you can inspect the status with:
 
 ```sh
