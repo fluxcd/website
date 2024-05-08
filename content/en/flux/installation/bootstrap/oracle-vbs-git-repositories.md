@@ -5,7 +5,8 @@ description: "How to bootstrap Flux with Oracle VBS Git Repositories"
 weight: 70
 ---
 
-To install Flux on an [OKE](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes) cluster using an Oracle VBS Git repository as the source of truth,
+To install Flux on an [OKE](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes) cluster
+using an Oracle VBS Git repository as the source of truth,
 you can use the [`flux bootstrap git`](generic-git-server.md) command.
 
 {{% alert color="danger" title="Required permissions" %}}
@@ -38,7 +39,7 @@ Run the bootstrap for a repository using token-based authentication:
 ```sh
 flux bootstrap git \
   --with-bearer-token=true \
-  --url=https:<repository-url> \
+  --url=https://<vbs-repository-url> \
   --branch=my-branch \
   --path=clusters/my-cluster
 ```
@@ -50,7 +51,14 @@ Note that the Oracle VBS PAT is stored in the cluster as a **Kubernetes Secret**
 inside the `flux-system` namespace.
 
 {{% alert color="info" title="Token rotation" %}}
-Note that Oracle VBS PAT may have an expiry date if it was configured to have one. To rotate the token before it expires,
-delete the `flux-system` secret from the cluster and re-run
-the bootstrap command using a valid PAT.
+Note that Oracle VBS PAT may have an expiry date if it was configured to have one.
+To rotate the token before it expires,
+delete the `flux-system` secret from the cluster and recreate it with the new PAT:
+
+```sh
+flux create secret git flux-system \
+   --url=https://<vbs-repository-url> \
+   --bearer-token=<vbs-token>
+```
 {{% /alert %}}
+

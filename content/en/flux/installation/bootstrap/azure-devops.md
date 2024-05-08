@@ -115,6 +115,7 @@ Run bootstrap using the SSH URL of the Azure DevOps repository and the RSA SHA-2
 flux bootstrap git \
   --url=ssh://git@ssh.dev.azure.com/v3/<org>/<project>/<repository>
   --branch=<my-branch> \
+  --ssh-hostkey-algos=rsa-sha2-512,rsa-sha2-256 \
   --private-key-file=<path/to/ssh/private.key> \
   --password=<key-passphrase> \
   --path=clusters/my-cluster
