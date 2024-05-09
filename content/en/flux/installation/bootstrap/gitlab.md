@@ -58,8 +58,8 @@ inside the `flux-system` namespace.
 
 {{% alert color="danger" title="Deploy token read-only" %}}
 Note that project deploy tokens grant read-only access to Git.
-If you want to use Flux image automation, please see how to configure
-[GitLab Deploy Keys](#gitlab-deploy-keys) with read-write Git accesses.
+If you want to use Flux image automation, please see how to configure [GitLab Deploy Keys](#gitlab-deploy-keys) with
+read-write Git accesses.
 {{% /alert %}}
 
 ## GitLab Groups
