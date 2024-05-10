@@ -75,10 +75,10 @@ The primary goal of this milestone is to make a generally available release for 
 and the Flux Helm functionalities.
 
 - **Helm integrations**
-  - [ ] Promote the `HelmRepository` API to `v1` GA
-  - [ ] Promote the `HelmChart` API to `v1` GA
-  - [ ] Promote the `HelmRelease` API to `v2` GA
-  - [ ] Promote the Flux CLI Helm-related commands to GA
+  - [x] Promote the `HelmRepository` API to `v1` GA
+  - [x] Promote the `HelmChart` API to `v1` GA
+  - [x] Promote the `HelmRelease` API to `v2` GA
+  - [x] Promote the Flux CLI Helm-related commands to GA
   - [x] [Reuse charts between releases with OCIRepository](https://github.com/fluxcd/helm-controller/issues/789)
   - [x] [Reuse existing HelmChart resource between releases](https://github.com/fluxcd/helm-controller/issues/204)
 
@@ -91,7 +91,7 @@ and the Flux Helm functionalities.
   - [x] [Extend the `Receiver` API with support for CDEvents](https://github.com/fluxcd/flux2/pull/4534)
 
 - **Image automation**
-  - [ ] Promote the `ImageUpdateAutomation` API to `v1beta2`
+  - [x] Promote the `ImageUpdateAutomation` API to `v1beta2`
   - [x] [Enhance image-automation-controller reconciliation model](https://github.com/fluxcd/image-automation-controller/issues/643)
   - [x] [Add support for selecting image policies with a label selector](https://github.com/fluxcd/image-automation-controller/pull/619)
   - [x] [Allow including the previous image tag in the commit message template](https://github.com/fluxcd/image-automation-controller/issues/437)
@@ -102,12 +102,13 @@ and the Flux Helm functionalities.
   - [x] [Improve documentation with concrete examples for the various bootstrap methods](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples)
 
 - **Conformance testing**
-  - [x] End-to-end testing for Kubernetes 1.30
+  - [x] [End-to-end testing for Kubernetes 1.30](https://github.com/fluxcd/flux2/pull/4734)
   - [x] [End-to-end testing for OpenShift](https://github.com/fluxcd/flux2/issues/4625)
+  - [x] [End-to-end testing for k3s](https://github.com/fluxcd/flux2/pull/4777)
 
 - **EOL and Deprecations**
   - End support for Flux v2.0.x
-  - End support for Kubernetes v1.26.x
+  - End support for Kubernetes v1.27.x
   - Deprecate APIs in group `helm.toolkit.fluxcd.io/v2beta2`
   - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated Terraform providers `flux_install` and `flux_sync`
