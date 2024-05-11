@@ -125,6 +125,19 @@ to upgrade the Kubernetes control plane to v1.29 and Flux to v2.3.
 - The Flux CLI boostrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
 - The Flux CLI gains a new command `flux envsubst` that can be used to replicate the behavior of the Flux `Kustomization` post-build substitutions.
 
+## Breaking changes and deprecations
+
+Deprecated fields have been removed from the `HelmRelease` v2 API:
+
+- `.spec.chart.spec.valuesFile` replaced by `.spec.chart.spec.valuesFiles`
+- `.spec.postRenderers.kustomize.patchesJson6902` replaced by `.spec.postRenderers.kustomize.patches`
+- `.spec.postRenderers.kustomize.patchesStrategicMerge` replaced by `.spec.postRenderers.kustomize.patches`
+- `.status.lastAppliedRevision` replaced by `.status.history.chartVersion`
+
+The `HelmRelease` v2beta2 and v2beta1 APIs have been deprecated and will be removed in a future release.
+
+The `HelmRepository` and `HelmChart` v1beta2 and v1beta1 APIs have been deprecated and will be removed in a future release.
+
 ## Installing or upgrading Flux
 
 To install Flux, take a look at our [installation](https://fluxcd.io/flux/installation/) and [get started](https://fluxcd.io/flux/get-started/) guides.
