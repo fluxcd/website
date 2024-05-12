@@ -174,9 +174,22 @@ Files:
 For more examples and details,
 see the [ImageUpdateAutomation documentation](/flux/components/image/imageupdateautomations/#message-template).
 
-## Other notable changes
+## Signatures verification with Notation
 
-### Controllers improvements
+The Flux source-controller now supports verifying the authenticity of OCI artifacts signed with
+[Notation](https://github.com/notaryproject/notation) (CNCF Notary project).
+
+To enable Notation signature verification, please see the following documentation:
+
+- [HelmChart](/flux/components/source/helmcharts/#notation)
+- [OCIRepository](/flux/components/source/ocirepositories/#notation)
+
+In addition, the Flux CLI now supports generating Kubernetes secrets with Notation trust policies,
+using the `flux create secret notation` command.
+
+Big thanks to Microsoft for contributing to the development of this feature!
+
+## Controllers improvements
 
 - The Flux `Kustomization` API gains two optional fields `.spec.namePrefix` and `.spec.nameSuffix`
   that can be used to specify a prefix and suffix to be added to the names of all managed resources.
@@ -190,7 +203,7 @@ see the [ImageUpdateAutomation documentation](/flux/components/image/imageupdate
 - The `HelmChart` API v1 comes with a new optional field
   [`.spec.ignoreMissingValuesFiles`](/flux/components/source//helmcharts/#ignore-missing-values-files).
 
-### CLI improvements
+## CLI improvements
 
 - The boostrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
 - The boostrap procedure for [Azure DevOps](/flux/installation/bootstrap/azure-devops/#bootstrap-using-ssh-keys) repositories has been update with support for SSH RSA SHA-2 keys.
@@ -240,7 +253,6 @@ Backwards compatibility with older versions of Kubernetes is offered by vendors
 such as [ControlPlane](https://control-plane.io/enterprise-for-flux-cd/) that provide
 enterprise support for Flux.
 {{% /alert %}}
-
 
 ## Installing or upgrading Flux
 
