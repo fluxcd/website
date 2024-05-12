@@ -176,6 +176,8 @@ see the [ImageUpdateAutomation documentation](/flux/components/image/imageupdate
 
 ## Other notable changes
 
+### Controllers improvements
+
 - The Flux `Kustomization` API gains two optional fields `.spec.namePrefix` and `.spec.nameSuffix`
   that can be used to specify a prefix and suffix to be added to the names of all managed resources.
 - The kustomize-controller now supports the `--feature-gates=StrictPostBuildSubstitutions=true`
@@ -183,9 +185,20 @@ see the [ImageUpdateAutomation documentation](/flux/components/image/imageupdate
   declared in files but is missing from the input vars.
 - The notification-controller `Receiver` API has been extended to support
   [CDEvents](/flux/components/notification/receivers.md#cdevents).
-- [Semver filtering](/flux/components/source/ocirepositories/#semverfilter-example) support has been added to the `OCIRepository` API.
-- The Flux CLI boostrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
-- The Flux CLI gains a new command `flux envsubst` that can be used to replicate the behavior of the Flux `Kustomization` post-build substitutions.
+- The `OCIRepository` API has been extended with support for
+  [semver filtering](/flux/components/source/ocirepositories/#semverfilter-example). 
+- The `HelmChart` API v1 comes with a new optional field
+  [`.spec.ignoreMissingValuesFiles`](/flux/components/source//helmcharts/#ignore-missing-values-files).
+
+### CLI improvements
+
+- The boostrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
+- The boostrap procedure for [Azure DevOps](/flux/installation/bootstrap/azure-devops/#bootstrap-using-ssh-keys) repositories has been update with support for SSH RSA SHA-2 keys.
+- The `flux bootstrap` command gains a new flag `--ssh-hostkey-algos` that can be used to specify the host key algorithms to be used for SSH connections.
+- The `flux bootstrap` and `flux install` commands now support the `--registry-creds` flag that can be used for generating an image pull secret for container images stored in private registries.
+- A new command was added, `flux envsubst` that can be used to replicate the behavior of the Flux `Kustomization` post-build substitutions.
+- The `flux create source oci` command now supports the `--verify-subject` and `--verify-issuer` for cosign keyless verification.
+- New commands were added for managing HelmChart objects: `flux create|delete|export source chart`.
 
 ## Breaking changes and deprecations
 
