@@ -98,11 +98,11 @@ hosted runner (Ubuntu, 16 cores):
 
 | Objects | Type          | Flux component       | Duration | Max Memory |
 |---------|---------------|----------------------|----------|------------|
-| 100     | OCIRepository | source-controller    | 25s      | 38Mi       |
+| 100     | HelmChart     | source-controller    | 25s      | 40Mi       |
 | 100     | HelmRelease   | helm-controller      | 28s      | 190Mi      |
-| 500     | OCIRepository | source-controller    | 45s      | 65Mi       |
+| 500     | HelmChart     | source-controller    | 45s      | 68Mi       |
 | 500     | HelmRelease   | helm-controller      | 2m45s    | 250Mi      |
-| 1000    | OCIRepository | source-controller    | 1m30s    | 67Mi       |
+| 1000    | HelmChart     | source-controller    | 1m30s    | 110Mi      |
 | 1000    | HelmRelease   | helm-controller      | 8m1s     | 490Mi      |
 
 Compared to Flux v2.2, in this version the memory consumption of the helm-controller
@@ -111,6 +111,68 @@ In Flux v2.2, helm-controller on Kubernetes v1.28 is running out of memory
 with 100 CRDs registered, while in Flux v2.3 on Kubernetes v1.29 it can handle
 500+ CRDs without issues. Given these results, it is recommended
 to upgrade the Kubernetes control plane to v1.29 and Flux to v2.3.
+
+## Image update automation improvements
+
+The `ImageUpdateAutomation` API has been promoted to v1beta2 and
+the image-automation-controller has been refactored to enhance the reconciliation process.
+
+The v1beta2 API comes with a new 
+[template model](/flux/components/image/imageupdateautomations/#message-template)
+that can be used to customize the commit message when the controller updates the
+image references in the Git repository. The commit template supports old and new values
+for the changes made to the files containing the policy markers.
+In addition, the commit message is included in the Kubernetes events emitted by the controller,
+offering better visibility into the automation process.
+
+The `ImageUpdateAutomation` API now supports selecting `ImagePolicies` using label selectors
+in the new field [`.spec.policySelector`](/flux/components/image/imageupdateautomations/#policyselector).
+
+### Migration to v1beta2 template model
+
+To migrate to the v1beta2 API,
+update the `apiVersion` field in the `ImageUpdateAutomation` resources to `image.toolkit.fluxcd.io/v1beta2`,
+and modify the `messageTemplate` to use the `Changed` template data.
+
+Example template:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: <automation-name>
+spec:
+  git:
+    commit:
+      messageTemplate: |-
+        Automated image update
+                
+        Changes:
+        {{ range .Changed.Changes -}}
+        - {{ .OldValue }} -> {{ .NewValue }}
+        {{ end -}}
+        
+        Files:
+        {{ range $filename, $_ := .Changed.FileChanges -}}
+        - {{ $filename }}
+        {{ end -}}
+```  
+
+Example generated commit message:
+
+```text
+Automated image update
+
+Changes:
+- docker.io/nginx:1.25.4 -> docker.io/nginx:1.25.5
+- docker.io/org/app:1.0.0 -> docker.io/org/app:1.0.1
+
+Files:
+- apps/my-app/deployment.yaml
+```
+
+For more examples and details,
+see the [ImageUpdateAutomation documentation](/flux/components/image/imageupdateautomations/#message-template).
 
 ## Other notable changes
 
