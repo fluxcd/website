@@ -209,9 +209,38 @@ Deprecated fields have been removed from the `HelmRelease` v2 API:
 - `.spec.postRenderers.kustomize.patchesStrategicMerge` replaced by `.spec.postRenderers.kustomize.patches`
 - `.status.lastAppliedRevision` replaced by `.status.history.chartVersion`
 
-The `HelmRelease` v2beta2 and v2beta1 APIs have been deprecated and will be removed in a future release.
+The following APIs have been deprecated and will be removed in a future release:
 
-The `HelmRepository` and `HelmChart` v1beta2 and v1beta1 APIs have been deprecated and will be removed in a future release.
+- `HelmRelease` v2beta2 and v2beta1
+- `HelmChart` v1beta2 and v1beta1
+- `HelmRepository` v1beta2 and v1beta1
+- `ImageUpdateAutomation` v1beta1
+
+## Supported versions
+
+Flux v2.0 has reached end-of-life and is no longer supported.
+
+Flux v2.3 supports the following Kubernetes versions:
+
+| Distribution | Versions         |
+|:-------------|:-----------------|
+| Kubernetes   | 1.28, 1.29, 1.30 |
+| OpenShift    | 4.15             |
+
+Flux v2.3 is the first release end-to-end tested on OpenShift. Big thanks to
+[Replicated](https://www.replicated.com/) for sponsoring the Flux project
+with on-demand OpenShift clusters. For more information on how to bootstrap Flux on OpenShift,
+see the [OpenShift installation guide](flux/installation/configuration/openshift/).
+
+{{% alert color="info" title="Enterprise support" %}}
+Note that the CNCF Flux project offers support only for the latest
+three minor versions of Kubernetes.
+
+Backwards compatibility with older versions of Kubernetes is offered by vendors
+such as [ControlPlane](https://control-plane.io/enterprise-for-flux-cd/) that provide
+enterprise support for Flux.
+{{% /alert %}}
+
 
 ## Installing or upgrading Flux
 
