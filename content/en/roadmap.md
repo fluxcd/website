@@ -69,7 +69,7 @@ a new reconciliation model for Helm releases.
 
 ### v2.3 (Q2 2024)
 
-**Status**: In progress
+**Status**: Completed (v2.3.0 [changelog](https://github.com/fluxcd/flux2/releases/tag/v2.3.0))
 
 The primary goal of this milestone is to make a generally available release for the Flux Helm APIs
 and the Flux Helm functionalities.
@@ -115,7 +115,7 @@ and the Flux Helm functionalities.
 
 ### v2.4 (Q3 2024)
 
-**Status**: Provisional
+**Status**: In progress
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs
 and S3-compatible storage APIs.
