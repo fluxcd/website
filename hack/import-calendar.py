@@ -27,7 +27,7 @@ import recurring_ical_events
 import urllib3
 import yaml
 
-CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/4130481/1290943905/feed.ics'
+CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/9524119/1081862612/feed.ics'
 
 TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))
@@ -57,27 +57,31 @@ def download_calendar():
     http = urllib3.PoolManager()
     r = http.request('GET', CAL_URL)
     if r.status != 200:
-        print('Error retrieving calendar.', sys.stderr)
+        print(f'Error retrieving calendar. Status: {r.status}, Body: {r.data.decode()}', file=sys.stderr)
         return None
     return r.data
 
 
 def read_organizer(event):
+    if not 'organizer' in event:
+        return None
     organizer = event['organizer']
     email = organizer.title().split(':')[1].lower()
     name = email
     if 'cn' in organizer.params:
         name = organizer.params['cn']
 
-    return {"name": name, "email": email}
+    return {"org_name": name, "org_email": email}
 
 
 def read_calendar(cal):
     events = []
     gcal = Calendar.from_ical(cal)
     today = date.today()
+    now = datetime.now()
+    hour_ago = now - timedelta(hours=0, minutes=50)
     next_month = today+timedelta(days=30)
-    for event in recurring_ical_events.of(gcal).between(today, next_month):
+    for event in recurring_ical_events.of(gcal).between(hour_ago, next_month):
         description = replace_url_to_link(fix_double_url(event['description']))
         if type(event['dtstart'].dt) == date:
             event_time = datetime.combine(
@@ -88,47 +92,38 @@ def read_calendar(cal):
             event_location = ''
         else:
             event_location = event['location'].title().lower()
-        events += [
-            {
-                "time": event_time,
-                "title": event['summary'],
-                "location": event_location,
-                "organizer": read_organizer(event),
-                "description": description
-            }
-        ]
-    events.sort(key=lambda e: e['time'])
+        formatted_event = {
+                'date': event_time.strftime('%F'),
+                'time': event_time.strftime('%H:%M'),
+                'timestamp': event_time,
+                'label': str(event['summary']),
+                'where': format_location_html(event_location),
+                'description': description,
+        }
+        formatted_event.update(read_organizer(event))
+
+        # Only include events that haven't started more than 1 hour ago
+        if event_time > pytz.utc.localize(hour_ago):
+            events.append(formatted_event)
+
+    events.sort(key=lambda e: e['timestamp'])
     return events
 
-def format_location_html(event):
-    lc = event['location'].lower()
-    location = event['location']
-    html = event['location']
-    if lc.startswith("http://") or lc.startswith("https://"):
-        html = f"""<a href="{lc}">{location}</a>"""
-    elif lc.find("slack") or lc.find('#flux'):
+def format_location_html(location):
+    html = location
+    if html.startswith("http://") or html.startswith("https://"):
+        html = f"""<a href="{html}">{location}</a>"""
+    elif html.find("slack") or html.find('#flux'):
         html = f"""<a href="https://cloud-native.slack.com/messages/flux">{location}</a>"""
     return html
 
 
-def write_events_yaml(ical):
-    if os.path.exists(CALENDAR_YAML):
-        os.remove(CALENDAR_YAML)
-
-    if not ical:
+def write_events_yaml(events):
+    if not events:
         return
 
-    events = []
-    for entry in ical:
-        events += [{
-            'date': entry['time'].strftime('%F'),
-            'time': entry['time'].strftime('%H:%M'),
-            'label': str(entry['title']),
-            'where': format_location_html(entry),
-            'org_email': entry['organizer']['email'],
-            'org_name': entry['organizer']['name'],
-            'description': entry['description']
-        }]
+    if os.path.exists(CALENDAR_YAML):
+        os.remove(CALENDAR_YAML)
 
     with open(CALENDAR_YAML, 'w') as stream:
         yaml.dump(events, stream)
