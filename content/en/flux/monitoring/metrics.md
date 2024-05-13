@@ -7,7 +7,7 @@ weight: 2
 
 {{% alert color="info" title="Metrics Deprecation" %}}
 Some of the Flux controller metrics prior to v2.1.0 have been deprecated. Please
-see the [Deprecated Resource Metrics](#-deprecated-resource-metrics)
+see the [Deprecated Resource Metrics](#warning-deprecated-resource-metrics)
 section below to learn more about it.
 {{< /alert >}}
 
@@ -106,19 +106,19 @@ kinds of resources. In addition, there are a few resource kind specific labels.
 See the following table for a list of labels associated with specific resource
 kind.
 
-| Resource Kind         | Labels                                        |
-| ---                   | ---                                           |
-| Kustomization         | `revision`, `source_name`                     |
-| HelmRelease           | `revision`, `chart_name`, `chart_source_name` |
-| GitRepository         | `revision`, `url`                             |
-| Bucket                | `revision`, `endpoint`, `bucket_name`         |
-| HelmRepository        | `revision`, `url`                             |
-| HelmChart             | `revision`, `chart_name`, `chart_version`     |
-| OCIRepository         | `revision`, `url`                             |
-| Receiver              | `webhook_path`                                |
-| ImageRepository       | `image`                                       |
-| ImagePolicy           | `source_name`                                 |
-| ImageUpdateAutomation | `source_name`                                 |
+| Resource Kind         | Labels                                                                               |
+| ---                   | ---                                                                                  |
+| Kustomization         | `revision`, `source_name`                                                            |
+| HelmRelease           | `revision`, `chart_name`, `chart_app_version`, `chart_source_name`, `chart_ref_name` |
+| GitRepository         | `revision`, `url`                                                                    |
+| Bucket                | `revision`, `endpoint`, `bucket_name`                                                |
+| HelmRepository        | `revision`, `url`                                                                    |
+| HelmChart             | `revision`, `chart_name`, `chart_version`                                            |
+| OCIRepository         | `revision`, `url`                                                                    |
+| Receiver              | `webhook_path`                                                                       |
+| ImageRepository       | `image`                                                                              |
+| ImagePolicy           | `source_name`                                                                        |
+| ImageUpdateAutomation | `source_name`                                                                        |
 
 {{< note >}}
 The above metric may have extra labels after being collected in Prometheus. This
