@@ -312,14 +312,14 @@ flux create image update flux-system \
 --push-branch=main \
 --author-name=fluxcdbot \
 --author-email=fluxcdbot@users.noreply.github.com \
---commit-template="{{range .Updated.Images}}{{println .}}{{end}}" \
+--commit-template="{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}" \
 --export > ./clusters/my-cluster/flux-system-automation.yaml
 ```
 
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: flux-system
@@ -337,7 +337,7 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
     push:
       branch: main
   update:
@@ -502,18 +502,17 @@ spec:
         Automation name: {{ .AutomationObject }}
 
         Files:
-        {{ range $filename, $_ := .Updated.Files -}}
+        {{ range $filename, $_ := .Changed.FileChanges -}}
         - {{ $filename }}
         {{ end -}}
 
         Objects:
-        {{ range $resource, $_ := .Updated.Objects -}}
+        {{ range $resource, $changes := .Changed.Objects -}}
         - {{ $resource.Kind }} {{ $resource.Name }}
+          Changes:
+        {{- range $_, $change := $changes }}
+            - {{ $change.OldValue }} -> {{ $change.NewValue }}
         {{ end -}}
-
-        Images:
-        {{ range .Updated.Images -}}
-        - {{.}}
         {{ end -}}
       author:
         email: fluxcdbot@users.noreply.github.com
