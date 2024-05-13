@@ -66,7 +66,7 @@ Let's check out what the Custom Resource files look like:
 
 ```yaml
 # /flux/boot/traefik/helmrepo.yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: traefik
@@ -78,7 +78,7 @@ spec:
 
 ```yaml
 # /flux/boot/traefik/helmrelease.yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: my-traefik
@@ -177,10 +177,10 @@ documentation.
 ## Automatic Uninstalls and Rollback
 
 The Helm Controller offers an extensive set of configuration options to remediate when a Helm release fails,
-using [spec.install.remediation](../components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.InstallRemediation),
-[spec.upgrade.remediation](../components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.UpgradeRemediation),
-[spec.rollback](../components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Rollback)
-and [spec.uninstall](../components/helm/api/v2beta2#helm.toolkit.fluxcd.io/v2beta2.Uninstall).
+using [spec.install.remediation](../components/helm/api/v2#helm.toolkit.fluxcd.io/v2.InstallRemediation),
+[spec.upgrade.remediation](../components/helm/api/v2#helm.toolkit.fluxcd.io/v2.UpgradeRemediation),
+[spec.rollback](../components/helm/api/v2#helm.toolkit.fluxcd.io/v2.Rollback)
+and [spec.uninstall](../components/helm/api/v2#helm.toolkit.fluxcd.io/v2.Uninstall).
 Features include the option to remediate with an uninstall after an upgrade failure,
 and the option to keep a failed release for debugging purposes when it has run out of retries.
 
@@ -188,7 +188,7 @@ Here is an example for configuring automated uninstalls (for all available field
 consult the `InstallRemediation` and `Uninstall` API references linked above):
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: my-release
@@ -213,7 +213,7 @@ Here is an example of automated rollback configuration (for all available fields
 consult the `UpgradeRemediation` and `Rollback` API references linked above):
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: my-release

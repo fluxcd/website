@@ -37,7 +37,7 @@ and it will automatically upgrade the Helm release to the latest chart version b
 Example of `clusters/staging/apps/demo.yaml`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: demo
@@ -65,7 +65,7 @@ update in Git by GitHub Actions based on the Flux events.
 Example of `clusters/production/apps/demo.yaml`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: demo
@@ -90,7 +90,16 @@ spec:
 To promote a chart version that was successfully deployed and tested on staging, we'll create a
 GitHub workflow that reacts to Flux repository dispatch events.
 
-Example of `.github/workflows/demo-promotion.yaml`:
+The `event` that Flux generate for a `HelmRelease` upgrade contains metadata about the event,
+with fields that can be used to determine the chart version that was deployed:
+- `metadata.revision`: the Helm chart version deployed.
+- `metadata.oci-digest`(optional): the OCI digest of the oci artifact deployed in
+  case of an `OCIRepository` source.
+
+### Promoting a HelmRelease with a chart version
+
+The following `.github/workflows/demo-promotion.yaml` workflow will react to the Flux
+repository dispatch events and promote the Helm release to the production cluster.
 
 ```yaml
 name: demo-promotion
@@ -151,6 +160,83 @@ The above workflow does the following:
 - Clones the `main` branch where the Flux `HelmRelease` YAML manifests are defined.
 - Parses the event metadata to determine the chart version deployed on staging.
 - Patches the chart version in the `HelmRelease` manifest at `clusters/production/apps/demo.yaml`.
+- Creates a new branch called `demo-promotion`, commits the version change and opens a Pull Request against `main`.
+
+**Note** that you should adapt the workflow to match your release name, namespace and YAML path.
+
+### Promoting a HelmRelease using OCI digests
+
+The following `.github/workflows/demo-promotion.yaml` workflow will react to the Flux
+repository dispatch events and promote the Helm release to the production cluster.
+
+The expected `HelmRelease` is one with a `OCIRepository` source.
+
+```yaml
+name: demo-promotion
+on:
+  repository_dispatch:
+    types:
+      - HelmRelease/demo.apps
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    # Start promotion when the staging cluster has successfully
+    # upgraded the Helm release to a new chart version.
+    if: |
+      github.event.client_payload.metadata.env == 'staging' &&
+      github.event.client_payload.severity == 'info'
+    steps:
+      # Checkout main branch.
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      # Parse the event metadata to determine the chart version deployed on staging.
+      - name: Get chart version from staging
+        id: staging
+        run: |
+          DIGEST=$(echo ${{ github.event.client_payload.metadata.oci-digest }} | cut -d '@' -f1)
+          echo DIGEST=${DIGEST} >> $GITHUB_OUTPUT
+          VERSION=$(echo ${{ github.event.client_payload.metadata.revision }} | cut -d '@' -f1)
+          echo VERSION=${VERSION} >> $GITHUB_OUTPUT
+      # Patch the digest in the production OCIRepository manifest.
+      - name: Set chart version in production
+        id: production
+        env:
+          DIGEST: ${{ steps.staging.outputs.digest }}
+        run: |
+          echo "set ociRepository digest to ${DIGEST}"
+          # This will filter out all resources that do not have a digest field.
+          yq eval '(select(.spec.ref.digest) | .spec.ref.digest) = env(DIGEST)' -i ./clusters/production/apps/demo.yaml
+          # add the chart version as a line comment
+          env lc="version ${{ steps.staging.outputs.version }}" \
+          yq eval '(select(.spec.ref.digest) | .spec.ref.digest) line_comment=env(lc)' -i ./clusters/production/apps/demo.yaml
+      # Open a Pull Request if an upgraded is needed in production.
+      - name: Open promotion PR
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: demo-promotion
+          delete-branch: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update demo to v${{ steps.staging.outputs.version }} with digest ${{ steps.staging.outputs.digest }}
+          title: Promote demo release to v${{ steps.staging.outputs.version }} with digest ${{ steps.staging.outputs.digest }}
+          body: |
+            Promote demo release on production to v${{ steps.staging.outputs.version }} with digest ${{ steps.staging.outputs.digest }}
+            
+```
+
+The above workflow does the following:
+
+- Runs on repository dispatch events issued by Flux with the `HelmRelease/demo.apps` type.
+- Filters the events to take into consideration only success Helm release upgrades.
+- Clones the `main` branch where the Flux `HelmRelease` YAML manifests are defined.
+- Parses the event metadata to determine the chart version deployed on staging
+  and the corresponding OCI digest.
+- Patches the digest in the `OCIRepository` manifest at `clusters/production/apps/demo.yaml`.
 - Creates a new branch called `demo-promotion`, commits the version change and opens a Pull Request against `main`.
 
 **Note** that you should adapt the workflow to match your release name, namespace and YAML path.

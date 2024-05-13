@@ -44,7 +44,7 @@ The source-controller will fetch the Helm repository index for this
 resource on an interval and expose it as an artifact:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -67,26 +67,6 @@ Helm repositories. See the [`HelmRepository` CRD docs](../components/source/helm
 for more details.
 {{% /alert %}}
 
-#### Helm OCI repository
-
-The source-controller performs the Helm repository url validation i.e. the url is
-a valid OCI registry url.
-
-The URL is expected to point to a registry repository and to start with `oci://`.
-
-```yaml
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: podinfo
-  namespace: default
-spec:
-  type: oci
-  interval: 5m0s
-  url: oci://ghcr.io/stefanprodan/charts
-```
-
 #### Helm repository authentication with credentials
 
 In order to use a private Helm repository, you may need to provide the credentials.
@@ -95,7 +75,7 @@ For HTTP/S repositories, the credentials can be provided as a secret reference w
 basic authentication.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -114,33 +94,6 @@ metadata:
 stringData:
   username: example
   password: "123456"
-```
-
-For OCI repositories, the credentials can be provided alternatively as a secret reference
-with dockerconfig authentication.
-
-```yaml
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: podinfo
-  namespace: default
-spec:
-  interval: 5m0s
-  url: oci://ghcr.io/stefanprodan/charts
-  type: "oci"
-  secretRef:
-    name: regcred
-```
-
-The Docker registry Secret `regcred` can be created with `kubectl`:
-
-```shell
-kubectl create secret docker-registry regcred \
- --docker-server=ghcr.io \
- --docker-username=gh-user \
- --docker-password=gh-token
 ```
 
 ### Git repository
@@ -204,21 +157,60 @@ as the source-controller will download the whole storage bucket at each sync. Th
 bucket can easily become very large if there are frequent releases of multiple charts
 that are stored in the same bucket.
 
-A better option is to use an [OCI registry for chart storage](#helm-oci-repository).
+A better option is to use an [OCI registry for chart storage](#oci-repository).
+
+### OCI repository
+
+Helm charts stored in an OCI registry, can be retrieved by declaring an `OCIRepository`.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: podinfo
+spec:
+  interval: 5m0s
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  ref:
+    tag: 6.0.0
+```
+
+The source-controller will fetch the Helm chart from the OCI registry namespace 
+on an interval and expose it as an artifact.
+
+The `interval` defines the interval at which the OCI repository contents
+are fetched, and should be at least `1m`. Setting this to a higher
+value means newer chart versions will be detected at a slower pace,
+a push-based fetch can be introduced using [webhook receivers](webhook-receivers.md).
+
+The `url` has to point to a registry repository and start with prefix `oci://`.
+
+The `ref` defines the checkout strategy, and can be one of `tag`, `digest` or `semver`.
+When using `semver`, an optional `semverFilter` can be provided to filter the tags.
+See the [`OCIRepository` CRD docs](../components/source/ocirepositories.md) for more details.
+
+{{% alert color="info" title="Authentication" %}}
+HTTP/S authentication and contextual login can be configured for private
+OCI registries. See the [`OCIRepository` CRD docs](../components/source/ocirepositories.md)
+for more details.
+{{% /alert %}}
 
 ## Define a Helm release
 
-With the chart source created, define a new `HelmRelease` to release
-the Helm chart:
+To release a Helm chart, a `HelmRelease` resource has to be created. The `HelmRelease`
+resources can either reference an existing `OCIRepository` or `Helmchart` resource,
+or it creates a new `HelmChart` resource and manages it.
+
+### Using a chart template
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: default
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: <name|path>
@@ -227,7 +219,7 @@ spec:
         kind: <HelmRepository|GitRepository|Bucket>
         name: podinfo
         namespace: flux-system
-      interval: 1m
+      interval: 10m
   values:
     replicaCount: 2
 ```
@@ -260,6 +252,56 @@ See the [`HelmRelease` CRD docs](../components/helm/helmreleases.md)
 for more details.
 {{% /alert %}}
 
+### Using a chart reference
+
+It is possible to reference a chart directly from an `OCIRepository`:
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: podinfo
+    namespace: flux-system
+  interval: 10m
+  values:
+    replicaCount: 2
+```
+
+
+Or a `HelmChart`:
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chartRef:
+    kind: HelmChart
+    name: podinfo
+    namespace: flux-system
+  interval: 10m
+  values:
+    replicaCount: 2
+```
+
+The `.chartRef` field is used to reference a `OCIRepository` or `HelmChart` resource.
+The helm-controller will then look up the chart in the artifact of the referenced source,
+and fetch it directly.
+
+The pros of using a chart reference are:
+- The chart is fetched directly from the source, without the need to create a `HelmChart`
+  resource for the sepcif `HelmRelease`. This can reduces the number of resources
+  in the cluster.
+- In the case of a `OCIRepository`, the fact that it is possible to pin to a
+  specific `tag` or `digest` makes it easier to enforce a specific change, and
+  overall more flexible.
+
+**Note**: When switching from a `.chart.spec` to a `.chartRef`, the old `HelmChart`
+resource is garbage collected by the helm-controller.
+
 ## Refer to values in `ConfigMaps` generated with Kustomize
 
 It is possible to use Kustomize [ConfigMap generator](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/configmapgenerator/)
@@ -280,13 +322,13 @@ nameReference:
 Create a `HelmRelease` definition that references a `ConfigMap`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: podinfo
 spec:
-  interval: 5m
+  interval: 10m
   releaseName: podinfo
   chart:
     spec:
@@ -321,7 +363,7 @@ When [kustomize-controller](../components/kustomize/_index.md) reconciles the ab
 a unique name of the `ConfigMap` every time `my-values.yaml` content is updated in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -361,13 +403,13 @@ nameReference:
 Create a `HelmRelease` definition that references a `Secret`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: podinfo
 spec:
-  interval: 5m
+  interval: 10m
   releaseName: podinfo
   chart:
     spec:
@@ -464,13 +506,13 @@ in the context then they can recover decrypted values using `helm get values`.
 It is possible to replace the `values.yaml` with a different file present inside the Helm chart.
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: mongodb
   namespace: mongodb
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: mongodb
@@ -597,7 +639,7 @@ It is possible to create a new chart artifact when a Source's revision has chang
 `version` in the Chart.yml has not been bumped, for `GitRepository` and `Bucket` sources.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmChart
 metadata:
   name: podinfo

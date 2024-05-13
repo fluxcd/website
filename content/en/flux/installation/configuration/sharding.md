@@ -243,7 +243,7 @@ to the `shard1` controllers, label the HelmRelease, its chart and its repository
 with `sharding.fluxcd.io/key: shard1`:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -255,7 +255,7 @@ spec:
   type: oci
   url: oci://ghcr.io/stefanprodan/charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -309,7 +309,7 @@ spec:
     - target:
         kind: HelmRelease
       patch: |
-        apiVersion: helm.toolkit.fluxcd.io/v2beta2
+        apiVersion: helm.toolkit.fluxcd.io/v2
         kind: HelmRelease
         metadata:
           name: all
