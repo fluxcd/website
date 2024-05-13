@@ -308,41 +308,46 @@ version in the `main` branch when a new controller version is released.
 
 ##### Distribution: minor release website
 
-1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
-2. Click on "Configure"
-3. In "Additional branches" add the "v2-N" branch, e.g. "v2-1" for the 2.2.0
-   release (the documentation for the 2.2.0 release itself is built from
-   `main`).
-4. Click "Save"
-5. Create the "v2-N" branch (e.g. "v2-1") in the 
-   [website repo](https://github.com/fluxcd/website/) from `main`:
-   
+The website at [fluxcd.io](https://fluxcd.io) always reflects the latest Flux minor version. Each Flux minor release is
+reflected by a respective branch in the [website repo](https://github.com/fluxcd/website), i.e. for Flux 2.3, the
+website is deployed from the branch [v2-3](https://github.com/fluxcd/website/tree/v2-3). The website's `main` branch
+reflects the next Flux minor release and is used for development. The website for that branch is hosted at
+[https://main.docs.fluxcd.io](https://main.docs.fluxcd.io). For older Flux versions, the website is hosted at
+https://v2-*MINOR*.docs.fluxcd.io/. 
+
+The following instructions assume you're updating the website for the Flux release v2.N:
+
+1. Check out the `main` branch in the [website repo](https://github.com/fluxcd/website/) and apply the following
+   changes to the `hugo.yaml` file:
+   1. Add the following entry to `params.versions`:
+      ```yaml
+      - version: "v2.N"
+        url: https://fluxcd.io
+      ```
+   1. Edit the existing `params.versions` entry pointing to `https://fluxcd.io` to point to
+      `https://v2-(N-1).docs.fluxcd.io`
+   1. Remove the oldest entry from `params.versions`. We only support N-2 releases.
+1. In `.github/labels.yaml` add an entry for the `backport:v2-N` label by copying the existing `backport:v2-(N-1)` one.
+1. Commit the changes and create a PR for the `main` branch.
+1. As soon as the PR is merged, create the "v2-N" branch from `main`:
    ```shell
    git checkout main
    git pull
-   git checkout -b v2-1
-   git push origin HEAD:v2-1
+   git checkout -b v2-N
+   git push origin HEAD:v2-N
    ```
-6. In the `v2-1` branch edit the following fields in `hugo.yaml`:
-   1. Set `params.archived_version` to `true`
-   2. Add the following entry to `params.versions`:
-      ```yaml
-      - version: "v2.2"
-        url: https://fluxcd.io
-      ```
-   3. Edit the existing `params.versions` entry pointing to
-      `https://fluxcd.io` to point to `https://v2-1.docs.fluxcd.io`
-   4. Commit the changes and create a PR for the `v2-1` branch.
-7. In the `main` branch edit the following fields in `hugo.yaml`:
-   1. Set `params.version` to the latest version (e.g. "2.2")
-   2. Add the following entry to `params.versions`:
-      ```yaml
-      - version: "v2.2"
-        url: https://fluxcd.io
-      ```
-   3. Edit the existing `params.versions` entry pointing to 
-      `https://fluxcd.io` to point to `https://v2-1.docs.fluxcd.io`
-   4. Commit the changes and create a PR for the `main` branch.
+1. Apply the labels `backport:v2-N`, `backport:v2-(N-1)` and `backport:v2-(N-2)` to the PR created above so that the
+   `hugo.yaml` file gets updated in the older versions' websites. This step will lead to 3 PRs being automatically
+   created for each of the supported release branches of the website. Do not merge these PRs, yet!
+1. In the PR for the `v2-(N-1)` branch, edit the `hugo.yaml` file and set `params.archived_version` to `true`.
+1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
+1. Click on "Configure"
+1. In "Production branch", change the value from `v2-(N-1)` to `v2-N`.
+1. In "Additional branches" add the "v2-(N-1)" branch.
+1. Click "Save".
+1. Now merge the 3 PRs created by the labels you applied in the previous step.
+1. Create another PR against the `main` branch to update the `trigger_branch` URL query parameter in the
+   file `.github/workflows/netlify.yml` to point to "v2-N".
 
 #### Distribution: patch releases
 
