@@ -13,6 +13,8 @@ resources:
 We are thrilled to announce the release of [Flux v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)!
 In this post, we will highlight some of the new features and improvements included in this release.
 
+![](featured-image.png)
+
 ## General availability of Flux Helm features and APIs
 
 This release marks a significant milestone for the Flux project, after almost four years of development,
