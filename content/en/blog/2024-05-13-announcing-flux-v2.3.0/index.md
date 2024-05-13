@@ -107,8 +107,8 @@ hosted runner (Ubuntu, 16 cores):
 
 Compared to Flux v2.2, in this version the memory consumption of the helm-controller
 has improved a lot, especially when the cluster has hundreds of CRDs registered.
-In Flux v2.2, helm-controller on Kubernetes v1.28 is running out of memory
-with 100 CRDs registered, while in Flux v2.3 on Kubernetes v1.29 it can handle
+In Flux v2.2, helm-controller on Kubernetes v1.28 runs out of memory
+with only 100 CRDs registered. Whereas, in Flux v2.3 on Kubernetes v1.29, it can handle
 500+ CRDs without issues. Given these results, it is recommended
 to upgrade the Kubernetes control plane to v1.29 and Flux to v2.3.
 
@@ -201,7 +201,7 @@ has been updated with examples and detailed usage instructions.
 
 {{% alert color="info" title="New maintainer" %}}
 We are very happy to announce that [Steven Wade](https://github.com/swade1987) has joined the Flux project
-as the maintainer of the Terraform provider. Steven has been a long-time contributor to the Flux project
+as a maintainer of the Terraform provider. Steven has been a long-time contributor to the Flux project
 and we are excited to have him on board!
 {{% /alert %}}
 
@@ -294,8 +294,8 @@ It is advised to not delay this procedure as the deprecated versions will be rem
 
 ## Over and out
 
-If you have any questions, or simply just like what you read and want to get involved.
-Here are a few good ways to reach us:
+If you have any questions, or simply just like what you read and want to get involved,
+here are a few good ways to reach us:
 
 - Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
 - Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you need help with.
