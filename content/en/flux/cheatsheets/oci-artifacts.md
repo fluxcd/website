@@ -96,7 +96,7 @@ defining Helm releases with charts stored in container registries.
 Example:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -106,7 +106,7 @@ spec:
   type: oci
   url: oci://ghcr.io/stefanprodan/charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -443,7 +443,7 @@ cosign sign --key cosign.key <registry-host>/<org>/charts/<app-name>:<app-versio
 You can configure Flux to verify the chart signature before installing and upgrading a Helm release:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: helm-charts
@@ -452,7 +452,7 @@ spec:
   url: oci://<registry-host>/<org>/charts
   type: oci
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: <app-name>
@@ -683,7 +683,7 @@ spec:
 Then add the policy marker to the `HelmRelease` manifest in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo

@@ -41,7 +41,7 @@ metadata:
 Define a Flux `HelmRepository` that points to where the Flagger Helm charts are stored:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: flagger
@@ -56,7 +56,7 @@ Define a Flux `HelmRelease` that verifies and installs Flagger's latest version 
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: flagger

@@ -321,7 +321,7 @@ You can take advantage of Flux's OCI and native Helm features,
 by replacing the `kustomization.yaml` with a Flux Helm definition:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kyverno
@@ -331,7 +331,7 @@ spec:
   url: oci://ghcr.io/kyverno/charts
   type: oci
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kyverno
@@ -441,7 +441,7 @@ Create a Helm release with `kubectl`:
 ```sh
 cat << EOF | kubectl apply -f -
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: bitnami
@@ -450,7 +450,7 @@ spec:
   interval: 30m
   url: https://charts.bitnami.com/bitnami
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: metrics-server
@@ -480,7 +480,7 @@ when Bitnami publishes a new version of the metrics-server chart.
 Lets assume we have a common `HelmRelease` definition we use as a base and we
 we need to further customize it e.g per cluster, tenant, environment and so on:
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -534,7 +534,7 @@ spec:
 #### Using Kustomize variable substitution
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo

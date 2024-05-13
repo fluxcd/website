@@ -75,7 +75,7 @@ If you want to propagate Helm releases for your apps to member clusters, you can
 1. Define a Flux `HelmRepository` and a `HelmRelease` manifest in Karmada Control plane. They will serve as resource templates. 
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -83,7 +83,7 @@ spec:
   interval: 1m
   url: https://stefanprodan.github.io/podinfo  
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -107,7 +107,7 @@ metadata:
   name: helm-repo
 spec:
   resourceSelectors:
-    - apiVersion: source.toolkit.fluxcd.io/v1beta2
+    - apiVersion: source.toolkit.fluxcd.io/v1
       kind: HelmRepository
       name: podinfo
   placement:
@@ -122,7 +122,7 @@ metadata:
   name: helm-release
 spec:
   resourceSelectors:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta2
+    - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: podinfo
   placement:
@@ -179,7 +179,7 @@ metadata:
   namespace: default
 spec:
   resourceSelectors:
-  - apiVersion: helm.toolkit.fluxcd.io/v2beta2
+  - apiVersion: helm.toolkit.fluxcd.io/v2
     kind: HelmRelease
     name: podinfo
   overrideRules:

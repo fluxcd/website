@@ -404,7 +404,7 @@ Here are some examples of using this marker in a variety of Kubernetes resources
 `HelmRelease` example:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo

@@ -44,7 +44,7 @@ The source-controller will fetch the Helm repository index for this
 resource on an interval and expose it as an artifact:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -75,7 +75,7 @@ For HTTP/S repositories, the credentials can be provided as a secret reference w
 basic authentication.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: podinfo
@@ -202,13 +202,13 @@ To release a Helm chart, a `HelmRelease` resource has to be created.
 ### Using a chart template
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: default
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: <name|path>
@@ -217,7 +217,7 @@ spec:
         kind: <HelmRepository|GitRepository|Bucket>
         name: podinfo
         namespace: flux-system
-      interval: 1m
+      interval: 10m
   values:
     replicaCount: 2
 ```
@@ -254,7 +254,7 @@ for more details.
 
 It is possible to reference a chart directly from an `OCIRepository`:
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -263,7 +263,7 @@ spec:
     kind: OCIRepository
     name: podinfo
     namespace: flux-system
-  interval: 30s
+  interval: 10m
   values:
     replicaCount: 2
 ```
@@ -271,7 +271,7 @@ spec:
 
 Or a `HelmChart`:
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -280,7 +280,7 @@ spec:
     kind: HelmChart
     name: podinfo
     namespace: flux-system
-  interval: 30s
+  interval: 10m
   values:
     replicaCount: 2
 ```
@@ -320,13 +320,13 @@ nameReference:
 Create a `HelmRelease` definition that references a `ConfigMap`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: podinfo
 spec:
-  interval: 5m
+  interval: 10m
   releaseName: podinfo
   chart:
     spec:
@@ -361,7 +361,7 @@ When [kustomize-controller](../components/kustomize/_index.md) reconciles the ab
 a unique name of the `ConfigMap` every time `my-values.yaml` content is updated in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
@@ -401,13 +401,13 @@ nameReference:
 Create a `HelmRelease` definition that references a `Secret`:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: podinfo
   namespace: podinfo
 spec:
-  interval: 5m
+  interval: 10m
   releaseName: podinfo
   chart:
     spec:
@@ -504,13 +504,13 @@ in the context then they can recover decrypted values using `helm get values`.
 It is possible to replace the `values.yaml` with a different file present inside the Helm chart.
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: mongodb
   namespace: mongodb
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: mongodb
@@ -637,7 +637,7 @@ It is possible to create a new chart artifact when a Source's revision has chang
 `version` in the Chart.yml has not been bumped, for `GitRepository` and `Bucket` sources.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmChart
 metadata:
   name: podinfo
