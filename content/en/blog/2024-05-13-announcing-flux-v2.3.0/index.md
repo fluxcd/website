@@ -181,13 +181,29 @@ The Flux source-controller now supports verifying the authenticity of OCI artifa
 
 To enable Notation signature verification, please see the following documentation:
 
-- [HelmChart](/flux/components/source/helmcharts/#notation)
-- [OCIRepository](/flux/components/source/ocirepositories/#notation)
+- [HelmChart verify](/flux/components/source/helmcharts/#notation)
+- [OCIRepository verify](/flux/components/source/ocirepositories/#notation)
 
 In addition, the Flux CLI now supports generating Kubernetes secrets with Notation trust policies,
 using the `flux create secret notation` command.
 
 Big thanks to Microsoft for contributing to the development of this feature!
+
+## Terraform provider improvements
+
+The [Flux Terraform provider](https://github.com/fluxcd/terraform-provider-flux) has undergone a major refactoring
+and now supports air-gapped bootstrap, drift detection and correction for Flux components, and the ability to
+upgrade and restore the Flux controllers in-cluster. Starting with this release, the provider is fully
+compatible with OpenTofu.
+
+The [provider documentation](https://github.com/fluxcd/terraform-provider-flux?tab=readme-ov-file#guides)
+has been updated with examples and detailed usage instructions.
+
+{{% alert color="info" title="New maintainer" %}}
+We are very happy to announce that [Steven Wade](https://github.com/swade1987) has joined the Flux project
+as the maintainer of the Terraform provider. Steven has been a long-time contributor to the Flux project
+and we are excited to have him on board!
+{{% /alert %}}
 
 ## Controllers improvements
 
@@ -243,13 +259,13 @@ Flux v2.3 supports the following Kubernetes versions:
 Flux v2.3 is the first release end-to-end tested on OpenShift. Big thanks to
 [Replicated](https://www.replicated.com/) for sponsoring the Flux project
 with on-demand OpenShift clusters. For more information on how to bootstrap Flux on OpenShift,
-see the [OpenShift installation guide](flux/installation/configuration/openshift/).
+see the [OpenShift installation guide](/flux/installation/configuration/openshift/).
 
 {{% alert color="info" title="Enterprise support" %}}
 Note that the CNCF Flux project offers support only for the latest
 three minor versions of Kubernetes.
 
-Backwards compatibility with older versions of Kubernetes is offered by vendors
+Backwards compatibility with older versions of Kubernetes and OpenShift is offered by vendors
 such as [ControlPlane](https://control-plane.io/enterprise-for-flux-cd/) that provide
 enterprise support for Flux.
 {{% /alert %}}
