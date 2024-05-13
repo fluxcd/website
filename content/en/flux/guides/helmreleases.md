@@ -178,12 +178,12 @@ spec:
 The source-controller will fetch the Helm chart from the OCI registry namespace 
 on an interval and expose it as an artifact.
 
-The `interval` defines at which interval the OCI repository contents
+The `interval` defines the interval at which the OCI repository contents
 are fetched, and should be at least `1m`. Setting this to a higher
 value means newer chart versions will be detected at a slower pace,
-a push-based fetch can be introduced using [webhook receivers](webhook-receivers.md)
+a push-based fetch can be introduced using [webhook receivers](webhook-receivers.md).
 
-The `url` has to point to a registry repository and to start with `oci://`.
+The `url` has to point to a registry repository and start with prefix `oci://`.
 
 The `ref` defines the checkout strategy, and can be one of `tag`, `digest` or `semver`.
 When using `semver`, an optional `semverFilter` can be provided to filter the tags.
@@ -197,7 +197,9 @@ for more details.
 
 ## Define a Helm release
 
-To release a Helm chart, a `HelmRelease` resource has to be created.
+To release a Helm chart, a `HelmRelease` resource has to be created. The `HelmRelease`
+resources can either reference an existing `OCIRepository` or `Helmchart` resource,
+or it creates a new `HelmChart` resource and manages it.
 
 ### Using a chart template
 
@@ -297,7 +299,7 @@ The pros of using a chart reference are:
   specific `tag` or `digest` makes it easier to enforce a specific change, and
   overall more flexible.
 
-**Note**: When switching from a `chart.Spec` to a `chartRef`, the old `HelmChart`
+**Note**: When switching from a `.chart.spec` to a `.chartRef`, the old `HelmChart`
 resource is garbage collected by the helm-controller.
 
 ## Refer to values in `ConfigMaps` generated with Kustomize

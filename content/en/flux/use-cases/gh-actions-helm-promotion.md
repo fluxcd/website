@@ -93,7 +93,7 @@ GitHub workflow that reacts to Flux repository dispatch events.
 The `event` that Flux generate for a `HelmRelease` upgrade contains metadata about the event,
 with fields that can be used to determine the chart version that was deployed:
 - `metadata.revision`: the Helm chart version deployed.
-- optional `metadata.oci-digest`: the OCI digest of the oci artifact deployed in
+- `metadata.oci-digest`(optional): the OCI digest of the oci artifact deployed in
   case of an `OCIRepository` source.
 
 ### Promoting a HelmRelease with a chart version
