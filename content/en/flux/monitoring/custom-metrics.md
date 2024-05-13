@@ -82,7 +82,7 @@ customResourceState:
       resources:
         - groupVersionKind:
             group: helm.toolkit.fluxcd.io
-            version: "v2beta2"
+            version: "v2"
             kind: HelmRelease
           metricNamePrefix: gotk
           metrics:
