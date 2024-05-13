@@ -10,9 +10,6 @@ jobs:
     if: github.repository == 'fluxcd/website'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy 'main' on Netlify
+      - name: Deploy current production branch on Netlify
         run: |
-          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}'
-          # So fluxcd.io/#calendar advances, rebuild the current minor:
-          # Ref: https://github.com/fluxcd/website/issues/1787
-          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK_V22 }}'
+          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}?trigger_branch=v2-3'
