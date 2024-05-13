@@ -1,6 +1,6 @@
 ---
 author: Stefan Prodan
-date: 2024-05-13 15:00:00+00:00
+date: 2024-05-13 12:00:00+00:00
 title: Announcing Flux 2.3 GA
 description: "We are thrilled to announce the release of Flux v2.3.0! Here you will find highlights of new features and improvements in this release."
 url: /blog/2024/05/flux-v2.3.0/
@@ -293,6 +293,19 @@ To upgrade the APIs in the manifests stored in Git:
 
 Bumping the APIs version in manifests can be done gradually.
 It is advised to not delay this procedure as the deprecated versions will be removed after 6 months.
+
+## What's next for Flux?
+
+The next milestone for the Flux project is v2.4, which is planned for Q3 2024
+and will focus on the image automation APIs and S3-compatible storage APIs.
+For more details on the upcoming features and improvements, see the [Flux project roadmap](/roadmap).
+
+After the introduction of OCI Artifacts in 2022, we had a recurring ask from users about improving
+the UX of running Flux fully decoupled from Git. In response, we made a proposal for a
+`flux bootstrap oci` command and a new Terraform/OpenTofu provider that relies on
+container registries as the unified data storage for the desired state of Kubernetes clusters.
+The RFC can be found at [fluxcd/flux2#4749](https://github.com/fluxcd/flux2/pull/4749) and we 
+welcome feedback from the community.
 
 ## Over and out
 
