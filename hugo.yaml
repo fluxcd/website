@@ -115,8 +115,6 @@ params:
       url: https://v2-2.docs.fluxcd.io
     - version: "v2.1"
       url: https://v2-1.docs.fluxcd.io
-    - version: "v2.0"
-      url: https://v2-0.docs.fluxcd.io
   logos:
     navbar: flux-horizontal-white.png
     hero: flux-horizontal-color.png
