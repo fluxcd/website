@@ -398,10 +398,39 @@ custom root CAs or self-hosted Rekor instances are not currently supported.
 
 ### Notary Workflow example
 
-Add a certificate to the trusted certificates store:
+Generate a local signing key pair:
 
 ```shell
-notation cert add --type ca --store <store> <cert>
+openssl req -x509 -sha256 -nodes -newkey rsa:2048 \
+-keyout <name>.key \
+-out <name>.crt \
+-days 365 \
+-subj "/C=US/ST=WA/L=Seattle/O=Notary/CN=<name>" \
+-addext "basicConstraints=CA:false" \
+-addext "keyUsage=critical,digitalSignature" \
+-addext "extendedKeyUsage=codeSigning"
+```
+
+Configure notation to use the local key:
+
+```shell
+cat <<EOF > ~/.config/notation/signingkeys.json
+{
+    "default": "<key-name>"
+    "keys": [
+        {
+            "name": "<key-name>",
+            "keyPath": "<path-to-key>.key",
+            "certPath": "<path-to-cert>.crt"
+        }
+    ]
+}
+```
+
+You should now be able to list the keys:
+
+```shell
+notation key ls
 ```
 
 It is also possible to generate a test certificate:
@@ -411,15 +440,21 @@ It is also possible to generate a test certificate:
 notation cert generate-test valid-example
 ```
 
+{{% alert color="warning" title="Disclaimer" %}}
+The test certificate is not suitable for production use. Please 
+visit the [notation documentation](https://notaryproject.dev/docs/user-guides/how-to/plugin-management/)
+for more information on how to use the notation plugin for production.
+{{% /alert %}}
+
 Push and sign the artifact using the certificate's private key:
 
 ```shell
-flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) \
+flux push artifact oci://ghcr.io/org/app-manifests:$(git tag --points-at HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
 	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
 
-notation sign ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) -k <key>
+notation sign ghcr.io/org/app-manifests:$(git tag --points-at HEAD) -k <key-name>
 ```
 
 Create a `trustpolicy.json` file:
@@ -431,14 +466,14 @@ Create a `trustpolicy.json` file:
         {
             "name": "<policy-name>",
             "registryScopes": [ 
-                "ghcr.io/stefanprodan/manifests/podinfo"
+                "ghcr.io/org/app-manifests"
              ],
             "signatureVerification": {
                 "level" : "strict" 
             },
             "trustStores": [ "ca:<store-name>" ],
             "trustedIdentities": [
-                "x509.subject: C=RO, ST=BU, L=Bucharest, O=Notary, CN=stefanprodan.com"
+                "x509.subject: C=US, ST=WA, L=Seattle, O=Notary, CN=<name>"
             ]
         }
     ]
@@ -452,7 +487,7 @@ For more details see [trust policy spec](https://github.com/notaryproject/specif
 Generate a kubernetes secret with the certificate and trust policy:
 
 ```shell
-flux create secret notation podinfo-cfg \
+flux create secret notation notation-cfg \
     --namespace=<namespace> \
     --trust-policy-file=<trust-policy-file-path> \
     --ca-cert-file=<ca-cert-file-path>
@@ -464,17 +499,17 @@ Configure Flux to verify the artifacts using the Notary trust policy and certifi
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
-  name: podinfo
+  name: app-manifests
   namespace: flux-system
 spec:
   interval: 5m
-  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  url: oci://ghcr.io/org/app-manifests
   ref:
     semver: "*"
   verify:
     provider: notation
     secretRef:
-      name: podinfo-cfg
+      name: notation-cfg
 ```
 
 ### Verification status
