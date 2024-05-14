@@ -7,18 +7,18 @@ weight: 20
 
 In this guide you'll be developing a Kubernetes controller with
 [Kubebuilder](https://github.com/kubernetes-sigs/kubebuilder)
-that subscribes to [GitRepository](../components/source/gitrepositories.md)
+that subscribes to [GitRepository](/flux/components/source/gitrepositories/)
 events and reacts to revision changes by downloading the artifact produced by
-[source-controller](../components/source/_index.md).
+[source-controller](/flux/components/source/).
 
 ## Prerequisites
 
 On your dev machine install the following tools:
 
-* go >= 1.20
+* go >= 1.22
 * kubebuilder >= 3.0
-* kind >= 0.17
-* kubectl >= 1.25
+* kind >= 0.22
+* kubectl >= 1.29
 
 ## Install Flux
 
@@ -93,13 +93,13 @@ Create a Git source:
 flux create source git test \
 --url=https://github.com/fluxcd/flux2 \
 --ignore-paths='/*,!/manifests' \
---tag=v0.41.2
+--tag=v2.2.0
 ```
 
 The source-watcher will log the revision:
 
 ```sh
-{"level":"info","ts":"2023-03-31T16:43:42.703+0200","msg":"New revision detected","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"test","namespace":"flux-system"},"namespace":"flux-system","name":"test","reconcileID":"ef0fe80e-3952-4835-ae9d-01760c4eadde","revision":"v0.41.2@sha1:81606709114f6d16a432f9f4bfc774942f054327"}
+{"level":"info","ts":"2024-05-14T16:43:42.703+0200","msg":"New revision detected","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"test","namespace":"flux-system"},"namespace":"flux-system","name":"test","reconcileID":"ef0fe80e-3952-4835-ae9d-01760c4eadde","revision":"v2.2.0@sha1:81606709114f6d16a432f9f4bfc774942f054327"}
 ```
 
 Change the Git tag:
@@ -108,13 +108,13 @@ Change the Git tag:
 flux create source git test \
 --url=https://github.com/fluxcd/flux2 \
 --ignore-paths='/*,!/manifests' \
---tag=v2.0.0-rc.1
+--tag=v2.3.0
 ```
 
 And source-watcher will log the new revision:
 
 ```sh
-{"level":"info","ts":"2023-03-31T16:51:33.499+0200","msg":"New revision detected","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"test","namespace":"flux-system"},"namespace":"flux-system","name":"test","reconcileID":"cc0f83bb-b7a0-4c19-a254-af9962ae39cd","revision":"v2.0.0-rc.1@sha1:658925c2c0e6c408597d907a8ebee06a9a6d7f30"}
+{"level":"info","ts":"2024-05-14T16:51:33.499+0200","msg":"New revision detected","controller":"gitrepository","controllerGroup":"source.toolkit.fluxcd.io","controllerKind":"GitRepository","GitRepository":{"name":"test","namespace":"flux-system"},"namespace":"flux-system","name":"test","reconcileID":"cc0f83bb-b7a0-4c19-a254-af9962ae39cd","revision":"v2.3.0@sha1:658925c2c0e6c408597d907a8ebee06a9a6d7f30"}
 ```
 
 The source-controller reports the revision under `GitRepository.Status.Artifact.Revision` in the format: `<branch|tag>@sha1:<commit>`.
@@ -235,8 +235,8 @@ and Kubernetes [controller-runtime](https://pkg.go.dev/sigs.k8s.io/controller-ru
 
 ```go
 require (
-    github.com/fluxcd/pkg/runtime v0.35.0
-    sigs.k8s.io/controller-runtime v0.14.6
+    github.com/fluxcd/pkg/runtime v0.47.1
+    sigs.k8s.io/controller-runtime v0.18.2
 )
 ```
 
