@@ -14,7 +14,7 @@ to debug e.g. performance issues.
 
 ## Pprof
 
-The [GitOps Toolkit components](../components/_index.md) serve [`pprof`](https://golang.org/pkg/net/http/pprof/)
+The [GitOps Toolkit components](/flux/components/) serve [`pprof`](https://golang.org/pkg/net/http/pprof/)
 runtime profiling data on their metrics HTTP server (default `:8080`).
 
 ### Endpoints
@@ -43,5 +43,5 @@ or shared with one of the maintainers.
 
 As `kubectl top` gives a limited (and at times inaccurate) overview of
 resource usage, it is often better to make use of the Grafana metrics
-to gather insights. See [Flux Prometheus metrics](../monitoring/metrics.md) for a
+to gather insights. See [Flux Prometheus metrics](/flux/monitoring/metrics/) for a
 guide on how to visualize this data with a Grafana dashboard.
