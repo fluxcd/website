@@ -32,23 +32,24 @@ go get github.com/fluxcd/source-controller/api
 Import package
 
 ```go
-import sourcev1b2 "github.com/fluxcd/source-controller/api/v1beta2"
+import sourcev1 "github.com/fluxcd/source-controller/api/v1"
 ```
 
-and for `GitRepository` objects:
+and for `OCIRepository` objects:
 
 ```go
-import sourcev1 "github.com/fluxcd/source-controller/api/v1"
+import sourcev1b2 "github.com/fluxcd/notification-controller/api/v1beta2"
 ```
 
 API Types
 
-| Name                                                       | Version |
-|------------------------------------------------------------|---------|
-| [GitRepository](../components/source/gitrepositories.md)   | v1      |
-| [HelmRepository](../components/source/helmrepositories.md) | v1beta2 |
-| [HelmChart](../components/source/helmcharts.md)            | v1beta2 |
-| [Bucket](../components/source/buckets.md)                  | v1beta2 |
+| Name                                                        | Version |
+|-------------------------------------------------------------|---------|
+| [GitRepository](/flux/components/source/gitrepositories/)   | v1      |
+| [HelmRepository](/flux/components/source/helmrepositories/) | v1      |
+| [HelmChart](/flux/components/source/helmcharts.md)          | v1      |
+| [OCIRepository](/flux/components/source/ocirepositories/)   | v1beta2 |
+| [Bucket](/flux/components/source/buckets.md)                | v1beta2 |
 
 ### kustomize.toolkit.fluxcd.io
 
@@ -66,9 +67,9 @@ import kustomizev1 "github.com/fluxcd/kustomize-controller/api/v1"
 
 API Types
 
-| Name                                                       | Version |
-|------------------------------------------------------------|---------|
-| [Kustomization](../components/kustomize/kustomizations.md) | v1      |
+| Name                                                        | Version |
+|-------------------------------------------------------------|---------|
+| [Kustomization](/flux/components/kustomize/kustomizations/) | v1      |
 
 ### helm.toolkit.fluxcd.io
 
@@ -81,14 +82,14 @@ go get github.com/fluxcd/helm-controller/api
 Import package
 
 ```go
-import helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
+import helmv2 "github.com/fluxcd/helm-controller/api/v2"
 ```
 
 API Types
 
-| Name                                              | Version |
-|---------------------------------------------------|---------|
-| [HelmRelease](../components/helm/helmreleases.md) | v2beta2 |
+| Name                                               | Version |
+|----------------------------------------------------|---------|
+| [HelmRelease](/flux/components/helm/helmreleases/) | v2      |
 
 ### notification.toolkit.fluxcd.io
 
@@ -112,11 +113,11 @@ import notificationv1 "github.com/fluxcd/notification-controller/api/v1"
 
 API Types
 
-| Name                                               | Version |
-|----------------------------------------------------|---------|
-| [Receiver](../components/notification/receiver.md) | v1      |
-| [Provider](../components/notification/provider.md) | v1beta3 |
-| [Alert](../components/notification/alert.md)       | v1beta3 |
+| Name                                                 | Version |
+|------------------------------------------------------|---------|
+| [Receiver](/flux/components/notification/receivers/) | v1      |
+| [Provider](/flux/components/notification/providers/) | v1beta3 |
+| [Alert](/flux/components/notification/alerts/)       | v1beta3 |
 
 ### image.toolkit.fluxcd.io
 
@@ -138,11 +139,11 @@ import (
 
 API Types
 
-| Name                                                                   | Version |
-|------------------------------------------------------------------------|---------|
-| [ImageRepository](../components/image/imagerepositories.md)            | v1beta2 |
-| [ImagePolicy](../components/image/imagepolicies.md)                    | v1beta2 |
-| [ImageUpdateAutomation](../components/image/imageupdateautomations.md) | v1beta2 |
+| Name                                                                    | Version |
+|-------------------------------------------------------------------------|---------|
+| [ImageRepository](/flux/components/image/imagerepositories/)            | v1beta2 |
+| [ImagePolicy](/flux/components/image/imagepolicies/)                    | v1beta2 |
+| [ImageUpdateAutomation](/flux/components/image/imageupdateautomations/) | v1beta2 |
 
 ## CRUD Example
 
@@ -166,9 +167,9 @@ import (
   ctrl "sigs.k8s.io/controller-runtime"
   "sigs.k8s.io/controller-runtime/pkg/client"
 
-  helmv2 "github.com/fluxcd/helm-controller/api/v2beta2"
+  helmv2 "github.com/fluxcd/helm-controller/api/v2"
   apimeta "github.com/fluxcd/pkg/apis/meta"
-  sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
+  sourcev1 "github.com/fluxcd/source-controller/api/v1"
 )
 
 func main() {
