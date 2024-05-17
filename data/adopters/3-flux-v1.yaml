@@ -94,6 +94,7 @@ adopters:
       url: https://www.ibm.com/cloud/cloudant
     - name: Improwised Technologies
       url: https://www.improwised.com/
+      logo: logos/improwised.png
     - name: Infabode
       url: https://infabode.com
     - name: iQmetrix
@@ -217,3 +218,6 @@ adopters:
     - name: MilliporeSigma
       url: https://www.sigmaaldrich.com/
       logo: logos/MilliporeSigma.png
+    - name: Platform Engineers
+      url: https://platformengineers.io/
+      logo: logos/platformengineers.png
