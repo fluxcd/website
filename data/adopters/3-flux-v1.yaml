@@ -94,6 +94,7 @@ adopters:
       url: https://www.ibm.com/cloud/cloudant
     - name: Improwised Technologies
       url: https://www.improwised.com/
+      logo: logos/improwised.png
     - name: Infabode
       url: https://infabode.com
     - name: iQmetrix
