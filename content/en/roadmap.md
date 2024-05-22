@@ -128,14 +128,17 @@ and S3-compatible storage APIs.
 
 - **S3-compatible storage integrations**
   - [ ] Promote the `Bucket` API to `v1`
+  - [x] [Allow specifying a custom CA certificate in Bucket API](https://github.com/fluxcd/source-controller/issues/973)
+  - [ ] [Allow specifying HTTP/S proxy in Bucket API](https://github.com/fluxcd/source-controller/issues/1493)
 
 - **OCI artifacts integrations**
   - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
   - [ ] [Enhance OCI Artifact support](https://github.com/fluxcd/source-controller/issues/1247)
   - [ ] [Add support for layer extraction from OCI artifacts with `ImageIndex`](https://github.com/fluxcd/source-controller/pull/1369)
+  - [ ] [Allow specifying HTTP/S proxy in OCIRepository API](https://github.com/fluxcd/source-controller/issues/1492)
 
 - **Git integrations**
-  - [ ] [Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4114)
+  - [ ] [RFC - Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4806)
   - [ ] Implement Workload Identity auth for Azure DevOps repositories
   - [ ] Implement GitHub App auth for GitHub repositories
 
@@ -180,5 +183,6 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0005](https://github.com/fluxcd/flux2/tree/main/rfcs/0005-artifact-revision-and-digest) Artifact `Revision` format and introduction of `Digest`
 - [x] [RFC-0006](https://github.com/fluxcd/flux2/tree/main/rfcs/0006-cdevents) Flux CDEvents Receiver
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4114) Passswordless authentication for Git repositories
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4806) Passswordless authentication for Git repositories
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4528) Custom Health Checks for Kustomization using Common Expression Language(CEL)
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
