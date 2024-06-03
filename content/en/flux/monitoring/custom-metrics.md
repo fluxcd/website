@@ -200,4 +200,4 @@ metrics.
 [kube-state-metrics]: https://github.com/kubernetes/kube-state-metrics
 [monitoring-example-repo]: https://github.com/fluxcd/flux2-monitoring-example
 [kube-prometheus-stack]: https://github.com/prometheus-operator/kube-prometheus
-[ksm-customresourcestate-metrics]: https://github.com/kubernetes/kube-state-metrics/blob/main/docs/customresourcestate-metrics.md
+[ksm-customresourcestate-metrics]: https://github.com/kubernetes/kube-state-metrics/blob/main/docs/metrics/extend/customresourcestate-metrics.md
