@@ -35,7 +35,8 @@ as being part of the Flux Ecosystem.
 |--------------|-------------------------------------|--------------------------------------------------------------------------------------|
 | AWS          | EKS Anywhere                        | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
 | Azure        | AKS + Azure Arc                     | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
-| ControlPlane | Enterprise Distribution for Flux    | [Product Page](https://fluxcd.control-plane.io)                                      |
+| Ænix         | Cozy-stack                          | [Documentation](https://cozystack.io/docs/components/#flux-cd)                       |
+| ControlPlane | Enterprise Distribution for Flux    | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
 | Giant Swarm  | Kubernetes Platform                 | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
 | Gimlet       | Gimlet                              | [Documentation](https://gimlet.io/concepts/components/)                              |
 | GitLab       | GitLab                              | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
