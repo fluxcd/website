@@ -16,7 +16,7 @@ Luckily some of the companies who employ Flux developers offer paid support, so 
 <div class="support">
 
 {{< cardpane >}}
-{{% card header="[ControlPlane](https://control-plane.io/enterprise-flux/)" %}}
+{{% card header="[ControlPlane](https://fluxcd.control-plane.io/)" %}}
 ![ControlPlane](/img/logos/controlplane.png)
 {{% /card %}}
 {{% card header="[DoneOps](https://www.doneops.com/#contactus)" %}}
