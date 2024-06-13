@@ -35,7 +35,7 @@ as being part of the Flux Ecosystem.
 |--------------|-------------------------------------|--------------------------------------------------------------------------------------|
 | AWS          | EKS Anywhere                        | [Documentation](https://anywhere.eks.amazonaws.com/docs/tasks/cluster/cluster-flux/) |
 | Azure        | AKS + Azure Arc                     | [Documentation](https://docs.microsoft.com/azure/azure-arc/)                         |
-| ControlPlane | Enterprise Distribution for Flux    | [Documentation](https://github.com/controlplaneio-fluxcd/distribution)               |
+| ControlPlane | Enterprise Distribution for Flux    | [Product Page](https://fluxcd.control-plane.io)                                      |
 | Giant Swarm  | Kubernetes Platform                 | [Documentation](https://docs.giantswarm.io/advanced/gitops/)                         |
 | Gimlet       | Gimlet                              | [Documentation](https://gimlet.io/concepts/components/)                              |
 | GitLab       | GitLab                              | [Documentation](https://docs.gitlab.com/ee/user/clusters/agent/gitops.html)          |
@@ -61,6 +61,7 @@ These open source projects extend Flux with new capabilities.
 
 | Source                                                                                                              | Description                                                                                                                 |
 |---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| [controlplaneio-fluxcd/flux-operator](https://github.com/controlplaneio-fluxcd/flux-operator)                       | An operator that manages the lifecycle of Flux and automates the upgrade of the Flux CRDs and controllers.                  |
 | [flux-iac/tofu-controller](https://github.com/flux-iac/tofu-controller)                                             | A Flux controller for managing Terraform (and OpenTofu) resources.                                                          |
 | [pelotech/jsonnet-controller](https://github.com/pelotech/jsonnet-controller)                                       | A Flux controller for managing manifests declared in jsonnet.                                                               |
 | [kcl-lang/flux-kcl-controller](https://github.com/kcl-lang/flux-kcl-controller)                                     | A Flux controller for managing manifests declared in [KCL](https://www.kcl-lang.io/).                                       |
