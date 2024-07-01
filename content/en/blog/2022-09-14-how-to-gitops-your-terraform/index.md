@@ -30,7 +30,7 @@ your code at all!
 ## What is the Terraform Controller?
 
 The [Terraform Controller](https://weaveworks.github.io/tf-controller/)
-is a [Flux](http://fluxcd.io) controller that can manage your
+is a [Flux](https://fluxcd.io) controller that can manage your
 Terraform resources. Although Flux runs on Kubernetes, whatever you are
 using Terraform for, the Flux controller can manage it. It has several
 features including the ability to do manual approvals or auto-approve
