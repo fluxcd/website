@@ -191,7 +191,7 @@ At the time of writing all the tickets have been sold out, so if you
 managed to get one, we look forward to seeing you there! Let's dig into
 what's happening over all of the days, because it is a lot.
 
-Here is [the link to our mini-website](http://bit.ly/Flux_KubeConEU_2023)
+Here is [the link to our mini-website](https://bit.ly/Flux_KubeConEU_2023)
 to keep you up to date at all times.
 
 ##### Tuesday, April 18
