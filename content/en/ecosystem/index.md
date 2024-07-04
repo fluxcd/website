@@ -99,6 +99,7 @@ is missing, feel free to send a PR to add it.
 | [raffis/gitops-zombies](https://github.com/raffis/gitops-zombies)     | Identify kubernetes resources which are not managed by GitOps                               | [README](https://github.com/raffis/gitops-zombies#readme)                                   |
 | [renovatebot/renovate](https://github.com/renovatebot/renovate)       | Universal dependency update tool that fits into your workflows.                             | [Automated Dependency Updates for Flux](https://docs.renovatebot.com/modules/manager/flux/) |
 | [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook) | A [pre-commit](https://pre-commit.com) that validates values of HelmRelease using helm lint | [README](https://github.com/tarioch/flux-check-hook#readme)                                 |
+| [brainfair/flux2-bitbucketpipeline-dispatcher](https://github.com/brainfair/flux2-bitbucketpipeline-dispatcher) | A middleware that triggers Flux promotion pipelines for BitBucket Cloud. | [README](https://github.com/brainfair/flux2-bitbucketpipeline-dispatcher#readme) |
 
 </div>
 
