@@ -99,7 +99,7 @@ Flux has not participated in any of these initiatives, so we are looking forward
 
 If you are interested in participating in Google Season of Docs as a technical writer, please do the following:
 
-1. Join the `#flux-contributors` channel on [CNCF Slack](http://slack.cncf.io/).
+1. Join the `#flux-contributors` channel on [CNCF Slack](https://slack.cncf.io/).
 1. Review this project proposal and familiarise yourself with the [documentation website](/flux). Particularly the sections `Core Concepts`, `Get Started` and `Installation` are read by our users all the time. Getting a general sense of the documentation structure of the organisation will be of help as well.
 1. You will need some familiarity with Cloud Native technologies such as [Kubernetes](https://kubernetes.io), so you can more easily understand the problems and background of users.
 1. Talk to us on Slack, introduce yourself - we are happy to tell you more.
