@@ -249,7 +249,7 @@ metadata:
   name: podinfo
   namespace: default
   labels:
-    sharding.fluxcd.io/shard: shard1
+    sharding.fluxcd.io/key: shard1
 spec:
   interval: 10m
   type: oci
