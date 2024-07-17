@@ -13,6 +13,10 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - youtube: _WGLpoxI0pg
+    title: "Learnings from 5 years with #GitOps for #kubernetes - What you need to know! - Łukasz Piątkowski on CI CD on AWS"
+    date: "2024-07-01"
+    type: video
   - youtube: LTwJIMWovO4
     title: "KubeCon EU 2024: Flux: Secure and Scalable GitOps | Project Lightning Talk"
     date: "2024-03-26"
