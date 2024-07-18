@@ -17,6 +17,14 @@ resources:
     title: "Learnings from 5 years with #GitOps for #kubernetes - What you need to know! - Łukasz Piątkowski on CI CD on AWS"
     date: "2024-07-01"
     type: video
+  - youtube: NpGd8ZQ3sIw
+    title: "GitOpsCon NA 2024: What's New with Flux? - Priyanka Ravi, G-Research"
+    date: "2024-04-30"
+    type: video
+  - youtube: bnTu7RbPSIM
+    title: "GitOpsCon NA 2024: Accelerating GitOps Adoption with Flux - Ed Boykin, CoreCard, Inc."
+    date: "2024-04-30"
+    type: video
   - youtube: LTwJIMWovO4
     title: "KubeCon EU 2024: Flux: Secure and Scalable GitOps | Project Lightning Talk"
     date: "2024-03-26"
