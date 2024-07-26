@@ -320,6 +320,6 @@ spec:
                 sharding.fluxcd.io/key: shard1
 ```
 
-With `.spec.commonMetadata.labels` we  set the shading key on all
-the Flux resources and with the `.spec.patches` we set the same shading key
+With `.spec.commonMetadata.labels` we  set the sharding key on all
+the Flux resources and with the `.spec.patches` we set the same sharding key
 for all generated `HelmCharts`.
