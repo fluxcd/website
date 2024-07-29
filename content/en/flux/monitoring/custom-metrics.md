@@ -72,7 +72,7 @@ about that in the next section.
 
 Similarly, more custom metrics can be added by appending them to the `metrics`
 list. For example, to create a metric about the HelmRelease last applied
-revision, append the HelmRelease resource metrics section:
+chart and app version, append the HelmRelease resource metrics section:
 
 ```yaml
 ...
@@ -103,11 +103,12 @@ customResourceState:
                 type: Info
                 info:
                   labelsFromPath:
-                    version: [status, lastAppliedRevision]
+                    chart_version: [status, history, "0", chartVersion]
+                    app_version: [ status, history, "0", appVersion ]
               labelsFromPath:
                 name: [metadata, name]
                 exported_namespace: [metadata, namespace]
-                chartName: [spec, chart, spec, chart]
+                chart_name: [spec, chart, spec, chart]
 ...
 ```
 
@@ -117,12 +118,10 @@ will be exported for HelmReleases.
 ```
 # HELP gotk_resource_info The current state of a GitOps Toolkit resource.
 # TYPE gotk_resource_info info
-gotk_resource_info{customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2beta2",exported_namespace="monitoring",name="kube-prometheus-stack",ready="True"} 1
-gotk_resource_info{customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2beta2",exported_namespace="monitoring",name="loki-stack",ready="True"} 1
+gotk_resource_info{customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2",exported_namespace="monitoring",name="kube-prometheus-stack",ready="True"} 1
 # HELP gotk_helmrelease_version_info The version information of helm release resource.
 # TYPE gotk_helmrelease_version_info info
-gotk_helmrelease_version_info{chartName="kube-prometheus-stack",customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2beta2",exported_namespace="monitoring",name="kube-prometheus-stack",version="48.3.1"} 1
-gotk_helmrelease_version_info{chartName="loki-stack",customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2beta2",exported_namespace="monitoring",name="loki-stack",version="2.9.11"} 1
+gotk_helmrelease_version_info{chart_mame="kube-prometheus-stack",chart_version="61.3.2",app_version="v0.75.1",customresource_group="helm.toolkit.fluxcd.io",customresource_kind="HelmRelease",customresource_version="v2",exported_namespace="monitoring",name="kube-prometheus-stack"} 1
 ```
 
 ## Adding custom metric labels
