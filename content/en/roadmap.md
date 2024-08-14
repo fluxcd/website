@@ -117,8 +117,36 @@ and the Flux Helm functionalities.
 
 **Status**: In progress
 
-The primary goal of this milestone is to make a generally available release for the Flux image automation APIs
-and S3-compatible storage APIs.
+The primary goal of this milestone is to make a generally available release for the Flux S3-compatible storage APIs.
+
+- **S3-compatible storage integrations**
+  - [ ] Promote the `Bucket` API to `v1`
+  - [x] [Allow specifying a custom CA certificate in Bucket API](https://github.com/fluxcd/source-controller/issues/973)
+  - [x] [Allow specifying HTTP/S proxy in Bucket API](https://github.com/fluxcd/source-controller/issues/1493)
+  - [ ] [Add support for STS endpoint in the Bucket API](https://github.com/fluxcd/source-controller/issues/1423)
+
+- **OCI artifacts integrations**
+  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
+  - [ ] [Allow specifying HTTP/S proxy in OCIRepository API](https://github.com/fluxcd/source-controller/issues/1492)
+
+- **Git integrations**
+  - [x] [RFC - Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4806)
+  - [ ] [Implement Workload Identity auth for Azure DevOps repositories](https://github.com/fluxcd/source-controller/issues/1284)
+
+- **Conformance testing**
+  - [ ] [End-to-end testing for Kubernetes 1.31](https://github.com/fluxcd/flux2/pull/4892)
+  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
+
+- **EOL and Deprecations**
+  - End support for Flux v2.1.x
+  - End support for Kubernetes v1.27.x
+  - Deprecate Bucket API in group `source.toolkit.fluxcd.io/v1beta2`
+
+### v2.5 (TBD)
+
+**Status**: Provisional
+
+The primary goal of this milestone is to make a generally available release for the Flux image automation APIs.
 
 - **Image automation**
   - [ ] Promote the `ImageUpdateAutomation` API to `v1`
@@ -126,39 +154,12 @@ and S3-compatible storage APIs.
   - [ ] Promote the `ImagePolicy` API to `v1`
   - [ ] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
 
-- **S3-compatible storage integrations**
-  - [ ] Promote the `Bucket` API to `v1`
-  - [x] [Allow specifying a custom CA certificate in Bucket API](https://github.com/fluxcd/source-controller/issues/973)
-  - [ ] [Allow specifying HTTP/S proxy in Bucket API](https://github.com/fluxcd/source-controller/issues/1493)
-
 - **OCI artifacts integrations**
-  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
   - [ ] [Enhance OCI Artifact support](https://github.com/fluxcd/source-controller/issues/1247)
   - [ ] [Add support for layer extraction from OCI artifacts with `ImageIndex`](https://github.com/fluxcd/source-controller/pull/1369)
-  - [ ] [Allow specifying HTTP/S proxy in OCIRepository API](https://github.com/fluxcd/source-controller/issues/1492)
 
 - **Git integrations**
-  - [ ] [RFC - Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4806)
-  - [ ] Implement Workload Identity auth for Azure DevOps repositories
   - [ ] Implement GitHub App auth for GitHub repositories
-
-- **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.31
-  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
-
-- **EOL and Deprecations**
-  - End support for Flux v2.1.x
-  - End support for Kubernetes v1.27.x
-  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
-  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
-
-### v2.5 (TBD)
-
-**Status**: Provisional
-
-This milestone's tasks have not been determined yet.
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.32
@@ -166,6 +167,10 @@ This milestone's tasks have not been determined yet.
 - **EOL and Deprecations**
   - End support for Flux v2.2.x
   - End support for Kubernetes v1.28.x
+  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
   - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
@@ -182,6 +187,7 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0004](https://github.com/fluxcd/flux2/tree/main/rfcs/0004-insecure-http) Block insecure HTTP connections across Flux
 - [x] [RFC-0005](https://github.com/fluxcd/flux2/tree/main/rfcs/0005-artifact-revision-and-digest) Artifact `Revision` format and introduction of `Digest`
 - [x] [RFC-0006](https://github.com/fluxcd/flux2/tree/main/rfcs/0006-cdevents) Flux CDEvents Receiver
+- [x] [RFC-0007](https://github.com/fluxcd/flux2/tree/main/rfcs/0007-git-repo-passwordless-auth) Passwordless authentication for Git repositories
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4806) Passswordless authentication for Git repositories
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4528) Custom Health Checks for Kustomization using Common Expression Language(CEL)
