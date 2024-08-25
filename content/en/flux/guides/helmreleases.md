@@ -526,8 +526,12 @@ spec:
     replicaCount: 5
 ```
 
-If the `spec.chart.spec.valuesFiles` doesn't exists inside the chart, helm-controller will not be able to
-fetch the chart. To determine why the `HelmChart` fails to produce an artifact, you can inspect the status with:
+If one or many of the `spec.chart.spec.valuesFiles` don't exist inside the chart,
+helm-controller will not be able to fetch the chart. That default behavior can be
+overridden by setting `.spec.chart.spec.ignoreMissingValuesFiles`, so a missing
+file named in `valuesFiles` will not cause any failure.
+
+To determine why the `HelmChart` fails to produce an artifact, you can inspect the status with:
 
 ```sh
 $ kubectl get helmcharts --all-namespaces
