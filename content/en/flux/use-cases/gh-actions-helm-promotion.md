@@ -60,7 +60,7 @@ spec:
 ```
 
 For the production cluster, we'll define a `HelmRelease` with a fixed version, the chart version will be
-update in Git by GitHub Actions based on the Flux events.
+updated in Git by GitHub Actions based on the Flux events.
 
 Example of `clusters/production/apps/demo.yaml`:
 
@@ -139,7 +139,7 @@ jobs:
         run: |
           echo "set chart version to ${CHART_VERSION}"
           yq eval '.spec.chart.spec.version=env(CHART_VERSION)' -i ./clusters/production/apps/demo.yaml
-      # Open a Pull Request if an upgraded is needed in production.
+      # Open a Pull Request if an upgrade is needed in production.
       - name: Open promotion PR
         uses: peter-evans/create-pull-request@v4
         with:
@@ -215,7 +215,7 @@ jobs:
           # add the chart version as a line comment
           env lc="version ${{ steps.staging.outputs.version }}" \
           yq eval '(select(.spec.ref.digest) | .spec.ref.digest) line_comment=env(lc)' -i ./clusters/production/apps/demo.yaml
-      # Open a Pull Request if an upgraded is needed in production.
+      # Open a Pull Request if an upgrade is needed in production.
       - name: Open promotion PR
         uses: peter-evans/create-pull-request@v4
         with:
