@@ -51,6 +51,12 @@ With [Chocolatey](https://chocolatey.org/):
 choco install flux
 ```
 
+With [winget](https://github.com/microsoft/winget-cli) (only versions after 2.0.0):
+
+```sh
+winget install -e --id FluxCD.Flux
+```
+
 {{% /tab %}}
 {{< /tabpane >}}
 
