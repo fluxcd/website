@@ -120,22 +120,28 @@ and the Flux Helm functionalities.
 The primary goal of this milestone is to make a generally available release for the Flux S3-compatible storage APIs.
 
 - **S3-compatible storage integrations**
-  - [ ] Promote the `Bucket` API to `v1`
+  - [x] Promote the `Bucket` API to `v1`
   - [x] [Allow specifying a custom CA certificate in Bucket API](https://github.com/fluxcd/source-controller/issues/973)
   - [x] [Allow specifying HTTP/S proxy in Bucket API](https://github.com/fluxcd/source-controller/issues/1493)
-  - [ ] [Add support for STS endpoint in the Bucket API](https://github.com/fluxcd/source-controller/issues/1423)
+  - [x] [Add support for STS endpoint in the Bucket API](https://github.com/fluxcd/source-controller/issues/1423)
 
 - **OCI artifacts integrations**
-  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
-  - [ ] [Allow specifying HTTP/S proxy in OCIRepository API](https://github.com/fluxcd/source-controller/issues/1492)
+  - [x] [Allow specifying HTTP/S proxy in OCIRepository API](https://github.com/fluxcd/source-controller/issues/1492)
 
 - **Git integrations**
   - [x] [RFC - Passwordless authentication for Git repositories](https://github.com/fluxcd/flux2/pull/4806)
-  - [ ] [Implement Workload Identity auth for Azure DevOps repositories](https://github.com/fluxcd/source-controller/issues/1284)
+  - [x] [Implement Workload Identity auth for Azure DevOps repositories](https://github.com/fluxcd/source-controller/issues/1284)
+
+- **Helm integrations**
+  - [x] [Adopt existing resources](https://github.com/fluxcd/helm-controller/pull/1062)
+  - [x] [Allow disabling JSON schema validation](https://github.com/fluxcd/helm-controller/pull/1068)
+
+- **Alerting integrations**
+  - [x] [Teams notifications using the Microsoft Adaptive Card API](https://github.com/fluxcd/notification-controller/pull/920)
 
 - **Conformance testing**
-  - [ ] [End-to-end testing for Kubernetes 1.31](https://github.com/fluxcd/flux2/pull/4892)
-  - [ ] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
+  - [x] [End-to-end testing for Kubernetes 1.31](https://github.com/fluxcd/flux2/pull/4892)
+  - [x] [End-to-end testing for AWS integrations](https://github.com/fluxcd/flux2/issues/4619)
 
 - **EOL and Deprecations**
   - End support for Flux v2.1.x
@@ -156,6 +162,7 @@ The primary goal of this milestone is to make a generally available release for 
 
 - **OCI artifacts integrations**
   - [ ] [Enhance OCI Artifact support](https://github.com/fluxcd/source-controller/issues/1247)
+  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
   - [ ] [Add support for layer extraction from OCI artifacts with `ImageIndex`](https://github.com/fluxcd/source-controller/pull/1369)
 
 - **Git integrations**
