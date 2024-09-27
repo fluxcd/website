@@ -286,7 +286,9 @@ $ # the environment variables $AUTO_PATH and $GIT_NAME are set above
 $ FLUXBOT_EMAIL=fluxbot@example.com # supply your own host or address here
 $ flux create image update my-app-auto \
     --author-name FluxBot --author-email "$FLUXBOT_EMAIL" \
-    --git-repo-ref $GIT_NAME --branch main \
+    --git-repo-ref $GIT_NAME \
+    --checkout-branch main \
+    --push-branch main \
     --interval 30m \
     --export > ./$AUTO_PATH/my-app-auto.yaml
 $ cat my-app-auto.yaml
