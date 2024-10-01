@@ -115,7 +115,7 @@ and the Flux Helm functionalities.
 
 ### v2.4 (Q3 2024)
 
-**Status**: In progress
+**Status**: Completed (v2.4.0 [changelog](https://github.com/fluxcd/flux2/releases/tag/v2.4.0))
 
 The primary goal of this milestone is to make a generally available release for the Flux S3-compatible storage APIs.
 
@@ -150,7 +150,7 @@ The primary goal of this milestone is to make a generally available release for 
 
 ### v2.5 (TBD)
 
-**Status**: Provisional
+**Status**: In progress
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs.
 
@@ -196,6 +196,5 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0006](https://github.com/fluxcd/flux2/tree/main/rfcs/0006-cdevents) Flux CDEvents Receiver
 - [x] [RFC-0007](https://github.com/fluxcd/flux2/tree/main/rfcs/0007-git-repo-passwordless-auth) Passwordless authentication for Git repositories
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/2086) Define Flux tenancy models
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4806) Passswordless authentication for Git repositories
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4528) Custom Health Checks for Kustomization using Common Expression Language(CEL)
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
