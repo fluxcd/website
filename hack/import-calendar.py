@@ -113,8 +113,8 @@ def format_location_html(location):
     html = location
     if html.startswith("http://") or html.startswith("https://"):
         html = f"""<a href="{html}">{location}</a>"""
-    elif html.find("slack") or html.find('#flux'):
-        html = f"""<a href="https://cloud-native.slack.com/messages/flux">{location}</a>"""
+    # elif html.find("slack") or html.find('#flux'):
+    #     html = f"""<a href="https://cloud-native.slack.com/messages/flux">{location}</a>"""
     return html
 
 
