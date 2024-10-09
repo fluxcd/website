@@ -70,9 +70,9 @@ Flux specific guides on using Secrets Decryption Operators:
 #### Using Flux to decrypt Secrets on-demand
 
 Flux has the ability to decrypt secrets stored in Flux sources by itself, without the need of
-additional controllers installed in the cluster. The approach relies on keeping in Flux sources
-encrypted Kubernetes Secrets, which are decrypted on-demand with [SOPS], just before they are
-deployed into the target clusters.
+additional controllers installed in the cluster. The approach relies on encrypted Kubernetes 
+Secrets which are kept in the repository along the Flux sources. These secrets are decrypted
+on-demand with [SOPS], just before they are deployed into the target clusters.
 
 This approach is more flexible than using [Sealed Secrets], as [SOPS] supports cloud-based Key
 Management Services of the major cloud providers (Azure KeyVault, GCP KMS and AWS KMS), HashiCorp
