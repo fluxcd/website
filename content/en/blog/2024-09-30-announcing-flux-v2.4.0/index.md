@@ -24,7 +24,7 @@ Amazon S3, Azure Blob Storage, Google Cloud Storage, Alibaba Cloud, MinIO, and o
 The `Bucket` v1 API comes with new features including: proxy support, mTLS and custom STS
 configuration for AWS S3 and MinIO LDAP authentication.
 
-New fields in the `source.toollkit.fluxcd.io/v1` API:
+New fields in the `source.toolkit.fluxcd.io/v1` API:
 
 - `.spec.proxySecretRef` allows configuring HTTP/S Proxy authentication for the S3-compatible storage service.
 - `.spec.certSecretRef` allows custom TLS client certificate and CA for secure communication with the S3-compatible storage service.
