@@ -89,7 +89,7 @@ synchronize with the specified path inside the repository.
 You can install Flux and bootstrap repositories hosted on GitLab, BitBucket, Azure DevOps and
 any other Git provider that support SSH or token-based authentication.
 When using SSH, make sure the deploy key is configured with write access `--read-write-key`.
-Please see the [installation guide](../installation.md) for more details.
+Please see the [installation guide](../installation/_index.md) for more details.
 {{% /alert %}}
 
 ## Deploy a demo app
