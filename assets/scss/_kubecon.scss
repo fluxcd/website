@@ -33,6 +33,35 @@
   padding-right: 2.5%;
 }
 
+.td-content h1 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.td-content h2:not(:first-child) {
+  margin-top: 3rem;
+}
+.td-content h2 {
+  margin-bottom: 1rem;
+}
+
+// div:has(> .qr-code-right-align) {
+// }
+
+.qr-code-right-align {
+  width: 20%;
+  float: right;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.float-share-this-site {
+  width: 20%;
+  float: right;
+  clear: right;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
 .clearfix::after {
   content: "";
   clear: both;
