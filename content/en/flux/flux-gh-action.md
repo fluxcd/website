@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
       - name: Check for updates
@@ -74,15 +74,21 @@ jobs:
           VERSION="$(flux -v)"
           echo "flux_version=$VERSION" >> $GITHUB_OUTPUT
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v7
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
             branch: update-flux
             commit-message: Update to ${{ steps.update.outputs.flux_version }}
             title: Update to ${{ steps.update.outputs.flux_version }}
             body: |
               ${{ steps.update.outputs.flux_version }}
 ```
+
+{{% alert color="info" title="Pull Request Permissions" %}}
+For automated pull requests to work, you will need to enable `Allow GitHub Actions to create and approve pull requests`,
+for your repository, which can be found at `https://github.com/<ORG>/<REPO>/settings/actions`.
+
+{{% /alert %}}
+
 
 ### Push Kubernetes manifests to container registries
 
@@ -107,11 +113,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
       - name: Login to GHCR
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -155,13 +161,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
       - name: Setup Cosign
         uses: sigstore/cosign-installer@main
       - name: Login to GHCR
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -196,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Flux CLI
         uses: fluxcd/flux2/action@main
       - name: Setup Kubernetes Kind
