@@ -13,7 +13,7 @@ every time a source changes. Using webhook receivers make
 
 ## Prerequisites
 
-To follow this guide you'll need a Kubernetes cluster with the GitOps 
+To follow this guide you'll need a Kubernetes cluster with the GitOps
 toolkit controllers installed on it.
 Please see the [get started guide](/flux/get-started/)
 or the [installation guide](/flux/installation/).
@@ -26,8 +26,8 @@ The notification controller is part of the default toolkit installation.
 
 ## Expose the webhook receiver
 
-In order to receive Git push or Helm chart upload events, you'll have to 
-expose the webhook receiver endpoint outside of your Kubernetes cluster on 
+In order to receive Git push or Helm chart upload events, you'll have to
+expose the webhook receiver endpoint outside of your Kubernetes cluster on
 a public address.
 
 The notification controller handles webhook requests on port `9292`.
@@ -56,9 +56,9 @@ Wait for Kubernetes to assign a public address with:
 
 ```sh
 watch kubectl -n flux-system get svc/receiver
-``` 
+```
 
-...or, create an `Ingress` with the same destination, the `notification-webhook` http service on port 80:
+...or, create an `Ingress` with the same destination, the `webhook-receiver` http service on port 80:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -80,7 +80,30 @@ spec:
               number: 80
 ```
 
-Add any necessary annotations for your ingress controller or, for example, cert-manager to encrypt the endpoint with TLS; full configuration of ingress controllers and TLS are beyond the scope of this documentation.
+Add any necessary annotations for your ingress controller and cert-manager to provide for encryption. Full configuration of cert-manager issuers, ingress controllers, and TLS are beyond the scope of this documentation.
+
+However, one common issue caused by Flux's default network policy securing the `flux-system` namespace is that unexpected traffic to any pod in that namespace is prevented. The HTTP-01 ACME challenge ingress is blocked from receiving cert-manager traffic.
+
+An example of a policy that permits the traffic from only namespaces with a matching `cert-manager` label into the challenge pod follows:
+
+```yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-cert-manager-resolver
+  namespace: "flux-system"
+spec:
+  podSelector:
+    matchLabels:
+      acme.cert-manager.io/http01-solver: "true"
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              app.kubernetes.io/instance: cert-manager
+```
+
+Your environment's network policy details may vary. Please take care that the policy is appropriate for the security posture of your environment.
 
 ## Define a Git repository
 
@@ -112,7 +135,7 @@ First generate a random string and create a secret with a `token` field:
 TOKEN=$(head -c 12 /dev/urandom | shasum | cut -d ' ' -f1)
 echo $TOKEN
 
-kubectl -n flux-system create secret generic webhook-token \	
+kubectl -n flux-system create secret generic webhook-token \
 --from-literal=token=$TOKEN
 ```
 
@@ -136,6 +159,37 @@ spec:
       name: webapp
 ```
 
+Webhooks can also be used to trigger `ImageRepository` and `OCIRepository`
+resources to reconcile immediately when the GitHub repositories publish new
+images to them.
+
+The `Receiver` is configured as follows: the `package` event replaces `push`,
+and for the webhook configuration select the GitHub webhook "Package" event in
+the list marked "Let me select individual events."
+
+```yaml
+apiVersion: notification.toolkit.fluxcd.io/v1
+kind: Receiver
+metadata:
+  name: webapp-image
+  namespace: flux-system
+spec:
+  type: github
+  events:
+    - "ping"
+    - "package"
+  secretRef:
+    name: webhook-token
+  resources:
+    - kind: ImageRepository
+      name: webapp
+```
+
+Receivers should reconcile source kinds, not the appliers downstream of them.
+When any Flux image or source kind detects a new artifact revision, Flux will
+automatically notify `Kustomization`, `HelmRelease`, or `ImageUpdateAutomation`
+resources downstream of those without any further configuration.
+
 {{% alert color="info" title="Other receiver" %}}
 Besides GitHub, you can define receivers for **GitLab**, **Bitbucket**, **Harbor**
 and any other system that supports webhooks e.g. Jenkins, CircleCI, etc.
@@ -153,7 +207,7 @@ NAME     READY   STATUS
 webapp   True    Receiver initialised with URL: /hook/bed6d00b5555b1603e1f59b94d7fdbca58089cb5663633fb83f2815dc626d92b
 ```
 
-On GitHub, navigate to your repository and click on the "Add webhook" button under "Settings/Webhooks". 
+On GitHub, navigate to your repository and click on the "Add webhook" button under "Settings/Webhooks".
 Fill the form with:
 
 * **Payload URL**: compose the address using the receiver LB and the generated URL `http://<LoadBalancerAddress>/<ReceiverURL>`
