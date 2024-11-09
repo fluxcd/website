@@ -82,7 +82,7 @@ spec:
 
 Add any necessary annotations for your ingress controller and cert-manager to provide for encryption. Full configuration of cert-manager issuers, ingress controllers, and TLS are beyond the scope of this documentation.
 
-However, one common issue caused by Flux's default network policy securing the `flux-system` namespace is that unexpected traffic to any pod in that namespace is prevented by Flux's default network policy. The HTTP-01 ACME challenge ingress is blocked from receiving cert-manager traffic.
+However, one common issue caused by Flux's default network policy securing the `flux-system` namespace is that unexpected traffic to any pod in that namespace is prevented. The HTTP-01 ACME challenge ingress is blocked from receiving cert-manager traffic.
 
 An example of a policy that permits the traffic from only namespaces with a matching `cert-manager` label into the challenge pod follows:
 
