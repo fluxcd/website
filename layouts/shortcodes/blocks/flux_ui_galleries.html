@@ -1,7 +1,8 @@
 {{ $one := slice "Capacitor" "/img/uis/capacitor-*.png" "cap" }}
-{{ $two := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
-{{ $three := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
-{{ $data := slice $one $two $three }}
+{{ $two := slice "Flux Plugin for Headlamp" "/img/uis/flux-headlamp-plugin-*.png" "headlamp" }}
+{{ $three := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
+{{ $four := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
+{{ $data := slice $one $two $three $four }}
 
 {{ range $data }}
     {{ $title := index . 0 }}
