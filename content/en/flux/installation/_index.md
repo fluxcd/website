@@ -188,7 +188,7 @@ kubectl apply -f https://github.com/fluxcd/flux2/releases/latest/download/instal
 Install with `helm`:
 
 ```sh
-helm install -n flux-system flux oci://ghcr.io/fluxcd-community/charts/flux2
+helm install -n flux-system --create-namespace flux oci://ghcr.io/fluxcd-community/charts/flux2
 ```
 
 {{% alert color="danger" title="Helm support" %}}
