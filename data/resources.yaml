@@ -13,6 +13,14 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - youtube: 4le3ekQCsJA
+    title: "Flux: What's Flux and What's New? | Project Lightning Talk"
+    date: "2024-11-20"
+    type: video
+  - youtube: lTyX3rRakHA
+    title: "GitOps at Production Scale with Flux - Leigh Capili, Flox & Priyanka Ravi, G-Research"
+    date: "2024-11-15"
+    type: video
   - youtube: _WGLpoxI0pg
     title: "Learnings from 5 years with #GitOps for #kubernetes - What you need to know! - Łukasz Piątkowski on CI CD on AWS"
     date: "2024-07-01"
