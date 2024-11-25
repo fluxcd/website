@@ -13,6 +13,11 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - url: https://headlamp.dev/blog/2024/11/07/flux-ui/
+    title: "Headlamp Blog | From ClickOps to GitOps: A new Flux UI"
+    date: "2024-11-07"
+    type: article
+    thumbnail_url: "https://headlamp.dev/assets/images/flux-plugin-in-list-e2ec830b31e8f1c5688823d5822db0c3.png"
   - youtube: 4le3ekQCsJA
     title: "Flux: What's Flux and What's New? | Project Lightning Talk"
     date: "2024-11-20"
