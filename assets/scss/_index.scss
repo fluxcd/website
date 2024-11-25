@@ -88,10 +88,6 @@ main.td-main {
     margin: 0.85rem 0;
   }
 
-  h6.resource-desc {
-    padding: 0 14px 14px 14px;
-  }
-
   img {
     height: 220px;
   }
@@ -101,6 +97,9 @@ main.td-main {
   }
 }
 
+h6.resource-desc {
+  padding: 0 14px 14px 14px;
+}
 
 .td-content {
   div.lead  {
