@@ -13,6 +13,10 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - youtube: ruto5Sak-jI
+    title: "Evolving Reddit’s Infrastructure via Principled Platform Abstractions - Karan Thukral & Harvey Xia"
+    date: "2024-11-15"
+    type: video
   - url: https://medium.com/@mohamednoureldinn/fluxcd-azure-devops-oidc-authentication-916cc7bfe11f
     title: "FluxCD Azure DevOps OIDC Authentication"
     date: "2024-11-24"
