@@ -97,6 +97,10 @@ main.td-main {
   }
 }
 
+h6.resource-desc {
+  margin-top: -16px;
+  padding: 0 10px 20px;
+}
 
 .td-content {
   div.lead  {
@@ -389,7 +393,8 @@ label.date {
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 12px;
-  padding-bottom: 8px;
+  padding-bottom: 0px;
+  margin-bottom: 28px
 }
 
 .filter-mobile-modal {

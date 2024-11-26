@@ -18,7 +18,7 @@
 {{ $format := "2 Jan, 2006" }}
 {{ $dateTime := $t.Format $format }} 
 
-<div class="col-lg-4 mb-3 mb-lg-0 text-center ">
+<div class="col-lg-4 mb-3 mb-lg-0 ">
   <a href="{{ $url }}"><img class="img-fluid img-thumbnail" alt="{{ $title | markdownify }}" src="{{ $thumbnail }}"></a>
   <a href="{{ $url }}"><h4>{{ $title | markdownify }}</h4></a>
   <span class="tag1 tag">
@@ -26,12 +26,12 @@
 </span>
 <label class="date">{{ $dateTime }}</label>
 
-  {{ if .description }}<h5>{{ .description }}</h5>{{ end }}
+  {{ if .description }}<h6 class="resource-desc">{{ .description }}</h6>{{ end }}
 
 </div>
 
 <template id="search-result" hidden>
-<div class="col-lg-4 mb-3 mb-lg-0 text-center col-hidden">
+<div class="col-lg-4 mb-3 mb-lg-0 col-hidden">
   <a href="" class="thumbnail-link"><img class="img-fluid img-thumbnail" alt="" src=""></a>
   <a href="" class="resource-title-link"><h4 class="resource-title-heading"></h4></a>
   <span class="tag1 tag">
