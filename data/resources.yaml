@@ -13,6 +13,12 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - url: https://medium.com/@mohamednoureldinn/fluxcd-azure-devops-oidc-authentication-916cc7bfe11f
+    title: "FluxCD Azure DevOps OIDC Authentication"
+    date: "2024-11-24"
+    type: article
+    thumbnail_url: "https://fluxcd.io/img/flux-horizontal-color.png"
+    description: "Migrating AKS clusters to Azure DevOps OIDC-based auth"
   - url: https://headlamp.dev/blog/2024/11/07/flux-ui/
     title: "Headlamp Blog | From ClickOps to GitOps: A new Flux UI"
     date: "2024-11-07"
