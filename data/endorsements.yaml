@@ -44,7 +44,7 @@ endorsements:
     subtitle: >
       <i>Leveraging GitOps has allowed us to create a self-service platform for engineers so they can concentrate on delivering business value through innovation, without the full need for Platform Team assistance. The engineers focus on building container images and managing the testing of their microservices and Weave Flux handles the deployments.</i>
       <br/><br/>
-      <a href="https://www.weave.works/blog/case-study-mettle-leverages-gitops-for-self-service-developer-platform"> Mettle case study with Weaveworks</a>
+      <a href="https://web.archive.org/web/20231201055338/https://www.weave.works/blog/case-study-mettle-leverages-gitops-for-self-service-developer-platform"> Mettle case study with Weaveworks</a>
   - image: /img/logos/tidepool.png
     text: >
               <div class="summary">
@@ -67,7 +67,7 @@ endorsements:
     subtitle: >
       <i>For Kubernetes, Gitops provides a simple audit trail that is invaluable in figuring out what has broken. Flux (and our Tidebot) give our developers a low-risk self-deployment option. Together, Flux and GitOps accelerate our innovation.</i>
       <br/><br/>
-      <a href="https://www.weave.works/blog/case-study-tidepool-streamlines-and-secures-cluster-lifecycle-with-gitops"> Tidepool case study with Weaveworks</a>
+      <a href="https://web.archive.org/web/20231207095312/https://www.weave.works/blog/case-study-tidepool-streamlines-and-secures-cluster-lifecycle-with-gitops"> Tidepool case study with Weaveworks</a>
   - image: https://i3.ytimg.com/vi/ewCnqDgewMg/0.jpg
     text: >
       <div class="summary">
