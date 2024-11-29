@@ -126,7 +126,7 @@ Besides a huge amount of general small improvements, the team has fixed two
 security vulnerabilities
 ([1](https://github.com/weaveworks/weave-gitops/security/advisories/GHSA-wr3c-g326-486c),
 [2](https://github.com/weaveworks/weave-gitops/security/advisories/GHSA-89qm-wcmw-3mgg))
-and made [GitOps Run](https://docs.gitops.weave.works/docs/gitops-run/overview/) much
+and made [GitOps Run](https://web.archive.org/web/20230922003942/https://docs.gitops.weave.works/docs/gitops-run/overview/) much
 more secure along the way. If you're using a version older than 0.12.0 you are highly
 encouraged to upgrade.
 
@@ -139,11 +139,11 @@ take a look.
 
 On the Weave GitOps Enterprise side you can now automatically [create Pipelines
 from
-GitOpsTemplates](https://docs.gitops.weave.works/docs/pipelines/pipeline-templates/),
-the [Terraform UI](https://docs.gitops.weave.works/docs/terraform/overview/)
+GitOpsTemplates](https://web.archive.org/web/20230929222447/https://docs.gitops.weave.works/docs/pipelines/pipeline-templates/),
+the [Terraform UI](https://web.archive.org/web/20230922014632/https://docs.gitops.weave.works/docs/terraform/overview/)
 has been improved to allow for a more detailed view into a Terraform inventory
 and [support for observing and managing
-Secrets](https://docs.gitops.weave.works/docs/releases/#secrets-management) has
+Secrets](https://web.archive.org/web/20231207164218/https://docs.gitops.weave.works/docs/secrets/intro/#secrets-management) has
 landed in its initial incarnation.
 
 ## Recent & Upcoming Events

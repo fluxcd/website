@@ -18,7 +18,7 @@ start and had [many happy adopters](/adopters/#flux-legacy) and many of
 its design principles we kept at the forefront of our mind:
 
 - Pull vs Push: if you haven't read this [great blog
-  post](https://www.weave.works/blog/why-is-a-pull-vs-a-push-pipeline-important)
+  post](https://web.archive.org/web/20231207173518/https://www.weave.works/blog/why-is-a-pull-vs-a-push-pipeline-important)
   from 2018 about why you want Pull - all it says still holds true.
 - Least amount of privileges.
 - Reusing best practises, libraries and tools, e.g. client-go and helm

@@ -195,7 +195,7 @@ by Priyanka Ravi & Daniel Holbach.
 
 The Weave GitOps Enterprise continues to build on top of the OSS feature
 set with its latest [v0.9.5
-release](https://docs.gitops.weave.works/docs/releases/).
+release](https://web.archive.org/web/20230528041532/https://docs.gitops.weave.works/docs/releases/).
 First, the team has added a new add application button with support for
 both Kustomizations and Helm Releases. This makes it super easy to add
 the relevant Flux primitives to get your applications loaded onto the
@@ -210,7 +210,7 @@ you. This includes advanced features such as policies to ensure full
 compliance within the tenant. You can define which repositories your
 users can use as well as which clusters applications can be deployed to.
 To learn more about this feature check out the
-[documentation](https://docs.gitops.weave.works/docs/workspaces/multi-tenancy/).
+[documentation](https://web.archive.org/web/20230921131521/https://docs.gitops.weave.works/docs/workspaces/multi-tenancy/).
 
 You can also now define pipelines and environments for Helm Charts. This
 will allow your application teams to see how things are rolled out
