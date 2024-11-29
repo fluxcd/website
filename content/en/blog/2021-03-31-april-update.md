@@ -11,9 +11,9 @@ tags: [monthly-update]
 
 If you are new to the community and GitOps, you might want to check out
 some general resources. We like [GitOps
-manifesto](https://www.weave.works/blog/what-is-gitops-really)
+manifesto](https://web.archive.org/web/20231124194854/https://www.weave.works/blog/what-is-gitops-really)
 or the [official GitOps
-FAQ](https://www.weave.works/blog/the-official-gitops-faq)
+FAQ](https://web.archive.org/web/20231206152723/https://www.weave.works/blog/the-official-gitops-faq)
 written by folks at Weaveworks.
 
 ## The Road to Flux v2
@@ -103,7 +103,7 @@ history, the move itself and what it means:
 - CNCF On-Demand Webinar: Flux is Incubating + The Road Ahead:
   [https://www.cncf.io/webinars/cncf-on-demand-webinar-flux-is-incubating-the-road-ahead/](https://www.cncf.io/webinars/cncf-on-demand-webinar-flux-is-incubating-the-road-ahead/)
 - Weaveworks blog:
-  [https://www.weave.works/blog/flux-incubation](https://www.weave.works/blog/flux-incubation)
+  [https://www.weave.works/blog/flux-incubation](https://web.archive.org/web/20221226013915/https://www.weave.works/blog/flux-incubation)
 - ZDNet:
   "While it\'s only just out of the incubator, Flux has already
   found many users. More than 80 organizations use it in production.

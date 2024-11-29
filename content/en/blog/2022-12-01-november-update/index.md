@@ -32,7 +32,7 @@ out:
 
 - [CNCF Press Release](https://www.cncf.io/announcements/2022/11/30/flux-graduates-from-cncf-incubator/)
 - [Our very own announcement in the Flux blog](/blog/2022/11/flux-is-a-cncf-graduated-project/)
-- [Flux Reaches Graduation at the CNCF (weave.works blog)](https://www.weave.works/blog/flux-reaches-graduation-at-the-cncf)
+- [Flux Reaches Graduation at the CNCF (weave.works blog)](https://web.archive.org/web/20230922005411/https://www.weave.works/blog/flux-reaches-graduation-at-the-cncf)
 - [Cloud-nativ: Flux reitet auf der GitOps-Welle zum Graduate-Status der CNCF (heise.de - german)](https://www.heise.de/news/Cloud-nativ-Flux-reitet-auf-der-GitOps-Welle-zum-Graduate-Status-der-CNCF-7363399.html)
 - [Cloud Native Podcast announces Flux Graduation episode](https://twitter.com/cloudnativefm/status/1598032539033165825)
 - [Business Wire: Flux Graduates in the CNCF](https://www.businesswire.com/news/home/20221130006111/en/Weaveworks%E2%80%99-GitOps-Project-%E2%80%93-Flux-%E2%80%93-Graduates-in-the-Cloud-Native-Computing-Foundation)
@@ -150,7 +150,7 @@ them as YAML.Please visit the package repository for more information:
 
 #### Weave GitOps
 
-[GitOps Run](https://docs.gitops.weave.works/docs/gitops-run/overview/)
+[GitOps Run](https://web.archive.org/web/20230922003942/https://docs.gitops.weave.works/docs/gitops-run/overview/)
 continues to be enhanced as an easy way to get started with Flux and GitOps,
 and now includes yaml validation for both Flux and core Kubernetes resources.
 The Weave GitOps UI for Flux is now able to support multiple instances of Flux
@@ -158,7 +158,7 @@ on the same cluster, for when resource isolation strategies are in place, so
 you can see the health of all controllers in the Flux Runtime view.
 
 Then in the Enterprise edition of Weave GitOps, [the Pipelines
-feature](https://docs.gitops.weave.works/docs/pipelines/getting-started/) is
+feature](https://web.archive.org/web/20240213192251/https://docs.gitops.weave.works/docs/pipelines/getting-started/) is
 now enabled by default to help you automatically promote applications through a
 series of environments, and GitOpsTemplates continue to be enhanced as a generic
 self-service capability for building out an Internal Developer Platform.

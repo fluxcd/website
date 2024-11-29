@@ -376,12 +376,12 @@ The event will run from **9:00 am PT to ~3:00 pm PT** each day as a free
 online event.
 
 ✨✨ [Register
-now](https://go.weave.works/2022-GitOps-Days-US.html) to
+now](https://youtube.com/playlist?list=PL9lTuCFNLaD0NVkR17tno4X6BkxsbZZfr) to
 reserve your spot to receive updates to the schedule and speakers. ✨✨
 
 *Join the conversation!* Chat with the speakers and other attendees!
 Invite yourself at
-[https://slack.weave.works](https://slack.weave.works/)
+[https://slack.weave.works](https://weave-community.slack.com/join/shared_invite/zt-yqwtav03-QPo7W4Qoi1pL6W8UQYk2yQ)
 and hang out with us at
 [\#gitopsdays](https://bit.ly/GitOpsDays_Slack)
 

@@ -110,7 +110,7 @@ also added a new yaml tab to each object page so you can see the full
 detail of the object on the cluster.
 
 They have also added support for [displaying custom
-metadata](https://docs.gitops.weave.works/docs/guides/displaying-custom-metadata/).
+metadata](https://web.archive.org/web/20240107222734/https://docs.gitops.weave.works/docs/guides/displaying-custom-metadata/).
 It is super easy to use and enables you to put relevant information such
 as a description of the object or hyperlinks to metrics dashboards.
 

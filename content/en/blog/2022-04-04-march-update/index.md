@@ -230,7 +230,7 @@ The Flux community particularly loved the last sentence.
 ![Weave GitOps](weave-gitops2.png)
 ![Weave GitOps](weave-gitops3.png)
 
-[Getting started with it](https://docs.gitops.weave.works/docs/getting-started/intro/)
+[Getting started with it](https://web.archive.org/web/20240213192000/https://docs.gitops.weave.works/docs/getting-started/intro/)
 is very straight-forward. Please take up the offer of them and give
 feedback, they are building a very nice tool based on Flux!
 

@@ -11,11 +11,11 @@ tags: [monthly-update]
 
 ## Before we get started, what is GitOps?
 
-If you are new to the community and GitOps, you might want to check out the [GitOps manifesto](https://www.weave.works/blog/what-is-gitops-really) or the [official GitOps FAQ](https://www.weave.works/blog/the-official-gitops-faq).
+If you are new to the community and GitOps, you might want to check out the [GitOps manifesto](https://web.archive.org/web/20231124194854/https://www.weave.works/blog/what-is-gitops-really) or the [official GitOps FAQ](https://web.archive.org/web/20231206152723/https://www.weave.works/blog/the-official-gitops-faq).
 
 ## The Road to Flux v2
 
-The Flux community has set itself very ambitious goals for version 2 and as it’s a multi-month project, we strive to inform you each month about what has already landed, new possibilities which are available for integration and where you can get involved. Read last month’s update [here](https://www.weave.works/blog/the-road-to-flux-v2-november-update).
+The Flux community has set itself very ambitious goals for version 2 and as it’s a multi-month project, we strive to inform you each month about what has already landed, new possibilities which are available for integration and where you can get involved. Read last month’s update [here](https://web.archive.org/web/20240114064149/https://www.weave.works/blog/the-road-to-flux-v2-november-update).
 
 Let’s recap what happened in November - there have been many changes.
 
@@ -93,7 +93,7 @@ The Flux community is growing and we are in the middle of a quite a few big disc
 
 * Flagger plans to move under the Flux organisation: https://github.com/fluxcd/community/issues/34
 * Flux applies to upgrade to CNCF Incubation status: https://github.com/cncf/toc/pull/567
-* GitOps Working Group starts off as a Flux sub-project (for now): https://www.weave.works/blog/announcing-gitops-working-group
+* GitOps Working Group starts off as a Flux sub-project (for now): https://web.archive.org/web/20231105205138/https://www.weave.works/blog/announcing-gitops-working-group
 
 If you like what you read and would like to get involved, here are a few good ways to do that:
 

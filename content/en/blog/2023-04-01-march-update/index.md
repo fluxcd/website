@@ -69,7 +69,7 @@ Big thanks to all the Flux contributors that helped us with this release!
 
 #### Weave GitOps
 
-[Weave GitOps Enterprise](https://docs.gitops.weave.works/docs/intro-ee/)
+[Weave GitOps Enterprise](https://web.archive.org/web/20231206150400/https://docs.gitops.weave.works/docs/intro-ee/)
 v0.19.0 brings a host of new features to help the Flux community streamline
 their workflows and improve overall efficiency. The GitOpsSets GUI makes
 it easier to manage applications across a fleet of clusters, while
