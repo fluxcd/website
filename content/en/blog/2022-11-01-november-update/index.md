@@ -144,7 +144,7 @@ cluster or choose a sandbox option as well. The team is definitely
 looking for feedback on this exciting new feature so please don't
 hesitate to engage and submit feature requests. Check out an overview
 and quick getting started video
-[here](https://docs.gitops.weave.works/docs/gitops-run/overview/).
+[here](https://web.archive.org/web/20230922003942/https://docs.gitops.weave.works/docs/gitops-run/overview/).
 
 The team continues to make improvements to the GitOps Dashboard as well.
 You are now able to inspect the YAML of all objects within the

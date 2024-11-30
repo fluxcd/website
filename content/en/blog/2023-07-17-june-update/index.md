@@ -139,7 +139,7 @@ For more details on the release procedure, take a look at https://fluxcd.io/flux
   which has an intro to GitOps for newcomers and Flux 2.0-specific updates for existing users.
 - Need extra support for Flux and Flagger? Check out the
   [Flux support page](/support/#commercial-support) and this
-  [August 2 webinar](https://go.weave.works/Webinar-FluxCD-Positioned-for-Growth_LP.html)
+  [August 2 webinar](https://www.youtube.com/watch?v=94ZMibHBszI)
   on Flux 2.0-specific support.
 
 ❤️ Your Flux maintainer, Somtochi Onyekwere, and project member, Tamao Nakahara.

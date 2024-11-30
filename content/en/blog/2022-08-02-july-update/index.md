@@ -205,7 +205,7 @@ posts - they contain a summary of the talks and show the videos as well:
 
 - Weaveworks Blog: [GitOps Days 2022 recap: major clouds & vendors offering GitOps
   with
-  Flux](https://www.weave.works/blog/gitops-days-2022-recap-major-clouds-vendors-offering-gitops-with-flux)
+  Flux](https://web.archive.org/web/20231207103338/https://www.weave.works/blog/gitops-days-2022-recap-major-clouds-vendors-offering-gitops-with-flux)
 - CNCF Blog: [How to apply GitOps to everything with Crossplane and Flux](https://www.cncf.io/blog/2022/07/26/how-to-apply-gitops-to-everything-with-crossplane-and-flux/)
 - CNCF Blog: [Keep calm and trust A/B testing with Flux, Flagger, and Linkerd](https://www.cncf.io/blog/2022/07/21/keep-calm-and-trust-a-b-testing-with-flux-flagger-and-linkerd/)
 - CNCF Blog: [GitOps with Flux at Safaricom](https://www.cncf.io/blog/2022/07/28/gitops-with-flux-at-safaricom/)
@@ -330,7 +330,7 @@ in active development from November 2020 to June 2021, but unfortunately
 it could not be kept alive. This is why we felt the need to point users
 to the following alternatives for UIs for Flux instead.
 
-1. [Weaveworks](https://www.weave.works) offers a free
+1. [Weaveworks](https://web.archive.org/web/20231109152254/https://www.weave.works/) offers a free
    and open source GUI for Flux under the
    [weave-gitops](https://github.com/weaveworks/weave-gitops)
    project.
@@ -339,7 +339,7 @@ to the following alternatives for UIs for Flux instead.
    \
    You can install the Weave GitOps UI
    using a Flux HelmRelease, please see the [Weave GitOps
-   documentation](https://docs.gitops.weave.works/docs/getting-started/intro/)
+   documentation](https://web.archive.org/web/20240213192000/https://docs.gitops.weave.works/docs/getting-started/intro/)
    for more details.
 1. The Flux community maintains a series of Grafana dashboards for
    monitoring Flux.\
