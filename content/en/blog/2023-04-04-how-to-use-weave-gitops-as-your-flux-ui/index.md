@@ -45,7 +45,7 @@ Community - many engineers on both teams are actually colleagues.
 
 In addition to the UI Weave GitOps provides a frictionless way
 to get up to speed with your GitOps experience: [GitOps
-Run](https://docs.gitops.weave.works/docs/gitops-run/overview/).
+Run](https://web.archive.org/web/20230922003942/https://docs.gitops.weave.works/docs/gitops-run/overview/).
 All you need to get started is a cluster and the Weave GitOps CLI.
 Everything else, including Flux and the Weave GitOps Dashboard will be
 set up automatically for you.
@@ -99,7 +99,7 @@ Here is an example of how to get an app deployment set up using GitOps
    application we are about to install.
 1. During the installation process, Flux will be installed if it isn't
    and you will now be asked if you want to install the GitOps
-   [dashboard](https://docs.gitops.weave.works/docs/getting-started/intro/).
+   [dashboard](https://web.archive.org/web/20230927114646/https://docs.gitops.weave.works/docs/getting-started/intro/).
    Answer `yes` and **set a password**.
 
    Note: If you do not set a password, you won't be able to login to
@@ -138,7 +138,7 @@ doing everything behind the scenes for you.
 ## Is there more?
 
 There is an [Enterprise version of Weave
-GitOps](https://docs.gitops.weave.works/docs/intro-ee/) as
+GitOps](https://web.archive.org/web/20231206150400/https://docs.gitops.weave.works/docs/intro-ee/) as
 well, so if you need professional support for everything mentioned
 above, you will be covered. In addition to that, you get advanced
 features, such as templates and GitOpsSets - these are what will enable
@@ -146,7 +146,7 @@ you to create a self-service for application teams.
 
 The Weave GitOps team is very friendly and are always happy to help and
 receive feedback. Just join them in the `#weave-gitops` channel on the
-[Weave Users Slack](https://slack.weave.works).
+[Weave Users Slack](https://weave-community.slack.com/join/shared_invite/zt-yqwtav03-QPo7W4Qoi1pL6W8UQYk2yQ).
 
 ## Come and talk to us
 

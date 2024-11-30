@@ -13,8 +13,8 @@ tags: [monthly-update]
 
 If you are new to the community and GitOps, you might want to check out
 some general resources. We like the [GitOps
-manifesto](https://www.weave.works/blog/what-is-gitops-really) or the
-[official GitOps FAQ](https://www.weave.works/blog/the-official-gitops-faq)
+manifesto](https://web.archive.org/web/20231124194854/https://www.weave.works/blog/what-is-gitops-really) or the
+[official GitOps FAQ](https://web.archive.org/web/20231206152723/https://www.weave.works/blog/the-official-gitops-faq)
 written by folks at Weaveworks.
 
 ## The Road to Flux v2

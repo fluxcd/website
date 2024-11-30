@@ -3,9 +3,6 @@ adopters:
   description: >
     Check out everything about Flux on our [website](https://fluxcd.io/flux/).
   companies:
-    - name: Weaveworks
-      url: https://weave.works
-      logo: logos/weaveworks.png
     - name: Xenit
       url: https://xenit.se/
       logo: logos/xenit.png

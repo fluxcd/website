@@ -239,7 +239,7 @@ Slack.*
 
 The ecosystem is buzzing with news about the licensing changes to Hashicorp’s open-source projects
 including Terraform. Weaveworks has released a
-[statement](https://www.weave.works/blog/statement-for-terraform-hashicorp-license-changes)
+[statement](https://web.archive.org/web/20230925073503/https://www.weave.works/blog/statement-for-terraform-hashicorp-license-changes)
 on this and the impact on the tf-controller.
 
 ### VS Code GitOps Extension

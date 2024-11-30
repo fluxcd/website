@@ -194,7 +194,7 @@ next level with this integration.
 </video>
 
 You might be interested in [this blog
-post](https://www.weave.works/blog/flamingo-expand-argo-cd-with-flux) on
+post](https://web.archive.org/web/20231004173040/https://www.weave.works/blog/flamingo-expand-argo-cd-with-flux) on
 the Weaveworks blog about Flamingo.
 
 #### New additions to the Flux Ecosystem
