@@ -5,12 +5,6 @@ description: "How to monitor Flux with Prometheus Operator and Grafana"
 weight: 2
 ---
 
-{{% alert color="info" title="Metrics Deprecation" %}}
-Some of the Flux controller metrics prior to v2.1.0 have been deprecated. Please
-see the [Deprecated Resource Metrics](#warning-deprecated-resource-metrics)
-section below to learn more about it.
-{{< /alert >}}
-
 Flux has native support for [Prometheus][prometheus] metrics to provide insights
 into the state of the Flux components. These can be used to set up monitoring
 for the Flux controllers. In addition, Flux Custom Resource metrics can also
