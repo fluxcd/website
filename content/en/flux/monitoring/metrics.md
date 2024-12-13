@@ -5,12 +5,6 @@ description: "How to monitor Flux with Prometheus Operator and Grafana"
 weight: 2
 ---
 
-{{% alert color="info" title="Metrics Deprecation" %}}
-Some of the Flux controller metrics prior to v2.1.0 have been deprecated. Please
-see the [Deprecated Resource Metrics](#warning-deprecated-resource-metrics)
-section below to learn more about it.
-{{< /alert >}}
-
 Flux has native support for [Prometheus][prometheus] metrics to provide insights
 into the state of the Flux components. These can be used to set up monitoring
 for the Flux controllers. In addition, Flux Custom Resource metrics can also
@@ -132,20 +126,6 @@ the Flux resources. This metric can be customized to add more labels, or more
 such metrics can also be created by changing the kube-state-metrics custom
 resource state configuration. Please see [Flux custom Prometheus
 metrics][custom-metrics] for details about them.
-
-### :warning: Deprecated resource metrics
-
-Prior to Flux v2.1.0, the individual Flux controllers used to export resource
-metrics that they managed. They have been deprecated for custom metrics using
-kube-state-metrics.
-
-Users of the deprecated metrics `gotk_reconcile_condition` and
-`gotk_suspend_status` can find the same information in the new
-`gotk_resource_info` metric exported using kube-state-metrics. If needed, an
-equivalent of `gotk_reconcile_condition` and `gotk_suspend_status` can be
-created as a custom metric using the kube-state-metrics custom resource state
-configuration. Please see [Flux custom Prometheus
-metrics][custom-metrics] for details.
 
 ## Monitoring setup
 
