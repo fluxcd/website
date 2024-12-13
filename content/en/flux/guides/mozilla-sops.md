@@ -545,3 +545,84 @@ Once the manifests have been pushed to the Git repository, the following happens
 * kustomize-controller loads the GPG keys from the `sops-pgp` secret
 * kustomize-controller decrypts the Kubernetes secrets with SOPS and applies them on the cluster
 * kubelet creates the pods and mounts the secret as a volume or env variable inside the app container
+
+## SOPS encrypted_regex conflict
+
+If your resource is encrypted it will be decrypted right before apply, but it may happen, that
+your patches will bring fields that match SOPS' encrypted_regex expression and SOPS will fail
+during the decryption. Let's say we have a simple resource.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+spec:
+  containers:
+    - name: main
+      image: nginx:stable-alpine
+      env:
+        - name: ENC[AES256_GCM,data:...
+          value: ENC[AES256_GCM,data:...
+      resources:
+        limits:
+          memory: 50Mi
+          cpu: 50m
+sops:
+  ...
+  encrypted_regex: ^env$ # There it is
+  ...
+```
+
+This Pod has every env list encrypted since we have `encrypted_regex` set during SOPS encryption.
+But next we have a patch like this.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+spec:
+  containers:
+    - name: patched
+      image: nginx:stable-alpine
+      env:
+        - name: MainEnvValueIsEncrypted
+          value: but this one is not
+```
+
+And as a result you will have.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+spec:
+  containers:
+    - name: main
+      image: nginx:stable-alpine
+      env:
+        - name: ENC[AES256_GCM,data:...
+          value: ENC[AES256_GCM,data:...
+      resources:
+        limits:
+          memory: 50Mi
+          cpu: 50m
+    - name: patched
+      image: nginx:stable-alpine
+      env:
+        - name: MainEnvValueIsEncrypted
+          value: but this one is not
+sops:
+  ...
+  encrypted_regex: ^env$ # There it is
+  ...
+```
+
+At this point, Flux will call SOPS to decrypt the file and SOPS will try to decrypt
+all `env` keys, but container `patched` has this list in a plain text. SOPS will fail here.
+
+{{% alert color="info" title="Hint" %}}
+Move all your secrets to patches and your resource will not require a decryption at the end, since patches are decrypted before.
+{{% /alert %}}
