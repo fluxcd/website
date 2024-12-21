@@ -21,7 +21,7 @@ or to have admin rights of a GitHub organization.
 
 ## GitHub PAT 
 
-For accessing the GitHub API, the boostrap command requires a GitHub personal access token (PAT)
+For accessing the GitHub API, the bootstrap command requires a GitHub personal access token (PAT)
 with administration permissions.
 
 The GitHub PAT can be exported as an environment variable:
