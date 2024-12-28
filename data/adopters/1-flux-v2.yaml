@@ -354,3 +354,9 @@ adopters:
     - name: Trifork
       url: https://trifork.com
       logo: logos/trifork.png
+    - name: Ahiho
+      url: https://ahiho.com
+      logo: logos/ahiho.svg
+    - name: CharClub AI
+      url: https://charclub.ai
+      logo: logos/charclub-ai.svg
