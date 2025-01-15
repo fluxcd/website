@@ -357,3 +357,6 @@ adopters:
     - name: CharClub AI
       url: https://charclub.ai
       logo: logos/charclub-ai.svg
+    - name: Kong
+      url: https://konghq.com
+      logo: logos/kong.png
