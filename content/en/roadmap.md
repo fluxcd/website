@@ -47,7 +47,8 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
   - [ ] [Custom Health Checks using CEL](https://github.com/fluxcd/flux2/pull/4528)
 
 - **Alerting integrations**
-  - [ ] [Custom Event Metadata from Annotations](https://github.com/fluxcd/flux2/pull/4809/)
+  - [x] [Custom Event Metadata from Annotations](https://github.com/fluxcd/flux2/pull/4809/)
+  - [ ] [Support Git commit status updates for OCIRepository](https://github.com/fluxcd/flux2/issues/5148)
 
 - **Webhook integrations**
   - [ ] [Implement `Receiver` resource filtering with CEL](https://github.com/fluxcd/notification-controller/pull/948)
