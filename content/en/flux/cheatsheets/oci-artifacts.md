@@ -163,7 +163,7 @@ git clone https://github.com/stefanprodan/podinfo.git && cd podinfo
 flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git rev-parse --short HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
-	--revision="$(git branch --show-current)/$(git rev-parse HEAD)"
+	--revision="$(git branch --show-current)@sha1:$(git rev-parse HEAD)"
 ```
 
 The output is similar to:
@@ -240,7 +240,7 @@ git checkout 6.1.0
 flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
-	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
+	--revision="$(git tag --points-at HEAD)@sha1:$(git rev-parse HEAD)"
 ```
 
 Tag the release as stable:
@@ -360,7 +360,7 @@ Push and sign the artifact using the Cosign private key:
 flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
-	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
+	--revision="$(git tag --points-at HEAD)@sha1:$(git rev-parse HEAD)"
 
 cosign sign --key=cosign.key ghcr.io/stefanprodan/manifests/podinfo:$(git tag --points-at HEAD)
 ```
@@ -449,7 +449,7 @@ Push and sign the artifact using the certificate's private key:
 flux push artifact oci://ghcr.io/org/app-manifests:$(git tag --points-at HEAD) \
 	--path="./kustomize" \
 	--source="$(git config --get remote.origin.url)" \
-	--revision="$(git tag --points-at HEAD)/$(git rev-parse HEAD)"
+	--revision="$(git tag --points-at HEAD)@sha1:$(git rev-parse HEAD)"
 
 notation sign ghcr.io/org/app-manifests:$(git tag --points-at HEAD) -k <key-name>
 ```
@@ -579,7 +579,7 @@ specify the Git source and revision with:
 ```shell
 flux push artifact oci://<repo url> --path=<manifests dir> \
 	--source="$(git config --get remote.origin.url)" \
-	--revision="$(git branch --show-current)/$(git rev-parse HEAD)"
+	--revision="$(git branch --show-current)@sha1:$(git rev-parse HEAD)"
 ```
 
 The Git source and the revision are stored in the container registry as annotations in the OCI artifact manifest,
@@ -634,6 +634,29 @@ Origin Source:   https://github.com/stefanprodan/podinfo.git
 Status:          Last reconciled at 2022-08-10 14:40:22 +0200 CEST
 Message:         stored artifact for digest 'sha256:dbdb109711ffb3be77504d2670dbe13c24dd63d8d7f1fb489d350e5bfe930dd3'
 ```
+
+## Git commit status updates
+
+Another important reason to specify the Git revision when publishing
+artifacts with `flux push` is for benefiting from Flux's integration
+with Git notification providers that support commit status updates:
+
+```shell
+flux push artifact oci://<repo url> --path=<manifests dir> \
+	--source="$(git config --get remote.origin.url)" \
+	--revision="$(git branch --show-current)@sha1:$(git rev-parse HEAD)"
+```
+
+When `kustomize-controller` finds OCI artifacts containing a revision
+specified like in the example above, this *origin revision* is added
+on events sent to `notification-controller`.
+
+The `notification-controller`
+[providers supporting Git commit status updates](/flux/components/notification/providers/#types-supporting-git-commit-status-updates)
+then look for this origin revision on the received events, extract the
+commit SHA from it, and update the commit status on the Git provider.
+See the docs for configuring Git commit status updates
+[here](/flux/components/notification/providers/#git-commit-status-updates).
 
 ## Automated updates to Git
 
