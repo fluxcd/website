@@ -37,8 +37,8 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
 
 - **Git integrations**
   - [x] [Support for GitHub App auth in source-controller](https://github.com/fluxcd/source-controller/pull/1647)
-  - [ ] [Support for GitHub App auth in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/780)
-  - [ ] [Generate GitHub App secrets with the Flux CLI](https://github.com/fluxcd/flux2/pull/5103)
+  - [x] [Support for GitHub App auth in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/780)
+  - [x] [Generate GitHub App secrets with the Flux CLI](https://github.com/fluxcd/flux2/pull/5103)
 
 - **Kustomize integrations**
   - [x] [Fine-grained control of garbage collection with `.spec.deletionPolicy`](https://github.com/fluxcd/kustomize-controller/pull/1314)
@@ -64,9 +64,6 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
 - **EOL and Deprecations**
   - End support for Flux v2.2.x
   - End support for Kubernetes v1.29.x
-  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
 
 ### v2.6 (Q2 2025)
 
@@ -93,6 +90,9 @@ The primary goal of this milestone is to make a generally available release for 
   - End support for Flux v2.3.x
   - End support for Kubernetes v1.30.x
   - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
   - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
 ### v2.7 (Q3 2025)
@@ -133,5 +133,5 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0006](https://github.com/fluxcd/flux2/tree/main/rfcs/0006-cdevents) Flux CDEvents Receiver
 - [x] [RFC-0007](https://github.com/fluxcd/flux2/tree/main/rfcs/0007-git-repo-passwordless-auth) Passwordless authentication for Git repositories
 - [x] [RFC-0008](https://github.com/fluxcd/flux2/pull/4809) Custom Event Metadata from Annotations
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5151) Custom Health Checks for Kustomization using Common Expression Language(CEL)
+- [x] [RFC-0009](https://github.com/fluxcd/flux2/pull/5151) Custom Health Checks for Kustomization using Common Expression Language(CEL)
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
