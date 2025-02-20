@@ -30,7 +30,7 @@ may be postponed to the next milestone.
 
 ### v2.5 (Q1 2025)
 
-**Status**: In Progress
+**Status**: Completed on 2025-02-20 (v2.5.0 [changelog](https://fluxcd.io/blog/2025/02/flux-v2.5.0/))
 
 The primary goal of this milestone is to integrate GitHub App for Git repositories authentication
 and to extend Flux functionality with Common Expression Language(CEL) support.
@@ -67,7 +67,7 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
 
 ### v2.6 (Q2 2025)
 
-**Status**: Provisional
+**Status**: In Progress
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs.
 
@@ -82,6 +82,7 @@ The primary goal of this milestone is to make a generally available release for 
 
 - **Alerting integrations**
   - [ ] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
+  - [ ] [Add support for workload identity auth for Azure Event Hub to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1047)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.33
