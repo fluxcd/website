@@ -33,38 +33,73 @@ resource object itself.
 
 The items in this library are sorted in alphabetical order.
 
+### `CephCluster`
+
+The `CephCluster` resource in this example is created by the `rook-ceph-cluster` Flux `HelmRelease`.
+
+```yaml
+healthChecks:
+  - apiVersion: helm.toolkit.fluxcd.io/v2
+    kind: HelmRelease
+    name: rook-ceph-cluster
+    namespace: rook-ceph
+  - apiVersion: ceph.rook.io/v1
+    kind: CephCluster
+    name: rook-ceph
+    namespace: rook-ceph
+healthCheckExprs:
+  - apiVersion: ceph.rook.io/v1
+    kind: CephCluster
+    failed: status.ceph.health == 'HEALTH_ERR'
+    current: status.ceph.health == 'HEALTH_OK'
+```
+
 ### `Cluster`
 
 ```yaml
-- apiVersion: cluster.x-k8s.io/v1beta1
-  kind: Cluster
-  failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
-  current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+healthCheckExprs:
+  - apiVersion: cluster.x-k8s.io/v1beta1
+    kind: Cluster
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
 ### `ClusterIssuer`
 
 ```yaml
-- apiVersion: cert-manager.io/v1
-  kind: ClusterIssuer
-  failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
-  current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+healthCheckExprs:
+  - apiVersion: cert-manager.io/v1
+    kind: ClusterIssuer
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+```
+
+### `ClusterSecretStore`
+
+```yaml
+healthCheckExprs:
+  - apiVersion: external-secrets.io/v1beta1
+    kind: ClusterSecretStore
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
 ### `ScaledObject`
 
 ```yaml
-- apiVersion: keda.sh/v1alpha1
-  kind: ScaledObject
-  failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
-  current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+healthCheckExprs:
+  - apiVersion: keda.sh/v1alpha1
+    kind: ScaledObject
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
 ### `SealedSecret`
 
 ```yaml
-- apiVersion: bitnami.com/v1alpha1
-  kind: SealedSecret
-  failed: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'False')
-  current: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'True')
+healthCheckExprs:
+  - apiVersion: bitnami.com/v1alpha1
+    kind: SealedSecret
+    failed: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'True')
 ```
