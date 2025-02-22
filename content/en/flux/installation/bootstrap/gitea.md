@@ -19,6 +19,11 @@ It is also required that the person running the command to be the **owner** of t
 or to have admin rights of a Gitea organization.
 {{% /alert %}}
 
+{{% alert color="info" title="Forgejo support" %}}
+Forgejo is a fork of Gitea (see their [Comparison with Gitea](https://forgejo.org/compare-to-gitea/)).
+Given that Forgejo is mainly backward compatible with Gitea, you can use the same commands that you use for Gitea and it will work.
+{{% /alert %}}
+
 ## Gitea PAT
 
 For accessing the Gitea API, the boostrap command requires a Gitea personal access token (PAT)
