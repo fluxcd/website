@@ -82,7 +82,7 @@ before proceeding with the reconciliation of other Kustomizations that have a
 [dependsOn](/flux/components/kustomize/kustomizations/#dependencies) relationship
 defined for the `prod-clusters`.
 
-We have published a [health check library](/flux/guides/health-checks/) that contains CEL
+We have published a [health check library](/flux/cheatsheets/cel-healthchecks/) that contains CEL
 expressions for popular custom resources. The library is community-maintained, and we encourage
 users to contribute new health checks.
 
