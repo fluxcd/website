@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Deploy current production branch on Netlify
         run: |
-          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}?trigger_branch=v2-4'
+          curl -X POST -d {} '${{ secrets.NETLIFY_BUILD_HOOK }}?trigger_branch=v2-5'
