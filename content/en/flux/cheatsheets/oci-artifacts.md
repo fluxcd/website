@@ -338,7 +338,7 @@ For more details on how to setup contextual authorization for Azure, AWS and Goo
 ## Signing and verification
 
 Flux comes with support for verifying OCI artifacts signed with [Sigstore Cosign](https://github.com/sigstore/cosign)
-or [Notaryproject notation](https://https://github.com/notaryproject/notation).
+or [Notaryproject notation](https://github.com/notaryproject/notation).
 
 To secure your delivery pipeline, you can sign the artifacts and configure Flux
 to verify the artifacts' signatures before they are downloaded and reconciled in production.
