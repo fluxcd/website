@@ -44,6 +44,9 @@ Flux very naturally integrates with these pieces<sup>*</sup> of best-practice Op
 {{% card header="[Prometheus](https://prometheus.io/)" %}}
 [![Prometheus](./img/prometheus.svg)](/flux/guides/monitoring/)
 {{% /card %}}
+{{% card header="[Pulumi](https://www.pulumi.com/kubernetes/)" %}}
+[![Pulumi](./img/pulumi.svg)](https://www.pulumi.com/docs/iac/using-pulumi/continuous-delivery/pulumi-kubernetes-operator/#using-a-flux-source)
+{{% /card %}}
 {{% card header="[SOPS](https://github.com/mozilla/sops)" %}}
 [![Prometheus](./img/mozilla.jpg)](/flux/guides/mozilla-sops/)
 {{% /card %}}
