@@ -84,6 +84,20 @@ healthCheckExprs:
     current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
+### `Crossplane`
+
+```yaml
+healthCheckExprs:
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    failed: status.conditions.filter(e, e.type == 'Healthy').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Healthy').all(e, e.status == 'True')
+  - apiVersion: iam.aws.crossplane.io/v1beta1
+    kind: Role
+    failed: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'False' && e.reason == 'ReconcileError')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+```
+
 ### `ScaledObject`
 
 ```yaml
