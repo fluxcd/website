@@ -64,6 +64,16 @@ healthCheckExprs:
     current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
+### `Cluster` (Cloud Native Postgresql)
+
+```yaml
+healthCheckExprs:
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: Cluster
+      failed: status.instancesStatus.failed.size() == status.instances
+      current: status.instancesStatus.healthy.size() == status.instances
+```
+
 ### `ClusterIssuer`
 
 ```yaml
@@ -102,13 +112,4 @@ healthCheckExprs:
     kind: SealedSecret
     failed: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'False')
     current: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'True')
-```
-### `Cluster` (Cloud Native Postgresql)
-
-```yaml
-healthCheckExprs:
-  - apiVersion: postgresql.cnpg.io/v1
-    kind: Cluster
-    failed: status.instancesStatus.healthy.size() != status.instances
-    current: status.instancesStatus.healthy.size() == status.instances
 ```
