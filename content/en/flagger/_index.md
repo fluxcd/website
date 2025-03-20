@@ -7,7 +7,7 @@ cascade:
 ---
 
 [Flagger](https://github.com/fluxcd/flagger) is a progressive delivery tool that automates the release
-process for applications running on Kubernetes. It reduces the risk of introducing a new software
+process for applications running on Kubernetes. It reduces the risk associated with introducing a new software
 version in production by gradually shifting traffic to the new version while measuring metrics
 and running conformance tests.
 
