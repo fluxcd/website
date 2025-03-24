@@ -31,6 +31,8 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--no-cross-namespace-refs`           | boolean       | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace. |
 | `--ssh-hostkey-algos`                 | strings       | The list of hostkey algorithms to use for ssh connections, arranged from most preferred to the least.                              |
 | `--ssh-kex-algos`                     | strings       | The list of key exchange algorithms to use for ssh connections, arranged from most preferred to the least.                         |
+| `--token-cache-max-size`              | int           | The maximum amount of entries in the LRU cache used for tokens. (default 0, disabled)                                                                                            |
+| `--token-cache-max-duration`          | duration      | The maximum duration for which a token would be considered unexpired. This is capped at 1h. (default 1h)                           |
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)             |
 | `--watch-label-selector`              | string        | Watch for resources with matching labels e.g. 'sharding.fluxcd.io/key=shard1'.                                                   |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                             |
