@@ -548,6 +548,11 @@ Once the manifests have been pushed to the Git repository, the following happens
 
 ## SOPS encrypted_regex conflict
 
+{{% alert color="warning" title="Security notice" %}}
+The below example is injecting secret data into environment variable key-value pairs in the Pod spec, which is a bad security practice.
+It should be taken as an explanation of Flux's behavior related to handling merging of secret data, not a security recommendation.
+{{% /alert %}}
+
 If your resource is encrypted it will be decrypted right before apply, but it may happen, that
 your patches will bring fields that match SOPS' encrypted_regex expression and SOPS will fail
 during the decryption. Let's say we have a simple resource.
