@@ -293,11 +293,11 @@ and fetch it directly.
 
 The pros of using a chart reference are:
 - The chart is fetched directly from the source, without the need to create a `HelmChart`
-  resource for the sepcif `HelmRelease`. This can reduces the number of resources
+  resource for the specific `HelmRelease`. This can reduce the number of resources
   in the cluster.
 - In the case of a `OCIRepository`, the fact that it is possible to pin to a
   specific `tag` or `digest` makes it easier to enforce a specific change, and
-  overall more flexible.
+  is more flexible overall.
 
 **Note**: When switching from a `.chart.spec` to a `.chartRef`, the old `HelmChart`
 resource is garbage collected by the helm-controller.
