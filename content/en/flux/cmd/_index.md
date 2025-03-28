@@ -74,6 +74,14 @@ The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install
 * copies the `flux` binary to `/usr/local/bin`
 * removes the temporary directory
 
+You can also install to a custom directory (e.g., `~/.local/bin`):
+
+```bash
+curl -s https://fluxcd.io/install.sh | FLUX_VERSION=2.0.0 bash -s ~/.local/bin
+```
+
+Please make sure that this directory is part of your `$PATH` environment variable.
+
 ## Install using Docker
 
 A container image with `kubectl` and `flux` is available on DockerHub and GitHub:
