@@ -29,6 +29,27 @@ The [CEL Playground](https://playcel.undistro.io/) is a useful resource for
 testing your expressions. The input passed to each expression is the custom
 resource object itself.
 
+## FAQ
+
+### CEL Macros
+
+CEL provides various macros for use in computing health check expressions. They are documented in
+the [CEL-spec language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md#macros).
+
+### Using the `has(...)` CEL macro to handle missing fields
+
+When working with custom resources that are progressing, it's common to reference fields that
+do not yet exist in the custom resource. You can safe-guard your CEL expressions with the `has` macro,
+by checking for property existence before accessing the property. For example, the following CEL
+expression returns `false` if `status.attribute.ready` is not present on the resource.
+
+```
+has(status.attribute) && status.attribute.ready
+```
+
+However, it should be noted that `has` cannot check for the existence of top-level properties, such
+as `status` or `data`.
+
 ## Library
 
 The items in this library are sorted in alphabetical order.
