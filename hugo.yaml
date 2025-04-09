@@ -208,10 +208,14 @@ menus:
     parent: Project
     url: /roadmap
     weight: 50
+  - name: Privacy
+    parent: Project
+    url: /privacy
+    weight: 60
   - name: Security
     parent: Project
     url: /security
-    weight: 60
+    weight: 70
   - name: Branding
     parent: Project
     url: https://github.com/cncf/artwork/blob/master/examples/graduated.md#flux-logos
