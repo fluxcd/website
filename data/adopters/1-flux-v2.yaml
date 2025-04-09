@@ -360,3 +360,6 @@ adopters:
     - name: Kong
       url: https://konghq.com
       logo: logos/kong.png
+    - name: Beekeeper AG
+      url: https://www.beekeeper.io/
+      logo: logos/beekeeper.png
