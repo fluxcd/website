@@ -13,6 +13,10 @@ resources:
   # Note: To generate "thumbnail_url", visit https://embed.ly/docs/explore/extract
   # and enter the link to the resource. Once you do that, select any thumbnail url of choice to use.
 
+  - youtube: j5WJozP7ZVU
+    title: "A Telco Game Changer: Sylva Embraces GitOps - Guillaume Nevicato, Orange & Cedric Yhuel, Oracle"
+    date: "2025-04-01"
+    type: video
   - youtube: ruto5Sak-jI
     title: "Evolving Reddit’s Infrastructure via Principled Platform Abstractions - Karan Thukral & Harvey Xia"
     date: "2024-11-15"
