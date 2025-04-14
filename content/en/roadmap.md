@@ -77,11 +77,20 @@ The primary goal of this milestone is to make a generally available release for 
   - [ ] Promote the `ImagePolicy` API to `v1`
   - [ ] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
 
+- **Git integrations**
+  - [ ] [Add support for sparse checkout in `GitRepository`](https://github.com/fluxcd/source-controller/pull/1774)
+  - [ ] [Add support for Git HTTP/S mutual TLS](https://github.com/fluxcd/source-controller/issues/1761#issuecomment-2796296665)
+  - [x] [Implement caching for GitHub Application auth tokens](https://github.com/fluxcd/source-controller/pull/1745)
+
 - **OCI artifacts integrations**
   - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
 
+- **Kustomize integrations**
+  - [ ] [Queue immediate reconciliation when a `Kustomization` dependency becomes ready](https://github.com/fluxcd/kustomize-controller/pull/1412)
+
 - **Alerting integrations**
-  - [ ] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
+  - [x] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
+  - [x] [Customise the ID of the Git commit status with CEL expressions](https://github.com/fluxcd/notification-controller/pull/1068)
   - [ ] [Add support for workload identity auth for Azure Event Hub to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1047)
 
 - **Conformance testing**
@@ -135,4 +144,6 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0007](https://github.com/fluxcd/flux2/tree/main/rfcs/0007-git-repo-passwordless-auth) Passwordless authentication for Git repositories
 - [x] [RFC-0008](https://github.com/fluxcd/flux2/pull/4809) Custom Event Metadata from Annotations
 - [x] [RFC-0009](https://github.com/fluxcd/flux2/pull/5151) Custom Health Checks for Kustomization using Common Expression Language(CEL)
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5209) Multi-Tenant Workload Identity
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5292) External Artifact API
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
