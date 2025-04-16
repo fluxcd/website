@@ -63,7 +63,8 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
   --create-namespace
 ```
 
-Next, create a GitHub App secret using the `flux` CLI:
+Next, create a GitHub App secret using the `flux` CLI (see docs on how to create a GitHub App
+[here](#github-app-docs)):
 
 ```shell
 flux create secret githubapp flux-system \
@@ -136,6 +137,25 @@ terraform apply \
   -var git_url="https://github.com/my-org/my-fleet.git" \
   -var git_ref="refs/heads/main" \
   -var git_path="clusters/production"
+```
+
+### GitHub App Docs
+
+* [Registering a GitHub App](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app)
+* [Managing private keys for GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps)
+* [Installing your GitHub App](https://docs.github.com/en/apps/using-github-apps/installing-your-own-github-app)
+
+After installing your GitHub App in your organization you can find the *installation ID* like this:
+
+1. Go to the Organization settings
+2. Click on 'GitHub Apps' under 'Third-party Access'
+3. If there are multiple GitHub apps, choose your App and click on 'Configure'
+4. Once your GitHub App is selected check the URL for obtaining 'GitHub App Installation ID'
+
+The URL looks like this:
+
+```
+https://github.com/organizations/<Organization-name>/settings/installations/<ID>
 ```
 
 ## Conclusion
