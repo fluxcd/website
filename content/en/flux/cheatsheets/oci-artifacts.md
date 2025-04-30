@@ -105,7 +105,7 @@ spec:
   interval: 10m
   url: oci://ghcr.io/stefanprodan/charts/podinfo
   ref:
-    semver: ">6.0.0"
+    semver: ">=6.5.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -118,6 +118,8 @@ spec:
   chartRef:
     kind: OCIRepository
     name: podinfo
+  values:
+    replicaCount: 2
 ```
 
 The two artifact types can be used together, for example you could bundle a `Namespace`,
