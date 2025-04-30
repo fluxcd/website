@@ -172,7 +172,7 @@ spec:
   interval: 5m0s
   url: oci://ghcr.io/stefanprodan/charts/podinfo
   ref:
-    tag: 6.0.0
+    semver: "^6.5.0"
 ```
 
 The source-controller will fetch the Helm chart from the OCI registry namespace 
