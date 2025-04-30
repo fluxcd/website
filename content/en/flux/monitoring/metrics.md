@@ -39,10 +39,10 @@ Cache event metrics:
 gotk_cache_events_total{event_type, name, namespace}
 ```
 
-Access tokens cache event metrics:
+Token cache metrics:
 
 ```
-gotk_token_cache_events_total{event_type, kind, name, exported_namespace}
+gotk_token_cache_events_total{event_type, kind, name, namespace}
 gotk_token_cache_requests_total{status}
 gotk_token_cache_evictions_total
 gotk_token_cached_items
