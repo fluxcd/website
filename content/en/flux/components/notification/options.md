@@ -29,7 +29,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--no-cross-namespace-refs`           | boolean       | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace. |
 | `--rate-limit-interval`               | duration      | Interval in which rate limit has effect. (default 5m0s)                                                                            |
 | `--receiverAddr`                      | string        | The address the webhook receiver endpoint binds to. (default ":9292")                                                              |
-| `--token-cache-max-size`              | int           | The maximum amount of entries in the LRU cache used for tokens. (default 0, disabled)                                                                                                                                                                                    |
+| `--token-cache-max-size`              | int           | The maximum amount of entries in the LRU cache used for tokens. (default 100, enabled)                                             |
 | `--token-cache-max-duration`          | duration      | The maximum duration for which a token would be considered unexpired. This is capped at 1h. (default 1h)                           |
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)             |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                             |
