@@ -69,53 +69,56 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
 
 **Status**: In Progress
 
-The primary goal of this milestone is to make a generally available release for the Flux image automation APIs.
+The primary goal of this milestone is to make a generally available release for the Flux OCI Artifacts APIs
+and add support for object-level workload identity authentication for container registries.
+
+- **OCI artifacts integrations**
+  - [x] Promote the `OCIRepository` API to `v1`
+  - [ ] Promote to stable the Flux CLI commands:
+    - `flux push artifact`
+    - `flux tag artifact`
+    - `flux get artifact`
+    - `flux diff artifact`
+    - `flux list artifacts`
+  - [x] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
+  - [x] [Introduce object-level workload identity for OCIRepository](https://github.com/fluxcd/source-controller/pull/1790)
 
 - **Image automation**
-  - [ ] Promote the `ImageUpdateAutomation` API to `v1`
-  - [ ] Promote the `ImageRepository` API to `v1`
-  - [ ] Promote the `ImagePolicy` API to `v1`
+  - [x] [Introduce object-level workload identity for ImageRepository](https://github.com/fluxcd/image-reflector-controller/pull/760)
   - [ ] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
 
 - **Git integrations**
-  - [ ] [Add support for sparse checkout in `GitRepository`](https://github.com/fluxcd/source-controller/pull/1774)
-  - [ ] [Add support for Git HTTP/S mutual TLS](https://github.com/fluxcd/source-controller/issues/1761#issuecomment-2796296665)
+  - [x] [Add support for sparse checkout in `GitRepository`](https://github.com/fluxcd/source-controller/pull/1774)
+  - [x] [Add support for Git HTTP/S mutual TLS](https://github.com/fluxcd/source-controller/issues/1761#issuecomment-2796296665)
   - [x] [Implement caching for GitHub Application auth tokens](https://github.com/fluxcd/source-controller/pull/1745)
 
-- **OCI artifacts integrations**
-  - [ ] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
-
 - **Kustomize integrations**
-  - [ ] [Queue immediate reconciliation when a `Kustomization` dependency becomes ready](https://github.com/fluxcd/kustomize-controller/pull/1412)
+  - [x] [Introduce object-level workload identity for KMS decryption](https://github.com/fluxcd/kustomize-controller/pull/1412)
 
 - **Alerting integrations**
   - [x] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
   - [x] [Customise the ID of the Git commit status with CEL expressions](https://github.com/fluxcd/notification-controller/pull/1068)
-  - [ ] [Add support for workload identity auth for Azure Event Hub to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1047)
+  - [x] [Add support for workload identity auth for Azure Event Hub to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1047)
 
 - **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.33
+  - [x] End-to-end testing for Kubernetes 1.33
 
 - **EOL and Deprecations**
   - End support for Flux v2.3.x
   - End support for Kubernetes v1.30.x
-  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
-  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
-  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
-  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
+  - Deprecate APIs in group `source.toolkit.fluxcd.io/v1beta2`
 
 ### v2.7 (Q3 2025)
 
 **Status**: Provisional
 
-The primary goal of this milestone is to make a generally available release for the Flux OCI Artifacts APIs
+The primary goal of this milestone is to make a generally available release for the Flux image automation APIs,
 and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscaler (VPA).
 
-- **OCI artifacts integrations**
-  - [ ] Promote the `OCIRepository` API to `v1`
-  - [ ] [Enhance OCI Artifact support](https://github.com/fluxcd/source-controller/issues/1247)
-  - [ ] [Add support for layer extraction from OCI artifacts with `ImageIndex`](https://github.com/fluxcd/source-controller/pull/1369)
+- **Image automation**
+  - [ ] Promote the `ImageUpdateAutomation` API to `v1`
+  - [ ] Promote the `ImageRepository` API to `v1`
+  - [ ] Promote the `ImagePolicy` API to `v1`
 
 - **Kustomize integrations**
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
@@ -126,14 +129,18 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
 - **EOL and Deprecations**
   - End support for Flux v2.4.x
   - End support for Kubernetes v1.31.x
-  - Deprecate APIs in group `source.toolkit.fluxcd.io/v1beta2`
+  - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
+  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
 
 ## Request for comments
 
 The [RFC process](https://github.com/fluxcd/flux2/tree/main/rfcs)
 provides a consistent and controlled path for substantial changes to enter Flux.
 
-To keep track of the Flux project current direction and future plans, please see following RFCs:
+To keep track of the Flux project's current direction and future plans, please see the following RFCs:
 
 - [x] [RFC-0001](https://github.com/fluxcd/flux2/tree/main/rfcs/0001-authorization) Memorandum on the authorization model
 - [x] [RFC-0002](https://github.com/fluxcd/flux2/tree/main/rfcs/0002-helm-oci) Flux OCI support for Helm
@@ -142,8 +149,8 @@ To keep track of the Flux project current direction and future plans, please see
 - [x] [RFC-0005](https://github.com/fluxcd/flux2/tree/main/rfcs/0005-artifact-revision-and-digest) Artifact `Revision` format and introduction of `Digest`
 - [x] [RFC-0006](https://github.com/fluxcd/flux2/tree/main/rfcs/0006-cdevents) Flux CDEvents Receiver
 - [x] [RFC-0007](https://github.com/fluxcd/flux2/tree/main/rfcs/0007-git-repo-passwordless-auth) Passwordless authentication for Git repositories
-- [x] [RFC-0008](https://github.com/fluxcd/flux2/pull/4809) Custom Event Metadata from Annotations
-- [x] [RFC-0009](https://github.com/fluxcd/flux2/pull/5151) Custom Health Checks for Kustomization using Common Expression Language(CEL)
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5209) Multi-Tenant Workload Identity
+- [x] [RFC-0008](https://github.com/fluxcd/flux2/tree/main/rfcs/0008-custom-event-metadata-from-annotations) Custom Event Metadata from Annotations
+- [x] [RFC-0009](https://github.com/fluxcd/flux2/tree/main/rfcs/0009-custom-health-checks) Custom Health Checks for Kustomization using Common Expression Language(CEL)
+- [x] [RFC-0010](https://github.com/fluxcd/flux2/tree/main/rfcs/0010-multi-tenant-workload-identity) Multi-Tenant Workload Identity
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/5292) External Artifact API
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
