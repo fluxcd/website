@@ -135,6 +135,7 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove the `autologin` deprecated flags from `image-reflector-controller`
 
 ## Request for comments
 
