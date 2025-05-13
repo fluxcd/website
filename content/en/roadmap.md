@@ -94,6 +94,7 @@ and add support for object-level workload identity authentication for container 
 
 - **Kustomize integrations**
   - [x] [Introduce object-level workload identity for KMS decryption](https://github.com/fluxcd/kustomize-controller/pull/1412)
+  - [ ] [Implement `WaitForTermination` deletion policy](https://github.com/fluxcd/kustomize-controller/pull/1444)
 
 - **Alerting integrations**
   - [x] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
