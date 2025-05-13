@@ -94,6 +94,7 @@ and add support for object-level workload identity authentication for container 
 
 - **Kustomize integrations**
   - [x] [Introduce object-level workload identity for KMS decryption](https://github.com/fluxcd/kustomize-controller/pull/1412)
+  - [ ] [Implement `WaitForTermination` deletion policy](https://github.com/fluxcd/kustomize-controller/pull/1444)
 
 - **Alerting integrations**
   - [x] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
@@ -134,6 +135,7 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove the `autologin` deprecated flags from `image-reflector-controller`
 
 ## Request for comments
 
