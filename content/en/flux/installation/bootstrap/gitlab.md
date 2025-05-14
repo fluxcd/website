@@ -89,7 +89,7 @@ flux bootstrap gitlab \
   --path=clusters/my-cluster
 ```
 
-If you want use SSH and [GitLab deploy keys](#gitlab-deploy-keys),
+If you want to use SSH and [GitLab deploy keys](#gitlab-deploy-keys),
 set `--token-auth=false` and provide the SSH hostname with `--ssh-hostname=my-gitlab-enterprise.com`.
 
 ## GitLab Deploy Keys
