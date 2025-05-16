@@ -50,7 +50,8 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 
 ### Feature Gates
 
-| Name                        | Default Value | Description                                                                                                                                                                                                               |
-|-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `OptimizedGitClones`        | `true`        | Optimises Git resource usage by only cloning repositories when the HEAD commit changed since last reconciliation.                                                                                                         |
-| `CacheSecretsAndConfigMaps` | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| Name                          | Default Value | Description                                                                                                                                                                                                               |
+|-------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps`   | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| `ObjectLevelWorkloadIdentity` | `false`       | Enables the use of object-level workload identity for the controller.                                                                                                                                                     |
+| `OptimizedGitClones`          | `true`        | Optimises Git resource usage by only cloning repositories when the HEAD commit changed since last reconciliation.                                                                                                         |

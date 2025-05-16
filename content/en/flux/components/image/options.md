@@ -39,11 +39,12 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 
 ### Feature Gates
 
-| Name                        | Default Value | Description                                                                                                                                                                                                               |
-|-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `GitForcePushBranch`        | `true`        | Enables the use of "force push" when pushing changes to a separate branch. This fixes issues with stale push branches.                                                                                                    |
-| `GitAllBranchReferences`    | `true`        | Enables the download of all branch head references when push branches are configured.                                                                                                                                     |
-| `CacheSecretsAndConfigMaps` | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| Name                          | Default Value | Description                                                                                                                                                                                                               |
+|-------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps`   | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| `GitAllBranchReferences`      | `true`        | Enables the download of all branch head references when push branches are configured.                                                                                                                                     |
+| `GitForcePushBranch`          | `true`        | Enables the use of "force push" when pushing changes to a separate branch. This fixes issues with stale push branches.                                                                                                    |
+| `ObjectLevelWorkloadIdentity` | `false`       | Enables the use of object-level workload identity for the controller.                                                                                                                                                     |
 
 ## Image reflector flags
 
@@ -74,6 +75,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 
 ### Feature Gates
 
-| Name                              | Default Value | Description                                                                                                                                                                                                               |
-|-----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `CacheSecretsAndConfigMaps`       | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| Name                              | Default Value | Description                                                                                                                                                                                                           |
+|-----------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CacheSecretsAndConfigMaps`   | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
+| `ObjectLevelWorkloadIdentity` | `false`       | Enables the use of object-level workload identity for the controller.                                                                                                                                                     |
