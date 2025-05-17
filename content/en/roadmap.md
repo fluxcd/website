@@ -76,8 +76,8 @@ and add support for object-level workload identity authentication for container 
   - [x] Promote the `OCIRepository` API to `v1`
   - [ ] Promote to stable the Flux CLI commands:
     - `flux push artifact`
+    - `flux pull artifact`
     - `flux tag artifact`
-    - `flux get artifact`
     - `flux diff artifact`
     - `flux list artifacts`
   - [x] [Cache registry credentials for cloud providers](https://github.com/fluxcd/pkg/issues/642)
