@@ -27,23 +27,28 @@ are context- and time-bound.
 
 Below is a list of Flux features that support this functionality and their documentation:
 
-| Status    | Component                  | Feature                           | Provider | Ref                               |
-|-----------|----------------------------|-----------------------------------|----------|-----------------------------------|
-| Supported | Source Controller          | Bucket Repository Authentication  | AWS      | [Guide][AWS Buckets]              |
-| Supported | Source Controller          | Bucket Repository Authentication  | Azure    | [Guide][Azure Buckets]            |
-| Supported | Source Controller          | Bucket Repository Authentication  | GCP      | [Guide][GCP Buckets]              |
-| Supported | Source Controller          | OCI Repository Authentication     | AWS      | [Guide][AWS OCI Repository]       |
-| Supported | Source Controller          | OCI Repository Authentication     | Azure    | [Guide][Azure OCI Repository]     |
-| Supported | Source Controller          | OCI Repository Authentication     | GCP      | [Guide][GCP OCI Repository]       |
-| Supported | Source Controller          | Helm Repository Authentication    | AWS      | [Guide][AWS Helm Repository]      |
-| Supported | Source Controller          | Helm Repository Authentication    | Azure    | [Guide][Azure Helm Repository]    |
-| Supported | Source Controller          | Helm Repository Authentication    | GCP      | [Guide][GCP Helm Repository]      |
-| Supported | Image Reflector Controller | Container Registry Authentication | AWS      | [Guide][AWS Container Registry]   |
-| Supported | Image Reflector Controller | Container Registry Authentication | Azure    | [Guide][Azure Container Registry] |
-| Supported | Image Reflector Controller | Container Registry Authentication | GCP      | [Guide][GCP Container Registry]   |
-| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | AWS      | [Guide][AWS KMS]                  |
-| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | Azure    | [Guide][Azure KMS]                |
-| Supported | Kustomize Controller       | SOPS Integration with Cloud KMS   | GCP      | [Guide][GCP KMS]                  |
+| Status    | Component                   | Feature                            | Provider | Ref            |
+|-----------|-----------------------------|------------------------------------|----------|----------------|
+| Supported | Source Controller           | Git Repository Authentication      | Azure    | [Guide][Azure] |
+| Supported | Source Controller           | Bucket Repository Authentication   | AWS      | [Guide][AWS]   |
+| Supported | Source Controller           | Bucket Repository Authentication   | Azure    | [Guide][Azure] |
+| Supported | Source Controller           | Bucket Repository Authentication   | GCP      | [Guide][GCP]   |
+| Supported | Source Controller           | OCI Repository Authentication      | AWS      | [Guide][AWS]   |
+| Supported | Source Controller           | OCI Repository Authentication      | Azure    | [Guide][Azure] |
+| Supported | Source Controller           | OCI Repository Authentication      | GCP      | [Guide][GCP]   |
+| Supported | Source Controller           | Helm OCI Repository Authentication | AWS      | [Guide][AWS]   |
+| Supported | Source Controller           | Helm OCI Repository Authentication | Azure    | [Guide][Azure] |
+| Supported | Source Controller           | Helm OCI Repository Authentication | GCP      | [Guide][GCP]   |
+| Supported | Image Reflector Controller  | Image Repository Authentication    | AWS      | [Guide][AWS]   |
+| Supported | Image Reflector Controller  | Image Repository Authentication    | Azure    | [Guide][Azure] |
+| Supported | Image Reflector Controller  | Image Repository Authentication    | GCP      | [Guide][GCP]   |
+| Supported | Image Automation Controller | Git Repository Authentication      | Azure    | [Guide][Azure] |
+| Supported | Kustomize Controller        | SOPS Integration with KMS          | AWS      | [Guide][AWS]   |
+| Supported | Kustomize Controller        | SOPS Integration with KMS          | Azure    | [Guide][Azure] |
+| Supported | Kustomize Controller        | SOPS Integration with KMS          | GCP      | [Guide][GCP]   |
+| Supported | Notification Controller     | Azure DevOps Commit Status Updates | Azure    | [Guide][Azure] |
+| Supported | Notification Controller     | Azure Event Hubs                   | Azure    | [Guide][Azure] |
+| Supported | Notification Controller     | Google Cloud Pub/Sub               | GCP      | [Guide][GCP]   |
 
 ## Roadmap
 
@@ -51,19 +56,6 @@ Support for context-based authorization should only increase over time.
 
 For more information, please visit the tracking issue: https://github.com/fluxcd/flux2/issues/3003.
 
-
-[AWS Buckets]: /flux/components/source/buckets/#aws
-[Azure Buckets]: /flux/components/source/buckets/#azure
-[GCP Buckets]: /flux/components/source/buckets/#gcp
-[AWS OCI Repository]: /flux/components/source/ocirepositories/#aws
-[Azure OCI Repository]: /flux/components/source/ocirepositories/#azure
-[GCP OCI Repository]: /flux/components/source/ocirepositories/#gcp
-[AWS Helm Repository]: /flux/components/source/helmrepositories/#aws
-[Azure Helm Repository]: /flux/components/source/helmrepositories/#azure
-[GCP Helm Repository]: /flux/components/source/helmrepositories/#gcp
-[AWS Container Registry]: /flux/components/image/imagerepositories/#aws
-[Azure Container Registry]: /flux/components/image/imagerepositories/#azure
-[GCP Container Registry]: /flux/components/image/imagerepositories/#gcp
-[AWS KMS]: /flux/guides/mozilla-sops/#aws
-[Azure KMS]: /flux/guides/mozilla-sops/#azure
-[GCP KMS]: /flux/guides/mozilla-sops/#google-cloud
+[AWS]: /flux/integrations/aws.md
+[Azure]: /flux/integrations/azure.md
+[GCP]: /flux/integrations/gcp.md
