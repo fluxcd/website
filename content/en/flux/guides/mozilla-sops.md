@@ -254,238 +254,24 @@ kustomize-controller to be able to fetch keys from KMS.
 
 #### AWS
 
-Enabled the [IAM OIDC provider](https://eksctl.io/usage/iamserviceaccounts/) on your EKS cluster:
+See the SOPS guide to [Encrypting Using AWS KMS](https://github.com/getsops/sops#usage).
 
-```sh
-eksctl utils associate-iam-oidc-provider --cluster=<clusterName>
-```
-
-Create an IAM Role with access to AWS KMS e.g.:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": [
-                "kms:Decrypt",
-                "kms:DescribeKey"
-            ],
-            "Effect": "Allow",
-            "Resource": "arn:aws:kms:eu-west-1:XXXXX209540:key/4f581f5b-7f78-45e9-a543-83a7022e8105"
-        }
-    ]
-}
-```
-
-{{% alert color="info" title="Hint" %}}
-The above policy represents the minimal permissions needed for the controller
-to be able to decrypt secrets. Policies for users/clients who are meant to be encrypting and managing
-secrets will additionally require the `kms:Encrypt`, `kms:ReEncrypt*` and `kms:GenerateDataKey*` actions.
-{{% /alert %}}
-
-Bind the IAM role to the `kustomize-controller` service account:
-
-```sh
-eksctl create iamserviceaccount \
---role-only \
---name=kustomize-controller \
---namespace=flux-system \
---attach-policy-arn=<policyARN> \
---cluster=<clusterName>
-```
-
-Annotate the kustomize-controller service account with the role ARN:
-
-```sh
-kubectl -n flux-system annotate serviceaccount kustomize-controller \
---field-manager=flux-client-side-apply \
-eks.amazonaws.com/role-arn='arn:aws:iam::<ACCOUNT_ID>:role/<KMS-ROLE-NAME>'
-```
-
-Restart kustomize-controller for the binding to take effect:
-
-```sh
-kubectl -n flux-system rollout restart deployment/kustomize-controller
-```
-
-{{% alert color="info" title="Bootstrap" %}}
-Note that when using `flux bootstrap` you can [set the annotation](/flux/installation/configuration/workload-identity/#aws-iam-roles-for-service-accounts) to take effect at install time.
-{{% /alert %}}
+See the AWS integrations [docs](/flux/integrations/aws.md) for details on how to set up
+SOPS authentication for AWS KMS in kustomize-controller.
 
 #### Azure
 
-[Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster#create-aks-cluster) has to be enabled on the cluster. These are the steps to setup the identity, patch kustomize-controller to authenticate with the federated identity setup with Azure key vault. 
+See the SOPS guide to [Encrypting Using Azure Key Vault](https://github.com/getsops/sops#encrypting-using-azure-key-vault).
 
-Setup the identity: 
+See the Azure integrations [docs](/flux/integrations/azure.md) for details on how to set up
+SOPS authentication for Azure Key Vault in kustomize-controller.
 
-```sh
-export RESOURCE_GROUP=<AKS-RESOURCE-GROUP>
-export CLUSTER_NAME=<AKS-CLUSTER-NAME>
-export IDENTITY_NAME="sops-akv-decryptor"
-export FEDERATED_IDENTITY_NAME="sops-akv-decryptor-federated"
+#### GCP
 
-# Get the OIDC Issuer URL
-export AKS_OIDC_ISSUER="$(az aks show -n ${CLUSTER_NAME} -g ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" -otsv)"
+See the SOPS guide to [Encrypting Using Azure Key Vault](https://github.com/getsops/sops#encrypting-using-gcp-kms).
 
-# Create the managed identity
-az identity create --name "${IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}"
-
-# Get identity client ID
-export USER_ASSIGNED_CLIENT_ID="$(az identity show --resource-group ${RESOURCE_GROUP} --name ${IDENTITY_NAME} --query 'clientId' -o tsv)"
-
-# Federate the identity with the kustomize controller sa in flux-system ns
-az identity federated-credential create \
---name "${FEDERATED_IDENTITY_NAME}" \
---identity-name "${IDENTITY_NAME}" \
---resource-group "${RESOURCE_GROUP}" \
---issuer "${AKS_OIDC_ISSUER}" \
---subject system:serviceaccount:flux-system:kustomize-controller \
---audience api://AzureADTokenExchange
-```
-
-Create the Azure Key-Vault and give the required permissions to the managed identity. The key id in the last step is used to encrypt secrets with sops client.
-
-
-```sh
-export VAULT_NAME="fluxcd-$(uuidgen | tr -d - | head -c 16)"
-export KEY_NAME="sops-cluster0"
-export LOCATION=<AZURE-REGION>
-
-az keyvault create --name "${VAULT_NAME}" --resource-group "${RESOURCE_GROUP}" --location "${LOCATION}"
-
-az keyvault key create --name "${KEY_NAME}" \
-  --vault-name "${VAULT_NAME}" \
-  --protection software \
-  --ops encrypt decrypt
-
-az keyvault set-policy --name "${VAULT_NAME}" \
- --spn "${USER_ASSIGNED_CLIENT_ID}"
- --key-permissions decrypt
-
-az keyvault key show --name "${KEY_NAME}" \
-  --vault-name "${VAULT_NAME}" \
-  --query key.kid
-
-```
-
-Setup kustomize-controller to use workload identity adding the following patches to the flux-system kustomization.yaml
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - patch: |
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: controller
-        annotations:
-          azure.workload.identity/client-id: <AZURE CLIENT ID>
-          azure.workload.identity/tenant-id: <AZURE TENANT ID>
-    target:
-      kind: ServiceAccount
-      name: "(kustomize-controller)"
-  - patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: controller
-        labels:
-          azure.workload.identity/use: "true"
-      spec:
-        template:
-          metadata:
-            labels:
-              azure.workload.identity/use: "true"    
-    target:
-      kind: Deployment
-      name: "(kustomize-controller)"
-```
-
-
-At this point, kustomize-controller is now authorized to decrypt values in
-SOPS encrypted files from your Sources via the related Key Vault.
-
-See the SOPS guide to
-[Encrypting Using Azure Key Vault](https://github.com/mozilla/sops#encrypting-using-azure-key-vault)
-to get started committing encrypted files to your Git Repository or other Sources.
-
-#### Google Cloud
-
-[Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#before_you_begin) has to be enabled on the cluster and on the node pools.
-
-{{% alert color="info" title="Terraform" %}} If you like to use terraform instead of gcloud, you will need the following resources from the `hashicorp/google` provider:
-
-* create GCP service account: "google_service_account"
-* add role KMS encrypter/decrypter: "google_project_iam_member"
-* bind GCP SA to Flux kustomize-controller SA: "google_service_account_iam_binding" {{% /alert %}}
-
-1. Create a [GCP service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#before-you-begin) with the role Cloud KMS CryptoKey Encrypter/Decrypter.
-
-``` sh
-gcloud iam service-accounts create <SERVICE_ACCOUNT_ID> \
-    --description="DESCRIPTION" \
-    --display-name="DISPLAY_NAME"
-```
-
-``` sh
-gcloud projects add-iam-policy-binding <PROJECT_ID> \
-    --member="serviceAccount:<SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com" \
-    --role="roles/cloudkms.cryptoKeyEncrypterDecrypter"
-```
-
-2. Create an IAM policy binding between the GCP service account and the kustomize-controller Kubernetes service account of the flux-system.
-
-``` sh
-gcloud iam service-accounts add-iam-policy-binding \
-  --role roles/iam.workloadIdentityUser \
-  --member "serviceAccount:<PROJECT_ID>.svc.id.goog[<K8S_NAMESPACE>/<KSA_NAME>]" \
-  SERVICE_ACCOUNT_ID@PROJECT_ID.iam.gserviceaccount.com
-```
-
-For a GCP project named `total-mayhem-123456` with a configured GCP service account `flux-gcp` and assuming that Flux runs in the (default) namespace `flux-system`, this would translate to the following:
-
-``` sh
-gcloud iam service-accounts add-iam-policy-binding \
-  --role roles/iam.workloadIdentityUser \
-  --member "serviceAccount:total-mayhem-123456.svc.id.goog[flux-system/kustomize-controller]" \
-  flux-gcp@total-mayhem-123456.iam.gserviceaccount.com
-```
-
-3. [Customize your Flux Manifests](/flux/installation/) and patch the kustomize-controller service account with the proper annotation so that Workload Identity knows the relationship between the gcp service account and the k8s service account.
-
-``` yaml
-### add this patch to annotate service account if you are using Workload identity
-patches:
-  - patch: |
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: kustomize-controller
-        namespace: flux-system
-        annotations:
-          iam.gke.io/gcp-service-account: <SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
-    target:
-      kind: ServiceAccount
-      name: kustomize-controller
-```
-
-If you didn't bootstrap Flux, you can use this instead
-
-``` sh
-kubectl annotate serviceaccount kustomize-controller \
---field-manager=flux-client-side-apply \
---namespace flux-system \
-iam.gke.io/gcp-service-account=<SERVICE_ACCOUNT_ID>@<PROJECT_ID>.iam.gserviceaccount.com
-```
-
-{{% alert color="info" title="Bootstrap" %}}
-Note that when using `flux bootstrap` you can [set the annotation](/flux/installation/configuration/workload-identity/#gcp-workload-identity) to take effect at install time.
-{{% /alert %}}
+See the GCP integrations [docs](/flux/integrations/gcp.md) for details on how to set up
+SOPS authentication for GCP KMS in kustomize-controller.
 
 ## GitOps workflow
 

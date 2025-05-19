@@ -143,7 +143,7 @@ Various configuration options are available at bootstrap time such as:
 
 * [Installing optional components](configuration/optional-components.md)
 * [Enforcing tenant isolation on shared clusters](configuration/multitenancy.md)
-* [Using workload identity on AWS, Azure and GCP](configuration/workload-identity.md)
+* [Using workload identity on AWS, Azure and GCP](/flux/integrations/)
 
 Please see the [bootstrap configuration](configuration/_index.md) section for more examples
 on how to customize Flux.
