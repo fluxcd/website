@@ -97,3 +97,6 @@ adopters:
     - name: Infomaniak
       url: https://www.infomaniak.com/
       logo: logos/infomaniak.svg
+    - name: Encryptum
+      url: https://encryptum.io
+      logo: logos/encryptum.png
