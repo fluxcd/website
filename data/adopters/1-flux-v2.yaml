@@ -363,3 +363,6 @@ adopters:
     - name: Beekeeper AG
       url: https://www.beekeeper.io/
       logo: logos/beekeeper.png
+    - name: Encryptum
+      url: https://encryptum.io
+      logo: logos/encryptum.png
