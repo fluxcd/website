@@ -393,6 +393,12 @@ The image policy marker format is:
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>"}`
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>:tag"}`
 * `{"$imagepolicy": "<policy-namespace>:<policy-name>:name"}`
+* `{"$imagepolicy": "<policy-namespace>:<policy-name>:digest"}`
+
+> **Note**: The digest is only made available for `ImagePolicy` resources that
+> have `spec.digestReflectionPolicy` set to `IfNotPresent` or `Always`. When
+> set to `Never` (the default), the digest will not be reflected in the
+> `ImagePolicy` status.
 
 These markers are placed inline in the target YAML, as a comment.  The "Setter" strategy refers to
 [kyaml setters](https://github.com/fluxcd/flux2/discussions/107#discussioncomment-82746)
@@ -414,6 +420,7 @@ spec:
     image:
       repository: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
       tag: 5.0.0  # {"$imagepolicy": "flux-system:podinfo:tag"}
+      digest: sha256:ec0119616bb8be9199575c05bfc23a6bf0fbdb0690ee15834e7b43bc3f4f6017 # {"$imagepolicy": "flux-system:podinfo:digest"}
 ```
 
 Tekton `Task` example:
@@ -662,8 +669,8 @@ Two methods are available for authenticating container registers as
 * [Automated authentication](../components/image/imagerepositories.md#provider)
 mechanisms (where the controller retrieves the credentials itself and is only
 available for the three major cloud providers), or
-* a [`CronJob`](cron-job-image-auth.md) which does not rely on native platform support in Flux,
-  (instead storing credentials as Kubernetes secrets which are periodically refreshed.)
+* [Secret-based authentication](../components/image/imagerepositories.md#secret-reference)
+where the user creates a Kubernetes secret with the credentials.
 
 Native authentication mechanisms have been implemented in Flux for the three major
 cloud providers, but they have to be set in the individual `ImageRepository`
@@ -757,3 +764,112 @@ spec:
     alphabetical:
       order: asc
 ```
+
+## Digest pinning
+
+### Following `latest` tags
+
+In some cases you may want to use the `latest` tag for some container images.
+A recommended GitOps way to do this is pinning the image digest after the
+tag in the image reference in your Git repository. For example:
+
+```yaml
+image: ghcr.io/stefanprodan/podinfo:latest@sha256:ec0119616bb8be9199575c05bfc23a6bf0fbdb0690ee15834e7b43bc3f4f6017
+```
+
+This gives you control over the image version that is deployed in your cluster,
+simply restarting pods will no longer pull the latest image automatically and
+change the underlying software without you knowing. This also makes the updates
+traceable in your Git history.
+
+With the right `ImagePolicy` configuration Flux is capable of polling image
+digests for a fixed tag. To configure Flux to watch the digest for `latest`,
+you can use an `ImagePolicy` like the following:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: podinfo
+  filterTags:
+    pattern: '^latest$'
+  policy:
+    alphabetical: {}
+  digestReflectionPolicy: Always
+  interval: 10m
+```
+
+The trick is filtering a single tag, the one you want to follow, and setting
+`digestReflectionPolicy` to `Always`, which will tell Flux to fetch the digest
+for that tag according to the specified `interval`, once every ten minutes in
+the example above.
+
+Then in the manifest where you want to use the `latest` tag, you can do the
+following:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: ghcr.io/stefanprodan/podinfo:latest@sha256:ec0119616bb8be9199575c05bfc23a6bf0fbdb0690ee15834e7b43bc3f4f6017 # {"$imagepolicy": "flux-system:podinfo"}
+```
+
+Or if you have a `HelmRelease` where `repository`, `tag` and `digest` are separate values:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  values:
+    image:
+      repository: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
+      tag: latest  # {"$imagepolicy": "flux-system:podinfo:tag"}
+      digest: sha256:ec0119616bb8be9199575c05bfc23a6bf0fbdb0690ee15834e7b43bc3f4f6017 # {"$imagepolicy": "flux-system:podinfo:digest"}
+```
+
+### Achieving immutability for tags
+
+Another common use case is preventing images from ever changing after a new tag
+is released. If later for whatever reason this tag is pushed with a different image,
+i.e. a different digest, and you don't want it to be updated e.g. due to the reasons
+of how you test and ship your software, you can set `digestReflectionPolicy` to
+`IfNotPresent` in the `ImagePolicy`:
+
+```yaml
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: podinfo
+  policy:
+    semver:
+      range: 5.0.x
+  digestReflectionPolicy: IfNotPresent
+```
+
+In this case the digest will only be updated in the `ImagePolicy` status if a new
+tag is elected as latest, in which case both the tag and the digest will be updated
+together. Setting an `interval` in this case is not allowed.
