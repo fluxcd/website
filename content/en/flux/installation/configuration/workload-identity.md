@@ -43,6 +43,12 @@ patches:
       name: "kustomize-controller"
 ```
 
+{{% alert color="info" title="Amazon Web Services Integrations" %}}
+For a complete guide on configuring authentication for the Flux
+integrations with AWS IAM for accessing ECR, S3 and KMS please
+see the [AWS integration documentation](/flux/integrations/aws/).
+{{% /alert %}}
+
 ## Azure Workload Identity
 
 To grant Flux access to Azure resources [during bootstrap](boostrap-customization.md) add the following patches
@@ -83,6 +89,12 @@ patches:
       name: "(source-controller|image-reflector-controller)"
 ```
 
+{{% alert color="info" title="Microsoft Azure Integrations" %}}
+For a complete guide on configuring authentication for the Flux
+integrations with Microsoft Entra ID for accessing ACR, Azure
+DevOps, Blob Storage, Key Vault and Event Hubs please see the [Azure integration documentation](/flux/integrations/azure/).
+{{% /alert %}}
+
 ## GCP Workload Identity
 
 To grant Flux access to Google Cloud resources [during bootstrap](boostrap-customization.md) add the following patches
@@ -116,3 +128,9 @@ patches:
       kind: ServiceAccount
       name: "kustomize-controller"
 ```
+
+{{% alert color="info" title="Google Cloud Platform Integrations" %}}
+For a complete guide on configuring authentication for the Flux
+integrations with GCP IAM for accessing GAR, GCS, KMS and Pub/Sub
+please see the [GCP integration documentation](/flux/integrations/gcp/).
+{{% /alert %}}

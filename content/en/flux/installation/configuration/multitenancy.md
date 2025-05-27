@@ -9,9 +9,9 @@ Flux allows different organizations and/or teams to share the same Kubernetes co
 referred to as "multi-tenancy". To make this safe, Flux supports segmentation and isolation of
 resources by using namespaces and role-based access control (RBAC).
 
-## Flux authorisation model
+## Flux authorization model
 
-Flux defers to Kubernetes' native RBAC to specify which operations are authorised when processing
+Flux defers to Kubernetes' native RBAC to specify which operations are authorized when processing
 its custom resources. By default, this means operations are constrained by the
 service account under which the controllers run, which has the `cluster-admin`
 role bound to it. This is convenient for a deployment in which all users are trusted.
@@ -20,7 +20,7 @@ In a multi-tenant deployment, each tenant needs to be restricted in the operatio
 on their behalf. Since tenants control Flux via its API objects, this becomes a matter of attaching
 RBAC rules to Flux API objects.
 
-To give users control over the authorisation, the Flux controllers can _impersonate_ (assume the
+To give users control over the authorization, the Flux controllers can _impersonate_ (assume the
 identity of) a service account mentioned in the apply specification (e.g., the field
 `.spec.serviceAccountName` in
 a [`Kustomization` object](https://fluxcd.io/flux/components/kustomize/kustomizations/#role-based-access-control)
