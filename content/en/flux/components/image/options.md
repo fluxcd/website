@@ -52,6 +52,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--default-service-account`           | string        | Default service account used for impersonation.                                                                                         |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                   |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                     |
+| `--gc-interval`                       | int           | The interval in number of minutes at which the garbage collector will run for the tags database. Zero disables GC. (default 10)         |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                             |
 | `--leader-election-lease-duration`    | duration      | Interval at which non-leader candidates will wait to force acquire leadership (duration string). (default 35s)                          |
 | `--leader-election-release-on-cancel` | boolean       | Defines if the leader should step down voluntarily on controller manager shutdown. (default true)                                       |
