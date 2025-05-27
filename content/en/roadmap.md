@@ -74,7 +74,8 @@ and add support for object-level workload identity authentication for container 
 
 - **OCI artifacts integrations**
   - [x] Promote the `OCIRepository` API to `v1`
-  - [ ] Promote to stable the Flux CLI commands:
+  - [x] Promote to stable the Flux CLI commands:
+    - `flux build artifact`
     - `flux push artifact`
     - `flux pull artifact`
     - `flux tag artifact`
@@ -85,7 +86,7 @@ and add support for object-level workload identity authentication for container 
 
 - **Image automation**
   - [x] [Introduce object-level workload identity for ImageRepository](https://github.com/fluxcd/image-reflector-controller/pull/760)
-  - [ ] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
+  - [x] [Add support for updating OCI digests](https://github.com/fluxcd/flux2/issues/4245)
 
 - **Git integrations**
   - [x] [Add support for sparse checkout in `GitRepository`](https://github.com/fluxcd/source-controller/pull/1774)
@@ -94,7 +95,7 @@ and add support for object-level workload identity authentication for container 
 
 - **Kustomize integrations**
   - [x] [Introduce object-level workload identity for KMS decryption](https://github.com/fluxcd/kustomize-controller/pull/1412)
-  - [ ] [Implement `WaitForTermination` deletion policy](https://github.com/fluxcd/kustomize-controller/pull/1444)
+  - [x] [Implement `WaitForTermination` deletion policy](https://github.com/fluxcd/kustomize-controller/pull/1444)
 
 - **Alerting integrations**
   - [x] [Add support for GitHub App auth to `Provider` API](https://github.com/fluxcd/notification-controller/issues/996)
