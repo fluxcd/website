@@ -17,8 +17,6 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.              |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                        |
-| `--kube-api-burst`                    | int           | The maximum burst queries-per-second of requests sent to the Kubernetes API. (default 100)                                         |
-| `--kube-api-qps`                      | float32       | The maximum queries-per-second of requests sent to the Kubernetes API. (default 50)                                                |
 | `--leader-election-lease-duration`    | duration      | Interval at which non-leader candidates will wait to force acquire leadership (duration string). (default 35s)                     |
 | `--leader-election-release-on-cancel` | boolean       | Defines if the leader should step down voluntarily on controller manager shutdown. (default true)                                  |
 | `--leader-election-renew-deadline`    | duration      | Duration that the leading controller manager will retry refreshing leadership before giving up (duration string). (default 30s)    |
@@ -55,8 +53,6 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                   |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                     |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                             |
-| `--kube-api-burst`                    | int           | The maximum burst queries-per-second of requests sent to the Kubernetes API. (default 100)                                              |
-| `--kube-api-qps`                      | float32       | The maximum queries-per-second of requests sent to the Kubernetes API. (default 50)                                                     |
 | `--leader-election-lease-duration`    | duration      | Interval at which non-leader candidates will wait to force acquire leadership (duration string). (default 35s)                          |
 | `--leader-election-release-on-cancel` | boolean       | Defines if the leader should step down voluntarily on controller manager shutdown. (default true)                                       |
 | `--leader-election-renew-deadline`    | duration      | Duration that the leading controller manager will retry refreshing leadership before giving up (duration string). (default 30s)         |
@@ -75,7 +71,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 
 ### Feature Gates
 
-| Name                              | Default Value | Description                                                                                                                                                                                                           |
-|-----------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name                          | Default Value | Description                                                                                                                                                                                                               |
+|-------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `CacheSecretsAndConfigMaps`   | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
 | `ObjectLevelWorkloadIdentity` | `false`       | Enables the use of object-level workload identity for the controller.                                                                                                                                                     |

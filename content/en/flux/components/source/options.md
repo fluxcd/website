@@ -24,8 +24,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--helm-chart-file-max-size`          | int           | The max allowed size in bytes of a file in a Helm chart. (default 5242880)                                                                                                               |
 | `--helm-chart-max-size`               | int           | The max allowed size in bytes of a Helm chart file. (default 10485760)                                                                                                                   |
 | `--helm-index-max-size`               | int           | The max allowed size in bytes of a Helm repository index file. (default 52428800)                                                                                                        |
-| `--kube-api-burst`                    | int           | The maximum burst queries-per-second of requests sent to the Kubernetes API. (default 100)                                                                                               |
-| `--kube-api-qps`                      | float32       | The maximum queries-per-second of requests sent to the Kubernetes API. (default 50)                                                                                                      |
+| `--interval-jitter-percentage`        | uint8         | Percentage of jitter to apply to interval durations. A value of 10 will apply a jitter of +/-10% to the interval duration. It cannot be negative, and must be less than 100. (default 5) |
 | `--leader-election-lease-duration`    | duration      | Interval at which non-leader candidates will wait to force acquire leadership (duration string). (default 35s)                                                                           |
 | `--leader-election-release-on-cancel` | boolean       | Defines if the leader should step down voluntarily on controller manager shutdown. (default true)                                                                                        |
 | `--leader-election-renew-deadline`    | duration      | Duration that the leading controller manager will retry refreshing leadership before giving up (duration string). (default 30s)                                                          |
@@ -46,7 +45,6 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--watch-all-namespaces`              | boolean       | Watch for custom resources in all namespaces, if set to false it will only watch the runtime namespace. (default true)                                                                   |
 | `--watch-label-selector`              | string        | Watch for resources with matching labels e.g. 'sharding.fluxcd.io/key=shard1'.                                                                                                           |
 | `--feature-gates`                     | mapStringBool | A comma separated list of key=value pairs defining the state of experimental features.                                                                                                   |
-| `--interval-jitter-percentage`        | uint8         | Percentage of jitter to apply to interval durations. A value of 10 will apply a jitter of +/-10% to the interval duration. It cannot be negative, and must be less than 100. (default 5) |
 
 ### Feature Gates
 
