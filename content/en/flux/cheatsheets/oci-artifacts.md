@@ -23,7 +23,7 @@ and publish the resulting manifests as OCI artifacts for Flux to consume.
 ### Authoring artifacts
 
 On the client-side, the Flux CLI offers commands for packaging Kubernetes configs into OCI artifacts and
-pushing these artifact to container registries. 
+pushing these artifacts to container registries. 
 
 The Flux CLI commands for managing OCI artifacts are:
 - `flux push artifact`
@@ -62,7 +62,7 @@ and you can apply the OCI artifact content on the cluster (Flux `Kustomization`)
 Example:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -96,13 +96,16 @@ defining Helm releases with charts stored in container registries.
 Example:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
   namespace: default
 spec:
   interval: 10m
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
   url: oci://ghcr.io/stefanprodan/charts/podinfo
   ref:
     semver: ">=6.5.0"
@@ -192,7 +195,7 @@ The output is similar to:
 Pull the latest build on the staging cluster:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -255,7 +258,7 @@ flux tag artifact oci://ghcr.io/stefanprodan/manifests/podinfo:$(git tag --point
 Deploy the latest stable build on the production cluster:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -270,7 +273,7 @@ spec:
 Or deploy the latest version by semver:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -312,7 +315,7 @@ flux create secret oci ghcr-auth \
 Then reference the secret in the `OCIRepository` with:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -370,7 +373,7 @@ cosign sign --key=cosign.key ghcr.io/stefanprodan/manifests/podinfo:$(git tag --
 Configure Flux to verify the artifacts using the Cosign public key from the Kubernetes secret:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -495,7 +498,7 @@ flux create secret notation notation-cfg \
 Configure Flux to verify the artifacts using the Notary trust policy and certificate:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: app-manifests
@@ -726,7 +729,7 @@ spec:
 Then add the policy marker to the `OCIRepository` manifest in Git:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo
@@ -766,32 +769,30 @@ spec:
     name: podinfo-chart
   policy:
     semver:
-      range: 6.1.x
+      range: 6.x
 ```
 
-Then add the policy marker to the `HelmRelease` manifest in Git:
+Then add the policy marker to the `OCIRepositry` manifest in Git:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
 metadata:
   name: podinfo
-  namespace: flux-system
+  namespace: default
 spec:
   interval: 10m
-  targetNamespace: default
-  chart:
-    spec:
-      chart: podinfo
-      version: 6.1.0 # {"$imagepolicy": "flux-system:podinfo-chart:tag"}
-      sourceRef:
-        kind: HelmRepository
-        name: podinfo
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  ref:
+    tag: 6.5.0 # {"$imagepolicy": "flux-system:podinfo-chart:tag"}
 ```
 
 Based on the above configuration, Flux will scan the container registry every five minutes,
 and when it finds a newer Helm chart version, it will update the
-`HelmRelease.spec.chart.spec.chart.version` and will push the change to Git.
+`OCIRepository.spec.ref.tag` and will push the change to Git.
 
 ### Diagram: OCI artifacts reconciliation 
 
