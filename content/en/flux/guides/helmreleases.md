@@ -164,7 +164,7 @@ A better option is to use an [OCI registry for chart storage](#oci-repository).
 Helm charts stored in an OCI registry, can be retrieved by declaring an `OCIRepository`.
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: podinfo

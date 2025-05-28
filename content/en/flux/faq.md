@@ -240,57 +240,50 @@ For security and performance reasons, it is advised to disallow the usage of
 [remote bases](https://github.com/kubernetes-sigs/kustomize/blob/a7f4db7fb41e17b2c826a524f545e6174b4dc6ac/examples/remoteBuild.md)
 in Kustomize overlays. To enforce this setting, platform admins can set the `--no-remote-bases=true` flag for kustomize-controller.
 
-**Note:** This flag prevents the usage of remote bases only, i.e. a Git repository or a sub directory.
-It does not affect the usage of remote targets pointing to a single file.
-
 When using remote bases, the manifests are fetched over HTTPS from their remote source on every reconciliation e.g.:
 
 ```yaml
-# infra/kyverno/kustomization.yaml
+# apps/podinfo/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://github.com/stefanprodan/podinfo/deploy/overlays/dev?ref=master
+  - https://github.com/stefanprodan/podinfo/kustomize?ref=master
 ```
 
 To take advantage of Flux's verification and caching features,
 you can replace the `kustomization.yaml` with a Flux source definition:
 
 ```yaml
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: kyverno
-  namespace: flux-system
+  name: podinfo
+  namespace: apps
 spec:
   interval: 60m
-  url: oci://ghcr.io/kyverno/manifests/kyverno
-  ref: # pull the latest patch release evey hour
-    semver: 1.8.x
-  verify: # enable Cosign keyless verification
-    provider: cosign
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref: # pull the latest stable version every hour
+    semver: ">=1.0.0"
 ```
 
-Then to reconcile the manifests on a cluster, you'll use the ones from the verified source:
+Then, to reconcile the manifests on a cluster, you'll use the ones from the Flux source:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: kyverno
-  namespace: flux-system
+  name: podinfo
+  namespace: apps
 spec:
-  interval: 360m
+  interval: 60m
+  retryInterval: 5m
   prune: true
   wait: true
-  timeout: 5m
+  timeout: 3m
   sourceRef:
     kind: OCIRepository
-    name: kyverno
-  path: ./
-  kubeConfig:
-    secretRef:
-      name: staging-cluster
+    name: podinfo
+  path: ./kustomize
 ```
 
 ### Should I be using Kustomize Helm chart plugin?
@@ -301,20 +294,20 @@ Kustomize plugins which shell-out to arbitrary binaries insides the kustomize-co
 Instead of using Kustomize to deploy charts, e.g.:
 
 ```yaml
-# infra/kyverno/kustomization.yaml
+# infra/metrics-server/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: kyverno
+namespace: monitoring
 resources:
-  - kyverno-namespace.yaml
+  - monitoring-namespace.yaml
 helmCharts:
-- name: kyverno
+- name: metrics-server
   valuesInline:
-    networkPolicy:
-      enabled: true
-  releaseName: kyverno
-  version: 2.6.0
-  repo: https://kyverno.github.io/kyverno/
+    args:
+      - --kubelet-insecure-tls
+  releaseName: metrics-server
+  version: 3.12.0
+  repo: https://kubernetes-sigs.github.io/metrics-server/
 ```
 
 You can take advantage of Flux's OCI and native Helm features,
@@ -322,37 +315,32 @@ by replacing the `kustomization.yaml` with a Flux Helm definition:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
-  name: kyverno
-  namespace: flux-system
+  name: metrics-server
+  namespace: monitoring
 spec:
-  interval: 6h
-  url: oci://ghcr.io/kyverno/charts
-  type: oci
+  interval: 1h
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  url: oci://ghcr.io/controlplaneio-fluxcd/charts/metrics-server
+  ref:
+    semver: "3.x" # auto upgrade to the latest minor version
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: kyverno
-  namespace: flux-system
+  name: metrics-server
+  namespace: monitoring
 spec:
-  interval: 6h
-  releaseName: kyverno
-  targetNamespace: kyverno
-  install:
-    createNamespace: true
-  chart:
-    spec:
-      chart: kyverno
-      version: 2.6.0
-      interval: 6h
-      sourceRef:
-        kind: HelmRepository
-        name: kyverno
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: metrics-server
   values:
-    networkPolicy:
-      enabled: true
+    args:
+      - --kubelet-insecure-tls
 ```
 
 ### What is the behavior of Kustomize used by Flux?
@@ -442,38 +430,42 @@ Create a Helm release with `kubectl`:
 cat << EOF | kubectl apply -f -
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
-  name: bitnami
-  namespace: flux-system
+  name: kube-prometheus-stack
+  namespace: monitoring
 spec:
-  interval: 30m
-  url: https://charts.bitnami.com/bitnami
+  interval: 1h
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+  ref:
+    semver: "72.x"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: metrics-server
-  namespace: kube-system
+  name: kube-prometheus-stack
+  namespace: monitoring
 spec:
-  interval: 60m
-  releaseName: metrics-server
-  chart:
-    spec:
-      chart: metrics-server
-      version: "^5.x"
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  interval: 1h
+  timeout: 10m
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
-    apiService:
-      create: true
+    alertmanager:
+      enabled: false
 EOF
 ```
 
 Based on the above definition, Flux will upgrade the release automatically
-when Bitnami publishes a new version of the metrics-server chart.
+when a new minor or patch version is available for the kube-prometheus-stack chart.
 
 ### How do I set local overrides to a Helm chart?
 
