@@ -105,7 +105,7 @@ params:
   offlineSearch: false
   version_menu: "Versions"
   version: "2.3"
-  archived_version: false
+  archived_version: true
   version_menu_pagelinks: true
   url_latest_version: https://fluxcd.io/flux/
   versions:
