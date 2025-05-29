@@ -146,9 +146,18 @@ function gen_ctrl_docs {
     gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/spec/${version}/${name}.md" "$COMPONENTS_DIR/${ctrl_out}/${name}.md"
   done
 
-  # special case: n-c's `Events` type is not a CRD but needs to be documented, too.
+  # special cases for n-c
   if [ "${ctrl}" = "notification-controller" ] ; then
+    # `Events` type is not a CRD but needs to be documented, too.
     gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/${ctrl_out}/events.md"
+
+    # Hack for fixing typo in the docs
+    sed -i \
+      's#((https://docs\.github\.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token))#(https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)#g' \
+      "$COMPONENTS_DIR/${ctrl_out}/providers.md"
+    sed -i \
+      's#((https://docs\.github\.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation))#(https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation)#g' \
+      "$COMPONENTS_DIR/${ctrl_out}/providers.md"
   fi
 }
 
