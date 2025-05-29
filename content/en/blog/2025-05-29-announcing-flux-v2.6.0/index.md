@@ -25,7 +25,7 @@ relying solely on container registries as the source of truth for the desired st
 In the last couple of years, the OCI feature-set has matured, and we've seen major financial institutions
 and enterprises adopting Flux and OCI as their preferred way of managing production deployments.
 To see it in action, you can check the reference architecture guide made by ControlPlane
-on how industries can securely implement
+on how highly regulated industries can securely implement
 [Gitless GitOps with Flux and OCI](https://control-plane.io/posts/d2-reference-architecture-guide/).
 
 In this release, we have also introduced several new features to the Flux controllers,
@@ -118,7 +118,7 @@ see the following docs:
 - [Azure workload identity](/flux/integrations/azure/)
 - [GCP workload identity](/flux/integrations/gcp/)
 
-### GitHub App Authentication
+## GitHub App Authentication
 
 In Flux v2.6, we have completed the integration of GitHub App authentication for Git repositories.
 This feature was introduced in [Flux v2.5](https://fluxcd.io/blog/2025/02/flux-v2.5.0/#github-app-authentication-for-git-repositories),
@@ -131,7 +131,7 @@ The notification-controller has also been updated to support GitHub App authenti
 when updating [Git commit statuses](/flux/components/notification/providers/#git-commit-status-updates)
 and for triggering [GitHub Actions workflows](flux/components/notification/providers/#github-dispatch).
 
-### Notifications Improvements
+## Notifications Improvements
 
 Starting with Flux v2.6, users can customize the [Git commit status](/flux/components/notification/providers/#git-commit-status-updates)
 identifier in the notifications sent to Git providers by using Common Expression Language (CEL) expressions.
@@ -182,22 +182,15 @@ Flux v2.6 supports the following Kubernetes versions:
 | Kubernetes   | 1.31, 1.32, 1.33 |
 | OpenShift    | 4.18             |
 
-{{% alert color="info" title="Enterprise support" %}}
-Note that the CNCF Flux project offers support only for the latest
-three minor versions of Kubernetes.
-
-Backwards compatibility with older versions of Kubernetes and OpenShift is offered by vendors
-such as [ControlPlane](https://control-plane.io/enterprise-for-flux-cd/) that provide
-enterprise support for Flux.
-{{% /alert %}}
+> **Enterprise support** Note that the CNCF Flux project offers support only for the latest three minor versions of Kubernetes.
+> Backwards compatibility with older versions of Kubernetes and OpenShift is offered by vendors such as [ControlPlane](https://control-plane.io/enterprise-for-flux-cd/) that provide enterprise support for Flux.
 
 ## Over and out
 
-If you have any questions, or simply just like what you read and want to get involved,
+If you have any questions or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
 - Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
-- Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you need help with.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).
 - Follow [Flux on Twitter](https://twitter.com/fluxcd), or join the
