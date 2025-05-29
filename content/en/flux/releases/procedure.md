@@ -336,9 +336,10 @@ The following instructions assume you're updating the website for the Flux relea
    git checkout -b v2-N
    git push origin HEAD:v2-N
    ```
-1. Apply the labels `backport:v2-N`, `backport:v2-(N-1)` and `backport:v2-(N-2)` to the PR created above so that the
-   `hugo.yaml` file gets updated in the older versions' websites. This step will lead to 3 PRs being automatically
-   created for each of the supported release branches of the website. Do not merge these PRs, yet!
+1. Apply the labels `backport:v2-(N-1)` and `backport:v2-(N-2)` to the PR created above so that the
+   `hugo.yaml` file gets updated in the older versions' websites. This step will lead to 2 PRs being
+   automatically created for the two last supported release branches of the website. **Do not merge these
+   PRs, yet!**
 1. In the PR for the `v2-(N-1)` branch, edit the `hugo.yaml` file and set `params.archived_version` to `true`.
 1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
 1. Click on "Configure"
@@ -346,8 +347,12 @@ The following instructions assume you're updating the website for the Flux relea
 1. In "Additional branches" add the "v2-(N-1)" branch.
 1. Click "Save".
 1. Now merge the 3 PRs created by the labels you applied in the previous step.
-1. Create another PR against the `main` branch to update the `trigger_branch` URL query parameter in the
-   file `.github/workflows/netlify.yml` to point to "v2-N".
+1. Create another PR against the `main` branch to:
+   1. Update the `trigger_branch` URL query parameter in the file `.github/workflows/netlify.yml` to point to "v2-N".
+   1. Update the website announcement banner in the file `content/en/_index.html` to point to the blog post of
+      the new release, and change the string right below from  `Announcing Flux 2.N-1 GA` to
+      `Announcing Flux 2.N GA`.
+1. Merge the PR and backport to the `v2-N` branch by applying the `backport:v2-N` label to the PR.
 
 #### Distribution: patch releases
 
