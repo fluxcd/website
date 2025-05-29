@@ -1,6 +1,9 @@
 # Configuration file to declaratively configure labels
 # Ref: https://github.com/EndBug/label-sync#Config-files
 
+- name: backport:v2-6
+  description: To be backported to v2-6
+  color: '#ffd700'
 - name: backport:v2-5
   description: To be backported to v2-5
   color: '#ffd700'
