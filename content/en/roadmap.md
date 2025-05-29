@@ -67,7 +67,7 @@ and to extend Flux functionality with Common Expression Language(CEL) support.
 
 ### v2.6 (Q2 2025)
 
-**Status**: In Progress
+**Status**: Completed on 2025-05-29 (v2.6.0 [changelog](https://fluxcd.io/blog/2025/05/flux-v2.6.0/))
 
 The primary goal of this milestone is to make a generally available release for the Flux OCI Artifacts APIs
 and add support for object-level workload identity authentication for container registries.
@@ -112,7 +112,7 @@ and add support for object-level workload identity authentication for container 
 
 ### v2.7 (Q3 2025)
 
-**Status**: Provisional
+**Status**: In Progress
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs,
 and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscaler (VPA).
