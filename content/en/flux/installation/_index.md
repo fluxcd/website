@@ -21,12 +21,12 @@ The Kubernetes cluster should match one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.29`            | `>= 1.29.0`      |
 | `v1.30`            | `>= 1.30.0`      |
-| `v1.31` and later  | `>= 1.31.0`      |
+| `v1.31`            | `>= 1.31.0`      |
+| `v1.32` and later  | `>= 1.32.0`      |
 
 {{% alert color="info" title="Kubernetes EOL" %}}
-Note that Flux may work on older versions of Kubernetes e.g. 1.25,
+Note that Flux may work on older versions of Kubernetes e.g. 1.29,
 but we don't recommend running [EOL versions](https://endoflife.date/kubernetes)
 in production nor do we offer support for these versions.
 {{% /alert %}}
@@ -157,16 +157,93 @@ The provider offers a Terraform resource called
 [flux_bootstrap_git](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/resources/bootstrap_git)
 that can be used to bootstrap Flux in the same way the Flux CLI does it.
 
-There are examples available for the provider in the [fluxcd/terraform-provider-flux](https://github.com/fluxcd/terraform-provider-flux) repository, some you may be interested in are:
+Check out the examples available for the provider in the
+[fluxcd/terraform-provider-flux](https://github.com/fluxcd/terraform-provider-flux) repository.
 
-- [Bootstrapping a cluster using a GitHub repository and a personal access token (PAT)](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-pat)
-- [Bootstrapping a cluster using a GitHub repository via SSH](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-ssh)
-- [Bootstrapping a cluster using a GitHub repository via SSH and GPG](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-via-ssh-with-gpg)
-- [Bootstrapping a cluster using a GitHub repository self-managing the SSH keypair secret)](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/github-self-managed-ssh-keypair)
-- [Bootstrapping a cluster using a Gitlab repository via SSH](https://github.com/fluxcd/terraform-provider-flux/tree/main/examples/gitlab-via-ssh)
+### Bootstrap with Flux Operator
 
-For more details on how to use the Terraform provider
-please see the [Flux docs on registry.terraform.io](https://registry.terraform.io/providers/fluxcd/flux/latest/docs).
+The [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator) is an open-source project
+part of the [Flux ecosystem](/ecosystem/#flux-extensions) that provides a declarative API for the
+lifecycle management of the Flux controllers.
+
+The operator offers an alternative to the Flux CLI bootstrap procedure, with the option to configure the
+reconciliation of the cluster state from Git repositories, OCI Artifacts, or S3-compatible storage.
+
+#### Install the Flux Operator
+
+Install the Flux Operator in the `flux-system` namespace, for example, using Helm:
+
+```shell
+helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
+  --namespace flux-system \
+  --create-namespace
+```
+
+The Flux Operator can be installed using Helm, Terraform, OpenTofu, OperatorHub, and other methods.
+For more information, refer to the [installation guide](https://fluxcd.control-plane.io/operator/install/).
+
+#### Configure the Flux Instance
+
+Create a [FluxInstance](https://fluxcd.control-plane.io/operator/fluxinstance/) resource
+named `flux` in the `flux-system` namespace to install the latest Flux stable version and configure the
+Flux controllers to sync the cluster state from an OCI artifact stored in GitHub Container Registry:
+
+```yaml
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcileEvery: "1h"
+    fluxcd.controlplane.io/reconcileTimeout: "5m"
+spec:
+  distribution:
+    version: "2.x"
+    registry: "ghcr.io/fluxcd"
+    artifact: "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+    - image-reflector-controller
+    - image-automation-controller
+  cluster:
+    type: kubernetes
+    multitenant: false
+    networkPolicy: true
+    domain: "cluster.local"
+  kustomize:
+    patches:
+      - target:
+          kind: Deployment
+          name: "(kustomize-controller|helm-controller)"
+        patch: |
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --concurrent=10
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --requeue-dependency=5s
+  sync:
+    kind: OCIRepository
+    url: "oci://ghcr.io/my-org/my-fleet-manifests"
+    ref: "latest"
+    path: "clusters/my-cluster"
+    pullSecret: "ghcr-auth"
+```
+
+> For more information on how to configure syncing from Git repositories,
+> container registries, and S3-compatible storage, refer to the
+> [cluster sync guide](https://fluxcd.control-plane.io/operator/flux-sync/).
+
+The operator can automatically upgrade the Flux controllers and their CRDs when a new version is available.
+To restrict the upgrade to patch versions only, set the `distribution.version` field to e.g. `2.6.x`
+or to a fixed version e.g. `2.6.0` to disable automatic upgrades.
+
+The Flux Operator can take over the management of existing installations from the Flux CLI or other tools.
+For a step-by-step guide, refer to the [Flux Operator migration guide](https://fluxcd.control-plane.io/operator/).
 
 ### Dev install
 
