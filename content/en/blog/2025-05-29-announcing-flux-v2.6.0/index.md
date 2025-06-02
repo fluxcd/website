@@ -66,6 +66,31 @@ The Flux custom media types used for OCI artifacts produced by the Flux CLI are 
 - config media type `application/vnd.cncf.flux.config.v1+json`
 - content media type `application/vnd.cncf.flux.content.v1.tar+gzip`
 
+### Breaking changes
+
+Prior to `v2.6.0`, the `OCIRepository` and `ImageRepository` APIs allowed the `spec.provider` field
+to be set to a value that did not necessarily match the repository URL. In these cases the controllers
+would simply ignore the `spec.provider`, not configuring OIDC authentication for the repository.
+
+For example, the repository `public.ecr.aws/aws-controllers-k8s` never matched Flux's regular expression
+for the `aws` provider, but the controller would still allow the `spec.provider` to be set to `aws` in
+this case and would simply ignore it. This specific configuration would work correctly because this
+particular repository is public and does not require authentication.
+
+Similarly, a private repository that did not match any of Flux's validations for the three container
+registry providers (`aws`, `azure`, `gcp`) would also work with the `spec.provider` set to one of
+these values, as long as it was also configured with one of the `spec.secretRef` or
+`spec.serviceAccountName` fields for using image pull secrets. In these cases, the controller
+would simply ignore the `spec.provider` and use the image pull secret instead.
+
+Starting with `v2.6.0`, Flux is fixing this behavior. The repository URL must now match the provider
+set in `spec.provider`, otherwise the controller will reject the configuration and return an error.
+For automatic OIDC authentication, the `spec.provider` must be set to one of the three container
+registry providers (`aws`, `azure`, `gcp`). For public repositories or authentication using image
+pull secrets, the `spec.provider` must not be set, or set to `generic`. These configuration
+instructions were explicit in the Flux docs since many releases, but are only now in `v2.6.0`
+being strictly enforced by the controllers.
+
 ## Image Automation Digest Pinning
 
 In Flux v2.6, the image automation has been enhanced to support digest pinning
