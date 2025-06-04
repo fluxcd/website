@@ -33,11 +33,13 @@ To create the pull request whenever automation creates a new branch, in your man
 name: Staging Auto-PR
 on:
   create:
-    branches: [staging]
 
 jobs:
   pull-request:
     runs-on: ubuntu-latest
+    if: |
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'staging'
     permissions:
       pull-requests: write
     steps:
