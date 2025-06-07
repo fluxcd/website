@@ -307,8 +307,31 @@ resource is garbage collected by the helm-controller.
 It is possible to use Kustomize [ConfigMap generator](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/configmapgenerator/)
 to trigger a Helm release upgrade every time the encoded values change.
 
-First create a `kustomizeconfig.yaml` for Kustomize to be able to patch
-`ConfigMaps` referenced in `HelmRelease` manifests:
+{{% alert color="info" title="Folder" %}}
+The following files are all created in the same folder, fetched through a Flux Kustomization.
+{{% /alert %}}
+
+First, create a `kustomization.yaml` that generates the `ConfigMap` using our kustomize config:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: podinfo
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - release.yaml
+configMapGenerator:
+  - name: podinfo-values
+    files:
+      - values.yaml=my-values.yaml
+configurations:
+  - kustomizeconfig.yaml
+```
+
+Notice this references the configuration `kustomizeconfig.yaml`, used to indicate to Kustomize
+where to find `ConfigMaps` in `HelmRelease` manifests (under the key `spec/valuesFrom/name`) when using
+[nameReference](https://github.com/kubernetes-sigs/kustomize/tree/master/examples/transformerconfigs#name-reference-transformer):
 
 ```yaml
 nameReference:
@@ -319,7 +342,7 @@ nameReference:
     kind: HelmRelease
 ```
 
-Create a `HelmRelease` definition that references a `ConfigMap`:
+Finally, create the `HelmRelease` definition that references the generated `ConfigMap`:
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -339,24 +362,6 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: podinfo-values
-```
-
-Create a `kustomization.yaml` that generates the `ConfigMap` using our kustomize config:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: podinfo
-resources:
-  - namespace.yaml
-  - repository.yaml
-  - release.yaml
-configMapGenerator:
-  - name: podinfo-values
-    files:
-      - values.yaml=my-values.yaml
-configurations:
-  - kustomizeconfig.yaml
 ```
 
 When [kustomize-controller](../components/kustomize/_index.md) reconciles the above manifests, it will generate
