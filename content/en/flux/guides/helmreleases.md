@@ -311,7 +311,7 @@ to trigger a Helm release upgrade every time the encoded values change.
 The following files are all created in the same folder, fetched through a Flux Kustomization.
 {{% /alert %}}
 
-First, create a `kustomization.yaml` that generates the `ConfigMap` using our kustomize config:
+First, create a `kustomization.yaml` that generates the `ConfigMap`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
