@@ -177,6 +177,7 @@ These include:
     - Can get, list, and watch namespaces and secrets
     - Can get, list, watch, create, patch, and delete configmaps and their status
     - Can get, list, watch, create, patch, and delete coordination.k8s.io leases
+    - Can create ServiceAccount tokens used for object-level workload identity
 2. A `crd-controller` `ClusterRoleBinding`:
     - References `crd-controller` `ClusterRole` above
     - Bound to a service accounts for every Flux controller
