@@ -9,6 +9,12 @@ if [ -z "${GITHUB_USER:-}" ]; then
     GITHUB_USER=fluxcdbot
 fi
 
+if [ "$(command -v gsed)" ]; then
+  SED=$(which gsed)
+else
+  SED=$(which sed)
+fi
+
 if [ ! "$(command -v jq)" ]; then
   echo "Please install 'jq'."
   exit 1
@@ -77,9 +83,9 @@ gen_crd_doc() {
 
   FIRST_LINE="$(grep -vEm1 "^<!--" "$TMP")"
   if echo "$FIRST_LINE" | grep -q "<h1>" ; then
-    TITLE="$(echo "$FIRST_LINE" | cut -d'<' -f2 | cut -d'>' -f2 | sed 's/^\#\ //')"
+    TITLE="$(echo "$FIRST_LINE" | cut -d'<' -f2 | cut -d'>' -f2 | $SED 's/^\#\ //')"
   elif echo "$FIRST_LINE" | grep -E "^# "; then
-    TITLE="$(echo "$FIRST_LINE" | sed 's/^\#\ //')"
+    TITLE="$(echo "$FIRST_LINE" | $SED 's/^\#\ //')"
   else
     echo "Don't know what to do with '$FIRST_LINE' in $TMP."
     exit 1
@@ -102,7 +108,7 @@ gen_crd_doc() {
       echo "weight: $WEIGHT"
       echo "---"
     } >> "$DEST"
-    grep -vE "^<!--" "$TMP" |sed '1d' >> "$DEST"
+    grep -vE "^<!--" "$TMP" |$SED '1d' >> "$DEST"
     rm "$TMP"
   else
     mv "$TMP" "$DEST"
@@ -152,10 +158,10 @@ function gen_ctrl_docs {
     gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/${ctrl_out}/events.md"
 
     # Hack for fixing typo in the docs
-    sed -i \
+    $SED -i \
       's#((https://docs\.github\.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token))#(https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)#g' \
       "$COMPONENTS_DIR/${ctrl_out}/providers.md"
-    sed -i \
+    $SED -i \
       's#((https://docs\.github\.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation))#(https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation)#g' \
       "$COMPONENTS_DIR/${ctrl_out}/providers.md"
   fi
