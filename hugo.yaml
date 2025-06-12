@@ -104,7 +104,7 @@ params:
   algolia_docsearch: true
   offlineSearch: false
   version_menu: "Versions"
-  version: "2.3"
+  version: "2.5"
   archived_version: true
   version_menu_pagelinks: true
   url_latest_version: https://fluxcd.io/flux/
@@ -115,6 +115,8 @@ params:
       url: https://v2-5.docs.fluxcd.io
     - version: "v2.4"
       url: https://v2-4.docs.fluxcd.io
+    - version: "v2.3"
+      url: https://v2-3.docs.fluxcd.io
   logos:
     navbar: flux-horizontal-white.png
     hero: flux-horizontal-color.png
