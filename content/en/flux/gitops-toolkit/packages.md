@@ -42,8 +42,8 @@ API Types
 | [GitRepository](/flux/components/source/gitrepositories/)   | v1      |
 | [HelmRepository](/flux/components/source/helmrepositories/) | v1      |
 | [HelmChart](/flux/components/source/helmcharts.md)          | v1      |
-| [Bucket](/flux/components/source/buckets.md)                | v1beta2 |
 | [OCIRepository](/flux/components/source/ocirepositories/)   | v1      |
+| [Bucket](/flux/components/source/buckets.md)                | v1      |
 
 ### kustomize.toolkit.fluxcd.io
 
