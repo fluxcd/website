@@ -10,9 +10,12 @@ The Flux APIs integrate with the following Amazon Web Services (AWS) services:
 - The source-controller integrates the [OCIRepository](/flux/components/source/ocirepositories/) API with
   [Amazon Elastic Container Registry (ECR)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html)
   for pulling OCI artifacts into the cluster.
+- The source-controller integrates the OCIRepository API with
+  [Amazon Public Elastic Container Registry (Public ECR)](https://docs.aws.amazon.com/AmazonECR/latest/public/what-is-ecr.html)
+  for pulling OCI artifacts into the cluster.
 - The image-reflector-controller integrates the [ImageRepository](/flux/components/image/imagerepositories/) and
-  [ImagePolicy](/flux/components/image/imagepolicies/) APIs with ECR for scanning tags and digests of OCI artifacts
-  and reflecting them into the cluster.
+  [ImagePolicy](/flux/components/image/imagepolicies/) APIs with ECR and public ECR for scanning tags and digests
+  of OCI artifacts and reflecting them into the cluster.
 - The source-controller integrates the [Bucket](/flux/components/source/buckets/) API with
   [Amazon Simple Storage Service (S3)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
   for pulling manifests from buckets and packaging them as artifacts inside the cluster.
@@ -301,6 +304,20 @@ The `aws` CLI command for attaching an inline permission policy to an ECR reposi
 
 - [`aws ecr set-repository-policy`](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html)
 
+### For Amazon Public Elastic Container Registry
+
+The `OCIRepository`, `ImageRepository` and `ImagePolicy` Flux APIs are integrated with
+public ECR. The `OCIRepository` API can be used to pull OCI artifacts from public ECR
+repositories into the cluster, while the `ImageRepository` and `ImagePolicy` APIs
+can be used to reflect tags and digests of such artifacts also inside the cluster.
+
+For public ECR, attaching the read-only AWS-managed policy suffices for any of the
+Flux APIs:
+
+- [AmazonElasticContainerRegistryPublicReadOnly (`arn:aws:iam::aws:policy/AmazonElasticContainerRegistryPublicReadOnly`)](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonElasticContainerRegistryPublicReadOnly.html)
+
+It can be attached to IAM Roles or Users.
+
 ### For Amazon Simple Storage Service
 
 The `Bucket` Flux API is integrated with S3. The `Bucket` API
@@ -585,7 +602,7 @@ AWS can be done either [at the object level](#at-the-object-level) or
 
 ### With IAM User Access Keys
 
-All AWS integrations except for ECR support configuring
+All AWS integrations except for ECR and public ECR support configuring
 authentication through an IAM User Access Key.
 
 IAM Users support static credentials that can be used to get access to AWS services called
@@ -665,7 +682,7 @@ Support for this integration will be introduced in Flux v2.7.
 
 #### For IAM User Access Keys
 
-All AWS integrations except for ECR support configuring
+All AWS integrations except for ECR and public ECR support configuring
 authentication through an IAM User Access Key.
 
 For configuring authentication through an IAM User Access Key, the
@@ -803,7 +820,7 @@ patches:
 
 #### For IAM User Access Keys
 
-All AWS integrations except for ECR support configuring
+All AWS integrations except for ECR and public ECR support configuring
 authentication through an IAM User Access Key.
 
 Mount the Kubernetes Secret containing the IAM User Access Key and Secret
