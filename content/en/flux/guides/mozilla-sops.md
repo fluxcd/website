@@ -268,7 +268,7 @@ SOPS authentication for Azure Key Vault in kustomize-controller.
 
 #### GCP
 
-See the SOPS guide to [Encrypting Using Azure Key Vault](https://github.com/getsops/sops#encrypting-using-gcp-kms).
+See the SOPS guide to [Encrypting Using GCP KMS](https://github.com/getsops/sops#encrypting-using-gcp-kms).
 
 See the GCP integrations [docs](/flux/integrations/gcp.md) for details on how to set up
 SOPS authentication for GCP KMS in kustomize-controller.
