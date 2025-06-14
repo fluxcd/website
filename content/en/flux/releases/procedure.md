@@ -342,7 +342,7 @@ The following instructions assume you're updating the website for the Flux relea
    automatically created for the two last supported release branches of the website. **Do not merge these
    PRs, yet!**
 1. In the PR for the `v2-(N-1)` branch, edit the `hugo.yaml` file and set `params.archived_version` to `true`.
-   1. Set the `params.version` string to the version of each maintenance branch. (This is the string that will be displayed in the "deprecation warning" pageinfo header box.)
+   1. Set the `params.version` string to the version of the new maintenance branch. (This is the string that will be displayed in the "deprecation warning" pageinfo header box.)
 1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
 1. Click on "Configure"
 1. In "Production branch", change the value from `v2-(N-1)` to `v2-N`.
