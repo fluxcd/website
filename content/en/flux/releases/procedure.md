@@ -327,6 +327,7 @@ The following instructions assume you're updating the website for the Flux relea
    1. Edit the existing `params.versions` entry pointing to `https://fluxcd.io` to point to
       `https://v2-(N-1).docs.fluxcd.io`
    1. Remove the oldest entry from `params.versions`. We only support N-2 releases.
+   1. Do not set `params.version` - this string is used by the archived / maintenance branches only, and setting it here will likely cause automatic backports to fail with a conflict.
 1. In `.github/labels.yaml` add an entry for the `backport:v2-N` label by copying the existing `backport:v2-(N-1)` one.
 1. Commit the changes and create a PR for the `main` branch.
 1. As soon as the PR is merged, create the "v2-N" branch from `main`:
@@ -341,6 +342,7 @@ The following instructions assume you're updating the website for the Flux relea
    automatically created for the two last supported release branches of the website. **Do not merge these
    PRs, yet!**
 1. In the PR for the `v2-(N-1)` branch, edit the `hugo.yaml` file and set `params.archived_version` to `true`.
+   1. Set the `params.version` string to the version of the new maintenance branch. (This is the string that will be displayed in the "deprecation warning" pageinfo header box.)
 1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
 1. Click on "Configure"
 1. In "Production branch", change the value from `v2-(N-1)` to `v2-N`.
