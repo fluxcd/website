@@ -34,7 +34,7 @@ and KMS services authentication, and various improvements to notifications.
 
 In ecosystem news, there is a new release of [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator)
 that comes with a Model Context Protocol (MCP) implementation for allowing AI assistants to interact with Flux.
-For more details on the Flux MCP Server, see the [AI-Assisted GitOps blog post](https://fluxcd.io/blog/2025/05/flux-mcp-server/).
+For more details on the Flux MCP Server, see the [AI-Assisted GitOps blog post](https://fluxcd.io/blog/2025/05/ai-assisted-gitops/).
 
 ## General availability of Flux OCI Artifacts
 
