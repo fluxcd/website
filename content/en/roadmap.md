@@ -121,9 +121,14 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - [ ] Promote the `ImageUpdateAutomation` API to `v1`
   - [ ] Promote the `ImageRepository` API to `v1`
   - [ ] Promote the `ImagePolicy` API to `v1`
+  - [x] [Add support for Git sparse checkout](https://github.com/fluxcd/image-automation-controller/pull/920)
 
 - **Kustomize integrations**
+  - [ ] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+
+- **Helm integrations**
+  - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
@@ -156,4 +161,3 @@ To keep track of the Flux project's current direction and future plans, please s
 - [x] [RFC-0009](https://github.com/fluxcd/flux2/tree/main/rfcs/0009-custom-health-checks) Custom Health Checks for Kustomization using Common Expression Language(CEL)
 - [x] [RFC-0010](https://github.com/fluxcd/flux2/tree/main/rfcs/0010-multi-tenant-workload-identity) Multi-Tenant Workload Identity
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/5292) External Artifact API
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/4749) Flux Bootstrap for OCI-compliant Container Registries
