@@ -42,6 +42,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `CacheSecretsAndConfigMaps`   | `false`       | Configures the caching of Secrets and ConfigMaps by the controller-runtime client. When enabled, it will cache both object types, resulting in increased memory usage and cluster-wide RBAC permissions (list and watch). |
 | `GitAllBranchReferences`      | `true`        | Enables the download of all branch head references when push branches are configured.                                                                                                                                     |
 | `GitForcePushBranch`          | `true`        | Enables the use of "force push" when pushing changes to a separate branch. This fixes issues with stale push branches.                                                                                                    |
+| `GitSparseCheckout`           | `false`       | Enables the use of Git sparse checkout to only fetch the path defined in `.spec.update.path` from the repository.                                                                                                         |
 | `ObjectLevelWorkloadIdentity` | `false`       | Enables the use of object-level workload identity for the controller.                                                                                                                                                     |
 
 ## Image reflector flags
