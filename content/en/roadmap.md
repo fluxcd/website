@@ -124,8 +124,9 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - [x] [Add support for Git sparse checkout](https://github.com/fluxcd/image-automation-controller/pull/920)
 
 - **Kustomize integrations**
-  - [ ] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
+  - [x] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+  - [ ] [Transactional apply for `ClusterRole` and `ClusterRoleBinding`](https://github.com/fluxcd/pkg/issues/956)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
