@@ -22,6 +22,11 @@ The Flux APIs integrate with the following Amazon Web Services (AWS) services:
 - The kustomize-controller integrates the [Kustomization](/flux/components/kustomize/kustomizations/) API with
   [Amazon Key Management Service (KMS)](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
   for decrypting SOPS-encrypted secrets when applying manifests in the cluster.
+- The kustomize-controller integrates the Kustomization API with
+  [Amazon Elastic Kubernetes Service (EKS)](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html)
+  for applying manifests in remote EKS clusters.
+- The helm-controller integrates the [HelmRelease](/flux/components/helm/helmreleases/) API with
+  EKS for applying Helm charts in remote EKS clusters.
 
 The next sections briefly describe [AWS IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html), AWS's identity and access management system, and how it can be used to grant Flux access
 to resources offered by the services above. Bear in mind that AWS IAM has more features
@@ -417,6 +422,77 @@ The `aws` CLI command for attaching an inline permission policy to a KMS key is:
 
 - [`aws kms put-key-policy`](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html)
 
+### For Amazon Elastic Kubernetes Service
+
+The `Kustomization` and `HelmRelease` Flux APIs can use IAM Roles or Users for applying
+and managing resources in remote EKS clusters. Two kinds of access must be configured
+for this:
+
+- The IAM Role or User must have permission to call the `DescribeCluster` EKS API for
+  the target remote cluster. The Flux controllers need to call this API for retrieving
+  details required for connecting to the remote cluster, like the cluster's API server
+  endpoint and certificate authority data. This is done by attaching a permission policy
+  to the IAM Role or User that allows the `eks:DescribeCluster` action on the target
+  remote cluster.
+- The IAM Role or User must have permissions inside the remote cluster to apply and manage
+  the target resources. For this, there must exist an
+  [Access Entry](https://docs.aws.amazon.com/eks/latest/userguide/creating-access-entries.html)
+  that maps the IAM Role or User to a Kubernetes username and set of groups that will be used
+  for Kubernetes RBAC inside the remote cluster. Optionally, the Access Entry can also have
+  [Access Policies](https://docs.aws.amazon.com/eks/latest/userguide/access-policy-permissions.html),
+  which are predefined sets of Kubernetes permissions defined by EKS. The resulting set of
+  permissions granted to the IAM Role or User will be the union of: 1) the permissions granted by
+  the Access Policies; with 2) the permissions granted via Kubernetes RBAC through the username and
+  groups configured in the Access Entry, by referencing them in `RoleBinding` or `ClusterRoleBinding`
+  objects inside the cluster.
+
+#### Permissions for the EKS API
+
+The following permission policy can be used for granting access to the `DescribeCluster`
+EKS API for a target remote cluster:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123456789012:role/some-tenant-role"
+            },
+            "Action": [
+                "eks:DescribeCluster"
+            ],
+            "Resource": "arn:aws:eks:us-east-1:123456789012:cluster/some-cluster"
+        }
+    ]
+}
+```
+
+It can be attached to IAM Roles or Users.
+
+EKS clusters do not support resource-based permission policies.
+
+#### Permissions inside the remote cluster
+
+The ACK resource kind for creating an EKS Access Entry with associated Access Policies is:
+
+- [`AccessEntry`](https://aws-controllers-k8s.github.io/community/reference/eks/v1alpha1/accessentry/)
+
+The Terraform/OpenTofu resources for creating EKS Access Entries and Access Policies are:
+
+- [`aws_eks_access_entry`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_access_entry)
+- [`aws_eks_access_policy_association`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_access_policy_association)
+
+The `aws` CLI command for creating EKS Access Entries and Access Policies are:
+
+- [`aws eks create-access-entry`](https://docs.aws.amazon.com/cli/latest/reference/eks/create-access-entry.html)
+- [`aws eks associate-access-policy`](https://docs.aws.amazon.com/cli/latest/reference/eks/associate-access-policy.html)
+
+For granting Kubernetes RBAC to the Kubernetes username and groups configured in the
+Access Entry, simply create the corresponding `RoleBinding` or `ClusterRoleBinding`
+objects inside the remote cluster.
+
 ## Authentication
 
 As mentioned in the [Identity](#identity) section, AWS supports two types of
@@ -438,10 +514,10 @@ require secret-based authentication, which is less secure.
 
 ### With EKS Pod Identity
 
-*Only at the controller level for EKS clusters*,
 [EKS Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html)
 can be used to link the Kubernetes Service Account of a Flux controller to a single IAM
 Role that will be used for all the AWS operations this Flux controller performs.
+This EKS feature can only be used at the controller level.
 
 > **Note**: Pod Identity is an EKS-only feature specifically targeting pods.
 > It's not possible to support it at the object level, as for a Kubernetes Service
@@ -500,6 +576,9 @@ To perform this step using the `aws` CLI, you can use the following command:
 - [`aws eks create-pod-identity-association`](https://docs.aws.amazon.com/cli/latest/reference/eks/create-pod-identity-association.html)
 
 3. Restart (delete) the controller pod for the binding to take effect.
+
+Finally, set the provider field of the Flux resources as described in the
+[controller level](#at-the-controller-level) section.
 
 ### With OIDC Federation
 
@@ -665,12 +744,18 @@ patches:
 ```
 
 2. Set the `.spec.provider` field to `aws` in the Flux resource.
-   For the `Kustomization` API, this field is not required/does not exist,
-   SOPS detects the provider from the metadata in the SOPS-encrypted
-   Secret.
+   For SOPS decryption with the `Kustomization` API, this field is not
+   required/does not exist, SOPS detects the provider from the metadata
+   in the SOPS-encrypted Secret. For remote cluster access with the
+   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
+   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
 3. Use the `.spec.serviceAccountName` field to specify the name of the
    Kubernetes Service Account in the same namespace as the Flux resource.
-   For the `Kustomization` API, the field is `.spec.decryption.serviceAccountName`.
+   For SOPS decryption with the `Kustomization` API, the field is
+   `.spec.decryption.serviceAccountName`. For remote cluster access with
+   the `Kustomization` and `HelmRelease` APIs the field is
+   `.data.serviceAccountName` inside the referenced `ConfigMap` from
+   `.spec.kubeConfig.configMapRef`.
 
 > **Note**: The `eks.amazonaws.com/role-arn` annotation is defined by EKS,
 > but Flux also uses it to identify the IAM Role to assume in non-EKS clusters.
@@ -682,8 +767,8 @@ Support for this integration will be introduced in Flux v2.7.
 
 #### For IAM User Access Keys
 
-All AWS integrations except for ECR and public ECR support configuring
-authentication through an IAM User Access Key.
+Only the S3 and KMS integrations support configuring authentication
+through an IAM User Access Key at the object level.
 
 For configuring authentication through an IAM User Access Key, the
 `.spec.secretRef.name` field must be set to the name of the Kubernetes
@@ -697,10 +782,10 @@ depend on the specific Flux API:
 - For the `Bucket` API the `.spec.provider` field must be set to `aws`,
   and the keys inside the `.data` field of the Secret must be
   `accesskey` and `secretkey`.
-- For the `Kustomization` API, there's no provider field as SOPS detects
-  the provider from the metadata in the SOPS-encrypted Secret.
-  The key inside the `.data` field of the Secret must be `sops.aws-kms`
-  and the value should look like this:
+- For SOPS decryption with the `Kustomization` API, there's no provider field
+  as SOPS detects the provider from the metadata in the SOPS-encrypted Secret.
+  The key inside the `.data` field of the Secret must be `sops.aws-kms` and the
+  value should look like this:
 
 ```yaml
 apiVersion: v1
@@ -722,6 +807,24 @@ All the Flux APIs support configuring authentication at the controller level.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
 and permissions.
+
+At the controller level, regardless if authenticating with EKS Pod Identity,
+OIDC Federation or IAM User Access Keys, all Flux resources must have the
+provider field set to `aws` according to the rules below.
+
+For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
+the `.spec.provider` field to `aws` and leave `.spec.serviceAccountName` unset.
+
+For SOPS decryption with the `Kustomization` API, leave the
+`.spec.decryption.serviceAccountName` field unset. There's
+no provider field for SOPS decryption.
+
+For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
+set the `.data.provider` field of the `ConfigMap` referenced by the
+`.spec.kubeConfig.configMapRef` field to `aws` and leave the
+`.data.serviceAccountName` field unset.
+
+The controller-level configuration is described in the following sections.
 
 #### For OIDC Federation
 
@@ -820,9 +923,6 @@ patches:
 
 #### For IAM User Access Keys
 
-All AWS integrations except for ECR and public ECR support configuring
-authentication through an IAM User Access Key.
-
 Mount the Kubernetes Secret containing the IAM User Access Key and Secret
 as the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 in the controller Deployment
@@ -885,3 +985,6 @@ and how to
 > :warning: Node level authentication may work for other integrations as well,
 > but Flux only has continuous integration tests for the ECR integration in
 > order to support the specific use case described above.
+
+For node-level authentication to work, the `.spec.provider` field of the Flux
+resources must be set to `aws`.
