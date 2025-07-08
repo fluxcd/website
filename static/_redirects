@@ -45,3 +45,5 @@
 /docs/*                                         /flux/:splat                                        301!
 
 /legacy/*                                       /flux/migration                                     301!
+
+/blog/2025/06/time-based-deployments            /blog/2025/07/time-based-deployments                301!
