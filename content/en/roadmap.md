@@ -125,11 +125,16 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
 
 - **Kustomize integrations**
   - [x] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
+  - [x] [Transactional apply for `ClusterRole` and `ClusterRoleBinding`](https://github.com/fluxcd/pkg/issues/956)
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
-  - [ ] [Transactional apply for `ClusterRole` and `ClusterRoleBinding`](https://github.com/fluxcd/pkg/issues/956)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
+
+- **Alerting integrations**
+  - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
+  - [x] [Extend `Provider` API with `spec.proxySecretRef`](https://github.com/fluxcd/notification-controller/pull/1133)
+  - [x] [Add proxy support to Telegram notifier](https://github.com/fluxcd/notification-controller/pull/1140)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
