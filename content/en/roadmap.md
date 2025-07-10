@@ -135,7 +135,8 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
   - [x] [Extend `Provider` API with `spec.proxySecretRef`](https://github.com/fluxcd/notification-controller/pull/1133)
   - [x] [Add proxy support to Telegram notifier](https://github.com/fluxcd/notification-controller/pull/1140)
-
+  - [ ] [Add support for workload identity auth for Azure Dev Ops commit status to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1008)
+  
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
 
