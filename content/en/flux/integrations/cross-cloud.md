@@ -55,20 +55,17 @@ this URL in the target cloud provider, go to these links:
 - [Azure](azure.md#supported-clusters)
 - [GCP](gcp.md#supported-clusters)
 
-### For managed Kubernetes services from cloud providers
+### Obtaining the Issuer URL of the source cluster
 
-Depending on the type of cluster you are using, the Issuer URL is already publicly
-accessible from the Internet and no in-cluster setup is required. These are usually
-the managed services from the cloud providers, like AKS, EKS and GKE. All of these
-support publicly accessible Issuer URLs by default. In such cases, all you need to
-do is find out the Issuer URL of the source cluster with the following `kubectl`
-command and follow the docs linked [above](#source-cluster-setup):
+Source cluster setup varies depending on the type of cluster.
+For details on how to set up the source cluster, see the sections that follow.
+Once this is done, to obtain the Issuer URL you can use the following command:
 
 ```bash
 kubectl get --raw /.well-known/openid-configuration | jq
 ```
 
-Here's an example for a GKE cluster:
+Example output for a GKE cluster:
 
 ```json
 {
@@ -86,11 +83,18 @@ Here's an example for a GKE cluster:
 }
 ```
 
-In this case, the Issuer URL is:
+The Issuer URL is:
 
 ```
 https://container.googleapis.com/v1/projects/<projectID>/locations/<location>/clusters/<name>
 ```
+
+### For managed Kubernetes services from cloud providers
+
+Depending on the type of source cluster, the Issuer URL may already be public
+and no cluster setup will be required. This is usually the case for the managed
+Kubernetes services from the cloud providers, e.g. EKS and GKE. AKS needs
+[setup](https://learn.microsoft.com/en-us/azure/aks/use-oidc-issuer#create-an-aks-cluster-with-the-oidc-issuer).
 
 ### For clusters without a built-in public Issuer URL
 
@@ -104,10 +108,10 @@ Issuer URL and JWKS URI of the cluster's *service account token issuer*. See
 These flags are:
 - `--service-account-issuer`: Allows setting the `issuer` field returned in the
   `/.well-known/openid-configuration` endpoint as shown in the example
-  [above](#for-managed-kubernetes-services-from-cloud-providers).
+  [above](#obtaining-the-issuer-url-of-the-source-cluster).
 - `--service-account-jwks-uri`: Allows setting the `jwks_uri` field returned in the
   `/.well-known/openid-configuration` endpoint as shown in the example
-  [above](#for-managed-kubernetes-services-from-cloud-providers).
+  [above](#obtaining-the-issuer-url-of-the-source-cluster).
 
 This ability to customize the Issuer URL and JWKS URI enables users to host static
 discovery documents on public URLs, e.g. with CDNs or object storage systems like
@@ -135,7 +139,7 @@ AWS S3, Azure Blob Storage or GCP Cloud Storage.
 Steps to perform this setup:
 
 1. Run the command `kubectl get --raw /.well-known/openid-configuration | jq`
-   shown [above](#for-managed-kubernetes-services-from-cloud-providers) to get
+   shown [above](#obtaining-the-issuer-url-of-the-source-cluster) to get
    the current discovery document.
 2. Change the `issuer` field to the new Issuer URL you want to use. For example,
    if you decide to use AWS S3, the Issuer URL should look like this:
