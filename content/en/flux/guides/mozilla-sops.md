@@ -51,6 +51,20 @@ sops --age=age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg \
 
 And finally set the decryption secret in the Flux Kustomization to `sops-age`.
 
+```yml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps
+spec:
+  # ...omitted for brevity
+  decryption:
+    provider: sops
+    secretRef: 
+      name: sops-age 
+```
+
+
 ## Generate a GPG key
 Install [gnupg](https://www.gnupg.org/) and [SOPS](https://github.com/mozilla/sops):
 
