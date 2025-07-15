@@ -19,6 +19,11 @@ The Flux APIs integrate with the following Google Cloud Platform (GCP) services:
 - The kustomize-controller integrates the [Kustomization](/flux/components/kustomize/kustomizations/) API with
   [Google Cloud Key Management Service (KMS)](https://cloud.google.com/kms/docs/key-management-service)
   for decrypting SOPS-encrypted secrets when applying manifests in the cluster.
+- The kustomize-controller integrates the Kustomization API with
+  [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview)
+  for applying manifests in remote GKE clusters.
+- The helm-controller integrates the [HelmRelease](/flux/components/helm/helmreleases/) API with
+  GKE for applying Helm charts in remote GKE clusters.
 - The notification-controller integrates the [Provider](/flux/components/notification/providers/) API with
   [Google Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/overview)
   for sending notifications about Flux resources outside the cluster.
@@ -93,14 +98,14 @@ projects and resources inside that folder will inherit the grant.
 
 ### Granting permissions
 
-When granting roles, GCP uses the term
-[principal](https://cloud.google.com/iam/docs/overview#principals), formerly
-*member*, to refer to the string that globally identifies the identity which
+When granting roles, GCP IAM uses the term
+[Principal](https://cloud.google.com/iam/docs/overview#principals), formerly
+*Member*, to refer to the string that globally identifies the identity which
 will receive the grant.
 
 #### To GCP Service Accounts
 
-The principal string for a GCP Service Account is the email address of the Service
+The IAM Principal for a GCP Service Account is the email address of the Service
 Account prefixed with `serviceAccount:`:
 
 ```
@@ -109,16 +114,16 @@ serviceAccount:SA_NAME@PROJECT_ID.iam.gserviceaccount.com
 
 #### To Kubernetes Service Accounts
 
-The principal string for a Kubernetes Service Account from a *GKE cluster* has the
+The IAM Principal for a Kubernetes Service Account from a *GKE cluster* has the
 following format:
 
 ```
-principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/PROJECT_ID.svc.id.goog/subject/ns/NAMESPACE/sa/KSA_NAME
+serviceAccount:PROJECT_ID.svc.id.goog[NAMESPACE/KSA_NAME]
 ```
 
 Flux running inside non-GKE Kubernetes clusters (e.g. EKS, AKS, `kind` running locally
 or in CI, etc.) can also get access to GCP resources. For Service Accounts from such
-clusters, the principal string has the following format:
+clusters, the IAM Principal has the following format:
 
 ```
 principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/system:serviceaccount:NAMESPACE:KSA_NAME
@@ -238,7 +243,9 @@ In the specific case of the `Bucket` API, both roles are needed because Flux nee
 confirm the existence of the bucket. If the bucket does not exist Flux can error out
 earlier in the reconciliation process and give an error message that is easier to debug.
 
-Alternatively, you can create a custom role containing the following permissions:
+Alternatively, you can create a
+[custom role](https://cloud.google.com/iam/docs/creating-custom-roles)
+containing the following permissions:
 
 - `storage.buckets.get`
 - `storage.objects.get`
@@ -282,6 +289,62 @@ The commands for the `gcloud` CLI are:
 
 - [`kms keyrings`](https://cloud.google.com/sdk/gcloud/reference/kms/keyrings)
 - [`kms keys`](https://cloud.google.com/sdk/gcloud/reference/kms/keys)
+
+### For Google Kubernetes Engine
+
+The `Kustomization` and `HelmRelease` Flux APIs can use [IAM Principals](#granting-permissions)
+for applying and managing resources in remote GKE clusters. Two kinds of access must be configured
+for this:
+
+- The IAM Principal must have permission to call the `GetCluster` GKE API for the target
+  remote cluster. The Flux controllers need to call this API for retrieving details required
+  for connecting to the remote cluster, like the cluster's API server endpoint and certificate
+  authority data. This is done by granting an IAM role to the IAM Principal that allows
+  this action on the target remote cluster.
+- The IAM Principal must have permissions inside the remote cluster to apply and manage the target
+  resources. There are two ways of granting these permissions: via Kubernetes RBAC, or via IAM roles.
+  The former means simply referencing the IAM Principal in `RoleBinding` or `ClusterRoleBinding`
+  objects inside the remote cluster as the Kubernetes username. The latter means granting
+  [IAM roles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#iam-interaction)
+  that grant Kubernetes permissions to the IAM Principal on the target remote cluster.
+  The resulting set of permissions granted to the IAM Principal will be the union of the
+  permissions granted via Kubernetes RBAC with the permissions granted via IAM roles.
+
+In GCP a GKE cluster is regarded as a project-level resource, so IAM roles granting
+access to GKE APIs can only be granted at the project level or higher in the
+[resource hierarchy](#access-management).
+
+#### Permissions for the GKE API
+
+The recommended role containing the required permissions for calling the `GetCluster` GKE API is:
+
+- [Kubernetes Engine Cluster Viewer (`roles/container.clusterViewer`)](https://cloud.google.com/iam/docs/roles-permissions/container#container.clusterViewer)
+
+Alternatively, you can create a
+[custom role](https://cloud.google.com/iam/docs/creating-custom-roles)
+containing the following permission:
+
+- `container.clusters.get`
+
+#### Permissions inside the remote cluster
+
+For granting Kubernetes RBAC to the IAM Principal, simply create the corresponding
+`RoleBinding` or `ClusterRoleBinding` objects inside the remote cluster using the
+principal as the Kubernetes username.
+
+For granting cluster-scoped permissions through IAM roles, you can grant either
+[built-in roles](https://cloud.google.com/kubernetes-engine/docs/how-to/iam#predefined) or
+[custom roles](https://cloud.google.com/iam/docs/creating-custom-roles).
+
+For an exhaustive list of the permissions that can be added to a custom IAM role for
+cluster-scoped permissions, go to the page of the
+[Kubernetes Engine Admin](https://cloud.google.com/kubernetes-engine/docs/how-to/iam#container.admin)
+role and expand the collapsed section `container.*` at the very top of the
+`Permissions` column.
+
+> **Note**: Namespaced permissions can only be granted via Kubernetes RBAC.
+> IAM roles can only grant cluster-scoped permissions. See
+> [docs](https://cloud.google.com/kubernetes-engine/docs/how-to/iam#interaction_with_rbac).
 
 ### For Google Cloud Pub/Sub
 
@@ -369,7 +432,7 @@ you can use the following commands:
 
 When using Workload Identity Federation, Kubernetes Service Accounts are the
 identity type used by default. In this case, roles must be granted using the
-principal string formats described in [this](#to-kubernetes-service-accounts)
+IAM Principal formats described in [this](#to-kubernetes-service-accounts)
 section, with the appropriate format depending on whether the cluster is GKE
 or not.
 
@@ -383,7 +446,7 @@ two steps are required:
 1. **Allow the Kubernetes Service Account to impersonate the GCP Service Account.**
    This is done by granting the
    [Workload Identity User (`roles/iam.workloadIdentityUser`)](https://cloud.google.com/iam/docs/roles-permissions/iam#iam.workloadIdentityUser)
-   role to the Kubernetes Service Account on the GCP Service Account. The principal strings
+   role to the Kubernetes Service Account on the GCP Service Account. The IAM Principals
    required for this are the same described [here](#to-kubernetes-service-accounts).
 
 To perform this step using Config Connector, you can use one of the IAM custom resources
@@ -492,12 +555,18 @@ patches:
 ```
 
 2. Set the `.spec.provider` field to `gcp` in the Flux resource.
-   For the `Kustomization` API, this field is not required/does not exist,
-   SOPS detects the provider from the metadata in the SOPS-encrypted
-   Secret.
+   For SOPS decryption with the `Kustomization` API, this field is not
+   required/does not exist, SOPS detects the provider from the metadata
+   in the SOPS-encrypted Secret. For remote cluster access with the
+   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
+   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
 3. Use the `.spec.serviceAccountName` field to specify the name of the
    Kubernetes Service Account in the same namespace as the Flux resource.
-   For the `Kustomization` API, the field is `.spec.decryption.serviceAccountName`.
+   For SOPS decryption with the `Kustomization` API, the field is
+   `.spec.decryption.serviceAccountName`. For remote cluster access with
+   the `Kustomization` and `HelmRelease` APIs the field is
+   `.data.serviceAccountName` inside the referenced `ConfigMap` from
+   `.spec.kubeConfig.configMapRef`.
 4. **Only if the cluster is not GKE**, annotate the Kubernetes Service Account
    with the fully qualified name of the Workload Identity Provider:
 
@@ -523,8 +592,9 @@ Support for these integrations will be introduced in Flux v2.7.
 
 #### For GCP Service Account Keys
 
-All GCP integrations except for GAR support configuring
-authentication through a GCP Service Account Key.
+All GCP integrations except for GAR and GKE support configuring
+authentication through a GCP Service Account Key at the object
+level.
 
 For configuring authentication through a GCP Service Account Key, the
 `.spec.secretRef.name` field must be set to the name of the Kubernetes
@@ -539,9 +609,9 @@ depend on the specific Flux API:
   and the key inside the `.data` field of the Secret must be `serviceaccount`.
 - For the `Provider` API, the `.spec.type` field must be set to `googlepubsub`
   and the key inside the `.data` field of the Secret must be `token`.
-- For the `Kustomization` API, there's no provider field as SOPS detects
-  the provider from the metadata in the SOPS-encrypted Secret.
-  The key inside the `.data` field of the Secret must be `sops.gcp-kms`.
+- For SOPS decryption with the `Kustomization` API, there's no provider field as
+  SOPS detects the provider from the metadata in the SOPS-encrypted Secret. The
+  key inside the `.data` field of the Secret must be `sops.gcp-kms`.
 
 ### At the controller level
 
@@ -549,6 +619,24 @@ All the Flux APIs support configuring authentication at the controller level.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
 and permissions.
+
+At the controller level, regardless if authenticating with Workload Identity Federation
+or GCP Service Account Keys, all Flux resources must have the provider field set to `gcp`
+according to the rules below.
+
+For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
+the `.spec.provider` field to `gcp` and leave `.spec.serviceAccountName` unset.
+
+For SOPS decryption with the `Kustomization` API, leave the
+`.spec.decryption.serviceAccountName` field unset. There's
+no provider field for SOPS decryption.
+
+For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
+set the `.data.provider` field of the `ConfigMap` referenced by the
+`.spec.kubeConfig.configMapRef` field to `gcp` and leave the
+`.data.serviceAccountName` field unset.
+
+The controller-level configuration is described in the following sections.
 
 #### For Workload Identity Federation
 
@@ -705,11 +793,8 @@ data:
 
 #### For GCP Service Account Keys
 
-All GCP integrations except for GAR support configuring
-authentication through a GCP Service Account Key.
-
-Mount the Kubernetes Secret containing the GCP Service Account Key
-inside the controller Deployment as a volume, and set the environment variable
+Mount the Kubernetes Secret containing the GCP Service Account Key inside
+the controller Deployment as a volume, and set the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` to the path of the mounted JSON file
 [during bootstrap](/flux/installation/configuration/boostrap-customization.md):
 
@@ -769,3 +854,6 @@ See [docs](https://cloud.google.com/artifact-registry/docs/integrate-gke).
 > :warning: Node level authentication may work for other integrations as well,
 > but Flux only has continuous integration tests for the GAR integration in
 > order to support the specific use case described above.
+
+For node-level authentication to work, the `.spec.provider` field of the Flux
+resources must be set to `gcp`.

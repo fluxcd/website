@@ -26,6 +26,11 @@ The Flux APIs integrate with the following Microsoft Azure services:
 - The kustomize-controller integrates the [Kustomization](/flux/components/kustomize/kustomizations/) API with
   [Azure Key Vault (AKV)](https://learn.microsoft.com/en-us/azure/key-vault/general/overview)
   for decrypting SOPS-encrypted secrets when applying manifests in the cluster.
+- The kustomize-controller integrates the Kustomization API with
+  [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)
+  for applying manifests in remote AKS clusters.
+- The helm-controller integrates the [HelmRelease](/flux/components/helm/helmreleases/) API with
+  AKS for applying Helm charts in remote AKS clusters.
 - The notification-controller integrates the Provider API with
   [Azure Event Hubs (AEH)](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about)
   for sending notifications about Flux resources outside the cluster.
@@ -206,7 +211,7 @@ The recommended role containing the required permissions for the `OCIRepository`
 
 The scopes on which the `AcrPull` role can be granted are:
 
-- Resource: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.ContainerRegistry/registries/REGISTRY_NAME`
+- Registry: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.ContainerRegistry/registries/REGISTRY_NAME`
 - Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
 - Subscription: `/subscriptions/SUBSCRIPTION_ID`
 - Management Group: `/providers/Microsoft.Management/managementGroups/MANAGEMENT_GROUP_NAME`
@@ -286,7 +291,7 @@ The recommended role containing the required permissions for the `Bucket` API is
 
 The scopes on which the `Storage Blob Data Reader` role can be granted are:
 
-- Resource: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/STORAGE_ACCOUNT_NAME/blobServices/default/containers/CONTAINER_NAME`
+- Container: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/STORAGE_ACCOUNT_NAME/blobServices/default/containers/CONTAINER_NAME`
 - Storage Account: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.Storage/storageAccounts/STORAGE_ACCOUNT_NAME`
 - Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
 - Subscription: `/subscriptions/SUBSCRIPTION_ID`
@@ -304,10 +309,74 @@ The recommended role containing the required permissions for the `Kustomization`
 
 The scopes on which the `Key Vault Crypto User` role can be granted are:
 
-- Resource: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.KeyVault/vaults/VAULT_NAME`
+- Vault: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.KeyVault/vaults/VAULT_NAME`
 - Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
 - Subscription: `/subscriptions/SUBSCRIPTION_ID`
 - Management Group: `/providers/Microsoft.Management/managementGroups/MANAGEMENT_GROUP_NAME`
+
+### For Azure Kubernetes Service
+
+The `Kustomization` and `HelmRelease` Flux APIs can use Microsoft Entra identities for applying
+and managing resources in remote AKS clusters. The AKS cluster must be
+[integrated with Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/aks/enable-authentication-microsoft-entra-id)
+for this feature work.
+
+> **Note**: If you have a reason not to enable the Microsoft Entra ID integration in
+> your cluster, you can still fetch the static `cluster-admin` kubeconfig from Azure
+> and use it with the `.spec.kubeConfig.secretRef` field of the
+> [`Kustomization`](/flux/components/kustomize/kustomizations/#kubeconfig-remote-clusters) and
+> [`HelmRelease`](/flux/components/helm/helmreleases/#kubeconfig-remote-clusters) APIs.
+
+Two kinds of access must be configured for the Microsoft Entra identity:
+
+- The Microsoft Entra identity must have permission to call the `Get` and `ListClusterUserCredentials`
+  AKS APIs for the target remote cluster. The Flux controllers need to call these APIs for retrieving
+  details required for connecting to the remote cluster, like the cluster's API server endpoint and
+  certificate authority data. This is done by granting an Azure RBAC role to the Microsoft Entra
+  identity that allows these actions on the target remote cluster.
+- The Microsoft Entra identity must have permissions inside the remote cluster to apply and manage
+  the target resources. There are two ways of granting these permissions: via Kubernetes RBAC, or
+  via Azure RBAC. The former means simply referencing the *principal ID* of the Microsoft Entra identity
+  in `RoleBinding` or `ClusterRoleBinding` objects inside the remote cluster as the Kubernetes username.
+  The latter means granting [Azure RBAC roles](https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac)
+  that grant Kubernetes permissions to the Microsoft Entra identity on the target remote cluster.
+  The resulting set of permissions granted to the Microsoft Entra identity will be the union of
+  the permissions granted via Kubernetes RBAC with the permissions granted via Azure RBAC.
+
+#### Permissions for the AKS APIs
+
+The recommended role containing the required permissions for calling the `Get` and
+`ListClusterUserCredentials` AKS APIs is:
+
+- [Azure Kubernetes Service Cluster User Role (`/providers/Microsoft.Authorization/roleDefinitions/4abbcc35-e782-43d8-92c5-2d3f1bd2253f`)](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/containers#azure-kubernetes-service-cluster-user-role)
+
+The scopes on which the `Azure Kubernetes Service Cluster User Role` role can be granted are:
+
+- Cluster: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.ContainerService/managedClusters/CLUSTER_NAME`
+- Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
+- Subscription: `/subscriptions/SUBSCRIPTION_ID`
+- Management Group: `/providers/Microsoft.Management/managementGroups/MANAGEMENT_GROUP_NAME`
+
+#### Permissions inside the remote cluster
+
+For granting Kubernetes RBAC to the *principal ID* of a Microsoft Entra identity,
+simply create the corresponding `RoleBinding` or `ClusterRoleBinding` objects
+inside the remote cluster using the principal ID as the Kubernetes username.
+
+For granting permissions through Azure RBAC roles, you can grant either
+[built-in roles](https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac#aks-built-in-roles) or
+[custom roles](https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac#create-custom-roles-definitions)
+to Microsoft Entra identity on the following scopes:
+
+- Namespace: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.ContainerService/managedClusters/CLUSTER_NAME/namespaces/NAMESPACE_NAME`
+- Cluster: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.ContainerService/managedClusters/CLUSTER_NAME`
+- Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
+- Subscription: `/subscriptions/SUBSCRIPTION_ID`
+- Management Group: `/providers/Microsoft.Management/managementGroups/MANAGEMENT_GROUP_NAME`
+
+Azure RBAC
+[must be enabled](https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac#create-a-new-aks-cluster-with-managed-microsoft-entra-integration-and-azure-rbac-for-kubernetes-authorization)
+for the remote AKS cluster.
 
 ### For Azure Event Hubs
 
@@ -320,7 +389,7 @@ The recommended role containing the required permissions for the `Provider` API 
 
 The scopes on which the `Azure Event Hubs Data Sender` role can be granted are:
 
-- Resource: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.EventHub/namespaces/NAMESPACE_NAME/eventhubs/EVENTHUB_NAME`
+- Event Hub: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.EventHub/namespaces/NAMESPACE_NAME/eventhubs/EVENTHUB_NAME`
 - Namespace: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/Microsoft.EventHub/namespaces/NAMESPACE_NAME`
 - Resource Group: `/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME`
 - Subscription: `/subscriptions/SUBSCRIPTION_ID`
@@ -503,12 +572,18 @@ patches:
 ```
 
 2. Set the `.spec.provider` field to `azure` in the Flux resource.
-   For the `Kustomization` API, this field is not required/does not exist,
-   SOPS detects the provider from the metadata in the SOPS-encrypted
-   Secret.
+   For SOPS decryption with the `Kustomization` API, this field is not
+   required/does not exist, SOPS detects the provider from the metadata
+   in the SOPS-encrypted Secret. For remote cluster access with the
+   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
+   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
 3. Use the `.spec.serviceAccountName` field to specify the name of the
    Kubernetes Service Account in the same namespace as the Flux resource.
-   For the `Kustomization` API, the field is `.spec.decryption.serviceAccountName`.
+   For SOPS decryption with the `Kustomization` API, the field is
+   `.spec.decryption.serviceAccountName`. For remote cluster access with
+   the `Kustomization` and `HelmRelease` APIs the field is
+   `.data.serviceAccountName` inside the referenced `ConfigMap` from
+   `.spec.kubeConfig.configMapRef`.
 
 > **Note**: The `azure.workload.identity/client-id` and `azure.workload.identity/tenant-id`
 > annotations are defined by AKS, but Flux also uses them to identify the Managed Identity
@@ -522,7 +597,8 @@ Support for these integrations will be introduced in Flux v2.7.
 #### For Application Certificates
 
 Only the ABS and AKV integrations support configuring
-authentication through an Application Certificate.
+authentication through an Application Certificate at
+the object level.
 
 For configuring authentication through an Application Certificate for
 the `Bucket` API:
@@ -549,7 +625,7 @@ stringData:
   clientCertificateSendChain: "true" # this boolean value must be quoted
 ```
 
-For the `Kustomization` API:
+For SOPS decryption with the `Kustomization` API:
 
 - Set the `.spec.decryption.secretRef.name` field to the name of the Kubernetes
   Secret in the same namespace as the `Kustomization` resource.
@@ -579,6 +655,24 @@ All the Flux APIs support configuring authentication at the controller level.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
 and permissions.
+
+At the controller level, regardless if authenticating with Workload Identity Federation
+or Application Certificates, all Flux resources must have the provider field set to
+`azure` according to the rules below.
+
+For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
+the `.spec.provider` field to `azure` and leave `.spec.serviceAccountName` unset.
+
+For SOPS decryption with the `Kustomization` API, leave the
+`.spec.decryption.serviceAccountName` field unset. There's
+no provider field for SOPS decryption.
+
+For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
+set the `.data.provider` field of the `ConfigMap` referenced by the
+`.spec.kubeConfig.configMapRef` field to `azure` and leave the
+`.data.serviceAccountName` field unset.
+
+The controller-level configuration is described in the following sections.
 
 #### For Workload Identity Federation
 
@@ -699,9 +793,6 @@ patches:
 
 #### For Application Certificates
 
-Only the ABS and AKV integrations support configuring
-authentication through an Application Certificate.
-
 Mount the Kubernetes Secret containing the certificate and private key in
 the controller Deployment and set the environment variables shown below
 [during bootstrap](/flux/installation/configuration/boostrap-customization.md):
@@ -792,3 +883,6 @@ users to configure ACR authentication in a single way. See
 > :warning: Node level authentication may work for other integrations as well,
 > but Flux only has continuous integration tests for the ACR integration in
 > order to support the specific use case described above.
+
+For node-level authentication to work, the `.spec.provider` field of the Flux
+resources must be set to `azure`.
