@@ -126,10 +126,14 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
 - **Kustomize integrations**
   - [x] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
   - [x] [Transactional apply for `ClusterRole` and `ClusterRoleBinding`](https://github.com/fluxcd/pkg/issues/956)
+  - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/kustomize-controller/pull/1476)
+  - [x] [Watch ConfigMaps and Secrets referenced in Kustomizations](https://github.com/fluxcd/flux2/issues/5446)
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
+  - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/helm-controller/pull/1249)
+  - [x] [Watch ConfigMaps and Secrets referenced in HelmReleases](https://github.com/fluxcd/helm-controller/pull/1258)
 
 - **Alerting integrations**
   - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
@@ -167,4 +171,5 @@ To keep track of the Flux project's current direction and future plans, please s
 - [x] [RFC-0008](https://github.com/fluxcd/flux2/tree/main/rfcs/0008-custom-event-metadata-from-annotations) Custom Event Metadata from Annotations
 - [x] [RFC-0009](https://github.com/fluxcd/flux2/tree/main/rfcs/0009-custom-health-checks) Custom Health Checks for Kustomization using Common Expression Language(CEL)
 - [x] [RFC-0010](https://github.com/fluxcd/flux2/tree/main/rfcs/0010-multi-tenant-workload-identity) Multi-Tenant Workload Identity
+- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5321) OpenTelemetry Tracing
 - [ ] [RFC](https://github.com/fluxcd/flux2/pull/5292) External Artifact API
