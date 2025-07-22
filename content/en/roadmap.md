@@ -128,12 +128,14 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - [x] [Transactional apply for `ClusterRole` and `ClusterRoleBinding`](https://github.com/fluxcd/pkg/issues/956)
   - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/kustomize-controller/pull/1476)
   - [x] [Watch ConfigMaps and Secrets referenced in Kustomizations](https://github.com/fluxcd/flux2/issues/5446)
+  - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/kustomize-controller/pull/1491)
   - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
   - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/helm-controller/pull/1249)
   - [x] [Watch ConfigMaps and Secrets referenced in HelmReleases](https://github.com/fluxcd/helm-controller/pull/1258)
+  - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/helm-controller/pull/1271)
 
 - **Alerting integrations**
   - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
