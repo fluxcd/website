@@ -115,7 +115,7 @@ and add support for object-level workload identity authentication for container 
 **Status**: In Progress
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs,
-and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscaler (VPA).
+and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomizations and HelmReleases.
 
 - **Image automation**
   - [ ] Promote the `ImageUpdateAutomation` API to `v1`
@@ -129,7 +129,6 @@ and make Flux server-side apply compatible with Kubernetes Vertical Pod Autoscal
   - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/kustomize-controller/pull/1476)
   - [x] [Watch ConfigMaps and Secrets referenced in Kustomizations](https://github.com/fluxcd/flux2/issues/5446)
   - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/kustomize-controller/pull/1491)
-  - [ ] [Extend `ssa.Apply` with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
