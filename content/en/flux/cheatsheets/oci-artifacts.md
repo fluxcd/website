@@ -103,12 +103,12 @@ metadata:
   namespace: default
 spec:
   interval: 10m
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
   layerSelector:
     mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
     operation: copy
-  url: oci://ghcr.io/stefanprodan/charts/podinfo
   ref:
-    semver: ">=6.5.0"
+    semver: ">=6.9.0"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
