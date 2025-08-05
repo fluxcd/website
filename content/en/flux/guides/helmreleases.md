@@ -171,8 +171,11 @@ metadata:
 spec:
   interval: 5m0s
   url: oci://ghcr.io/stefanprodan/charts/podinfo
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
   ref:
-    semver: "^6.5.0"
+    semver: "^6.9.0"
 ```
 
 The source-controller will fetch the Helm chart from the OCI registry namespace 
@@ -184,6 +187,8 @@ value means newer chart versions will be detected at a slower pace,
 a push-based fetch can be introduced using [webhook receivers](webhook-receivers.md).
 
 The `url` has to point to a registry repository and start with prefix `oci://`.
+
+The `layerSelector` has to be set to select the Helm chart content layer.
 
 The `ref` defines the checkout strategy, and can be one of `tag`, `digest` or `semver`.
 When using `semver`, an optional `semverFilter` can be provided to filter the tags.
