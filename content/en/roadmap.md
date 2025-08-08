@@ -149,10 +149,11 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - End support for Flux v2.4.x
   - End support for Kubernetes v1.31.x
   - Deprecate APIs in group `image.toolkit.fluxcd.io/v1beta2`
-  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
-  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
+  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
+  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove the `autologin` deprecated flags from `image-reflector-controller`
 
 ## Request for comments
