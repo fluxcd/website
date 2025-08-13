@@ -135,13 +135,23 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/helm-controller/pull/1249)
   - [x] [Watch ConfigMaps and Secrets referenced in HelmReleases](https://github.com/fluxcd/helm-controller/pull/1258)
   - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/helm-controller/pull/1271)
+  - [x] [Record the last Helm release action duration in status](https://github.com/fluxcd/helm-controller/pull/1282)
+  - [ ] [Introduce `RetryOnFailure` lifecycle management strategy](https://github.com/fluxcd/helm-controller/issues/1278)
 
 - **Alerting integrations**
   - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
   - [x] [Extend `Provider` API with `spec.proxySecretRef`](https://github.com/fluxcd/notification-controller/pull/1133)
-  - [x] [Add proxy support to Telegram notifier](https://github.com/fluxcd/notification-controller/pull/1140)
-  - [x] [Add support for workload identity auth for Azure Dev Ops commit status to `Provider` API](https://github.com/fluxcd/notification-controller/issues/1008)
-  
+  - [x] [Support HTTP/S proxy for Telegram](https://github.com/fluxcd/notification-controller/pull/1140)
+  - [x] [Support workload identity auth for Azure DevOps commit status updates](https://github.com/fluxcd/notification-controller/issues/1008)
+  - [x] [Support object-level workload identity auth for Google Pub/Sub](https://github.com/fluxcd/notification-controller/pull/1154)
+
+- **Git integrations**
+  - [x] [Support mTLS for GitHub App transport in source-controller](https://github.com/fluxcd/source-controller/pull/1860)
+  - [ ] [Support mTLS for GitHub App transport in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/780)
+
+- **Bucket integrations**
+  - [x] [Support object-level workload identity auth for Google Cloud Storage](https://github.com/fluxcd/source-controller/pull/1862)
+
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
 
