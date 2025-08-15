@@ -886,3 +886,20 @@ users to configure ACR authentication in a single way. See
 
 For node-level authentication to work, the `.spec.provider` field of the Flux
 resources must be set to `azure`.
+
+## Supported Azure Clouds
+
+Flux integrations described in this document are supported in Azure Public Cloud (the default environment for most Azure users), in specialized environments such as [Azure in China](https://learn.microsoft.com/en-us/azure/china/overview-operations), [Azure US Government Cloud](https://azure.microsoft.com/en-us/explore/global-infrastructure/government) and in private clouds. 
+
+### Private Cloud Configuration
+
+To configure Flux for a private cloud, you must set the `AZURE_ENVIRONMENT_FILEPATH` environment variable at the controller level. This variable should point to a JSON configuration file mounted into the controller pod that defines the custom Azure endpoints. An example configuration file with the list of custom endpoints supported by Flux is shared below. 
+
+```json
+{
+  "resourceManagerEndpoint": "https://management.core.private/",
+  "tokenAudience": "https://management.core.private/",
+  "containerRegistryDNSSuffix": "azurecr.private"
+}
+```
+
