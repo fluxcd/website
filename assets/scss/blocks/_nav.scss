@@ -83,4 +83,9 @@ nav.navbar {
     color: $gray-900;
     font-weight: unset;
   }
+  // fix the scroll height of the sidebar
+  @media (min-width: 768px) {
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+  }
 }
