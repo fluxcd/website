@@ -189,6 +189,32 @@ The recommendations below are based on Flux's latest version.
     ```
   </details>
 
+- Ensure all Flux controllers have default service accounts set for workload identity authentication via the `--default-service-account=<service-account-name>`, `--default-decryption-service-account=<service-account-name>` and `--default-kubeconfig-service-account=<service-account-name>` flags.
+
+  <details>
+    <summary>Rationale</summary>
+
+    In multi-tenant environments, workload identity authentication should be locked down to force tenant permissions used in cloud provider integrations to be provisioned following the Principle of Least Privilege. This ensures proper isolation between tenants with regards to ownership of cloud resources. This is separate from the Kubernetes RBAC impersonation controls mentioned above.
+
+    Setting default service accounts ensures that when Flux resources don't specify a service account for workload identity authentication, they fall back to a controlled default expected to exist in the resource's namespace, i.e. in the tenant's namespace.
+
+    The workload identity default service account flags are `--default-decryption-service-account` and `--default-kubeconfig-service-account` for `kustomize-controller`, `--default-kubeconfig-service-account` for `helm-controller`, and `--default-service-account` for `source-controller`, `notification-controller`, `image-reflector-controller` and `image-automation-controller`.
+  </details>
+  <details>
+    <summary>Audit Procedure</summary>
+
+    Check all Flux controllers for workload identity default service account flags (`--default-service-account`, `--default-decryption-service-account`, `--default-kubeconfig-service-account`):
+    
+    ```sh
+    kubectl describe pod -n flux-system -l app=source-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=kustomize-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=helm-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=notification-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=image-reflector-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=image-automation-controller | grep -B 5 -A 10 Args
+    ```
+  </details>
+
 ### Secret Decryption
 
 - Ensure Secret Decryption is configured correctly, such that each tenant have the correct level of isolation.
