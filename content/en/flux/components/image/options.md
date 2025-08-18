@@ -13,7 +13,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | Name                                  | Type          | Description                                                                                                                        |
 |---------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------|
 | `--concurrent`                        | int           | The number of concurrent kustomize reconciles. (default 4)                                                                         |
-| `--default-service-account`           | string        | Default service account used for impersonation.                                                                                    |
+| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                             |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.              |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                        |
@@ -50,7 +50,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | Name                                  | Type          | Description                                                                                                                             |
 |---------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `--concurrent`                        | int           | The number of concurrent kustomize reconciles. (default 4)                                                                              |
-| `--default-service-account`           | string        | Default service account used for impersonation.                                                                                         |
+| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                                  |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                   |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                     |
 | `--gc-interval`                       | int           | The interval in number of minutes at which the garbage collector will run for the tags database. Zero disables GC. (default 10)         |
