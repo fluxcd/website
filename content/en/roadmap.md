@@ -122,6 +122,7 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - [ ] Promote the `ImageRepository` API to `v1`
   - [ ] Promote the `ImagePolicy` API to `v1`
   - [x] [Add support for Git sparse checkout](https://github.com/fluxcd/image-automation-controller/pull/920)
+  - [ ] [Support object-level workload identity auth for Azure DevOps](https://github.com/fluxcd/image-automation-controller/pull/951)
 
 - **Kustomize integrations**
   - [x] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
@@ -148,9 +149,14 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 - **Git integrations**
   - [x] [Support mTLS for GitHub App transport in source-controller](https://github.com/fluxcd/source-controller/pull/1860)
   - [ ] [Support mTLS for GitHub App transport in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/780)
+  - [x] [Support object-level workload identity auth for Azure DevOps](https://github.com/fluxcd/source-controller/pull/1871)
 
 - **Bucket integrations**
   - [x] [Support object-level workload identity auth for Google Cloud Storage](https://github.com/fluxcd/source-controller/pull/1862)
+  - [ ] Support object-level workload identity auth for Azure Blob Storage
+
+- **OCI integrations**
+  - [x] [Support workload identity auth for Azure private cloud](https://github.com/fluxcd/pkg/pull/1002)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
