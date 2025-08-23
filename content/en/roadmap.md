@@ -153,10 +153,14 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 
 - **Bucket integrations**
   - [x] [Support object-level workload identity auth for Google Cloud Storage](https://github.com/fluxcd/source-controller/pull/1862)
+  - [x] [Support object-level workload identity auth for AWS S3](https://github.com/fluxcd/source-controller/pull/1868)
   - [ ] Support object-level workload identity auth for Azure Blob Storage
 
 - **OCI integrations**
   - [x] [Support workload identity auth for Azure private cloud](https://github.com/fluxcd/pkg/pull/1002)
+
+- **Security enhancements**
+  - [x] [Multi-tenancy lockdown support with controller flags](https://github.com/fluxcd/flux2/issues/5465)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.34
@@ -171,6 +175,7 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
   - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
   - Remove the `autologin` deprecated flags from `image-reflector-controller`
+  - Remove deprecated template fields `.Updated` and `.Changed.ImageResult` in `ImageUpdateAutomation`
 
 ## Request for comments
 
