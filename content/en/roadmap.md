@@ -130,6 +130,7 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - [x] [Add support for remote cluster authentication using Workload Identity](https://github.com/fluxcd/kustomize-controller/pull/1476)
   - [x] [Watch ConfigMaps and Secrets referenced in Kustomizations](https://github.com/fluxcd/flux2/issues/5446)
   - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/kustomize-controller/pull/1491)
+  - [x] [Track reconciliation attempts over time in `.status.history`](https://github.com/fluxcd/kustomize-controller/pull/1502)
 
 - **Helm integrations**
   - [x] [Extend HelmRelease post-renderer with CommonMetadata](https://github.com/fluxcd/helm-controller/pull/1223)
@@ -148,13 +149,13 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 
 - **Git integrations**
   - [x] [Support mTLS for GitHub App transport in source-controller](https://github.com/fluxcd/source-controller/pull/1860)
-  - [ ] [Support mTLS for GitHub App transport in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/780)
+  - [x] [Support mTLS for GitHub App transport in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/947)
   - [x] [Support object-level workload identity auth for Azure DevOps](https://github.com/fluxcd/source-controller/pull/1871)
 
 - **Bucket integrations**
   - [x] [Support object-level workload identity auth for Google Cloud Storage](https://github.com/fluxcd/source-controller/pull/1862)
   - [x] [Support object-level workload identity auth for AWS S3](https://github.com/fluxcd/source-controller/pull/1868)
-  - [ ] Support object-level workload identity auth for Azure Blob Storage
+  - [ ] [Support object-level workload identity auth for Azure Blob Storage](https://github.com/fluxcd/source-controller/pull/1875)
 
 - **OCI integrations**
   - [x] [Support workload identity auth for Azure private cloud](https://github.com/fluxcd/pkg/pull/1002)
@@ -162,8 +163,13 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 - **Security enhancements**
   - [x] [Multi-tenancy lockdown support with controller flags](https://github.com/fluxcd/flux2/issues/5465)
 
+- **CLI improvements**
+  - [x] [Implement `flux migrate` command](https://github.com/fluxcd/flux2/pull/5473)
+  - [ ] [Implement `flux [reconcile|suspend|resume] image policy` commands](https://github.com/fluxcd/flux2/pull/5492)
+  - [ ] [Add `--show-history` to `flux debug` commands](https://github.com/fluxcd/flux2/issues/5503)
+
 - **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.34
+  - [x] End-to-end testing for Kubernetes 1.34
 
 - **EOL and Deprecations**
   - End support for Flux v2.4.x
