@@ -585,11 +585,6 @@ metadata:
 > but Flux also uses it to identify the GCP Service Account to impersonate in
 > non-GKE clusters. This is for providing users with a seamless experience.
 
-At the moment, the GCS integration with the `Bucket` API and the Pub/Sub
-integration with the `Provider` API **do not support** configuring
-authentication through Workload Identity Federation at the object level.
-Support for these integrations will be introduced in Flux v2.7.
-
 #### For GCP Service Account Keys
 
 All GCP integrations except for GAR and GKE support configuring
