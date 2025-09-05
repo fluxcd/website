@@ -589,11 +589,6 @@ patches:
 > annotations are defined by AKS, but Flux also uses them to identify the Managed Identity
 > to impersonate in non-AKS clusters. This is for providing users with a seamless experience.
 
-At the moment, the ADO integrations with the `GitRepository`, `ImageUpdateAutomation` and
-`Provider` APIs and the ABS integration with the `Bucket` API **do not support** configuring
-authentication through Workload Identity Federation at the object level.
-Support for these integrations will be introduced in Flux v2.7.
-
 #### For Application Certificates
 
 Only the ABS and AKV integrations support configuring

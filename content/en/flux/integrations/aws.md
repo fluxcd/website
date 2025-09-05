@@ -761,10 +761,6 @@ patches:
 > but Flux also uses it to identify the IAM Role to assume in non-EKS clusters.
 > This is for providing users with a seamless experience.
 
-At the moment, the S3 integration with the `Bucket` API **does not support**
-configuring authentication through OIDC Federation at the object level.
-Support for this integration will be introduced in Flux v2.7.
-
 #### For IAM User Access Keys
 
 Only the S3 and KMS integrations support configuring authentication
