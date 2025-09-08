@@ -375,3 +375,6 @@ adopters:
     - name: Sophotech
       url: https://sopho.tech
       logo: logos/sophotech.svg
+    - name: GuaridOS
+      url: https://guaridos.me/
+      logo: logos/guaridos.png
