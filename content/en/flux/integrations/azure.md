@@ -553,7 +553,7 @@ For configuring authentication through a Kubernetes Service Account
 at the object level the following steps are required:
 
 1. Enable the feature gate `ObjectLevelWorkloadIdentity` in the target Flux controller Deployment
-   [during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+   [during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -677,7 +677,7 @@ Service Account as described [here](#supported-identity-types).
 
 If the cluster is AKS, the controller Kubernetes Service Account and Deployment
 must be patched
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 - The Kubernetes Service Account of the controller must be configured
   to impersonate a Managed Identity. This is done by adding the
@@ -727,7 +727,7 @@ If the configuration above is done after bootstrap, restart (delete) the control
 for the binding to take effect.
 
 If the cluster *is not* AKS, the controller Deployment must be patched
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 - A projected volume must be mounted in the controller Deployment with a Kubernetes
   Service Account token whose audience is set to `api://AzureADTokenExchange`.
@@ -790,7 +790,7 @@ patches:
 
 Mount the Kubernetes Secret containing the certificate and private key in
 the controller Deployment and set the environment variables shown below
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

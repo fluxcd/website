@@ -223,8 +223,8 @@ and we are excited to have him on board!
 
 ## CLI improvements
 
-- The boostrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
-- The boostrap procedure for [Azure DevOps](/flux/installation/bootstrap/azure-devops/#bootstrap-using-ssh-keys) repositories has been update with support for SSH RSA SHA-2 keys.
+- The bootstrap capabilities have been extended to support [Oracle VBS](/flux/installation/bootstrap/oracle-vbs-git-repositories/) repositories.
+- The bootstrap procedure for [Azure DevOps](/flux/installation/bootstrap/azure-devops/#bootstrap-using-ssh-keys) repositories has been update with support for SSH RSA SHA-2 keys.
 - The `flux bootstrap` command gains a new flag `--ssh-hostkey-algos` that can be used to specify the host key algorithms to be used for SSH connections.
 - The `flux bootstrap` and `flux install` commands now support the `--registry-creds` flag that can be used for generating an image pull secret for container images stored in private registries.
 - A new command was added, `flux envsubst` that can be used to replicate the behavior of the Flux `Kustomization` post-build substitutions.

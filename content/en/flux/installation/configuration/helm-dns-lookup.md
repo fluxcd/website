@@ -8,7 +8,7 @@ By default, the helm-controller will not perform DNS lookups when rendering Helm
 templates in clusters because of potential [security
 implications](https://github.com/helm/helm/security/advisories/GHSA-pwcw-6f5g-gxf8).
 
-To enable DNS lookups [during bootstrap](boostrap-customization.md) add the following patches to the flux-system `kustomization.yaml`:
+To enable DNS lookups [during bootstrap](bootstrap-customization.md) add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

@@ -725,7 +725,7 @@ For configuring authentication through a Kubernetes Service Account
 at the object level the following steps are required:
 
 1. Enable the feature gate `ObjectLevelWorkloadIdentity` in the target Flux controller Deployment
-   [during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+   [during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -831,7 +831,7 @@ Service Account as described [here](#supported-identity-types).
 If the cluster is EKS, the Kubernetes Service Account of the controller must
 be configured to assume an IAM Role. This is done by adding the
 `eks.amazonaws.com/role-arn` annotation to the controller Service Account
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -856,7 +856,7 @@ If the configuration above is done after bootstrap, restart (delete) the control
 for the binding to take effect.
 
 If the cluster *is not* EKS, the controller Deployment must be patched
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 - A projected volume must be mounted in the controller Deployment with a Kubernetes
   Service Account token whose audience is set to `sts.amazonaws.com`.
@@ -922,7 +922,7 @@ patches:
 Mount the Kubernetes Secret containing the IAM User Access Key and Secret
 as the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 in the controller Deployment
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

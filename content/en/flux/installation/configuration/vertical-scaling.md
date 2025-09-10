@@ -6,7 +6,7 @@ weight: 10
 ---
 
 When Flux is managing hundreds of applications that are deployed multiple times per day, cluster admins
-can fine tune the Flux controller at [bootstrap time](boostrap-customization.md) to run at scale by:
+can fine tune the Flux controller at [bootstrap time](bootstrap-customization.md) to run at scale by:
 
 - [Increasing the number of workers and resource limits](#increase-the-number-of-workers-and-limits)
 - [Enabling in-memory kustomize builds](#enable-in-memory-kustomize-builds)

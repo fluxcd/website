@@ -536,7 +536,7 @@ configured to impersonate a GCP Service Account or not, the following
 steps are required:
 
 1. Enable the feature gate `ObjectLevelWorkloadIdentity` in the target Flux controller Deployment
-   [during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+   [during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -642,7 +642,7 @@ Service Account as described [here](#supported-identity-types).
 If the cluster is GKE, the Kubernetes Service Account of the controller can optionally
 be configured to impersonate a GCP Service Account. This is done by adding the
 `iam.gke.io/gcp-service-account` annotation to the controller Service Account
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -672,7 +672,7 @@ for the binding to take effect.
 > directly to it according to what is described in [this](#to-kubernetes-service-accounts) section.
 
 If the cluster *is not* GKE, the controller Deployment must be patched
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md) according to these
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md) according to these
 [docs](https://cloud.google.com/iam/docs/workload-identity-federation-with-kubernetes#deploy):
 
 - A projected volume must be mounted in the controller Deployment with a Kubernetes
@@ -791,7 +791,7 @@ data:
 Mount the Kubernetes Secret containing the GCP Service Account Key inside
 the controller Deployment as a volume, and set the environment variable
 `GOOGLE_APPLICATION_CREDENTIALS` to the path of the mounted JSON file
-[during bootstrap](/flux/installation/configuration/boostrap-customization.md):
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

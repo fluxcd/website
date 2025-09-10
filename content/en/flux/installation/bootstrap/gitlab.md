@@ -21,7 +21,7 @@ or to have admin rights of a GitLab group.
 
 ## GitLab PAT
 
-For accessing the GitLab API, the boostrap command requires a GitLab personal access token (PAT)
+For accessing the GitLab API, the bootstrap command requires a GitLab personal access token (PAT)
 with complete read/write access to the GitLab API.
 
 The GitLab PAT can be exported as an environment variable:
