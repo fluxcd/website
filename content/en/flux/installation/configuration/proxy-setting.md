@@ -15,7 +15,7 @@ If your cluster uses an HTTP proxy to reach GitHub or other external services,
 you must set `NO_PROXY=.cluster.local.,.cluster.local,.svc`
 to allow the Flux controllers to talk to each other.
 
-To set the HTTP/S proxy [during bootstrap](boostrap-customization.md), add the following patches to the flux-system `kustomization.yaml`:
+To set the HTTP/S proxy [during bootstrap](bootstrap-customization.md), add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -50,7 +50,7 @@ To configure a SOCKS5 proxy, set the environment variable `ALL_PROXY` to allow
 both source-controller and image-automation-controller to connect through the
 proxy.
 
-To set the SOCKS5 proxy [during bootstrap](boostrap-customization.md), add the following patches to the flux-system `kustomization.yaml`:
+To set the SOCKS5 proxy [during bootstrap](bootstrap-customization.md), add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

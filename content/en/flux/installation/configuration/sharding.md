@@ -15,7 +15,7 @@ shard the reconciliation of Flux resources using the `sharding.fluxcd.io/key` la
 
 ## Bootstrap with sharding
 
-At [bootstrap time](boostrap-customization.md), you can define the number of shards
+At [bootstrap time](bootstrap-customization.md), you can define the number of shards
 and spin up a Flux controller instance for each shard.
 
 First you'll need to create a Git repository and clone it locally, then

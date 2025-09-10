@@ -47,3 +47,5 @@
 /legacy/*                                       /flux/migration                                     301!
 
 /blog/2025/06/time-based-deployments            /blog/2025/07/time-based-deployments                301!
+
+/flux/installation/configuration/boostrap-customization/  /flux/installation/configuration/bootstrap-customization/ 301!

@@ -15,7 +15,7 @@ It is also required that the person running the command to have **pull and push 
 
 ## Azure DevOps PAT
 
-For accessing the Azure API, the boostrap command requires an Azure DevOps personal access token (PAT)
+For accessing the Azure API, the bootstrap command requires an Azure DevOps personal access token (PAT)
 with pull and push permissions for Git repositories.
 
 Generate an [Azure DevOps PAT](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page)
