@@ -178,7 +178,7 @@ not be blank, as Flagger needs that to identify each trigger uniquely.
 In the situation when it is desired to have different scaling replica configuration between the canary and primary deployment ScaledObject you can use
 the `.spec.autoscalerRef.primaryScalerReplicas` to override these values for the generated primary ScaledObject.
 
-After the boostrap, the podinfo deployment will be scaled to zero and the traffic to `podinfo.test` will be routed to the primary pods. To keep the podinfo deployment
+After the bootstrap, the podinfo deployment will be scaled to zero and the traffic to `podinfo.test` will be routed to the primary pods. To keep the podinfo deployment
 at 0 replicas and pause auto scaling, Flagger will add an annotation to your ScaledObject: `autoscaling.keda.sh/paused-replicas: 0`.
 During the canary analysis, the annotation is removed, to enable auto scaling for the podinfo deployment.
 The `podinfo-canary.test` address can be used to target directly the canary pods. 

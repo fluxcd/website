@@ -26,7 +26,7 @@ Given that Forgejo is mainly backward compatible with Gitea, you can use the sam
 
 ## Gitea PAT
 
-For accessing the Gitea API, the boostrap command requires a Gitea personal access token (PAT)
+For accessing the Gitea API, the bootstrap command requires a Gitea personal access token (PAT)
 with the following permissions:
 
 - read:misc

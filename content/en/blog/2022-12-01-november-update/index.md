@@ -318,7 +318,7 @@ Josh Carlisle wrote [this blog
 post](https://www.joshcarlisle.io/2022/11/20/cloud-native-platform-recipe-success/)
 as a decision making help for people who are new to Cloud Native. He says
 
-> I came away with Flux offering some easier onboarding and boostrapping
+> I came away with Flux offering some easier onboarding and bootstrapping
 
 and
 

@@ -95,7 +95,7 @@ Please follow the [upgrade procedure for image
 automation](https://github.com/fluxcd/flux2/discussions/1333).
 
 Checkout the [new bootstrap customisation
-feature](/flux/installation/configuration/boostrap-customization/).
+feature](/flux/installation/configuration/bootstrap-customization/).
 
 The [Image automation guide](/flux/guides/image-update/) has been updated
 to the new APIs, and also includes a reference to a
