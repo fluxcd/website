@@ -16,7 +16,7 @@ It is also required that the person running the command to have **pull and push 
 
 ## Oracle VBS PAT
 
-For accessing the Oracle VBS, the boostrap command requires an Oracle VBS personal access token (PAT)
+For accessing the Oracle VBS, the bootstrap command requires an Oracle VBS personal access token (PAT)
 with pull and push permissions for Git repositories.
 
 Generate an [Oracle VBS Access Token](https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/Content/Identity/usersettings/generate-personal-access-tokens.htm).

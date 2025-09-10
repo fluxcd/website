@@ -69,7 +69,7 @@ Example of operations performed by tenants:
 
 ## How to configure Flux multi-tenancy
 
-A platform admin can lock down Flux on multi-tenant clusters [during bootstrap](boostrap-customization.md) with the following patches:
+A platform admin can lock down Flux on multi-tenant clusters [during bootstrap](bootstrap-customization.md) with the following patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

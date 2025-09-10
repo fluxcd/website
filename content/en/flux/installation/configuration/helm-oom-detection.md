@@ -20,7 +20,7 @@ When gracefully shutting down, running Helm actions may mark the release as
 `failed`. Because of this, enabling this feature is best combined with
 thoughtful [remediation strategies](/flux/components/helm/helmreleases/#configuring-failure-handling).
 
-To enable near OOM detection [during bootstrap](boostrap-customization.md) add the following patches to the flux-system `kustomization.yaml`:
+To enable near OOM detection [during bootstrap](bootstrap-customization.md) add the following patches to the flux-system `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
