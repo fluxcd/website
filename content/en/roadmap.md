@@ -188,6 +188,31 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - Remove the `autologin` deprecated flags from `image-reflector-controller`
   - Remove deprecated template fields `.Updated` and `.Changed.ImageResult` in `ImageUpdateAutomation`
 
+### v2.8 (TBA)
+
+**Status**: Provisional
+
+The primary goal of this milestone is to add support for Helm v4 to helm-controller,
+and to extend Flux server-side apply with field ignore rules.
+
+- **Helm integrations**
+  - [ ] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
+
+- **Kustomize integrations**
+  - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+
+- **Source extensions**
+  - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
+  - [ ] [Allow ExternalArtifact as a source in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/259)
+  - [ ] [Allow HelmChart as a source in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/260)
+
+- **Conformance testing**
+  - [ ] End-to-end testing for Kubernetes 1.35
+
+- **EOL and Deprecations**
+  - End support for Flux v2.5.x
+  - End support for Kubernetes v1.32.x
+
 ## Request for comments
 
 The [RFC process](https://github.com/fluxcd/flux2/tree/main/rfcs)
