@@ -118,11 +118,15 @@ The primary goal of this milestone is to make a generally available release for 
 and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomizations and HelmReleases.
 
 - **Image automation**
-  - [ ] Promote the `ImageUpdateAutomation` API to `v1`
-  - [ ] Promote the `ImageRepository` API to `v1`
-  - [ ] Promote the `ImagePolicy` API to `v1`
+  - [x] Promote the `ImageUpdateAutomation` API to `v1`
+  - [x] Promote the `ImageRepository` API to `v1`
+  - [x] Promote the `ImagePolicy` API to `v1`
   - [x] [Add support for Git sparse checkout](https://github.com/fluxcd/image-automation-controller/pull/920)
-  - [ ] [Support object-level workload identity auth for Azure DevOps](https://github.com/fluxcd/image-automation-controller/pull/951)
+  - [x] [Support object-level workload identity auth for Azure DevOps](https://github.com/fluxcd/image-automation-controller/pull/951)
+
+- **Source extensions**
+  - [x] Introduce the `ExternalArtifact` API to consume artifacts from external systems
+  - [x] Introduce the `ArtifactGenerator` API to compose and decompose Flux sources
 
 - **Kustomize integrations**
   - [x] [Controller-level decryption for Age Keys](https://github.com/fluxcd/kustomize-controller/issues/1465)
@@ -138,9 +142,10 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
   - [x] [Watch ConfigMaps and Secrets referenced in HelmReleases](https://github.com/fluxcd/helm-controller/pull/1258)
   - [x] [Extend the readiness evaluation of dependencies with CEL expressions](https://github.com/fluxcd/helm-controller/pull/1271)
   - [x] [Record the last Helm release action duration in status](https://github.com/fluxcd/helm-controller/pull/1282)
-  - [ ] [Introduce `RetryOnFailure` lifecycle management strategy](https://github.com/fluxcd/helm-controller/issues/1278)
+  - [x] [Introduce `RetryOnFailure` lifecycle management strategy](https://github.com/fluxcd/helm-controller/issues/1278)
 
 - **Alerting integrations**
+  - [x] [Add support for OpenTelemetry tracing to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1149)
   - [x] [Add mTLS support to `Provider` API](https://github.com/fluxcd/notification-controller/pull/1137)
   - [x] [Extend `Provider` API with `spec.proxySecretRef`](https://github.com/fluxcd/notification-controller/pull/1133)
   - [x] [Support HTTP/S proxy for Telegram](https://github.com/fluxcd/notification-controller/pull/1140)
@@ -155,7 +160,7 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 - **Bucket integrations**
   - [x] [Support object-level workload identity auth for Google Cloud Storage](https://github.com/fluxcd/source-controller/pull/1862)
   - [x] [Support object-level workload identity auth for AWS S3](https://github.com/fluxcd/source-controller/pull/1868)
-  - [ ] [Support object-level workload identity auth for Azure Blob Storage](https://github.com/fluxcd/source-controller/pull/1875)
+  - [x] [Support object-level workload identity auth for Azure Blob Storage](https://github.com/fluxcd/source-controller/pull/1875)
 
 - **OCI integrations**
   - [x] [Support workload identity auth for Azure private cloud](https://github.com/fluxcd/pkg/pull/1002)
@@ -200,5 +205,5 @@ To keep track of the Flux project's current direction and future plans, please s
 - [x] [RFC-0008](https://github.com/fluxcd/flux2/tree/main/rfcs/0008-custom-event-metadata-from-annotations) Custom Event Metadata from Annotations
 - [x] [RFC-0009](https://github.com/fluxcd/flux2/tree/main/rfcs/0009-custom-health-checks) Custom Health Checks for Kustomization using Common Expression Language(CEL)
 - [x] [RFC-0010](https://github.com/fluxcd/flux2/tree/main/rfcs/0010-multi-tenant-workload-identity) Multi-Tenant Workload Identity
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5321) OpenTelemetry Tracing
-- [ ] [RFC](https://github.com/fluxcd/flux2/pull/5292) External Artifact API
+- [x] [RFC-0011](https://github.com/fluxcd/flux2/tree/main/rfcs/0011-opentelemetry-tracing) OpenTelemetry Tracing
+- [x] [RFC-0012](https://github.com/fluxcd/flux2/blob/main/rfcs/0012-external-artifact/) External Artifact API
