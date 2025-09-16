@@ -105,6 +105,7 @@ release.
 
    ```shell
    git switch -c release/v1.2.x main
+   git push origin release/v1.2.x
    ```
 
 3. From the release series branch, create a release preparation branch for the
