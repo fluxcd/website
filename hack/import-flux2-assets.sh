@@ -135,15 +135,22 @@ function gen_ctrl_docs {
     api_out="automation-api"
   fi
 
-  ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
-  ctrl_version=$(echo "${ks_url}" | cut -d/ -f8)
+  # if the controller is source-watcher and the flux version is v2.6.4, hard-code a few things
+  if [ "${ctrl}" = "source-watcher" ] && [ "${flux_version}" = "v2.6.4" ] ; then
+    ctrl_version="v2.0.0"
+    crds="artifactgenerators.source.extensions.fluxcd.io,v1beta1"
+  else
+    ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
+    ctrl_version=$(echo "${ks_url}" | cut -d/ -f8)
+    crds=$(curl -sL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv)
+  fi
 
-  crds=$(curl -sL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv)
-  for api_version in $(all_versions "${crds}") ; do
-    doc_url=https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/api/${api_version}/${ctrl_short}.md
-    gen_crd_doc "${doc_url}" "$COMPONENTS_DIR/${ctrl_out}/${api_out}/${api_version}.md" "HUGETABLE"
-
-  done
+  if [ "${ctrl}" != "source-watcher" ] ; then
+    for api_version in $(all_versions "${crds}") ; do
+      doc_url=https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/api/${api_version}/${ctrl_short}.md
+      gen_crd_doc "${doc_url}" "$COMPONENTS_DIR/${ctrl_out}/${api_out}/${api_version}.md" "HUGETABLE"
+    done
+  fi
 
   for crd in ${crds} ; do
     name=${crd%%,*}
@@ -232,6 +239,11 @@ function gen_ctrl_docs {
   # image-*-controller CRDs; these use the same API group
   gen_ctrl_docs "v${VERSION_FLUX}" "image-reflector-controller"
   gen_ctrl_docs "v${VERSION_FLUX}" "image-automation-controller"
+}
+
+{
+  # source-watcher CRDs
+  gen_ctrl_docs "v${VERSION_FLUX}" "source-watcher"
 }
 
 {

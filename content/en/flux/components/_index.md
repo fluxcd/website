@@ -31,6 +31,8 @@ A reference for each component and API type is linked below.
     - [HelmRepository CRD](source/helmrepositories.md)
     - [HelmChart CRD](source/helmcharts.md)
     - [Bucket CRD](source/buckets.md)
+    - [ExternalArtifact CRD](source/externalartifacts.md)
+    - [ArtifactGenerator CRD](source/artifactgenerators.md)
 - [Kustomize Controller](kustomize/_index.md)
     - [Kustomization CRD](kustomize/kustomizations.md)
 - [Helm Controller](helm/_index.md)
