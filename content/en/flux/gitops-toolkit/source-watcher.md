@@ -59,6 +59,7 @@ Clone the source-watcher repository:
 ```sh
 git clone https://github.com/fluxcd/source-watcher
 cd source-watcher
+git checkout release/v1.3.x
 ```
 
 Build the controller:

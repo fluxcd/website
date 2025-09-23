@@ -1,11 +1,13 @@
 ---
-title: Source Controller
-linkTitle: Source Controller
-description: "The GitOps Toolkit Source Controller documentation."
+title: Source Controllers
+linkTitle: Source Controllers
+description: "The GitOps Toolkit Source Controllers documentation."
 weight: 1
 ---
 
-The main role of the source management component is to provide a common interface for artifacts acquisition.
+## Source controller
+
+The main role of source-controller is to provide a common interface for artifacts acquisition.
 The source API defines a set of Kubernetes objects that cluster admins and various automated operators can
 interact with to offload the Git and Helm repositories operations to a dedicated controller.
 
@@ -27,3 +29,21 @@ Links:
 
 - Source code [fluxcd/source-controller](https://github.com/fluxcd/source-controller)
 - Specification [docs](https://github.com/fluxcd/source-controller/tree/main/docs/spec)
+
+## Source watcher
+
+The source-watcher is a GitOps toolkit controller
+that extends Flux with advanced source composition and decomposition patterns.
+
+The source-watcher controller implements the **ArtifactGenerator** API,
+which allows Flux users to:
+
+- **Compose** multiple Flux sources (GitRepository, OCIRepository, Bucket) into a single deployable artifact
+- **Decompose** monorepos into multiple independent artifacts with separate deployment lifecycles
+- **Optimize** reconciliation by only triggering updates when specific paths change
+- **Structure** complex deployments from distributed sources maintained by different teams
+
+Links:
+
+- Source code [fluxcd/source-watcher](https://github.com/fluxcd/source-watcher)
+- Specification [docs](https://github.com/fluxcd/source-watcher/tree/main/docs/spec)
