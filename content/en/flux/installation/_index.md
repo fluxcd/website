@@ -21,12 +21,12 @@ The Kubernetes cluster should match one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.31`            | `>= 1.31.0`      |
 | `v1.32`            | `>= 1.32.0`      |
-| `v1.33` and later  | `>= 1.33.0`      |
+| `v1.33`            | `>= 1.33.0`      |
+| `v1.34` and later  | `>= 1.34.0`      |
 
 {{% alert color="info" title="Kubernetes EOL" %}}
-Note that Flux may work on older versions of Kubernetes e.g. 1.29,
+Note that Flux may work on older versions of Kubernetes e.g. 1.30,
 but we don't recommend running [EOL versions](https://endoflife.date/kubernetes)
 in production nor do we offer support for these versions.
 {{% /alert %}}
@@ -128,7 +128,6 @@ initial setup of deploy keys and other authentication mechanisms:
 * [GitHub](./bootstrap/github.md)
 * [GitLab](./bootstrap/gitlab.md)
 * [Bitbucket](./bootstrap/bitbucket.md)
-* [AWS CodeCommit](./bootstrap/aws-codecommit.md)
 * [Azure DevOps](./bootstrap/azure-devops.md)
 * [Google Cloud Source](./bootstrap/google-cloud-source.md)
 * [Oracle Cloud Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
@@ -211,6 +210,7 @@ spec:
     - image-automation-controller
   cluster:
     type: kubernetes
+    size: medium
     multitenant: false
     networkPolicy: true
     domain: "cluster.local"
@@ -218,14 +218,16 @@ spec:
     patches:
       - target:
           kind: Deployment
-          name: "(kustomize-controller|helm-controller)"
         patch: |
+          - op: replace
+            path: /spec/template/spec/nodeSelector
+            value:
+              kubernetes.io/os: linux
           - op: add
-            path: /spec/template/spec/containers/0/args/-
-            value: --concurrent=10
-          - op: add
-            path: /spec/template/spec/containers/0/args/-
-            value: --requeue-dependency=5s
+            path: /spec/template/spec/tolerations
+            value:
+              - key: "CriticalAddonsOnly"
+                operator: "Exists"
   sync:
     kind: OCIRepository
     url: "oci://ghcr.io/my-org/my-fleet-manifests"
@@ -239,8 +241,8 @@ spec:
 > [cluster sync guide](https://fluxcd.control-plane.io/operator/flux-sync/).
 
 The operator can automatically upgrade the Flux controllers and their CRDs when a new version is available.
-To restrict the upgrade to patch versions only, set the `distribution.version` field to e.g. `2.6.x`
-or to a fixed version e.g. `2.6.0` to disable automatic upgrades.
+To restrict the upgrade to patch versions only, set the `distribution.version` field to e.g. `2.7.x`
+or to a fixed version e.g. `2.7.0` to disable automatic upgrades.
 
 The Flux Operator can take over the management of existing installations from the Flux CLI or other tools.
 For a step-by-step guide, refer to the [Flux Operator migration guide](https://fluxcd.control-plane.io/operator/).
