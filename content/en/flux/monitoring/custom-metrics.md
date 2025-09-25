@@ -57,8 +57,8 @@ called `gotk_resource_info` with labels `name`, `exported_namespace`,
   each:
     type: Info
     info:
-    labelsFromPath:
-      name: [metadata, name]
+      labelsFromPath:
+        name: [metadata, name]
   labelsFromPath:
     exported_namespace: [metadata, namespace]
     suspended: [spec, suspend]
