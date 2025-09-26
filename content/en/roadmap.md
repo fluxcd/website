@@ -171,8 +171,8 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 
 - **CLI improvements**
   - [x] [Implement `flux migrate` command](https://github.com/fluxcd/flux2/pull/5473)
-  - [ ] [Implement `flux [reconcile|suspend|resume] image policy` commands](https://github.com/fluxcd/flux2/pull/5492)
-  - [ ] [Add `--show-history` to `flux debug` commands](https://github.com/fluxcd/flux2/issues/5503)
+  - [x] [Implement `flux [reconcile|suspend|resume] image policy` commands](https://github.com/fluxcd/flux2/pull/5492)
+  - [x] [Add `--show-history` to `flux debug` commands](https://github.com/fluxcd/flux2/issues/5503)
 
 - **Conformance testing**
   - [x] End-to-end testing for Kubernetes 1.34
