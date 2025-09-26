@@ -167,6 +167,7 @@ release.
    specific patch release.
 
    ```shell
+   git switch release/v1.2.x
    git pull origin release/v1.2.x
    git switch -c release-v1.2.1 release/v1.2.x
    ```
@@ -213,6 +214,7 @@ release.
    pull request to merge it into `main`.
 
    ```shell
+   git switch main
    git pull origin main
    git switch -c pick-changelog-v1.2.1 main
    git cherry-pick -x <commit hash>
