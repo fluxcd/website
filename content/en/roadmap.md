@@ -112,7 +112,7 @@ and add support for object-level workload identity authentication for container 
 
 ### v2.7 (Q3 2025)
 
-**Status**: In Progress
+**Status**: Completed on 2025-09-30 (v2.7.0 [changelog](https://fluxcd.io/blog/2025/05/flux-v2.7.0/))
 
 The primary goal of this milestone is to make a generally available release for the Flux image automation APIs,
 and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomizations and HelmReleases.
@@ -213,6 +213,10 @@ and to extend Flux server-side apply with field ignore rules.
 - **EOL and Deprecations**
   - End support for Flux v2.5.x
   - End support for Kubernetes v1.32.x
+  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta2`
+  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta2`
 
 ## Request for comments
 

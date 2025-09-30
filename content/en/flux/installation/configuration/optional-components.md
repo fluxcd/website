@@ -32,6 +32,15 @@ flux bootstrap git \
   --components-extra image-reflector-controller,image-automation-controller
 ```
 
+To enable the Flux source composition and decomposition features,
+the [source-watcher](https://github.com/fluxcd/source-watcher) component
+can be added to the extra components.
+
+```shell
+flux bootstrap git \
+  --components-extra source-watcher
+```
+
 By default, both `flux bootstrap` and `flux install` commands do not include any extra components.
 
 ## Network policies
