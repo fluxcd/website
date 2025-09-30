@@ -330,7 +330,7 @@ The following instructions assume you're updating the website for the Flux relea
    1. Edit the existing `params.versions` entry pointing to `https://fluxcd.io` to point to
       `https://v2-(N-1).docs.fluxcd.io`
    1. Remove the oldest entry from `params.versions`. We only support N-2 releases.
-   1. Do not set `params.version` - this string is used by the archived / maintenance branches only, and setting it here will likely cause automatic backports to fail with a conflict.
+   1. Do not set `params.version` - this string is used by the other branches only, and setting it here will likely cause automatic backports to fail with a conflict.
 1. In `.github/labels.yaml` add an entry for the `backport:v2-N` label by copying the existing `backport:v2-(N-1)` one.
 1. Commit the changes and create a PR for the `main` branch.
 1. As soon as the PR is merged, create the "v2-N" branch from `main`:
@@ -345,19 +345,19 @@ The following instructions assume you're updating the website for the Flux relea
    automatically created for the two last supported release branches of the website. **Do not merge these
    PRs, yet!**
 1. In the PR for the `v2-(N-1)` branch, edit the `hugo.yaml` file and set `params.archived_version` to `true`.
-   1. Set the `params.version` string to the version of the new maintenance branch. (This is the string that will be displayed in the "deprecation warning" pageinfo header box.)
 1. Go to https://app.netlify.com/sites/fluxcd/configuration/deploys#branches-and-deploy-contexts
 1. Click on "Configure"
 1. In "Production branch", change the value from `v2-(N-1)` to `v2-N`.
 1. In "Additional branches" add the "v2-(N-1)" branch.
 1. Click "Save".
-1. Now merge the 3 PRs created by the labels you applied in the previous step.
+1. Now merge the 2 PRs created by the labels you applied in the previous step.
 1. Create another PR against the `main` branch to:
    1. Update the `trigger_branch` URL query parameter in the file `.github/workflows/netlify.yml` to point to "v2-N".
    1. Update the website announcement banner in the file `content/en/_index.html` to point to the blog post of
       the new release, and change the string right below from  `Announcing Flux 2.N-1 GA` to
       `Announcing Flux 2.N GA`.
 1. Merge the PR and backport to the `v2-N` branch by applying the `backport:v2-N` label to the PR.
+   1. In the backport PR, set the `params.version` string to the version `2.N`.
 
 #### Distribution: patch releases
 
