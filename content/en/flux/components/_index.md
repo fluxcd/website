@@ -25,7 +25,7 @@ guide](../gitops-toolkit/source-watcher/) is a good place to start.
 
 A reference for each component and API type is linked below.
 
-- [Source Controller](source/_index.md)
+- [Source Controllers](source/_index.md)
     - [GitRepository CRD](source/gitrepositories.md)
     - [OCIRepository CRD](source/ocirepositories.md)
     - [HelmRepository CRD](source/helmrepositories.md)
