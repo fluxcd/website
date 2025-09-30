@@ -168,7 +168,7 @@ flux create image repository podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: podinfo
@@ -208,7 +208,7 @@ flux create image policy podinfo \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: podinfo
@@ -319,7 +319,7 @@ flux create image update flux-system \
 The above command generates the following manifest:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
   name: flux-system
@@ -787,7 +787,7 @@ digests for a fixed tag. To configure Flux to watch the digest for `latest`,
 you can use an `ImagePolicy` like the following:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: podinfo
@@ -856,7 +856,7 @@ of how you test and ship your software, you can set `digestReflectionPolicy` to
 `IfNotPresent` in the `ImagePolicy`:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: podinfo
