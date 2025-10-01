@@ -51,7 +51,7 @@ With [Chocolatey](https://chocolatey.org/):
 choco install flux
 ```
 
-With [winget](https://github.com/microsoft/winget-cli) (only versions after 2.0.0):
+With [winget](https://github.com/microsoft/winget-cli):
 
 ```sh
 winget install -e --id FluxCD.Flux
@@ -65,7 +65,7 @@ winget install -e --id FluxCD.Flux
 To install the latest release on Linux, macOS or Windows WSL:
 
 ```bash
-curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.0.0 bash
+curl -s https://fluxcd.io/install.sh | sudo bash
 ```
 
 The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh) does the following:
@@ -77,10 +77,16 @@ The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install
 You can also install to a custom directory (e.g., `~/.local/bin`):
 
 ```bash
-curl -s https://fluxcd.io/install.sh | FLUX_VERSION=2.0.0 bash -s ~/.local/bin
+curl -s https://fluxcd.io/install.sh | bash -s ~/.local/bin
 ```
 
 Please make sure that this directory is part of your `$PATH` environment variable.
+
+To install a specific version, you can set the `FLUX_VERSION` environment variable (e.g., `2.7.0`):
+
+```bash
+curl -s https://fluxcd.io/install.sh | FLUX_VERSION=2.7.0 bash -s ~/.local/bin
+```
 
 ## Install using Docker
 
@@ -92,7 +98,7 @@ A container image with `kubectl` and `flux` is available on DockerHub and GitHub
 Example usage:
 
 ```console
-$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v2.0.0
+$ docker run -it --entrypoint=sh -v ~/.kube/config:/kubeconfig ghcr.io/fluxcd/flux-cli:v2.7.0
 / # flux check --kubeconfig=kubeconfig
 ```
 
