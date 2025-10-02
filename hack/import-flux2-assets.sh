@@ -125,7 +125,7 @@ function gen_ctrl_docs {
   flux_version=${1}
   ctrl=${2}
   ctrl_short=${ctrl%%-controller}
-  ctrl_out=${ctrl%%-*} # this is necessary to collect IAC and IRC together in the "image" folder
+  ctrl_out=${ctrl%%-*} # this is necessary to collect SC and SW under "source" and IAC and IRC under "image"
 
   api_out="api"
   if [ "${ctrl_short}" = "image-reflector" ] ; then
@@ -135,15 +135,9 @@ function gen_ctrl_docs {
     api_out="automation-api"
   fi
 
-  # if the controller is source-watcher and the flux version is v2.6.4, hard-code a few things
-  if [ "${ctrl}" = "source-watcher" ] && [ "${flux_version}" = "v2.6.4" ] ; then
-    ctrl_version="v2.0.0"
-    crds="artifactgenerators.source.extensions.fluxcd.io,v1beta1"
-  else
-    ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
-    ctrl_version=$(echo "${ks_url}" | cut -d/ -f8)
-    crds=$(curl -sL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv)
-  fi
+  ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
+  ctrl_version=$(echo "${ks_url}" | cut -d/ -f8)
+  crds=$(curl -sL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv)
 
   if [ "${ctrl}" != "source-watcher" ] ; then
     for api_version in $(all_versions "${crds}") ; do
@@ -152,25 +146,22 @@ function gen_ctrl_docs {
     done
   fi
 
+  # Compute controller major and minor versions and release series branch.
+  ctrl_major_version=$(echo "$ctrl_version" | cut -d'.' -f1)
+  ctrl_minor_version=$(echo "$ctrl_version" | cut -d'.' -f2)
+  release_branch="release/${ctrl_major_version}.${ctrl_minor_version}.x"
+
   for crd in ${crds} ; do
     name=${crd%%,*}
     name=${name%%.*}
     version=${crd##*,}
-    gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/spec/${version}/${name}.md" "$COMPONENTS_DIR/${ctrl_out}/${name}.md"
+    gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${release_branch}/docs/spec/${version}/${name}.md" "$COMPONENTS_DIR/${ctrl_out}/${name}.md"
   done
 
   # special cases for n-c
   if [ "${ctrl}" = "notification-controller" ] ; then
     # `Events` type is not a CRD but needs to be documented, too.
-    gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${ctrl_version}/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/${ctrl_out}/events.md"
-
-    # Hack for fixing typo in the docs
-    $SED -i \
-      's#((https://docs\.github\.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token))#(https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)#g' \
-      "$COMPONENTS_DIR/${ctrl_out}/providers.md"
-    $SED -i \
-      's#((https://docs\.github\.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation))#(https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation)#g' \
-      "$COMPONENTS_DIR/${ctrl_out}/providers.md"
+    gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${release_branch}/docs/spec/v1beta2/events.md" "$COMPONENTS_DIR/${ctrl_out}/events.md"
   fi
 }
 
