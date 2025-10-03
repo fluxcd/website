@@ -30,10 +30,17 @@ In order to receive Git push or Helm chart upload events, you'll have to
 expose the webhook receiver endpoint outside of your Kubernetes cluster on
 a public address.
 
-The notification controller handles webhook requests on port `9292`.
-This port can be used to create a Kubernetes LoadBalancer Service or Ingress.
+The notification controller handles webhook requests on port `9292`
+and comes with a Kubernetes Service named `webhook-receiver` that
+maps the port to `80` inside the cluster.
 
-Create a `LoadBalancer` service:
+The webhook receiver port can be used to create a Kubernetes LoadBalancer Service,
+Ingress or HTTPRoute (Gateway API).
+
+## Using a LoadBalancer
+
+Create a `Service` of type `LoadBalancer` in the `flux-system` namespace
+pointing to the `notification-controller` pods on port `9292`:
 
 ```yaml
 apiVersion: v1
@@ -58,7 +65,10 @@ Wait for Kubernetes to assign a public address with:
 watch kubectl -n flux-system get svc/receiver
 ```
 
-...or, create an `Ingress` with the same destination, the `webhook-receiver` http service on port 80:
+## Using an Ingress
+
+Create an `Ingress` in the `flux-system` namespace pointing to the Kubernetes
+service named `webhook-receiver`on port `80`:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -68,7 +78,7 @@ metadata:
   namespace: flux-system
 spec:
   rules:
-  - host: flux-webhook.example.com
+  - host: webhook-receiver.example.com
     http:
       paths:
       - pathType: Prefix
@@ -80,11 +90,16 @@ spec:
               number: 80
 ```
 
-Add any necessary annotations for your ingress controller and cert-manager to provide for encryption. Full configuration of cert-manager issuers, ingress controllers, and TLS are beyond the scope of this documentation.
+Add any necessary annotations for your ingress controller and cert-manager
+to provide for encryption. Full configuration of cert-manager issuers,
+ingress controllers, and TLS are beyond the scope of this documentation.
 
-However, one common issue caused by Flux's default network policy securing the `flux-system` namespace is that unexpected traffic to any pod in that namespace is prevented. The HTTP-01 ACME challenge ingress is blocked from receiving cert-manager traffic.
+However, one common issue caused by Flux's default network policy securing
+the `flux-system` namespace is that unexpected traffic to any pod in that namespace is prevented.
+The HTTP-01 ACME challenge ingress is blocked from receiving cert-manager traffic.
 
-An example of a policy that permits the traffic from only namespaces with a matching `cert-manager` label into the challenge pod follows:
+An example of a policy that permits the traffic from only namespaces with a
+matching `cert-manager` label into the challenge pod follows:
 
 ```yaml
 kind: NetworkPolicy
@@ -103,7 +118,44 @@ spec:
               app.kubernetes.io/instance: cert-manager
 ```
 
-Your environment's network policy details may vary. Please take care that the policy is appropriate for the security posture of your environment.
+Your environment's network policy details may vary. Please take care that the policy
+is appropriate for the security posture of your environment.
+
+## Using a HTTPRoute (Gateway API)
+
+Create a `HTTPRoute` in the `flux-system` namespace pointing to the Kubernetes
+service named `webhook-receiver` on port `80`:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: webhook-receiver
+  namespace: flux-system
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: internet-gateway
+      namespace: gateway-namespace
+  hostnames:
+    - "webhook-receiver.example.com"
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+        - name: webhook-receiver
+          namespace: flux-system
+          port: 80
+```
+
+Note the `parentRefs` section must be updated to match your Gateway configuration.
+
+If the Gateway proxy is running in the cluster, the Flux network policy
+[allow-webhooks](https://github.com/fluxcd/flux2/blob/main/manifests/policies/allow-webhooks.yaml)
+will allow the traffic to the `notification-controller` pods without any further configuration.
 
 ## Define a Git repository
 
