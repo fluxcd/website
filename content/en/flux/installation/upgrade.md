@@ -8,6 +8,10 @@ weight: 40
 Flux can be upgrade from any `v2.x` release to any other `v2.x` release (the latest patch version).
 For more details about supported versions and upgrades please see the Flux [release documentation](/flux/releases/).
 
+{{% alert color="info" title="Upgrade Procedure for Flux v2.7+" %}}
+We have published a dedicated step-by-step upgrade guide, please follow the instructions from [Upgrade Procedure for Flux v2.7+](https://github.com/fluxcd/flux2/discussions/5572).
+{{% /alert %}}
+
 ## Flux CLI upgrade
 
 Running `flux check --pre` will tell you if a newer Flux version is available.
