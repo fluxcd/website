@@ -323,73 +323,12 @@ Note that in Flux v2.7, the following APIs have reached end-of-life and have bee
 - `image.toolkit.fluxcd.io/v1beta1`
 - `notification.toolkit.fluxcd.io/v1beta1`
 
-### Step 1: Migrate to stable APIs in Git
+Before upgrading to Flux v2.7, make sure to migrate all your resources to the stable APIs
+using the [flux migrate](/flux/cmd/flux_migrate/) command.
 
-Migrate all your resources to the Flux v2.6 stable APIs in your Git repositories by replacing
-the API version in the manifests:
-
-- `Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
-- `HelmRelease` to `helm.toolkit.fluxcd.io/v2`
-- `Bucket` to `source.toolkit.fluxcd.io/v1`
-- `GitRepository` to `source.toolkit.fluxcd.io/v1`
-- `HelmChart` to `source.toolkit.fluxcd.io/v1`
-- `HelmRepository` to `source.toolkit.fluxcd.io/v1`
-- `OCIRepository` to `source.toolkit.fluxcd.io/v1`
-- `Receiver` to `notification.toolkit.fluxcd.io/v1`
-- `Alert` to `notification.toolkit.fluxcd.io/v1beta3`
-- `Provider` to `notification.toolkit.fluxcd.io/v1beta3`
-- `ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
-- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
-
-Note that the `ImageUpdateAutomation` commit template should use the fields
-`.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated
-`.Updated` and `.Changed.ImageResult` fields.
-
-Commit and push the changes to your Git repositories, then wait for Flux v2.6 to reconcile the new API versions.
-
-### Step 2: Migrate to stable APIs in Kubernetes etcd
-
-Download and install the latest Flux CLI v2.7 using the instructions
-from [installation guide](/flux/installation/#install-the-flux-cli).
-
-Then run the following command on all your clusters where Flux is installed:
-
-```sh
-flux migrate
-```
-
-The command migrates the Flux custom resources stored in Kubernetes etcd to their latest API version,
-ensuring the Flux components can continue to function correctly after the 2.7 upgrade.
-
-> Running the migrate command is required unless you are using
-> the [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator) which
-> automatically handles the migration of Flux resources in etcd.
-
-### Step 3: Upgrade Flux components
-
-Upgrade the Flux components to v2.7 by running `flux bootstrap` on your clusters
-with the same parameters you used during the initial installation. 
-
-At this step, you can also enable the new `source-watcher` component
-by adding the `--components-extra=source-watcher` flag.
-
-> If you are using the [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator), make sure you've
-> updated the operator to v0.30 or later, set `FluxInstance.spec.distribution.version` to `2.7.x`
-> and `FluxInstance.spec.components` to include `source-watcher`.
-
-### Step 4: Migrate the Image APIs in Git
-
-If you are using the image update automation features, make sure to migrate
-the image definitions to the latest stable versions in your Git repositories by replacing
-the API version in the manifests:
-
-- `ImageRepository` to `image.toolkit.fluxcd.io/v1`
-- `ImagePolicy` to `image.toolkit.fluxcd.io/v1`
-- `ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1`
-
-Finally, rerun the `flux migrate` command on all your clusters to
-migrate the image resources stored in Kubernetes etcd to their GA versions.
+{{% alert color="info" title="Upgrade Procedure for Flux v2.7+" %}}
+We have published a dedicated step-by-step upgrade guide, please follow the instructions from [Upgrade Procedure for Flux v2.7+](https://github.com/fluxcd/flux2/discussions/5572).
+{{% /alert %}}
 
 ## Over and out
 
