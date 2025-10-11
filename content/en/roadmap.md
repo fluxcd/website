@@ -201,6 +201,7 @@ and to extend Flux server-side apply with field ignore rules.
 
 - **Kustomize integrations**
   - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+  - [ ] [Reduce the mean time to recovery (MTTR) in case of a failed deployment](https://github.com/fluxcd/flux2/issues/5584)
 
 - **Source extensions**
   - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
