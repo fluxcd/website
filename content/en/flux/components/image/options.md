@@ -13,7 +13,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | Name                                  | Type          | Description                                                                                                                        |
 |---------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------|
 | `--concurrent`                        | int           | The number of concurrent kustomize reconciles. (default 4)                                                                         |
-| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                             |
+| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                              |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.              |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                |
 | `--health-addr`                       | string        | The address the health endpoint binds to. (default ":9440")                                                                        |
@@ -50,7 +50,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | Name                                  | Type          | Description                                                                                                                             |
 |---------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `--concurrent`                        | int           | The number of concurrent kustomize reconciles. (default 4)                                                                              |
-| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                                  |
+| `--default-service-account`           | string        | Default service account to use for workload identity when not specified in resources.                                                   |
 | `--enable-leader-election`            | boolean       | Enable leader election for controller manager. Enabling this will ensure there is only one active controller manager.                   |
 | `--events-addr`                       | string        | The address of the events receiver.                                                                                                     |
 | `--gc-interval`                       | int           | The interval in number of minutes at which the garbage collector will run for the tags database. Zero disables GC. (default 10)         |
@@ -63,6 +63,7 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 | `--log-level`                         | string        | Log verbosity level. Can be one of 'trace', 'debug', 'info', 'error'. (default "info")                                                  |
 | `--metrics-addr`                      | string        | The address the metric endpoint binds to. (default ":8080")                                                                             |
 | `--no-cross-namespace-refs`           | boolean       | When set to true, references between custom resources are allowed only if the reference and the referee are in the same namespace.      |
+| `--requeue-dependency`                | duration      | The interval at which failing dependencies are reevaluated. (default 30s)                                                               |
 | `--storage-path`                      | string        | Where to store the persistent database of image metadata. (default "/data")                                                             |
 | `--storage-value-log-file-size`       | int           | Set the database's memory mapped value log file size in bytes. Effective memory usage is about two times this size. (default 268435456) |
 | `--token-cache-max-size`              | int           | The maximum amount of entries in the LRU cache used for tokens. (default 100, enabled)                                                  |
