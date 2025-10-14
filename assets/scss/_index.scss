@@ -65,9 +65,14 @@ main.td-main {
       padding-bottom: 45px;
       padding-top: 20px;
       font-size: 32px;
+      overflow-wrap: anywhere;
+      word-break:break-word;
       span.origtz {
         display: none;
       }
+    }
+    p.next-event a {
+      white-space: normal;
     }
     a {
       text-decoration: underline;
