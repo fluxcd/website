@@ -196,6 +196,9 @@ and make Flux watch for changes in ConfigMaps and Secrets referenced in Kustomiz
 The primary goal of this milestone is to add support for Helm v4 to helm-controller,
 and to extend Flux server-side apply with field ignore rules.
 
+- **OCI integrations**
+  - [ ] [Add support for verification with cosign v3](https://github.com/fluxcd/source-controller/issues/1923)
+
 - **Helm integrations**
   - [ ] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
 

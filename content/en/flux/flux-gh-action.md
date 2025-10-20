@@ -166,6 +166,8 @@ jobs:
         uses: fluxcd/flux2/action@main
       - name: Setup Cosign
         uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: v2.6.1 # cosign v3+ will be supported only in Flux v2.8+
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
