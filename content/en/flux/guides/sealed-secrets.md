@@ -165,7 +165,7 @@ Once the sealed-secrets controller is installed, the admin fetches the
 public key and shares it with the teams that operate on the fleet clusters via Git.
 
 When a team member wants to create a Kubernetes Secret on a cluster,
-they uses kubeseal and the public key corresponding to that cluster to generate a SealedSecret.
+they use kubeseal and the public key corresponding to that cluster to generate a SealedSecret.
 
 Assuming a team member wants to deploy an application that needs to connect
 to a database using a username and password, they'll be doing the following:
