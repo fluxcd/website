@@ -21,7 +21,7 @@ For more information, take a look at the following resources:
 ## Gitless GitOps
 
 Gitless GitOps was pioneered by the Flux team [back in 2022](https://github.com/fluxcd/flux2/pull/2601)
-with the introduction of the [OCIRepository](flux/components/source/ocirepositories/) source type and
+with the introduction of the [OCIRepository](/flux/components/source/ocirepositories/) source type and
 Flux OCI Artifact media type.
 
 In the Gitless GitOps model, the Flux controllers are fully decoupled from Git, relying solely on container registries
