@@ -34,6 +34,19 @@ If the `GITHUB_TOKEN` env var is not set, the bootstrap command will prompt you 
 
 You can also supply the token using a pipe e.g. `echo "<gh-token>" | flux bootstrap github`.
 
+{{% alert color="info" title="GitHub fine-grained PAT" %}}
+Bootstrap can be run with a GitHub [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens),
+for repositories that are created ahead of time.
+
+The fine-grained PAT must be generated with the following permissions:
+
+- `Administration` -> `Access: Read-only`
+- `Contents` -> `Access: Read and write`
+- `Metadata` -> `Access: Read-only`
+
+Note that `Administration` should be set to `Access: Read and write` when using `bootstrap github --token-auth=false`.
+{{% /alert %}}
+
 ## GitHub Personal Account
 
 If you want to bootstrap Flux for a repository owned by a personal account, you can generate a
@@ -75,19 +88,6 @@ it is recommended to create a dedicated user for Flux under your organization.
 Generate a GitHub PAT for the Flux user that can create repositories by checking all permissions under `repo`.
 
 If you want to use an existing repository, the Flux user must have `admin` permissions for that repository.
-
-{{% alert color="info" title="GitHub fine-grained PAT" %}}
-Bootstrap can be run with a GitHub [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens),
-for repositories that are created ahead of time by an organization admin.
-
-The fine-grained PAT must be generated with the following permissions:
-
-- `Administration` -> `Access: Read-only`
-- `Contents` -> `Access: Read and write`
-- `Metadata` -> `Access: Read-only`
-
-Note that `Administration` should be set to `Access: Read and write` when using `bootstrap github --token-auth=false`.
-{{% /alert %}}
 
 Run the bootstrap for a repository owned by a GitHub organization:
 
