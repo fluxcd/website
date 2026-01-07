@@ -40,10 +40,10 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 - **Helm integrations**
   - [ ] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
-  - [ ] [Reduce the mean time to recovery (MTTR) for Helm release](https://github.com/fluxcd/flux2/issues/5584)
+  - [ ] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/flux2/issues/5584)
 
 - **Kustomize integrations**
-  - [ ] [Reduce the mean time to recovery (MTTR) in case of a failed deployment](https://github.com/fluxcd/flux2/issues/5584)
+  - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/flux2/issues/5584)
 
 - **Alerting integrations**
   - [ ] [Support ArtifactGenerator notifications](https://github.com/fluxcd/notification-controller/issues/1207)
