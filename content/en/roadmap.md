@@ -45,6 +45,9 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 - **Kustomize integrations**
   - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/flux2/issues/5584)
 
+- **Git integrations**
+  - [x] [Support looking up GitHub App installation ID from repository owner](https://github.com/fluxcd/pkg/issues/1065)
+
 - **Alerting integrations**
   - [ ] [Support ArtifactGenerator notifications](https://github.com/fluxcd/notification-controller/issues/1207)
 
