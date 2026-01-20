@@ -5,7 +5,8 @@
 {{ range first 1 $.Site.Data.calendar }}
 📆 Next event: <span data-calrow-target="date">{{ .date }}</span> <span data-calrow-target="time">{{ .time }} UTC</span>:<br/>
 {{ .label }}<br/>
-Where: {{ safeURL .where }}
+Where: {{ .where|safeHTML}}
+<!--Where: {{ safeURL .where }}-->
 <span data-calrow-target="timestamp" aria-hidden="true" class="origtz">{{ .timestamp }}</span>
 
 {{ end }}
