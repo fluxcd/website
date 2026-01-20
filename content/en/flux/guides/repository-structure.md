@@ -8,6 +8,21 @@ weight: 10
 This guide walks you through several approaches of organizing repositories
 for a smooth GitOps experience with Flux.
 
+## Preface
+
+Flux by default uses all manifests in a directory and its subdirectories, unless
+it finds a `kustomization.yaml` file containing a Kubernetes kustomization
+(`kustomize.config.k8s.io/v1beta1`, not the Flux2 kind).
+
+If there is no `kustomization.yaml`, one will be generated on-the-fly, using all
+manifests found in the directory and its subdirectories.
+
+If there is a `kustomization.yaml` file, it is used directly. In this case, only
+the manifests mentioned in the file are being used.
+
+This is a nice way to exclude files from being used, in case those files are to
+be used by a second Flux Kustomization.
+
 ## Monorepo
 
 In a monorepo approach you would store all your Kubernetes manifests in a single Git repository.
