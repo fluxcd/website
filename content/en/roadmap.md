@@ -40,22 +40,24 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 - **Helm integrations**
   - [ ] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
-  - [ ] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/flux2/issues/5584)
+  - [x] [Add support for server-side apply](https://github.com/fluxcd/helm-controller/issues/1381)
+  - [ ] [Keep track of managed objects in `.status.inventory`](https://github.com/fluxcd/helm-controller/issues/1352)
+  - [ ] [Add support for custom health checks via CEL expressions](https://github.com/fluxcd/helm-controller/issues/1382)
 
 - **Kustomize integrations**
-  - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/flux2/issues/5584)
+  - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/kustomize-controller/pull/1536)
   - [x] [Introduce custom SSA stage](https://github.com/fluxcd/kustomize-controller/pull/1571)
 
 - **Git integrations**
   - [x] [Support looking up GitHub App installation ID from repository owner](https://github.com/fluxcd/pkg/issues/1065)
 
 - **Alerting integrations**
-  - [ ] [Support ArtifactGenerator notifications](https://github.com/fluxcd/notification-controller/issues/1207)
+  - [ ] [Support ArtifactGenerator notifications](https://github.com/fluxcd/source-watcher/issues/307)
 
 - **Source extensions**
   - [x] [Allow ExternalArtifact as a source in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/259)
   - [x] [Allow HelmChart as a source in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/260)
-  - [ ] [Implement tarball extraction in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/301)
+  - [x] [Implement tarball extraction in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/301)
 
 - **Conformance testing**
   - [x] End-to-end testing for Kubernetes 1.35
