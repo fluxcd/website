@@ -211,7 +211,20 @@ sops --age=age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg \
 --encrypt --encrypted-regex '^(data|stringData)$' --in-place basic-auth.yaml
 ```
 
-And finally set the decryption secret in the Flux Kustomization to `sops-age`.
+Alternatively you can add a `.sops.yaml` file to avoid providing the `--age` and `--encrypted-regex` every time:
+
+```yaml
+cat <<EOF > ./clusters/cluster0/.sops.yaml
+creation_rules:
+  - path_regex: .*.yaml
+    encrypted_regex: ^(data|stringData)$
+    age: age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg
+EOF
+
+sops --encrypt --in-place basic-auth.yaml
+```
+
+And finally set the decryption secret in the Flux Kustomization to `sops-age`. i.e `flux create kustomization  my-kustomization --source=GitRepository/my-repo --path="./kustomize/dev/" --prune=true --interval=1m   --decryption-provider sops --decryption-secret sops-age --export`
 
 ## Encrypting secrets using HashiCorp Vault
 
