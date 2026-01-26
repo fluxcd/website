@@ -39,10 +39,10 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
   - [ ] [Add support for verification with cosign v3](https://github.com/fluxcd/source-controller/issues/1923)
 
 - **Helm integrations**
-  - [ ] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
+  - [x] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
   - [x] [Add support for server-side apply](https://github.com/fluxcd/helm-controller/issues/1381)
-  - [ ] [Keep track of managed objects in `.status.inventory`](https://github.com/fluxcd/helm-controller/issues/1352)
-  - [ ] [Add support for custom health checks via CEL expressions](https://github.com/fluxcd/helm-controller/issues/1382)
+  - [x] [Add support for custom health checks via CEL expressions](https://github.com/fluxcd/helm-controller/issues/1382)
+  - [x] [Keep track of managed objects in `.status.inventory`](https://github.com/fluxcd/helm-controller/issues/1352)
 
 - **Kustomize integrations**
   - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/kustomize-controller/pull/1536)
