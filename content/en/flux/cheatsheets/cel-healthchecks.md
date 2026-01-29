@@ -7,9 +7,10 @@ weight: 31
 
 ## About
 
-The Kustomization API supports defining custom logic for performing health
-checks on custom resources through the field
-[`.spec.healthCheckExprs`](/flux/components/kustomize/kustomizations/#health-check-exprs).
+The Kustomization and HelmRelease APIs support defining custom logic for performing health
+checks on custom resources through the field `.spec.healthCheckExprs`. See the documentation
+for [Kustomization](/flux/components/kustomize/kustomizations/#health-check-expressions) and
+[HelmRelease](/flux/components/helm/helmreleases/#health-check-expressions) for more details.
 This field accepts a set of Common Expression Language (CEL) expressions.
 
 Here you can find a set of community-maintained CEL expressions for popular
