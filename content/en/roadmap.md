@@ -36,11 +36,12 @@ The primary goal of this milestone is to add support for Helm v4 to helm-control
 and to reduce the mean time to recovery (MTTR) for app deployments.
 
 - **OCI integrations**
-  - [ ] [Add support for verification with cosign v3](https://github.com/fluxcd/source-controller/issues/1923)
+  - [x] [Add support for verification with cosign v3](https://github.com/fluxcd/source-controller/issues/1923)
 
 - **Helm integrations**
   - [x] [Add support for Helm v4 to helm-controller](https://github.com/fluxcd/helm-controller/issues/1300)
   - [x] [Add support for server-side apply](https://github.com/fluxcd/helm-controller/issues/1381)
+  - [x] [Reduce the mean time to recovery (MTTR) in case of failed deployments](https://github.com/fluxcd/helm-controller/pull/1392)
   - [x] [Add support for custom health checks via CEL expressions](https://github.com/fluxcd/helm-controller/issues/1382)
   - [x] [Keep track of managed objects in `.status.inventory`](https://github.com/fluxcd/helm-controller/issues/1352)
 
