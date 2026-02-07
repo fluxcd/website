@@ -580,6 +580,12 @@ To perform this step using the `aws` CLI, you can use the following command:
 Finally, set the provider field of the Flux resources as described in the
 [controller level](#at-the-controller-level) section.
 
+#### Cross-account support for EKS Pod Identity
+
+For cross-account support with EKS Pod Identity, please see the following guide:
+
+https://aws.amazon.com/blogs/containers/amazon-eks-pod-identity-streamlines-cross-account-access/
+
 ### With OIDC Federation
 
 [OIDC Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)
@@ -678,6 +684,12 @@ metadata:
 Configuring Flux to use a Kubernetes Service Account to authenticate with
 AWS can be done either [at the object level](#at-the-object-level) or
 [at the controller level](#at-the-controller-level).
+
+#### Cross-account support for OIDC Federation
+
+For cross-account support with OIDC Federation, please see the following guide:
+
+https://docs.aws.amazon.com/eks/latest/userguide/cross-account-access.html
 
 ### With IAM User Access Keys
 
