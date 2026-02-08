@@ -30,7 +30,7 @@ The GitHub PAT can be exported as an environment variable:
 export GITHUB_TOKEN=<gh-token>
 ```
 
-If the `GITHUB_TOKEN` env var is not set, the bootstrap command will prompt you to type it the token.
+If the `GITHUB_TOKEN` env var is not set, the bootstrap command will prompt you to type the token.
 
 You can also supply the token using a pipe e.g. `echo "<gh-token>" | flux bootstrap github`.
 
