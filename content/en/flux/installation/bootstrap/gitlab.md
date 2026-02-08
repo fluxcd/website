@@ -30,7 +30,7 @@ The GitLab PAT can be exported as an environment variable:
 export GITLAB_TOKEN=<gl-token>
 ```
 
-If the `GITLAB_TOKEN` env var is not set, the bootstrap command will prompt you to type it the token.
+If the `GITLAB_TOKEN` env var is not set, the bootstrap command will prompt you to type the token.
 
 You can also supply the token using a pipe e.g. `echo "<gl-token>" | flux bootstrap gitlab`.
 

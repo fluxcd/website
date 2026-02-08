@@ -36,7 +36,7 @@ The Bitbucket HTTP access token can be exported as an environment variable:
 export BITBUCKET_TOKEN=<bb-token>
 ```
 
-If the `BITBUCKET_TOKEN` env var is not set, the bootstrap command will prompt you to type it the token.
+If the `BITBUCKET_TOKEN` env var is not set, the bootstrap command will prompt you to type the token.
 You can also supply the token using a pipe e.g. `echo "<bb-token>" | flux bootstrap bitbucket-server`.
 
 ## Bitbucket Personal Account

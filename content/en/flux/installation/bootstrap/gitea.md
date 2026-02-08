@@ -50,7 +50,7 @@ The Gitea PAT can be exported as an environment variable:
 export GITEA_TOKEN=<gt-token>
 ```
 
-If the `GITEA_TOKEN` env var is not set, the bootstrap command will prompt you to type it the token.
+If the `GITEA_TOKEN` env var is not set, the bootstrap command will prompt you to type the token.
 
 You can also supply the token using a pipe e.g. `echo "<gt-token>" | flux bootstrap gitea`.
 
