@@ -309,6 +309,10 @@ version in the `main` branch when a new controller version is released.
 
 8. Add the `backport/v2.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
 
+9. Fork a branch in the `github.com/fluxcd/pkg` repository called `flux/v2.2.x` from the `main` branch.
+   This branch will be used to backport any changes to the `pkg` repository that need to be included in
+   patch releases for the `v2.2` minor release.
+
 ##### Distribution: minor release website
 
 The website at [fluxcd.io](https://fluxcd.io) always reflects the latest Flux minor version. Each Flux minor release is
