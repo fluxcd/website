@@ -53,7 +53,10 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
   - [x] [Support looking up GitHub App installation ID from repository owner](https://github.com/fluxcd/pkg/issues/1065)
 
 - **Alerting integrations**
-  - [ ] [Support ArtifactGenerator notifications](https://github.com/fluxcd/source-watcher/issues/307)
+  - [x] [Support ArtifactGenerator notifications](https://github.com/fluxcd/source-watcher/issues/307)
+  - [x] [Introduce `githubpullrequestcomment` notification provider](https://github.com/fluxcd/notification-controller/pull/1230)
+  - [x] [Introduce `gitlabmergerequestcomment` notification provider](https://github.com/fluxcd/notification-controller/pull/1231)
+  - [x] [Introduce `giteapullrequestcomment` notification provider](https://github.com/fluxcd/notification-controller/pull/1234)
 
 - **Source extensions**
   - [x] [Allow ExternalArtifact as a source in ArtifactGenerator](https://github.com/fluxcd/source-watcher/issues/259)
