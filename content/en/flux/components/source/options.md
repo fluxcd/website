@@ -88,4 +88,6 @@ please see the [bootstrap customization guide](/flux/installation/configuration/
 
 ### Feature Gates
 
-No feature gates are currently available for source-watcher.
+| Name                 | Default Value | Description                                                                                                                                                                                                               |
+|----------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `DirectSourceFetch`  | `false`       | Enables fetching source objects (GitRepository, OCIRepository, Bucket, HelmChart, ExternalArtifact) directly from the API server using APIReader, bypassing the controller's cache. This can be useful when immediate consistency is required for source object reads. |
