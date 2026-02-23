@@ -97,7 +97,7 @@ We expect users to keep Flux up-to-date on their clusters using automation tools
 such as [Flux GitHub Actions](/flux/flux-gh-action.md) and
 [Renovatebot](https://docs.renovatebot.com/modules/manager/flux/).
 
-Various vendors such as Microsoft Azure, D2iQ, Weaveworks and others offer a managed Flux service,
+Various vendors such as [ControlPlane](https://fluxoperator.dev/enterprise/), Microsoft Azure, D2iQ and others offer a managed Flux service,
 and it's their responsibility to keep Flux up-to-date and free of CVEs.
 The Flux team communicates security issues to vendors as described in the
 [Coordinated Vulnerability Disclosure document](https://github.com/fluxcd/.github/blob/14b735cdb23ec80d528ff4f71e562405a2f00639/CVD_LIST.md).
