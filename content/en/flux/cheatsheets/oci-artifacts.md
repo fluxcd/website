@@ -35,8 +35,8 @@ The Flux CLI commands for managing OCI artifacts are:
 {{% alert color="info" title="OCI Artifact content" %}}
 While this guide refers to Kubernetes YAMLs as the manifests which are bundled in an OCI artifact,
 any type of configuration can be published with the Flux CLI.
-For example the [tf-controller](https://github.com/weaveworks/tf-controller)
-(A Flux controller created by Weaveworks) expects for Terraform files to be included in the OCI artifact.
+For example the [tofu-controller](https://github.com/flux-iac/tofu-controller)
+expects for Terraform files to be included in the OCI artifact.
 {{% /alert %}}
 
 The OCI artifacts produced with `flux push artifact` have the following custom media types:
