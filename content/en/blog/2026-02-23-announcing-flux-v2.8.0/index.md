@@ -112,7 +112,7 @@ Get started by installing the latest version of Flux Operator and following the 
 
 ### Preview environments
 
-Flux Operator's [ResourceSet API](https://fluxoperator.dev/docs/resourcesets/) makes it easy to
+Flux Operator's [ResourceSet API](https://fluxoperator.dev/docs/crd/resourceset/) makes it easy to
 deploy ephemeral preview environments from GitHub Pull Requests and GitLab Merge Requests. With
 Flux 2.8, closing the feedback loop on these environments is now much simpler thanks to new
 notification-controller provider types: `githubpullrequestcomment`, `gitlabmergerequestcomment`
