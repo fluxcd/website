@@ -28,6 +28,8 @@ clarification.
     * [Minor release website](#distribution-minor-release-website)
     * [Patch releases](#distribution-patch-releases)
     * [Release candidates](#distribution-release-candidates)
+    * [Release notes](#distribution-release-notes)
+    * [Release and EOL notice update](#distribution-release-and-eol-notice-update)
 - [Backport changes for patch releases](#backport-changes-for-patch-releases)
   + [Manual backporting](#manual-backporting)
 
@@ -96,7 +98,7 @@ To release a [controller](controllers.md) as a project maintainer, follow the
 steps below. Note that the release procedure differs depending on the type of
 release.
 
-##### Controllers: minor releases
+#### Controllers: minor releases
 
 1. Checkout the `main` branch and pull changes from the remote repository.
 
@@ -157,7 +159,7 @@ release.
 
 10. Add the `backport/v1.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
 
-##### Controllers: patch releases
+#### Controllers: patch releases
 
 1. Ensure everything to be included in the release is backported to the
    "release series" branch (e.g., `release/v1.2.x`). If not, refer to the
@@ -313,7 +315,7 @@ version in the `main` branch when a new controller version is released.
    This branch will be used to backport any changes to the `pkg` repository that need to be included in
    patch releases for the `v2.2` minor release.
 
-##### Distribution: minor release website
+#### Distribution: minor release website
 
 The website at [fluxcd.io](https://fluxcd.io) always reflects the latest Flux minor version. Each Flux minor release is
 reflected by a respective branch in the [website repo](https://github.com/fluxcd/website), i.e. for Flux 2.3, the
@@ -405,7 +407,7 @@ the final (non-RC) release should follow the procedure for [patch releases](#dis
 The release notes template for Flux distributions is available in the
 [release-notes-template.md](https://github.com/fluxcd/flux2/blob/main/docs/release/release-notes-template.md) file.
 
-#### Distribution: Release and EOL notice update
+#### Distribution: release and EOL notice update
 
 Release and support cadence information is published at https://endoflife.date/flux. The source of truth for that page
 is maintained in [this Git repository](https://github.com/endoflife-date/endoflife.date/blob/master/products/flux.md).
