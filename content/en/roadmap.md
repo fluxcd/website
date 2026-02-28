@@ -30,7 +30,7 @@ may be postponed to the next milestone.
 
 ### v2.8 (Q1 2026)
 
-**Status**: In Progress
+**Status**: Completed - [Flux v2.8 GA](https://fluxcd.io/blog/2026/02/flux-v2.8.0/)
 
 The primary goal of this milestone is to add support for Helm v4 to helm-controller,
 and to reduce the mean time to recovery (MTTR) for app deployments.
@@ -75,7 +75,7 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 ### v2.9 (Q2 2026)
 
-**Status**: Provisional
+**Status**: In Progress
 
 The primary goal of this milestone is to add support for Helm [Chart API v3](https://helm.sh/de/community/hips/hip-0020),
 and extend Flux server-side apply with field ignore rules.
@@ -85,10 +85,11 @@ and extend Flux server-side apply with field ignore rules.
   - [ ] Add support for Helm Chart API v3 to helm-controller
 
 - **Kustomize integrations**
+  - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
   - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
 
-- **Alerting integrations**
-  - [ ] [Add support for posting comments to GitHub/GitLab](https://github.com/fluxcd/notification-controller/issues/1073)
+- **Git integrations**
+  - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
 
 - **Source extensions**
   - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
