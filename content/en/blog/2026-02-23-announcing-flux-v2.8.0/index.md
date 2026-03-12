@@ -80,6 +80,12 @@ up as soon as it lands.
 For observability, a new `HealthCheckCanceled` reason is added to the `Ready` condition when this
 happens.
 
+### Note for helm-controller
+
+When enabling `CancelHealthCheckOnNewRevision` for helm-controller, enabling
+`DefaultToRetryOnFailure` together is recommended. HelmReleases are more prone to get stuck after
+the cancellation when using the default retry configuration (no retries).
+
 This feature gate is opt-in for now, and we plan to enable it by default once the implementation is
 stable across both controllers.
 
