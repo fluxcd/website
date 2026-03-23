@@ -8,7 +8,7 @@ weight: 30
 Welcome Helm users!
 We think Flux's Helm Controller is the best way to do Helm according to GitOps principles,
 and we're dedicated to doing what we can to help you feel the same way.
-[Flux supports Helm v4!](../blog/2026/02/flux-v2.8.0/) Stay tuned for updates to this doc for added ways that Flux benefits Helm users.
+[Flux supports Helm v4!](https://fluxcd.io/blog/2026/02/flux-v2.8.0/) Stay tuned for updates to this doc for added ways that Flux benefits Helm users.
 
 ## What Does Flux add to Helm?
 
