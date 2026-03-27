@@ -8,12 +8,13 @@ weight: 30
 Welcome Helm users!
 We think Flux's Helm Controller is the best way to do Helm according to GitOps principles,
 and we're dedicated to doing what we can to help you feel the same way.
+[Flux supports Helm v4!](https://fluxcd.io/blog/2026/02/flux-v2.8.0/) Stay tuned for updates to this doc for added ways that Flux benefits Helm users.
 
 ## What Does Flux add to Helm?
 
-Helm 3 was designed with both a client and an SDK, but no running software agents.
-This architecture intended anything outside of the client scope to be addressed by other tools in the ecosystem,
-which could then make use of Helm's SDK.
+Flux uses Helm's SDK so that you can maximize Helm's capabilities and minimize manual work and repetition. 
+Flux follows Helm's architecture and intention (since Helm 3) to have tools in the Helm ecosystem provide enriched capabilities so that the Helm team can focus on core scope.
+Since Helm 3, Helm is designed with both a client and an SDK, but no running software agents. This means that the Helm team can focus on the client and projects such as Flux can add value via Helm's SDK.
 
 Built on Kubernetes controller-runtime, Flux's Helm Controller is an example of a mature software
 agent that uses Helm's SDK to full effect.
