@@ -90,9 +90,16 @@ and extend Flux server-side apply with field ignore rules.
 
 - **Git integrations**
   - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
+  - [ ] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
+
+- **OCI integrations**
+  - [ ] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
 
 - **Source extensions**
   - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
+
+- **CLI extensions**
+  - [ ] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.36
