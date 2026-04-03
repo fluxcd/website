@@ -47,6 +47,15 @@ brew install fluxcd/tap/flux
 ```
 
 {{% /tab %}}
+{{% tab header="Mise" %}}
+
+With [Mise](https://github.com/jdx/mise) for macOS and Linux:
+
+```sh
+mise use -g flux2@latest
+```
+
+{{% /tab %}}
 {{% tab header="bash" %}}
 
 With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
