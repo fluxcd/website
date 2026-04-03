@@ -125,6 +125,7 @@ can be done via Git push, without the need to connect to the Kubernetes API.
 Flux integrates with popular Git providers to simplify the
 initial setup of deploy keys and other authentication mechanisms:
 
+* [Gitea](./bootstrap/gitea.md)
 * [GitHub](./bootstrap/github.md)
 * [GitLab](./bootstrap/gitlab.md)
 * [Bitbucket](./bootstrap/bitbucket.md)
