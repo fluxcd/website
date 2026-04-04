@@ -15,9 +15,6 @@ adopters:
     - name: Nexxiot
       url: https://www.nexxiot.com
       logo: logos/nexxiot.png
-    - name: Yad2
-      url: https://www.yad2.co.il
-      logo: logos/yad2.png
     - name: SoulCycle
       url: https://www.soul-cycle.com
       logo: logos/soulcycle.png
@@ -54,15 +51,9 @@ adopters:
     - name: Quivr
       url: https://quivr.be
       logo: logos/quivr.svg
-    - name: HybridK8s
-      url: https://hybridk8s.tech
-      logo: logos/hybridk8s.png
     - name: D2iQ
       url: https://d2iq.com
       logo: logos/d2iq.png
-    - name: particule.
-      url: https://particule.io
-      logo: logos/particule.svg
     - name: FourteenFish
       url: https://www.fourteenfish.com
       logo: logos/fourteenfish.png
@@ -99,9 +90,6 @@ adopters:
     - name: William & Mary
       url: https://www.wm.edu
       logo: logos/william-and-mary.svg
-    - name: 23 Technologies GmbH
-      url: https://www.23technologies.cloud
-      logo: logos/23technologies.png
     - name: DKB Codefactory
       url: https://www.dkbcodefactory.com
       logo: logos/dkb-codefactory.png
@@ -165,9 +153,6 @@ adopters:
     - name: SisID
       url: https://sis-id.com/
       logo: logos/sis-id.png
-    - name: FHE3
-      url: https://www.fhe3.com/
-      logo: logos/fhe3.png
     - name: Qualifio
       url: https://qualifio.com
       logo: logos/qualifio.png
@@ -183,9 +168,6 @@ adopters:
     - name: Media&shy;Markt&shy;Saturn
       url: https://www.mediamarktsaturn.com
       logo: logos/mms-technology.svg
-    - name: QuickTable
-      url: https://www.quicktable.io/
-      logo: logos/quicktable.png
     - name: TraefikLabs
       url: https://traefik.io/
       logo: logos/traefiklabs.svg
@@ -198,9 +180,6 @@ adopters:
     - name: NexHealth
       url: https://nexhealth.com/
       logo: logos/nexhealth.svg
-    - name: NovaID
-      url: https://novaid.vn/
-      logo: logos/novaid.png
     - name: Cyera
       url: https://cyera.io/
       logo: logos/cyera.svg
@@ -363,9 +342,6 @@ adopters:
     - name: Beekeeper AG
       url: https://www.beekeeper.io/
       logo: logos/beekeeper.png
-    - name: Encryptum
-      url: https://encryptum.io
-      logo: logos/encryptum.png
     - name: Sopra Steria
       url: https://www.soprasteria.com
       logo: logos/soprasteria.png
@@ -375,9 +351,6 @@ adopters:
     - name: Sophotech
       url: https://sopho.tech
       logo: logos/sophotech.svg
-    - name: GuaridOS
-      url: https://guaridos.me/
-      logo: logos/guaridos.png
     - name: Recodive
       url: https://recodive.com
       logo: logos/recodive.png
