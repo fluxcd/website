@@ -125,12 +125,13 @@ can be done via Git push, without the need to connect to the Kubernetes API.
 Flux integrates with popular Git providers to simplify the
 initial setup of deploy keys and other authentication mechanisms:
 
+* [Gitea](./bootstrap/gitea.md)
 * [GitHub](./bootstrap/github.md)
 * [GitLab](./bootstrap/gitlab.md)
 * [Bitbucket](./bootstrap/bitbucket.md)
 * [Azure DevOps](./bootstrap/azure-devops.md)
 * [Google Cloud Source](./bootstrap/google-cloud-source.md)
-* [Oracle Cloud Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
+* [Oracle VBS Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
 
 If your Git provider is not in the above list,
 please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)
