@@ -25,8 +25,6 @@ adopters:
       url: https://avisi.nl
     - name: B3i
       url: https://b3i.tech/
-    - name: Babylon Health
-      url: https://www.babylonhealth.com/
     - name: Belvo
       url: https://belvo.com/
     - name: bimspot
@@ -65,8 +63,6 @@ adopters:
     - name: DoneOps
       url: https://www.doneops.com/
       logo: logos/doneops.svg
-    - name: Duedil
-      url: https://www.duedil.com/
     - name: Enliven Systems
       url: https://enliven.systems
       logo: logos/enliven-systems.png
@@ -103,7 +99,7 @@ adopters:
     - name: loveholidays
       url: https://www.loveholidays.com/
     - name: LUNAR
-      url: https://www.lunarway.com/
+      url: https://www.lunar.app/
     - name: Media&shy;Markt&shy;Saturn
       url: https://www.mediamarktsaturn.com
       logo: logos/mms-technology.svg
@@ -161,8 +157,6 @@ adopters:
       url: https://www.underarmour.com
     - name: VSHN
       url: https://vshn.ch
-    - name: Verifa Oy
-      url: https://verifa.io/
     - name: Walmart Chile
       url: https://www.walmartchile.cl
     - name: Wildlife Studios
@@ -171,23 +165,11 @@ adopters:
       url: https://www.workable.com
     - name: Workarea
       url: https://www.workarea.com
-    - name: Working Group Two
-      url: https://wgtwo.com
-    - name: Yad2
-      url: https://yad2.co.il
-      logo: logos/yad2.png
-    - name: Yusofleet
-      url: https://yusofleet.com
-    - name: Zaaksysteem
-      url: https://zaaksysteem.nl
     - name: Zwift
       url: https://zwift.com
     - name: TietoEVRY
       url: https://www.tietoevry.com/
       logo: logos/tietoevry.png
-    - name: particule.
-      url: https://particule.io
-      logo: logos/particule.svg
     - name: VNClagoon
       url: https://vnclagoon.com
       logo: logos/vnclagoon.png
