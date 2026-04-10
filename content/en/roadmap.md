@@ -86,6 +86,7 @@ and extend Flux server-side apply with field ignore rules.
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
+  - [x] [Add `.spec.buildMetadata` optional field to Kustomization API](https://github.com/fluxcd/kustomize-controller/pull/1632)
   - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
 
 - **Git integrations**
@@ -100,6 +101,9 @@ and extend Flux server-side apply with field ignore rules.
 
 - **CLI extensions**
   - [ ] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
+  - [x] [Add `flux create secret receiver` command](https://github.com/fluxcd/flux2/pull/5835)
+  - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
+  - [x] [Add `--show-source` to `flux get ks` and `flux get hr` commands](https://github.com/fluxcd/flux2/pull/5828)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.36
