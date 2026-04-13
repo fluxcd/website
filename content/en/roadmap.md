@@ -104,6 +104,7 @@ and extend Flux server-side apply with field ignore rules.
   - [x] [Add `flux create secret receiver` command](https://github.com/fluxcd/flux2/pull/5835)
   - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
   - [x] [Add `--show-source` to `flux get ks` and `flux get hr` commands](https://github.com/fluxcd/flux2/pull/5828)
+  - [x] [Add `--in-memory-build` to `flux build ks` and `flux diff ks` commands](https://github.com/fluxcd/flux2/pull/5794)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.36
