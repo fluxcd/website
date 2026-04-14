@@ -363,3 +363,6 @@ adopters:
     - name: Astrona
       url: https://astrona.io
       logo: logos/astrona.io-logo.jpg
+    - name: Scaleway
+      url: https://www.scaleway.com
+      logo: logos/scaleway.svg
