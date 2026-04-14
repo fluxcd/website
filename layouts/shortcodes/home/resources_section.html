@@ -1,5 +1,5 @@
-{{ $resources := $.Site.Data.resources.resources }}
+{{ $resources := sort $.Site.Data.resources.resources "date" "desc" }}
 
-{{ range first 3 (where $resources "description" "!=" nil) }}
+{{ range first 3 $resources }}
     {{ partial "resource.html" . }}
 {{ end }}
