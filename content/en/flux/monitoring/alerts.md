@@ -78,7 +78,7 @@ spec:
       name: '*'
 ```
 
-Apply the above files or commit them to the your bootstrap repository.
+Apply the above files or commit them to your bootstrap repository.
 
 To verify that the alert has been acknowledged by the notification controller do:
 
