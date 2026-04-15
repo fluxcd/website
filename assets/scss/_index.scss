@@ -64,7 +64,7 @@ main.td-main {
     p.next-event {
       padding-bottom: 45px;
       padding-top: 20px;
-      font-size: 32px;
+      font-size: 24px;
       span.origtz {
         display: none;
       }
@@ -85,7 +85,12 @@ main.td-main {
     color: $flux-white;
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0.85rem 0;
+    margin: 0.85rem 0 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   img {
@@ -93,7 +98,9 @@ main.td-main {
   }
  
   .col-lg-4 {
+    position: relative;
     padding: 0 2rem !important;
+    padding-bottom: 3.25rem !important;
   }
 }
 
