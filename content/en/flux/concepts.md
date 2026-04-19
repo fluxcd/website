@@ -9,9 +9,9 @@ These are some core concepts in Flux.
 ## GitOps
 
 GitOps is a way of managing your infrastructure and applications so that whole system
-is described declaratively and version controlled (most likely in a Git repository),
-and having an automated process that ensures that the deployed environment
-matches the state specified in a repository.
+is described declaratively and version controlled, and having an automated process
+that ensures that the deployed environment matches the state specified
+in one or more Git repositories.
 
 For more information, take a look at the following resources:
 
@@ -36,6 +36,7 @@ For more information, take a look at the following resources:
 
 * [Flux OCI Artifacts documentation](/flux/cheatsheets/oci-artifacts/)
 * [OCI Bootstrap with Flux Operator](/flux/installation/#bootstrap-with-flux-operator)
+* [Gitless GitOps overview](https://fluxoperator.dev/gitless-gitops/)
 
 ## GitOps Toolkit (gotk)
 
