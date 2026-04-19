@@ -100,6 +100,74 @@ and run `terraform apply`.
 
 The upgrade performed with Terraform behaves in the same way as the [upgrade with Flux CLI](#upgrade-with-flux-cli).
 
+### Upgrade with Flux Operator
+
+If you've used the [Flux Operator](https://fluxoperator.dev/) to deploy Flux,
+first update the operator to the latest version, then update the `FluxInstance` resource
+to specify the latest Flux minor version.
+
+The Flux Operator can be automatically updated by creating a [ResourceSet](https://fluxoperator.dev/docs/crd/resourceset/)
+that references the latest version of the operator's [Helm chart](https://fluxoperator.dev/docs/charts/flux-operator/):
+
+```yaml
+apiVersion: fluxcd.controlplane.io/v1
+kind: ResourceSet
+metadata:
+  name: flux-operator
+  namespace: flux-system
+spec:
+  inputs:
+    - version: "*"
+      interval: 12h
+  resources:
+   - apiVersion: source.toolkit.fluxcd.io/v1
+     kind: OCIRepository
+     metadata:
+      name: << inputs.provider.name >>
+      namespace: << inputs.provider.namespace >>
+     spec:
+      interval: << inputs.provider.interval >>
+      url: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
+      layerSelector:
+        mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+        operation: copy
+      ref:
+        semver: << inputs.version | quote >>
+   - apiVersion: helm.toolkit.fluxcd.io/v2
+     kind: HelmRelease
+     metadata:
+        name: << inputs.provider.name >>
+        namespace: << inputs.provider.namespace >>
+     spec:
+      interval: 1h
+      releaseName: << inputs.provider.name >>
+      serviceAccountName: << inputs.provider.name >>
+      upgrade:
+        strategy:
+          name: RetryOnFailure
+      chartRef:
+        kind: OCIRepository
+        name: << inputs.provider.name >>
+```
+
+After the operator is up-to-date, if there is a new Flux minor version available,
+update the `FluxInstance` resource to specify the latest version:
+
+```yaml
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  distribution:
+    version: "2.8.x" # update to the latest minor version
+```
+
+Note that both the `ResourceSet` and the `FluxInstance` resources should
+be placed in the `clusters/<cluster>/flux-system` directory of the Git repository
+used to bootstrap Flux with the operator.
+
 ### Upgrade with kubectl
 
 If you've installed Flux directly on the cluster with kubectl,
