@@ -134,6 +134,14 @@ To scan a controller image with Trivy:
 trivy image ghcr.io/fluxcd/source-controller:v1.0.0
 ```
 
+Alternatively, the SBOM can be used to scan for vulnerabilities using
+[Grype](https://github.com/anchore/grype):
+
+```shell
+curl -sL https://github.com/fluxcd/flux2/releases/download/v2.0.0/flux_2.0.0_sbom.spdx.json -o flux_sbom.spdx.json
+grype sbom:flux_sbom.spdx.json
+```
+
 We ask users to keep Flux up-to-date on their clusters,
 this is the only way to ensure a Flux deployment is free of CVEs.
 New Flux versions are [published periodically](/flux/releases/#release-cadence),
