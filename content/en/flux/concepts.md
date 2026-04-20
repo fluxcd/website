@@ -71,7 +71,7 @@ For more information, take a look at
 
 ## Reconciliation
 
-Reconciliation refers to ensuring that a given state (e.g. application running in the cluster, infrastructure)
+*Reconciliation* refers to ensuring that a given state (e.g. application running in the cluster, infrastructure)
 matches a desired state declaratively defined somewhere (e.g. a Git repository).
 
 There are various examples of these in Flux:
