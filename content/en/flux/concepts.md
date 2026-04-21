@@ -8,7 +8,7 @@ These are some core concepts in Flux.
 
 ## GitOps
 
-GitOps is a way of managing your infrastructure and applications so that whole system
+*GitOps* is a way of managing your infrastructure and applications so that whole system
 is described declaratively and version controlled, and having an automated process
 that ensures that the deployed environment matches the state specified
 in one or more Git repositories.
@@ -20,7 +20,7 @@ For more information, take a look at the following resources:
 
 ## Gitless GitOps
 
-Gitless GitOps was pioneered by the Flux team [back in 2022](https://github.com/fluxcd/flux2/pull/2601)
+*Gitless GitOps* was pioneered by the Flux team [back in 2022](https://github.com/fluxcd/flux2/pull/2601)
 with the introduction of the [OCIRepository](/flux/components/source/ocirepositories/) source type and
 Flux OCI Artifact media type.
 
@@ -40,7 +40,7 @@ For more information, take a look at the following resources:
 
 ## GitOps Toolkit (gotk)
 
-In Flux, GitOps Toolkit refers to a collection of specialized tools, Flux Controllers, composable APIs,
+In Flux, *GitOps Toolkit* refers to a collection of specialized tools, Flux Controllers, composable APIs,
 and reusable Go packages available under the fluxcd GitHub organization. These components are designed
 for the purpose of constructing Continuous Delivery workflows on Kubernetes using GitOps principles.
 The GitOps Toolkit serves as the foundation for managing and automating the deployment and configuration
@@ -96,7 +96,7 @@ and the [Kustomization CRD](/flux/components/kustomize/kustomizations/).
 
 ## Bootstrap
 
-The process of installing the Flux components in a GitOps manner is called a bootstrap.
+The process of installing the Flux components in a GitOps manner is called a *bootstrap*.
 The manifests are applied to the cluster, a `GitRepository` and `Kustomization`
 are created for the Flux components, then the manifests are pushed to an existing Git repository
 (or a new one is created). Flux can manage itself just as it manages other resources.
@@ -107,20 +107,20 @@ For more information, take a look at [the bootstrap documentation](/flux/install
 
 ## Continuous Delivery
 
-Continuous Delivery refers to the practice of delivering software updates frequently and reliably. 
+*Continuous Delivery* refers to the practice of delivering software updates frequently and reliably. 
 
 For more information, take a look at continuous delivery as defined in the [CNCF](https://glossary.cncf.io/continuous-delivery/).
 
 ## Continuous Deployment
 
-Continuous Deployment is the practice of automatically deploying code changes to production
+*Continuous Deployment* is the practice of automatically deploying code changes to production
 once they have passed through automated testing. 
 
 For more information, take a look at continuous delivery as defined in the [CNCF Glossary](https://glossary.cncf.io/continuous-delivery/).
 
 ## Progressive Delivery
 
-Progressive Delivery builds on Continuous Delivery by gradually rolling out new features or
+*Progressive Delivery* builds on Continuous Delivery by gradually rolling out new features or
 updates to a subset of users, allowing developers to test and monitor the new features in
 a controlled environment and make necessary adjustments before releasing them to everyone.
 
