@@ -83,11 +83,13 @@ and extend Flux server-side apply with field ignore rules.
 - **Helm integrations**
   - [ ] Add support for Helm Chart API v3 to source-controller
   - [ ] Add support for Helm Chart API v3 to helm-controller
+  - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
   - [x] [Add `.spec.buildMetadata` optional field to Kustomization API](https://github.com/fluxcd/kustomize-controller/pull/1632)
   - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+  - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
 
 - **Git integrations**
   - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
