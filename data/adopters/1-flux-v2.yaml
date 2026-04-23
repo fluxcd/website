@@ -366,3 +366,6 @@ adopters:
     - name: Scaleway
       url: https://www.scaleway.com
       logo: logos/scaleway.svg
+    - name: Hetzner
+      url: https://hetzner.com
+      logo: logos/hetzner.svg
