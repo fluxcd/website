@@ -84,6 +84,7 @@ and extend Flux server-side apply with field ignore rules.
   - [ ] Add support for Helm Chart API v3 to source-controller
   - [ ] Add support for Helm Chart API v3 to helm-controller
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
+  - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (breaking change: default post-render strategy changed from `nohooks` to `combined`)
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
