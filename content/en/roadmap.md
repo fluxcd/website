@@ -84,7 +84,7 @@ and extend Flux server-side apply with field ignore rules.
   - [ ] Add support for Helm Chart API v3 to source-controller
   - [ ] Add support for Helm Chart API v3 to helm-controller
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
-  - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (breaking change: default post-render strategy changed from `nohooks` to `combined`)
+  - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (**⚠️ breaking change**: default post-render strategy changed from `nohooks` to `combined`)
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
@@ -94,10 +94,13 @@ and extend Flux server-side apply with field ignore rules.
 
 - **Git integrations**
   - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
-  - [ ] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
+  - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
 - **OCI integrations**
   - [ ] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
+
+- **Alerting integrations**
+  - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
 
 - **Source extensions**
   - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
