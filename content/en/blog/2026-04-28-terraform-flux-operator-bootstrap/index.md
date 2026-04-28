@@ -1,6 +1,6 @@
 ---
 author: Matheus Pimenta
-date: 2026-04-28 12:00:00+00:00
+date: 2026-04-28 09:00:00+00:00
 title: Bootstrapping Flux with Terraform, the right way
 description: "A Terraform module that bootstraps Flux Operator without fighting Flux for resource ownership, keeps secrets out of state, runs in the same root module as the cluster, and handles platform prerequisites that Flux itself depends on."
 url: /blog/2026/04/terraform-flux-operator-bootstrap/
