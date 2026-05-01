@@ -297,6 +297,374 @@ The recommendations below are based on Flux's latest version.
     - Confirm that the [Network Policy](/flux/flux-e2e/#fluxs-default-configuration-for-networkpolicy) objects created by Flux are being enforced by the CNI. Alternatively, run a tool such as [Cyclonus](https://github.com/mattfenwick/cyclonus) or [Sonobuoy](https://github.com/vmware-tanzu/sonobuoy) to validate NetworkPolicy enforcement by the CNI plugin on your cluster.
   </details>
 
+### External Endpoint Inputs
+
+Several Flux APIs accept URLs and addresses as input fields that the
+controllers dereference on behalf of tenants. In a shared cluster, a tenant
+with permission to create these resources can supply an endpoint of their
+choosing, exposing the controllers to Server-Side Request Forgery (SSRF).
+Three attack types stem from this same input vector and must be addressed
+together: credential exfiltration to an attacker-controlled URL, probing of
+internal endpoints (including the cloud metadata service) that the tenant
+cannot reach directly, and oracle attacks in which the tenant reads response
+data echoed back through the controller's status conditions and Events.
+
+Flux deliberately does not implement allowlists or URL parsing logic in the
+controllers. The recommendations below combine Kubernetes-native controls
+applied at admission, at the controllers' egress, and at the identity layer.
+They are complementary and should all be applied.
+
+- Ensure tenants cannot configure arbitrary URLs in Flux resources by
+  enforcing a `ValidatingAdmissionPolicy` against the direct URL fields
+  exposed by the Flux APIs.
+
+  <details>
+    <summary>Rationale</summary>
+
+    The user-facing direct URL inputs are `GitRepository.spec.url`,
+    `OCIRepository.spec.url`, `HelmRepository.spec.url`,
+    `Bucket.spec.endpoint` and `Bucket.spec.stsEndpoint` in
+    `source-controller`; `Provider.spec.address` and `Provider.spec.proxy`
+    in `notification-controller`; and `ImageRepository.spec.image` in
+    `image-reflector-controller`.
+
+    A `ValidatingAdmissionPolicy` lets the cluster operator declare which
+    URL prefixes tenant-managed Flux resources may use, and reject any other
+    value at admission time. This is the primary control against credential
+    exfiltration via direct URL fields, and a contributing control against
+    probing and oracle attacks: requests rejected at admission are never
+    issued and produce no response that a tenant could observe.
+
+    The example below allowlists a set of URL prefixes for
+    `GitRepository`, `OCIRepository` and `HelmRepository` via a single
+    `ConfigMap` parameter, and binds the policy to every namespace
+    labelled `toolkit.fluxcd.io/role: tenant`. The `source-controller`
+    service account is excluded via a `matchCondition` so that finalizer
+    updates are not blocked. The same pattern can be extended to the
+    other direct URL fields listed above by adding `resourceRules` and
+    adjusting the `variables.url` expression.
+
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: flux-allowlist
+      namespace: flux-system
+    data:
+      sources: >-
+        https://github.com/my-org/
+        oci://ghcr.io/my-org/
+        oci://ghcr.io/stefanprodan/charts/
+        oci://registry-1.docker.io/bitnamicharts/
+    ---
+    apiVersion: admissionregistration.k8s.io/v1
+    kind: ValidatingAdmissionPolicy
+    metadata:
+      name: flux-source-url-allowlist
+    spec:
+      failurePolicy: Fail
+      paramKind:
+        apiVersion: v1
+        kind: ConfigMap
+      matchConstraints:
+        resourceRules:
+          - apiGroups:   ["source.toolkit.fluxcd.io"]
+            apiVersions: ["*"]
+            operations:  ["CREATE", "UPDATE"]
+            resources:   ["gitrepositories", "ocirepositories", "helmrepositories"]
+      matchConditions:
+        - name: exclude-source-controller
+          expression: >
+            request.userInfo.username != "system:serviceaccount:flux-system:source-controller"
+      variables:
+        - name: url
+          expression: object.spec.url
+        - name: prefixes
+          expression: params.data.sources.split(' ')
+      validations:
+        - expression: variables.prefixes.exists(p, variables.url.startsWith(p))
+          messageExpression: '"URL " + variables.url + " is not on the allowlist"'
+          reason: Invalid
+    ---
+    apiVersion: admissionregistration.k8s.io/v1
+    kind: ValidatingAdmissionPolicyBinding
+    metadata:
+      name: flux-source-url-allowlist
+    spec:
+      policyName: flux-source-url-allowlist
+      validationActions: ["Deny"]
+      paramRef:
+        name: flux-allowlist
+        namespace: flux-system
+        parameterNotFoundAction: Deny
+      matchResources:
+        namespaceSelector:
+          matchExpressions:
+            - { key: toolkit.fluxcd.io/role, operator: In, values: [tenant] }
+    ```
+
+    A reference fleet using this pattern in production is available at
+    [controlplaneio-fluxcd/d2-fleet](https://github.com/controlplaneio-fluxcd/d2-fleet/blob/main/tenants/policies.yaml).
+  </details>
+  <details>
+    <summary>Audit Procedure</summary>
+
+    Confirm that a `ValidatingAdmissionPolicy` and binding exist for the
+    relevant resources, that the binding uses
+    `validationActions: [ "Deny" ]`, and that its selector covers all
+    tenant namespaces:
+
+    ```sh
+    kubectl get validatingadmissionpolicy
+    kubectl get validatingadmissionpolicybinding
+    ```
+
+    Verify enforcement by attempting to create a Flux resource with a URL
+    outside the allowlist in a tenant namespace and confirming that
+    admission is denied.
+  </details>
+
+- Ensure URLs supplied to controllers via Secret or ConfigMap references are
+  constrained through multi-tenancy lock-down rather than admission policy.
+
+  <details>
+    <summary>Rationale</summary>
+
+    The indirect URL inputs are `Kustomization.spec.kubeConfig.secretRef`
+    and `HelmRelease.spec.kubeConfig.secretRef` (cluster URL inside the
+    referenced kubeconfig Secret), `Provider.spec.secretRef` (`address`,
+    `proxy` and headers inside the referenced Secret), and the
+    `proxySecretRef` fields on `GitRepository` and `ImageRepository`.
+
+    A `ValidatingAdmissionPolicy` applied to the Flux resource cannot
+    dereference a `secretRef` to inspect its contents, and a separate
+    policy applied to `Secret` or `ConfigMap` is fragile because kubeconfig
+    payloads are arbitrary YAML inside opaque data keys. The
+    [Multi-tenancy Lock-down](#multi-tenancy-lock-down) flags address this
+    case by bounding the credentials reachable through a tenant-supplied
+    URL: with `--no-cross-namespace-refs=true` the referenced Secret must
+    live in the tenant's own namespace, and with the workload identity
+    default service account flags (`--default-service-account`,
+    `--default-kubeconfig-service-account` and
+    `--default-decryption-service-account`, applied per controller as
+    described in [Multi-tenancy Lock-down](#multi-tenancy-lock-down)) the
+    controller impersonates a tenant-scoped service account when
+    authenticating to the (potentially attacker-controlled) target cluster
+    or cloud API. Under those flags, an SSRF call through an indirect URL
+    field exfiltrates only credentials the tenant could already obtain
+    themselves, and there is no cross-tenant escalation. The same flags
+    act as a second layer of defense behind the admission policy for
+    direct URL fields.
+
+    The minimal example below shows the relevant container args on
+    `kustomize-controller`. The full per-controller flag mapping is given
+    in [Multi-tenancy Lock-down](#multi-tenancy-lock-down).
+
+    ```yaml
+    # kustomize-controller Deployment
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manager
+              args:
+                - --no-cross-namespace-refs=true
+                - --default-service-account=default
+                - --default-kubeconfig-service-account=default
+                - --default-decryption-service-account=default
+    ```
+  </details>
+  <details>
+    <summary>Audit Procedure</summary>
+
+    Confirm that `--no-cross-namespace-refs=true` and the workload identity
+    default service account flags are applied to the relevant controllers
+    as described in [Multi-tenancy Lock-down](#multi-tenancy-lock-down):
+
+    ```sh
+    kubectl describe pod -n flux-system -l app=kustomize-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=helm-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=notification-controller | grep -B 5 -A 10 Args
+    ```
+  </details>
+
+- Ensure egress from the Flux controllers is restricted at the network
+  layer to deny traffic to the link-local range and to cluster-internal
+  addresses they do not require.
+
+  <details>
+    <summary>Rationale</summary>
+
+    Flux installs a default `allow-egress` `NetworkPolicy` in
+    `flux-system` whose `spec.egress` is an empty rule, permitting all
+    outbound traffic. Cluster operators must replace or supplement this
+    with an actual egress restriction. The probing concern is twofold:
+    the controllers can reach destinations that tenant pods cannot
+    (such as other tenants' services, or cluster-internal addresses
+    denied by the tenant's own `NetworkPolicy`), and the controllers
+    occupy a different network and identity position from the tenant,
+    which means responses received through the controller may carry
+    data that belongs to `flux-system` rather than to the tenant. The
+    cloud metadata service (`169.254.169.254`,
+    `metadata.google.internal`, Azure IMDS) is the canonical example: a
+    tenant pod can usually reach it directly, but only sees its own
+    node's metadata; an SSRF call routed through a Flux controller
+    returns the controller's node metadata instead, leaking
+    platform-side data the tenant could not otherwise observe.
+
+    Restricting controller egress is the primary control against the
+    probing attack type. It also contributes to the others: SSRF
+    requests blocked at the network layer cannot leak credentials and
+    produce no response body to echo back through the status surface.
+
+    The egress restriction should at minimum deny the IPv4 link-local
+    range (`169.254.0.0/16`) and the equivalent IPv6 ranges, and any
+    in-cluster CIDR that controllers do not legitimately need. Vanilla
+    `networking.k8s.io/v1` `NetworkPolicy` is sufficient for this much,
+    since the relevant ranges are static and addressable as `ipBlock`
+    exceptions, and is supported by every conformant CNI (including AWS
+    VPC CNI, Azure CNI / NPM and GKE).
+
+    Restricting public egress to the same allowlist as the admission
+    policy is materially harder. Vanilla `NetworkPolicy` has no FQDN
+    selector, and the IPs behind hosts such as `github.com` or
+    `ghcr.io` are dynamic CDN/anycast addresses that cannot be
+    enumerated as CIDRs. FQDN-based egress allowlisting therefore
+    requires either a CNI with a richer policy API (for example
+    `cilium.io/CiliumNetworkPolicy`, GKE Dataplane V2, Azure CNI
+    Powered by Cilium, or Calico Enterprise; on AWS this typically
+    means replacing the VPC CNI with Cilium), or a centralised
+    cluster-egress gateway that performs the FQDN filtering outside
+    the CNI (AWS Network Firewall, commercial cluster-egress products,
+    or a self-hosted HTTP proxy such as Envoy or Squid). The trade-off
+    between the two approaches is operational footprint versus per-hour
+    cost, and both are out of scope for vanilla `NetworkPolicy`.
+
+    The minimal example below denies link-local egress for all pods in
+    `flux-system` while permitting all other egress. Operators with a
+    CNI-specific policy API in use should express the same denial through
+    that API instead, optionally extending it to FQDN or service-identity
+    selectors for the source allowlist.
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: deny-link-local-egress
+      namespace: flux-system
+    spec:
+      podSelector: {}
+      policyTypes: [Egress]
+      egress:
+        - to:
+            - ipBlock:
+                cidr: 0.0.0.0/0
+                except:
+                  - 169.254.0.0/16
+    ```
+  </details>
+  <details>
+    <summary>Audit Procedure</summary>
+
+    Confirm that an egress policy selecting the Flux controller pods
+    exists and is enforced by the cluster's CNI:
+
+    ```sh
+    kubectl get networkpolicy -n flux-system
+    ```
+
+    Repeat the check for any CNI-specific policy resources in use (e.g.
+    `kubectl get ciliumnetworkpolicy -n flux-system`). From a debug pod
+    under the same egress policy, verify that
+    `curl http://169.254.169.254/` and connections to other tenants'
+    services fail.
+  </details>
+
+- Ensure the Flux controller pods hold no cloud-provider permissions, and
+  that the node-level instance metadata service is unreachable from the
+  controller pods.
+
+  <details>
+    <summary>Rationale</summary>
+
+    The workload identity default service account flags
+    (`--default-service-account` for `source-controller`,
+    `notification-controller`, `image-reflector-controller` and
+    `image-automation-controller`; `--default-kubeconfig-service-account`
+    for `kustomize-controller` and `helm-controller`; and
+    `--default-decryption-service-account` for `kustomize-controller`)
+    govern the tenant-scoped service account that the controller
+    impersonates when authenticating to a cloud API on behalf of a Flux
+    object. They do not govern the cloud identity attached to the
+    controller pod itself via IRSA, GKE Workload Identity, Azure Workload
+    Identity or the underlying node's instance profile.
+
+    No Flux pod must hold any cloud-provider permission. All cloud access
+    must flow through the workload identity attached to the impersonated
+    tenant service account, either named explicitly on the Flux object or
+    selected by the default-service-account flags above. If the controller
+    pod inherits a cloud identity (from its own service account or from
+    the underlying node's instance metadata), an SSRF call to that
+    identity source reads the resulting token from the response and
+    exfiltrates it through the status surface, regardless of which tenant
+    identity was used for the reconciliation. This is the
+    metadata-exfiltration variant of the probing attack type.
+
+    The node-level instance metadata service must therefore be unreachable
+    from the controller pods. The pod-facing metadata path may still
+    exist, but only as a gated workload-identity broker that scopes tokens
+    to the impersonated tenant service account; raw access to the
+    underlying instance credential must be blocked. This requires both an
+    egress restriction at the network layer denying the link-local range
+    (item above) and cloud-side hardening at the node level: on AWS set
+    the EC2 instance metadata option `httpPutResponseHopLimit` to `1` so
+    containers (which add a hop) cannot reach IMDSv2; on GKE enable the
+    GKE Metadata Server, which serves only Workload-Identity-scoped tokens
+    and intercepts raw IMDS access from pods; on AKS use Azure AD Workload
+    Identity, which routes token requests via projected service account
+    tokens rather than the node's managed identity.
+
+    The correct pattern is to annotate cloud identity on tenant-namespace
+    `ServiceAccount` resources (using the cloud-specific annotation or
+    label expected by IRSA, GKE Workload Identity or Azure AD Workload
+    Identity) and to leave the `flux-system` service accounts free of any
+    such binding. Cloud-side metadata hardening must be applied at the
+    node-pool or instance-template level, following the cloud provider's
+    own documentation for each of the three platforms; inline examples are
+    omitted here to avoid favouring one provider.
+  </details>
+  <details>
+    <summary>Audit Procedure</summary>
+
+    Confirm that no service account in `flux-system` carries cloud workload
+    identity bindings (no `eks.amazonaws.com/role-arn` annotation, no
+    `iam.gke.io/gcp-service-account` annotation, no
+    `azure.workload.identity/client-id` label):
+
+    ```sh
+    kubectl get serviceaccount -n flux-system -o yaml | grep -E 'role-arn|gcp-service-account|workload.identity/client-id' || echo "no pod-level cloud identity bindings"
+    ```
+
+    Confirm that the nodes hosting the Flux controllers do not grant
+    additional cloud permissions through an instance profile or managed
+    identity beyond what the cluster itself requires.
+
+    Confirm that the node-level instance credential cannot be retrieved
+    from a debug pod scheduled on a flux-system node and sharing the
+    controllers' egress policy. The exact request differs per cloud
+    provider, but the verification target is the same: the metadata
+    interface must refuse to issue a token bound to the node, and
+    (where applicable) the only tokens it agrees to issue must be those
+    scoped to the pod's workload identity. Follow each cloud provider's
+    documentation for the credential-retrieval endpoints to use in this
+    test.
+
+    On AWS confirm `httpPutResponseHopLimit` is set to `1` on the node's
+    instance metadata options. On GKE confirm the GKE Metadata Server is
+    enabled on the node pool. On AKS confirm Azure AD Workload Identity is
+    used in place of pod-level managed identity.
+  </details>
+
 ## Additional Best Practices for Tenant Dedicated Cluster Multi-tenancy
 
 - Ensure tenants are not able to revoke Platform Admin access to their clusters.
