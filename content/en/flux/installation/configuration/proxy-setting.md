@@ -15,7 +15,7 @@ If your cluster uses an HTTP proxy to reach GitHub or other external services,
 you must set `NO_PROXY=.cluster.local.,.cluster.local,.svc,<kubernetes_service_ip>`
 to allow the Flux controllers to talk to each other.
 
-To find out about your kubernetes service IP execute this command `kubectl get service kubernetes -n default` and use value shown under `CLUSTER-IP`. By default it is `10.96.0.1`
+To find out about your kubernetes service IP execute this command `kubectl get service kubernetes -n default` and use value shown under `CLUSTER-IP`.
 
 To set the HTTP/S proxy [during bootstrap](bootstrap-customization.md), add the following patches to the flux-system `kustomization.yaml`:
 
