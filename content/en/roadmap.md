@@ -81,8 +81,6 @@ The primary goal of this milestone is to add support for Helm [Chart API v3](htt
 and extend Flux server-side apply with field ignore rules.
 
 - **Helm integrations**
-  - [ ] Add support for Helm Chart API v3 to source-controller
-  - [ ] Add support for Helm Chart API v3 to helm-controller
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
   - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (**⚠️ breaking change**: default post-render strategy changed from `nohooks` to `combined`)
 
@@ -102,11 +100,9 @@ and extend Flux server-side apply with field ignore rules.
 - **Alerting integrations**
   - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
 
-- **Source extensions**
-  - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
-
 - **CLI extensions**
-  - [ ] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
+  - [x] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
+  - [x] [Support namespace from kubeconfig](https://github.com/fluxcd/flux2/pull/5831)
   - [x] [Add `flux create secret receiver` command](https://github.com/fluxcd/flux2/pull/5835)
   - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
   - [x] [Add `--show-source` to `flux get ks` and `flux get hr` commands](https://github.com/fluxcd/flux2/pull/5828)
@@ -127,6 +123,10 @@ and extend Flux server-side apply with field ignore rules.
 
 The primary goal of this milestone is to make a generally available release for the Flux Alerting APIs.
 
+- **Helm integrations**
+  - [ ] Add support for Helm Chart API v3 to source-controller
+  - [ ] Add support for Helm Chart API v3 to helm-controller
+
 - **Alerting integrations**
   - [ ] Promote the `Event` API to `v1`
   - [ ] Promote the `Alert` API to `v1`
@@ -134,6 +134,7 @@ The primary goal of this milestone is to make a generally available release for 
 
 - **Source extensions**
   - [ ] Build external artifacts locally with `flux build artifact generator`
+  - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.37
