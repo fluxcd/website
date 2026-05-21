@@ -97,8 +97,9 @@ and extend Flux server-side apply with field ignore rules.
 - **OCI integrations**
   - [ ] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
 
-- **Alerting integrations**
+- **Webhook integrations**
   - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
+  - [ ] [Support OIDC for generic Receiver (secret-less, secure Receiver)](https://github.com/fluxcd/notification-controller/issues/1305)
 
 - **CLI extensions**
   - [x] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
