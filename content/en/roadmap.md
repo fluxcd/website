@@ -99,7 +99,8 @@ and extend Flux server-side apply with field ignore rules.
 
 - **Webhook integrations**
   - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
-  - [ ] [Support OIDC for generic Receiver (secret-less, secure Receiver)](https://github.com/fluxcd/notification-controller/issues/1305)
+  - [x] [Support OIDC for generic Receiver (secret-less, secure Receiver)](https://github.com/fluxcd/notification-controller/issues/1305)
+  - [x] [Add resource-level filter for Receiver](https://github.com/fluxcd/notification-controller/pull/1314)
 
 - **CLI extensions**
   - [x] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
@@ -108,6 +109,7 @@ and extend Flux server-side apply with field ignore rules.
   - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
   - [x] [Add `--show-source` to `flux get ks` and `flux get hr` commands](https://github.com/fluxcd/flux2/pull/5828)
   - [x] [Add `--in-memory-build` to `flux build ks` and `flux diff ks` commands](https://github.com/fluxcd/flux2/pull/5794)
+  - [x] [Add `flux trigger receiver` command](https://github.com/fluxcd/flux2/pull/5908)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.36
