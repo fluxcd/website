@@ -247,13 +247,13 @@ This command will generate two files, a `cosign.pub` which is a publickey and `c
 Now, let's sign the image with the private key:
 
 ```shell
-cosign sign --key cosign.key ghcr.io/$USER/nginx@21f92cbd63ab495d8fc44d54dabc4815c88d37697b3f8b757ca8e51ef178a2e7
+cosign sign --key cosign.key ghcr.io/$USER/nginx@sha256:21f92cbd63ab495d8fc44d54dabc4815c88d37697b3f8b757ca8e51ef178a2e7
 ```
 
 Cool! Now we have signed the image with the private key. Let's check the signature:
 
 ```shell
-cosign verify --key cosign.key ghcr.io/$USER/nginx@21f92cbd63ab495d8fc44d54dabc4815c88d37697b3f8b757ca8e51ef178a2e7
+cosign verify --key cosign.key ghcr.io/$USER/nginx@sha256:21f92cbd63ab495d8fc44d54dabc4815c88d37697b3f8b757ca8e51ef178a2e7
 ```
 
 Yay! It's verified. But in order to make the public key accessible by Flux, we need to create a Kubernetes secret to store the public key:
