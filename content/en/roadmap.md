@@ -77,42 +77,53 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 **Status**: In Progress
 
-The primary goal of this milestone is to add support for Helm [Chart API v3](https://helm.sh/de/community/hips/hip-0020),
-and extend Flux server-side apply with field ignore rules.
+The primary goal of this milestone is to add support for Flux CLI plugins,
+extend Flux server-side apply with field ignore rules and enhance the secrets
+decryption.
 
 - **Helm integrations**
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
   - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (**⚠️ breaking change**: default post-render strategy changed from `nohooks` to `combined`)
+  - [x] [Add literal mode to `valuesFrom`](https://github.com/fluxcd/pkg/pull/1218) (mirror `helm --set-literal` semantics)
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
   - [x] [Add `.spec.buildMetadata` optional field to Kustomization API](https://github.com/fluxcd/kustomize-controller/pull/1632)
-  - [ ] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
+  - [x] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
+  - [x] [Add Kubernetes workload identity auth for OpenBao and Vault](https://github.com/fluxcd/kustomize-controller/pull/1659)
 
 - **Git integrations**
   - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
   - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
 - **OCI integrations**
-  - [ ] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
+  - [x] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
+
+- **Source extensions**
+  - [x] [Add `commonMetadata` to ArtifactGenerator API](https://github.com/fluxcd/source-watcher/pull/333)
 
 - **Webhook integrations**
   - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
   - [x] [Support OIDC for generic Receiver (secret-less, secure Receiver)](https://github.com/fluxcd/notification-controller/issues/1305)
   - [x] [Add resource-level filter for Receiver](https://github.com/fluxcd/notification-controller/pull/1314)
 
-- **CLI extensions**
+- **CLI plugins**
   - [x] [Implement the Flux CLI Plugin System RFC](https://github.com/fluxcd/flux2/pull/5795)
+  - [x] [Introduce the Flux Mirror Plugin](https://github.com/fluxcd/flux-mirror)
+  - [x] [Introduce the Flux Schema Plugin](https://github.com/fluxcd/flux-schema)
+
+- **CLI extensions**
   - [x] [Support namespace from kubeconfig](https://github.com/fluxcd/flux2/pull/5831)
   - [x] [Add `flux create secret receiver` command](https://github.com/fluxcd/flux2/pull/5835)
   - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
   - [x] [Add `--show-source` to `flux get ks` and `flux get hr` commands](https://github.com/fluxcd/flux2/pull/5828)
   - [x] [Add `--in-memory-build` to `flux build ks` and `flux diff ks` commands](https://github.com/fluxcd/flux2/pull/5794)
   - [x] [Add `flux trigger receiver` command](https://github.com/fluxcd/flux2/pull/5908)
+  - [x] [Add support for AWS CodeCommit to `flux bootstrap git` command](https://github.com/fluxcd/flux2/pull/5868)
 
 - **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.36
+  - [x] End-to-end testing for Kubernetes 1.36
 
 - **EOL and Deprecations**
   - End support for Flux v2.6.x
@@ -166,3 +177,5 @@ To keep track of the Flux project's current direction and future plans, please s
 - [x] [RFC-0010](https://github.com/fluxcd/flux2/tree/main/rfcs/0010-multi-tenant-workload-identity) Multi-Tenant Workload Identity
 - [x] [RFC-0011](https://github.com/fluxcd/flux2/tree/main/rfcs/0011-opentelemetry-tracing) OpenTelemetry Tracing
 - [x] [RFC-0012](https://github.com/fluxcd/flux2/blob/main/rfcs/0012-external-artifact/) External Artifact API
+- [x] [RFC-0013](https://github.com/fluxcd/flux2/blob/main/rfcs/0013-cli-plugin-system/) Flux CLI Plugin System
+- [ ] [RFC-XXXX](https://github.com/fluxcd/flux2/pull/5702) Vendor-Agnostic Short-Lived Credentials
