@@ -85,6 +85,7 @@ decryption.
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
   - [x] [Add support for Helm post-render strategies](https://github.com/fluxcd/helm-controller/issues/1469) (**⚠️ breaking change**: default post-render strategy changed from `nohooks` to `combined`)
   - [x] [Add literal mode to `valuesFrom`](https://github.com/fluxcd/pkg/pull/1218) (mirror `helm --set-literal` semantics)
+  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/flux2/issues/5879)
 
 - **Kustomize integrations**
   - [x] [Add support for secrets decryption using Age post-quantum cipher](https://github.com/fluxcd/kustomize-controller/pull/1601)
@@ -92,6 +93,7 @@ decryption.
   - [x] [Extend Server-Side Apply with field ignore rules](https://github.com/fluxcd/pkg/issues/696)
   - [x] [Allow empty kind in CEL health checks](https://github.com/fluxcd/flux2/issues/5858)
   - [x] [Add Kubernetes workload identity auth for OpenBao and Vault](https://github.com/fluxcd/kustomize-controller/pull/1659)
+  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/flux2/issues/5879)
 
 - **Git integrations**
   - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
