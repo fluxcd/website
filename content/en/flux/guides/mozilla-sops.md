@@ -417,3 +417,68 @@ all `env` keys, but container `patched` has this list in a plain text. SOPS will
 {{% alert color="info" title="Hint" %}}
 Move all your secrets to patches and your resource will not require a decryption at the end, since patches are decrypted before.
 {{% /alert %}}
+
+## SOPS Encrypted Kustomize patches
+
+SOPS-encrypted data can be stored as [Kustomize `patches`](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) as long as they're in separate files, not inlined in `kustomization.yaml`. The kustomize-controller decrypts these before executing kustomization pipeline, allowing for adding secret data to resources or merging Secrets. For example:
+
+```yaml
+# patch1.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+stringData:
+  secretConfig: "my-secret-configuration"
+```
+
+```yaml
+# patch2.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+stringData:
+  secretToken: "my-secret-token"
+```
+
+```yaml
+# base.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+  annotations:
+    kubernetes.io/description: "This is a secret that is patched together of multiple objects."
+stringData: {}
+```
+
+```yaml
+# kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - base.yaml
+patches:
+  - path: patch1.yaml
+  - path: patch2.yaml
+```
+
+```sh
+sops -e --input-type=yaml patch1.yaml 
+sops -e --input-type=yaml patch2.yaml
+```
+
+After kustomize-controller does the reconciliation of `kustomization.yaml`, the following secret will be generated in the cluster:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+  annotations:
+    kubernetes.io/description: "This is a secret that is patched together of multiple objects."
+stringData:
+  secretToken: "my-secret-token"
+  secretConfig: "my-secret-configuration"
+```
