@@ -94,7 +94,7 @@ decryption.
   - [x] [Add Kubernetes workload identity auth for OpenBao and Vault](https://github.com/fluxcd/kustomize-controller/pull/1659)
 
 - **Git integrations**
-  - [ ] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
+  - [x] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
   - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
 - **OCI integrations**
