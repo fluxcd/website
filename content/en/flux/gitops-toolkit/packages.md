@@ -37,13 +37,14 @@ import sourcev1 "github.com/fluxcd/source-controller/api/v1"
 
 API Types
 
-| Name                                                        | Version |
-|-------------------------------------------------------------|---------|
-| [GitRepository](/flux/components/source/gitrepositories/)   | v1      |
-| [HelmRepository](/flux/components/source/helmrepositories/) | v1      |
-| [HelmChart](/flux/components/source/helmcharts.md)          | v1      |
-| [OCIRepository](/flux/components/source/ocirepositories/)   | v1      |
-| [Bucket](/flux/components/source/buckets.md)                | v1      |
+| Name                                                             | Version |
+|------------------------------------------------------------------|---------|
+| [GitRepository](/flux/components/source/gitrepositories/)        | v1      |
+| [HelmRepository](/flux/components/source/helmrepositories/)      | v1      |
+| [HelmChart](/flux/components/source/helmcharts.md)               | v1      |
+| [OCIRepository](/flux/components/source/ocirepositories/)        | v1      |
+| [Bucket](/flux/components/source/buckets.md)                     | v1      |
+| [ExternalArtifact](/flux/components/source/externalartifacts/)   | v1      |
 
 ### kustomize.toolkit.fluxcd.io
 
@@ -263,3 +264,36 @@ func main() {
 
 For an example on how to build a Kubernetes controller that interacts with the GitOps Toolkit APIs see
 [source-watcher](source-watcher.md).
+
+## Artifact SDK
+
+The Artifact SDK provides comprehensive functionality for packaging, storing,
+serving, and processing Flux artifacts. It is the foundation for building
+3rd-party controllers that manage `ExternalArtifact` resources.
+
+Download package
+
+```sh
+go get github.com/fluxcd/pkg/artifact
+```
+
+Import packages
+
+```go
+import (
+    "github.com/fluxcd/pkg/artifact/config"
+    "github.com/fluxcd/pkg/artifact/server"
+    "github.com/fluxcd/pkg/artifact/storage"
+    "github.com/fluxcd/pkg/artifact/digest"
+)
+```
+
+| Sub-package | Purpose |
+|-------------|---------|
+| [config](https://pkg.go.dev/github.com/fluxcd/pkg/artifact/config) | Flag binding and configuration for storage, server, retention, and digest options |
+| [server](https://pkg.go.dev/github.com/fluxcd/pkg/artifact/server) | HTTP file server with graceful shutdown for serving artifacts in-cluster |
+| [storage](https://pkg.go.dev/github.com/fluxcd/pkg/artifact/storage) | Artifact lifecycle management — create, archive, verify, copy, GC |
+| [digest](https://pkg.go.dev/github.com/fluxcd/pkg/artifact/digest) | Multi-algorithm digest computation (SHA256, SHA512, BLAKE3) |
+
+For a step-by-step guide on building a controller using the SDK, see
+[Building ExternalArtifact Controllers](external-artifact-sdk.md).
