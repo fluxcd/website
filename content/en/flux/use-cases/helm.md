@@ -238,8 +238,142 @@ spec:
     cleanupOnFail: false
 ```
 
+
+## Helm Chart Composition from Multiple Sources
+
+A common operational pattern is to store a Helm chart in an OCI registry but manage
+environment-specific `values.yaml` overrides in a Git repository. Traditionally, this
+requires either duplicating the chart, using `HelmRelease.spec.valuesFrom`, or
+maintaining complex CI pipelines to merge values before deployment.
+
+Flux solves this through the [`ArtifactGenerator`][ArtifactGenerator] (part of the
+[source-watcher][] extension), which composes a single `ExternalArtifact` from multiple
+sources. The chart can come from an `OCIRepository` and the override values from a
+`GitRepository`. The `Merge` copy strategy performs a Helm-compatible deep merge of
+YAML values, producing an artifact that contains the chart with the merged
+`values.yaml` ready for deployment.
+
+Define the chart source and the values source:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo-chart
+  namespace: apps
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  ref:
+    semver: ">=6.0.0"
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo-values
+  namespace: apps
+spec:
+  interval: 5m
+  url: https://github.com/example/fleet-config
+  ref:
+    branch: main
+```
+
+Create an `ArtifactGenerator` that composes the chart with environment-specific values:
+
+```yaml
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+metadata:
+  name: podinfo
+  namespace: apps
+spec:
+  sources:
+    - alias: chart
+      kind: OCIRepository
+      name: podinfo-chart
+      namespace: apps
+    - alias: repo
+      kind: GitRepository
+      name: podinfo-values
+      namespace: apps
+  artifacts:
+    - name: podinfo-composite
+      originRevision: "@chart"
+      copy:
+        - from: "@chart/"
+          to: "@artifact/"
+        - from: "@repo/charts/podinfo/values-prod.yaml"
+          to: "@artifact/podinfo/values.yaml"
+          strategy: Merge
+```
+
+The `originRevision: "@chart"` field instructs the controller to inherit the OCI artifact's origin
+revision metadata (such as the Git commit SHA from which the chart was built) and set it as the
+`org.opencontainers.image.revision` annotation on the generated `ExternalArtifact`.
+
+The `strategy: Merge` on the second copy operation performs a Helm-compatible deep
+merge: the base `values.yaml` from the chart is merged with `values-prod.yaml` from
+Git, with the Git values taking precedence. Arrays are replaced entirely, matching
+Helm's native merge behavior.
+
+Deploy the composed chart using a `HelmRelease`:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: apps
+spec:
+  interval: 10m
+  releaseName: podinfo
+  chartRef:
+    kind: ExternalArtifact
+    name: podinfo-composite
+```
+
+Whenever either source changes — a new chart version is published to the OCI registry,
+or the values file is updated in Git — the `ArtifactGenerator` produces a new composite
+artifact with a new content-based revision, and the `HelmRelease` automatically
+performs an upgrade.
+
+{{% alert color="info" title="Feature gate" %}}
+Consumption of `ExternalArtifact` resources by `kustomize-controller` and `helm-controller` requires
+the `ExternalArtifact=true` feature gate on each controller.
+{{% /alert %}}
+
+For a complete sequence diagram of this flow, see the
+[Flux End-to-End guide](/flux/flux-e2e/#artifactgenerator-for-helm-chart-composition).
+
+{{% alert color="info" title="Alternative: valuesFiles" %}}
+If your chart bundles multiple values files (for example `values.yaml` and
+`values-production.yaml`), you can reference them directly in the `HelmRelease`
+without an `ArtifactGenerator`:
+
+```yaml
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+      valuesFiles:
+        - values.yaml
+        - values-production.yaml
+```
+
+See the [Manage Helm Releases guide](../guides/helmreleases.md#refer-to-values-inside-the-chart)
+for more details.
+{{% /alert %}}
+
 ## Next Steps
 
 - [Guides > Manage Helm Releases](../guides/helmreleases.md)
 - [Toolkit Components > Helm Controller](../components/helm/_index.md)
 - [Migration > Migrate to the Helm Controller](../migration/helm-operator-migration.md)
+- [Flux End-to-End > ArtifactGenerator for Helm Chart Composition](/flux/flux-e2e/#artifactgenerator-for-helm-chart-composition)
+
+[ArtifactGenerator]: https://github.com/fluxcd/source-watcher/tree/v2
+[source-watcher]: https://github.com/fluxcd/source-watcher
