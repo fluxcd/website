@@ -149,8 +149,9 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 14. [Channel-based Providers for Notifications][] re-publish `Events` from Flux resources at-large to a channel where users can see them.
 15. [Git Commit Status Provider Notifications][] re-publish `Events` from the Kustomize Controller as commit checks.
 16. [Waiting and Health Checking for Flux Kustomization][].
-17. [ArtifactGenerator for Monorepo Decomposition][] splits a single source into independent deployment artifacts.
-18. [ArtifactGenerator for Helm Chart Composition][] composes a Helm chart from multiple sources with merged values.
+17. [OCIRepository as a Source][] shows how to use OCI artifacts instead of Git as the source of truth.
+18. [ArtifactGenerator for Monorepo Decomposition][] splits a single source into independent deployment artifacts.
+19. [ArtifactGenerator for Helm Chart Composition][] composes a Helm chart from multiple sources with merged values.
 
 ### Bootstrapping Flux
 
@@ -577,6 +578,168 @@ marked as ready.
 
 The health checking feature is called [Health Checks][] in the Flux Kustomization API.
 
+### OCIRepository as a Source
+
+While Flux is traditionally centered around Git as the single source of truth, it also supports
+a *Gitless GitOps* model where OCI-compliant container registries serve as the source of truth.
+In this model, the Flux controllers are fully decoupled from Git and rely on container registries
+to store and distribute configuration artifacts.
+
+This is particularly useful when the Git repository does not contain the final Kubernetes manifests,
+for example when manifests are generated in CI from tools like [cuelang](https://cuelang.org/) or
+[jsonnet](https://jsonnet.org/) and then published as OCI artifacts for Flux to consume. It also
+means the Git server is no longer a production dependency: the OCI registry becomes the unified
+source of truth for all configuration artifacts, SBOMs, cryptographic signatures, and application
+images.
+
+For the full set of publishing, tagging, and CI automation workflows, see the
+[OCI Artifacts Cheatsheet][].
+
+#### OCIRepository with Kustomization
+
+An `OCIRepository` can pull an OCI artifact containing plain Kubernetes manifests and serve it to
+a `Kustomization` for reconciliation:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    tag: latest
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  prune: true
+  sourceRef:
+    kind: OCIRepository
+    name: podinfo
+  path: ./
+```
+
+Whenever a new artifact is pushed to the registry, the `OCIRepository` detects the change and
+the `Kustomization` reconciles the new manifests automatically.
+
+{{% alert color="info" title="Pinning versions" %}}
+Using `tag: latest` is convenient for development. In production, prefer `semver` or `digest`
+selectors for deterministic deployments. See the [`OCIRepository` CRD docs](/flux/components/source/ocirepositories/)
+for all available reference strategies.
+{{% /alert %}}
+
+#### OCIRepository with HelmRelease
+
+Helm charts stored in OCI registries can be consumed by declaring an `OCIRepository`
+and referencing it from a `HelmRelease` via `chartRef`. The source-controller fetches
+the chart artifact and exposes it to the helm-controller.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: ">=6.9.0"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  releaseName: podinfo
+  chartRef:
+    kind: OCIRepository
+    name: podinfo
+  values:
+    replicaCount: 2
+```
+
+The `layerSelector` extracts the Helm chart layer from the multi-layer OCI artifact, and the
+`ref.semver` selector ensures that new chart versions matching the range are deployed
+automatically.
+
+{{% alert color="info" title="Authentication" %}}
+For private OCI registries, HTTP/S authentication and cloud provider contextual login
+(`aws`, `azure`, `gcp`) can be configured on the `OCIRepository` spec.
+See the [`OCIRepository` CRD docs](/flux/components/source/ocirepositories/)
+for more details.
+{{% /alert %}}
+
+#### Verification with Cosign and Notation
+
+Flux supports verifying OCI artifacts signed with [Sigstore Cosign](https://github.com/sigstore/cosign)
+or [Notaryproject Notation](https://github.com/notaryproject/notation) before downloading
+and reconciling them. Add a `verify` section to the `OCIRepository` spec:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    semver: "*"
+  verify:
+    provider: cosign
+    secretRef:
+      name: cosign-pub
+```
+
+If verification fails, Flux will not fetch the artifact and will emit an alert.
+See the [signing and verification guide](/flux/cheatsheets/oci-artifacts/#signing-and-verification)
+for complete setup instructions.
+
+#### Diagram: Gitless GitOps with OCIRepository
+
+```mermaid
+sequenceDiagram
+    actor me as admin
+    participant ci as CI<br><br>pipeline
+    participant oci as OCI<br><br>registry
+    participant sc as Flux<br><br>source-controller
+    participant kc as Flux<br><br>kustomize-controller
+    participant hc as Flux<br><br>helm-controller
+    participant kube as Kubernetes<br><br>api-server
+    participant nc as Flux<br><br>notification-controller
+    me->>ci: 1. push manifests / chart
+    ci->>oci: 2. build & push artifact
+    sc->>oci: 3. pull artifact
+    sc->>kube: 4. update source status
+    sc-->>nc: 5. emit events
+    kube->>kc: 6. notify about new revision
+    kc->>sc: 7. fetch manifest artifact
+    kc->>kube: 8. apply manifests
+    kc->>kube: 9. update Kustomization status
+    kc-->>nc: 10. emit events
+    kube->>hc: 11. notify about new chart revision
+    hc->>sc: 12. fetch chart artifact
+    hc->>kube: 13. helm upgrade
+    hc->>kube: 14. update HelmRelease status
+    hc-->>nc: 15. emit events
+    nc-->>me: 16. send alerts
+```
+
 ### ArtifactGenerator for Monorepo Decomposition
 
 In many organizations, a single Git monorepo contains deployment manifests for multiple independent services.
@@ -850,6 +1013,7 @@ sequenceDiagram
 [Channel-based Providers for Notifications]: #channel-based-providers-for-notifications
 [Git Commit Status Provider Notifications]: #git-commit-status-provider-notifications
 [Waiting and Health Checking for Flux Kustomization]: #waiting-and-health-checking-for-flux-kustomization
+[OCIRepository as a Source]: #ocirepository-as-a-source
 [ArtifactGenerator for Monorepo Decomposition]: #artifactgenerator-for-monorepo-decomposition
 [ArtifactGenerator for Helm Chart Composition]: #artifactgenerator-for-helm-chart-composition
 
@@ -885,5 +1049,6 @@ sequenceDiagram
 [Event API]: /flux/components/notification/event/
 [Setup Git Commit Status Notications]: /flux/guides/notifications/#git-commit-status
 [Health Checks]: /flux/components/kustomize/kustomizations/#health-checks
+[OCI Artifacts Cheatsheet]: /flux/cheatsheets/oci-artifacts/
 [ArtifactGenerator]: https://github.com/fluxcd/source-watcher/tree/v2
 [source-watcher]: https://github.com/fluxcd/source-watcher
