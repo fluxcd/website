@@ -7,19 +7,67 @@ weight: 50
 
 To install Flux on an EKS cluster using a CodeCommit repository as the source of truth,
 you can use the [`flux bootstrap git`](generic-git-server.md) command.
+Flux can authenticate to CodeCommit over HTTPS with AWS IAM credentials, or over
+SSH with an SSH key attached to an IAM user.
 
 {{% alert color="danger" title="Required permissions" %}}
 To bootstrap Flux, the person running the command must have **cluster admin rights** for the target Kubernetes cluster.
-It is also required that the person running the command has **pull and push rights** for the CodeCommit repository.
+It is also required that the AWS identity used by the Flux CLI has
+**pull and push rights** for the CodeCommit repository.
+The AWS identity used by `source-controller` in the cluster must have
+**pull rights** for the CodeCommit repository.
 {{% /alert %}}
-
-## Bootstrap over SSH
 
 {{% alert color="info" title="Private VPC" %}}
 If your VPC is configured without internet access, or if you prefer that the access is over a private connection,
 you need to set up a VPC endpoint to access CodeCommit by following the
 guide [Using AWS CodeCommit with interface VPC endpoints](https://docs.aws.amazon.com/codecommit/latest/userguide/codecommit-and-interface-VPC.html).
 {{% /alert %}}
+
+## Bootstrap over HTTPS with IAM role
+
+{{% alert color="info" title="Flux version" %}}
+AWS CodeCommit over HTTPS with IAM credentials is supported
+starting with Flux 2.9.x.
+{{% /alert %}}
+
+To bootstrap over HTTPS with an IAM role, make sure the Flux CLI can discover
+AWS credentials from the environment, such as an assumed role, AWS SSO session,
+instance profile, or other credentials supported by the AWS SDK.
+For more details on IAM roles and AWS authentication methods in Flux, see the
+[AWS authentication documentation](../../integrations/aws.md).
+
+You can verify the identity used by the Flux CLI with:
+
+```sh
+aws sts get-caller-identity
+```
+
+- The IAM role used by the CLI must be allowed to `codecommit:GitPull` and `codecommit:GitPush`
+permissions for the CodeCommit repository.
+- The `source-controller` running in the cluster also needs an IAM role with
+`codecommit:GitPull` for the same repository.
+
+For additional details, see
+[AWS CodeCommit Integration](../../integrations/aws.md#for-amazon-codecommit).
+
+The bootstrap command configures the generated `GitRepository` with
+`provider: aws` to use the controller-level AWS identity.
+
+Run bootstrap with the CodeCommit HTTPS URL:
+
+```sh
+flux bootstrap git \
+  --url=https://git-codecommit.<region>.amazonaws.com/v1/repos/<repository> \
+  --branch=main \
+  --path=clusters/my-cluster
+```
+
+When using CodeCommit over HTTPS with IAM credentials, do not specify
+`--token-auth`, `--username`, or `--password`. The Flux CLI obtains temporary
+Git credentials from AWS IAM for the bootstrap operation.
+
+## Bootstrap over SSH
 
 Create a CodeCommit repository and generate a PEM-encoded RSA SSH private key
 with a passphrase:
