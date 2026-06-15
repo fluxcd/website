@@ -95,6 +95,8 @@ decryption.
 
 - **Git integrations**
   - [x] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
+  - [ ] [Support Git commit signing with SSH keys in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/1035)
+  - [ ] [Support Git commit signing with SSH keys in bootstrap](https://github.com/fluxcd/flux2/pull/5920)
   - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
 - **OCI integrations**
@@ -102,6 +104,9 @@ decryption.
 
 - **Source extensions**
   - [x] [Add `commonMetadata` to ArtifactGenerator API](https://github.com/fluxcd/source-watcher/pull/333)
+
+- **Image reflector controller**
+  - [x] [Add alternative storage backend](https://github.com/fluxcd/image-reflector-controller/pull/895)
 
 - **Webhook integrations**
   - [x] Require `email` and `audience` fields in the Secret referenced by GCR `Receivers` for OIDC ID token claim validation (**⚠️ breaking change**, see [CVE-2026-40109](https://github.com/fluxcd/notification-controller/security/advisories/GHSA-h9cx-xjg6-5v2w))
