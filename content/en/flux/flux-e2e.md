@@ -996,6 +996,9 @@ sequenceDiagram
     hc->>kube: 13. update HelmRelease status
 ```
 
+For more details about managing environment-specific overrides, see the
+[Helm Use Cases guide](/flux/use-cases/helm/#helm-chart-composition-from-multiple-sources).
+
 [Bootstrapping Flux]: #bootstrapping-flux
 [Generating a Flux resource]: #generating-a-flux-resource
 [Previewing changes]: #previewing-changes
