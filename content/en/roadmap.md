@@ -95,7 +95,7 @@ decryption.
 
 - **Git integrations**
   - [x] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
-  - [ ] [Support Git commit signing with SSH keys in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/1035)
+  - [x] [Support Git commit signing with SSH keys in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/1035)
   - [ ] [Support Git commit signing with SSH keys in bootstrap](https://github.com/fluxcd/flux2/pull/5920)
   - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
@@ -150,6 +150,8 @@ The primary goal of this milestone is to make a generally available release for 
   - [ ] Promote the `Event` API to `v1`
   - [ ] Promote the `Alert` API to `v1`
   - [ ] Promote the `Provider` API to `v1`
+  - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
+  - [ ] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
 
 - **Source extensions**
   - [ ] Build external artifacts locally with `flux build artifact generator`
