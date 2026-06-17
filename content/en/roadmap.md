@@ -69,9 +69,9 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 - **EOL and Deprecations**
   - End support for Flux v2.5.x
   - End support for Kubernetes v1.32.x
-  - Remove deprecated APIs in group `source.toolkit.fluxcd.io/v1beta2`
-  - Remove deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta2`
-  - Remove deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta2`
+  - Remove deprecated APIs in the group `source.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in the group `kustomize.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in the group `helm.toolkit.fluxcd.io/v2beta2`
 
 ### v2.9 (Q2 2026)
 
@@ -103,6 +103,7 @@ decryption.
   - [x] [Add support for custom Sigstore trusted root](https://github.com/fluxcd/source-controller/pull/2003)
 
 - **Source extensions**
+  - [x] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
   - [x] [Add `commonMetadata` to ArtifactGenerator API](https://github.com/fluxcd/source-watcher/pull/333)
 
 - **Image reflector controller**
@@ -118,7 +119,7 @@ decryption.
   - [x] [Introduce the Flux Mirror Plugin](https://github.com/fluxcd/flux-mirror)
   - [x] [Introduce the Flux Schema Plugin](https://github.com/fluxcd/flux-schema)
 
-- **CLI extensions**
+- **CLI integrations**
   - [x] [Support namespace from kubeconfig](https://github.com/fluxcd/flux2/pull/5831)
   - [x] [Add `flux create secret receiver` command](https://github.com/fluxcd/flux2/pull/5835)
   - [x] [Add `--resolve-symlinks` flag to `flux build` and `flux push` artifact commands](https://github.com/fluxcd/flux2/issues/5055)
@@ -133,29 +134,45 @@ decryption.
 - **EOL and Deprecations**
   - End support for Flux v2.6.x
   - End support for Kubernetes v1.33.x
-  - Remove deprecated APIs in group `image.toolkit.fluxcd.io/v1beta2`
-  - Remove deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in the group `image.toolkit.fluxcd.io/v1beta2`
+  - Remove deprecated APIs in the group `notification.toolkit.fluxcd.io/v1beta2`
 
-### v2.10 (Q3 2026)
+### v2.10 (mid Q4 2026)
 
 **Status**: Provisional
 
-The primary goal of this milestone is to make a generally available release for the Flux Alerting APIs.
-
-- **Helm integrations**
-  - [ ] Add support for Helm Chart API v3 to source-controller
-  - [ ] Add support for Helm Chart API v3 to helm-controller
+The primary goals of this milestone are making a generally available release for
+the Flux Alerting APIs and integrating Flux with SPIFFE.
 
 - **Alerting integrations**
   - [ ] Promote the `Event` API to `v1`
   - [ ] Promote the `Alert` API to `v1`
   - [ ] Promote the `Provider` API to `v1`
+  - [ ] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
   - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
   - [ ] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
+  - [ ] [Custom Event Metadata from Object](https://github.com/fluxcd/flux2/issues/5946)
+  - [ ] [Support templating for alerts](https://github.com/fluxcd/notification-controller/issues/1328)
 
-- **Source extensions**
-  - [ ] Build external artifacts locally with `flux build artifact generator`
-  - [ ] [SDK for facilitating the development of 3rd party controllers based on the `ExternalArtifact` API](https://github.com/fluxcd/flux2/issues/5504)
+- **SPIFFE integrations**
+  - [ ] [Support JWT-SVID for exchanging credentials with OpenBao/Vault (SOPS), AWS, Azure and GCP](https://github.com/fluxcd/flux2/pull/5702)
+  - [ ] [Support X509-SVID for exchanging credentials with AWS and GCP (Azure does not support it)](https://github.com/fluxcd/flux2/pull/5702)
+  - [ ] [Support JWT-SVID for remote clusters and OCI registries that support OIDC](https://github.com/fluxcd/flux2/pull/5702)
+  - [ ] [Support SPIFFE PKI for TLS and mTLS](https://github.com/fluxcd/flux2/pull/5702)
+
+- **OCI integrations**
+  - [ ] [Introduce support for ServiceAccount token in OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
+  - [ ] Introduce support for ServiceAccount token in ImageRepository
+
+- **Kustomize integrations**
+  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/kustomize-controller/pull/1653)
+
+- **Helm integrations**
+  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/helm-controller/pull/1480)
+
+- **CLI integrations**
+  - [ ] Integrate `flux push artifact` and family with OIDC from CI platforms
+  - [ ] Build external artifacts locally with `flux build ag`
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.37
@@ -163,7 +180,7 @@ The primary goal of this milestone is to make a generally available release for 
 - **EOL and Deprecations**
   - End support for Flux v2.7.x
   - End support for Kubernetes v1.34.x
-  - Deprecate APIs in group `notification.toolkit.fluxcd.io/v1beta3`
+  - Deprecate APIs in the group `notification.toolkit.fluxcd.io/v1beta3`
 
 ## Request for comments
 
