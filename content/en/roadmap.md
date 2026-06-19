@@ -96,7 +96,7 @@ decryption.
 - **Git integrations**
   - [x] [Support Git commit signature verification using SSH keys](https://github.com/fluxcd/pkg/pull/1141)
   - [x] [Support Git commit signing with SSH keys in image-automation-controller](https://github.com/fluxcd/image-automation-controller/pull/1035)
-  - [ ] [Support Git commit signing with SSH keys in bootstrap](https://github.com/fluxcd/flux2/pull/5920)
+  - [x] [Support Git commit signing with SSH keys in bootstrap](https://github.com/fluxcd/flux2/pull/5920)
   - [x] [Support AWS CodeCommit using Workload Identity auth](https://github.com/fluxcd/source-controller/issues/1978)
 
 - **OCI integrations**
