@@ -18,14 +18,14 @@ Every Flux CRD is assigned exactly three categories:
 |---|---|---|
 | `all` | Cluster-wide | Includes Flux resources in `kubectl get all` output |
 | `fluxcd` | All Flux CRDs | Lists every Flux custom resource |
-| Controller-specific | Per controller | Lists resources matching a specific Flux CRD category |
+| Resource-specific | Per resource | Lists resources matching a specific Flux CRD category |
 
-The controller-specific categories are:
+The resource-specific categories are:
 
-| Category | Controller | CRDs |
+| Category | Controllers | CRDs |
 |---|---|---|
-| `fluxcd-sources` | source-controller, source-watcher | `GitRepository`, `OCIRepository`, `HelmRepository`, `HelmChart`, `Bucket`, `ExternalArtifact`, `ArtifactGenerator` |
-| `fluxcd-appliers` | kustomize-controller, helm-controller | `Kustomization`, `HelmRelease` |
+| `fluxcd-sources` | source-controller, source-watcher, flux-operator | `GitRepository`, `OCIRepository`, `HelmRepository`, `HelmChart`, `Bucket`, `ExternalArtifact`, `ArtifactGenerator`, `ResourceSetInputProvider` |
+| `fluxcd-appliers` | kustomize-controller, helm-controller, flux-operator | `Kustomization`, `HelmRelease`, `ResourceSet`, `FluxInstance` |
 | `fluxcd-notifications` | notification-controller | `Alert`, `Provider`, `Receiver` |
 | `fluxcd-images` | image-reflector-controller, image-automation-controller | `ImageRepository`, `ImagePolicy`, `ImageUpdateAutomation` |
 
@@ -47,7 +47,7 @@ Flux resources now appear alongside built-in Kubernetes resources when running:
 kubectl get all -n flux-system
 ```
 
-### List resources by controller category
+### List resources by category
 
 List all source resources:
 
