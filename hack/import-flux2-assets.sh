@@ -115,6 +115,86 @@ gen_crd_doc() {
   fi
 }
 
+replace_or_append_section() {
+  local dest="$1"
+  local heading="$2"
+  local section="$3"
+  local tmp
+
+  tmp="$(mktemp)"
+  if ! awk -v heading="## ${heading}" -v section="${section}" '
+    function print_section() {
+      while ((getline line < section) > 0) {
+        print line
+      }
+      close(section)
+    }
+    $0 == heading {
+      print_section()
+      in_section = 1
+      replaced = 1
+      next
+    }
+    in_section && /^## / {
+      in_section = 0
+    }
+    !in_section {
+      print
+    }
+    END {
+      if (!replaced) {
+        print ""
+        print_section()
+      }
+    }
+  ' "$dest" > "$tmp"; then
+    rm -f "$tmp"
+    fatal "Unable to update '${heading}' in ${dest}"
+  fi
+  mv "$tmp" "$dest"
+}
+
+gen_options_doc() {
+  local url="$1"
+  local dest="$2"
+  local heading="$3"
+  local tmp
+  local section
+
+  tmp="$(mktemp)"
+  section="$(mktemp)"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -# -Lf "$url" > "$tmp"
+
+  if ! awk -v heading="## ${heading}" '
+    /^<!-- / {
+      next
+    }
+    $0 == "## Flags" {
+      print heading
+      in_flags = 1
+      found = 1
+      next
+    }
+    in_flags && /^## / {
+      exit
+    }
+    in_flags {
+      print
+    }
+    END {
+      if (!found) {
+        exit 2
+      }
+    }
+  ' "$tmp" > "$section"; then
+    rm -f "$tmp" "$section"
+    fatal "Unable to extract controller options from ${url}"
+  fi
+
+  replace_or_append_section "$dest" "$heading" "$section"
+  rm -f "$tmp" "$section"
+}
+
 function all_versions {
   for crd in $1 ; do
     echo "${crd##*,}"
@@ -157,6 +237,23 @@ function gen_ctrl_docs {
     version=${crd##*,}
     gen_crd_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${release_branch}/docs/spec/${version}/${name}.md" "$COMPONENTS_DIR/${ctrl_out}/${name}.md"
   done
+
+  options_heading="Flags"
+  case "${ctrl}" in
+    source-controller)
+      options_heading="Source controller flags"
+      ;;
+    source-watcher)
+      options_heading="Source watcher flags"
+      ;;
+    image-automation-controller)
+      options_heading="Image automation flags"
+      ;;
+    image-reflector-controller)
+      options_heading="Image reflector flags"
+      ;;
+  esac
+  gen_options_doc "https://raw.githubusercontent.com/fluxcd/${ctrl}/${release_branch}/docs/README.md" "$COMPONENTS_DIR/${ctrl_out}/options.md" "${options_heading}"
 
   # special cases for n-c
   if [ "${ctrl}" = "notification-controller" ] ; then
@@ -228,8 +325,8 @@ function gen_ctrl_docs {
 
 {
   # image-*-controller CRDs; these use the same API group
-  gen_ctrl_docs "v${VERSION_FLUX}" "image-reflector-controller"
   gen_ctrl_docs "v${VERSION_FLUX}" "image-automation-controller"
+  gen_ctrl_docs "v${VERSION_FLUX}" "image-reflector-controller"
 }
 
 {
