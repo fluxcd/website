@@ -2,7 +2,7 @@
 title: "Flux shared packages releases"
 linkTitle: "Shared packages"
 description: "Flux shared packages release documentation."
-weight: 141
+weight: 30
 ---
 
 The Go packages in [github.com/fluxcd/pkg](https://github.com/fluxcd/pkg) are dedicated Go modules,

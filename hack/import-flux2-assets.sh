@@ -4,6 +4,7 @@ set -euxo pipefail
 
 COMPONENTS_DIR="content/en/flux/components"
 FLUX_DIR="content/en/flux/cmd"
+FLUX_PLUGIN_DIR="content/en/flux/cli-plugins"
 
 if [ -z "${GITHUB_USER:-}" ]; then
     GITHUB_USER=fluxcdbot
@@ -23,6 +24,369 @@ fi
 fatal() {
     echo '[ERROR] ' "$@" >&2
     exit 1
+}
+
+yaml_escape() {
+  printf '%s' "$1" | $SED "s/'/''/g"
+}
+
+title_from_slug() {
+  echo "$1" | tr '_-' '  ' | awk '{
+    for (i = 1; i <= NF; i++) {
+      $i = toupper(substr($i, 1, 1)) substr($i, 2)
+    }
+    print
+  }'
+}
+
+extract_markdown_title() {
+  local file="$1"
+  local first_line
+
+  first_line="$(grep -vEm1 "^<!--" "$file" || true)"
+  if echo "$first_line" | grep -q "<h1>" ; then
+    echo "$first_line" | cut -d'<' -f2 | cut -d'>' -f2 | $SED 's/^\#\ //'
+  elif echo "$first_line" | grep -E "^# " >/dev/null; then
+    echo "$first_line" | $SED 's/^\#\ //'
+  fi
+}
+
+write_plugin_front_matter() {
+  local dest="$1"
+  local title="$2"
+  local link_title="$3"
+  local weight="$4"
+
+  {
+    echo "---"
+    echo "title: '$(yaml_escape "$title")'"
+    if [ -n "$link_title" ]; then
+      echo "linkTitle: '$(yaml_escape "$link_title")'"
+    fi
+    echo "description: \"Official Flux CLI plugin documentation.\""
+    echo "importedDoc: true"
+    if [ -n "$weight" ]; then
+      echo "weight: $weight"
+    fi
+    echo "---"
+    echo
+  } > "$dest"
+}
+
+write_plugin_section_index() {
+  local dest="$1"
+  local title="$2"
+  local link_title="$3"
+  local weight="$4"
+  local body="$5"
+
+  mkdir -p "$(dirname "$dest")"
+  write_plugin_front_matter "$dest" "$title" "$link_title" "$weight"
+  echo "$body" >> "$dest"
+}
+
+urlencode_ref() {
+  echo "${1//\//%2F}"
+}
+
+github_contents() {
+  local repo="$1"
+  local ref="$2"
+  local path="$3"
+  local dest="$4"
+  local encoded_ref
+
+  encoded_ref="$(urlencode_ref "$ref")"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" --retry 3 -sSfL \
+    "https://api.github.com/repos/fluxcd/${repo}/contents/${path}?ref=${encoded_ref}" \
+    -o "$dest"
+}
+
+github_download_url() {
+  local repo="$1"
+  local ref="$2"
+  local path="$3"
+  local tmp
+
+  tmp="$(mktemp)"
+  github_contents "$repo" "$ref" "$path" "$tmp"
+  jq -r '.download_url' "$tmp"
+  rm -f "$tmp"
+}
+
+github_latest_release_tag() {
+  local repo="$1"
+  local tmp
+  local tag
+
+  tmp="$(mktemp)"
+  if ! curl -u "$GITHUB_USER:$GITHUB_TOKEN" --retry 3 -sSfL \
+    "https://api.github.com/repos/fluxcd/${repo}/releases/latest" \
+    -o "$tmp"; then
+    rm -f "$tmp"
+    fatal "Unable to determine latest release tag for fluxcd/${repo}"
+  fi
+
+  tag="$(jq -r '.tag_name // empty' "$tmp")"
+  rm -f "$tmp"
+
+  if [ -z "$tag" ]; then
+    fatal "Latest release tag for fluxcd/${repo} is empty"
+  fi
+
+  echo "$tag"
+}
+
+rewrite_plugin_links() {
+  local dest="$1"
+  local repo="$2"
+  local ref="$3"
+  local source_path="$4"
+
+  python3 - "$dest" "$repo" "$ref" "$source_path" <<'PY'
+import posixpath
+import re
+import sys
+from pathlib import Path
+
+path, repo, ref, source_path = sys.argv[1:5]
+source_dir = posixpath.dirname(source_path)
+github_base = f'https://github.com/fluxcd/{repo}'
+
+
+def rewrite(match):
+    url = match.group(1)
+    if url.startswith(('http://', 'https://', 'mailto:', '#', '/', '{{')):
+        return match.group(0)
+
+    link_path, separator, fragment = url.partition('#')
+    if not link_path:
+        return match.group(0)
+
+    source_target = posixpath.normpath(posixpath.join(source_dir, link_path))
+    fragment = f'#{fragment}' if separator else ''
+    if not source_target.startswith('docs/'):
+        kind = 'tree' if link_path.endswith('/') or not posixpath.splitext(source_target)[1] else 'blob'
+        return f']({github_base}/{kind}/{ref}/{source_target}{fragment})'
+
+    if posixpath.splitext(source_target)[1] and not source_target.endswith('.md'):
+        return f']({github_base}/blob/{ref}/{source_target}{fragment})'
+
+    if not source_path.startswith('docs/'):
+        website_path = source_target[len('docs/'):]
+    else:
+        website_path = link_path
+    website_path = re.sub(r'(^|/)README\.md$', r'\1index.md', website_path)
+    return f']({website_path}{fragment})'
+
+content = Path(path).read_text()
+content = re.sub(r'\]\(([^)\s]+)\)', rewrite, content)
+Path(path).write_text(content)
+PY
+}
+
+
+gen_plugin_readme_index() {
+  local url="$1"
+  local dest="$2"
+  local title="$3"
+  local weight="$4"
+  local repo="$5"
+  local ref="$6"
+  local source_path="$7"
+  local tmp
+
+  tmp="$(mktemp)"
+  mkdir -p "$(dirname "$dest")"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -# -Lf "$url" > "$tmp"
+
+  write_plugin_front_matter "$dest" "$title" "$title" "$weight"
+  python3 - "$tmp" >> "$dest" <<'PY_README'
+import sys
+from pathlib import Path
+
+lines = Path(sys.argv[1]).read_text().splitlines()
+out = []
+skipped_heading = False
+started = False
+started_selected_section = False
+selected_sections = {'## Features', '## Install', '## Quickstart'}
+
+for line in lines:
+    stripped = line.strip()
+    if not skipped_heading and line.startswith('# '):
+        skipped_heading = True
+        continue
+    if not started:
+        if not stripped or stripped.startswith('[![') or stripped.startswith('!['):
+            continue
+        started = True
+    if line.startswith('## '):
+        if stripped in selected_sections:
+            started_selected_section = True
+        elif started_selected_section:
+            break
+        else:
+            break
+    out.append(line)
+
+print('\n'.join(out).rstrip())
+PY_README
+
+  rewrite_plugin_links "$dest" "$repo" "$ref" "$source_path"
+  rm -f "$tmp"
+}
+gen_plugin_markdown_doc() {
+  local url="$1"
+  local dest="$2"
+  local fallback_link_title="$3"
+  local fallback_weight="$4"
+  local repo="$5"
+  local ref="$6"
+  local source_path="$7"
+  local tmp
+
+  tmp="$(mktemp)"
+  mkdir -p "$(dirname "$dest")"
+  curl -u "$GITHUB_USER:$GITHUB_TOKEN" -# -Lf "$url" > "$tmp"
+
+  python3 - "$tmp" "$dest" "$fallback_link_title" "$fallback_weight" <<'PY'
+import json
+import re
+import sys
+from pathlib import Path
+
+src, dest, fallback_link_title, fallback_weight = sys.argv[1:5]
+text = Path(src).read_text()
+front_matter = {}
+body = text
+front_matter_found = False
+
+
+def unquote(value):
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+        value = value[1:-1]
+    return value
+
+
+def parse_scalar_front_matter(raw, style):
+    values = {}
+    for line in raw.splitlines():
+        if not line.strip() or line.lstrip().startswith('#'):
+            continue
+        if style == 'toml':
+            match = re.match(r'^([A-Za-z_][A-Za-z0-9_-]*)\s*=\s*(.+?)\s*$', line)
+        else:
+            match = re.match(r'^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.+?)\s*$', line)
+        if not match:
+            continue
+        key, value = match.groups()
+        values[key.lower()] = unquote(value)
+    return values
+
+if text.startswith('---\n'):
+    end = text.find('\n---', 4)
+    if end != -1:
+        front_matter_found = True
+        front_matter = parse_scalar_front_matter(text[4:end], 'yaml')
+        body = text[text.find('\n', end + 4) + 1:]
+elif text.startswith('+++\n'):
+    end = text.find('\n+++', 4)
+    if end != -1:
+        front_matter_found = True
+        front_matter = parse_scalar_front_matter(text[4:end], 'toml')
+        body = text[text.find('\n', end + 4) + 1:]
+elif text.lstrip().startswith('{'):
+    leading = len(text) - len(text.lstrip())
+    decoder = json.JSONDecoder()
+    try:
+        parsed, end = decoder.raw_decode(text.lstrip())
+    except json.JSONDecodeError:
+        parsed = None
+    if isinstance(parsed, dict):
+        front_matter_found = True
+        front_matter = {str(k).lower(): str(v) for k, v in parsed.items() if isinstance(v, (str, int, float, bool))}
+        body = text[leading + end:].lstrip('\r\n')
+
+body_lines = []
+skipped_title = False
+heading_title = ''
+for line in body.splitlines():
+    if line.startswith('<!-- '):
+        continue
+    if not skipped_title and line.startswith('# '):
+        heading_title = line[2:].strip()
+        skipped_title = True
+        continue
+    body_lines.append(line)
+
+title = front_matter.get('title') or heading_title or fallback_link_title
+link_title = front_matter.get('linktitle') or fallback_link_title
+weight = front_matter.get('weight') or fallback_weight
+description = front_matter.get('description') or 'Official Flux CLI plugin documentation.'
+
+
+def yaml_scalar(value):
+    return "'" + str(value).replace("'", "''") + "'"
+
+out = [
+    '---',
+    f'title: {yaml_scalar(title)}',
+]
+if link_title:
+    out.append(f'linkTitle: {yaml_scalar(link_title)}')
+out.extend([
+    f'description: {yaml_scalar(description)}',
+    'importedDoc: true',
+])
+if weight:
+    out.append(f'weight: {weight}')
+out.extend(['---', ''])
+out.extend(body_lines)
+Path(dest).write_text('\n'.join(out).rstrip() + '\n')
+PY
+
+  rewrite_plugin_links "$dest" "$repo" "$ref" "$source_path"
+  rm -f "$tmp"
+}
+
+import_plugin_docs() {
+  local repo="$1"
+  local slug="$2"
+  local title="$3"
+  local weight="$4"
+  local ref
+  local plugin_dir
+  local docs_contents
+  local readme_url
+  local page_weight
+  local name
+  local url
+  local page_slug
+  local page_link_title
+
+  ref="$(github_latest_release_tag "$repo")"
+  echo "Using fluxcd/${repo} ${ref} release tag for plugin docs." >&2
+  plugin_dir="${FLUX_PLUGIN_DIR}/${slug}"
+
+  rm -rf "$plugin_dir"
+  readme_url="$(github_download_url "$repo" "$ref" "README.md")"
+  gen_plugin_readme_index "$readme_url" "${plugin_dir}/_index.md" "$title" "$weight" "$repo" "$ref" "README.md"
+
+  docs_contents="$(mktemp)"
+  github_contents "$repo" "$ref" "docs" "$docs_contents"
+
+  page_weight=10
+  jq -r '[.[] | select(.type == "file" and (.name | endswith(".md")))] | sort_by(.name)[] | [.name, .download_url] | @tsv' "$docs_contents" |
+  while IFS=$'\t' read -r name url; do
+    page_slug="${name%.md}"
+    page_link_title="$(title_from_slug "$page_slug")"
+    gen_plugin_markdown_doc "$url" "${plugin_dir}/${page_slug}.md" "$page_link_title" "$page_weight" "$repo" "$ref" "docs/${name}"
+    page_weight=$((page_weight + 10))
+  done
+
+  rm -f "$docs_contents"
 }
 
 # Set os, fatal if operating system not supported
@@ -332,6 +696,15 @@ function gen_ctrl_docs {
 {
   # source-watcher CRDs
   gen_ctrl_docs "v${VERSION_FLUX}" "source-watcher"
+}
+
+{
+  # Flux CLI plugin docs
+  rm -rf "${FLUX_PLUGIN_DIR:?}"/*
+  write_plugin_section_index "${FLUX_PLUGIN_DIR}/_index.md" "Flux CLI Plugins" "Flux CLI Plugins" 81 \
+    "Documentation for the official Flux CLI plugins."
+  import_plugin_docs "flux-mirror" "flux-mirror" "Flux Mirror" 1
+  import_plugin_docs "flux-schema" "flux-schema" "Flux Schema" 2
 }
 
 {

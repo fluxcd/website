@@ -2,7 +2,7 @@
 title: "Flux controller releases"
 linkTitle: "Controllers"
 description: "Flux controller release documentation."
-weight: 141
+weight: 10
 ---
 
 The Flux controllers are 

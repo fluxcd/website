@@ -2,7 +2,7 @@
 title: "Flux release procedures"
 linkTitle: "Release procedures"
 description: "Flux release procedures documentation."
-weight: 142
+weight: 40
 ---
 
 This document provides an overview of the release procedures for each component
@@ -23,6 +23,8 @@ clarification.
     * [Patch releases](#controllers-patch-releases)
     * [Release candidates](#controllers-release-candidates)
     * [Preview releases](#controllers-preview-releases)
+  + [Plugins](#plugins)
+    * [Plugin releases](#plugin-releases)
   + [Distribution](#distribution)
     * [Minor releases](#distribution-minor-releases)
     * [Minor release website](#distribution-minor-release-website)
@@ -265,6 +267,59 @@ To create a preview release, follow the steps below.
    registry. Once the workflow has completed, the image reference will be
    available in the logs, and can be shared in the relevant issue or pull
    request.
+
+### Plugins
+
+To release an official Flux CLI [plugin](plugins.md) as a project maintainer,
+tag the `main` branch of the plugin repository. Plugins do not maintain release
+branches; all release changes must be merged into `main` before the release tag
+is created.
+
+#### Plugin releases
+
+1. Ensure everything to be included in the release is merged into the `main`
+   branch.
+
+2. Checkout the `main` branch and pull changes from the remote repository.
+
+   ```shell
+   git clone https://github.com/fluxcd/<plugin>.git
+   cd <plugin>
+   git switch main
+   git pull origin main
+   ```
+
+3. Create a signed SemVer tag for the release.
+
+   ```shell
+   git tag -s -m "v0.2.0" v0.2.0
+   ```
+
+4. Push the signed tag to the upstream repository.
+
+   ```shell
+   git push origin v0.2.0
+   ```
+
+5. Confirm that CI builds and publishes the GitHub release artifacts.
+
+For example, to release `flux-mirror`:
+
+```shell
+git clone https://github.com/fluxcd/flux-mirror.git
+cd flux-mirror
+git switch main
+git pull origin main
+git tag -s -m "v0.2.0" v0.2.0
+git push origin v0.2.0
+```
+
+Use the same procedure for `flux-schema`.
+
+When Flux cuts a minor distribution release, the official plugins should also be
+released from `main` after their dependencies have been aligned with the Flux
+distribution. Plugin releases can also happen between Flux distribution releases
+whenever new plugin features or fixes are ready.
 
 ### Distribution
 

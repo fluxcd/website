@@ -2,5 +2,5 @@
 title: "Cheatsheets"
 linkTitle: "Cheatsheets"
 description: "Flux cheatsheets."
-weight: 81
+weight: 82
 ---
