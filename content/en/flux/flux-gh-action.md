@@ -2,7 +2,7 @@
 title: "Flux GitHub Action"
 linkTitle: "Flux GitHub Action"
 description: "How to use the Flux CLI in GitHub Actions workflows."
-weight: 145
+weight: 146
 ---
 
 The Flux GitHub Action can be used to automate various tasks in CI such as:
