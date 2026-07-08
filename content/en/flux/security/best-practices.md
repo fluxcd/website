@@ -228,7 +228,7 @@ The recommendations below are based on Flux's latest version.
   <details>
     <summary>Audit Procedure</summary>
     
-    - Check whether the Secret Provider configuration is security hardened. Please seek [SOPS](https://github.com/mozilla/sops) and [SealedSecrets](https://github.com/bitnami-labs/sealed-secrets) documentation for how to best implement each solution.
+    - Check whether the Secret Provider configuration is security hardened. Please seek [SOPS](https://github.com/mozilla/sops) and [SealedSecrets](https://github.com/bitnami/sealed-secrets) documentation for how to best implement each solution.
     - When SealedSecrets are employed, pay special attention to the scopes being used.
   </details>
 
