@@ -270,7 +270,7 @@ scenarios are considered.
 
 [kubernetes secrets]: https://kubernetes.io/docs/concepts/configuration/secret/
 [etcd encryption]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
-[Sealed Secrets]: https://github.com/bitnami-labs/sealed-secrets
+[Sealed Secrets]: https://github.com/bitnami/sealed-secrets
 [SOPS]: https://github.com/mozilla/sops
 [1Password Operator]: https://github.com/1Password/onepassword-operator
 [External Secrets Operator]: https://github.com/external-secrets/external-secrets
