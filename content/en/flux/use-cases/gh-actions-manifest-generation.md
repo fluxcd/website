@@ -559,7 +559,7 @@ When you write a `Kustomization` to apply this, be sure you are aware of whether
 ```javascript
 # Any Old App Jsonnet example 0.10.1 - manifests/example.jsonnet
 
-local kube = import 'https://github.com/bitnami-labs/kube-libsonnet/raw/73bf12745b86718083df402e89c6c903edd327d2/kube.libsonnet';
+local kube = import 'https://github.com/bitnami/kube-libsonnet/raw/73bf12745b86718083df402e89c6c903edd327d2/kube.libsonnet';
 
 local example = import 'example.libsonnet';
 
@@ -799,7 +799,7 @@ So get ready for _obfuscated nightmare mode_, (which is the name we thoughtfully
 
 // This example uses kube.libsonnet from Bitnami.  There are other
 // Kubernetes libraries available, or write your own!
-local kube = import 'https://github.com/bitnami-labs/kube-libsonnet/raw/73bf12745b86718083df402e89c6c903edd327d2/kube.libsonnet';
+local kube = import 'https://github.com/bitnami/kube-libsonnet/raw/73bf12745b86718083df402e89c6c903edd327d2/kube.libsonnet';
 
 // The declaration below adds configuration to a more verbose base, defined in
 // more detail at the neighbor libsonnet file here:
@@ -859,7 +859,7 @@ Jsonnet objects can also be added to other objects, composing their fields from 
 
 I'm trying to learn Jsonnet as fast as I can, I hope you're still with me and if not, don't worry. Where did all of this programming come from? (And what's a list comprehension?) It really doesn't matter.
 
-The heavy lifting libraries for this example are from [anguslees/kustomize-libsonnet], which implements some basic primitives of Kustomize in Jsonnet. YAML parser is provided by [bitnami/kubecfg][kubecfg yaml parser], and the Jsonnet implementations of Kubernetes primitives by [bitnami-labs/kube-libsonnet].
+The heavy lifting libraries for this example are from [anguslees/kustomize-libsonnet], which implements some basic primitives of Kustomize in Jsonnet. YAML parser is provided by [bitnami/kubecfg][kubecfg yaml parser], and the Jsonnet implementations of Kubernetes primitives by [bitnami/kube-libsonnet].
 
 It is a matter of taste whether you consider from above the first, second, or third example to be better stylistically. It is a matter of taste and circumstances, to put a finer point on it. They each have strengths and weaknesses, depending mostly on whatever changes we will have to make to them next.
 
@@ -1281,7 +1281,7 @@ If you are on GitHub, and are struggling to get started using GitHub Actions, or
 [example 10.2 configmap]: https://github.com/kingdonb/any_old_app/blob/release/0.10.2/manifests/examples/configMap.yaml
 [anguslees/kustomize-libsonnet]: https://github.com/anguslees/kustomize-libsonnet
 [kubecfg yaml parser]: https://github.com/bitnami/kubecfg/blob/master/lib/kubecfg.libsonnet#L25
-[bitnami-labs/kube-libsonnet]: https://github.com/bitnami-labs/kube-libsonnet
+[bitnami/kube-libsonnet]: https://github.com/bitnami/kube-libsonnet
 [example 10.3 jsonnet]: https://github.com/kingdonb/any_old_app/blob/release/0.10.3/manifests/example.jsonnet
 [Manual Gating]: /flagger/usage/webhooks#manual-gating
 [flux create tenant]: /cmd/flux_create_tenant
