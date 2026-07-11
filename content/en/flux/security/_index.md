@@ -29,7 +29,7 @@ The Flux CLI and the controllers' images are signed using [Sigstore](https://www
 The container images along with their signatures are published on GitHub Container Registry and Docker Hub.
 
 To verify the authenticity of Flux's container images,
-install [cosign](https://docs.sigstore.dev/cosign/installation/) v2 and run:
+install [cosign](https://docs.sigstore.dev/cosign/system_config/installation/) v2 and run:
 
 ```console
 $ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0 \
