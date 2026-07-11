@@ -280,4 +280,4 @@ scenarios are considered.
 [OCI Repositories]: /flux/components/source/ocirepositories/
 [stakater/Reloader]: https://github.com/stakater/Reloader
 [kustomize-secretgenerator]: /flux/components/kustomize/kustomizations/#kustomize-secretgenerator
-[kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomizations/#secretgenerator
+[kustomization-secretgenerator]: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#secretgenerator
