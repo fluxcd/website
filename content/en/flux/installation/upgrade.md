@@ -126,7 +126,7 @@ spec:
       name: << inputs.provider.name >>
       namespace: << inputs.provider.namespace >>
      spec:
-      interval: << inputs.provider.interval >>
+      interval: << inputs.interval >>
       url: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
       layerSelector:
         mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
