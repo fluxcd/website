@@ -43,7 +43,7 @@ idea and extends it with the API server's own evaluation semantics:
   API server rules (DNS-1123, qualified names).
 - **Ecosystem catalog**: the `ecosystem` schema location resolves to
   [schemas.fluxoperator.dev](https://schemas.fluxoperator.dev), a CDN-hosted
-  catalog for over a hundred Claude Native projects, extracted from upstream releases and rebuilt daily.
+  catalog for over a hundred Cloud Native projects, extracted from upstream releases and rebuilt daily.
 - **SOPS-aware**: the SOPS metadata fields can be stripped before validation,
   so encrypted Secrets are checked without decryption.
 
@@ -204,7 +204,7 @@ the manifest hits the cluster.
 Agents thrive when they can verify their own work. For code, that feedback
 loop is the compiler and the test suite. For Kubernetes manifests, the only
 authoritative validator is the API server, so agents either dry-run apply
-manifests to a live cluster (risky, requires credentials) or skipped verification
+manifests to a live cluster (risky, requires credentials) or skip verification
 entirely.
 
 Flux Schema gives agents the API server's judgment as a local, read-only,
@@ -300,11 +300,11 @@ access) and emits a structured inventory designed for AI agents:
   file and `namespace/name` identity, so an agent opens exactly the files
   relevant to the task.
 - **Resource census by API version**: everything is counted per
-  `apiVersion/Kind`, so deprecated API versions stand out without reading a
+  `apiVersion/kind`, so deprecated API versions stand out without reading a
   single manifest.
 - **Context-budgeted output**: plain Kubernetes resources appear as counts
   (2,000 Deployments cost a few lines, not thousands), and Helm chart and
-  Terraform subtrees are pruned. A typical repository inventories in a few KB.
+  Terraform subtrees are pruned. A typical repository results in a few KBs.
 
 Like the validation report, the inventory is a versioned JSON envelope with a
 published schema, so agents parse it programmatically instead of interpreting
