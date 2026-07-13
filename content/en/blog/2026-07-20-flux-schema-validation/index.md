@@ -1,8 +1,8 @@
 ---
 author: Stefan Prodan
-date: 2026-07-20 10:00:00+00:00
-title: Introducing Flux Schema
-description: "Static validation for GitOps workflows with Kubernetes API server semantics, built for CI pipelines and AI agents."
+date: 2026-07-13 12:00:00+00:00
+title: Introducing Flux Schema and the Ecosystem Catalog
+description: "Static validation for GitOps workflows with Kubernetes API server semantics, a schema catalog for the CNCF ecosystem, and a public MCP server for AI agents."
 url: /blog/2026/07/flux-schema-validation/
 tags: [announcement]
 resources:
@@ -13,15 +13,13 @@ resources:
 In this blog post, we introduce [Flux Schema](https://github.com/fluxcd/flux-schema),
 a new Flux CLI plugin for validating Kubernetes manifests against JSON Schema
 and CEL rules using the same evaluation semantics as the Kubernetes API server.
-It ships as a single Go binary with a built-in catalog covering Kubernetes,
-OpenShift, Gateway API, and the Flux ecosystem CRDs.
+
+Alongside the plugin, we're announcing the
+[Ecosystem Schema Catalog](https://schemas.fluxoperator.dev),
+a hosted catalog of JSON Schemas and LLM-optimized indexes covering the
+Kuberentes ecosystem of controllers, served to CI pipelines over CDN and to AI agents over MCP.
 
 ![](featured-image.png)
-
-Flux Schema brings static validation to GitOps workflows. Platform engineers
-can catch invalid definitions in pull requests before Flux reconciles them on
-clusters, and AI agents get a deterministic feedback loop for verifying the
-Kubernetes and Flux manifests they generate.
 
 ## Why Another Validation Tool
 
@@ -43,9 +41,9 @@ idea and extends it with the API server's own evaluation semantics:
 - **Strict YAML decoding**: duplicate keys are rejected, matching Flux behavior,
   and metadata names, namespaces, labels, and annotations are checked against
   API server rules (DNS-1123, qualified names).
-- **Built-in catalog**: JSON Schemas with CEL rules for Kubernetes, OpenShift,
-  Gateway API, Flux, Flagger, and Flux Operator CRDs, refreshed automatically
-  from upstream stable releases.
+- **Ecosystem catalog**: the `ecosystem` schema location resolves to
+  [schemas.fluxoperator.dev](https://schemas.fluxoperator.dev), a CDN-hosted
+  catalog for over a hundred Claude Native projects, extracted from upstream releases and rebuilt daily.
 - **SOPS-aware**: the SOPS metadata fields can be stripped before validation,
   so encrypted Secrets are checked without decryption.
 
@@ -89,8 +87,8 @@ Summary: 5 resources found in 2 files - Valid: 3, Invalid: 2, Skipped: 0
 By default, only the invalid documents are printed; pass `--verbose` to also
 list the valid and skipped ones.
 
-For third-party CRDs not in the built-in catalog, you can layer additional
-schema locations, or extract JSON Schemas straight from your cluster:
+For your own in-house CRDs, you can extract JSON Schemas straight from your
+cluster and layer them on top of the built-in catalog:
 
 ```shell
 kubectl get crds -o yaml | flux schema extract crd -d ./my-catalog
@@ -99,6 +97,59 @@ flux schema validate ./manifests \
   --schema-location ./my-catalog \
   --schema-location default
 ```
+
+## The Ecosystem Schema Catalog
+
+![](ecosystem-catalog.png)
+
+The [Ecosystem Schema Catalog](https://schemas.fluxoperator.dev)
+is a hosted catalog of JSON Schemas and refreshed daily from upstream stable releases.
+It currently covers 100 projects and close to 9000 schemas: Kubernetes and OpenShift built-ins,
+all CNCF projects, and the cloud provider operators for AWS, Azure, and GCP.
+
+The catalog is served from Cloudflare's global network, where you can also
+search and browse every project and schema. The CLI reaches it through the
+`ecosystem` schema location:
+
+```shell
+flux schema validate ./manifests -s ecosystem
+```
+
+The catalog also keeps versioned snapshots for the six most recent minor
+releases of Kubernetes, OpenShift, and Flux, so validation can be pinned to
+the minors your clusters run. Schema locations resolve in order, so put the
+pinned minors first and the ecosystem catalog last as the fallback:
+
+```shell
+flux schema validate ./manifests \
+  -s https://schemas.fluxoperator.dev/catalog/versions/kubernetes/v1.35 \
+  -s https://schemas.fluxoperator.dev/catalog/versions/flux/v2.8 \
+  -s ecosystem
+```
+
+## Explaining Fields Without a Cluster
+
+Backed by the ecosystem catalog, the `explain` command is like `kubectl explain`
+without a cluster at hand.
+
+```console
+$ flux schema explain -s ecosystem hr.spec.dependsOn
+
+GROUP:      helm.toolkit.fluxcd.io
+KIND:       HelmRelease
+VERSION:    v2
+
+FIELD: dependsOn <[]Object>
+
+DESCRIPTION:
+    DependsOn may contain a DependencyReference slice with references to
+    HelmRelease resources that must be ready before this HelmRelease can be
+    reconciled.
+...
+```
+
+Add `--recursive` to print nested fields, and `--api-version` to pick a
+specific group/version when a kind is served by more than one.
 
 ## Shifting Validation Left in CI
 
@@ -132,10 +183,16 @@ jobs:
           helm-charts: "true"
 ```
 
-For other CI systems and air-gapped environments, the
-`ghcr.io/fluxcd/flux-schema` container image bundles the entire catalog,
-so validation runs without network access. A `.fluxschema.yml` file makes
-the validation config reproducible across local machines and CI.
+A `.fluxschema.yml` file at the repository root makes the validation config
+reproducible across local machines and CI:
+
+```yaml
+apiVersion: schema.plugin.fluxcd.io/v1beta1
+kind: Config
+validate:
+  schemaLocation:
+    - ecosystem
+```
 
 ## A Feedback Loop for AI Agents
 
@@ -146,8 +203,8 @@ the manifest hits the cluster.
 
 Agents thrive when they can verify their own work. For code, that feedback
 loop is the compiler and the test suite. For Kubernetes manifests, the only
-authoritative validator was the API server, so agents either applied manifests
-to a live cluster (slow, risky, requires credentials) or skipped verification
+authoritative validator is the API server, so agents either dry-run apply
+manifests to a live cluster (risky, requires credentials) or skipped verification
 entirely.
 
 Flux Schema gives agents the API server's judgment as a local, read-only,
@@ -157,21 +214,74 @@ output is clean. Structured reports in JSON or YAML make the results
 machine-parseable:
 
 ```shell
-flux schema validate ./manifests -o json
+flux schema validate ./manifests -s ecosystem -o json
 ```
 
-Because the catalog is refreshed automatically from upstream releases, agents
-validate against the current APIs rather than the versions frozen into their
-training data.
+Because the catalog is refreshed daily from upstream releases, agents validate
+against the current APIs rather than the versions frozen into their training
+data.
+
+## An MCP Server as a Public Good
+
+Validation tells an agent that a manifest is wrong; to write it correctly in
+the first place, the agent needs to look up the real schema instead of
+reconstructing it from training data. For that, the ecosystem catalog is
+exposed as a remote MCP server. The MCP is a free public service operated
+by the Flux Operator team, with no authentication or API key required:
+
+```text
+https://schemas.fluxoperator.dev/mcp
+```
+
+Think of it as an LLM-friendly `kubectl explain` for the whole Kubernetes
+ecosystem with no cluster required.
+
+Connecting an agent takes one command. For Claude Code:
+
+```shell
+claude mcp add --transport http flux-schema-catalog https://schemas.fluxoperator.dev/mcp
+```
+
+For Codex:
+
+```shell
+codex mcp add flux-schema-catalog --url https://schemas.fluxoperator.dev/mcp
+```
+
+And for other MCP clients (Cursor, VS Code, Windsurf, …), add the server to
+the project's `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "flux-schema-catalog": {
+      "type": "http",
+      "url": "https://schemas.fluxoperator.dev/mcp"
+    }
+  }
+}
+```
+
+We measured the impact by giving the same agent four tasks against recently
+shipped CRDs: two field lookups, one manifest to write, and one manifest
+review with planted errors. From training data alone, the agent got one task
+of four right; it invented enum values and flagged valid fields as errors.
+With the MCP server it scored four of four, using **57%** fewer tokens and **80%**
+fewer tool calls than achieving the same score with web search. Smaller
+models depend on the catalog even more: Haiku scored zero of four from memory
+and four of four with the MCP server, at a quarter of the web-search cost.
+
+See the [AI agents guide](https://schemas.fluxoperator.dev/agents) for the
+full benchmark details and per-client setup instructions.
 
 ## Repository Discovery for Agents
 
-Validation is only half of what an agent needs. Before generating or auditing
-anything, an agent has to understand the repository it landed in, and GitOps
-repos are hostile to `tree` and `grep` exploration: file names like
-`sync.yaml` and `release.yaml` reveal nothing, multi-document files hide
-resources, and grepping for `kind: HelmRelease` matches kustomize patch
-files.
+Validation and schema lookup are still only part of what an agent needs.
+Before generating or auditing anything, an agent has to understand the
+repository it landed in, and GitOps repos are hostile to `tree` and `grep`
+exploration: file names like `sync.yaml` and `release.yaml` reveal nothing,
+multi-document files hide resources, and grepping for `kind: HelmRelease`
+matches kustomize patch files.
 
 The `flux schema discover` command replaces that read-and-grep loop with one
 deterministic pass:
@@ -203,8 +313,7 @@ ad-hoc shell output.
 ## Powering the Flux AI Skills
 
 Flux Schema is the engine behind the official
-[GitOps Agent Skills](https://github.com/fluxcd/agent-skills)
-developed by the Flux maintainers.
+[GitOps Agent Skills](https://github.com/fluxcd/agent-skills).
 
 The `gitops-repo-audit` skill turns an AI assistant into a GitOps repository
 auditor. Its discovery phase runs `flux schema discover` to build the
@@ -233,15 +342,10 @@ Then ask your assistant to "audit this GitOps repo" and watch it work through
 discovery, validation, API compliance, best practices, and security review,
 with every claim grounded in the flux-schema output rather than hallucinated.
 
-## What's Next
+## Get Involved
 
-Flux Schema is Apache 2.0 licensed and developed in the open at
-[fluxcd/flux-schema](https://github.com/fluxcd/flux-schema). The
-[documentation](/flux/cli-plugins/flux-schema/) covers
-manifest validation, custom catalogs, repository discovery, and the JSON
-Schema references for all output formats.
-
-Whether you wire it into your CI pipeline, run it locally before pushing, or
-hand it to an AI agent as its ground truth, the goal is the same: find out
-that a manifest is broken before Flux does. Give it a try and let us know what
-you think by opening issues or discussions on GitHub.
+The ecosystem catalog grows with the community: if a project you rely on is
+missing from [schemas.fluxoperator.dev](https://schemas.fluxoperator.dev),
+request it by opening an
+[issue](https://github.com/controlplaneio-fluxcd/schema-catalog/issues/new?template=add-project.yaml),
+and it will be picked up by the daily rebuilds once added.
