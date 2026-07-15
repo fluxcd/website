@@ -18,7 +18,7 @@ TODO: REPLACE FEATURED IMAGE!
 
 ## SOPS: GitOps secrets without a static token
 
-Keeping encrypted Secrets in Git solves most of the secret-distribution problem. When the SOPS key lives in OpenBao's transit engine, Flux still needed a static `VAULT_TOKEN` to ask OpenBao for decryption: one secret that had to exist before GitOps could take charge of managing secrets. Starting with Flux 2.9, that token is optional: kustomize-controller can use ServiceAccount tokens to authenticate to OpenBao, so Flux can manage secrets without any pre-existing secret.
+Keeping encrypted Secrets in Git solves most of the secret-distribution problem. For a SOPS encryption key living in OpenBao's transit engine, before 2.9 Flux still needed a static `VAULT_TOKEN` to ask OpenBao for decryption: one secret that had to exist before GitOps could take charge of managing secrets. Starting with Flux 2.9, that token is optional: kustomize-controller can use ServiceAccount tokens to authenticate to OpenBao, so Flux can manage secrets without any pre-existing secret.
 
 ### Step 1: Encrypt a Secret with OpenBao
 
