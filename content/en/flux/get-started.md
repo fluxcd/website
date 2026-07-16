@@ -29,7 +29,7 @@ The `flux` command-line interface (CLI) is used to bootstrap and interact with F
 
 To install the CLI with Homebrew run:
 
-```sh
+```bash
 brew install fluxcd/tap/flux
 ```
 
@@ -39,7 +39,7 @@ For other installation methods, see the [CLI install documentation](/flux/instal
 
 Export your GitHub personal access token and username:
 
-```sh
+```bash
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
@@ -54,7 +54,7 @@ flux check --pre
 
 The output is similar to:
 
-```
+```bash
 ► checking prerequisites
 ✔ kubernetes 1.28.0 >=1.25.0
 ✔ prerequisites checks passed
@@ -66,7 +66,7 @@ For information on how to bootstrap using a GitHub org, Gitlab and other git pro
 
 Run the bootstrap command:
 
-```sh
+```bash
 flux bootstrap github \
   --owner=$GITHUB_USER \
   --repository=fleet-infra \
@@ -77,7 +77,7 @@ flux bootstrap github \
 
 The output is similar to:
 
-```
+```bash
 ► connecting to github.com
 ✔ repository created
 ✔ repository cloned
@@ -109,7 +109,7 @@ The bootstrap command above does the following:
 
 Clone the `fleet-infra` repository to your local machine:
 
-```sh
+```bash
 git clone https://github.com/$GITHUB_USER/fleet-infra
 cd fleet-infra
 ```
@@ -121,7 +121,7 @@ podinfo is a tiny web application made with Go.
 
 1. Create a [GitRepository](/flux/components/source/gitrepositories/) manifest pointing to podinfo repository's master branch:
 
-    ```sh
+    ```bash
     flux create source git podinfo \
       --url=https://github.com/stefanprodan/podinfo \
       --branch=master \
@@ -146,7 +146,7 @@ podinfo is a tiny web application made with Go.
 
 2. Commit and push the `podinfo-source.yaml` file to the `fleet-infra` repository:
 
-    ```sh
+    ```bash
     git add -A && git commit -m "Add podinfo GitRepository"
     git push
     ```
@@ -158,7 +158,7 @@ directory located in the podinfo repository.
 
 1. Use the `flux create` command to create a [Kustomization](/flux/components/kustomize/kustomizations/) that applies the podinfo deployment.
 
-    ```sh
+    ```bash
     flux create kustomization podinfo \
       --target-namespace=default \
       --source=podinfo \
@@ -194,7 +194,7 @@ directory located in the podinfo repository.
 
 2. Commit and push the `Kustomization` manifest to the repository:
 
-    ```sh
+    ```bash
     git add -A && git commit -m "Add podinfo Kustomization"
     git push
     ```
@@ -217,13 +217,13 @@ directory located in the podinfo repository.
 
 1. Use the `flux get` command to watch the podinfo app.
 
-    ```sh
+    ```bash
     flux get kustomizations --watch
     ```
 
     The output is similar to:
 
-    ```
+    ```bash
     NAME          REVISION             SUSPENDED  READY   MESSAGE
     flux-system   main@sha1:4e9c917f   False      True    Applied revision: main@sha1:4e9c917f
     podinfo       master@sha1:44157ecd False      True    Applied revision: master@sha1:44157ecd
@@ -231,13 +231,13 @@ directory located in the podinfo repository.
 
 2. Check podinfo has been deployed on your cluster:
 
-    ```sh
+    ```bash
     kubectl -n default get deployments,services
     ```
 
     The output is similar to:
 
-    ```
+    ```bash
     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
     deployment.apps/podinfo   2/2     2            2           108s
 
@@ -285,7 +285,7 @@ To customize a deployment from a repository you don't control, you can use Flux
 
 1. Commit and push the `podinfo-kustomization.yaml` changes:
 
-    ```sh
+    ```bash
     git add -A && git commit -m "Increase podinfo minimum replicas"
     git push
     ```
