@@ -98,7 +98,7 @@ OpenBao transit engine   →   Cosign   →   GHCR (artifact + signature)   → 
 holds the signing key        signs        stores signature                  verifies
 ```
 
-### The signing key stays in OpenBao
+### Step 1: Generate the signing key in OpenBao
 
 OpenBao's transit secrets engine is a cryptography-as-a-service backend: it holds key material and performs sign and verify operations on request. Cosign has native support for it through the `openbao://` KMS URI, so generating the key is a single command - and the private half is created inside OpenBao and never written to disk:
 
@@ -120,7 +120,7 @@ path "transit/sign/control-plane-demo" {
 }
 ```
 
-### Sign by digest, without the transparency log
+### Step 2: Push and sign the artifact by digest
 
 Package the manifests as an OCI artifact and push them to the registry with the Flux CLI:
 
@@ -140,7 +140,7 @@ cosign sign --key openbao://control-plane-demo --tlog-upload=false \
 
 OpenBao performs the signing operation, and the signature is stored in the registry alongside the artifact. One thing to watch: Cosign authenticates to the registry separately from `flux push artifact --creds` - the two don't share credentials, so Cosign needs its own `cosign login`.
 
-### Verifying the artifact
+### Step 3: Configure Flux to verify the artifact
 
 Flux only needs the Cosign public key. Create a Secret holding it, then reference that Secret from an `OCIRepository`'s `.spec.verify`. The public key is not sensitive, so the demo creates the Secret directly; in production you would manage it declaratively with SOPS or sealed-secrets:
 
@@ -174,13 +174,13 @@ SourceVerified=True (Succeeded): verified signature of revision latest@sha256:�
 
 No part of that verification reached outside the cluster.
 
-### Static keys or keyless
+### Step 4: Compare static keys and keyless verification
 
-Flux supports both Cosign modes. Omit `.verify.secretRef` and Flux switches to keyless verification, matching OIDC identities against Fulcio certificates and the Rekor log. That is the right choice when short-lived identities and a public, auditable signing record are what you want, and reliance on public Sigstore infrastructure is acceptable.
+The configuration above uses a static key. Flux also supports keyless verification: omit `.verify.secretRef`, and Flux will match OIDC identities against Fulcio certificates and the Rekor log. That is the right choice when short-lived identities and a public, auditable signing record are what you want, and reliance on public Sigstore infrastructure is acceptable.
 
 This demo takes the other path on purpose. The goal is a chain with no public dependencies, so a static key held in OpenBao is the natural fit: you own key custody and rotation, and nothing in the flow calls out to a service you don't run. Neither mode is universally correct - they encode different trade-offs, and Flux lets you choose per source.
 
-### Confirm that it blocks
+### Step 5: Confirm unsigned artifacts are blocked
 
 A verification step is only worth having once you have watched it reject something. The demo includes a tamper test: it pushes an unsigned artifact to a separate tag and points a throwaway `OCIRepository` at it. Flux refuses to verify it, and the manifests never reach the cluster:
 
@@ -190,7 +190,7 @@ SourceVerified=False
 
 Worth running once - a rejected unsigned artifact is more reassuring than an accepted signed one.
 
-### Try it
+### Step 6: Run the complete demo
 
 The repository wraps the whole flow in `make` targets - OpenBao setup, key generation, artifact publishing and signing, verification, and the tamper test - so you can reproduce it end to end on a throwaway cluster:
 
