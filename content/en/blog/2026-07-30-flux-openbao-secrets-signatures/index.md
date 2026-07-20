@@ -20,7 +20,37 @@ TODO: REPLACE FEATURED IMAGE!
 
 Keeping encrypted Secrets in Git solves most of the secret-distribution problem. For a SOPS encryption key living in OpenBao's transit engine, before 2.9 Flux still needed a static `VAULT_TOKEN` to ask OpenBao for decryption: one secret that had to exist before GitOps could take charge of managing secrets. Starting with Flux 2.9, that token is optional: kustomize-controller can use ServiceAccount tokens to authenticate to OpenBao, so Flux can manage secrets without any pre-existing secret.
 
-### Step 1: Encrypt a Secret with OpenBao
+### Step 1: Configure OpenBao for SOPS decryption
+
+OpenBao needs a transit key, a decrypt-only policy, and an auth role for the ServiceAccount Flux will use. Both Kubernetes and JWT auth are supported; using Kubernetes auth with the `flux-system/kustomize-controller` ServiceAccount, the setup is:
+
+```shell
+bao secrets enable transit
+bao write -f transit/keys/sops
+
+bao policy write sops - <<'EOF'
+path "transit/decrypt/sops" {
+  capabilities = ["update"]
+}
+EOF
+
+bao auth enable kubernetes
+bao write auth/kubernetes/config \
+  kubernetes_host=https://kubernetes.example.com:6443 \
+  kubernetes_ca_cert=@ca.crt \
+  token_reviewer_jwt=@reviewer.jwt
+
+bao write auth/kubernetes/role/flux-system_kustomize-controller \
+  bound_service_account_names=kustomize-controller \
+  bound_service_account_namespaces=flux-system \
+  audience=https://openbao.example.com:8200 \
+  token_policies=sops \
+  ttl=20m
+```
+
+The role name `flux-system_kustomize-controller` follows Flux's `{namespace}_{name}` convention, while its audience matches the OpenBao address later stored in the SOPS metadata. This `sops` policy is only for Flux decryption; the developer or CI identity in Step 2 needs `update` on `transit/encrypt/sops`. OpenBao's [Kubernetes auth method](https://openbao.org/api-docs/auth/kubernetes/) and [JWT/OIDC auth method](https://openbao.org/api-docs/auth/jwt/) documentation cover both server-side options.
+
+### Step 2: Encrypt a Secret with OpenBao
 
 After authenticating to OpenBao, a developer or CI job asks SOPS to encrypt a regular Kubernetes Secret using an OpenBao transit key:
 
@@ -56,7 +86,7 @@ sops:
 
 SOPS replaces the plaintext content with ciphertext and adds a `sops.hc_vault` metadata field routing the encryption to OpenBao.
 
-### Step 2: Configure kustomize-controller to use workload identity for OpenBao
+### Step 3: Configure kustomize-controller to use workload identity for OpenBao
 
 When Flux reconciles files like the one above, it asks OpenBao to decrypt the content. Before Flux 2.9, that request depended on the static `VAULT_TOKEN`. Flux 2.9 replaces that token with an opt-in workload identity path. Operators give kustomize-controller an allowlist of OpenBao instances and their JWT-backed login endpoints. This is done by creating a ConfigMap in the `flux-system` namespace and pointing kustomize-controller to its name through the flag `--sops-vault-configmap`. The ConfigMap looks like this:
 
@@ -68,9 +98,9 @@ data:
         loginPath: auth/kubernetes/login
 ```
 
-With that in place, the OpenBao address in the SOPS metadata selects an entry from this list. kustomize-controller requests a Kubernetes ServiceAccount token with that address as its audience, then presents it at the configured login path under a role derived from the ServiceAccount as `{namespace}_{name}`. OpenBao returns a short-lived token, which Flux then uses to call OpenBao's transit engine to decrypt the Secret.
+With that in place, the OpenBao address in the SOPS metadata selects an entry from this list. kustomize-controller requests a Kubernetes ServiceAccount token with that address as its audience, then presents it at the configured login path under the matching role created in Step 1. OpenBao returns a short-lived token, which Flux then uses to call OpenBao's transit engine to decrypt the Secret.
 
-### Step 3: Use a dedicated ServiceAccount for decryption
+### Step 4: Use a dedicated ServiceAccount for decryption
 
 By default, the exchange described above uses kustomize-controller's own ServiceAccount. A Flux Kustomization can instead select a dedicated ServiceAccount:
 
@@ -81,9 +111,7 @@ spec:
     serviceAccountName: sops
 ```
 
-Per-Kustomization decryption ServiceAccounts require the `ObjectLevelWorkloadIdentity` feature gate to be enabled in kustomize-controller.
-
-OpenBao's [Kubernetes auth method](https://openbao.org/api-docs/auth/kubernetes/) and [JWT/OIDC auth method](https://openbao.org/api-docs/auth/jwt/) documentation cover the OpenBao-side setup.
+Per-Kustomization decryption ServiceAccounts require the `ObjectLevelWorkloadIdentity` feature gate to be enabled in kustomize-controller. For a Kustomization in the `apps` namespace, the `sops` ServiceAccount needs a corresponding `apps_sops` role in OpenBao, configured with the same audience and policy as the role in Step 1.
 
 ## Cosign: Sovereign Software Signatures
 
