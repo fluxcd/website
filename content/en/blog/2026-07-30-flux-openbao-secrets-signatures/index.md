@@ -10,7 +10,11 @@ resources:
     title: "Image #:counter"
 ---
 
-OpenBao can hold the keys behind two security-sensitive parts of a GitOps pipeline. Flux can use its transit engine to decrypt SOPS secrets without a stored token, while Cosign can use it to sign OCI artifacts that Flux verifies before reconciliation.
+A Git repository can tell Flux what should run. On its own, it cannot answer two harder questions: who may unlock the secrets in that configuration, and which signatures should the cluster trust?
+
+[OpenBao](https://openbao.org/), an open source secrets and encryption platform, gives both answers a home inside infrastructure you control. The OpenBao transit secrets engine performs cryptographic operations without releasing key material, while its Kubernetes and JWT auth methods let workloads arrive with an identity instead of a long-lived credential.
+
+This post follows two integrations built on that foundation. First, SOPS encrypts Kubernetes Secrets while OpenBao protects their data keys, and kustomize-controller decrypts them with workload identity—no static `VAULT_TOKEN` to bootstrap. Then OpenBao holds an OCI signing key, Cosign uses it to sign an artifact by digest, and Flux verifies the signature before reconciliation.
 
 TODO: REPLACE FEATURED IMAGE!
 
