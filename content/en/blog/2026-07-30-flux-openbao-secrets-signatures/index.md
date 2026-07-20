@@ -140,39 +140,9 @@ cosign sign --key openbao://control-plane-demo --tlog-upload=false \
 
 OpenBao performs the signing operation, and the signature is stored in the registry alongside the artifact. One thing to watch: Cosign authenticates to the registry separately from `flux push artifact --creds` - the two don't share credentials, so Cosign needs its own `cosign login`.
 
-### Bootstrapping Flux
-
-Flux is installed by the [Flux Operator](https://fluxoperator.dev/) from a `FluxInstance`, which also points it at the repository path holding the verification resources. The repository is public, so Flux clones it anonymously - no pull secret needed:
-
-```yaml
-apiVersion: fluxcd.controlplane.io/v1
-kind: FluxInstance
-metadata:
-  name: flux
-  namespace: flux-system
-spec:
-  distribution:
-    version: "2.x"
-    registry: "ghcr.io/fluxcd"
-    artifact: "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
-  components:
-    - source-controller
-    - kustomize-controller
-    - helm-controller
-    - notification-controller
-  cluster:
-    type: kubernetes
-  sync:
-    kind: GitRepository
-    provider: generic
-    url: "https://github.com/controlplaneio-openbao/openbao-flux-demo.git"
-    ref: "refs/heads/main"
-    path: "clusters/demo"
-```
-
 ### Verifying the artifact
 
-Create a Secret holding the Cosign public key, then reference it from an `OCIRepository`'s `.spec.verify`. The public key is not sensitive, so the demo creates the Secret directly; in production you would manage it declaratively with SOPS or sealed-secrets:
+Flux only needs the Cosign public key. Create a Secret holding it, then reference that Secret from an `OCIRepository`'s `.spec.verify`. The public key is not sensitive, so the demo creates the Secret directly; in production you would manage it declaratively with SOPS or sealed-secrets:
 
 ```shell
 kubectl -n flux-system create secret generic cosign-public-key \
@@ -222,7 +192,7 @@ Worth running once - a rejected unsigned artifact is more reassuring than an acc
 
 ### Try it
 
-The repository wraps the whole flow in `make` targets - OpenBao, key generation, push, sign, Flux bootstrap, verify, and the tamper test - so you can reproduce it end to end on a throwaway cluster:
+The repository wraps the whole flow in `make` targets - OpenBao setup, key generation, artifact publishing and signing, verification, and the tamper test - so you can reproduce it end to end on a throwaway cluster:
 
 ```shell
 git clone https://github.com/controlplaneio-openbao/openbao-flux-demo
@@ -232,7 +202,7 @@ make prereqs
 
 From there the README walks through each step. If you want to push further toward a fully self-hosted trust chain, a self-hosted Rekor instance is the logical next piece: static-key signing gives you self-custody of the key, and a private transparency log would add an auditable signing history without depending on the public ledger.
 
-For more on the moving parts, see the [OCIRepository verification docs](https://fluxcd.io/flux/components/source/ocirepositories/#verification), the [Flux Operator](https://fluxoperator.dev/) documentation, OpenBao's [transit engine](https://openbao.org/docs/secrets/transit/), and Cosign's [KMS support](https://docs.sigstore.dev/cosign/key_management/overview/).
+For more on the moving parts, see the [OCIRepository verification docs](https://fluxcd.io/flux/components/source/ocirepositories/#verification), OpenBao's [transit engine](https://openbao.org/docs/secrets/transit/), and Cosign's [KMS support](https://docs.sigstore.dev/cosign/key_management/overview/).
 
 ## References
 
