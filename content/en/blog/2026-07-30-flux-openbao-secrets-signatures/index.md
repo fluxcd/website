@@ -130,6 +130,10 @@ OpenBao transit engine   →   Cosign   →   GHCR (artifact + signature)   → 
 holds the signing key        signs        stores signature                  verifies
 ```
 
+The configuration below uses a static key. Flux also supports keyless verification: omit `.verify.secretRef`, and Flux will match OIDC identities against Fulcio certificates and the Rekor log. That is the right choice when short-lived identities and a public, auditable signing record are what you want, and reliance on public Sigstore infrastructure is acceptable.
+
+This demo takes the other path on purpose. The goal is a chain with no public dependencies, so a static key held in OpenBao is the natural fit: you own key custody and rotation, and nothing in the flow calls out to a service you don't run. Neither mode is universally correct - they encode different trade-offs, and Flux lets you choose per source.
+
 ### Step 1: Generate the signing key in OpenBao
 
 OpenBao's transit secrets engine is a cryptography-as-a-service backend: it holds key material and performs sign and verify operations on request. Cosign has native support for it through the `openbao://` KMS URI, so generating the key is a single command - and the private half is created inside OpenBao and never written to disk:
@@ -206,39 +210,11 @@ SourceVerified=True (Succeeded): verified signature of revision latest@sha256:�
 
 No part of that verification reached outside the cluster.
 
-### Step 4: Compare static keys and keyless verification
-
-The configuration above uses a static key. Flux also supports keyless verification: omit `.verify.secretRef`, and Flux will match OIDC identities against Fulcio certificates and the Rekor log. That is the right choice when short-lived identities and a public, auditable signing record are what you want, and reliance on public Sigstore infrastructure is acceptable.
-
-This demo takes the other path on purpose. The goal is a chain with no public dependencies, so a static key held in OpenBao is the natural fit: you own key custody and rotation, and nothing in the flow calls out to a service you don't run. Neither mode is universally correct - they encode different trade-offs, and Flux lets you choose per source.
-
-### Step 5: Confirm unsigned artifacts are blocked
-
-A verification step is only worth having once you have watched it reject something. The demo includes a tamper test: it pushes an unsigned artifact to a separate tag and points a throwaway `OCIRepository` at it. Flux refuses to verify it, and the manifests never reach the cluster:
-
-```text
-SourceVerified=False
-```
-
-Worth running once - a rejected unsigned artifact is more reassuring than an accepted signed one.
-
-### Step 6: Run the complete demo
-
-The repository wraps the whole flow in `make` targets - OpenBao setup, key generation, artifact publishing and signing, verification, and the tamper test - so you can reproduce it end to end on a throwaway cluster:
-
-```shell
-git clone https://github.com/controlplaneio-openbao/openbao-flux-demo
-cd openbao-flux-demo
-make prereqs
-```
-
-From there the README walks through each step. If you want to push further toward a fully self-hosted trust chain, a self-hosted Rekor instance is the logical next piece: static-key signing gives you self-custody of the key, and a private transparency log would add an auditable signing history without depending on the public ledger.
-
-For more on the moving parts, see the [OCIRepository verification docs](https://fluxcd.io/flux/components/source/ocirepositories/#verification), OpenBao's [transit engine](https://openbao.org/docs/secrets/transit/), and Cosign's [KMS support](https://docs.sigstore.dev/cosign/key_management/overview/).
-
 ## References
 
 - [Flux Kustomization decryption with OpenBao via workload identity](https://fluxcd.io/flux/components/kustomize/kustomizations/#openbaovault-kubernetes-auth)
+- [Flux OCIRepository verification with public keys](https://fluxcd.io/flux/components/source/ocirepositories/#public-keys-verification)
+- [OpenBao transit engine](https://openbao.org/docs/secrets/transit/)
+- [OpenBao KMS support](https://docs.sigstore.dev/cosign/key_management/overview/)
 - [OpenBao Kubernetes auth method API docs](https://openbao.org/api-docs/auth/kubernetes/)
 - [OpenBao JWT/OIDC auth method API docs](https://openbao.org/api-docs/auth/jwt/)
-- [Flux OCIRepository verification with public keys](https://fluxcd.io/flux/components/source/ocirepositories/#public-keys-verification)
