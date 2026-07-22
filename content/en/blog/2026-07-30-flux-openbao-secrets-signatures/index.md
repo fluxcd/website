@@ -16,8 +16,6 @@ A Git repository can tell Flux what should run. On its own, it cannot answer two
 
 This post follows two integrations built on that foundation. First, SOPS encrypts Kubernetes Secrets while OpenBao protects their data keys, and kustomize-controller decrypts them with workload identity—no static `VAULT_TOKEN` to bootstrap. Then OpenBao holds an OCI signing key, Cosign uses it to sign an artifact by digest, and Flux verifies the signature before reconciliation.
 
-TODO: REPLACE FEATURED IMAGE!
-
 ![](featured-image.png)
 
 ## SOPS: GitOps secrets without a static token
