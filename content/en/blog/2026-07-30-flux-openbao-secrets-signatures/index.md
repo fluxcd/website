@@ -1,5 +1,5 @@
 ---
-author: Matheus Pimenta, Fabian Kammel
+author: Matheus Pimenta, Fabian Kammel, Alexander Scheel
 date: 2026-07-27 11:00:00+00:00
 title: "Flux and OpenBao: Secrets and Signatures"
 description: "In this post we explore two Flux integrations with OpenBao: SOPS decryption through workload identity and sovereign OCI artifact signing with Cosign."
