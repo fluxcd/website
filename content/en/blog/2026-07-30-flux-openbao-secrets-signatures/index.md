@@ -10,27 +10,31 @@ resources:
     title: "Image #:counter"
 ---
 
-A Git repository can tell Flux what should run. On its own, it cannot answer two harder questions: who may unlock the secrets in that configuration, and which signatures should the cluster trust?
+A Git repository can tell [Flux](https://fluxcd.io/) what should run. On its own, it cannot answer two harder questions: who may unlock the secrets in that configuration and which signatures should the cluster trust?
 
-[OpenBao](https://openbao.org/), an open source secrets and encryption platform, gives both answers a home inside infrastructure you control. The OpenBao transit secrets engine performs cryptographic operations without releasing key material, while its Kubernetes and JWT auth methods let workloads arrive with an identity instead of a long-lived credential.
+[OpenBao](https://openbao.org/), an open source secrets and encryption platform under the [OpenSSF](https://openssf.org/), gives both answers a home inside infrastructure you control. The OpenBao [Transit secrets engine](https://openbao.org/docs/secrets/transit/) performs cryptographic operations without releasing key material (functioning as a [Key Management System or KMS](https://csrc.nist.gov/glossary/term/key_management_system), while its Kubernetes and JWT auth methods let workloads arrive with a Kubernetes-issued identity instead of a long-lived credential.
 
-This post follows two integrations built on that foundation. First, SOPS encrypts Kubernetes Secrets while OpenBao protects their data keys, and kustomize-controller decrypts them with workload identity—no static `VAULT_TOKEN` to bootstrap. Then OpenBao holds an OCI signing key, Cosign uses it to sign an artifact by digest, and Flux verifies the signature before reconciliation.
+This post follows two integrations built on that foundation. First, SOPS encrypts Kubernetes Secrets while OpenBao protects their data keys, and kustomize-controller decrypts them with workload identity—no static `BAO_TOKEN` or `VAULT_TOKEN` to bootstrap. Then OpenBao holds an OCI signing key, Cosign uses it to sign an artifact by digest, and Flux verifies the signature before reconciliation.
 
 ![](featured-image.png)
 
+<!-- truncate -->
+
 ## SOPS: GitOps secrets without a static token
 
-Keeping encrypted Secrets in Git solves most of the secret-distribution problem. For a SOPS encryption key living in OpenBao's transit engine, before 2.9 Flux still needed a static `VAULT_TOKEN` to ask OpenBao for decryption: one secret that had to exist before GitOps could take charge of managing secrets. Starting with Flux 2.9, that token is optional: kustomize-controller can use ServiceAccount tokens to authenticate to OpenBao, so Flux can manage secrets without any pre-existing secret.
+Keeping encrypted secrets in Git solves most of the secret-distribution problem.
+
+To operationalize that, [SOPS](https://getsops.io/)--also under the CNCF--provides a widely-used command line tool to handle secret encryption in a standardized format and supports many backend KMS providers including OpenBao. For a SOPS encryption key living in OpenBao's Transit engine, Flux before 2.9 still needed a static `BAO_TOKEN` to ask OpenBao for decryption: this one secret had to exist before GitOps could take charge of managing secrets. Starting with Flux 2.9, that token is optional: kustomize-controller can use ServiceAccount tokens to authenticate to OpenBao so Flux can manage secret decryptions without any pre-existing secret.
 
 ### Step 1: Configure OpenBao for SOPS decryption
 
-OpenBao needs a transit key, a decrypt-only policy, and an auth role for the ServiceAccount Flux will use. Both Kubernetes and JWT auth are supported; using Kubernetes auth with the `flux-system/kustomize-controller` ServiceAccount, the setup is:
+OpenBao needs a Transit key, a decrypt-only policy, and an auth role for the ServiceAccount Flux will use. Both Kubernetes and JWT auth are supported; using Kubernetes auth with the `flux-system/kustomize-controller` ServiceAccount, the setup is:
 
 ```shell
 bao secrets enable transit
-bao write -f transit/keys/sops
+bao write transit/keys/sops key_type=aes256-gcm96
 
-bao policy write sops - <<'EOF'
+bao policy write flux_sops_decrypt - <<EOF
 path "transit/decrypt/sops" {
   capabilities = ["update"]
 }
@@ -46,15 +50,15 @@ bao write auth/kubernetes/role/flux-system_kustomize-controller \
   bound_service_account_names=kustomize-controller \
   bound_service_account_namespaces=flux-system \
   audience=https://openbao.example.com:8200 \
-  token_policies=sops \
+  token_policies=flux_sops_decrypt \
   ttl=20m
 ```
 
-The role name `flux-system_kustomize-controller` follows Flux's `{namespace}_{name}` convention, while its audience matches the OpenBao address later stored in the SOPS metadata. This `sops` policy is only for Flux decryption; the developer or CI identity in Step 2 needs `update` on `transit/encrypt/sops`. OpenBao's [Kubernetes auth method](https://openbao.org/api-docs/auth/kubernetes/) and [JWT/OIDC auth method](https://openbao.org/api-docs/auth/jwt/) documentation cover both server-side options.
+The role name (`flux-system_kustomize-controller`) follows Flux's `{namespace}_{name}` convention, while its `audience` value matches the OpenBao address later stored in the SOPS metadata. This `flux_sops_decrypt` policy is only for Flux decryption; the developer or CI identity in Step 2 needs `update` on `transit/encrypt/sops`. OpenBao's [Kubernetes auth method](https://openbao.org/api-docs/auth/kubernetes/) and [JWT/OIDC auth method](https://openbao.org/api-docs/auth/jwt/) documentation cover both server-side options.
 
 ### Step 2: Encrypt a Secret with OpenBao
 
-After authenticating to OpenBao, a developer or CI job asks SOPS to encrypt a regular Kubernetes Secret using an OpenBao transit key:
+After authenticating to OpenBao, a developer or CI job asks SOPS to encrypt a regular Kubernetes Secret using an OpenBao Transit key:
 
 ```shell
 sops encrypt \
@@ -63,7 +67,7 @@ sops encrypt \
   secret.yaml > secret.enc.yaml
 ```
 
-The resulting `secret.enc.yaml` is ready for Git. It looks like this:
+The SOPS handles calling `transit/encrypt/sops` on behalf of the user; the resulting `secret.enc.yaml` is ready for Git. It looks like this:
 
 ```yaml
 apiVersion: v1
@@ -90,7 +94,7 @@ SOPS replaces the plaintext content with ciphertext and adds a `sops.hc_vault` m
 
 ### Step 3: Configure kustomize-controller to use workload identity for OpenBao
 
-When Flux reconciles files like the one above, it asks OpenBao to decrypt the content. Before Flux 2.9, that request depended on the static `VAULT_TOKEN`. Flux 2.9 replaces that token with an opt-in workload identity path. Operators give kustomize-controller an allowlist of OpenBao instances and their JWT-backed login endpoints. This is done by creating a ConfigMap in the `flux-system` namespace and pointing kustomize-controller to its name through the flag `--sops-vault-configmap`. The ConfigMap looks like this:
+When Flux reconciles files like the one above, it asks OpenBao to decrypt the content. Before Flux 2.9, that request depended on the static `BAO_TOKEN`. Flux 2.9 replaces that token with an opt-in workload identity path. Operators give kustomize-controller an allowlist of OpenBao instances and their JWT-backed login endpoints. This is done by creating a ConfigMap in the `flux-system` namespace and pointing kustomize-controller to its name through the flag `--sops-vault-configmap`. The ConfigMap looks like this:
 
 ```yaml
 data:
@@ -100,7 +104,7 @@ data:
         loginPath: auth/kubernetes/login
 ```
 
-With that in place, the OpenBao address in the SOPS metadata selects an entry from this list. kustomize-controller requests a Kubernetes ServiceAccount token with that address as its audience, then presents it at the configured login path under the matching role created in Step 1. OpenBao returns a short-lived token, which Flux then uses to call OpenBao's transit engine to decrypt the Secret.
+With that in place, the OpenBao address in the SOPS metadata selects an entry from this list. kustomize-controller requests a Kubernetes ServiceAccount token with that address as its audience, then presents it at the configured login path under the matching role created in Step 1. OpenBao returns a short-lived token, which Flux then uses to call OpenBao's Transit engine to decrypt the Secret.
 
 ### Step 4: Use a dedicated ServiceAccount for decryption
 
@@ -117,24 +121,28 @@ Per-Kustomization decryption ServiceAccounts require the `ObjectLevelWorkloadIde
 
 ## Cosign: Sovereign Software Signatures
 
-Flux can verify the signature of an OCI artifact before it reconciles it, using [Cosign](https://docs.sigstore.dev/). That verification is deliberately **backend-agnostic**: Flux takes a public key, checks a signature, and forms no opinion about how or where the artifact was signed. With a static key, it never reaches out to Fulcio or Rekor.
+Flux can verify the signature of an OCI artifact before it reconciles it, using [Cosign](https://docs.sigstore.dev/), an OpenSSF project. That verification is deliberately **backend-agnostic**: Flux takes a public key, checks a signature, and forms no opinion about how or where the artifact was signed. With a static key, it never reaches out to Fulcio or Rekor.
 
-That property is more useful than it first appears. It means you can build a signing chain that depends on nothing outside infrastructure you run - no public cloud KMS holding your key, no public Sigstore transparency log in the path. This post walks through one such chain: [OpenBao](https://openbao.org/) holds the signing key, Cosign signs the artifact, and Flux verifies it. Every step stays on your side of the network boundary, which matters for regulated environments, data-sovereignty requirements, and anyone who would rather not rent a link in their trust chain from a service they don't control.
+That property is more useful than it first appears. It means you can build a signing chain that depends on nothing outside infrastructure you run - no public cloud KMS holding your key, no public Sigstore transparency log in the path. In this example, [OpenBao](https://openbao.org/) holds the signing key, Cosign signs the artifact, and Flux verifies it. Every step stays on your side of the network boundary, which matters for regulated environments, data-sovereignty requirements, and anyone who would rather not rent a link their trust chain to a service they don't control.
 
-The full, reproducible setup lives at [openbao-flux-demo](https://github.com/controlplaneio-openbao/openbao-flux-demo). What follows are the pieces that matter.
+The full, reproducible setup lives at [openbao-flux-demo](https://github.com/controlplaneio-openbao/openbao-flux-demo). What follows are the pieces that matter:
 
 ```text
-OpenBao transit engine   →   Cosign   →   GHCR (artifact + signature)   →   Flux
+OpenBao Transit engine   →   Cosign   →   GHCR (artifact + signature)   →   Flux
 holds the signing key        signs        stores signature                  verifies
 ```
 
-The configuration below uses a static key. Flux also supports keyless verification: omit `.verify.secretRef`, and Flux will match OIDC identities against Fulcio certificates and the Rekor log. That is the right choice when short-lived identities and a public, auditable signing record are what you want, and reliance on public Sigstore infrastructure is acceptable.
+The configuration below uses such a static key.
 
-This demo takes the other path on purpose. The goal is a chain with no public dependencies, so a static key held in OpenBao is the natural fit: you own key custody and rotation, and nothing in the flow calls out to a service you don't run. Neither mode is universally correct - they encode different trade-offs, and Flux lets you choose per source.
+Flux also supports keyless verification: omit `.verify.secretRef`, and Flux will match OIDC identities against Fulcio certificates and the Rekor log. That is good when short-lived identities and a public, auditable signing record are what you want and reliance on public Sigstore infrastructure is acceptable.
+
+This demo takes the other path on purpose. The goal is a chain with no public dependencies, which means a static key held in OpenBao is the natural fit: you own key custody and rotation, and nothing in the flow calls out to a service you don't run.
+
+Neither mode is universally correct - they encode different trade-offs, and Flux lets you choose per source.
 
 ### Step 1: Generate the signing key in OpenBao
 
-OpenBao's transit secrets engine is a cryptography-as-a-service backend: it holds key material and performs sign and verify operations on request. Cosign has native support for it through the `openbao://` KMS URI, so generating the key is a single command - and the private half is created inside OpenBao and never written to disk:
+OpenBao's Transit secrets engine is a cryptography-as-a-service backend: it holds key material and performs sign and verify operations on request. Cosign has native support for it through the `openbao://` KMS URI, so generating the key is a single command - and the private half is created inside OpenBao and never written to disk:
 
 ```shell
 cosign generate-key-pair --kms openbao://control-plane-demo
@@ -142,7 +150,7 @@ cosign generate-key-pair --kms openbao://control-plane-demo
 
 Only `cosign.pub` lands on your filesystem. That public key is the sole piece of the chain Flux needs to verify signatures later.
 
-The demo runs OpenBao in dev mode with a root token, which is fine for a throwaway cluster and nothing else. In production you would sign with a token scoped to just this key - read the public key and sign, nothing more:
+The demo runs OpenBao in development mode with a root token to ease setup but in production you would sign with a token scoped to just this key (read the public key and sign):
 
 ```hcl
 path "transit/keys/control-plane-demo" {
@@ -172,7 +180,7 @@ cosign sign --key openbao://control-plane-demo --tlog-upload=false \
   ghcr.io/controlplaneio-openbao/openbao-flux-demo-workload@sha256:...
 ```
 
-OpenBao performs the signing operation, and the signature is stored in the registry alongside the artifact. One thing to watch: Cosign authenticates to the registry separately from `flux push artifact --creds` - the two don't share credentials, so Cosign needs its own `cosign login`.
+OpenBao performs the signing operation, and the signature is stored in the registry alongside the artifact. One thing to watch out for: Cosign authenticates to the registry separately from `flux push artifact --creds` - the two don't share credentials, so Cosign needs its own `cosign login`.
 
 ### Step 3: Configure Flux to verify the artifact
 
@@ -212,7 +220,7 @@ No part of that verification reached outside the cluster.
 
 - [Flux Kustomization decryption with OpenBao via workload identity](https://fluxcd.io/flux/components/kustomize/kustomizations/#openbaovault-kubernetes-auth)
 - [Flux OCIRepository verification with public keys](https://fluxcd.io/flux/components/source/ocirepositories/#public-keys-verification)
-- [OpenBao transit engine](https://openbao.org/docs/secrets/transit/)
+- [OpenBao Transit engine](https://openbao.org/api-docs/secret/transit/)
 - [OpenBao KMS support](https://docs.sigstore.dev/cosign/key_management/overview/)
 - [OpenBao Kubernetes auth method API docs](https://openbao.org/api-docs/auth/kubernetes/)
 - [OpenBao JWT/OIDC auth method API docs](https://openbao.org/api-docs/auth/jwt/)
