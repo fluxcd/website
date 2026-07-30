@@ -39,7 +39,7 @@ I ran into a memorable variant of this myself. On a small cluster, an HPA had be
 `minReplicas` floor well below the replica count baked into the GitOps manifest. Every time Flux
 reconciled, it bumped the Deployment back up to the manifest's much higher replica count. That surge
 was enough to exceed the cluster's capacity, so the cluster autoscaler dutifully spun up a brand new
-node to schedule the extra pods. Moments later the HPA scaled the Deployment back down to its
+node to schedule the extra pods. Moments later, the HPA scaled the Deployment back down to its
 `minReplicas` floor, the new node went idle, and the autoscaler tore it down again. Reconcile,
 scale up, add node, scale down, remove node, repeat, on every interval. What should have been a
 quiet steady state turned into constant node churn and a SEV2 incident.
@@ -85,7 +85,7 @@ With this rule in place, Flux ignores `/spec/replicas` on all Deployments during
 and correction, allowing an HPA to own the replica count, while still correcting drift on every
 other field (image tags, environment variables, labels, and so on).
 
-The `target` selector supports `group`, `version`, `kind`, `name` and `namespace` (all matched as
+The `target` selector supports `group`, `version`, `kind`, `name`, and `namespace` (all matched as
 regular expressions), as well as `labelSelector` and `annotationSelector` using standard Kubernetes
 selector syntax. If you omit `target`, the rule applies to **all** resources managed by the
 Kustomization, so it is good practice to always scope rules to the resources you intend.
@@ -229,6 +229,6 @@ This capability landed across several Flux components:
 
 For the full reference, see the
 [Ignore Rules](https://fluxcd.io/flux/components/kustomize/kustomizations/#ignore-rules) section of
-the Kustomization documentation. As always, we would love to hear your feedback, join us on the
+the Kustomization documentation. As always, we would love to hear your feedback. Join us on the
 [CNCF Slack](https://cloud-native.slack.com/messages/flux) or open an issue on
 [GitHub](https://github.com/fluxcd/flux2).
