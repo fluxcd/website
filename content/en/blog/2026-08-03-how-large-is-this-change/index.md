@@ -41,12 +41,21 @@ to want.
 ## Reconcilers make this sharper than push tooling
 
 Every configuration system has some version of this problem, but continuous reconciliation gives it
-a particular edge.
+a particular edge — and not the one usually cited. It is tempting to say that push pipelines have a
+human watching and reconcilers do not, but that is no longer true. A GitHub Action running `kubectl
+apply` on merge is exactly as unattended as a reconciliation loop.
 
-With a push-based pipeline there is usually a human present at the moment of the change. They ran
-the command. They are, at least in principle, watching. Reconciliation is unattended by design —
-that is its great virtue, and it means the moment of application has no audience. The change lands
-on the next interval, whenever that is, while everyone is doing something else.
+The real difference is the scope of what executes. A push pipeline applies *files*. Point it at a
+directory that has accidentally become empty and there is nothing to apply — the job often fails
+outright for want of input, and the worst case is usually that nothing happens. A reconciler is not
+applying files; it is managing the state of everything the source describes. An empty directory is
+not an absence of instructions to it. It is a complete and valid instruction that the desired state
+is nothing, and it will actively issue deletions to reach it.
+
+Put another way: the push pipeline's blast radius is bounded by what it was handed, while the
+reconciler's is bounded by what it owns. That inversion is the price of convergence, and it is
+usually worth paying — but it means an empty input is a much more dangerous thing to hand a
+reconciler than a pipeline.
 
 Reconciliation also repairs. If the removal is corrected in Git a few minutes later, the objects
 come back — but recreated, not restored. Anything the cluster held that was not in the manifests is
@@ -186,8 +195,12 @@ None of this needs new features.
 Kustomization, so that inventory is a design decision. Several narrow ones bound the damage in a way
 one broad one cannot.
 
-**Set `prune: false` where an empty inventory is never legitimate.** Blunt, but for the
-Kustomizations holding your cluster's foundations it is the correct blunt instrument.
+**Set `prune: false` where an empty inventory is never legitimate.** Be clear about what this costs,
+because it is not free: with pruning off, every *intentional* removal leaves an orphan behind. Delete
+an obsolete ConfigMap from Git and it stays in the cluster, unmanaged and unnoticed, until someone
+removes it by hand. You are trading the risk of catastrophic deletion for a steady accrual of
+technical debt. For the Kustomizations holding your cluster's foundations that is usually the right
+trade, and it is the wrong one nearly everywhere else.
 
 **Know what is managed before it changes.** `flux tree kustomization` will show you the inventory. It
 is worth looking at the number occasionally; most people have never seen it.
@@ -210,7 +223,12 @@ GitOps has the plan. `flux diff` renders it. What is missing is the phase that c
 to evaluate the plan before it is applied, expressed as policy rather than as a shell script each
 team writes for itself.
 
-The same gap appears in fleet configuration. The OpenTelemetry OpAMP protocol
+Taken together these point at something systemic rather than local. Declarative configuration
+systems specify state *delivery* in meticulous detail and omit state *transition* safety almost
+entirely — they are precise about what the end state should be and silent about how to get there
+without harm.
+
+That holds outside the cluster too. The OpenTelemetry OpAMP protocol
 manages configuration for agent fleets, and its specification covers delivery and agent health
 reporting in real detail while saying nothing about staged rollout, or about halting when part of
 the fleet reports unhealthy. The signals a gate would need are already in the protocol. I
@@ -226,9 +244,29 @@ runs in CI is checking a cluster that may not be the one it lands on.
 
 So there are two asks here, and they are different sizes. The small one is structured output from
 `flux diff`, which would turn every guardrail anyone builds from a scrape into an interface. The
-larger one is a threshold Flux understands natively — expressed on the Kustomization, evaluated
-against live state in the moment before the apply, overridable by an explicit declaration. The diff
-already exists inside the reconciler. That is the one place the number cannot be stale.
+larger one is a threshold Flux understands natively.
+
+Concretely, that could be a field or two on the Kustomization spec:
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  prune: true
+  # Refuse to reconcile if a single revision would remove more than
+  # this many objects, or this share of the managed inventory.
+  maxDeletions: 5
+  maxDeletionPercentage: 10
+```
+
+with an annotation on the source revision — or a marker in the commit — to override it when the
+removal is intended. The reconciler already computes the inventory delta before it applies anything,
+so the number the check needs is in hand at exactly the right moment, evaluated against live state
+rather than against whatever the cluster looked like when CI ran. That is the one place the number
+cannot be stale.
 
 Issue [#5512](https://github.com/fluxcd/flux2/issues/5512) has been open since September 2025 and no
 maintainer has weighed in yet. If there is appetite for it, I am willing to write the design up as
