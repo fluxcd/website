@@ -417,6 +417,8 @@ The following instructions assume you're updating the website for the Flux relea
    1. Update the website announcement banner in the file `content/en/_index.html` to point to the blog post of
       the new release, and change the string right below from  `Announcing Flux 2.N-1 GA` to
       `Announcing Flux 2.N GA`.
+   1. Update the `v2.N` milestone status in the file `content/en/roadmap.md` from `In Progress` to
+      `Completed - [Flux v2.N GA](https://fluxcd.io/blog/YYYY/MM/flux-v2.N.0/)`, using the new release blog URL.
 1. Merge the PR and backport to the `v2-N` branch by applying the `backport:v2-N` label to the PR.
    1. In the backport PR, set the `params.version` string to the version `2.N`.
 
