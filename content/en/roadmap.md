@@ -75,7 +75,7 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 ### v2.9 (Q2 2026)
 
-**Status**: In Progress
+**Status**: Completed - [Flux v2.9 GA](https://fluxcd.io/blog/2026/06/flux-v2.9.0/)
 
 The primary goal of this milestone is to add support for Flux CLI plugins,
 extend Flux server-side apply with field ignore rules and enhance the secrets
@@ -148,6 +148,8 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] Promote the `Event` API to `v1`
   - [ ] Promote the `Alert` API to `v1`
   - [ ] Promote the `Provider` API to `v1`
+  - [x] [Introduce `zoom` notification provider](https://github.com/fluxcd/notification-controller/pull/1349)
+  - [x] [Introduce `incident.io` notification provider](https://github.com/fluxcd/notification-controller/pull/1353)
   - [ ] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
   - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
   - [ ] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
