@@ -375,3 +375,6 @@ adopters:
     - name: 24metrics
       url: https://www.24metrics.com
       logo: logos/24metrics.svg
+    - name: OpenChoreo
+      url: https://openchoreo.dev/
+      logo: logos/openchoreo.png
