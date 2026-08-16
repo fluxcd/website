@@ -16,6 +16,11 @@ The Flux APIs integrate with the following Amazon Web Services (AWS) services:
 - The image-reflector-controller integrates the [ImageRepository](/flux/components/image/imagerepositories/) and
   [ImagePolicy](/flux/components/image/imagepolicies/) APIs with ECR and public ECR for scanning tags and digests
   of OCI artifacts and reflecting them into the cluster.
+- The source-controller integrates the [GitRepository](/flux/components/source/gitrepositories/) API with
+  [Amazon CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+  for pulling manifests from Git repositories and packaging them as artifacts inside the cluster.
+- The image-automation-controller integrates the [ImageUpdateAutomation](/flux/components/image/imageupdateautomations/)
+  API with CodeCommit for automating image updates in Git repositories.
 - The source-controller integrates the [Bucket](/flux/components/source/buckets/) API with
   [Amazon Simple Storage Service (S3)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
   for pulling manifests from buckets and packaging them as artifacts inside the cluster.
@@ -374,6 +379,55 @@ The `aws` CLI command for attaching an inline permission policy to an S3 bucket 
 
 - [`aws s3api put-bucket-policy`](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-policy.html)
 
+### For Amazon CodeCommit
+
+The `GitRepository` and `ImageUpdateAutomation` Flux APIs are integrated with CodeCommit.
+The `GitRepository` API can be used to pull manifests from CodeCommit Git repositories
+and package them as artifacts inside the cluster, while the `ImageUpdateAutomation` API
+can be used to automate image updates in CodeCommit repositories.
+
+> **Note**: CodeCommit does not support resource-based policies. All access must be
+> configured via identity-based policies attached to IAM Roles.
+
+For the `GitRepository` API, the minimum required permission is `codecommit:GitPull`.
+For the `ImageUpdateAutomation` API, `codecommit:GitPush` is additionally required.
+The following identity-based policy grants read-only access for a specific repository:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codecommit:GitPull"
+            ],
+            "Resource": "arn:aws:codecommit:<region>:<account-id>:<repository-name>"
+        }
+    ]
+}
+```
+
+For `ImageUpdateAutomation`, extend the policy with the `codecommit:GitPush` action:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codecommit:GitPull",
+                "codecommit:GitPush"
+            ],
+            "Resource": "arn:aws:codecommit:<region>:<account-id>:<repository-name>"
+        }
+    ]
+}
+```
+
+These policies can be attached to IAM Roles. See [Granting permissions](#granting-permissions) for additional details.
+
 ### For Amazon Key Management Service
 
 The `Kustomization` Flux API is integrated with KMS.
@@ -580,6 +634,12 @@ To perform this step using the `aws` CLI, you can use the following command:
 Finally, set the provider field of the Flux resources as described in the
 [controller level](#at-the-controller-level) section.
 
+#### Cross-account support for EKS Pod Identity
+
+For cross-account support with EKS Pod Identity, please see the following guide:
+
+https://aws.amazon.com/blogs/containers/amazon-eks-pod-identity-streamlines-cross-account-access/
+
 ### With OIDC Federation
 
 [OIDC Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)
@@ -678,6 +738,12 @@ metadata:
 Configuring Flux to use a Kubernetes Service Account to authenticate with
 AWS can be done either [at the object level](#at-the-object-level) or
 [at the controller level](#at-the-controller-level).
+
+#### Cross-account support for OIDC Federation
+
+For cross-account support with OIDC Federation, please see the following guide:
+
+https://docs.aws.amazon.com/eks/latest/userguide/cross-account-access.html
 
 ### With IAM User Access Keys
 

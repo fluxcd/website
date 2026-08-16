@@ -2,13 +2,11 @@
 title: "Flux from End-to-End"
 linkTitle: "Flux End-to-End"
 description: "A narrative of the life of a commit as it relates to Flux components."
-weight: 146
+weight: 147
 ---
 
-{{% alert color="warning" title="Disclaimer" %}}
-Note that this guide has not been updated since more than a year ago. It does not address `OCIRepository`, needs review in consideration of Flux v2.0.0, and likely needs to be refreshed.
-
-Expect this doc to receive an overhaul soon.
+{{% alert color="info" title="Updated" %}}
+This guide was updated for Flux v2.7 and now covers `ArtifactGenerator` use cases for monorepo decomposition and Helm chart composition from multiple sources.
 {{% /alert %}}
 
 Below we describe the flow of data through Flux, from End to End.
@@ -151,6 +149,9 @@ A brief outline of the life cycle of a change as it's processed through Flux, ce
 14. [Channel-based Providers for Notifications][] re-publish `Events` from Flux resources at-large to a channel where users can see them.
 15. [Git Commit Status Provider Notifications][] re-publish `Events` from the Kustomize Controller as commit checks.
 16. [Waiting and Health Checking for Flux Kustomization][].
+17. [OCIRepository as a Source][] shows how to use OCI artifacts instead of Git as the source of truth.
+18. [ArtifactGenerator for Monorepo Decomposition][] splits a single source into independent deployment artifacts.
+19. [ArtifactGenerator for Helm Chart Composition][] composes a Helm chart from multiple sources with merged values.
 
 ### Bootstrapping Flux
 
@@ -577,6 +578,427 @@ marked as ready.
 
 The health checking feature is called [Health Checks][] in the Flux Kustomization API.
 
+### OCIRepository as a Source
+
+While Flux is traditionally centered around Git as the single source of truth, it also supports
+a *Gitless GitOps* model where OCI-compliant container registries serve as the source of truth.
+In this model, the Flux controllers are fully decoupled from Git and rely on container registries
+to store and distribute configuration artifacts.
+
+This is particularly useful when the Git repository does not contain the final Kubernetes manifests,
+for example when manifests are generated in CI from tools like [cuelang](https://cuelang.org/) or
+[jsonnet](https://jsonnet.org/) and then published as OCI artifacts for Flux to consume. It also
+means the Git server is no longer a production dependency: the OCI registry becomes the unified
+source of truth for all configuration artifacts, SBOMs, cryptographic signatures, and application
+images.
+
+For the full set of publishing, tagging, and CI automation workflows, see the
+[OCI Artifacts Cheatsheet][].
+
+#### OCIRepository with Kustomization
+
+An `OCIRepository` can pull an OCI artifact containing plain Kubernetes manifests and serve it to
+a `Kustomization` for reconciliation:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    tag: latest
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  targetNamespace: default
+  prune: true
+  sourceRef:
+    kind: OCIRepository
+    name: podinfo
+  path: ./
+```
+
+Whenever a new artifact is pushed to the registry, the `OCIRepository` detects the change and
+the `Kustomization` reconciles the new manifests automatically.
+
+{{% alert color="info" title="Pinning versions" %}}
+Using `tag: latest` is convenient for development. In production, prefer `semver` or `digest`
+selectors for deterministic deployments. See the [`OCIRepository` CRD docs](/flux/components/source/ocirepositories/)
+for all available reference strategies.
+{{% /alert %}}
+
+#### OCIRepository with HelmRelease
+
+Helm charts stored in OCI registries can be consumed by declaring an `OCIRepository`
+and referencing it from a `HelmRelease` via `chartRef`. The source-controller fetches
+the chart artifact and exposes it to the helm-controller.
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: ">=6.9.0"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 10m
+  releaseName: podinfo
+  chartRef:
+    kind: OCIRepository
+    name: podinfo
+  values:
+    replicaCount: 2
+```
+
+The `layerSelector` extracts the Helm chart layer from the multi-layer OCI artifact, and the
+`ref.semver` selector ensures that new chart versions matching the range are deployed
+automatically.
+
+{{% alert color="info" title="Authentication" %}}
+For private OCI registries, HTTP/S authentication and cloud provider contextual login
+(`aws`, `azure`, `gcp`) can be configured on the `OCIRepository` spec.
+See the [`OCIRepository` CRD docs](/flux/components/source/ocirepositories/)
+for more details.
+{{% /alert %}}
+
+#### Verification with Cosign and Notation
+
+Flux supports verifying OCI artifacts signed with [Sigstore Cosign](https://github.com/sigstore/cosign)
+or [Notaryproject Notation](https://github.com/notaryproject/notation) before downloading
+and reconciling them. Add a `verify` section to the `OCIRepository` spec:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: oci://ghcr.io/stefanprodan/manifests/podinfo
+  ref:
+    semver: "*"
+  verify:
+    provider: cosign
+    secretRef:
+      name: cosign-pub
+```
+
+If verification fails, Flux will not fetch the artifact and will emit an alert.
+See the [signing and verification guide](/flux/cheatsheets/oci-artifacts/#signing-and-verification)
+for complete setup instructions.
+
+#### Diagram: Gitless GitOps with OCIRepository
+
+```mermaid
+sequenceDiagram
+    actor me as admin
+    participant ci as CI<br><br>pipeline
+    participant oci as OCI<br><br>registry
+    participant sc as Flux<br><br>source-controller
+    participant kc as Flux<br><br>kustomize-controller
+    participant hc as Flux<br><br>helm-controller
+    participant kube as Kubernetes<br><br>api-server
+    participant nc as Flux<br><br>notification-controller
+    me->>ci: 1. push manifests / chart
+    ci->>oci: 2. build & push artifact
+    sc->>oci: 3. pull artifact
+    sc->>kube: 4. update source status
+    sc-->>nc: 5. emit events
+    kube->>kc: 6. notify about new revision
+    kc->>sc: 7. fetch manifest artifact
+    kc->>kube: 8. apply manifests
+    kc->>kube: 9. update Kustomization status
+    kc-->>nc: 10. emit events
+    kube->>hc: 11. notify about new chart revision
+    hc->>sc: 12. fetch chart artifact
+    hc->>kube: 13. helm upgrade
+    hc->>kube: 14. update HelmRelease status
+    hc-->>nc: 15. emit events
+    nc-->>me: 16. send alerts
+```
+
+### ArtifactGenerator for Monorepo Decomposition
+
+In many organizations, a single Git monorepo contains deployment manifests for multiple independent services.
+Without `ArtifactGenerator`, the entire monorepo artifact is pulled and reconciled by every `Kustomization` that
+references it, even when only a single service's manifests have changed. This can cause unnecessary reconciliation
+cycles across all services.
+
+The [ArtifactGenerator][] (part of the [source-watcher][] extension) solves this by decomposing a single `GitRepository`
+source into multiple independent `ExternalArtifact` resources. Each artifact has its own content-based revision, so
+when a change is pushed to the monorepo, only the artifacts whose content actually changed will receive new revisions,
+triggering only the downstream `Kustomizations` that apply them.
+
+Consider a monorepo with the following structure:
+
+```text
+my-monorepo/
+├── deploy/
+│   ├── frontend/
+│   │   ├── deployment.yaml
+│   │   └── service.yaml
+│   └── backend/
+│       ├── deployment.yaml
+│       ├── service.yaml
+│       └── configmap.yaml
+└── ...
+```
+
+First, define a `GitRepository` source for the monorepo:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: my-monorepo
+  namespace: apps
+spec:
+  interval: 5m
+  url: https://github.com/example/my-monorepo
+  ref:
+    branch: main
+```
+
+Then create an `ArtifactGenerator` that splits the monorepo into two independent artifacts:
+
+```yaml
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+metadata:
+  name: my-app
+  namespace: apps
+spec:
+  sources:
+    - alias: repo
+      kind: GitRepository
+      name: my-monorepo
+  artifacts:
+    - name: frontend
+      copy:
+        - from: "@repo/deploy/frontend/**"
+          to: "@artifact/"
+    - name: backend
+      copy:
+        - from: "@repo/deploy/backend/**"
+          to: "@artifact/"
+```
+
+The controller generates two `ExternalArtifact` resources (`frontend` and `backend`), each containing
+only the manifests from the corresponding subdirectory. The artifact revision is computed from the
+SHA256 digest of the final content, in the format `latest@sha256:<hash>`.
+
+Deploy each artifact independently using Flux `Kustomizations`:
+
+```yaml
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: backend
+  namespace: apps
+spec:
+  interval: 30m
+  sourceRef:
+    kind: ExternalArtifact
+    name: backend
+  path: "./"
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: frontend
+  namespace: apps
+spec:
+  interval: 30m
+  sourceRef:
+    kind: ExternalArtifact
+    name: frontend
+  path: "./"
+  prune: true
+```
+
+When a developer pushes a change to `deploy/frontend/deployment.yaml`, only the `frontend` artifact
+receives a new revision. The `backend` artifact digest remains unchanged, so its `Kustomization` does
+not reconcile. This selective reconciliation reduces cluster load and avoids unnecessary rollouts.
+
+{{% alert color="info" title="Feature gate" %}}
+Consumption of `ExternalArtifact` resources by `kustomize-controller` and `helm-controller` requires
+the `ExternalArtifact=true` feature gate on each controller.
+{{% /alert %}}
+
+#### Diagram: Monorepo decomposition with ArtifactGenerator
+
+```mermaid
+sequenceDiagram
+    actor me
+    participant git as Git<br><br>monorepo
+    participant sc as Flux<br><br>source-controller
+    participant ag as ArtifactGenerator<br><br>controller
+    participant kc as Flux<br><br>kustomize-controller
+    participant kube as Kubernetes<br><br>api-server
+    me->>git: 1. git push (change deploy/frontend/)
+    sc->>git: 2. git pull
+    sc->>sc: 3. build artifact for revision
+    sc->>kube: 4. update GitRepository status
+    kube->>ag: 5. notify about new revision
+    ag->>sc: 6. fetch source artifact
+    ag->>ag: 7. split into frontend + backend
+    ag->>ag: 8. compute content digests
+    ag->>kube: 9. update ExternalArtifact (frontend only)
+    Note over ag,kube: backend digest unchanged — no update
+    kube->>kc: 10. notify about frontend revision
+    kc->>ag: 11. fetch frontend artifact
+    kc->>kube: 12. apply frontend manifests
+    kc->>kube: 13. update Kustomization status
+```
+
+### ArtifactGenerator for Helm Chart Composition
+
+A common operational pattern is to store a Helm chart in an OCI registry but manage environment-specific
+`values.yaml` overrides in a Git repository. Traditionally, this requires either duplicating the chart,
+using `HelmRelease.spec.valuesFrom`, or maintaining complex CI pipelines to merge values before deployment.
+
+The `ArtifactGenerator` simplifies this by composing a single `ExternalArtifact` from multiple sources:
+the chart from an `OCIRepository` and the override values from a `GitRepository`. The `Merge` copy strategy
+performs a Helm-compatible deep merge of YAML values, so the resulting artifact contains the chart with
+the merged `values.yaml` ready for deployment.
+
+Define the sources:
+
+```yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: podinfo-chart
+  namespace: apps
+spec:
+  interval: 10m
+  url: oci://ghcr.io/stefanprodan/charts/podinfo
+  ref:
+    semver: ">=6.0.0"
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo-values
+  namespace: apps
+spec:
+  interval: 5m
+  url: https://github.com/example/fleet-config
+  ref:
+    branch: main
+```
+
+Create an `ArtifactGenerator` that composes the chart with environment-specific values:
+
+```yaml
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+metadata:
+  name: podinfo
+  namespace: apps
+spec:
+  sources:
+    - alias: chart
+      kind: OCIRepository
+      name: podinfo-chart
+      namespace: apps
+    - alias: repo
+      kind: GitRepository
+      name: podinfo-values
+      namespace: apps
+  artifacts:
+    - name: podinfo-composite
+      originRevision: "@chart"
+      copy:
+        - from: "@chart/"
+          to: "@artifact/"
+        - from: "@repo/charts/podinfo/values-prod.yaml"
+          to: "@artifact/podinfo/values.yaml"
+          strategy: Merge
+```
+
+The `originRevision: "@chart"` field instructs the controller to inherit the OCI artifact's origin
+revision metadata (such as the Git commit SHA from which the chart was built) and set it as the
+`org.opencontainers.image.revision` annotation on the generated `ExternalArtifact`.
+
+The `strategy: Merge` on the second copy operation performs a Helm-compatible deep merge:
+the base `values.yaml` from the chart is merged with `values-prod.yaml` from Git, with the
+Git values taking precedence. Arrays are replaced entirely, matching Helm's native merge behavior.
+
+Deploy the composed chart using a `HelmRelease`:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: apps
+spec:
+  interval: 10m
+  releaseName: podinfo
+  chartRef:
+    kind: ExternalArtifact
+    name: podinfo-composite
+```
+
+Whenever either source changes — a new chart version is published to the OCI registry, or the
+values file is updated in Git — the `ArtifactGenerator` produces a new composite artifact with a
+new content-based revision, and the `HelmRelease` automatically performs an upgrade.
+
+#### Diagram: Helm chart composition with ArtifactGenerator
+
+```mermaid
+sequenceDiagram
+    actor me
+    participant oci as OCI<br><br>registry
+    participant git as Git<br><br>repository
+    participant sc as Flux<br><br>source-controller
+    participant ag as ArtifactGenerator<br><br>controller
+    participant hc as Flux<br><br>helm-controller
+    participant kube as Kubernetes<br><br>api-server
+    me->>git: 1. push values-prod.yaml
+    sc->>git: 2. git pull
+    sc->>oci: 3. pull chart
+    sc->>kube: 4. update source status
+    kube->>ag: 5. notify about source change
+    ag->>sc: 6. fetch chart + values artifacts
+    ag->>ag: 7. deep merge values.yaml
+    ag->>ag: 8. package composite artifact
+    ag->>kube: 9. update ExternalArtifact status
+    kube->>hc: 10. notify about new revision
+    hc->>ag: 11. fetch composite chart
+    hc->>kube: 12. helm upgrade
+    hc->>kube: 13. update HelmRelease status
+```
+
+For more details about managing environment-specific overrides, see the
+[Helm Use Cases guide](/flux/use-cases/helm/#helm-chart-composition-from-multiple-sources).
+
 [Bootstrapping Flux]: #bootstrapping-flux
 [Generating a Flux resource]: #generating-a-flux-resource
 [Previewing changes]: #previewing-changes
@@ -594,6 +1016,9 @@ The health checking feature is called [Health Checks][] in the Flux Kustomizatio
 [Channel-based Providers for Notifications]: #channel-based-providers-for-notifications
 [Git Commit Status Provider Notifications]: #git-commit-status-provider-notifications
 [Waiting and Health Checking for Flux Kustomization]: #waiting-and-health-checking-for-flux-kustomization
+[OCIRepository as a Source]: #ocirepository-as-a-source
+[ArtifactGenerator for Monorepo Decomposition]: #artifactgenerator-for-monorepo-decomposition
+[ArtifactGenerator for Helm Chart Composition]: #artifactgenerator-for-helm-chart-composition
 
 [GitOps toolkit]: /flux/components/
 [Security]: /flux/security/
@@ -627,3 +1052,6 @@ The health checking feature is called [Health Checks][] in the Flux Kustomizatio
 [Event API]: /flux/components/notification/event/
 [Setup Git Commit Status Notications]: /flux/guides/notifications/#git-commit-status
 [Health Checks]: /flux/components/kustomize/kustomizations/#health-checks
+[OCI Artifacts Cheatsheet]: /flux/cheatsheets/oci-artifacts/
+[ArtifactGenerator]: https://github.com/fluxcd/source-watcher/tree/v2
+[source-watcher]: https://github.com/fluxcd/source-watcher

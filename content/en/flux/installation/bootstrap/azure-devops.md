@@ -27,7 +27,7 @@ The Azure DevOps PAT can be exported as an environment variable:
 export GIT_PASSWORD=<az-token>
 ```
 
-If the `GIT_PASSWORD` env var is not set, the bootstrap command will prompt you to type it the token.
+If the `GIT_PASSWORD` env var is not set, the bootstrap command will prompt you to type the token.
 
 You can also supply the token using a pipe e.g. `echo "<az-token>" | flux bootstrap git`.
 

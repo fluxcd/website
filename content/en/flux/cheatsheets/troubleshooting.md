@@ -7,6 +7,12 @@ weight: 40
 
 ## Getting basic information
 
+{{% alert color="info" title="Quick overview" %}}
+To quickly list all Flux resources in your cluster, use the `fluxcd` [CRD category](/flux/cheatsheets/crd-resource-categories/):
+`kubectl get fluxcd -A`. You can also use `kubectl get fluxcd-sources -A`
+or `kubectl get fluxcd-appliers -A` to filter by Flux CRD categories.
+{{% /alert %}}
+
 Show all Flux objects that are not ready
 
 ```cli

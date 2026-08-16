@@ -21,12 +21,12 @@ The Kubernetes cluster should match one of the following versions:
 
 | Kubernetes version | Minimum required |
 |--------------------|------------------|
-| `v1.32`            | `>= 1.32.0`      |
 | `v1.33`            | `>= 1.33.0`      |
-| `v1.34` and later  | `>= 1.34.1`      |
+| `v1.34`            | `>= 1.34.1`      |
+| `v1.35` and later  | `>= 1.35.0`      |
 
 {{% alert color="info" title="Kubernetes EOL" %}}
-Note that Flux may work on older versions of Kubernetes e.g. 1.30,
+Note that Flux may work on older versions of Kubernetes e.g. 1.32,
 but we don't recommend running [EOL versions](https://endoflife.date/kubernetes)
 in production nor do we offer support for these versions.
 {{% /alert %}}
@@ -44,6 +44,15 @@ With [Homebrew](https://brew.sh) for macOS and Linux:
 
 ```sh
 brew install fluxcd/tap/flux
+```
+
+{{% /tab %}}
+{{% tab header="Mise" %}}
+
+With [Mise](https://github.com/jdx/mise) for macOS and Linux:
+
+```sh
+mise use -g flux2@latest
 ```
 
 {{% /tab %}}
@@ -125,12 +134,13 @@ can be done via Git push, without the need to connect to the Kubernetes API.
 Flux integrates with popular Git providers to simplify the
 initial setup of deploy keys and other authentication mechanisms:
 
+* [Gitea](./bootstrap/gitea.md)
 * [GitHub](./bootstrap/github.md)
 * [GitLab](./bootstrap/gitlab.md)
 * [Bitbucket](./bootstrap/bitbucket.md)
 * [Azure DevOps](./bootstrap/azure-devops.md)
 * [Google Cloud Source](./bootstrap/google-cloud-source.md)
-* [Oracle Cloud Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
+* [Oracle VBS Git Repositories](./bootstrap/oracle-cloud-git-repositories.md)
 
 If your Git provider is not in the above list,
 please follow the [generic bootstrap procedure](./bootstrap/generic-git-server.md)
@@ -179,11 +189,11 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
 ```
 
 The Flux Operator can be installed using Helm, Terraform, OpenTofu, OperatorHub, and other methods.
-For more information, refer to the [installation guide](https://fluxcd.control-plane.io/operator/install/).
+For more information, refer to the [installation guide](https://fluxoperator.dev/docs/guides/install/).
 
 #### Configure the Flux Instance
 
-Create a [FluxInstance](https://fluxcd.control-plane.io/operator/fluxinstance/) resource
+Create a [FluxInstance](https://fluxoperator.dev/docs/crd/fluxinstance/) resource
 named `flux` in the `flux-system` namespace to install the latest Flux stable version and configure the
 Flux controllers to sync the cluster state from an OCI artifact stored in GitHub Container Registry:
 
@@ -195,7 +205,7 @@ metadata:
   namespace: flux-system
   annotations:
     fluxcd.controlplane.io/reconcileEvery: "1h"
-    fluxcd.controlplane.io/reconcileTimeout: "5m"
+    fluxcd.controlplane.io/reconcileTimeout: "10m"
 spec:
   distribution:
     version: "2.x"
@@ -203,6 +213,7 @@ spec:
     artifact: "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
   components:
     - source-controller
+    - source-watcher
     - kustomize-controller
     - helm-controller
     - notification-controller
@@ -238,14 +249,14 @@ spec:
 
 > For more information on how to configure syncing from Git repositories,
 > container registries, and S3-compatible storage, refer to the
-> [cluster sync guide](https://fluxcd.control-plane.io/operator/flux-sync/).
+> [cluster sync guide](https://fluxoperator.dev/docs/instance/sync/).
 
 The operator can automatically upgrade the Flux controllers and their CRDs when a new version is available.
 To restrict the upgrade to patch versions only, set the `distribution.version` field to e.g. `2.7.x`
 or to a fixed version e.g. `2.7.0` to disable automatic upgrades.
 
 The Flux Operator can take over the management of existing installations from the Flux CLI or other tools.
-For a step-by-step guide, refer to the [Flux Operator migration guide](https://fluxcd.control-plane.io/operator/).
+For a step-by-step guide, refer to the [Flux Operator migration guide](https://fluxoperator.dev/docs/guides/migration/).
 
 ### Dev install
 

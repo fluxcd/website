@@ -29,7 +29,7 @@ The Flux CLI and the controllers' images are signed using [Sigstore](https://www
 The container images along with their signatures are published on GitHub Container Registry and Docker Hub.
 
 To verify the authenticity of Flux's container images,
-install [cosign](https://docs.sigstore.dev/cosign/installation/) v2 and run:
+install [cosign](https://docs.sigstore.dev/cosign/system_config/installation/) v2 and run:
 
 ```console
 $ cosign verify ghcr.io/fluxcd/source-controller:v1.0.0 \
@@ -132,6 +132,14 @@ To scan a controller image with Trivy:
 
 ```shell
 trivy image ghcr.io/fluxcd/source-controller:v1.0.0
+```
+
+Alternatively, the SBOM can be used to scan for vulnerabilities using
+[Grype](https://github.com/anchore/grype):
+
+```shell
+curl -sL https://github.com/fluxcd/flux2/releases/download/v2.0.0/flux_2.0.0_sbom.spdx.json -o flux_sbom.spdx.json
+grype sbom:flux_sbom.spdx.json
 ```
 
 We ask users to keep Flux up-to-date on their clusters,

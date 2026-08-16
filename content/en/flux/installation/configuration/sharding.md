@@ -71,6 +71,14 @@ patches:
         name: all
       $patch: delete
   - target:
+      labelSelector: "app.kubernetes.io/component=source-watcher"
+    patch: |
+      apiVersion: v1
+      kind: all
+      metadata:
+        name: all
+      $patch: delete
+  - target:
       kind: Deployment
       name: (image-reflector-controller|image-automation-controller)
     patch: |
@@ -129,8 +137,11 @@ patches:
 ```
 
 The above configuration will generate three deployments `source-controller-shard1`,
-`kustomize-controller-shard1` and `helm-controller-shard1` all configured 
+`kustomize-controller-shard1` and `helm-controller-shard1` all configured
 with `--watch-label-selector=sharding.fluxcd.io/key=shard1`.
+
+Note that `notification-controller` and `source-watcher` are excluded from the shard
+configuration, as these controllers do not support sharding.
 
 To enable these deployments at bootstrap, add the `shard1` directory to
 the `clusters/my-cluster/flux-system/kustomization.yaml` resources:

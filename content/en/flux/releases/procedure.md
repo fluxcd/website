@@ -2,7 +2,7 @@
 title: "Flux release procedures"
 linkTitle: "Release procedures"
 description: "Flux release procedures documentation."
-weight: 142
+weight: 40
 ---
 
 This document provides an overview of the release procedures for each component
@@ -23,11 +23,15 @@ clarification.
     * [Patch releases](#controllers-patch-releases)
     * [Release candidates](#controllers-release-candidates)
     * [Preview releases](#controllers-preview-releases)
+  + [Plugins](#plugins)
+    * [Plugin releases](#plugin-releases)
   + [Distribution](#distribution)
     * [Minor releases](#distribution-minor-releases)
     * [Minor release website](#distribution-minor-release-website)
     * [Patch releases](#distribution-patch-releases)
     * [Release candidates](#distribution-release-candidates)
+    * [Release notes](#distribution-release-notes)
+    * [Release and EOL notice update](#distribution-release-and-eol-notice-update)
 - [Backport changes for patch releases](#backport-changes-for-patch-releases)
   + [Manual backporting](#manual-backporting)
 
@@ -96,7 +100,7 @@ To release a [controller](controllers.md) as a project maintainer, follow the
 steps below. Note that the release procedure differs depending on the type of
 release.
 
-##### Controllers: minor releases
+#### Controllers: minor releases
 
 1. Checkout the `main` branch and pull changes from the remote repository.
 
@@ -157,7 +161,7 @@ release.
 
 10. Add the `backport/v1.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
 
-##### Controllers: patch releases
+#### Controllers: patch releases
 
 1. Ensure everything to be included in the release is backported to the
    "release series" branch (e.g., `release/v1.2.x`). If not, refer to the
@@ -264,6 +268,59 @@ To create a preview release, follow the steps below.
    available in the logs, and can be shared in the relevant issue or pull
    request.
 
+### Plugins
+
+To release an official Flux CLI [plugin](plugins.md) as a project maintainer,
+tag the `main` branch of the plugin repository. Plugins do not maintain release
+branches; all release changes must be merged into `main` before the release tag
+is created.
+
+#### Plugin releases
+
+1. Ensure everything to be included in the release is merged into the `main`
+   branch.
+
+2. Checkout the `main` branch and pull changes from the remote repository.
+
+   ```shell
+   git clone https://github.com/fluxcd/<plugin>.git
+   cd <plugin>
+   git switch main
+   git pull origin main
+   ```
+
+3. Create a signed SemVer tag for the release.
+
+   ```shell
+   git tag -s -m "v0.2.0" v0.2.0
+   ```
+
+4. Push the signed tag to the upstream repository.
+
+   ```shell
+   git push origin v0.2.0
+   ```
+
+5. Confirm that CI builds and publishes the GitHub release artifacts.
+
+For example, to release `flux-mirror`:
+
+```shell
+git clone https://github.com/fluxcd/flux-mirror.git
+cd flux-mirror
+git switch main
+git pull origin main
+git tag -s -m "v0.2.0" v0.2.0
+git push origin v0.2.0
+```
+
+Use the same procedure for `flux-schema`.
+
+When Flux cuts a minor distribution release, the official plugins should also be
+released from `main` after their dependencies have been aligned with the Flux
+distribution. Plugin releases can also happen between Flux distribution releases
+whenever new plugin features or fixes are ready.
+
 ### Distribution
 
 To release a [Flux distribution](_index.md) as a project maintainer, follow the
@@ -309,7 +366,11 @@ version in the `main` branch when a new controller version is released.
 
 8. Add the `backport/v2.2.x` label to `.github/labels.yaml` and create a pull request against `main`.
 
-##### Distribution: minor release website
+9. Fork a branch in the `github.com/fluxcd/pkg` repository called `flux/v2.2.x` from the `main` branch.
+   This branch will be used to backport any changes to the `pkg` repository that need to be included in
+   patch releases for the `v2.2` minor release.
+
+#### Distribution: minor release website
 
 The website at [fluxcd.io](https://fluxcd.io) always reflects the latest Flux minor version. Each Flux minor release is
 reflected by a respective branch in the [website repo](https://github.com/fluxcd/website), i.e. for Flux 2.3, the
@@ -356,6 +417,8 @@ The following instructions assume you're updating the website for the Flux relea
    1. Update the website announcement banner in the file `content/en/_index.html` to point to the blog post of
       the new release, and change the string right below from  `Announcing Flux 2.N-1 GA` to
       `Announcing Flux 2.N GA`.
+   1. Update the `v2.N` milestone status in the file `content/en/roadmap.md` from `In Progress` to
+      `Completed - [Flux v2.N GA](https://fluxcd.io/blog/YYYY/MM/flux-v2.N.0/)`, using the new release blog URL.
 1. Merge the PR and backport to the `v2-N` branch by applying the `backport:v2-N` label to the PR.
    1. In the backport PR, set the `params.version` string to the version `2.N`.
 
@@ -401,7 +464,7 @@ the final (non-RC) release should follow the procedure for [patch releases](#dis
 The release notes template for Flux distributions is available in the
 [release-notes-template.md](https://github.com/fluxcd/flux2/blob/main/docs/release/release-notes-template.md) file.
 
-#### Distribution: Release and EOL notice update
+#### Distribution: release and EOL notice update
 
 Release and support cadence information is published at https://endoflife.date/flux. The source of truth for that page
 is maintained in [this Git repository](https://github.com/endoflife-date/endoflife.date/blob/master/products/flux.md).

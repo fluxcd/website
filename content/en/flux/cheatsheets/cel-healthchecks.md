@@ -7,9 +7,10 @@ weight: 31
 
 ## About
 
-The Kustomization API supports defining custom logic for performing health
-checks on custom resources through the field
-[`.spec.healthCheckExprs`](/flux/components/kustomize/kustomizations/#health-check-exprs).
+The Kustomization and HelmRelease APIs support defining custom logic for performing health
+checks on custom resources through the field `.spec.healthCheckExprs`. See the documentation
+for [Kustomization](/flux/components/kustomize/kustomizations/#health-check-expressions) and
+[HelmRelease](/flux/components/helm/helmreleases/#health-check-expressions) for more details.
 This field accepts a set of Common Expression Language (CEL) expressions.
 
 Here you can find a set of community-maintained CEL expressions for popular
@@ -49,6 +50,25 @@ has(status.attribute) && status.attribute.ready
 
 However, it should be noted that `has` cannot check for the existence of top-level properties, such
 as `status` or `data`.
+
+### Applying one expression to every kind in a group
+
+The `kind` field is optional. When omitted, the entry applies to every kind served under the
+`apiVersion`'s group, which is useful when a single project exposes multiple CRDs that share the
+same status conventions (for example, a `Ready` condition). An entry with a specific `kind` takes
+precedence over a group-only entry for that same kind, so you can define a group-wide default and
+override it per kind where needed.
+
+Note that only the group portion of `apiVersion` is used for matching — the version is ignored, so
+the same entry applies to every served version of the resource.
+
+```yaml
+healthCheckExprs:
+  # Applies to Flux Operator's FluxInstance, ResourceSet and ResourceSetInputProvider.
+  - apiVersion: fluxcd.controlplane.io/v1
+    failed: status.conditions.exists(e, e.type == 'Stalled' && e.status == 'True' && e.observedGeneration == metadata.generation)
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True' && e.observedGeneration == metadata.generation)
+```
 
 ## Library
 

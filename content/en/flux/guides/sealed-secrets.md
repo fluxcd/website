@@ -6,7 +6,7 @@ weight: 70
 ---
 
 In order to store secrets safely in a public or private Git repository, you can use
-Bitnami's [sealed-secrets controller](https://github.com/bitnami-labs/sealed-secrets)
+Bitnami's [sealed-secrets controller](https://github.com/bitnami/sealed-secrets)
 and encrypt your Kubernetes Secrets into SealedSecrets.
 The sealed secrets can be decrypted only by the controller running in your cluster and
 nobody else can obtain the original secret, even if they have access to the Git repository.
@@ -29,7 +29,7 @@ brew install kubeseal
 ```
 
 For Linux or Windows you can download the kubeseal binary from
-[GitHub](https://github.com/bitnami-labs/sealed-secrets/releases).
+[GitHub](https://github.com/bitnami/sealed-secrets/releases).
 
 ## Deploy sealed-secrets with a HelmRelease
 
@@ -41,7 +41,7 @@ First you have to register the Helm repository where the sealed-secrets chart is
 ```sh
 flux create source helm sealed-secrets \
 --interval=1h \
---url=https://bitnami-labs.github.io/sealed-secrets
+--url=https://bitnami.github.io/sealed-secrets
 ```
 
 With `interval` we configure [source-controller](../components/source/_index.md) to download
@@ -129,7 +129,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h0m0s
-  url: https://bitnami-labs.github.io/sealed-secrets
+  url: https://bitnami.github.io/sealed-secrets
 ```
 
 Helm release manifest:
@@ -165,7 +165,7 @@ Once the sealed-secrets controller is installed, the admin fetches the
 public key and shares it with the teams that operate on the fleet clusters via Git.
 
 When a team member wants to create a Kubernetes Secret on a cluster,
-they uses kubeseal and the public key corresponding to that cluster to generate a SealedSecret.
+they use kubeseal and the public key corresponding to that cluster to generate a SealedSecret.
 
 Assuming a team member wants to deploy an application that needs to connect
 to a database using a username and password, they'll be doing the following:

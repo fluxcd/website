@@ -189,7 +189,7 @@ spec:
       order: asc
 ```
 
-[circle-ci-env]: https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables
+[circle-ci-env]: https://circleci.com/docs/env-vars/#built-in-environment-variables
 [github-actions-env]: https://docs.github.com/en/actions/reference/environment-variables#default-environment-variables
 [travis-env]: https://docs.travis-ci.com/user/environment-variables/#default-environment-variables
 [dockerhub-rates]: https://docs.docker.com/docker-hub/billing/faq/#pull-rate-limiting-faqs

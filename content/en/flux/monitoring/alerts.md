@@ -13,7 +13,7 @@ of an app was deployed and if the deployment is healthy.
 
 ## Prerequisites
 
-To follow this guide you'll need a Kubernetes cluster bootstrap with Flux.
+To follow this guide you'll need a Kubernetes cluster bootstrapped with Flux.
 Please see the [get started guide](/flux/get-started/)
 or the [installation guide](/flux/installation/).
 
@@ -78,7 +78,7 @@ spec:
       name: '*'
 ```
 
-Apply the above files or commit them to the bootstrap repository.
+Apply the above files or commit them to your bootstrap repository.
 
 To verify that the alert has been acknowledged by the notification controller do:
 
@@ -86,7 +86,7 @@ To verify that the alert has been acknowledged by the notification controller do
 flux get alerts
 ```
 
-Multiple alerts can be used to send notifications to different channels or Slack organizations.
+Multiple alerts can be used to send notifications to different channels or Slack workspaces.
 
 The event severity can be set to `info` or `error`.
 When the severity is set to `error`, the kustomize controller will alert on any error

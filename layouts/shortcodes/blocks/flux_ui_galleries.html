@@ -1,9 +1,11 @@
-{{ $one := slice "Capacitor" "/img/uis/capacitor-*.png" "cap" }}
-{{ $two := slice "Flux Plugin for Headlamp" "/img/uis/flux-headlamp-plugin-*.png" "headlamp" }}
-{{ $three := slice "Freelens" "/img/uis/freelens-*.png" "slug-freelens" }}
-{{ $four := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
-{{ $five := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
-{{ $data := slice $one $two $three $four $five }}
+{{ $one := slice "Flux Operator" "/img/uis/flux-operator-*.png" "flux-operator" }}
+{{ $two := slice "Capacitor" "/img/uis/capacitor-*.png" "cap" }}
+{{ $three := slice "Radar" "/img/uis/radar-flux-*.png" "radar" }}
+{{ $four := slice "Flux Plugin for Headlamp" "/img/uis/flux-headlamp-plugin-*.png" "headlamp" }}
+{{ $five := slice "Freelens" "/img/uis/freelens-*.png" "slug-freelens" }}
+{{ $six := slice "VS Code GitOps Tools" "/img/uis/vscode-*.png" "vscode" }}
+{{ $seven := slice "Weave GitOps" "/img/uis/wego-*.png" "wego" }}
+{{ $data := slice $one $two $three $four $five $six $seven }}
 
 {{ range $data }}
     {{ $title := index . 0 }}

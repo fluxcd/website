@@ -242,3 +242,10 @@ require (
 ```
 
 That's it! Happy hacking!
+
+{{% alert color="info" title="Building artifact generators" %}}
+If you want to build a controller that **generates** artifacts (not just watches them),
+see [Building ExternalArtifact Controllers](external-artifact-sdk.md) for a guide
+on using the Flux Artifact SDK to create `ExternalArtifact` resources that can be
+consumed by `kustomize-controller` and `helm-controller`.
+{{% /alert %}}

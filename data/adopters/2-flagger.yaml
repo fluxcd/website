@@ -32,9 +32,6 @@ adopters:
     - name: blackmirror media
       url: https://blackmirror.media
       logo: logos/blackmirror-media.png
-    - name: HybridK8s
-      url: https://hybridk8s.tech
-      logo: logos/hybridk8s.png
     - name: LOVOO
       url: https://lovoo.com
     - name: 99 Group
@@ -97,9 +94,6 @@ adopters:
     - name: Infomaniak
       url: https://www.infomaniak.com/
       logo: logos/infomaniak.svg
-    - name: Encryptum
-      url: https://encryptum.io
-      logo: logos/encryptum.png
     - name: Sopra Steria
       url: https://www.soprasteria.com
       logo: logos/soprasteria.png

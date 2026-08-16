@@ -27,7 +27,7 @@ import recurring_ical_events
 import urllib3
 import yaml
 
-CAL_URL = 'https://lists.cncf.io/g/cncf-flux-dev/ics/9524119/1081862612/feed.ics'
+CAL_URL = 'https://webcal.prod.itx.linuxfoundation.org/lfx/a092M00001IfTjDQAV'
 
 TOP_LEVEL_DIR = os.path.realpath(
     os.path.join(os.path.dirname(__file__), '..'))

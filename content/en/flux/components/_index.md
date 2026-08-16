@@ -23,6 +23,11 @@ You can use the toolkit to extend Flux, and to build your own systems
 for continuous delivery. The [source-watcher
 guide](../gitops-toolkit/source-watcher/) is a good place to start.
 
+All Flux CRDs are registered with
+[Kubernetes resource categories](/flux/cheatsheets/crd-resource-categories/)
+that allow you to list resources across multiple CRD types with a single `kubectl` command,
+for example `kubectl get fluxcd -A` lists every Flux resource in the cluster.
+
 A reference for each component and API type is linked below.
 
 - [Source Controllers](source/_index.md)

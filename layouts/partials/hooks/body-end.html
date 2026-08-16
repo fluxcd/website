@@ -156,6 +156,8 @@
             : doc.url
             ? doc.url
             : "";
+          element.querySelector(".thumbnail-link").target = "_blank";
+          element.querySelector(".thumbnail-link").rel = "noopener noreferrer";
           element.querySelector(".img-thumbnail").src = doc.youtube
             ? `https://i3.ytimg.com/vi/${doc.youtube}/0.jpg`
             : doc.thumbnail
@@ -167,6 +169,8 @@
             : doc.url
             ? doc.url
             : "";
+          element.querySelector(".resource-title-link").target = "_blank";
+          element.querySelector(".resource-title-link").rel = "noopener noreferrer";
           element.querySelector(".resource-title-heading").textContent =
             doc.title;
           element.querySelector(".tag").textContent = doc.type;
