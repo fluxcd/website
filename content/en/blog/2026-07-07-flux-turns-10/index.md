@@ -191,3 +191,4 @@ We're excited to meet those of you who will join us for the next 10 years of Flu
 
 <3  
 the Flux team
+![A circular cake with sprinkles and the Flux logo in a pink box](images/flux-cake-box.jpg)
