@@ -1,0 +1,26 @@
+name: Link Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+
+        # eventually: (to write comments)
+# permissions:
+#   pull-requests: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Link Checker GPT
+      uses: kingdonb/link-checker-gpt@v1-beta # (the v1 tag is still unreleased, we need to test)
+      with:
+        productionDomain: fluxcd.io
+        previewDomain: deploy-preview-${{ github.event.pull_request.number }}--fluxcd.netlify.app
+        prNumber: ${{ github.event.pull_request.number}}
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
