@@ -38,6 +38,43 @@ See the CLI reference for [`get_sources_all`](/flux/cmd/flux_get_sources_all/).
 ```cli
 kubectl get gitrepositories.source.toolkit.fluxcd.io -A
 kubectl get helmrepositories.source.toolkit.fluxcd.io -A
+
+## OCI HelmRepository Ready column is blank
+
+HTTP `HelmRepository` objects show `Ready=True` and an index artifact.
+**OCI** `HelmRepository` (`spec.type: oci`) often has an empty `status` and a
+blank Ready printer column even when chart pulls succeed. That is current
+source-controller behavior: OCI HelmRepositories may not produce an HTTP-style
+index artifact. Empty status is **not** by itself a failed reconcile.
+
+Verify health via dependents, not the HelmRepository Ready column:
+
+```cli
+flux get sources chart -A
+flux get helmreleases -A
+kubectl get helmcharts.source.toolkit.fluxcd.io -A
+```
+
+If those are Ready and the chart version is what you expect, the OCI source is
+working. Check source-controller logs only when HelmChart / HelmRelease pulls
+fail.
+
+Companion: [source-controller#2135](https://github.com/fluxcd/source-controller/issues/2135).
+
+## Alert and Provider have no status conditions
+
+`Alert` and `Provider` CRs currently do **not** expose Ready / lastSentAt /
+lastError. `kubectl describe alert` will not show the last Telegram (or other
+provider) dispatch error. Use notification-controller logs and Kubernetes
+events:
+
+```cli
+flux logs --kind=alert --all-namespaces --level=error
+kubectl get events -n flux-system --field-selector involvedObject.kind=Alert
+```
+
+Companion: [notification-controller#1371](https://github.com/fluxcd/notification-controller/issues/1371).
+
 ```
 
 Flux CLI (check for Ready=True and Suspend=False)
