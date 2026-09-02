@@ -101,6 +101,8 @@ We can't capture all of the names and stories, battles and victories in this mea
 
 ![6 Flux Maintainers on-stage at the very first FluxCon: Matheus, Stefan, Tamao, Pinky, Leigh, Kingdon](images/maintainers-crop.png)
 
+*6 Flux Maintainers on-stage at the very first FluxCon: Matheus, Stefan, Tamao, Pinky, Leigh, Kingdon*
+
 Here is a short list of some folks who've made over 20 commits to Flux:
 - @stefanprodan, Stefan Prodan
 - @hiddeco, Hidde Beydals
