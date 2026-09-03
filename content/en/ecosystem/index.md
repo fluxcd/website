@@ -107,6 +107,7 @@ is missing, feel free to send a PR to add it.
 | [tarioch/flux-check-hook](https://github.com/tarioch/flux-check-hook)                                           | A [pre-commit](https://pre-commit.com) that validates values of HelmRelease using helm lint | [README](https://github.com/tarioch/flux-check-hook#readme)                                 |
 | [brainfair/flux2-bitbucketpipeline-dispatcher](https://github.com/brainfair/flux2-bitbucketpipeline-dispatcher) | A middleware that triggers Flux promotion pipelines for BitBucket Cloud.                    | [README](https://github.com/brainfair/flux2-bitbucketpipeline-dispatcher#readme)            |
 | [moon-hex/kustomize-navigator](https://github.com/moon-hex/kustomize-navigator)                                 | VS Code extension for intelligent navigation and diagnostics in Kustomize/Flux GitOps repos | [README](https://github.com/moon-hex/kustomize-navigator#readme)                            |
+| [oscarwest/vscode-flux-helm-intellisense](https://github.com/oscarwest/vscode-flux-helm-intellisense)           | VS Code extension with chart-aware IntelliSense and diagnostics for Flux `HelmRelease` values | [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=WestTechnologyConsultingAB.vscode-flux-helm-intellisense) |
 
 </div>
 
