@@ -163,8 +163,8 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [Support SPIFFE PKI for TLS and mTLS](https://github.com/fluxcd/flux2/pull/5702)
 
 - **OCI integrations**
-  - [ ] [Introduce support for ServiceAccount token in OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
-  - [ ] Introduce support for ServiceAccount token in ImageRepository
+  - [ ] [Introduce support for ServiceAccount token in OCIRepository](https://github.com/fluxcd/flux2/pull/5702)
+  - [ ] [Introduce support for ServiceAccount token in ImageRepository](https://github.com/fluxcd/flux2/pull/5702)
 
 - **Kustomize integrations**
   - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/kustomize-controller/pull/1653)
@@ -173,7 +173,7 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/helm-controller/pull/1480)
 
 - **CLI integrations**
-  - [ ] Integrate `flux push artifact` and family with OIDC from CI platforms
+  - [ ] [Integrate `flux push artifact` and family with OIDC from CI platforms](https://github.com/fluxcd/flux2/issues/6066)
   - [ ] Build external artifacts locally with `flux build ag`
 
 - **Conformance testing**
