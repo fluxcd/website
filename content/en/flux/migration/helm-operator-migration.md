@@ -185,7 +185,7 @@ metadata:
   name: my-repository
   namespace: default
 spec:
-  # The interval at wich to check the upstream for updates
+  # The interval at which to check the upstream for updates
   interval: 10m
   # The repository URL, a valid URL contains at least a protocol and host
   url: https://chart.example.com
