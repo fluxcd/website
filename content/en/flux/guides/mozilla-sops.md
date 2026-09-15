@@ -15,13 +15,62 @@ toolkit controllers installed on it.
 Please see the [get started guide](/flux/get-started/index.md)
 or the [installation guide](/flux/installation/).
 
+## Encrypting secrets using age
+Install [age](https://github.com/FiloSottile/age) and [SOPS](https://github.com/mozilla/sops):
+
+```sh
+brew install age sops
+```
+[age](https://github.com/FiloSottile/age) is a simple, modern alternative to OpenPGP. It's recommended to use age over OpenPGP, if possible.
+
+Encrypting with age follows the same workflow than PGP.
+
+Generate an age key with [age](https://age-encryption.org) using `age-keygen`:
+
+```console
+$ age-keygen -o age.agekey
+Public key: age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg
+```
+
+Create a secret with the age private key,
+the key name must end with `.agekey` to be detected as an age key:
+
+```sh
+cat age.agekey |
+kubectl create secret generic sops-age \
+--namespace=flux-system \
+--from-file=age.agekey=/dev/stdin
+```
+
+Use `sops` and the age public key to encrypt a Kubernetes secret:
+
+```sh
+sops --age=age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg \
+--encrypt --encrypted-regex '^(data|stringData)$' --in-place basic-auth.yaml
+```
+
+And finally set the decryption secret in the Flux Kustomization to `sops-age`.
+
+```yml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps
+spec:
+  # ...omitted for brevity
+  decryption:
+    provider: sops
+    secretRef: 
+      name: sops-age 
+```
+
+
+## Generate a GPG key
 Install [gnupg](https://www.gnupg.org/) and [SOPS](https://github.com/mozilla/sops):
 
 ```sh
 brew install gnupg sops
 ```
-
-## Generate a GPG key
 
 Generate a GPG/OpenPGP key with no passphrase (`%no-protection`):
 
@@ -180,38 +229,6 @@ You can now commit the encrypted secret to your Git repository.
 {{% alert color="info" title="Hint" %}}
 Note that you shouldn't apply the encrypted secrets onto the cluster with kubectl. SOPS encrypted secrets are designed to be consumed by kustomize-controller.
 {{% /alert %}}
-
-## Encrypting secrets using age
-
-[age](https://github.com/FiloSottile/age) is a simple, modern alternative to OpenPGP. It's recommended to use age over OpenPGP, if possible.
-
-Encrypting with age follows the same workflow than PGP.
-
-Generate an age key with [age](https://age-encryption.org) using `age-keygen`:
-
-```console
-$ age-keygen -o age.agekey
-Public key: age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg
-```
-
-Create a secret with the age private key,
-the key name must end with `.agekey` to be detected as an age key:
-
-```sh
-cat age.agekey |
-kubectl create secret generic sops-age \
---namespace=flux-system \
---from-file=age.agekey=/dev/stdin
-```
-
-Use `sops` and the age public key to encrypt a Kubernetes secret:
-
-```sh
-sops --age=age1helqcqsh9464r8chnwc2fzj8uv7vr5ntnsft0tn45v2xtz0hpfwq98cmsg \
---encrypt --encrypted-regex '^(data|stringData)$' --in-place basic-auth.yaml
-```
-
-And finally set the decryption secret in the Flux Kustomization to `sops-age`.
 
 ## Encrypting secrets using HashiCorp Vault
 
