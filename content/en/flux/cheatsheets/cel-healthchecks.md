@@ -74,6 +74,20 @@ healthCheckExprs:
 
 The items in this library are sorted in alphabetical order.
 
+### `Application`
+
+The `Application` resource from Argo CD reports its health through `status.health.status`
+rather than status conditions, making it a useful non-conditions example. The `has` macro
+guards against the field being absent while the application is still progressing.
+
+```yaml
+healthCheckExprs:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    failed: has(status.health) && status.health.status == 'Degraded'
+    current: has(status.health) && status.health.status == 'Healthy'
+```
+
 ### `CephCluster`
 
 The `CephCluster` resource in this example is created by the `rook-ceph-cluster` Flux `HelmRelease`.
@@ -93,6 +107,16 @@ healthCheckExprs:
     kind: CephCluster
     failed: status.ceph.health == 'HEALTH_ERR'
     current: status.ceph.health == 'HEALTH_OK'
+```
+
+### `Certificate`
+
+```yaml
+healthCheckExprs:
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
 ### `Cluster`
@@ -136,6 +160,26 @@ healthCheckExprs:
   - apiVersion: iam.aws.crossplane.io/v1beta1
     kind: Role
     failed: status.conditions.filter(e, e.type == 'Synced').all(e, e.status == 'False' && e.reason == 'ReconcileError')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+```
+
+### `ExternalSecret`
+
+```yaml
+healthCheckExprs:
+  - apiVersion: external-secrets.io/v1beta1
+    kind: ExternalSecret
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+    current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+```
+
+### `ScaledJob`
+
+```yaml
+healthCheckExprs:
+  - apiVersion: keda.sh/v1alpha1
+    kind: ScaledJob
+    failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
     current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
 ```
 
