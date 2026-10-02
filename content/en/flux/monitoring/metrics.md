@@ -71,6 +71,48 @@ controller_runtime_reconcile_total{controller, result}
 In addition, many other Go runtime and [controller-runtime
 metrics][controller-runtime-metrics] are also exported.
 
+### Alerting on controller-runtime reconcile errors
+
+Operators who scrape only the Flux `PodMonitor` (`http-prom` port, label
+`app.kubernetes.io/part-of: flux`) get standard controller-runtime series such
+as `controller_runtime_reconcile_errors_total` and
+`controller_runtime_reconcile_total{result="error"}`. That path does **not**
+require kube-state-metrics / `gotk_resource_info`. Use it as a high-signal
+complement to [notification-controller](/flux/monitoring/alerts/) events.
+
+Example PrometheusRule (adjust `for` / thresholds):
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flux-controller-reconcile-errors
+  namespace: flux-system
+spec:
+  groups:
+    - name: flux-controller-runtime
+      rules:
+        - alert: FluxReconcileErrors
+          expr: |
+            sum by (controller, namespace) (
+              rate(controller_runtime_reconcile_errors_total{
+                controller=~"imageupdateautomation|imagerepository|imagepolicy|helmrelease|kustomization"
+              }[10m])
+            ) > 0
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Flux {{ $labels.controller }} reconcile errors"
+            description: >-
+              controller-runtime is reporting reconcile errors for
+              {{ $labels.controller }} in {{ $labels.namespace }}.
+              Check `flux get all -A --status-selector ready=false` and controller logs.
+```
+
+This is complementary to notification-controller chat alerts and to
+`gotk_resource_info` readiness alerts where kube-state-metrics is configured.
+
 ## Resource metrics
 
 Metrics for the Flux custom resources can be used to monitor the deployment of
