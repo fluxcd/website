@@ -1,6 +1,6 @@
 ---
 author: Dan Guns
-date: 2026-09-08 09:00:00+00:00
+date: 2026-10-05 09:00:00+00:00
 title: "flux9s GA: Flux cluster state, from the terminal"
 description: "flux9s, a K9s-inspired terminal UI for Flux, has reached GA. This post covers where it came from, how the Flux Operator's web UI shaped it, and how it grew to cover the whole Flux Operator ecosystem."
 url: /blog/2026/09/flux9s-ga/
