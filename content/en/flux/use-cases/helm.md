@@ -150,7 +150,7 @@ You may manage these `ConfigMap` and `Secret` resources any way you wish,
 but there are several benefits to managing these with the Flux Kustomize Controller.
 
 It is fairly straightforward to use Kustomize `configMapGenerator`
-to [trigger a Helm release upgrade every time the encoded values change](../guides/helmreleases.md#refer-to-values-in-configmaps-generated-with-kustomize).
+to [trigger a Helm release upgrade every time the encoded values change](../guides/helmreleases.md#reacting-immediately-to-changes-in-referenced-secrets-and-configmaps).
 This common use case currently solveable in Helm
 by [adding specially crafted annotations](https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments)
 to a chart. The Flux Kustomize Controller method allows you to accomplish this
