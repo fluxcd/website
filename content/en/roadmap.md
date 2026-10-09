@@ -166,8 +166,8 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (source-watcher)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
 - **OCI integrations**
-  - [ ] [[RFC-0014] Introduce support for ServiceAccount token in OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
-  - [ ] [[RFC-0014] Introduce support for ServiceAccount token in ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Introduce ServiceAccount credentials for `generic` OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
+  - [ ] [[RFC-0014] Introduce ServiceAccount credentials for `generic` ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
 - **Kustomize integrations**
   - [ ] [[RFC-0014] Introduce support for SPIFFE in `.spec.decryption`](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
