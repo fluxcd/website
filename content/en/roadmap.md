@@ -157,24 +157,19 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [Support templating for alerts](https://github.com/fluxcd/notification-controller/issues/1328)
 
 - **SPIFFE integrations**
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (source-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (kustomize-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (helm-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (notification-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (image-reflector-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (image-automation-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE mTLS to other controllers (source-watcher)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (source-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (kustomize-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (helm-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (notification-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (image-reflector-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (image-automation-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (source-watcher)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
 - **OCI integrations**
-  - [ ] [[RFC-0014] Introduce support for ServiceAccount token in OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
-  - [ ] [[RFC-0014] Introduce support for ServiceAccount token in ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-
-- **Kustomize integrations**
-  - [ ] [[RFC-0014] Introduce support for SPIFFE in `.spec.decryption`](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-  - [ ] [[RFC-0014] Introduce support for SPIFFE in `.spec.kubeConfig`](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
-
-- **Helm integrations**
-  - [ ] [[RFC-0014] Introduce support for SPIFFE in `.spec.kubeConfig`](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` OCIRepository](https://github.com/fluxcd/source-controller/pull/1962)
+  - [ ] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] JWT-SVIDs for `generic` OCIRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
+  - [ ] [[RFC-0014] JWT-SVIDs for `generic` ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
 - **CLI integrations**
   - [ ] Build external artifacts locally with `flux build ag`
