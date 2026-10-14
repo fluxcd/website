@@ -232,7 +232,7 @@ to the IAM Role.
 
 Trust policies are similar in syntax to permission policies, but for each
 of these two features the trust policy JSON document has particular requirements.
-For EKS Pod Identity, see [here](#for-eks-pod-identity). For OIDC Federation, see
+For EKS Pod Identity, see [here](#with-eks-pod-identity). For OIDC Federation, see
 [here](#supported-identity-types).
 
 To create an IAM Role with a trust policy using ACK, you can use the following custom resource

@@ -148,7 +148,7 @@ The recommendations below are based on Flux's latest version.
 
 ### Multi-tenancy Lock-down
 
-- Ensure `helm-controller`, `kustomize-controller`, `notification-controller`, `image-reflector-controller` and `image-automation-controller` have cross namespace references disabled via `--no-cross-namespace-refs=true`.
+- Ensure `helm-controller`, `kustomize-controller`, `notification-controller`, `image-reflector-controller`, `image-automation-controller` and `source-watcher` have cross namespace references disabled via `--no-cross-namespace-refs=true`.
 
   <details>
     <summary>Rationale</summary>
@@ -166,10 +166,11 @@ The recommendations below are based on Flux's latest version.
     kubectl describe pod -n flux-system -l app=notification-controller | grep -B 5 -A 10 Args
     kubectl describe pod -n flux-system -l app=image-reflector-controller | grep -B 5 -A 10 Args
     kubectl describe pod -n flux-system -l app=image-automation-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=source-watcher | grep -B 5 -A 10 Args
     ```
   </details>
 
-- Ensure `helm-controller` and `kustomize-controller` have a default service account set via `--default-service-account=<service-account-name>`.
+- Ensure `helm-controller`, `kustomize-controller` and `source-watcher` have a default service account set via `--default-service-account=<service-account-name>`.
 
   <details>
     <summary>Rationale</summary>
@@ -177,6 +178,8 @@ The recommendations below are based on Flux's latest version.
     Enforces all reconciliations to impersonate a given Service Account, effectively disabling the use of the privileged service account that would otherwise be used by the controller.
 
     Tenants must set a service account for each object that is responsible for applying changes to the Cluster (i.e. [HelmRelease](/flux/components/helm/helmreleases/#enforcing-impersonation) and [Kustomization](/flux/components/kustomize/kustomizations/#enforcing-impersonation)), otherwise Kubernetes's API Server will not authorize the changes. NB: It is recommended that the default service account used has no permissions set to the control plane.
+
+    For `source-watcher`, this flag is supported starting with Flux v2.10.0 and only applies to `ExternalArtifact` resources that target a namespace other than the ArtifactGenerator namespace. Artifacts created in the ArtifactGenerator namespace continue to be reconciled with the controller's service account.
   </details>
   <details>
     <summary>Audit Procedure</summary>
@@ -186,6 +189,7 @@ The recommendations below are based on Flux's latest version.
     ```sh
     kubectl describe pod -n flux-system -l app=helm-controller | grep -B 5 -A 10 Args
     kubectl describe pod -n flux-system -l app=kustomize-controller | grep -B 5 -A 10 Args
+    kubectl describe pod -n flux-system -l app=source-watcher | grep -B 5 -A 10 Args
     ```
   </details>
 
@@ -199,6 +203,8 @@ The recommendations below are based on Flux's latest version.
     Setting default service accounts ensures that when Flux resources don't specify a service account for workload identity authentication, they fall back to a controlled default expected to exist in the resource's namespace, i.e. in the tenant's namespace.
 
     The workload identity default service account flags are `--default-decryption-service-account` and `--default-kubeconfig-service-account` for `kustomize-controller`, `--default-kubeconfig-service-account` for `helm-controller`, and `--default-service-account` for `source-controller`, `notification-controller`, `image-reflector-controller` and `image-automation-controller`.
+
+    Note that `source-watcher` also accepts `--default-service-account`, but it is used for Kubernetes RBAC impersonation as described in [Multi-tenancy Lock-down](#multi-tenancy-lock-down), not for workload identity authentication.
   </details>
   <details>
     <summary>Audit Procedure</summary>
