@@ -148,13 +148,10 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] Promote the `Event` API to `v1`
   - [ ] Promote the `Alert` API to `v1`
   - [ ] Promote the `Provider` API to `v1`
+  - [x] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
+  - [ ] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
   - [x] [Introduce `zoom` notification provider](https://github.com/fluxcd/notification-controller/pull/1349)
   - [x] [Introduce `incident.io` notification provider](https://github.com/fluxcd/notification-controller/pull/1353)
-  - [ ] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
-  - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
-  - [ ] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
-  - [ ] [Custom Event Metadata from Object](https://github.com/fluxcd/flux2/issues/5946)
-  - [ ] [Support templating for alerts](https://github.com/fluxcd/notification-controller/issues/1328)
 
 - **SPIFFE integrations**
   - [ ] [[RFC-0014] Support for SPIFFE mTLS to other controllers (source-controller)](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
@@ -189,6 +186,11 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
 
 - **Helm integrations**
   - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/helm-controller/pull/1480)
+
+- **Alerting integrations**
+  - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
+  - [ ] [Custom Event Metadata from Object](https://github.com/fluxcd/flux2/issues/5946)
+  - [ ] [Support templating for alerts](https://github.com/fluxcd/notification-controller/issues/1328)
 
 - **CLI integrations**
   - [ ] [Integrate `flux push artifact` and family with OIDC from CI platforms](https://github.com/fluxcd/flux2/issues/6066)
