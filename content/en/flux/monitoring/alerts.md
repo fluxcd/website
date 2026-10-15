@@ -88,6 +88,43 @@ flux get alerts
 
 Multiple alerts can be used to send notifications to different channels or Slack workspaces.
 
+## Exclude noisy Image Automation events
+
+Image automation (`ImageRepository` / `ImagePolicy`) emits **expected** error
+events on cold start: after image-reflector-controller restarts, the in-memory
+tag database is empty until scans refill. Those messages (`no tags in database`,
+`version list argument cannot be empty`) are safe to exclude from chat
+providers. Overly broad regexes can hide real registry outages — tune carefully.
+Exclusion is **message-based**; wording can change across controller versions.
+
+```yaml
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  providerRef:
+    name: chat
+  eventSeverity: error
+  eventSources:
+    - kind: ImageRepository
+      name: '*'
+    - kind: ImagePolicy
+      name: '*'
+  exclusionList:
+    - "no tags in database"
+    - "version list argument cannot be empty"
+    # Optional: short-lived registry / DNS noise. Tune carefully.
+    # - "lookup .*: (i/o timeout|no such host|server misbehaving)"
+    # - "connection refused"
+```
+
+See [Alert event exclusion](/flux/components/notification/alerts/#event-exclusion).
+Related controller work: [image-reflector-controller#930](https://github.com/fluxcd/image-reflector-controller/issues/930),
+[notification-controller#1370](https://github.com/fluxcd/notification-controller/issues/1370).
+
+
 The event severity can be set to `info` or `error`.
 When the severity is set to `error`, the kustomize controller will alert on any error
 encountered during the reconciliation process.
