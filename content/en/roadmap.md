@@ -168,6 +168,16 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [[RFC-0014] JWT-SVIDs for `generic` OCIRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
   - [ ] [[RFC-0014] JWT-SVIDs for `generic` ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
+- **Source extensions**
+  - [x] [Cross-namespace artifact generation](https://github.com/fluxcd/source-watcher/pull/387)
+  - [ ] [Introduce tenant provisioning support for ResourceSets](https://github.com/fluxcd/source-watcher/pull/392)
+
+- **Helm integrations**
+  - [x] [OCIRepository as HelmRelease chart template source](https://github.com/fluxcd/helm-controller/pull/1600)
+
+- **Git integrations**
+  - [x] [GitHub App Client ID as alternative to App ID](https://github.com/fluxcd/source-controller/pull/2168)
+
 - **CLI integrations**
   - [ ] Build external artifacts locally with `flux build ag`
 
