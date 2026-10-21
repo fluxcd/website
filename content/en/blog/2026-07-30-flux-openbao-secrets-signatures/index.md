@@ -78,8 +78,7 @@ bao write auth/kubernetes/role/flux-system_kustomize-controller \
   ttl=20m
 ```
 
-The role name here follows Flux's `{namespace}_{name}` convention, and the
-`audience` needs to match the OpenBao address that will show up in the SOPS
+The `audience` needs to match the OpenBao address that will show up in the SOPS
 metadata below. Note that `flux_sops_decrypt` only grants decryption; the
 developer or CI identity encrypting in Step 2 needs `update` on
 `transit/encrypt/sops` instead. The
@@ -127,33 +126,21 @@ sops:
 The plaintext values are replaced with ciphertext, and the `sops.hc_vault`
 metadata records which OpenBao instance and key can decrypt them.
 
-### Step 3: Configure kustomize-controller to use workload identity for OpenBao
+### Step 3: Configure kustomize-controller with SPIFFE
 
-When Flux reconciles a file like this, kustomize-controller must ask
-OpenBao to decrypt it. Instead of a static token, the controller gets an allowlist
-of OpenBao instances and their JWT-backed login endpoints from a ConfigMap in the
-`flux-system` namespace, set by the `--sops-vault-configmap` controller flag:
+When Flux reconciles a file like this, kustomize-controller must authenticate to
+OpenBao before it can decrypt the Secret. Instead of a static token, the
+controller acquires a short-lived credential from the SPIFFE Broker API.
 
-```yaml
-# data fields for a ConfigMap in the flux-system namespace
-data:
-  config.yaml: |
-    instances:
-      - address: https://openbao.example.com:8200
-        loginPath: auth/kubernetes/login
-```
-
-During decryption, the OpenBao address in the SOPS metadata matches an
-entry from this list. kustomize-controller requests a ServiceAccount token
-with that address as its audience and presents it at the login path, where
-OpenBao matches it against the role from Step 1 and returns a short-lived
-token. Flux uses that token to call the Transit engine and decrypt the
-Secret. No static credential is needed anywhere for this decryption operation! We're leveraging Kubernetes' native workload identity.
+The controller must be configured with the SPIFFE Workload API and SPIFFE Broker
+API. See the
+[SPIFFE controller setup](/flux/integrations/serviceaccount-annotations/#spiffe)
+for the required environment variable and flags.
 
 ### Step 4: Use a dedicated ServiceAccount for decryption
 
-By default the exchange above uses kustomize-controller's own
-ServiceAccount. A Flux Kustomization can select a dedicated one instead:
+By default, kustomize-controller authenticates with its own ServiceAccount.
+A Flux Kustomization can select a dedicated one instead:
 
 ```yaml
 spec:
@@ -162,10 +149,32 @@ spec:
     serviceAccountName: sops
 ```
 
-This requires the `ObjectLevelWorkloadIdentity` feature gate to be enabled
-in kustomize-controller. For a Kustomization in the `apps` namespace, the
-`sops` ServiceAccount needs a matching `apps_sops` role in OpenBao,
-configured with the same audience and policy as in Step 1. For more
+To use the `spiffe` credential provider with the `jwt` credential type, annotate
+the dedicated ServiceAccount:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sops
+  namespace: apps
+  annotations:
+    credential.auth.fluxcd.io/provider: spiffe
+    credential.auth.fluxcd.io/type: jwt
+    credential.auth.fluxcd.io/audiences: https://openbao.example.com:8200
+    transit-engine.auth.fluxcd.io/login-path: auth/jwt/login
+    transit-engine.auth.fluxcd.io/role: apps_sops
+```
+
+During decryption, kustomize-controller requests a credential from the SPIFFE
+Broker API for the audience in the ServiceAccount annotations and presents it
+at the configured login path. OpenBao matches it against the `apps_sops` role
+and returns a short-lived token, which Flux uses to call the Transit engine
+and decrypt the Secret. The audience must match the OpenBao address in the SOPS
+metadata. No static credential is needed anywhere for this decryption operation!
+
+The `apps_sops` role referenced by the annotation must exist in OpenBao's JWT
+auth method, configured with the same audience and policy as in Step 1. For more
 details, see the
 [Kustomization decryption documentation](/flux/components/kustomize/kustomizations/#openbaovault-kubernetes-auth).
 
