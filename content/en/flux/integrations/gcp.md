@@ -530,44 +530,32 @@ Before following the steps below, make sure to complete the cluster setup
 described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
-For configuring authentication through a Kubernetes Service Account
-at the object level, regardless if the Kubernetes Service Account is
-configured to impersonate a GCP Service Account or not, the following
-steps are required:
+Flux supports object-level workload identity with either the `kubernetes`
+credential provider, which acquires a JWT through the Kubernetes TokenRequest
+API, or the `spiffe` credential provider, which acquires an SVID through the
+SPIFFE Broker API. The controller setup required by each provider, including the
+RBAC permissions for the `kubernetes` provider and the SPIFFE Workload API and
+Broker configuration for the `spiffe` provider, is described in the
+[ServiceAccount annotations](/flux/integrations/serviceaccount-annotations/)
+docs.
 
-1. Enable the feature gate `ObjectLevelWorkloadIdentity` in the target Flux controller Deployment
-   [during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
+The following steps are required regardless of whether the `kubernetes` or
+`spiffe` credential provider is used:
 
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - target:
-      kind: Deployment
-      name: (some-controller)
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/args/-
-        value: --feature-gates=ObjectLevelWorkloadIdentity=true
-```
-
-2. Set the `.spec.provider` field to `gcp` in the Flux resource.
+1. Set the `.spec.provider` field to `gcp` in the Flux resource.
    For SOPS decryption with the `Kustomization` API, this field is not
    required/does not exist, SOPS detects the provider from the metadata
    in the SOPS-encrypted Secret. For remote cluster access with the
    `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
    inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
-3. Use the `.spec.serviceAccountName` field to specify the name of the
+2. Use the `.spec.serviceAccountName` field to specify the name of the
    Kubernetes Service Account in the same namespace as the Flux resource.
    For SOPS decryption with the `Kustomization` API, the field is
    `.spec.decryption.serviceAccountName`. For remote cluster access with
    the `Kustomization` and `HelmRelease` APIs the field is
    `.data.serviceAccountName` inside the referenced `ConfigMap` from
    `.spec.kubeConfig.configMapRef`.
-4. **Only if the cluster is not GKE**, annotate the Kubernetes Service Account
+3. **Only if the cluster is not GKE**, annotate the Kubernetes Service Account
    with the fully qualified name of the Workload Identity Provider:
 
 ```yaml
