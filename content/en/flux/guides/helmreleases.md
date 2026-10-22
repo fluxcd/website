@@ -504,7 +504,7 @@ the `flux-system` to start receiving notifications about the Helm
 release:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta3
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Alert
 metadata:
   name: helm-podinfo
