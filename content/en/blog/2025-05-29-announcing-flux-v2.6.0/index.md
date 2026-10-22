@@ -133,8 +133,41 @@ This feature allows cluster admins to use different cloud identities on multi-te
 clusters. Instead of relying on static Secrets that require manual rotation,
 you can now assign cloud identities per tenant by leveraging Kubernetes Workload Identity.
 
-To use this feature, cluster admins have to enable the feature gate
-`ObjectLevelWorkloadIdentity` which is opt-in from Flux v2.6.
+**Flux v2.10 Update**: The `ObjectLevelWorkloadIdentity` feature gate is retired
+since Flux v2.10 and no longer changes behavior. The feature is always enabled.
+As an alternative to Kubernetes as the credential provider, please check out
+[SPIFFE](/flux/integrations/serviceaccount-annotations/#spiffe).
+
+Cluster admins need to grant the `create` RBAC verb on the `serviceaccounts/token`
+resource to the Flux controller ServiceAccount in a ClusterRoleBinding for the Flux
+controller to be able to execute this feature without permission errors. Example:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: flux-object-level-workload-identity
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - serviceaccounts/token
+    verbs:
+      - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: flux-object-level-workload-identity
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: flux-object-level-workload-identity
+subjects:
+  - kind: ServiceAccount
+    name: source-controller
+    namespace: flux-system
+```
 
 For more details on how to configure object-level workload identity for Flux,
 see the following docs:
