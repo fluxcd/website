@@ -145,32 +145,33 @@ The primary goals of this milestone are making a generally available release for
 the Flux Alerting APIs and integrating Flux with SPIFFE.
 
 - **Alerting integrations**
-  - [ ] Promote the `Event` API to `v1`
-  - [ ] Promote the `Alert` API to `v1`
-  - [ ] Promote the `Provider` API to `v1`
+  - [x] [Promote the `Event` API to `v1`](https://github.com/fluxcd/notification-controller/pull/1407)
+  - [x] [Promote the `Alert` API to `v1`](https://github.com/fluxcd/notification-controller/pull/1407)
+  - [x] [Promote the `Provider` API to `v1`](https://github.com/fluxcd/notification-controller/pull/1407)
   - [x] [Implement Kubernetes Event API v1](https://github.com/fluxcd/flux2/issues/5761)
-  - [ ] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
+  - [x] [Remove support for deprecated fields in Provider API v1](https://github.com/fluxcd/notification-controller/issues/1144)
   - [x] [Introduce `zoom` notification provider](https://github.com/fluxcd/notification-controller/pull/1349)
   - [x] [Introduce `incident.io` notification provider](https://github.com/fluxcd/notification-controller/pull/1353)
+  - [x] [Introduce `mastodon` notification provider](https://github.com/fluxcd/notification-controller/pull/1372)
 
 - **SPIFFE integrations**
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (source-controller)](https://github.com/fluxcd/source-controller/pull/2194)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1779)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1623)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1402)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/948)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1104)
-  - [ ] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (source-watcher)](https://github.com/fluxcd/source-watcher/pull/399)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (source-controller)](https://github.com/fluxcd/source-controller/pull/2197)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1781)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1626)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1405)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/950)
-  - [ ] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1107)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (source-controller)](https://github.com/fluxcd/source-controller/pull/2194)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1779)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1623)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1402)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/948)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1104)
+  - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (source-watcher)](https://github.com/fluxcd/source-watcher/pull/399)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (source-controller)](https://github.com/fluxcd/source-controller/pull/2197)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1781)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1626)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1405)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/950)
+  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1107)
 
 - **OCI integrations**
-  - [ ] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` OCIRepository](https://github.com/fluxcd/source-controller/pull/2192)
-  - [ ] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` ImageRepository](https://github.com/fluxcd/image-reflector-controller/pull/946)
+  - [x] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` OCIRepository](https://github.com/fluxcd/source-controller/pull/2192)
+  - [x] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` ImageRepository](https://github.com/fluxcd/image-reflector-controller/pull/946)
 
 - **Source extensions**
   - [x] [Cross-namespace artifact generation](https://github.com/fluxcd/source-watcher/pull/387)
@@ -179,11 +180,14 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
 - **Helm integrations**
   - [x] [OCIRepository as HelmRelease chart template source](https://github.com/fluxcd/helm-controller/pull/1600)
 
+- **Image integrations**
+  - [x] [Add Summary to the commit message template data](https://github.com/fluxcd/image-automation-controller/pull/1108)
+
 - **Git integrations**
   - [x] [GitHub App Client ID as alternative to App ID](https://github.com/fluxcd/source-controller/pull/2168)
 
 - **CLI integrations**
-  - [ ] [Suspend, resume and reconcile ArtifactGenerator with `flux <action> ag`](https://github.com/fluxcd/flux2/pull/6119)
+  - [x] [Suspend, resume and reconcile ArtifactGenerator with `flux <action> ag`](https://github.com/fluxcd/flux2/pull/6119)
 
 - **Conformance testing**
   - [ ] End-to-end testing for Kubernetes 1.37
@@ -195,6 +199,12 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
 
 ### v2.11 (Q1 2027)
 
+**Status**: Provisional
+
+The primary goals of this milestone are wrapping up the work for
+RFC-0011 and RFC-0014, as well as reviewing and implementing the
+proposed RFC Advanced Dependency Management.
+
 - **SPIFFE integrations**
   - [ ] [[RFC-0014] AWS IAM Roles Anywhere via X509-SVID](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
   - [ ] [[RFC-0014] GCP Workload Identity Federation via X509-SVID](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
@@ -205,15 +215,18 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [ ] [[RFC-0014] Docker Hub OIDC Connections support for ImageRepository](https://github.com/fluxcd/flux2/blob/main/rfcs/0014-advanced-support-for-short-lived-cryptographic-material)
 
 - **Kustomize integrations**
-  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/kustomize-controller/pull/1653)
+  - [ ] [[RFC-XXXX] Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/kustomize-controller/pull/1653)
 
 - **Helm integrations**
-  - [ ] [Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/helm-controller/pull/1480)
+  - [ ] [[RFC-XXXX] Extend DependencyReference to support arbitrary Kubernetes resource dependencies](https://github.com/fluxcd/helm-controller/pull/1480)
 
 - **Alerting integrations**
   - [ ] [[RFC-0011] OTEL: Parent-Child Trace/Span Integration](https://github.com/fluxcd/flux2/issues/5510)
   - [ ] [Custom Event Metadata from Object](https://github.com/fluxcd/flux2/issues/5946)
   - [ ] [Support templating for alerts](https://github.com/fluxcd/notification-controller/issues/1328)
+
+- **Source extensions**
+  - [ ] [Atomic OCIRepository chart composition with values files](https://github.com/fluxcd/source-watcher/issues/390)
 
 - **CLI integrations**
   - [ ] Build external artifacts locally with `flux build ag`
