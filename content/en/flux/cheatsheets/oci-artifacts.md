@@ -548,13 +548,14 @@ Verification failures are also visible when running `flux get sources oci` and i
 Configure alerting for when new artifacts are pulled and reconciled:
 
 ```yaml
-apiVersion: notification.toolkit.fluxcd.io/v1beta3
+apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Alert
 metadata:
   name: podinfo
   namespace: flux-system
 spec:
-  summary: "podinfo in production"
+  eventMetadata:
+    summary: "podinfo in production"
   providerRef:
     name: slack
   eventSeverity: info
