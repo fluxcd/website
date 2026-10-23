@@ -312,7 +312,7 @@ flux create image update flux-system \
 --push-branch=main \
 --author-name=fluxcdbot \
 --author-email=fluxcdbot@users.noreply.github.com \
---commit-template="{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}" \
+--commit-template=$'Update container images\n\n{{ .Changed.Summary }}' \
 --export > ./clusters/my-cluster/flux-system-automation.yaml
 ```
 
@@ -337,7 +337,10 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
+      messageTemplate: |-
+        Update container images
+
+        {{ .Changed.Summary }}
     push:
       branch: main
   update:
@@ -491,10 +494,9 @@ This way you can manually approve the image updates before they are applied on y
 
 ## Configure the commit message
 
-The `.spec.git.commit.messageTemplate` field is a string which is used as a template for the commit message.
-
-The message template is a [Go text template](https://golang.org/pkg/text/template/) that
-lets you range over the objects and images e.g.:
+The `.spec.git.commit.messageTemplate` field is a [Go text template](https://golang.org/pkg/text/template/)
+used to render the commit message. The `.Changed.Summary` template data describes the image updates,
+one line per change. Place it in the commit body, after a subject line and a blank line:
 
 ```yaml
 kind: ImageUpdateAutomation
@@ -504,27 +506,24 @@ spec:
   git:
     commit:
       messageTemplate: |
-        Automated image update
+        Update container images
 
-        Automation name: {{ .AutomationObject }}
-
-        Files:
-        {{ range $filename, $_ := .Changed.FileChanges -}}
-        - {{ $filename }}
-        {{ end -}}
-
-        Objects:
-        {{ range $resource, $changes := .Changed.Objects -}}
-        - {{ $resource.Kind }} {{ $resource.Name }}
-          Changes:
-        {{- range $_, $change := $changes }}
-            - {{ $change.OldValue }} -> {{ $change.NewValue }}
-        {{ end -}}
-        {{ end -}}
+        {{ .Changed.Summary }}
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
 ```
+
+When podinfo is updated from `5.0.0` to `5.0.3`, the commit message is:
+
+```
+Update container images
+
+ghcr.io/stefanprodan/podinfo:5.0.0 -> ghcr.io/stefanprodan/podinfo:5.0.3
+```
+
+For the format of the summary lines and the data available to custom templates,
+see the [message template](/flux/components/image/imageupdateautomations/#message-template) docs.
 
 ## Trigger image updates with webhooks
 

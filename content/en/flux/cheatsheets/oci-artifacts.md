@@ -690,7 +690,10 @@ spec:
       author:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
-      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
+      messageTemplate: |
+        Update container images
+
+        {{ .Changed.Summary }}
   update:
     path: ./clusters/my-cluster
     strategy: Setters
