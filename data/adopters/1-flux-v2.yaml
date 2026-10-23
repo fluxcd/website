@@ -381,3 +381,6 @@ adopters:
     - name: kdvz
       url: https://kdvz.nrw
       logo: logos/kdvz.png
+    - name: Wordfully
+      url: https://wordfully.ai
+      logo: logos/wordfully.svg
