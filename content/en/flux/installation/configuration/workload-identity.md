@@ -9,10 +9,38 @@ When running Flux on AWS EKS, Azure AKS and Google Cloud GKE you can leverage Ku
 Workload Identity to grant Flux controllers access to cloud resources such as container
 registries, KMS, S3, etc.
 
-## AWS IAM roles for service accounts
+{{% alert color="info" title="Consider also object identity" %}}
+This page covers the traditional workload identity approach, where the identity
+comes from the Flux controller pod. This is best for single-tenant setups where
+isolation between tenants is not a requirement.
 
-To grant Flux access to AWS resources using IRSA [during bootstrap](bootstrap-customization.md) add the following patches
-to the flux-system `kustomization.yaml`:
+The alternative to this approach is called object identity, where the identity
+comes from the Flux object. Object identity is best for multi-tenant setups
+that require strict isolation between tenants. This feature is covered here:
+
+- [Object identity installation](/flux/installation/configuration/object-identity/)
+- [Object identity API](/flux/integrations/object-identity/)
+{{% /alert %}}
+
+## Configuring Flux resources
+
+With workload identity, Flux resources must use the provider of the controller
+identity and leave the ServiceAccount fields unset:
+
+- For all Flux resource kinds except `Kustomization` and `HelmRelease`, set the
+  `.spec.provider` field to the provider, for example `aws`, `azure`, or `gcp`,
+  and leave `.spec.serviceAccountName` unset.
+- For remote cluster access with the `Kustomization` and `HelmRelease` APIs, set
+  the `.data.provider` field of the `ConfigMap` referenced by
+  `.spec.kubeConfig.configMapRef`, and leave `.data.serviceAccountName` unset.
+- For SOPS decryption with the `Kustomization` API, leave the
+  `.spec.decryption.serviceAccountName` field unset. There is no provider field
+  for SOPS decryption, as the provider is described in the SOPS metadata embedded
+  in the encrypted Secret.
+
+## EKS IAM Roles for Service Accounts
+
+To grant Flux access to AWS resources using IRSA during bootstrap add the following patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -45,14 +73,14 @@ patches:
 
 {{% alert color="info" title="Amazon Web Services Integrations" %}}
 For a complete guide on configuring authentication for the Flux
-integrations with AWS IAM for accessing ECR, S3 and KMS please
-see the [AWS integration documentation](/flux/integrations/aws/).
+integrations with AWS IAM for accessing ECR, S3, KMS and CodeCommit
+please see the [AWS integration documentation](/flux/integrations/aws/).
+The same documentation also covers configuring EKS Pod Identity.
 {{% /alert %}}
 
-## Azure Workload Identity
+## AKS Workload Identity
 
-To grant Flux access to Azure resources [during bootstrap](bootstrap-customization.md) add the following patches
-to the flux-system `kustomization.yaml`:
+To grant Flux access to Azure resources during bootstrap add the following patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -77,13 +105,11 @@ patches:
       kind: Deployment
       metadata:
         name: controller
-        labels:
-          azure.workload.identity/use: "true"
       spec:
         template:
           metadata:
             labels:
-              azure.workload.identity/use: "true"    
+              azure.workload.identity/use: "true"
     target:
       kind: Deployment
       name: "(source-controller|image-reflector-controller)"
@@ -95,10 +121,9 @@ integrations with Microsoft Entra ID for accessing ACR, Azure
 DevOps, Blob Storage, Key Vault and Event Hubs please see the [Azure integration documentation](/flux/integrations/azure/).
 {{% /alert %}}
 
-## GCP Workload Identity
+## GKE Workload Identity
 
-To grant Flux access to Google Cloud resources [during bootstrap](bootstrap-customization.md) add the following patches
-to the flux-system `kustomization.yaml`:
+To grant Flux access to Google Cloud resources during bootstrap add the following patches:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

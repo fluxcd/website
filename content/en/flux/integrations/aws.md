@@ -1,5 +1,5 @@
 ---
-title: "Amazon Web Services"
+title: "Flux and Amazon Web Services"
 linkTitle: "Amazon Web Services"
 description: "How to configure access for the Flux integrations with Amazon Web Services."
 weight: 50
@@ -571,14 +571,15 @@ require secret-based authentication, which is less secure.
 [EKS Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html)
 can be used to link the Kubernetes Service Account of a Flux controller to a single IAM
 Role that will be used for all the AWS operations this Flux controller performs.
-This EKS feature can only be used at the controller level.
+This EKS feature can only be used with workload identity.
 
 > **Note**: Pod Identity is an EKS-only feature specifically targeting pods.
-> It's not possible to support it at the object level, as for a Kubernetes Service
+> It's not possible to support it with object identity, as for a Kubernetes Service
 > Account token to be accepted by Pod Identity it necessarily needs to be tied to a
-> pod that is configured to use this Kubernetes Service Account. This is a guarantee
-> that no Kubernetes controller can provide when issuing a token for a Service
-> Account configured in a custom resource object.
+> pod that is configured to use this Kubernetes Service Account. No such pod exists
+> when using object identity, and not always the token will be from Kubernetes,
+> e.g. when using SPIFFE (which Pod Identity does not support at all). This is
+> a limitation of EKS Pod Identity itself, not Flux.
 
 First, enable Pod Identity in the EKS cluster.
 
@@ -632,7 +633,7 @@ To perform this step using the `aws` CLI, you can use the following command:
 3. Restart (delete) the controller pod for the binding to take effect.
 
 Finally, set the provider field of the Flux resources as described in the
-[controller level](#at-the-controller-level) section.
+[workload identity](#workload-identity) section.
 
 #### Cross-account support for EKS Pod Identity
 
@@ -659,7 +660,8 @@ In EKS clusters you need to create an OIDC Provider with the
 [Issuer URL](cross-cloud.md#source-cluster-setup) of the cluster following these
 [docs](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
 
-In non-EKS clusters you need to create an OIDC Provider with the Issuer URL of the cluster following these
+In non-EKS clusters you need to create an OIDC Provider with the
+[Issuer URL](cross-cloud.md#source-cluster-setup) of the cluster following these
 [docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html).
 
 To create an OIDC Provider using ACK, you can use the following custom resource:
@@ -736,8 +738,8 @@ metadata:
 ```
 
 Configuring Flux to use a Kubernetes Service Account to authenticate with
-AWS can be done either [at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+AWS can be done either with [object identity](#object-identity) or with
+[workload identity](#workload-identity).
 
 #### Cross-account support for OIDC Federation
 
@@ -768,18 +770,30 @@ To create an Access Key for an IAM User using the `aws` CLI, you can use the fol
 - [`aws iam create-access-key`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-access-key.html)
 
 Configuring Flux to use an IAM User Access Key can be done either
-[at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+with [object identity](#object-identity) or
+with [workload identity](#workload-identity).
 
-### At the object level
+### Object identity
 
-All the Flux APIs support configuring authentication at the object level.
+All the Flux APIs support object identity.
 This allows users to adhere to the
 [Least Privilege Principle](https://en.wikipedia.org/wiki/Principle_of_least_privilege),
 as each Flux resource can be configured with its own identity and therefore its own
-permissions. This is useful for multi-tenancy scenarios, where different
+permissions. This is the recommended approach for multi-tenant scenarios, where different
 teams can use the same cluster but need to be isolated from each other
 inside their own namespaces.
+
+For secret-less authentication, Flux supports object identity with either the
+`kubernetes` or `spiffe` credential provider. For the controller setup required
+by each provider, see
+[Object identity installation](/flux/installation/configuration/object-identity/).
+For the supported ServiceAccount annotations, see
+[Object identity API](/flux/integrations/object-identity/).
+Static credentials are described in the provider-specific sections below.
+
+Configure the Flux resource for object identity as described in
+[Configuring Flux resources](/flux/integrations/object-identity/#configuring-flux-resources),
+using the provider `aws`.
 
 #### For OIDC Federation
 
@@ -787,40 +801,14 @@ Before following the steps below, make sure to complete the cluster setup
 described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
-Flux supports object-level workload identity with either the `kubernetes`
-credential provider, which acquires a JWT through the Kubernetes TokenRequest
-API, or the `spiffe` credential provider, which acquires an SVID through the
-SPIFFE Broker API. The controller setup required by each provider, including the
-RBAC permissions for the `kubernetes` provider and the SPIFFE Workload API and
-Broker configuration for the `spiffe` provider, is described in the
-[ServiceAccount annotations](/flux/integrations/serviceaccount-annotations/)
-docs.
-
-The following steps are required regardless of whether the `kubernetes` or
-`spiffe` credential provider is used:
-
-1. Set the `.spec.provider` field to `aws` in the Flux resource.
-   For SOPS decryption with the `Kustomization` API, this field is not
-   required/does not exist, SOPS detects the provider from the metadata
-   in the SOPS-encrypted Secret. For remote cluster access with the
-   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
-   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
-2. Use the `.spec.serviceAccountName` field to specify the name of the
-   Kubernetes Service Account in the same namespace as the Flux resource.
-   For SOPS decryption with the `Kustomization` API, the field is
-   `.spec.decryption.serviceAccountName`. For remote cluster access with
-   the `Kustomization` and `HelmRelease` APIs the field is
-   `.data.serviceAccountName` inside the referenced `ConfigMap` from
-   `.spec.kubeConfig.configMapRef`.
-
-> **Note**: The `eks.amazonaws.com/role-arn` annotation is defined by EKS,
-> but Flux also uses it to identify the IAM Role to assume in non-EKS clusters.
-> This is for providing users with a seamless experience.
+> **Note**: The [`eks.amazonaws.com/role-arn`](/flux/integrations/object-identity/#external-cloud-provider-annotations)
+> annotation is defined by EKS, but Flux also uses it to identify the IAM Role to
+> assume in non-EKS clusters. This is for providing users with a seamless experience.
 
 #### For IAM User Access Keys
 
 Only the S3 and KMS integrations support configuring authentication
-through an IAM User Access Key at the object level.
+through an IAM User Access Key with object identity.
 
 For configuring authentication through an IAM User Access Key, the
 `.spec.secretRef.name` field must be set to the name of the Kubernetes
@@ -853,30 +841,20 @@ data:
     aws_session_token: some-aws-session-token # this field is optional
 ```
 
-### At the controller level
+### Workload identity
 
-All the Flux APIs support configuring authentication at the controller level.
+All the Flux APIs support workload identity.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
-and permissions.
+and permissions. For an overview and bootstrap examples for managed clusters,
+see [Workload Identity](/flux/installation/configuration/workload-identity/).
 
-At the controller level, regardless if authenticating with EKS Pod Identity,
-OIDC Federation or IAM User Access Keys, all Flux resources must have the
-provider field set to `aws` according to the rules below.
+With workload identity, all Flux resources must use the provider `aws` and leave
+the ServiceAccount fields unset. See
+[Configuring Flux resources](/flux/installation/configuration/workload-identity/#configuring-flux-resources)
+for the details.
 
-For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
-the `.spec.provider` field to `aws` and leave `.spec.serviceAccountName` unset.
-
-For SOPS decryption with the `Kustomization` API, leave the
-`.spec.decryption.serviceAccountName` field unset. There's
-no provider field for SOPS decryption.
-
-For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
-set the `.data.provider` field of the `ConfigMap` referenced by the
-`.spec.kubeConfig.configMapRef` field to `aws` and leave the
-`.data.serviceAccountName` field unset.
-
-The controller-level configuration is described in the following sections.
+The provider-specific configuration is described in the following sections.
 
 #### For OIDC Federation
 
@@ -885,28 +863,11 @@ described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
 If the cluster is EKS, the Kubernetes Service Account of the controller must
-be configured to assume an IAM Role. This is done by adding the
+be configured to assume an IAM Role by adding the
 `eks.amazonaws.com/role-arn` annotation to the controller Service Account
-[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - target:
-      kind: ServiceAccount
-      name: "(some-controller)"
-    patch: |
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: controller
-        annotations:
-          eks.amazonaws.com/role-arn: arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME
-```
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md).
+For examples, see
+[Workload Identity](/flux/installation/configuration/workload-identity/#aws-iam-roles-for-service-accounts).
 
 If the configuration above is done after bootstrap, restart (delete) the controller
 for the binding to take effect.

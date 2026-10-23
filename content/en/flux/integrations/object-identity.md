@@ -1,7 +1,7 @@
 ---
-title: "ServiceAccount annotations"
-linkTitle: "ServiceAccount annotations"
-description: "Reference for the ServiceAccount annotations supported by Flux for object-level workload identity, SOPS transit engines, SPIFFE mTLS, and cloud provider authentication."
+title: "Flux Object Identity API"
+linkTitle: "Object Identity"
+description: "Reference for Object Identity in Flux, including the ServiceAccount annotations for SOPS transit engines, SPIFFE mTLS, and cloud provider authentication."
 weight: 10
 ---
 
@@ -9,8 +9,7 @@ Flux controllers read authentication and mutual TLS settings from annotations
 on Kubernetes ServiceAccount objects. The annotations are placed on the
 ServiceAccount selected by the Flux object, for example `.spec.serviceAccountName`,
 `.spec.decryption.serviceAccountName`, or `.data.serviceAccountName` in a
-`.spec.kubeConfig.configMapRef` ConfigMap. Depending on the feature, this can
-be an object-level ServiceAccount or the controller's own ServiceAccount.
+`.spec.kubeConfig.configMapRef` ConfigMap.
 
 The `credential.auth.fluxcd.io/provider` annotation selects how Flux acquires
 the credential (`kubernetes` or `spiffe`), while the service provider selected
@@ -21,101 +20,39 @@ independent: for example, an `OCIRepository` with `.spec.provider: aws` can use
 either credential provider. For APIs without a provider field, such as SOPS
 decryption, the service provider is inferred from the encrypted data.
 
+The `spiffe.mtls.fluxcd.io/server-ids` annotation specifies the SPIFFE IDs of
+the servers that the Flux controller is allowed to connect over mTLS to when
+reconciling the Flux object.
+
 > **Note**: The `x509` value for `credential.auth.fluxcd.io/type`, the
 > `spiffe.mtls.fluxcd.io/server-ids` annotation, and the `dockerhub` service
 > provider will be implemented in Flux 2.11 (Q1 2027). They are documented here
 > to describe the API surface they will enable.
 
-## Controller-level setup
+## Prerequisites
 
-Before using the features defined by the ServiceAccount annotations, ensure
-that the controller is properly configured. The next sections describe the
-setup required for each feature.
+For the controller-level setup required by the `kubernetes` and `spiffe`
+credential providers, see the
+[Object identity installation](/flux/installation/configuration/object-identity/).
 
-### Kubernetes TokenRequest API
+## Configuring Flux resources
 
-The `kubernetes` credential provider requires the controller to have access to the
-Kubernetes TokenRequest API to acquire JWTs for the ServiceAccount specified by
-the Flux object. The required permission is the `create` verb on the
-`serviceaccounts/token` resource granted by a ClusterRoleBinding. Example:
+To use object identity, set the provider and the ServiceAccount fields in the
+Flux resource:
 
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: flux-object-level-workload-identity
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - serviceaccounts/token
-    verbs:
-      - create
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: flux-object-level-workload-identity
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: flux-object-level-workload-identity
-subjects:
-  - kind: ServiceAccount
-    name: source-controller
-    namespace: flux-system
-```
+- Set the `.spec.provider` field to the service provider, for example `aws`,
+  `azure`, `gcp`, `dockerhub`, or `generic`.
+- Set the `.spec.serviceAccountName` field to the name of the ServiceAccount in
+  the same namespace as the Flux resource.
 
-### SPIFFE
+For remote cluster access with the `Kustomization` and `HelmRelease` APIs, set
+the `.data.provider` field of the `ConfigMap` referenced by
+`.spec.kubeConfig.configMapRef`, and set `.data.serviceAccountName` to the name
+of the ServiceAccount in the same namespace as the Flux resource.
 
-The `spiffe` credential provider and the `spiffe.mtls.fluxcd.io` annotations will
-require the controller to be configured with the SPIFFE Workload API endpoint via
-the environment variable `SPIFFE_ENDPOINT_SOCKET`, the SPIFFE Broker API endpoint
-via the flag `--spiffe-broker-endpoint`, and at least one authorized Broker SPIFFE
-ID via the repeatable flag [`--spiffe-broker-id`](#spiffe-id-format). The Workload
-API provides the controller's X509-SVID used to authenticate to the Broker API.
-
-The SPIFFE Workload API socket can be mounted in the Flux controllers using the
-[SPIFFE CSI Driver](https://github.com/spiffe/spiffe-csi). The controller patch
-should look like this (make sure to replace the `<...>` placeholders with your
-actual values):
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - target:
-      kind: Deployment
-      name: "(source-controller|kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/args/-
-        value: --spiffe-broker-endpoint=dns:///<svc name>.<svc namespace>.svc.cluster.local:443
-      - op: add
-        path: /spec/template/spec/containers/0/args/-
-        value: --spiffe-broker-id=spiffe://<trust domain>/<id path>
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: SPIFFE_ENDPOINT_SOCKET
-          value: unix:///spiffe-workload-api/<socket path>
-      - op: add
-        path: /spec/template/spec/volumes/-
-        value:
-          name: spiffe-workload-api
-          csi:
-            driver: csi.spiffe.io
-            readOnly: true
-      - op: add
-        path: /spec/template/spec/containers/0/volumeMounts/-
-        value:
-          name: spiffe-workload-api
-          mountPath: /spiffe-workload-api
-          readOnly: true
-```
+For SOPS decryption with the `Kustomization` API, there is no provider field,
+as the provider is described in the SOPS metadata embedded in the encrypted
+Secret. The ServiceAccount is set in `.spec.decryption.serviceAccountName`.
 
 ## Authentication annotations
 
@@ -222,8 +159,10 @@ settings.
 An optional AWS STS endpoint for the ServiceAccount. This annotation makes the
 STS endpoint configurable for every AWS integration. It cannot be combined with
 the legacy `Bucket.spec.sts.provider: aws` configuration; when opting into
-object-level workload identity, set the STS endpoint with this annotation
-instead of `Bucket.spec.sts.endpoint`.
+object identity, set the STS endpoint with this annotation
+instead of `Bucket.spec.sts.endpoint`. See the
+[AWS integration docs](/flux/integrations/aws/) for provider-specific
+configuration.
 
 #### `gcp.auth.fluxcd.io/workload-identity-provider`
 
@@ -235,7 +174,9 @@ projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/providers
 
 It is required outside GKE when using the `gcp` service provider, and for any
 GCP integration using the `spiffe` credential provider. On GKE, the built-in
-workload identity provider is used when this annotation is omitted.
+workload identity provider is used when this annotation is omitted. See the
+[GCP integration docs](/flux/integrations/gcp/) for provider-specific
+configuration.
 
 #### `dockerhub.auth.fluxcd.io/oidc-connection-id`
 
@@ -251,33 +192,37 @@ be used with it.
 
 Flux also supports the ServiceAccount annotations defined by the managed
 Kubernetes providers. These annotations are not Flux-specific, but Flux reads
-them for a consistent workload identity experience across managed and
-self-hosted clusters. They can be used on an object-level ServiceAccount or on
-the controller ServiceAccount for controller-level workload identity.
+them for a consistent identity experience across managed and self-hosted
+clusters. They are placed on the ServiceAccount of the Flux object. For using
+object identity across multiple cloud providers, see
+[Support for cross-cloud](/flux/integrations/cross-cloud/).
 
 #### `eks.amazonaws.com/role-arn`
 
 The ARN of the AWS IAM Role that the ServiceAccount assumes. This annotation is
-required when using the `aws` service provider with object-level workload
-identity.
+required when using the `aws` service provider with object identity. See the
+[AWS integration docs](/flux/integrations/aws/) for provider-specific
+configuration.
 
 #### `azure.workload.identity/tenant-id`
 
 The Microsoft Entra tenant ID. This annotation is required when using the
-`azure` service provider with object-level workload identity.
+`azure` service provider with object identity. See the
+[Azure integration docs](/flux/integrations/azure/) for provider-specific
+configuration.
 
 #### `azure.workload.identity/client-id`
 
 The Microsoft Entra client ID of the managed identity. This annotation is
-required when using the `azure` service provider with object-level workload
-identity.
+required when using the `azure` service provider with object identity.
 
 #### `iam.gke.io/gcp-service-account`
 
 The email address of the GCP Service Account to impersonate. It is optional.
 When omitted, the subject under the GCP Workload Identity Pool is the IAM
 Principal to which GCP IAM Roles should be granted. See the
-[GCP docs](./gcp.md#to-kubernetes-service-accounts) for more details.
+[GCP integration docs](/flux/integrations/gcp/#to-kubernetes-service-accounts)
+for more details.
 
 ## Mutual TLS annotations
 
@@ -303,7 +248,8 @@ in most Flux CRDs and GitHub Enterprise Server through the `github` provider in
 `Provider` CRD. The public `aws`, `azure`, `gcp`, `dockerhub`, and GitHub.com
 services do not support it.
 
-Each entry uses the [SPIFFE ID format](#spiffe-id-format).
+Each entry uses one of the [SPIFFE ID formats](/flux/integrations/spiffe-mtls/)
+accepted by Flux.
 
 The mTLS annotations are independent of credential acquisition. On their own,
 they do not require `credential.auth.fluxcd.io/provider` or
@@ -312,27 +258,6 @@ alongside them, however, the credential provider and type must also be set.
 
 The annotation is rejected when `.spec.certSecretRef` is set, or when
 certificates or CAs come from `.spec.secretRef`.
-
-## SPIFFE ID format
-
-The `--spiffe-broker-id` controller flag and the
-`spiffe.mtls.fluxcd.io/server-ids` annotation accept the same SPIFFE ID format.
-The flag can be repeated, while the annotation value is split on commas and
-line breaks.
-
-Each value can be one of the following:
-
-- `spiffe://<trust domain>` to authorize any SPIFFE ID in the trust domain.
-- `spiffe://<trust domain>/<path>` to authorize an exact SPIFFE ID.
-- `spiffe://<trust domain>/<path>/` to authorize a SPIFFE ID prefix. The
-  trailing slash identifies a prefix.
-- `spiffe://self`, `spiffe://self/<path>`, or `spiffe://self/<path>/` to use
-  the `self` trust domain, defined below.
-
-For `--spiffe-broker-id`, `self` refers to the trust domain of the controller's
-own X509-SVID. For `spiffe.mtls.fluxcd.io/server-ids`, `self` refers to the
-trust domain of the Flux object's X509-SVID, acquired through the SPIFFE Broker
-API.
 
 ## Migration notes
 
@@ -349,7 +274,7 @@ configuration:
 
 ## Examples
 
-Object-level Kubernetes JWT for an OCI registry:
+Object identity with a Kubernetes JWT for an OCI registry:
 
 ```yaml
 apiVersion: v1
@@ -363,7 +288,7 @@ metadata:
     credential.auth.fluxcd.io/audiences: registry.example.com
 ```
 
-SPIFFE JWT-SVID with SOPS authentication to an OpenBao transit engine:
+SPIFFE JWT-SVID for SOPS authentication to an OpenBao transit engine:
 
 ```yaml
 apiVersion: v1
@@ -379,7 +304,7 @@ metadata:
     transit-engine.auth.fluxcd.io/role: sops-spiffe
 ```
 
-SPIFFE JWT for a remote Kubernetes cluster:
+SPIFFE JWT-SVID for a remote Kubernetes cluster:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -418,7 +343,7 @@ metadata:
     credential.auth.fluxcd.io/audiences: https://remote-cluster.example.com:6443
 ```
 
-SPIFFE X.509 credentials for AWS IAM Roles Anywhere and GCP Workload Identity
+SPIFFE X509-SVID for AWS IAM Roles Anywhere and GCP Workload Identity
 Federation (planned for Flux 2.11):
 
 ```yaml
