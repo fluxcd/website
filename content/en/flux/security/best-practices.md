@@ -193,23 +193,23 @@ The recommendations below are based on Flux's latest version.
     ```
   </details>
 
-- Ensure all Flux controllers have default service accounts set for workload identity authentication via the `--default-service-account=<service-account-name>`, `--default-decryption-service-account=<service-account-name>` and `--default-kubeconfig-service-account=<service-account-name>` flags.
+- Ensure all Flux controllers have default service accounts set for object identity authentication via the `--default-service-account=<service-account-name>`, `--default-decryption-service-account=<service-account-name>` and `--default-kubeconfig-service-account=<service-account-name>` flags.
 
   <details>
     <summary>Rationale</summary>
 
-    In multi-tenant environments, workload identity authentication should be locked down to force tenant permissions used in cloud provider integrations to be provisioned following the Principle of Least Privilege. This ensures proper isolation between tenants with regards to ownership of cloud resources. This is separate from the Kubernetes RBAC impersonation controls mentioned above.
+    In multi-tenant environments, object identity authentication should be locked down to force tenant permissions used in provider integrations to be provisioned following the Principle of Least Privilege. This ensures proper isolation between tenants with regards to ownership of provider resources. This is separate from the Kubernetes RBAC impersonation controls mentioned above.
 
-    Setting default service accounts ensures that when Flux resources don't specify a service account for workload identity authentication, they fall back to a controlled default expected to exist in the resource's namespace, i.e. in the tenant's namespace.
+    Setting default service accounts ensures that when Flux resources don't specify a service account for object identity authentication, they fall back to a controlled default expected to exist in the resource's namespace which must not have any identity configured.
 
-    The workload identity default service account flags are `--default-decryption-service-account` and `--default-kubeconfig-service-account` for `kustomize-controller`, `--default-kubeconfig-service-account` for `helm-controller`, and `--default-service-account` for `source-controller`, `notification-controller`, `image-reflector-controller` and `image-automation-controller`.
+    The object identity default service account flags are `--default-decryption-service-account` and `--default-kubeconfig-service-account` for `kustomize-controller`, `--default-kubeconfig-service-account` for `helm-controller`, and `--default-service-account` for `source-controller`, `notification-controller`, `image-reflector-controller` and `image-automation-controller`.
 
-    Note that `source-watcher` also accepts `--default-service-account`, but it is used for Kubernetes RBAC impersonation as described in [Multi-tenancy Lock-down](#multi-tenancy-lock-down), not for workload identity authentication.
+    Note that `source-watcher` also accepts `--default-service-account`, but it is used for Kubernetes RBAC impersonation as described in [Multi-tenancy Lock-down](#multi-tenancy-lock-down), not for object identity authentication.
   </details>
   <details>
     <summary>Audit Procedure</summary>
 
-    Check all Flux controllers for workload identity default service account flags (`--default-service-account`, `--default-decryption-service-account`, `--default-kubeconfig-service-account`):
+    Check all Flux controllers for object identity default service account flags (`--default-service-account`, `--default-decryption-service-account`, `--default-kubeconfig-service-account`):
     
     ```sh
     kubectl describe pod -n flux-system -l app=source-controller | grep -B 5 -A 10 Args

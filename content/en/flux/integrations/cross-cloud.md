@@ -1,8 +1,8 @@
 ---
-title: "Support for cross-cloud"
-linkTitle: "Support for cross-cloud"
+title: "Flux Cross-cloud Support"
+linkTitle: "Cross-cloud Support"
 description: "Compatibility table for cross-cloud support in Flux"
-weight: 50
+weight: 80
 ---
 
 The tables below show the compatibility matrix for Flux running inside a
@@ -15,7 +15,7 @@ For each target cloud provider, you can find the authentication docs here:
 - [Azure](azure.md#authentication)
 - [GCP](gcp.md#authentication)
 
-#### Authentication at the object level (best for multi-tenant use cases)
+#### Authentication with [object identity](/flux/integrations/object-identity/) (best for multi-tenant use cases)
 
 | Source Cluster Type | AWS | Azure | GCP |
 |---------------------|-----|-------|-----|
@@ -24,7 +24,7 @@ For each target cloud provider, you can find the authentication docs here:
 | GKE                 | ✅  | ✅    | ✅  |
 | Other (e.g. `kind`) | ✅  | ✅    | ✅  |
 
-#### Authentication at the controller level (best for single-tenant use cases)
+#### Authentication with [workload identity](/flux/installation/configuration/workload-identity/) (best for single-tenant use cases)
 
 | Source Cluster Type | AWS | Azure | GCP |
 |---------------------|-----|-------|-----|

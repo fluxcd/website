@@ -2,7 +2,7 @@
 title: Flux near OOM detection for Helm
 linkTitle: Helm OOM detection
 description: "How to enable Helm near OOM detection"
-weight: 21
+weight: 22
 ---
 
 When memory usage of the helm-controller exceeds the configured limit, the

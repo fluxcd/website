@@ -1,8 +1,8 @@
 ---
-title: "Google Cloud Platform"
+title: "Flux and Google Cloud Platform"
 linkTitle: "Google Cloud Platform"
 description: "How to configure access for the Flux integrations with Google Cloud Platform."
-weight: 50
+weight: 70
 ---
 
 The Flux APIs integrate with the following Google Cloud Platform (GCP) services:
@@ -481,8 +481,8 @@ metadata:
 
 Configuring Flux to use a Kubernetes Service Account to authenticate with GCP,
 regardless if it's configured to impersonate a GCP Service Account or not, can
-be done either [at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+be done either with [object identity](#object-identity) or
+with [workload identity](#workload-identity).
 
 ### With GCP Service Account Keys
 
@@ -511,18 +511,30 @@ To create the key using the `gcloud` CLI, you can use the following command:
 - [`iam service-accounts keys create`](https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/keys/create)
 
 Configuring Flux to use a GCP Service Account Key can be done either
-[at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+with [object identity](#object-identity) or
+with [workload identity](#workload-identity).
 
-### At the object level
+### Object identity
 
-All the Flux APIs support configuring authentication at the object level.
+All the Flux APIs support object identity.
 This allows users to adhere to the
 [Least Privilege Principle](https://en.wikipedia.org/wiki/Principle_of_least_privilege),
 as each Flux resource can be configured with its own identity and therefore its own
-permissions. This is useful for multi-tenancy scenarios, where different
+permissions. This is the recommended approach for multi-tenant scenarios, where different
 teams can use the same cluster but need to be isolated from each other
 inside their own namespaces.
+
+For secret-less authentication, Flux supports object identity with either the
+`kubernetes` or `spiffe` credential provider. For the controller setup required
+by each provider, see
+[Object identity installation](/flux/installation/configuration/object-identity/).
+For the supported ServiceAccount annotations, see
+[Object identity API](/flux/integrations/object-identity/).
+Static credentials are described in the provider-specific sections below.
+
+Configure the Flux resource for object identity as described in
+[Configuring Flux resources](/flux/integrations/object-identity/#configuring-flux-resources),
+using the provider `gcp`.
 
 #### For Workload Identity Federation
 
@@ -530,33 +542,8 @@ Before following the steps below, make sure to complete the cluster setup
 described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
-Flux supports object-level workload identity with either the `kubernetes`
-credential provider, which acquires a JWT through the Kubernetes TokenRequest
-API, or the `spiffe` credential provider, which acquires an SVID through the
-SPIFFE Broker API. The controller setup required by each provider, including the
-RBAC permissions for the `kubernetes` provider and the SPIFFE Workload API and
-Broker configuration for the `spiffe` provider, is described in the
-[ServiceAccount annotations](/flux/integrations/serviceaccount-annotations/)
-docs.
-
-The following steps are required regardless of whether the `kubernetes` or
-`spiffe` credential provider is used:
-
-1. Set the `.spec.provider` field to `gcp` in the Flux resource.
-   For SOPS decryption with the `Kustomization` API, this field is not
-   required/does not exist, SOPS detects the provider from the metadata
-   in the SOPS-encrypted Secret. For remote cluster access with the
-   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
-   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
-2. Use the `.spec.serviceAccountName` field to specify the name of the
-   Kubernetes Service Account in the same namespace as the Flux resource.
-   For SOPS decryption with the `Kustomization` API, the field is
-   `.spec.decryption.serviceAccountName`. For remote cluster access with
-   the `Kustomization` and `HelmRelease` APIs the field is
-   `.data.serviceAccountName` inside the referenced `ConfigMap` from
-   `.spec.kubeConfig.configMapRef`.
-3. **Only if the cluster is not GKE**, annotate the Kubernetes Service Account
-   with the fully qualified name of the Workload Identity Provider:
+**Only if the cluster is not GKE**, annotate the Kubernetes Service Account
+with the fully qualified name of the Workload Identity Provider:
 
 ```yaml
 apiVersion: v1
@@ -569,9 +556,10 @@ metadata:
     gcp.auth.fluxcd.io/workload-identity-provider: projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/providers/PROVIDER_ID
 ```
 
-> **Note**: The `iam.gke.io/gcp-service-account` annotation is defined by GKE,
-> but Flux also uses it to identify the GCP Service Account to impersonate in
-> non-GKE clusters. This is for providing users with a seamless experience.
+> **Note**: The [`iam.gke.io/gcp-service-account`](/flux/integrations/object-identity/#external-cloud-provider-annotations)
+> annotation is defined by GKE, but Flux also uses it to identify the GCP Service
+> Account to impersonate in non-GKE clusters. This is for providing users with a
+> seamless experience.
 
 #### For GCP Service Account Keys
 
@@ -596,30 +584,20 @@ depend on the specific Flux API:
   SOPS detects the provider from the metadata in the SOPS-encrypted Secret. The
   key inside the `.data` field of the Secret must be `sops.gcp-kms`.
 
-### At the controller level
+### Workload identity
 
-All the Flux APIs support configuring authentication at the controller level.
+All the Flux APIs support workload identity.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
-and permissions.
+and permissions. For an overview and bootstrap examples for managed clusters,
+see [Workload Identity](/flux/installation/configuration/workload-identity/).
 
-At the controller level, regardless if authenticating with Workload Identity Federation
-or GCP Service Account Keys, all Flux resources must have the provider field set to `gcp`
-according to the rules below.
+With workload identity, all Flux resources must use the provider `gcp` and leave
+the ServiceAccount fields unset. See
+[Configuring Flux resources](/flux/installation/configuration/workload-identity/#configuring-flux-resources)
+for the details.
 
-For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
-the `.spec.provider` field to `gcp` and leave `.spec.serviceAccountName` unset.
-
-For SOPS decryption with the `Kustomization` API, leave the
-`.spec.decryption.serviceAccountName` field unset. There's
-no provider field for SOPS decryption.
-
-For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
-set the `.data.provider` field of the `ConfigMap` referenced by the
-`.spec.kubeConfig.configMapRef` field to `gcp` and leave the
-`.data.serviceAccountName` field unset.
-
-The controller-level configuration is described in the following sections.
+The provider-specific configuration is described in the following sections.
 
 #### For Workload Identity Federation
 
@@ -627,29 +605,12 @@ Before following the steps below, make sure to complete the cluster setup
 described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
-If the cluster is GKE, the Kubernetes Service Account of the controller can optionally
-be configured to impersonate a GCP Service Account. This is done by adding the
+If the cluster is GKE, the Kubernetes Service Account of the controller can
+optionally be configured to impersonate a GCP Service Account by adding the
 `iam.gke.io/gcp-service-account` annotation to the controller Service Account
-[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - target:
-      kind: ServiceAccount
-      name: "(some-controller)"
-    patch: |
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: controller
-        annotations:
-          iam.gke.io/gcp-service-account: SA_NAME@PROJECT_ID.iam.gserviceaccount.com # GCP Service Account impersonation is optional
-```
+[during bootstrap](/flux/installation/configuration/bootstrap-customization.md).
+For examples, see
+[Workload Identity](/flux/installation/configuration/workload-identity/#gcp-workload-identity).
 
 If the configuration above is done after bootstrap, restart (delete) the controller
 for the binding to take effect.
