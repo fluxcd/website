@@ -151,9 +151,6 @@ The type of credential to acquire.
   only, and essentially enables AWS IAM Roles Anywhere and GCP Workload Identity
   Federation with X.509 certificates.
 
-The `kubernetes` credential provider and the `azure` service provider support
-only the `jwt` credential type.
-
 #### `credential.auth.fluxcd.io/expiration`
 
 An optional Go duration string specifying the requested expiration time of the
