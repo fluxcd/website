@@ -84,7 +84,7 @@ patches:
         value: --no-cross-namespace-refs=true
     target:
       kind: Deployment
-      name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
+      name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller|source-watcher)"
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args/-
@@ -98,7 +98,7 @@ patches:
         value: --default-service-account=default
     target:
       kind: Deployment
-      name: "(kustomize-controller|helm-controller)"
+      name: "(kustomize-controller|helm-controller|source-watcher)"
   - patch: |
       - op: add
         path: /spec/serviceAccountName
@@ -107,6 +107,12 @@ patches:
       kind: Kustomization
       name: "flux-system"
 ```
+
+{{% alert color="info" title="source-watcher" %}}
+The `source-watcher` component supports the `--default-service-account` flag starting with Flux v2.10.0.
+Remove `source-watcher` from the target of that patch when using earlier versions, otherwise the component
+will fail to start with an unknown flag error.
+{{% /alert %}}
 
 With the above configuration, Flux will:
 
@@ -118,6 +124,10 @@ With the above configuration, Flux will:
   account from the tenant's namespace.
   Tenants have to specify a service account in their Flux resources to be able to deploy workloads in their namespaces
   as the `default` account has no permissions.
+- All `ArtifactGenerators` that create `ExternalArtifact` resources in a namespace other than the ArtifactGenerator
+  namespace will use the `default` account from the ArtifactGenerator's namespace. The account's RBAC bindings
+  determine the namespaces in which the `ExternalArtifact` resources can be created. Artifacts created in the
+  ArtifactGenerator namespace are reconciled with the controller's service account.
 - The flux-system `Kustomization` is set to reconcile under a service account with cluster-admin role,
   allowing platform admins to configure cluster-wide resources and provision the tenant's namespaces, service accounts
   and RBAC.
@@ -158,39 +168,9 @@ patches:
       name: "(flux-view|flux-edit)-flux-system"
 ```
 
-### Flux Object-level Workload Identity RBAC
+### Flux Object Identity
 
-Starting with v2.6, Flux supports object-level workload identity, which requires
-additional RBAC permissions to be granted to the controllers so that they can create `ServiceAccount` tokens:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: crd-controller
-rules:
-  # excerpt from the existing rules
-  - apiGroups:
-      - ""
-    resources:
-      - serviceaccounts/token
-    verbs:
-      - create
-```
-
-If you wish to disable the object-level workload identity RBAC in Flux 2.6 or later, you can do so with the following patch:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - patch: |
-      - op: remove
-        path: /rules/10
-    target:
-      kind: ClusterRole
-      name: "crd-controller-flux-system"
-```
+In terms of workload identity multi-tenancy lockdown use
+[object identity](/flux/integrations/object-identity/) instead. Read
+[object identity multi-tenancy lockdown](/flux/installation/configuration/object-identity/#multi-tenancy-lockdown)
+for instructions on how to force the use of object identity.
