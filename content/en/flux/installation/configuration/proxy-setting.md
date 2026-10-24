@@ -2,7 +2,7 @@
 title: "Flux proxy settings"
 linkTitle: "Proxy settings"
 description: "How to configure proxies for Flux controllers"
-weight: 18
+weight: 19
 ---
 
 If the Kubernetes cluster has Internet restrictions, requiring egress traffic to go

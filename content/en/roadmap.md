@@ -162,12 +162,12 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/948)
   - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1104)
   - [x] [[RFC-0014] Inter-controller mTLS via SPIFFE Workload API (source-watcher)](https://github.com/fluxcd/source-watcher/pull/399)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (source-controller)](https://github.com/fluxcd/source-controller/pull/2197)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1781)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1626)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1405)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/950)
-  - [x] [[RFC-0014] Object-level Workload Identity via SPIFFE Broker API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1107)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (source-controller)](https://github.com/fluxcd/source-controller/pull/2197)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (kustomize-controller)](https://github.com/fluxcd/kustomize-controller/pull/1781)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (helm-controller)](https://github.com/fluxcd/helm-controller/pull/1626)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (notification-controller)](https://github.com/fluxcd/notification-controller/pull/1405)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (image-reflector-controller)](https://github.com/fluxcd/image-reflector-controller/pull/950)
+  - [x] [[RFC-0014] Object Identity via SPIFFE Broker API (image-automation-controller)](https://github.com/fluxcd/image-automation-controller/pull/1107)
 
 - **OCI integrations**
   - [x] [[RFC-0014] Kubernetes ServiceAccount tokens for `generic` OCIRepository](https://github.com/fluxcd/source-controller/pull/2192)

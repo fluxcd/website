@@ -2,7 +2,7 @@
 title: "Flux deploy key rotation"
 linkTitle: "Deploy key rotation"
 description: "How to rotate the deploy key generated at bootstrap"
-weight: 19
+weight: 20
 ---
 
 There are several reasons you may want to rotate the deploy key:
