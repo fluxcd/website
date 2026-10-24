@@ -2,7 +2,7 @@
 title: "Flux OpenShift installation"
 linkTitle: "OpenShift installation"
 description: "How to configure Flux for OpenShift"
-weight: 15
+weight: 18
 ---
 
 {{% alert color="danger" title="Required permissions" %}}

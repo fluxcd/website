@@ -1,8 +1,8 @@
 ---
-title: "Microsoft Azure"
+title: "Flux and Microsoft Azure"
 linkTitle: "Microsoft Azure"
 description: "How to configure access for the Flux integrations with Microsoft Azure."
-weight: 50
+weight: 60
 ---
 
 The Flux APIs integrate with the following Microsoft Azure services:
@@ -496,8 +496,8 @@ metadata:
 ```
 
 Configuring Flux to use a Kubernetes Service Account to authenticate with
-Azure can be done either [at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+Azure can be done either with [object identity](#object-identity) or
+with [workload identity](#workload-identity).
 
 ### With Application Certificates
 
@@ -521,18 +521,30 @@ To create or reset an Application Certificate using the `az` CLI, you can use th
 - [`az ad sp credential reset --create-cert`](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential#az-ad-sp-credential-reset)
 
 Configuring Flux to use an Application Certificate can be done either
-[at the object level](#at-the-object-level) or
-[at the controller level](#at-the-controller-level).
+with [object identity](#object-identity) or
+with [workload identity](#workload-identity).
 
-### At the object level
+### Object identity
 
-All the Flux APIs support configuring authentication at the object level.
+All the Flux APIs support object identity.
 This allows users to adhere to the
 [Least Privilege Principle](https://en.wikipedia.org/wiki/Principle_of_least_privilege),
 as each Flux resource can be configured with its own identity and therefore its own
-permissions. This is useful for multi-tenancy scenarios, where different
+permissions. This is the recommended approach for multi-tenant scenarios, where different
 teams can use the same cluster but need to be isolated from each other
 inside their own namespaces.
+
+For secret-less authentication, Flux supports object identity with either the
+`kubernetes` or `spiffe` credential provider. For the controller setup required
+by each provider, see
+[Object identity installation](/flux/installation/configuration/object-identity/).
+For the supported ServiceAccount annotations, see
+[Object identity API](/flux/integrations/object-identity/).
+Static credentials are described in the provider-specific sections below.
+
+Configure the Flux resource for object identity as described in
+[Configuring Flux resources](/flux/integrations/object-identity/#configuring-flux-resources),
+using the provider `azure`.
 
 #### For Workload Identity Federation
 
@@ -541,7 +553,7 @@ described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
 > :warning: **Attention**: *Only for AKS clusters targeting Azure resources*
-> object-level workload identity is currently unstable. In its current state
+> Object identity is currently unstable. In its current state
 > the feature may stop working without notice depending on actions taken by
 > Azure to meet AKS customers' demands. For continued support the feature
 > may need to evolve in a way that additional configuration steps will be
@@ -549,41 +561,18 @@ Service Account as described [here](#supported-identity-types).
 > See [this](https://github.com/fluxcd/flux2/issues/5359) issue for more
 > information.
 
-Flux supports object-level workload identity with either the `kubernetes`
-credential provider, which acquires a JWT through the Kubernetes TokenRequest
-API, or the `spiffe` credential provider, which acquires an SVID through the
-SPIFFE Broker API. The controller setup required by each provider, including the
-RBAC permissions for the `kubernetes` provider and the SPIFFE Workload API and
-Broker configuration for the `spiffe` provider, is described in the
-[ServiceAccount annotations](/flux/integrations/serviceaccount-annotations/)
-docs.
-
-The following steps are required regardless of whether the `kubernetes` or
-`spiffe` credential provider is used:
-
-1. Set the `.spec.provider` field to `azure` in the Flux resource.
-   For SOPS decryption with the `Kustomization` API, this field is not
-   required/does not exist, SOPS detects the provider from the metadata
-   in the SOPS-encrypted Secret. For remote cluster access with the
-   `Kustomization` and `HelmRelease` APIs the field is `.data.provider`
-   inside the referenced `ConfigMap` from `.spec.kubeConfig.configMapRef`.
-2. Use the `.spec.serviceAccountName` field to specify the name of the
-   Kubernetes Service Account in the same namespace as the Flux resource.
-   For SOPS decryption with the `Kustomization` API, the field is
-   `.spec.decryption.serviceAccountName`. For remote cluster access with
-   the `Kustomization` and `HelmRelease` APIs the field is
-   `.data.serviceAccountName` inside the referenced `ConfigMap` from
-   `.spec.kubeConfig.configMapRef`.
-
-> **Note**: The `azure.workload.identity/client-id` and `azure.workload.identity/tenant-id`
-> annotations are defined by AKS, but Flux also uses them to identify the Managed Identity
-> to impersonate in non-AKS clusters. This is for providing users with a seamless experience.
+> **Note**: The `azure.workload.identity/client-id` and
+> `azure.workload.identity/tenant-id` annotations are defined by AKS, but Flux
+> also uses them to identify the Managed Identity to impersonate in non-AKS
+> clusters. See the
+> [Object Identity annotations](/flux/integrations/object-identity/#external-cloud-provider-annotations)
+> for details.
 
 #### For Application Certificates
 
 Only the ABS and AKV integrations support configuring
-authentication through an Application Certificate at
-the object level.
+authentication through an Application Certificate with
+object identity.
 
 For configuring authentication through an Application Certificate for
 the `Bucket` API:
@@ -634,30 +623,20 @@ stringData:
     clientCertificateSendChain: true # this boolean value must NOT be quoted
 ```
 
-### At the controller level
+### Workload identity
 
-All the Flux APIs support configuring authentication at the controller level.
+All the Flux APIs support workload identity.
 This is more appropriate for single-tenant scenarios, where all the Flux resources
 inside the cluster belong to the same team and hence can share the same identity
-and permissions.
+and permissions. For an overview and bootstrap examples for managed clusters,
+see [Workload Identity](/flux/installation/configuration/workload-identity/).
 
-At the controller level, regardless if authenticating with Workload Identity Federation
-or Application Certificates, all Flux resources must have the provider field set to
-`azure` according to the rules below.
+With workload identity, all Flux resources must use the provider `azure` and
+leave the ServiceAccount fields unset. See
+[Configuring Flux resources](/flux/installation/configuration/workload-identity/#configuring-flux-resources)
+for the details.
 
-For all Flux resource kinds except for `Kustomization` and `HelmRelease`, set
-the `.spec.provider` field to `azure` and leave `.spec.serviceAccountName` unset.
-
-For SOPS decryption with the `Kustomization` API, leave the
-`.spec.decryption.serviceAccountName` field unset. There's
-no provider field for SOPS decryption.
-
-For remote cluster access with the `Kustomization` and `HelmRelease` APIs,
-set the `.data.provider` field of the `ConfigMap` referenced by the
-`.spec.kubeConfig.configMapRef` field to `azure` and leave the
-`.data.serviceAccountName` field unset.
-
-The controller-level configuration is described in the following sections.
+The provider-specific configuration is described in the following sections.
 
 #### For Workload Identity Federation
 
@@ -665,53 +644,14 @@ Before following the steps below, make sure to complete the cluster setup
 described [here](#supported-clusters), and to configure the Kubernetes
 Service Account as described [here](#supported-identity-types).
 
-If the cluster is AKS, the controller Kubernetes Service Account and Deployment
-must be patched
-[during bootstrap](/flux/installation/configuration/bootstrap-customization.md):
-
-- The Kubernetes Service Account of the controller must be configured
-  to impersonate a Managed Identity. This is done by adding the
-  `azure.workload.identity/client-id` and `azure.workload.identity/tenant-id`
-  annotations.
-- The label `azure.workload.identity/use: "true"` must be added to the
-  controller Deployment template metadata. This label is used by the AKS mutating
-  webhook to automatically configure the controller pod during admission to use
-  Workload Identity.
-
-The controller patch should look like this:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - target:
-      kind: ServiceAccount
-      name: "(some-controller)"
-    patch: |
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: controller
-        annotations:
-          azure.workload.identity/client-id: CLIENT_ID
-          azure.workload.identity/tenant-id: TENANT_ID
-  - target:
-      kind: Deployment
-      name: "(some-controller)"
-    patch: |
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: (some-controller)
-      spec:
-        template:
-          metadata:
-            labels:
-              azure.workload.identity/use: "true"
-```
+If the cluster is AKS, the controller Service Account must be configured to
+impersonate a Managed Identity by adding the
+`azure.workload.identity/client-id` and `azure.workload.identity/tenant-id`
+annotations. The controller Deployment template metadata must also have the
+`azure.workload.identity/use: "true"` label, which the AKS mutating webhook uses
+to configure the controller pod during admission to use Workload Identity. For
+examples, see
+[Workload Identity](/flux/installation/configuration/workload-identity/#azure-workload-identity).
 
 If the configuration above is done after bootstrap, restart (delete) the controller
 for the binding to take effect.

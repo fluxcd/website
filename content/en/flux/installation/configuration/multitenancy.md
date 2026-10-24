@@ -168,39 +168,9 @@ patches:
       name: "(flux-view|flux-edit)-flux-system"
 ```
 
-### Flux Object-level Workload Identity RBAC
+### Flux Object Identity
 
-Starting with v2.6, Flux supports object-level workload identity, which requires
-additional RBAC permissions to be granted to the controllers so that they can create `ServiceAccount` tokens:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: crd-controller
-rules:
-  # excerpt from the existing rules
-  - apiGroups:
-      - ""
-    resources:
-      - serviceaccounts/token
-    verbs:
-      - create
-```
-
-If you wish to disable the object-level workload identity RBAC in Flux 2.6 or later, you can do so with the following patch:
-
-```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - gotk-components.yaml
-  - gotk-sync.yaml
-patches:
-  - patch: |
-      - op: remove
-        path: /rules/10
-    target:
-      kind: ClusterRole
-      name: "crd-controller-flux-system"
-```
+In terms of workload identity multi-tenancy lockdown use
+[object identity](/flux/integrations/object-identity/) instead. Read
+[object identity multi-tenancy lockdown](/flux/installation/configuration/object-identity/#multi-tenancy-lockdown)
+for instructions on how to force the use of object identity.
