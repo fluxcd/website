@@ -2,7 +2,7 @@
 title: Flux DNS lookups for Helm Releases
 linkTitle: Helm DNS lookups
 description: "How to allow Helm DNS lookups"
-weight: 22
+weight: 23
 ---
 By default, the helm-controller will not perform DNS lookups when rendering Helm
 templates in clusters because of potential [security
