@@ -170,7 +170,5 @@ patches:
 
 ### Flux Object Identity
 
-In terms of workload identity multi-tenancy lockdown use
-[object identity](/flux/integrations/object-identity/) instead. Read
-[object identity multi-tenancy lockdown](/flux/installation/configuration/object-identity/#multi-tenancy-lockdown)
-for instructions on how to force the use of object identity.
+For workload identity multi-tenancy lockdown, the feature you need is
+[object identity multi-tenancy lockdown](/flux/installation/configuration/object-identity/#multi-tenancy-lockdown).
