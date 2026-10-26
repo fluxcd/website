@@ -139,7 +139,7 @@ decryption.
 
 ### v2.10 (mid Q4 2026)
 
-**Status**: Provisional
+**Status**: Completed - [Flux v2.10 GA](https://fluxcd.io/blog/2026/10/flux-v2.10.0/)
 
 The primary goals of this milestone are making a generally available release for
 the Flux Alerting APIs and integrating Flux with SPIFFE.
