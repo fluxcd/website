@@ -109,12 +109,12 @@ params:
   version_menu_pagelinks: true
   url_latest_version: https://fluxcd.io/flux/
   versions:
-    - version: "v2.9"
+    - version: "v2.10"
       url: https://fluxcd.io
+    - version: "v2.9"
+      url: https://v2-9.docs.fluxcd.io
     - version: "v2.8"
       url: https://v2-8.docs.fluxcd.io
-    - version: "v2.7"
-      url: https://v2-7.docs.fluxcd.io
   logos:
     navbar: flux-horizontal-white.png
     hero: flux-horizontal-color.png
