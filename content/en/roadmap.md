@@ -190,7 +190,7 @@ the Flux Alerting APIs and integrating Flux with SPIFFE.
   - [x] [Suspend, resume and reconcile ArtifactGenerator with `flux <action> ag`](https://github.com/fluxcd/flux2/pull/6119)
 
 - **Conformance testing**
-  - [ ] End-to-end testing for Kubernetes 1.37
+  - [x] End-to-end testing for Kubernetes 1.37
 
 - **EOL and Deprecations**
   - End support for Flux v2.7.x
