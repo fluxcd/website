@@ -54,7 +54,8 @@ Create a Helm release that installs the latest version of sealed-secrets control
 flux create helmrelease sealed-secrets \
 --interval=1h \
 --release-name=sealed-secrets-controller \
---target-namespace=flux-system \
+--target-namespace=sealed-secrets \
+--create-target-namespace=true \
 --source=HelmRepository/sealed-secrets \
 --chart=sealed-secrets \
 --chart-version=">=1.15.0-0" \
@@ -65,14 +66,14 @@ With chart version `>=1.15.0-0` we configure helm-controller to automatically up
 when a new chart version is fetched by source-controller.
 
 At startup, the sealed-secrets controller generates a 4096-bit RSA key pair and 
-persists the private and public keys as Kubernetes secrets in the `flux-system` namespace.
+persists the private and public keys as Kubernetes secrets in the `sealed-secrets` namespace.
 
 You can retrieve the public key with:
 
 ```sh
 kubeseal --fetch-cert \
 --controller-name=sealed-secrets-controller \
---controller-namespace=flux-system \
+--controller-namespace=sealed-secrets \
 > pub-sealed-secrets.pem
 ``` 
 
@@ -150,9 +151,10 @@ spec:
       version: ">=1.15.0-0"
   interval: 1h0m0s
   releaseName: sealed-secrets-controller
-  targetNamespace: flux-system
+  targetNamespace: sealed-secrets
   install:
     crds: Create
+    createNamespace: true
   upgrade:
     crds: CreateReplace
 ```
