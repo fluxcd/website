@@ -111,7 +111,7 @@ Define a Flux `OCIRepository` that points to where the Flagger Kustomize overlay
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: flagger-loadtester
@@ -129,7 +129,7 @@ Define a Flux `Kustomization` that deploys the Flagger load tester to the `apps`
 
 ```yaml
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: flagger-loadtester
