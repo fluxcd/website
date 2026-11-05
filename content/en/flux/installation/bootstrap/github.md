@@ -77,7 +77,7 @@ to access the Git repository over HTTPS.
 {{% alert color="danger" title="PAT secret" %}}
 Note that the GitHub PAT is stored in the cluster as a **Kubernetes Secret** named `flux-system`
 inside the `flux-system` namespace. If you want to avoid storing your PAT in the cluster,
-please see how to configure [GitHub Deploy Keys](#github-deploy-keys).
+see how to configure [GitHub Deploy Keys](#github-deploy-keys) or use a [GitHub App](#github-app).
 {{% /alert %}}
 
 ## GitHub Organization
@@ -139,8 +139,110 @@ If you're using Flux image automation, you must give it write access with `--rea
 {{% alert color="info" title="Deploy Key rotation" %}}
 Note that when the PAT is removed or when it expires, the GitHub deploy key will stop working.
 To regenerate the deploy key, delete the `flux-system` secret from the cluster and re-run
-the bootstrap command using a valid GitHub PAT.
+the bootstrap command using a valid GitHub PAT. Alternatively, you can use a
+[GitHub App](#github-app) to avoid tying credentials to individual user accounts.
 {{% /alert %}}
+
+## GitHub App
+
+Instead of authenticating with a personal access token (PAT) or SSH deploy key, you can also configure Flux to authenticate using a GitHub App.
+
+Using a GitHub App has several advantages:
+
+- The app belongs to the GitHub organization rather than an individual user account. When you offboard team members Flux maintains uninterrupted access.
+- You avoid creation of unnecessary bot user accounts.
+- GitHub Apps allow Flux to request short-lived (1h) access tokens from GitHub on demand using the apps private key.
+
+### How it works
+
+GitHub App authentication works over HTTPS. You create a Kubernetes Secret containing the GitHub App credentials (private key and IDs) and the `source-controller` communicates with GitHub to create short-lived access tokens. Further details can be found in the official [GitHub docs](https://docs.github.com/en/apps).
+
+Use the following to generate the necessary secret:
+
+```sh
+flux create secret githubapp flux-system \
+  --namespace=flux-system \
+  --app-id=<app-id> \
+  --app-installation-owner=<installation-owner> \
+  --app-private-key=./path/to/private-key-file.pem
+```
+
+You can identify the app using either `--app-id` or `--app-client-id` and target the installation using `--app-installation-owner=<org>`.
+
+For GitHub Enterprise Server you will additionally need to specifiy: `--app-base-url="https://ghe.example.com/api/v3"`.
+
+### Register a GitHub App
+
+Full documentation in the [GitHub docs](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app)
+
+1. In your organization settings, navigate to `Developer settings > GitHub Apps` and select `New GitHub App` (or personal account settings if not using an organization).
+2. Set a GitHub App name and Homepage URL (any domain).
+3. Under `Webhook`, uncheck **Active** (webhooks are not required for Flux Git sync).
+4. Under `Permissions > Repository permissions` configure:
+   - Contents: `Read-only` 
+   - Metadata: `Read-only` (selected automatically).
+5. Under `Where can this GitHub App be installed?`, select `Only on this account`.
+6. Finally create the GitHub App.
+7. On the app settings page, note the `App ID` (or `Client ID`).
+8. Under `Private keys` select `Generate a private key` and save the downloaded PEM file.
+9. In the left sidebar select `Install App`, select your organization and choose `All repositories` or `Only select repositories` (needs to include your GitOps repository).
+10. After installation note the `Installation ID` from the page URL:
+    `https://github.com/organizations/<org>/settings/installations/<installation-id>`
+
+### Bootstrap using Flux Operator
+
+The declarative way to bootstrap Flux with GitHub App authentication is using the [Flux Operator](https://fluxoperator.dev). This approach does not require a personal access token for bootstrap.
+
+First, install the Flux Operator using Helm:
+
+```sh
+helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
+  --namespace flux-system \
+  --create-namespace
+```
+
+Next, create the GitHub App secret in the `flux-system` namespace:
+
+```sh
+flux create secret githubapp flux-system \
+  --namespace=flux-system \
+  --app-id=<app-id> \
+  --app-installation-owner=<installation-owner> \
+  --app-private-key=./path/to/private-key-file.pem
+```
+
+Then, create a `FluxInstance` custom resource that points to your GitOps repository and reference the secret:
+
+```yaml
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  distribution:
+    version: "2.x"
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+    - image-reflector-controller
+    - image-automation-controller
+  cluster:
+    type: kubernetes
+    multitenant: false
+    networkPolicy: true
+    domain: "cluster.local"
+  sync:
+    kind: GitRepository
+    url: "https://github.com/my-org/my-repository.git"
+    ref: "refs/heads/main"
+    path: "clusters/my-cluster"
+    pullSecret: "flux-system"
+```
+
+The operator deploys the Flux controllers and configures them to reconcile the cluster state using GitHub App authentication.
 
 ## Bootstrap without a GitHub PAT
 
