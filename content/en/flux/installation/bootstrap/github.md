@@ -162,12 +162,12 @@ Use the following to generate the necessary secret:
 ```sh
 flux create secret githubapp flux-system \
   --namespace=flux-system \
-  --app-id=<app-id> \
+  --app-client-id=<app-client-id> \
   --app-installation-owner=<installation-owner> \
   --app-private-key=./path/to/private-key-file.pem
 ```
 
-You can identify the app using either `--app-id` or `--app-client-id` and target the installation using `--app-installation-owner=<org>`.
+You can identify the app using `--app-client-id` and `--app-installation-owner=<org>`.
 
 For GitHub Enterprise Server you will additionally need to specifiy: `--app-base-url="https://ghe.example.com/api/v3"`.
 
@@ -183,11 +183,9 @@ Full documentation in the [GitHub docs](https://docs.github.com/en/apps/creating
    - Metadata: `Read-only` (selected automatically).
 5. Under `Where can this GitHub App be installed?`, select `Only on this account`.
 6. Finally create the GitHub App.
-7. On the app settings page, note the `App ID` (or `Client ID`).
+7. On the app settings page, note the `Client ID`.
 8. Under `Private keys` select `Generate a private key` and save the downloaded PEM file.
 9. In the left sidebar select `Install App`, select your organization and choose `All repositories` or `Only select repositories` (needs to include your GitOps repository).
-10. After installation note the `Installation ID` from the page URL:
-    `https://github.com/organizations/<org>/settings/installations/<installation-id>`
 
 ### Bootstrap using Flux Operator
 
@@ -206,7 +204,7 @@ Next, create the GitHub App secret in the `flux-system` namespace:
 ```sh
 flux create secret githubapp flux-system \
   --namespace=flux-system \
-  --app-id=<app-id> \
+  --app-client-id=<app-client-id> \
   --app-installation-owner=<installation-owner> \
   --app-private-key=./path/to/private-key-file.pem
 ```
