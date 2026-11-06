@@ -202,6 +202,50 @@ Cluster reconciliation dashboard:
 More custom metrics can be created and used in the dashboards for monitoring
 Flux.
 
+### Flux alerting rules
+
+The `gotk_resource_info` metric can also be used to alert on Flux resources that
+fail to reconcile. With kube-prometheus-stack, alerting rules are defined using
+[PrometheusRule][prometheus-rule] custom resources. The following example
+creates an alert that fires when a Flux resource has not been ready for more
+than ten minutes, ignoring suspended resources. In the
+[example monitoring setup][monitoring-example-repo], it can be added to the
+`monitoring/configs/` directory and listed in its `kustomization.yaml` next to
+the PodMonitor:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: flux-system
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/part-of: flux
+    app.kubernetes.io/component: monitoring
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: flux
+      rules:
+        - alert: FluxReconciliationFailure
+          expr: max(gotk_resource_info{ready="False", suspended!="true"}) by (customresource_kind, exported_namespace, name) > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: '{{ $labels.customresource_kind }} {{ $labels.exported_namespace }}/{{ $labels.name }} reconciliation has been failing for more than ten minutes.'
+```
+
+The `release` label is required for the Prometheus instance deployed by
+kube-prometheus-stack to select the rule when the chart is installed with its
+default values. Its value must match the Helm release name, which is
+`kube-prometheus-stack` in the example monitoring setup.
+
+The example monitoring setup has Alertmanager disabled, so firing alerts can
+only be seen in the Prometheus UI. To route the alerts to a receiver, enable
+Alertmanager in the kube-prometheus-stack chart values and configure it as
+described in the [Alertmanager documentation][alertmanager-config].
+
 
 [kube-state-metrics]: https://github.com/kubernetes/kube-state-metrics
 [prometheus]: https://prometheus.io/
@@ -209,3 +253,5 @@ Flux.
 [kube-prometheus-stack]: https://github.com/prometheus-operator/kube-prometheus
 [controller-runtime-metrics]: https://book.kubebuilder.io/reference/metrics-reference
 [custom-metrics]: /flux/monitoring/custom-metrics/
+[prometheus-rule]: https://prometheus-operator.dev/docs/developer/alerting/
+[alertmanager-config]: https://prometheus.io/docs/alerting/latest/configuration/
