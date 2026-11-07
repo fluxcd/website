@@ -13,6 +13,13 @@ with a unique label selector which is used as the sharding key.
 What follows is a guide on how to bootstrap multiple controller instances and how to
 shard the reconciliation of Flux resources using the `sharding.fluxcd.io/key` label.
 
+{{% alert color="info" title="Controller replicas" %}}
+Extra replicas of a Flux controller are failover standbys. Only the elected leader reconciles,
+so they don't add capacity. Standby source-controller replicas stay not ready by design,
+because only the leader serves artifacts.
+To spread the load, use sharding as described below.
+{{% /alert %}}
+
 ## Bootstrap with sharding
 
 At [bootstrap time](bootstrap-customization.md), you can define the number of shards
