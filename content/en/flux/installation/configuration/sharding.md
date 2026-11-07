@@ -16,7 +16,7 @@ shard the reconciliation of Flux resources using the `sharding.fluxcd.io/key` la
 {{% alert color="info" title="Controller replicas" %}}
 Extra replicas of a Flux controller are failover standbys. Only the elected leader reconciles,
 so they don't add capacity. Standby source-controller replicas stay not ready by design,
-because only the leader serves artifacts, so `kubectl rollout status` doesn't complete.
+because only the leader serves artifacts.
 To spread the load, use sharding as described below.
 {{% /alert %}}
 
