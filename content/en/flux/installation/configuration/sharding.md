@@ -14,9 +14,9 @@ What follows is a guide on how to bootstrap multiple controller instances and ho
 shard the reconciliation of Flux resources using the `sharding.fluxcd.io/key` label.
 
 {{% alert color="info" title="Controller replicas" %}}
-Flux controllers must run with `replicas: 1`. Only the elected leader reconciles,
-so extra replicas don't add capacity. Extra source-controller replicas never become ready,
-because only the leader serves artifacts, and the Deployment rollout never completes.
+Extra replicas of a Flux controller are failover standbys. Only the elected leader reconciles,
+so they don't add capacity. Standby source-controller replicas stay not ready by design,
+because only the leader serves artifacts, so `kubectl rollout status` doesn't complete.
 To spread the load, use sharding as described below.
 {{% /alert %}}
 
