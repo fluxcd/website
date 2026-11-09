@@ -579,9 +579,21 @@ function gen_ctrl_docs {
     api_out="automation-api"
   fi
 
-  ks_url=$(curl -sL "https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml" | yq '.resources[]|select(. == "*crds.yaml*")')
+  kustomization_url="https://raw.githubusercontent.com/fluxcd/flux2/${flux_version}/manifests/bases/${ctrl}/kustomization.yaml"
+  if ! ks_url=$(curl -fsSL "${kustomization_url}" | yq '.resources[]|select(. == "*crds.yaml*")'); then
+    fatal "Failed to read CRD manifest URL for ${ctrl} from ${kustomization_url}"
+  fi
+  if [ -z "${ks_url}" ] ; then
+    fatal "No CRD manifest URL found for ${ctrl} in ${kustomization_url}"
+  fi
+
   ctrl_version=$(echo "${ks_url}" | cut -d/ -f8)
-  crds=$(curl -sL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv)
+  if ! crds=$(curl -fsSL "${ks_url}" | yq ea '[[.metadata.name, .spec.versions[] | select(.storage == "true").name]]' -o csv); then
+    fatal "Failed to fetch or parse CRDs for ${ctrl} from ${ks_url}"
+  fi
+  if [ -z "${crds}" ] ; then
+    fatal "No CRDs found for ${ctrl} in ${ks_url}"
+  fi
 
   if [ "${ctrl}" != "source-watcher" ] ; then
     for api_version in $(all_versions "${crds}") ; do
