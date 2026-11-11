@@ -776,7 +776,7 @@ spec:
       range: 6.x
 ```
 
-Then add the policy marker to the `OCIRepositry` manifest in Git:
+Then add the policy marker to the `OCIRepository` manifest in Git:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
