@@ -49,7 +49,7 @@ member3   v1.23.4   Pull   True    7m27s
 ### Flux Installation 
 
 In Karmada control plane, you need to install Flux crds but do not need controllers to reconcile them. They are treated as resource templates, not specific resource instances. 
-Based on work API [here](https://github.com/kubernetes-sigs/work-api), they will be encapsulated as a work object deliverd to member clusters and reconciled by Flux controllers in member clusters finally.
+Based on work API [here](https://github.com/kubernetes-sigs/work-api), they will be encapsulated as a work object delivered to member clusters and reconciled by Flux controllers in member clusters finally.
 
 ```sh
 kubectl apply -k github.com/fluxcd/flux2/manifests/crds?ref=main --kubeconfig ~/.kube/karmada.config

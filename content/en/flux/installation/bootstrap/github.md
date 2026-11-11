@@ -169,7 +169,7 @@ flux create secret githubapp flux-system \
 
 You can identify the app using `--app-client-id` and `--app-installation-owner=<org>`.
 
-For GitHub Enterprise Server you will additionally need to specifiy: `--app-base-url="https://ghe.example.com/api/v3"`.
+For GitHub Enterprise Server you will additionally need to specify: `--app-base-url="https://ghe.example.com/api/v3"`.
 
 ### Register a GitHub App
 
