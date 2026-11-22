@@ -141,7 +141,7 @@ spec:
 
 and defined in `spec.valuesFrom` as a list of `ConfigMap` and `Secret` resources from which to draw values,
 allowing reusability and/or greater security.
-See `HelmRelease` CRD [values overrides](../components/helm/helmreleases.md#values-overrides)
+See `HelmRelease` CRD [values overrides](../components/helm/helmreleases.md#values-references)
 documentation for the latest spec.
 
 ## Managing Secrets and ConfigMaps

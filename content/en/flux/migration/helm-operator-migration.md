@@ -76,7 +76,7 @@ Getting similar behaviour is still possible [using a workaround that makes use o
 
 There was a long outstanding request for the Helm Operator to support merging single values at a given path.
 
-With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/api/v2#helm.toolkit.fluxcd.io/v2.ValuesReference), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
+With the Helm Controller this now possible by defining a [`targetPath` in the `ValuesReference`](/flux/components/helm/helmreleases/#values-references), which supports the same formatting as you would supply as an argument to the `helm` binary using `--set [path]=[value]`. In addition to this, the referred value can contain the same value formats (e.g. `{a,b,c}` for a list). You can read more about the available formats and limitations in the [Helm documentation](https://helm.sh/docs/intro/using_helm/#the-format-and-limitations-of---set).
 
 ### Support added for depends-on relationships
 
@@ -150,7 +150,7 @@ spec:
 
 ## API spec changes
 
-The following is an overview of changes to the API spec, including behavioral changes compared to how the Helm Operator performs actions. For a full overview of the new API spec, consult the [API spec documentation](/flux/components/helm/helmreleases/#specification).
+The following is an overview of changes to the API spec, including behavioral changes compared to how the Helm Operator performs actions. For a full overview of the new API spec, consult the [API spec documentation](/flux/components/helm/helmreleases/#writing-a-helmrelease-spec).
 
 ### Defining the Helm chart
 
@@ -404,7 +404,7 @@ spec:
       optional: true
 ```
 
-In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](/flux/components/helm/api/v2#helm.toolkit.fluxcd.io/v2.ValuesReference) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
+In the new API spec the individual `configMapKeyRef` and `secretKeyRef` objects are bundled into a single [`ValuesReference`](/flux/components/helm/helmreleases/#values-references) which [does no longer allow refering to resources in other namespaces](#values-from-external-source-references-urls-are-no-longer-supported):
 
 ```yaml
 ---
