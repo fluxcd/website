@@ -71,6 +71,23 @@ controller_runtime_reconcile_total{controller, result}
 In addition, many other Go runtime and [controller-runtime
 metrics][controller-runtime-metrics] are also exported.
 
+### Alerting on failed reconciliations
+
+Some Flux failures are reported with a nil error and a `RequeueAfter` result. For example,
+kustomize-controller returns `RequeueAfter` after a failed reconciliation, so the attempt is
+counted in `controller_runtime_reconcile_total{result="requeue_after"}` and does not increment
+`controller_runtime_reconcile_errors_total` or `controller_runtime_reconcile_total{result="error"}`.
+Failures returned as non-nil errors are still counted by the controller error metrics.
+
+Do not alert on the controller error counters alone: common Flux failures such as a missing
+`spec.path` or a failed health check will not trigger them. Alert on the resource readiness
+metric `gotk_resource_info` collected by kube-state-metrics, and use Warning events and
+controller logs for detail. Also monitor controller availability.
+
+If one Prometheus evaluates series from multiple clusters, attach a cluster label to each input
+series through scrape relabeling or remote write, and keep that label in alert aggregation and
+matching keys so same-named resources do not share an alert.
+
 ## Resource metrics
 
 Metrics for the Flux custom resources can be used to monitor the deployment of
