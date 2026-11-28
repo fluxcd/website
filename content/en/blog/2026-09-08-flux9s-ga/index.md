@@ -146,7 +146,7 @@ The [documentation](https://flux9s.ca/) covers configuration, skins, and the
 full command reference.
 
 flux9s is listed among the
-[community UIs](https://fluxcd.io/ecosystem/#flux-uis--guis) in the Flux
+[community UIs](/ecosystem/#flux-uis--guis) in the Flux
 ecosystem, a privilege for a project that started as a way to stop piping
 `flux get all` through `grep` quite so often. If you try it and something is
 wrong, missing, or awkward,

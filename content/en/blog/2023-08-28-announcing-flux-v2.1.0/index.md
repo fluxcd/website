@@ -28,26 +28,26 @@ Git push options, Git refspec, Gerrit, HTTP/S and SOCKS5 proxies.
 
 In case you missed it, Flux reached General Availability in June.
 You can read the announcement
-[here](https://fluxcd.io/blog/2023/07/flux-ga/).
+[here](/blog/2023/07/flux-ga/).
 
 You can now check the end-of-life(EOL) dates and support information for
 different Flux versions at https://endoflife.date/flux.
 
 #### Features
 
-- The [GitRepository API](https://fluxcd.io/flux/components/source/gitrepositories/#proxy-secret-reference)
+- The [GitRepository API](/flux/components/source/gitrepositories/#proxy-secret-reference)
   has a new field `.spec.proxySecretRef` that is used for specifying proxy configuration to use
   for all remote Git operations related to the particular object.
-- The`.spec.verify.mode` field of the [GitRepository API](https://fluxcd.io/flux/components/source/gitrepositories/#verification)
+- The`.spec.verify.mode` field of the [GitRepository API](/flux/components/source/gitrepositories/#verification)
   now accepts one of the following values `HEAD`, `Tag`, `TagAndHEAD`. These values are used to specify
   how the Git tags and commits are verified.
-- The [server-side apply behaviour](https://fluxcd.io/flux/components/kustomize/kustomizations/#controlling-the-apply-behavior-of-resources)
+- The [server-side apply behaviour](/flux/components/kustomize/kustomizations/#controlling-the-apply-behavior-of-resources)
   in the kustomize-controller has been extended with two extra policies:
   `IfNotPresent` and `Ignore`. These policies are specified with the `kustomize.toolkit.fluxcd.io/ssa`
   annotation on the resource manifest. The `IfNotPresent` policy is useful to have Flux create an object
   that will later be managed by another controller.
-- Support for sending notifications to [DataDog](https://fluxcd.io/flux/components/notification/providers/#datadog).
-- The [ImageUpdateAutomation API](https://fluxcd.io/flux/components/image/imageupdateautomations/#push) has two
+- Support for sending notifications to [DataDog](/flux/components/notification/providers/#datadog).
+- The [ImageUpdateAutomation API](/flux/components/image/imageupdateautomations/#push) has two
   new optional fields - `.spec.git.push.refspec` and `.spec.git.push.options` for to specify a refspec and push
   options that will be used when pushing commits upstream.
 
@@ -75,14 +75,14 @@ Here is a short list of features and improvements in this release:
   [monitoring configuration in the fluxcd/flux2 repository](https://github.com/fluxcd/flux2/tree/v2.1.0/manifests/monitoring#warning-deprecation-notice)
   is now deprecated and will be removed in a future release. The new monitoring configuration is located at
   [fluxcd/flux2-monitoring-example](https://github.com/fluxcd/flux2-monitoring-example/).
-  Please see the new monitoring guide https://fluxcd.io/flux/monitoring for more information.
+  Please see the new monitoring guide /flux/monitoring for more information.
 
 #### Upgrade
 
 To upgrade Flux from v0.x to v2.1.0 please follow the
 [Flux GA upgrade procedure](https://github.com/fluxcd/flux2/releases/tag/v2.0.0#upgrade).
 
-To Upgrade Flux from v2.0.x to v2.1.0 either by [rerunning bootstrap](https://fluxcd.io/flux/installation/#bootstrap-upgrade)
+To Upgrade Flux from v2.0.x to v2.1.0 either by [rerunning bootstrap](/flux/installation/#bootstrap-upgrade)
 or by using the [Flux GitHub Action](https://github.com/fluxcd/flux2/tree/main/action).
 
 You can take a look at the [changelog](https://github.com/fluxcd/flux2/releases/tag/v2.1.0) for the full list of changes.
@@ -266,11 +266,11 @@ best-practices. Read more about our security considerations.
 
 If you like what you read and would like to get involved, here are a few good ways to do that:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you'd like to see.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).
-- And if you are completely new to Flux, take a look at our [Get Started guide](https://fluxcd.io/docs/get-started/)
+- And if you are completely new to Flux, take a look at our [Get Started guide](/docs/get-started/)
   and give us feedback.
 - Social media: Follow [Flux on Twitter](https://twitter.com/fluxcd), join the discussion in the
   [Flux LinkedIn group](https://www.linkedin.com/groups/8985374/).

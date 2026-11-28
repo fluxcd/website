@@ -11,7 +11,7 @@ The CNCF graduated Flux project is proud to announce that it will receive
 enhanced support from dedicated companies in 2024.
 These organizations are committed to the ongoing maintenance
 and development of Flux GitOps tools.
-[At KubeCon EU 2024 in Paris, the Flux project has keynote highlights, sessions, and a booth.](https://fluxcd.io/kubecon/)
+[At KubeCon EU 2024 in Paris, the Flux project has keynote highlights, sessions, and a booth.](/kubecon/)
 
 ## Vendors and clouds are stepping up contributions
 
@@ -56,7 +56,7 @@ Flux’s security, modularity, resilience, and community all contribute to how i
 >
 > Philippe Ensarguet, VP Software Engineering, Orange
 
-Other long-time Flux [adopters](https://fluxcd.io/adopters/) who have added themselves to the public
+Other long-time Flux [adopters](/adopters/) who have added themselves to the public
 list recently include Cisco and German retailer, Tchibo.
 
 ## New Support and Ecosystem: Hirings and Value-Add Extensions
@@ -90,7 +90,7 @@ Cloud Native Computing Foundation with continued recognition from CNCF CTO,
 Chris Aniszczyk, who states how Flux exemplifies the strength and resilience of the community.
 Flux reached General Availability in December 2023 and blew through its
 second security audit with the CNCF with no CVEs.
-The project’s published [benchmarks](https://fluxcd.io/blog/2023/12/flux-v2.2.0/#benchmark-results)
+The project’s published [benchmarks](/blog/2023/12/flux-v2.2.0/#benchmark-results)
 results demonstrate why cloud vendors
 and enterprises alike have been trusting Flux with their needs for scale.
 
@@ -101,5 +101,5 @@ and enterprises alike have been trusting Flux with their needs for scale.
 >
 > Chris Aniszczyk, CTO, CNCF
 
-If you’re at KubeCon in Paris this week, visit the [Flux project booth and the many sessions,](https://fluxcd.io/kubecon/)
+If you’re at KubeCon in Paris this week, visit the [Flux project booth and the many sessions,](/kubecon/)
 including Stefan’s maintainer talk on the [Flux roadmap](https://github.com/fluxcd/flux2/discussions/4663) at the event.

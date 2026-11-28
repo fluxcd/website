@@ -30,7 +30,7 @@ may be postponed to the next milestone.
 
 ### v2.8 (Q1 2026)
 
-**Status**: Completed - [Flux v2.8 GA](https://fluxcd.io/blog/2026/02/flux-v2.8.0/)
+**Status**: Completed - [Flux v2.8 GA](/blog/2026/02/flux-v2.8.0/)
 
 The primary goal of this milestone is to add support for Helm v4 to helm-controller,
 and to reduce the mean time to recovery (MTTR) for app deployments.
@@ -75,7 +75,7 @@ and to reduce the mean time to recovery (MTTR) for app deployments.
 
 ### v2.9 (Q2 2026)
 
-**Status**: Completed - [Flux v2.9 GA](https://fluxcd.io/blog/2026/06/flux-v2.9.0/)
+**Status**: Completed - [Flux v2.9 GA](/blog/2026/06/flux-v2.9.0/)
 
 The primary goal of this milestone is to add support for Flux CLI plugins,
 extend Flux server-side apply with field ignore rules and enhance the secrets
@@ -139,7 +139,7 @@ decryption.
 
 ### v2.10 (mid Q4 2026)
 
-**Status**: Completed - [Flux v2.10 GA](https://fluxcd.io/blog/2026/10/flux-v2.10.0/)
+**Status**: Completed - [Flux v2.10 GA](/blog/2026/10/flux-v2.10.0/)
 
 The primary goals of this milestone are making a generally available release for
 the Flux Alerting APIs and integrating Flux with SPIFFE.

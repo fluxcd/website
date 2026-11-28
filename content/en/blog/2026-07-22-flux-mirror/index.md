@@ -150,7 +150,7 @@ docker rm -f zot
 
 For more details on the config format and the `login`, `secret`, and `keygen`
 commands, check out the
-[Flux Mirror documentation](https://fluxcd.io/flux/cli-plugins/flux-mirror/).
+[Flux Mirror documentation](/flux/cli-plugins/flux-mirror/).
 
 ## Moving Helm Charts from HTTP to OCI
 
@@ -266,9 +266,9 @@ standalone `flux-mirror` binary and verifies its release attestation with
 `gh attestation verify` before first use.
 
 You can also run it as a Kubernetes `CronJob`, colocated with the cluster and the registry itself. Check out our docs for examples with
-[EKS+IRSA, AKS Workload Identity, and GKE Workload Identity](https://fluxcd.io/flux/cli-plugins/flux-mirror/sync/#mirror-into-ecr-acr-or-gar-from-a-cronjob-with-workload-identity),
+[EKS+IRSA, AKS Workload Identity, and GKE Workload Identity](/flux/cli-plugins/flux-mirror/sync/#mirror-into-ecr-acr-or-gar-from-a-cronjob-with-workload-identity),
 and for
-[mirroring into ECR, ACR, or GAR from GitHub Actions with cloud OIDC](https://fluxcd.io/flux/cli-plugins/flux-mirror/sync/#mirror-into-ecr-acr-or-gar-from-github-actions).
+[mirroring into ECR, ACR, or GAR from GitHub Actions with cloud OIDC](/flux/cli-plugins/flux-mirror/sync/#mirror-into-ecr-acr-or-gar-from-github-actions).
 Implementing these pipelines without depending on long-lived registry credentials ensures that our clusters can keep reconciling from their own private registries even when the
 upstream dependencies become rate-limited, re-licensed, or just gone forever.
 
@@ -411,10 +411,10 @@ workloads will never race to pull attacker published OCI artifacts from an hour 
 We think anyone who uses containers or Kubernetes can benefit from Flux Mirror.
 We'd love to hear how you mirror artifacts today and what your pipelines need:
 
-- Read the [Flux Mirror documentation](https://fluxcd.io/flux/cli-plugins/flux-mirror/)
+- Read the [Flux Mirror documentation](/flux/cli-plugins/flux-mirror/)
   and open issues or pull requests on
   [fluxcd/flux-mirror](https://github.com/fluxcd/flux-mirror).
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings) and
+- Join our [upcoming dev meetings](/community/#meetings) and
   tell us about your use-cases.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 

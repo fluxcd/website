@@ -14,7 +14,7 @@ resources:
 
 In this blog post, we will showcase how [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator)
 can be used to bootstrap Kubernetes clusters using the GitHub App authentication method
-introduced in [Flux 2.5.0](https://fluxcd.io/blog/2025/02/flux-v2.5.0/).
+introduced in [Flux 2.5.0](/blog/2025/02/flux-v2.5.0/).
 
 Prior to Flux 2.5.0, the GitHub repository authentication methods were based on using a
 secret that is tied to a GitHub user, be it a personal access token (PAT) or an SSH deploy key.

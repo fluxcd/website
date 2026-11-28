@@ -10,7 +10,7 @@ resources:
   title: "Image #:counter"
 ---
 
-We are thrilled to announce the release of [Flux v2.2.0](https://github.com/fluxcd/flux2/releases/tag/v2.2.0)! In this post, we will highlight some of the new features and improvements included in this release, with the primary theme being the many changes made to the [helm-controller](https://fluxcd.io/flux/components/helm/).
+We are thrilled to announce the release of [Flux v2.2.0](https://github.com/fluxcd/flux2/releases/tag/v2.2.0)! In this post, we will highlight some of the new features and improvements included in this release, with the primary theme being the many changes made to the [helm-controller](/flux/components/helm/).
 
 This new release will also be demoed by Priyanka "Pinky" Ravi and Max Werner on Monday, December 18. To attend this demo and ask any questions, [you can register here](https://www.meetup.com/weave-user-group/events/297818586/).
 
@@ -22,7 +22,7 @@ This release is accompanied by a series of (backwards compatible) API changes an
 
 The reconciliation model of the helm-controller has been rewritten to be able to better determine the state a Helm release is in, to then decide what Helm action should be performed to reach the desired state.
 
-Effectively, this means that the controller is now capable of continuing where it left off, and to run [Helm tests](https://fluxcd.io/flux/components/helm/helmreleases/#test-configuration) as soon as they are enabled without a Helm upgrade having to take place first.
+Effectively, this means that the controller is now capable of continuing where it left off, and to run [Helm tests](/flux/components/helm/helmreleases/#test-configuration) as soon as they are enabled without a Helm upgrade having to take place first.
 
 In addition, it now takes note of releases _while they are happening_, instead of making observations _afterward_. Ensuring that when performing a rollback remediation, the version we revert to is always exactly the same as the one previously released by the controller. In cases where it is uncertain about state, it will always decide to (reattempt to) perform a Helm upgrade.
 
@@ -43,7 +43,7 @@ Events:
   Normal  TestSucceeded     12s   helm-controller  Helm test succeeded for release demo/podinfo.v1 with chart podinfo@6.5.3: 3 test hooks completed successfully
 ```
 
-For more details around these changes, refer to the [Status section](https://fluxcd.io/flux/components/helm/helmreleases/#helmrelease-status) in the HelmRelease v2beta2 specification.
+For more details around these changes, refer to the [Status section](/flux/components/helm/helmreleases/#helmrelease-status) in the HelmRelease v2beta2 specification.
 
 ## Recovery from `pending-*` Helm release state
 
@@ -69,7 +69,7 @@ spec:
 
 Using these settings, any drift detected will now be corrected by recreating and patching the Kubernetes objects (instead of doing a Helm upgrade) while changes to the `.spec.replicas` fields for Deployments will be ignored.
 
-For more information, refer to the [drift detection section](https://fluxcd.io/flux/components/helm/helmreleases/#drift-detection) in the HelmRelease v2beta2 specifiation.
+For more information, refer to the [drift detection section](/flux/components/helm/helmreleases/#drift-detection) in the HelmRelease v2beta2 specifiation.
 
 ## Forcing and retrying Helm releases
 
@@ -87,7 +87,7 @@ Another much-reported issue was the impractical steps one had to take to recover
   flux reconcile helmrelease <release> --force
   ```
 
-For in-depth explanations about these new command options, refer to the ["resetting remediation retries"](https://fluxcd.io/flux/components/helm/helmreleases/#resetting-remediation-retries) and ["forcing a release"](https://fluxcd.io/flux/components/helm/helmreleases/#forcing-a-release) sections in the HelmRelease v2beta2 specification.
+For in-depth explanations about these new command options, refer to the ["resetting remediation retries"](/flux/components/helm/helmreleases/#resetting-remediation-retries) and ["forcing a release"](/flux/components/helm/helmreleases/#forcing-a-release) sections in the HelmRelease v2beta2 specification.
 
 ## Benchmark results
 
@@ -122,16 +122,16 @@ You should be aware that this update comes with a breaking change in Kustomize, 
 
 - `flux install` and `flux bootstrap` now have guardrails to protect users from destructive operations.
 - Gitea support has been added to `flux bootstrap`. To bootstrap Flux onto a cluster using Gitea as the Git provider, run `flux bootstrap gitea --repository <repo> --owner <owner>`.
-- The OIDC issuer and identity subject can now be verified for images signed using Cosign. Refer to the [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/#keyless-verification) and [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#keyless-verification) specifications for more information.
-- [Prefix based file filtering](https://fluxcd.io/flux/components/source/buckets/#prefix) support has been added to the Bucket API for `generic`, `aws` and `gcp` providers.
-- Support for insecure (non-TLS HTTP) container registries has been added to the [ImageRepository](https://fluxcd.io/flux/components/image/imagerepositories/#insecure) and [HelmRepository](https://fluxcd.io/flux/components/source/helmrepositories/#insecure) APIs.
-- The Flux alerting capabilities have been extended with [NATS](https://fluxcd.io/flux/components/notification/provider/#nats) and [Bitbucket Server & Data Center](https://fluxcd.io/flux/components/notification/provider/#bitbucket-serverdata-center) support.
+- The OIDC issuer and identity subject can now be verified for images signed using Cosign. Refer to the [HelmChart](/flux/components/source/helmcharts/#keyless-verification) and [OCIRepository](/flux/components/source/ocirepositories/#keyless-verification) specifications for more information.
+- [Prefix based file filtering](/flux/components/source/buckets/#prefix) support has been added to the Bucket API for `generic`, `aws` and `gcp` providers.
+- Support for insecure (non-TLS HTTP) container registries has been added to the [ImageRepository](/flux/components/image/imagerepositories/#insecure) and [HelmRepository](/flux/components/source/helmrepositories/#insecure) APIs.
+- The Flux alerting capabilities have been extended with [NATS](/flux/components/notification/provider/#nats) and [Bitbucket Server & Data Center](/flux/components/notification/provider/#bitbucket-serverdata-center) support.
 
 ## Installing or upgrading Flux
 
-To install Flux, take a look at our [installation](https://fluxcd.io/flux/installation/) and [get started](https://fluxcd.io/flux/get-started/) guides.
+To install Flux, take a look at our [installation](/flux/installation/) and [get started](/flux/get-started/) guides.
 
-To upgrade Flux from `v2.x` to `v2.2.0`, either [rerun `flux bootstrap`](https://fluxcd.io/flux/installation/#bootstrap-upgrade) or use the [Flux GitHub Action](https://github.com/fluxcd/flux2/tree/main/action).
+To upgrade Flux from `v2.x` to `v2.2.0`, either [rerun `flux bootstrap`](/flux/installation/#bootstrap-upgrade) or use the [Flux GitHub Action](https://github.com/fluxcd/flux2/tree/main/action).
 
 To upgrade the APIs, make sure the new Custom Resource Definitions and controllers are deployed, and then change the manifests in Git:
 
@@ -145,7 +145,7 @@ Bumping the APIs version in manifests can be done gradually. It is advised to no
 
 If you have any questions, or simply just like what you read and want to get involved. Here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you need help with.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).

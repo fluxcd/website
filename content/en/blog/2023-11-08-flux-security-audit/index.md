@@ -74,7 +74,7 @@ Flux more and more secure over these past 2 years, leading to only low-
 and informational-severity security findings within the GA components of
 Flux.
 
-Our [next milestone](https://fluxcd.io/roadmap/#flux-helm-ga-q3-2023) is the general availability of Flux’s Helm features and the subsequent general availability of the remaining Flux components. If you are interested in contributing to this, we are very much looking forward to working with you. We welcome contributions in helping resolve issues of the road, additional comments on our security posture and also
+Our [next milestone](/roadmap/#flux-helm-ga-q3-2023) is the general availability of Flux’s Helm features and the subsequent general availability of the remaining Flux components. If you are interested in contributing to this, we are very much looking forward to working with you. We welcome contributions in helping resolve issues of the road, additional comments on our security posture and also
 welcome contributions in the form of extending our fuzzing
 infrastructure. Finally, if you have any additional security feedback,
 please come and talk to us.

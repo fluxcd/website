@@ -287,7 +287,7 @@ Bug Scrub format, opening up the possibility that we will have planned
 presentations or predetermined discussion topics, so that these meetings
 are less random and we can attract more interest. Look to the schedule
 for information about how to join at
-[https://fluxcd.io/\#calendar](/#calendar)
+[/\#calendar](/#calendar)
 or [add the Flux events to your own
 calendar](/community/#subscribing-to-the-flux-calendar)
 if you want to participate, and be sure you don't miss out on the new

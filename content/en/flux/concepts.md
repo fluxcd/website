@@ -131,4 +131,4 @@ ensuring a smooth and successful release that enhances user trust and improves t
 
 The Flux project offers a specialised controller called [Flagger](https://github.com/fluxcd/flagger) that implements
 various progressive delivery techniques.
-For more information, take a look at [Flagger deployment strategies](https://fluxcd.io/flagger/usage/deployment-strategies/).
+For more information, take a look at [Flagger deployment strategies](/flagger/usage/deployment-strategies/).

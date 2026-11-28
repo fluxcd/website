@@ -124,7 +124,7 @@ channel](https://cloud-native.slack.com/archives/CLAJ40HV3)!
 ![Flux Adopters](flux-adopters.png)
 
 We finally built a nicer home to show off who all is part of our
-community: <https://fluxcd.io/adopters>.
+community: </adopters>.
 
 From start-ups to Fortune 500 companies many have accompanied us for a
 couple of years already, quite a few migrated to the latest of Flux and

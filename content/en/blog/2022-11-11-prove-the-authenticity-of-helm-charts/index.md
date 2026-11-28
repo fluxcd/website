@@ -59,7 +59,7 @@ You need three things to complete this demo;
 * A Kubernetes cluster
   * <https://kind.sigs.k8s.io/#installation-and-usage>
 * _Flux_ CLI
-  * <https://fluxcd.io/flux/cmd/>
+  * </flux/cmd/>
 
 Let's start by creating a simple Kubernetes cluster:
 

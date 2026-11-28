@@ -297,12 +297,12 @@ a bootstrap secret, and clusters only reconcile artifacts signed by secure and s
 If you run OpenBao and Flux together, we'd like to hear how it goes. Talk
 to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/), or
 bring your use-case to one of the meetings on our
-[community page](https://fluxcd.io/community/).
+[community page](/community/).
 
 ## References
 
-- [Flux Kustomization decryption with OpenBao via workload identity](https://fluxcd.io/flux/components/kustomize/kustomizations/#openbaovault-kubernetes-auth)
-- [Flux OCIRepository verification with public keys](https://fluxcd.io/flux/components/source/ocirepositories/#public-keys-verification)
+- [Flux Kustomization decryption with OpenBao via workload identity](/flux/components/kustomize/kustomizations/#openbaovault-kubernetes-auth)
+- [Flux OCIRepository verification with public keys](/flux/components/source/ocirepositories/#public-keys-verification)
 - [OpenBao Transit engine](https://openbao.org/api-docs/secret/transit/)
 - [Cosign key management and KMS providers](https://docs.sigstore.dev/cosign/key_management/overview/)
 - [OpenBao Kubernetes auth method API docs](https://openbao.org/api-docs/auth/kubernetes/)

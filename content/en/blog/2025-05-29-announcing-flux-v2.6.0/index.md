@@ -34,7 +34,7 @@ and KMS services authentication, and various improvements to notifications.
 
 In ecosystem news, there is a new release of [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator)
 that comes with a Model Context Protocol (MCP) implementation for allowing AI assistants to interact with Flux.
-For more details on the Flux MCP Server, see the [AI-Assisted GitOps blog post](https://fluxcd.io/blog/2025/05/ai-assisted-gitops/).
+For more details on the Flux MCP Server, see the [AI-Assisted GitOps blog post](/blog/2025/05/ai-assisted-gitops/).
 
 ## General availability of Flux OCI Artifacts
 
@@ -146,7 +146,7 @@ see the following docs:
 ## GitHub App Authentication
 
 In Flux v2.6, we have completed the integration of GitHub App authentication for Git repositories.
-This feature was introduced in [Flux v2.5](https://fluxcd.io/blog/2025/02/flux-v2.5.0/#github-app-authentication-for-git-repositories),
+This feature was introduced in [Flux v2.5](/blog/2025/02/flux-v2.5.0/#github-app-authentication-for-git-repositories),
 and it is now fully supported across all Flux APIs.
 
 The GitHub App authentication tokens are now cached by the Flux controllers
@@ -215,7 +215,7 @@ Flux v2.6 supports the following Kubernetes versions:
 If you have any questions or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).
 - Follow [Flux on Twitter](https://twitter.com/fluxcd), or join the

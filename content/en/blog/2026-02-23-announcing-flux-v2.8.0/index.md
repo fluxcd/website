@@ -46,7 +46,7 @@ Health checking now defaults to [kstatus](https://github.com/fluxcd/cli-utils/tr
 the same library used by the kustomize-controller. Instead of relying on Helm's legacy readiness
 logic, Flux can now understand the actual rollout status of Deployments, StatefulSets, Jobs, and
 other resources — including custom resources that follow standard status conventions. For teams
-that rely on custom readiness logic, Flux now supports [CEL-based health check expressions](https://fluxcd.io/flux/cheatsheets/cel-healthchecks/) on
+that rely on custom readiness logic, Flux now supports [CEL-based health check expressions](/flux/cheatsheets/cel-healthchecks/) on
 HelmReleases, giving you the same flexibility already available in the Kustomization API.
 
 Both server-side apply and kstatus health checking are the new defaults. Because Helm persists
@@ -179,7 +179,7 @@ We have published a dedicated step-by-step upgrade guide, please follow the inst
 If you have any questions or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).
 - Follow [Flux on Twitter](https://twitter.com/fluxcd), or join the

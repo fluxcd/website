@@ -188,7 +188,7 @@ tools and what they achieved.
 
 The list of talks and resources formerly was quite buried on the site -
 they now have their own page and can shine there:
-<https://fluxcd.io/resources/>
+</resources/>
 
 If you prefer learning about Flux through videos, you might enjoy this!
 
@@ -197,7 +197,7 @@ If you prefer learning about Flux through videos, you might enjoy this!
 **📆 Our calendar**: From now on all upcoming Flux-related events,
 meetings, workshops and sessions will be mentioned in our new calendar
 section - directly on the home page:
-<https://fluxcd.io/#calendar>
+</#calendar>
 
 For this we re-use Flux's calendar that is provided by CNCF
 infrastructure, so if you [subscribed to

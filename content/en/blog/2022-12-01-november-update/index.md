@@ -119,13 +119,13 @@ Flux](https://github.com/kubernetes-sigs/security-profiles-operator/blob/main/ex
 [Flagger 1.26.0](https://github.com/fluxcd/flagger/releases/tag/v1.26.0)
 comes with support Kubernetes [Gateway API](https://gateway-api.sigs.k8s.io/)
 `v1beta1`. For more details see the [Gateway API Progressive Delivery
-tutorial](https://fluxcd.io/flagger/tutorials/gatewayapi-progressive-delivery/).
+tutorial](/flagger/tutorials/gatewayapi-progressive-delivery/).
 Please note that starting with this version, the Gateway API v1alpha2 is
 considered deprecated and will be removed from Flagger after 6 months.
 
 [Flagger 1.25.0](https://github.com/fluxcd/flagger/releases/tag/v1.25.0)
 introduces a new deployment strategy combining Canary releases with
-session affinity for Istio. Check out the tutorial [here](https://fluxcd.io/flagger/tutorials/istio-progressive-delivery/#session-affinity). Furthermore, it contains a regression fix
+session affinity for Istio. Check out the tutorial [here](/flagger/tutorials/istio-progressive-delivery/#session-affinity). Furthermore, it contains a regression fix
 regarding metadata in alerts introduced in
 [#1275](https://github.com/fluxcd/flagger/pull/1275).
 
