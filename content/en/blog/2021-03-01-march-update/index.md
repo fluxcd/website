@@ -137,7 +137,7 @@ Diligence during which our production users were interviewed, and the
 two-week public comment period went successfully as well.
 
 **Website**: The Flux Community team has put some more love into our
-website <https://fluxcd.io/>, if you would like to join the team, have
+website </>, if you would like to join the team, have
 ideas on how to make it better or would like to join the Comms team,
 please reach out to `@dholbach` or `@staceypotter` on Slack.
 

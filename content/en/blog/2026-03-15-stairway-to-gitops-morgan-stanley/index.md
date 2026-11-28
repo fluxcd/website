@@ -14,7 +14,7 @@ One of the things we love most about this community is hearing how you take Flux
 
 Their talk, **"Stairway to GitOps,"** walked us through a five-year journey from push-based pipelines to a self-service GitOps platform managing over 500 clusters. Hearing the core principles of Flux - **Lean, Performant, Extensible, and Secure** - validated by end-users at this scale matters a lot to us as maintainers. We think their lessons are worth sharing with all of you.
 
-![Flux maintainers together at FluxCon NA 2025](https://fluxcd.io/img/fluxcon-na-25/maintainers-5.png)
+![Flux maintainers together at FluxCon NA 2025](/img/fluxcon-na-25/maintainers-5.png)
 *Matheus Pimenta cracking a joke with the Flux team together at FluxCon NA 2025 - (Moments with all of these people in-person are rare!)*
 
 ## The Early Days: Pushing Limits
@@ -89,4 +89,4 @@ Thank you to Tiffany, Simon, and the team at Morgan Stanley for sharing their jo
 Inspired by Morgan Stanley's infra? Come connect with the community and learn from teams running Flux in production. **[FluxCon Europe](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/co-located-events/fluxcon/)** is happening on **March 23, 2026** at **RAI Amsterdam**, co-located with KubeCon. Speakers from KLM, NatWest Group, Orange, and more will be sharing their Flux stories.
 
 We'd love to see you there -- come say hi! 🙂
-We'll also be in the Project Pavilion all week. Catch up with us at [fluxcd.io/kubecon](https://fluxcd.io/kubecon) 👋
+We'll also be in the Project Pavilion all week. Catch up with us at [fluxcd.io/kubecon](/kubecon) 👋

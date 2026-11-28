@@ -61,7 +61,7 @@ mise use -g flux2@latest
 With [Bash](https://www.gnu.org/software/bash/) for macOS and Linux:
 
 ```sh
-curl -s https://fluxcd.io/install.sh | sudo bash
+curl -s /install.sh | sudo bash
 ```
 
 {{% /tab %}}

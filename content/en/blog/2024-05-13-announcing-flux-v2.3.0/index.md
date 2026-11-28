@@ -274,9 +274,9 @@ enterprise support for Flux.
 
 ## Installing or upgrading Flux
 
-To install Flux, take a look at our [installation](https://fluxcd.io/flux/installation/) and [get started](https://fluxcd.io/flux/get-started/) guides.
+To install Flux, take a look at our [installation](/flux/installation/) and [get started](/flux/get-started/) guides.
 
-To upgrade Flux from `v2.x` to `v2.3.0`, either [rerun `flux bootstrap`](https://fluxcd.io/flux/installation/#bootstrap-upgrade)
+To upgrade Flux from `v2.x` to `v2.3.0`, either [rerun `flux bootstrap`](/flux/installation/#bootstrap-upgrade)
 or use the [Flux GitHub Action](https://github.com/fluxcd/flux2/tree/main/action).
 
 To upgrade the APIs in the manifests stored in Git:
@@ -312,7 +312,7 @@ welcome feedback from the community.
 If you have any questions, or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you need help with.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).

@@ -54,5 +54,5 @@ After a Flagger release, publish the docs with:
 * `git push origin docs`
 
 Lastly open a PR with all the docs changes on [fluxcd/website](https://github.com/fluxcd/website) to
-update [fluxcd.io/flagger](https://fluxcd.io/flagger/).
+update [fluxcd.io/flagger](/flagger/).
 

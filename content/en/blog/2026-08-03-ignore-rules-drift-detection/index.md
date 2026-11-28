@@ -17,7 +17,7 @@ correction, while continuing to reconcile everything else.
 ![](featured-image.png)
 
 One of the core promises of GitOps with Flux is continuous reconciliation: the
-[kustomize-controller](https://fluxcd.io/flux/components/kustomize/) runs a periodic server-side
+[kustomize-controller](/flux/components/kustomize/) runs a periodic server-side
 apply dry-run to detect drift between the desired state in Git and the live state in the cluster,
 and corrects any divergence. This is exactly what you want for most fields; it guarantees that the
 cluster always matches the source of truth and that manual `kubectl` edits are reverted.
@@ -192,7 +192,7 @@ spec:
 ## Preview changes with `flux diff`
 
 The Flux CLI honors the ignore rules too. Running
-[`flux diff kustomization`](https://fluxcd.io/flux/cmd/flux_diff_kustomization/) gives you an
+[`flux diff kustomization`](/flux/cmd/flux_diff_kustomization/) gives you an
 accurate preview that matches what the controller will actually do, so ignored fields are not
 reported as spurious diffs:
 
@@ -228,7 +228,7 @@ This capability landed across several Flux components:
   for ignore rules.
 
 For the full reference, see the
-[Ignore Rules](https://fluxcd.io/flux/components/kustomize/kustomizations/#ignore-rules) section of
+[Ignore Rules](/flux/components/kustomize/kustomizations/#ignore-rules) section of
 the Kustomization documentation. As always, we would love to hear your feedback. Join us on the
 [CNCF Slack](https://cloud-native.slack.com/messages/flux) or open an issue on
 [GitHub](https://github.com/fluxcd/flux2).

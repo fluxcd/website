@@ -406,7 +406,7 @@ We have published a dedicated step-by-step upgrade guide, please follow the inst
 If you have any questions or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).
 - Follow [Flux on Twitter](https://twitter.com/fluxcd), or join the

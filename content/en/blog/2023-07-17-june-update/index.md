@@ -121,7 +121,7 @@ CVE Backport: We will backport bug fixes and security fixes to the last three mi
 releases as patch releases. Users are advised to run the latest patch release of
 a given minor release.
 
-For more details on the release procedure, take a look at https://fluxcd.io/flux/releases.
+For more details on the release procedure, take a look at /flux/releases.
 
 > "Xenit is proud to be contributors and maintainers
 > of the Flux project, which is the GitOps tool of choice for enterprises and cloud

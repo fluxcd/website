@@ -50,7 +50,7 @@ you can now use OIDC tokens to authenticate against Azure DevOps repositories by
 Kubernetes Workload Identity. 
 
 For more details on how to configure the Azure DevOps OIDC authentication, see the
-[GitRepository API documentation](https://fluxcd.io/flux/components/source/gitrepositories/#provider).
+[GitRepository API documentation](/flux/components/source/gitrepositories/#provider).
 
 ## Controller Improvements
 
@@ -155,7 +155,7 @@ For more details on how to use configure Flux using the operator, please see the
 If you have any questions, or simply just like what you read and want to get involved,
 here are a few good ways to reach us:
 
-- Join our [upcoming dev meetings](https://fluxcd.io/community/#meetings).
+- Join our [upcoming dev meetings](/community/#meetings).
 - Join the [Flux mailing list](https://lists.cncf.io/g/cncf-flux-dev) and let us know what you need help with.
 - Talk to us in the #flux channel on [CNCF Slack](https://slack.cncf.io/).
 - Join the [planning discussions](https://github.com/fluxcd/flux2/discussions).

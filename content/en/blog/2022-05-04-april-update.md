@@ -497,7 +497,7 @@ couple of small things we landed recently.
 - New videos under [Flux Resources](/resources/)! 😍
 - Various docs fixes.
 - And here is a big one: we moved all docs from <https://flagger.app> into
-  <https://fluxcd.io/flagger> - this is part of a bigger move to subsume all
+  </flagger> - this is part of a bigger move to subsume all
   of our documentation and web-presence into one place, so we won't
   have to maintain too many pieces of infrastructure.\
   This has been on our to-do list since Flux became a CNCF

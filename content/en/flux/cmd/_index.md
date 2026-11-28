@@ -65,7 +65,7 @@ winget install -e --id FluxCD.Flux
 To install the latest release on Linux, macOS or Windows WSL:
 
 ```bash
-curl -s https://fluxcd.io/install.sh | sudo bash
+curl -s /install.sh | sudo bash
 ```
 
 The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install/flux.sh) does the following:
@@ -77,7 +77,7 @@ The [install script](https://raw.githubusercontent.com/fluxcd/flux2/main/install
 You can also install to a custom directory (e.g., `~/.local/bin`):
 
 ```bash
-curl -s https://fluxcd.io/install.sh | bash -s ~/.local/bin
+curl -s /install.sh | bash -s ~/.local/bin
 ```
 
 Please make sure that this directory is part of your `$PATH` environment variable.
@@ -85,7 +85,7 @@ Please make sure that this directory is part of your `$PATH` environment variabl
 To install a specific version, you can set the `FLUX_VERSION` environment variable (e.g., `2.7.0`):
 
 ```bash
-curl -s https://fluxcd.io/install.sh | FLUX_VERSION=2.7.0 bash -s ~/.local/bin
+curl -s /install.sh | FLUX_VERSION=2.7.0 bash -s ~/.local/bin
 ```
 
 ## Install using Docker

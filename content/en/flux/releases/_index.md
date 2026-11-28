@@ -148,4 +148,4 @@ The changelog contains the following information:
 - A list of new features, improvements and bug fixes for the Flux CLI
 - A list of documentation additions
 
-**Note** that the vulnerability disclosure procedure is explained on the [security page](https://fluxcd.io/security/).
+**Note** that the vulnerability disclosure procedure is explained on the [security page](/security/).

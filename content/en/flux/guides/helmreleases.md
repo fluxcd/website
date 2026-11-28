@@ -321,7 +321,7 @@ metadata:
 
 An alternative to labeling every Secret or ConfigMap is
 setting the `--watch-configs-label-selector=owner!=helm`
-[flag](https://fluxcd.io/flux/components/helm/options/#flags)
+[flag](/flux/components/helm/options/#flags)
 in helm-controller, which allows watching all Secrets and
 ConfigMaps except for Helm storage Secrets.
 
